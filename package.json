@@ -8,6 +8,7 @@
     "watch": "eleventy --watch",
     "serve": "eleventy --serve",
     "start": "eleventy --serve",
+    "scss": "node-sass --output-style compressed -o src/site/_includes/css src/scss",
     "debug": "DEBUG=* eleventy"
   },
   "repository": {
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/geofftobin71/fl_webpage#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.0"
+    "@11ty/eleventy": "^0.11.0",
+    "node-sass": "^4.14.1"
   }
 }
