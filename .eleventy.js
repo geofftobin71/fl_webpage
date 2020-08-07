@@ -4,4 +4,5 @@ module.exports = function (config) {
     return collection.getFilteredByGlob("posts/*.md");
   });
 
+  config.addPassthroughCopy("css");
 };
