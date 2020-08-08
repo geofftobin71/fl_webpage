@@ -2,9 +2,20 @@
 layout: layouts/base.njk
 ---
 
-<h1>Welcome to my new Eleventy Blog!</h1>
+<h1>Foriade</h1>
 
 <p>Hello World!</p>
+
+<section class="hero is-info">
+<div class="hero-body">
+{{ collections.instagram }}
+</div>
+</section>
+
+{% for insta in collections.instagram %}
+  <img src="{{ insta.media_url  }}">
+  <p>{{ insta.caption }}</p>
+{% endfor %}
 
 <ul>
   {% for post in collections.posts | reverse %}
