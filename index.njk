@@ -1,11 +1,15 @@
 ---
-layout: layouts/base.njk
+layout: layouts/home.njk
 ---
 
-<h1>Floriade</h1>
-<h2>fresh & dried flowers for any occasion</h2>
+<header class="hero is-primary">
+<div class="hero-body">
+<h1 class="is-size-1 has-text-centered">Floriade</h1>
+<h2 class="is-size-2 has-text-centered">fresh & dried flowers for any occasion</h2>
+</div>
+</header>
 
-<section>
+<section class="hero">
 <div class="gallery-container">
 {% set insta_images = instagram | head(12)%}
 {% for image in insta_images %}

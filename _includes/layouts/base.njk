@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <meta name="description" content="{{ description or site.description }}" />
     
-    <!-- link rel="stylesheet" href="{{ '/css/bulma.min.css' | url }}" -->
-    <link rel="stylesheet" href="{{ '/css/instagram.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/fl_styles.css' | url }}">
+    {% block head %}
+    {% endblock %}
     
     <title> {{ title or site.title }} </title>
   </head>
@@ -18,5 +19,8 @@
     </header>
     
     {{ content | safe }}
+
+    {% block foot %}
+    {% endblock %}
   </body>
 </html>

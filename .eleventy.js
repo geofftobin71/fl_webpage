@@ -7,6 +7,7 @@ module.exports = function (config) {
   });
   
   config.addPassthroughCopy("css");
+  config.addPassthroughCopy("fonts");
   
   config.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
