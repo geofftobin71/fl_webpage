@@ -3,15 +3,15 @@ layout: layouts/base.njk
 ---
 
 <h1>Floriade</h1>
+<h2>fresh & dried flowers for any occasion</h2>
 
-<section class="hero is-info">
-<div class="hero-body">
-
-{% for insta in instagram %}
-  <img src="{{ insta.media_url  }}">
-  <p>{{ insta.caption }}</p>
+<section>
+<div class="gallery-container">
+{% set insta_images = instagram | head(12)%}
+{% for image in insta_images %}
+    <img src="{{ image.media_url }}">
+    <!-- <p>{{ image.caption }}</p> -->
 {% endfor %}
-
 </div>
 </section>
 

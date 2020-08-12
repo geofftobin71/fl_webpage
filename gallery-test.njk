@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+---
+
+<h1 style="text-align:center;font-size:18vw">Gallery Test</h1>
+
+<section>
+<div class="gallery-container">
+{% for image in instagram | head(12) %}
+    <img src="{{ image.media_url }}">
+    <!-- <p>{{ image.caption }}</p> -->
+{% endfor %}
+</div>
+</section>

@@ -1,0 +1,54 @@
+@font-face {
+  font-family: PoppinsLight;
+  src: url(https://floriade.co.nz/fonts/poppins-light.woff) format('woff'),
+       url(https://floriade.co.nz/fonts/poppins-light.ttf) format('truetype');
+}
+@font-face {
+  font-family: Kollektif;
+  src: url(https://floriade.co.nz/fonts/kollektif.woff) format('woff'),
+       url(https://floriade.co.nz/fonts/kollektif.ttf) format('truetype');
+}
+@font-face {
+  font-family: KollektifBold;
+  src: url(https://floriade.co.nz/fonts/kollektif-bold.woff) format('woff'),
+       url(https://floriade.co.nz/fonts/kollektif-bold.ttf) format('truetype');
+}
+
+.gallery-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(125px, 125px)); // 1fr));
+	grid-auto-rows: 125px;
+    padding: 8px;
+    grid-gap: 0; // 8px;
+    grid-auto-flow: dense;
+    max-width: 960px;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: #f0f0f0;
+}
+.gallery-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  // box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
+  grid-column: span 1;
+  grid-row: span 1;
+  border: 2px solid white;
+}
+.gallery-container img:nth-child(6n+0) {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+.gallery-container img:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 3;
+}
+.gallery-container img:nth-child(6n+2) {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+* { font-family: PoppinsLight, sans-serif; }
+
+h1,h2,h3,h4,h5,h6 { font-family: Kollektif, sans-serif; }
