@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <meta name="description" content="{{ description or site.description }}" />
     
-    <link rel="stylesheet" href="{{ '/css/fl_styles.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/uikit.fl_theme.min.css' | url }}">
     {% block head %}
     {% endblock %}
     
@@ -14,12 +14,10 @@
   </head>
   
   <body>
-    <header>
-      {% include "nav.njk" %}
-    </header>
-    
     {{ content | safe }}
 
+    <script src="{{ '/scripts/uikit.min.js' | url }}"></script>
+    <script src="{{ '/scripts/uikit-icons.min.js' | url }}"></script>
     {% block foot %}
     {% endblock %}
   </body>

@@ -2,20 +2,25 @@
 layout: layouts/home.njk
 ---
 
-<header class="hero is-primary">
-<div class="hero-body">
-<h1 class="is-size-1 has-text-centered">Floriade</h1>
-<h2 class="is-size-2 has-text-centered">fresh & dried flowers for any occasion</h2>
+<header class="uk-section uk-section-primary">
+<div class="uk-container">
+<h1 class="uk-heading-line uk-text-center uk-margin-remove-bottom"><span>Floriade</span></h1>
+<h2 class="uk-heading-divider uk-text-center uk-margin-remove-top"><span>fresh & dried flowers <br class="uk-hidden@s">for any occasion</span></h2>
+
+{% include "nav.njk" %}
+
 </div>
 </header>
 
 <section class="hero">
 <div class="gallery-container">
+
 {% set insta_images = instagram | head(12)%}
 {% for image in insta_images %}
     <img src="{{ image.media_url }}">
     <!-- <p>{{ image.caption }}</p> -->
 {% endfor %}
+
 </div>
 </section>
 
