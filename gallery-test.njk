@@ -1,14 +1,24 @@
 ---
-layout: layouts/base.njk
+layout: layouts/home.njk
 ---
 
-<h1 style="text-align:center;font-size:18vw">Gallery Test</h1>
+<header class="uk-section uk-section-primary">
+<div class="uk-container">
+
+{% include "nav.njk" %}
+
+</div>
+</header>
 
 <section>
 <div class="gallery-container">
-{% for image in instagram | head(12) %}
+
+{% set insta_images = instagram | head(12)%}
+{% for image in insta_images %}
     <img src="{{ image.media_url }}">
     <!-- <p>{{ image.caption }}</p> -->
 {% endfor %}
+
 </div>
 </section>
+
