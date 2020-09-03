@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 module.exports = function() {
 
-  return fetch('https://graph.instagram.com/me/media?fields=media_url,caption&access_token=IGQVJWMlZANa0RmREZAKVWZAhLVg5UG9ZAVlhhYV9CRzlQNTZAwQ01tSVdSeVMydzVqbWtVQk5RbnpGQ3FpaWZAWRUtVM1lPbGtJT1M2N0YycWVlbjNZAUkZAIdUNvZATdRakJfUEhodU9McVR5V0diMG1MZA3hmeQZDZD')
+  return fetch('https://graph.instagram.com/me/media?fields=media_url,caption&access_token=IGQVJWSWZA2YkQ0NnBKODJOQ2tFYktweVl1c3ZArSUh4QnRnRE8xRjYzekd4YzgyOU8xUC1McktaRWswa0RxemxKMkdyMHU4emZAwVWtocmJtRVRZAbGI4bWpMdHFKUjN5Uml6MmR2ZATJtZAWdYMm1xQmt3ZAQZDZD')
   .then(res => res.json())
   .then(json => { return json.data; });
   
