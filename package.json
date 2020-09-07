@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf _site/*",
-    "build": "npm run eleventy",
+    "build": "eleventy",
     "serve": "eleventy --serve",
     "start": "eleventy --serve"
   },

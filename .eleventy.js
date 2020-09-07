@@ -6,10 +6,10 @@ module.exports = function (config) {
     return collection.getFilteredByGlob("posts/*.md");
   });
   
-  config.addPassthroughCopy("css");
-  config.addPassthroughCopy("fonts");
-  config.addPassthroughCopy("scripts");
-  config.addPassthroughCopy("images");
+  config.addPassthroughCopy("./src/css");
+  config.addPassthroughCopy("./src/fonts");
+  config.addPassthroughCopy("./src/scripts");
+  config.addPassthroughCopy("./src/images");
   
   config.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
@@ -29,4 +29,11 @@ module.exports = function (config) {
     return array.slice(0, n);
   });
 
+  return {
+    dir: {
+      input: "src",
+      output: "dist"
+    },
+    passthroughFileCopy:true
+  };
 };
