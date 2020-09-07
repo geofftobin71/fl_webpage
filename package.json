@@ -5,11 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf _site/*",
-    "build": "npm run clean && eleventy",
-    "watch": "eleventy --watch",
+    "build": "npm run eleventy",
     "serve": "eleventy --serve",
-    "start": "eleventy --serve",
-    "debug": "DEBUG=* eleventy"
+    "start": "eleventy --serve"
   },
   "repository": {
     "type": "git",
