@@ -12,6 +12,7 @@ layout: layouts/base.njk
 </header>
 
 <h1>{{title}}</h1>
+<img src="{{ '/images/floriade-logo-white.svg' | url }}" width=150 height=auto alt="Floriade logo">
 <ul>
   {% for post in collections.posts | reverse %}
   <li>
