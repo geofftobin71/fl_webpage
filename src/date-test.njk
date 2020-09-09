@@ -2,20 +2,18 @@
 layout: layouts/home.njk
 ---
 
-<header class="uk-section uk-section-primary">
-<div class="uk-container">
+{% block content %}
 
-{% include "nav.njk" %}
-
-</div>
+<header class="bg-primary">
+  <div class="wrapper">
+    {% include "nav.njk" %}
+  </div>
 </header>
 
-<section class="uk-section uk-section-secondary uk-height-large uk-preserve-color">
-<div class="uk-container uk-flex uk-flex-column uk-flex-middle uk-flex-center">
-
-<!-- div id="inline" data-date="01/05/2020"></div -->
-
-<input class="uk-input uk-input-small" type="text" name="datepicker" required placeholder="Please choose a delivery date">
-
-</div>
+<section class="bg-light">
+  <div>
+    <input class="input" type="text" name="datepicker" required placeholder="Please choose a delivery date">
+  </div>
 </section>
+
+{% endblock %}

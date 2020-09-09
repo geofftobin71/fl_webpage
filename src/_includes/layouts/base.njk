@@ -6,18 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <meta name="description" content="{{ description or site.description }}" />
     
-    <link rel="stylesheet" href="{{ '/css/uikit.fl_theme.min.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/global.css' | url }}">
+
     {% block head %}
     {% endblock %}
     
-    <title> {{ title or site.title }} </title>
+    <title>{{ title or site.title }}</title>
   </head>
   
   <body>
-    {{ content | safe }}
+    {% block content %}
+      {{ content | safe }}
+    {% endblock %}
 
-    <script src="{{ '/scripts/uikit.min.js' | url }}"></script>
-    <script src="{{ '/scripts/uikit-icons.min.js' | url }}"></script>
     {% block foot %}
     {% endblock %}
   </body>

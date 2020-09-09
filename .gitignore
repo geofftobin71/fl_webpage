@@ -1,4 +1,6 @@
 _site/
 dist/
 node_modules/
+_ref/
+src/css/_ref/*.css
 package-lock.json

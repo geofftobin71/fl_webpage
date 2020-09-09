@@ -1,18 +1,20 @@
 ---
-title: Floriade - fresh and dried flowers for any occasion
+title: Floriade - fresh & dried flowers for any occasion
 layout: layouts/base.njk
 ---
 
-<header class="uk-section uk-section-primary">
-<div class="uk-container">
+<header class="bg-primary">
+  <div class="wrapper">
 
-{% include "nav.njk" %}
+    {% include "nav.njk" %}
 
-</div>
+  </div>
 </header>
 
-<h1>{{title}}</h1>
-<img src="{{ '/images/floriade-logo-white.svg' | url }}" width=150 height=auto alt="Floriade logo">
+<h1>{{ title }}</h1>
+
+<img src="{{ '/images/floriade-logo.svg' | url }}" width=150 height=auto alt="Floriade logo">
+
 <ul>
   {% for post in collections.posts | reverse %}
   <li>

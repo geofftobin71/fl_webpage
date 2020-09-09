@@ -6,7 +6,7 @@ module.exports = function (config) {
     return collection.getFilteredByGlob("posts/*.md");
   });
   
-  config.addPassthroughCopy("./src/css");
+  config.addPassthroughCopy("./src/css/*.css");
   config.addPassthroughCopy("./src/fonts");
   config.addPassthroughCopy("./src/scripts");
   config.addPassthroughCopy("./src/images");
@@ -30,6 +30,9 @@ module.exports = function (config) {
   });
 
   return {
+    markdownTemplateEngine: 'njk',
+    dataTemplateEngine: 'njk',
+    htmlTemplateEngine: 'njk',
     dir: {
       input: "src",
       output: "dist"

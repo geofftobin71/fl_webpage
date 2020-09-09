@@ -2,23 +2,26 @@
 layout: layouts/home.njk
 ---
 
-<header class="uk-section uk-section-primary">
-<div class="uk-container">
+{% block content %}
 
-{% include "nav.njk" %}
+<header class="bg-primary">
+  <div class="wrapper">
 
-</div>
+    {% include "nav.njk" %}
+
+  </div>
 </header>
 
 <section>
-<div class="gallery-container">
+  <div class="gallery-container">
 
-{% set insta_images = instagram | head(12)%}
-{% for image in insta_images %}
-    <img src="{{ image.media_url }}">
-    <!-- <p>{{ image.caption }}</p> -->
-{% endfor %}
+    {% set insta_images = instagram | head(12)%}
+    {% for image in insta_images %}
+        <img src="{{ image.media_url }}">
+        <!-- <p>{{ image.caption }}</p> -->
+    {% endfor %}
 
-</div>
+  </div>
 </section>
 
+{% endblock %}
