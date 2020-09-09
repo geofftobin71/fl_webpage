@@ -17,7 +17,7 @@ layout: layouts/home.njk
 
     {% set insta_images = instagram | head(12)%}
     {% for image in insta_images %}
-        <img src="{{ image.media_url }}">
+      <img src="{{ image.media_url }}" alt="{{ image.caption }}">
         <!-- <p>{{ image.caption }}</p> -->
     {% endfor %}
 

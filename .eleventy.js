@@ -29,6 +29,14 @@ module.exports = function (config) {
     return array.slice(0, n);
   });
 
+  // Convert uppercase to hyphen-lowercase : fooBar => foo-bar
+  config.addFilter("hyphenate", (word) => {
+    function upperToHyphenLower(match, offset, string) {
+          return (offset > 0 ? '-' : '') + match.toLowerCase();
+        }
+    return word.replace(/[A-Z]/g, upperToHyphenLower);
+  });
+
   return {
     markdownTemplateEngine: 'njk',
     dataTemplateEngine: 'njk',

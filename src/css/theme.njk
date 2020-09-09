@@ -1,16 +1,36 @@
 ---
 permalink: "css/theme.css"
 ---
+@font-face {
+  font-family: PoppinsLight;
+  src: url("/fonts/poppins-light.woff") format("woff"),
+       url("/fonts/poppins-light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Kollektif;
+  font-weight: normal;
+  src: url("/fonts/kollektif.woff") format("woff"),
+       url("/fonts/kollektif.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Kollektif;
+  font-weight: bold;
+  src: url("/fonts/kollektif-bold.woff") format("woff"),
+       url("/fonts/kollektif-bold.ttf") format("truetype");
+}
 
 :root {
-  --color-light: {{ tokens.colorLight }};
-  --color-dark: {{ tokens.colorDark }};
-  --color-primary: {{ tokens.colorPrimary }};
-  --color-shade1: {{ tokens.colorShade1 }};
-  --color-shade2: {{ tokens.colorShade2 }};
-  --color-shade3: {{ tokens.colorShade3 }};
-  --color-shade4: {{ tokens.colorShade4 }};
-  --color-dust1: {{ tokens.colorDust1 }};
-  --color-dust2: {{ tokens.colorDust2 }};
-  --color-dust3: {{ tokens.colorDust3 }};
+{%- for token, value in colorTokens %}
+  --{{ token | hyphenate }}: {{ value }};
+{%- endfor %}
 }
+
+{% for token, value in colorTokens %}
+.bg-{{ token | hyphenate | replace("color-", "") }} { background: {{ value }} }
+{%- endfor %}
+
+{% for token, value in colorTokens %}
+.{{ token | hyphenate }} { color: {{ value }} }
+{%- endfor %}
