@@ -3,7 +3,7 @@ const { DateTime } = require("luxon");
 module.exports = function (config) {
   
   config.addCollection("posts", function (collection) {
-    return collection.getFilteredByGlob("posts/*.md");
+    return collection.getFilteredByGlob("./src/posts/*.md");
   });
   
   config.addPassthroughCopy("./src/css/*.css");

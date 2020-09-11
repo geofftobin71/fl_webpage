@@ -1,8 +1,10 @@
 ---
 permalink: "css/theme.css"
 ---
+
 @font-face {
-  font-family: PoppinsLight;
+  font-family: Poppins;
+  font-weight: light;
   src: url("/fonts/poppins-light.woff") format("woff"),
        url("/fonts/poppins-light.ttf") format("truetype");
 }
@@ -22,19 +24,74 @@ permalink: "css/theme.css"
 }
 
 :root {
-{%- for token, value in colorTokens %}
+  --font-family-base: Poppins, sans-serif;
+  --font-family-secondary: Kollektif, sans-serif;
+
+  --font-weight-base: light;
+  --font-weight-secondary: normal;
+
+{% for token, value in tokens.colors %}
   --{{ token | hyphenate }}: {{ value }};
 {%- endfor %}
 }
 
-{% for token, value in colorTokens %}
-.bg-{{ token | hyphenate | replace("color-", "") }} { background: {{ value }} }
+{% for token, value in tokens.colors %}
+.{{ token | hyphenate | replace("color-", "bg-") }} { background: {{ value }} }
 {%- endfor %}
 
-{% for token, value in colorTokens %}
+{% for token, value in tokens.colors %}
 .{{ token | hyphenate }} { color: {{ value }} }
 {%- endfor %}
 
-body { font-family: PoppinsLight; font-weight: normal; }
+.font-family-base {
+  font-family: var(--font-family-base);
+}
 
-h1, h2, h3, h4, h5, h6 { font-family: Kollektif; font-weight: normal; }
+.font-family-secondary {
+  font-family: var(--font-family-secondary);
+}
+
+.font-weight-light {
+  font-weight: light;
+}
+
+.font-weight-normal {
+  font-weight: normal;
+}
+
+.font-size-5 { font-size: var(--step-5); }
+.font-size-4 { font-size: var(--step-4); }
+.font-size-3 { font-size: var(--step-3); }
+.font-size-2 { font-size: var(--step-2); }
+.font-size-1 { font-size: var(--step-1); }
+.font-size-0 { font-size: var(--step-0); }
+.font-size--1 { font-size: var(--step--1); }
+.font-size--2 { font-size: var(--step--2); }
+
+body {
+  color: var(--color-dark);
+  background: white;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-secondary);
+  font-weight: var(--font-weight-secondary);
+}
+
+body { font-size: var(--step-0); }
+h1 { font-size:var(--step-3); }
+article h1 { font-size:var(--step-3); }
+aside h1 { font-size:var(--step-3); }
+nav h1 { font-size:var(--step-3); }
+section h1 { font-size:var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+h4 { font-size: var(--step-0); }
+h5 { font-size: var(--step--1); }
+h6 { font-size: var(--step--2); }
+
