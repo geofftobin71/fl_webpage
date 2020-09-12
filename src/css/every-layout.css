@@ -1,21 +1,33 @@
-body {
+:root {
+  --measure: 60ch;
   --padding: calc(1rem * 1.4);
 }
 
-  /* Columns
-  -----------------------------------------------------------------------*/
-  .columns {
-    columns: 2 450px;
-    column-gap: calc(2 * var(--padding));
-    column-rule: 1px solid var(--color-lighter-grey);
+@media screen and (min-width: 1200px) {
+  :root {
+    --measure: 75ch;
   }
+}
 
-  .columns > h1, .columns > h2, .columns > h3, .columns > h4, .columns > h5, .columns > h6 {
-    column-span: all;
-  }
+/* Measure
+-----------------------------------------------------------------------*/
+* {
+  max-width: var(--measure);
+}
 
-  /* Flow
-  -----------------------------------------------------------------------*/
+html,
+body,
+div,
+header,
+nav,
+main,
+section,
+footer {
+  max-width: none;
+}
+
+/* Flow
+-----------------------------------------------------------------------*/
   article > * + * {
     margin-top: 1em;
   }
@@ -107,7 +119,7 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 60ch;
+    max-width: var(--measure);
     /* ↓ Intrinsic Centering: That is, centering elements based on their natural, content-based widths. */
     /* display: flex;
     flex-direction: column;
@@ -256,17 +268,17 @@ body {
     position: relative;
   }
 
-  .frame916 {
+  .frame16x9 {
     --n: 9;
     --d: 16;
   }
 
-  .frame43 {
+  .frame4x3 {
     --n: 3;
     --d: 4;
   }
 
-  .frame-square {
+  .frame1x1 {
     --n: 1;
     --d: 1;
   }

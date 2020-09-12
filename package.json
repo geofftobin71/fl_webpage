@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf _site/*",
     "build": "eleventy",
-    "serve": "eleventy --serve --quiet",
+    "serve": "eleventy --serve",
     "start": "eleventy --serve"
   },
   "repository": {
