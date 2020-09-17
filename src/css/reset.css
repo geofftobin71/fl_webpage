@@ -3,11 +3,13 @@
 html {
   scroll-behavior: smooth;
   line-height: 1.5;
+  height: -webkit-fill-available;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   text-rendering: optimizeSpeed;
   overflow-x: hidden;
 }
@@ -96,8 +98,4 @@ select {
 
 img:not([alt]) {
   filter: blur(10px);
-}
-
-.subheading {
-  margin-top: 0;
 }

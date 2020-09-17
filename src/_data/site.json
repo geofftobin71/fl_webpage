@@ -1,6 +1,16 @@
 {
-  "title": "Floriade - fresh & dried flowers for any occasion",
+  "name": "Floriade",
+  "tagline": "fresh & dried flowers for any occasion",
   "url": "https://floriade.co.nz/",
-  "description": "fresh & dried flowers for any occasion",
-  "email": "flowers@floriade.co.nz"
+  "description": "Fresh & dried flowers for any occasion. Unique designs that stand out from the everyday using unusual flowers and foliage as well as traditional favourites.",
+  "phone": "04 213 7952",
+  "phone_intl": "+6442137952",
+  "address": "14 Cambridge Terrace",
+  "address2": "Te Aro",
+  "email": "flowers@floriade.co.nz",
+  "facebook": "https://www.facebook.com/Floriade-Wellington-268420810268693/",
+  "instagram": "https://instagram.com/floriade_wellington/",
+  "pinterest": "https://nz.pinterest.com/floriade0826/",
+  "google_review": "https://search.google.com/local/writereview?placeid=ChIJ6z8ye22vOG0R13q7-zASRmY",
+  "google_maps": "https://goo.gl/maps/jGdMssVmNamjZXA4A"
 }

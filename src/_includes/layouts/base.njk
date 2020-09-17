@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
     <meta name="description" content="{{ description or site.description }}" />
     
-    <link rel="stylesheet" href="{{ '/css/global.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/reset.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/modular-scale.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/theme.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/every-layout.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/layout.css' | url }}">
 
     {% block head %}
     {% endblock %}
     
-    <title>{{ title or site.title }}</title>
+  <title>{% if title | length %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} - {{ site.tagline }}{% endif %}</title>
   </head>
   
   <body>

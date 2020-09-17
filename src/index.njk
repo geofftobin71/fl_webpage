@@ -1,56 +1,63 @@
 ---
-title: Floriade - fresh & dried flowers for any occasion
 layout: layouts/home.njk
 ---
 
-<section style="width:100vw;background:{{ tokens.colors.colorShade2 }}">
+<div class="wrapper page-wrapper bg-primary" style="box-shadow: 0 0 20px 10px rgba(0,0,0,0.2);">
+  <div class="wrapper">
 
-  <section style="max-width:1500px;margin:0 auto;background: white">
+    <header class="bg-primary">
+      {% include "nav.njk" %}
+    </header>
 
-    <section style="max-width:1200px;margin:0 auto;padding:0 1.4rem">
+    <h1 style="text-align:center">Floriade</h1>
+    <h2 class="subheading" style="text-align:center"><span>fresh&nbsp;&&nbsp;dried&nbsp;flowers</span> <span>for&nbsp;any&nbsp;occasion</span></h2>
 
-      <header class="bg-primary">
-        <div class="wrapper">
+    <div class="center center-both bg-primary" style="width:140px;height:140px;padding:5px;border-radius:50%">
+      <img src="images/floriade-logo.png" alt="Floriade logo" width="320" height="269">
+    </div>
 
-          {% include "nav.njk" %}
+    <ul>
+      {% for post in collections.posts | reverse %}
+        <li>
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
 
+    <div class="flow">
+      <h1>Header 1</h1>
+      <h2>Header 2</h2>
+      <h3>Header 3</h3>
+      <h4>Header 4</h4>
+      <h5>Header 5</h5>
+      <h6>Header 6</h6>
+
+      <article class="center">
+        <h3>Section 1</h3>
+        <p>Sit ullam quasi corporis dolor vel? Odit voluptas aut dignissimos perspiciatis laudantium? Ab eveniet veniam unde nemo aspernatur eius. Id itaque nam autem earum asperiores? Perferendis eveniet voluptatibus vitae laudantium ab numquam Corporis unde eius repellendus natus placeat. Excepturi tempore libero in mollitia fuga culpa odio ex. Voluptatum voluptatibus nesciunt!</p>
+        <p>Adipisicing magni suscipit cumque eveniet temporibus magnam eaque! Nobis quo expedita culpa doloribus provident consequatur Aperiam vero harum animi eum ab, consectetur Optio culpa a alias placeat praesentium assumenda neque optio! Doloremque nisi id blanditiis dolore optio, aspernatur Nemo doloribus qui adipisci minima doloremque dolores vel Laborum tenetur nemo corporis</p>
+        <p>Sit placeat itaque officiis possimus iure. Iste nisi minima culpa assumenda adipisicing Obcaecati provident quia officia repellat corrupti Officia non culpa vel at reprehenderit odio sed? Sunt officiis eum quia dicta optio. Dolorum inventore corporis nulla doloribus temporibus. Sit perferendis eveniet hic quia inventore ratione Sed autem cum vitae qui</p>
+        <div class="full-width">
+          <figure class="wrapper">
+            <div class="frame frame16x9">
+              <img src="https://floriade.co.nz/images/Floriade_dried_flower_room_1920.jpg" alt="Floriade interior" width="1920" height="1920">
+            </div>
+            <figcaption>Floriade interior</figcaption>
+          </figure>
         </div>
-      </header>
-
-      <h1 style="text-align:center">Floriade</h1>
-      <h2 class="subheading" style="text-align:center">fresh & dried flowers for any occasion</h2>
-
-      <img src="{{ '/images/floriade-logo.svg' | url }}" width=150 height=auto alt="Floriade logo">
-
-      <ul>
-        {% for post in collections.posts | reverse %}
-          <li>
-            <a href="{{ post.url }}">{{ post.data.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-
-      <section>
-        <div class="flow">
-          <h1>Header 1</h1>
-          <h2>Header 2</h2>
-          <h3>Header 3</h3>
-          <h4>Header 4</h4>
-          <h5>Header 5</h5>
-          <h6>Header 6</h6>
-
-          <article class="center">
-            <div class="frame frame16x9"><img src="https://floriade.co.nz/images/Floriade_dried_flower_room_1200.jpg" alt="test"></div>
-            <h3>Section 1</h3>
-            <p>Sit ullam quasi corporis dolor vel? Odit voluptas aut dignissimos perspiciatis laudantium? Ab eveniet veniam unde nemo aspernatur eius. Id itaque nam autem earum asperiores? Perferendis eveniet voluptatibus vitae laudantium ab numquam Corporis unde eius repellendus natus placeat. Excepturi tempore libero in mollitia fuga culpa odio ex. Voluptatum voluptatibus nesciunt!</p>
-            <p>Adipisicing magni suscipit cumque eveniet temporibus magnam eaque! Nobis quo expedita culpa doloribus provident consequatur Aperiam vero harum animi eum ab, consectetur Optio culpa a alias placeat praesentium assumenda neque optio! Doloremque nisi id blanditiis dolore optio, aspernatur Nemo doloribus qui adipisci minima doloremque dolores vel Laborum tenetur nemo corporis</p>
-            <p>Sit placeat itaque officiis possimus iure. Iste nisi minima culpa assumenda adipisicing Obcaecati provident quia officia repellat corrupti Officia non culpa vel at reprehenderit odio sed? Sunt officiis eum quia dicta optio. Dolorum inventore corporis nulla doloribus temporibus. Sit perferendis eveniet hic quia inventore ratione Sed autem cum vitae qui</p>
-            <h3>Section 2</h3>
-            <p>Ipsum consequatur doloribus eligendi veniam unde omnis odit. Tempora architecto necessitatibus esse nemo sequi Consequatur quo illum sequi necessitatibus minus doloribus. Soluta blanditiis enim veritatis voluptatibus quae. Saepe neque maiores explicabo sed a quia ipsam sequi Culpa ex molestias necessitatibus ab quia? Aperiam voluptate nisi voluptates eius excepturi dicta delectus.</p>
-            <p>Adipisicing incidunt necessitatibus et beatae ex? Facere ducimus quas possimus cupiditate provident? Totam aut hic modi ducimus expedita Quisquam a maiores quidem suscipit quidem! Pariatur quia accusamus nam assumenda quia voluptas Pariatur deleniti molestiae quidem velit harum. Accusantium quasi iure minus sapiente fugit voluptas? Totam nihil voluptate harum eligendi optio?</p>
-          </article>
-        </div>
-      </section>
-    </section>
-  </section>
-</section>
+        <h3>Section 2</h3>
+        <p>Ipsum consequatur doloribus eligendi veniam unde omnis odit. Tempora architecto necessitatibus esse nemo sequi Consequatur quo illum sequi necessitatibus minus doloribus. Soluta blanditiis enim veritatis voluptatibus quae. Saepe neque maiores explicabo sed a quia ipsam sequi Culpa ex molestias necessitatibus ab quia? Aperiam voluptate nisi voluptates eius excepturi dicta delectus.</p>
+        <p>Adipisicing incidunt necessitatibus et beatae ex? Facere ducimus quas possimus cupiditate provident? Totam aut hic modi ducimus expedita Quisquam a maiores quidem suscipit quidem! Pariatur quia accusamus nam assumenda quia voluptas Pariatur deleniti molestiae quidem velit harum. Accusantium quasi iure minus sapiente fugit voluptas? Totam nihil voluptate harum eligendi optio?</p>
+        <figure>
+          <div class="frame frame16x9">
+            <img src="https://floriade.co.nz/images/Floriade_dried_flower_room_1920.jpg" alt="Floriade interior" width="1920" height="1920">
+          </div>
+          <figcaption>Floriade interior</figcaption>
+        </figure>
+        <h3>Section 3</h3>
+        <p>Ipsum consequatur doloribus eligendi veniam unde omnis odit. Tempora architecto necessitatibus esse nemo sequi Consequatur quo illum sequi necessitatibus minus doloribus. Soluta blanditiis enim veritatis voluptatibus quae. Saepe neque maiores explicabo sed a quia ipsam sequi Culpa ex molestias necessitatibus ab quia? Aperiam voluptate nisi voluptates eius excepturi dicta delectus.</p>
+        <p>Adipisicing incidunt necessitatibus et beatae ex? Facere ducimus quas possimus cupiditate provident? Totam aut hic modi ducimus expedita Quisquam a maiores quidem suscipit quidem! Pariatur quia accusamus nam assumenda quia voluptas Pariatur deleniti molestiae quidem velit harum. Accusantium quasi iure minus sapiente fugit voluptas? Totam nihil voluptate harum eligendi optio?</p>
+      </article>
+    </div>
+  </div>
+</div>
