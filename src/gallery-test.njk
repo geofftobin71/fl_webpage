@@ -15,12 +15,18 @@ layout: layouts/home.njk
 <section>
   <div class="gallery-container">
 
-    {% set insta_images = instagram | head(12)%}
+    {% set insta_images = instagram | head(12) %}
     {% for image in insta_images %}
       <img src="{{ image.media_url }}" alt="{{ image.caption }}">
         <!-- <p>{{ image.caption }}</p> -->
     {% endfor %}
 
+  </div>
+</section>
+
+<section>
+  <div class="gallery-container">
+    {# wedding_flowers_gallery | log #}
   </div>
 </section>
 

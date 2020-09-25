@@ -1,0 +1,16 @@
+---
+title: Reviews
+layout: layouts/base.njk
+---
+
+<main>
+<h1>{{ title }}</h1>
+<ul>
+  {% for item in reviews | shuffle -%}
+  <li style="border: 1px solid lightgray">
+    <p>{{ item.review }}</p>
+    <p style="text-align:right">{{ item.name }}</p>
+  </li>
+  {% endfor -%}
+</ul>
+</main>
