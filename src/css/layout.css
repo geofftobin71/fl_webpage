@@ -11,6 +11,7 @@
 
 /* Measure
 -----------------------------------------------------------------------*/
+/*
 * {
   max-width: var(--measure);
 }
@@ -25,6 +26,7 @@ section,
 footer {
   max-width: inherit;
 }
+*/
 
 /* Flow
 -----------------------------------------------------------------------*/
@@ -276,10 +278,10 @@ footer {
 
   /* Auto Grid
   -----------------------------------------------------------------------*/
-  .auto-grid > * {
+  .auto-grid {
     max-width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .auto-grid > * + * {
@@ -289,17 +291,66 @@ footer {
   @supports (display: grid) {
     .auto-grid {
       display: grid;
-      grid-template-columns: repeat(
-      auto-fill,
-      minmax(var(--auto-grid-min-size, 16rem), 1fr)
-      );
-      grid-gap: 1rem;
+      grid-template-columns: repeat( auto-fit, minmax(var(--auto-grid-min-size, 16rem), 1fr));
+      grid-gap: var(--auto-grid-gap, 1rem);
+      grid-auto-flow: dense;
     }
 
-    .auto-grid > * {
+    .auto-grid {
       max-width: unset;
+    }
+
+    .auto-grid, .auto-grid > * + * {
       margin: unset;
     }
+  }
+
+  /* Gallery
+  -----------------------------------------------------------------------*/
+
+  .gallery {
+    padding: 16px !important;
+    --auto-grid-gap: 16px;
+    --auto-grid-min-size: 96px;
+  }
+
+  .gallery .frame {
+    box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .gallery .frame4x3 {
+    grid-column-end: span 4;
+    grid-row-end: span 3;
+  }
+
+  .gallery .frame3x2 {
+    grid-column-end: span 3;
+    grid-row-end: span 2;
+  }
+
+  .gallery .frame2x1 {
+    grid-column-end: span 4;
+    grid-row-end: span 2;
+  }
+
+  .gallery .frame1x1 {
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+  }
+
+  .gallery .frame1x2 {
+    grid-column-end: span 2;
+    grid-row-end: span 4;
+  }
+
+  .gallery .frame2x3 {
+    grid-column-end: span 2;
+    grid-row-end: span 3;
+  }
+
+  .gallery .frame3x4 {
+    grid-column-end: span 3;
+    grid-row-end: span 4;
   }
 
   /* Full Width
@@ -347,9 +398,34 @@ footer {
     --d: 4;
   }
 
+  .frame3x2 {
+    --n: 2;
+    --d: 3;
+  }
+
+  .frame2x1 {
+    --n: 1;
+    --d: 2;
+  }
+
   .frame1x1 {
     --n: 1;
     --d: 1;
+  }
+
+  .frame1x2 {
+    --n: 2;
+    --d: 1;
+  }
+
+  .frame2x3 {
+    --n: 3;
+    --d: 2;
+  }
+
+  .frame3x4 {
+    --n: 4;
+    --d: 3;
   }
 
   .frame > * {

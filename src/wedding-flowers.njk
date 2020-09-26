@@ -1,0 +1,23 @@
+---
+title: Wedding Flowers
+layout: layouts/base.njk
+---
+
+<main>
+<h1>{{ title }}</h1>
+<div class="wrapper page-wrapper bg-white">
+  <ul class="auto-grid gallery">
+    {% for item in wedding_flowers_gallery.resources | shuffle -%}
+      {% if item.aspect_ratio > 1.38 %}
+      <li class="frame frame4x3">
+      {% elseif item.aspect_ratio > 0.72 %}
+      <li class="frame frame1x1">
+      {% else %}
+      <li class="frame frame2x3">
+      {% endif %}
+        <img src="{{ item.secure_url }}" alt="{{ title }}" width="{{ item.width }}" height="{{ item.height }}">
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+</main>
