@@ -9,6 +9,12 @@ fields:
   - type: textarea
     name: review
     label: review
+    config:
+      required: true
   - type: text
     name: name
     label: name
+    config:
+      required: true
+  config:
+    labelField: name
