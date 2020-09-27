@@ -7,7 +7,7 @@ sections:
 - type: document
   path: src/_data/reviews.json
   label: Reviews
-upload_dir: https://res.cloudinary.com/floriade/image/upload
+upload_dir: ''
 public_path: https://res.cloudinary.com/floriade/image/upload
 front_matter_path: ''
 use_front_matter_path: true
