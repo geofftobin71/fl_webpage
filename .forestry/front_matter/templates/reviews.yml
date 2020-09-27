@@ -18,3 +18,5 @@ fields:
       required: true
   config:
     labelField: name
+pages:
+- src/_data/reviews.json
