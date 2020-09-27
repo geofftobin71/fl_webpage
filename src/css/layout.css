@@ -314,6 +314,12 @@ footer {
     --auto-grid-min-size: 96px;
   }
 
+  @media screen and (max-width: 400px) {
+    .gallery {
+      --auto-grid-min-size: 64px;
+    }
+  }
+
   .gallery .frame {
     box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
   }
