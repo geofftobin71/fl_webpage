@@ -8,12 +8,12 @@ fields:
   fields:
   - type: textarea
     name: review
-    label: review
+    label: Review
     config:
       required: true
   - type: text
     name: name
-    label: name
+    label: Name
     config:
       required: true
   config:
