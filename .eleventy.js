@@ -1,5 +1,7 @@
 require("dotenv").config();
 const { DateTime } = require("luxon"); 
+const htmlmin = require("html-minifier");
+const fs = require("fs");
 
 module.exports = function (config) {
   
@@ -11,7 +13,20 @@ module.exports = function (config) {
   config.addPassthroughCopy("./src/fonts");
   config.addPassthroughCopy("./src/scripts");
   config.addPassthroughCopy("./src/images");
-  
+
+  config.addTransform("htmlmin", function(content, outputPath) {
+    if( (process.env.ELEVENTY_ENV == "production") && outputPath.endsWith(".html") ) {
+      let minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true
+      });
+      return minified;
+    }
+
+    return content;
+  });
+
   config.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
   });
@@ -46,6 +61,23 @@ module.exports = function (config) {
       return (offset > 0 ? '-' : '') + match.toLowerCase();
     }
     return word.replace(/[A-Z]/g, upperToHyphenLower);
+  });
+
+  config.setBrowserSyncConfig({
+    callbacks: {
+      ready: function(err, bs) {
+
+        bs.addMiddleware("*", (req, res) => {
+          const content_404 = fs.readFileSync('dist/404.html');
+          // Provides the 404 content without redirect.
+          res.write(content_404);
+          // Add 404 http status code in request header.
+          // res.writeHead(404, { "Content-Type": "text/html" });
+          res.writeHead(404);
+          res.end();
+        });
+      }
+    }
   });
 
   return {

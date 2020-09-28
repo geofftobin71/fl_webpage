@@ -1,0 +1,11 @@
+<section class="wrapper">
+  <ul class="auto-grid" style="--auto-grid-min-size:220px">
+  {% for item in instagram | head(12) -%}
+    <li class="frame frame1x1 shadow">
+      <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+      {# <p>{{ item.caption }}</p> #}
+    </li>
+  {% endfor %}
+  {# <img src="{{ item.media_url }}c_fill,w_320,h_320,q_auto,g_auto:subject/{{ item.media_url }}" alt="{{ item.caption }}" width="320" height="320" loading="lazy"> #}
+  </ul>
+</section>

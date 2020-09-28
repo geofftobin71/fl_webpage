@@ -1,23 +1,31 @@
 ---
 title: Wedding Flowers
 layout: layouts/base.njk
+alt: Wedding Flowers by Floriade
 ---
 
 <main>
 <h1>{{ title }}</h1>
-<div class="wrapper page-wrapper bg-white">
+<section class="wrapper page-wrapper bg-white">
   <ul class="auto-grid gallery">
     {% for item in wedding_flowers_gallery.resources | shuffle -%}
       {% if item.aspect_ratio > 1.38 %}
-      <li class="frame frame4x3">
+        {% set aspect = "4x3" %}
+        {% set width = "640" %}
+        {% set height = "480" %}
       {% elseif item.aspect_ratio > 0.72 %}
-      <li class="frame frame1x1">
+        {% set aspect = "1x1" %}
+        {% set width = "320" %}
+        {% set height = "320" %}
       {% else %}
-      <li class="frame frame2x3">
+        {% set aspect = "2x3" %}
+        {% set width = "320" %}
+        {% set height = "480" %}
       {% endif %}
-        <img src="{{ item.secure_url }}" alt="{{ title }}" width="{{ item.width }}" height="{{ item.height }}">
+      <li class="frame frame{{ aspect }} shadow">
+        <img src="{{ site.cloudinary_url }}c_fill,w_{{ width }},h_{{ height }},q_auto,g_auto:subject/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ width }}" height="{{ height }}" loading="lazy">
       </li>
-    {% endfor %}
+    {%- endfor %}
   </ul>
-</div>
+</section>
 </main>

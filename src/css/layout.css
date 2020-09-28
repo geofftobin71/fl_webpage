@@ -28,6 +28,14 @@ footer {
 }
 */
 
+/* Section
+-----------------------------------------------------------------------*/
+
+section {
+  padding-top: var(--step-3);
+  padding-bottom: var(--step-3);
+}
+
 /* Flow
 -----------------------------------------------------------------------*/
   article > * + * {
@@ -46,7 +54,8 @@ footer {
     max-width: var(--wrapper-width);
     margin-left: auto;
     margin-right: auto;
-    padding: 0 var(--padding);
+    padding-left: var(--padding);
+    padding-right: var(--padding);
   }
 
   .page-wrapper {
@@ -320,10 +329,6 @@ footer {
     }
   }
 
-  .gallery .frame {
-    box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
-  }
-
   .gallery .frame4x3 {
     grid-column-end: span 4;
     grid-row-end: span 3;
@@ -432,6 +437,10 @@ footer {
   .frame3x4 {
     --n: 4;
     --d: 3;
+  }
+
+  .frame.shadow {
+    box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
   }
 
   .frame > * {
