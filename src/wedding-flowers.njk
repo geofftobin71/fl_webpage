@@ -8,7 +8,9 @@ alt: Wedding Flowers by Floriade
 <h1>{{ title }}</h1>
 <section class="wrapper page-wrapper bg-white">
   <ul class="auto-grid gallery">
-    {% for item in wedding_flowers_gallery.resources | shuffle -%}
+    {% set gallery = wedding_flowers_gallery.resources | shuffle %}
+
+    {% for item in gallery -%}
       {% if item.aspect_ratio > 1.38 %}
         {% set aspect = "4x3" %}
         {% set width = "640" %}
@@ -25,7 +27,15 @@ alt: Wedding Flowers by Floriade
       <li class="frame frame{{ aspect }} shadow">
         <img src="{{ site.cloudinary_url }}c_fill,w_{{ width }},h_{{ height }},q_auto,g_auto:subject/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ width }}" height="{{ height }}" loading="lazy">
       </li>
-    {%- endfor %}
+      {%- endfor %}
   </ul>
 </section>
 </main>
+
+<section class="full-height bg-black">
+  <div class="reel" style="--height:90vmin;margin:auto 0">
+    {% for item in gallery -%}
+      <img src="{{ site.cloudinary_url }}{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
+    {%- endfor %}
+  </div>
+</section>

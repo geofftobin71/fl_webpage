@@ -469,7 +469,7 @@ section {
     --space: 1rem;
     --itemWidth: auto;
     --height: auto;
-    --trackColor: lightcoral;
+    --trackColor: gray;
     --thumbColor: #fff;
     display: flex;
     /* ↓ For images, which may be very large or use differing aspect ratios, we may want to set the Reel’s height. */
@@ -477,6 +477,8 @@ section {
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-color: var(--thumbColor) var(--trackColor);
+    scroll-snap-type: x mandatory;
+    scroll-padding: 50%;
   }
 
   .reel::-webkit-scrollbar {
@@ -500,12 +502,14 @@ section {
 
   .reel > * {
     flex: 0 0 var(--itemWidth);
+    scroll-snap-align: center;
   }
 
   .reel > img {
     height: 100%;
     flex-basis: auto;
     width: auto;
+    object-fit: contain;
   }
 
   .reel > * + * {
