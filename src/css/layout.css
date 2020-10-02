@@ -568,3 +568,22 @@ section {
     background: rgba(0,0,0,0.6);
     padding: 1em;
   }
+
+  /* Modal
+  -----------------------------------------------------------------------*/
+
+  html[data-modal-active="true"] {
+    touch-action: none;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+  }
+
+  [data-modal-active="true"] body {
+    touch-action: none;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+  }

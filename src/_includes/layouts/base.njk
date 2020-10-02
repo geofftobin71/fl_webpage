@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="{{ '/css/theme.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/layout.css' | url }}">
 
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
+
     {% block head %}
     {% endblock %}
     
-  <title>{% if title | length %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} - {{ site.tagline }}{% endif %}</title>
+  <title>{% if title | length %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} | {{ site.tagline }}{% endif %}</title>
   </head>
   
   <body>

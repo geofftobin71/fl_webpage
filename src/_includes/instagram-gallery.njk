@@ -1,7 +1,7 @@
 <section class="wrapper">
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
     {% for item in instagram | head(12) -%}
-      <a href="#insta{{ loop.index }}">
+      <a href="#insta{{ loop.index }}" onclick="openModal()">
         <li class="frame frame1x1 shadow">
           <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
         </li>
@@ -12,7 +12,7 @@
 
 {% for item in instagram | head(12) -%}
   <div id="insta{{ loop.index }}" class="lightbox">
-    <a href="#_"></a>
+    <a href="#_" onclick="closeModal()"></a>
     <div class="content" style="background-image: url('{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}')">
       <p>{{ item.caption }}</p>
     </div>
