@@ -525,8 +525,9 @@ section {
   -----------------------------------------------------------------------*/
 
   .lightbox {
+    --space: 1em;
     display:none;
-    /* background: rgba(0,0,0,0.9); */
+    background: rgba(0,0,0,0.8);
     position: fixed;
     top: 0;
     left: 0;
@@ -535,7 +536,6 @@ section {
     height: -webkit-fill-available;
     justify-content: center;
     align-items: center;
-    /* overflow: hidden; */
   }
 
   .lightbox:target {
@@ -550,23 +550,42 @@ section {
     height: 100%;
   }
 
+  .lightbox .container {
+    position:fixed;
+    top:10vmin;
+    bottom:10vmin;
+    left:10vmin;
+    right:10vmin;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    z-index: -10;
+  }
+
   .lightbox .content {
-    width: 85vmin;
-    height: 85vmin;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
     z-index: 10;
-    outline: 9999px solid rgba(0,0,0,0.9);
+    color: var(--color-dark);
+    background: var(--color-white);
+    margin: calc(var(--space) / 2 * -1);
+  }
+
+  .lightbox .content > * {
+    margin: calc(var(--space) / 2);
+  }
+
+  .lightbox .frame {
+    border: 1px solid var(--color-lighter-grey);
   }
 
   .lightbox p {
-    color: white;
-    background: rgba(0,0,0,0.6);
-    padding: 1em;
+    /* font-size: var(--step--1); */
+  }
+
+  @media screen and (orientation: portrait) {
+    .lightbox .content {
+      flex-direction: column;
+    }
   }
 
   /* Modal

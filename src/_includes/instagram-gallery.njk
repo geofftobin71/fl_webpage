@@ -1,3 +1,6 @@
+
+{# ----- Instagram Thumbnails ----- #}
+
 <section class="wrapper">
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
     {% for item in instagram | head(12) -%}
@@ -10,6 +13,27 @@
   </ul>
 </section>
 
+{# ----- Single Image Lightbox ----- #}
+
+{% for item in instagram | head(12) -%}
+  <div id="insta{{ loop.index }}" class="lightbox">
+    <a href="#_" onclick="closeModal()"></a>
+    <div class="container">
+      <div class="frame frame3x2">
+        <div class="content">
+          <div style="flex:2">
+            <figure class="frame frame1x1">
+              <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+            </figure>
+          </div>
+          <p style="flex:1">{{ item.caption }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+{#
 {% for item in instagram | head(12) -%}
   <div id="insta{{ loop.index }}" class="lightbox">
     <a href="#_" onclick="closeModal()"></a>
@@ -18,3 +42,20 @@
     </div>
   </div>
 {% endfor %}
+#}
+
+{# ----- Stacked Images with Captions ----- #}
+
+{#
+<section class="wrapper flow" style="--flow-space:3rem">
+  {% for item in instagram | head(12) -%}
+    <div id="insta{{ loop.index }}">
+      <!-- <a href="#_" onclick="closeModal()"></a> -->
+      <div class="frame frame1x1">
+        <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}">
+      </div>
+      <p>{{ item.caption }}</p>
+    </div>
+  {% endfor %}
+</section>
+#}
