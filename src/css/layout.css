@@ -563,15 +563,15 @@ section {
   }
 
   .lightbox .content {
-    display: flex;
+    /* display: flex; */
     z-index: 10;
     color: var(--color-dark);
     background: var(--color-white);
-    margin: calc(var(--space) / 2 * -1);
+    /* margin: calc(var(--space) / 2 * -1); */
   }
 
   .lightbox .content > * {
-    margin: calc(var(--space) / 2);
+    /* margin: calc(var(--space) / 2); */
   }
 
   .lightbox .frame {

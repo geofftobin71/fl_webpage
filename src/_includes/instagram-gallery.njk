@@ -18,6 +18,24 @@
 {% for item in instagram | head(12) -%}
   <div id="insta{{ loop.index }}" class="lightbox">
     <a href="#_" onclick="closeModal()"></a>
+    <div class="sidebar" style="--side-width:74vmin;--content-min:37vmin;max-width:80vw;padding:1em">
+      <div class="content">
+        <div>
+          <figure class="frame frame1x1">
+            <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+          </figure>
+        </div>
+        <p>{{ item.caption }}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+{% endfor %}
+
+{#
+{% for item in instagram | head(12) -%}
+  <div id="insta{{ loop.index }}" class="lightbox">
+    <a href="#_" onclick="closeModal()"></a>
     <div class="container">
       <div class="frame frame3x2">
         <div class="content">
@@ -29,16 +47,6 @@
           <p style="flex:1">{{ item.caption }}</p>
         </div>
       </div>
-    </div>
-  </div>
-{% endfor %}
-
-{#
-{% for item in instagram | head(12) -%}
-  <div id="insta{{ loop.index }}" class="lightbox">
-    <a href="#_" onclick="closeModal()"></a>
-    <div class="content" style="background-image: url('{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}')">
-      <p>{{ item.caption }}</p>
     </div>
   </div>
 {% endfor %}
