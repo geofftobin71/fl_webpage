@@ -1,10 +1,12 @@
 
 {# ----- Instagram Thumbnails ----- #}
 
+{% set instagram_images = instagram | head(12) %}
+
 <section class="wrapper">
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
-    {% for item in instagram | head(12) -%}
-      <a href="#insta{{ loop.index }}" onclick="openModal()">
+    {% for item in instagram_images -%}
+      <a href="#instagram_{{ loop.index }}" onclick="openModal()">
         <li class="frame frame1x1 shadow">
           <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
         </li>
@@ -15,55 +17,17 @@
 
 {# ----- Single Image Lightbox ----- #}
 
-{% for item in instagram | head(12) -%}
-  <div id="insta{{ loop.index }}" class="lightbox">
+{% for item in instagram_images -%}
+  <div id="instagram_{{ loop.index }}" class="instagram lightbox">
     <a href="#_" onclick="closeModal()"></a>
-    <div class="sidebar" style="--side-width:74vmin;--content-min:37vmin;max-width:80vw;padding:1em">
-      <div class="content">
-        <div>
-          <figure class="frame frame1x1">
-            <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
-          </figure>
-        </div>
-        <p>{{ item.caption }}</p>
-      </div>
-    </div>
-  </div>
-  </div>
-{% endfor %}
-
-{#
-{% for item in instagram | head(12) -%}
-  <div id="insta{{ loop.index }}" class="lightbox">
-    <a href="#_" onclick="closeModal()"></a>
-    <div class="container">
-      <div class="frame frame3x2">
-        <div class="content">
-          <div style="flex:2">
-            <figure class="frame frame1x1">
-              <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
-            </figure>
-          </div>
-          <p style="flex:1">{{ item.caption }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endfor %}
-#}
-
-{# ----- Stacked Images with Captions ----- #}
-
-{#
-<section class="wrapper flow" style="--flow-space:3rem">
-  {% for item in instagram | head(12) -%}
-    <div id="insta{{ loop.index }}">
-      <!-- <a href="#_" onclick="closeModal()"></a> -->
-      <div class="frame frame1x1">
-        <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}">
+    <div class="content">
+      <div>
+        <figure class="frame frame1x1">
+          <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+        </figure>
       </div>
       <p>{{ item.caption }}</p>
     </div>
-  {% endfor %}
-</section>
-#}
+  </div>
+{% endfor %}
+
