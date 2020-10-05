@@ -27,6 +27,9 @@
         </figure>
       </div>
       <p>{{ item.caption }}</p>
+      {% if loop.index > 1 %}<a href="#instagram_{{ loop.index - 1 }}"><nav class="prev">&lt;</nav></a>{% endif %}
+      {% if loop.index < 12 %}<a href="#instagram_{{ loop.index + 1 }}"><nav class="next">&gt;</nav></a>{% endif %}
+      <a href="#_" onclick="closeModal()"><nav class="close">&times;</nav></a>
     </div>
   </div>
 {% endfor %}

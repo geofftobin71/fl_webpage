@@ -541,7 +541,7 @@ section {
     display: flex;
   }
 
-  .lightbox a {
+  .lightbox > a {
     position: fixed;
     top: 0;
     left: 0;
@@ -553,10 +553,10 @@ section {
     z-index: 2;
     color: var(--color-dark);
     background: var(--color-white);
-    overflow: hidden;
-    width: 90vw;
-    max-height: 90vh;
+    width: 80vw;
+    max-height: 80vh;
     display: flex;
+    /* position: relative; */
   }
 
   .instagram.lightbox .content > div {
@@ -568,6 +568,33 @@ section {
     padding: 1em;
     overflow-x: hidden;
     overflow-y: auto;
+  }
+
+  .instagram.lightbox .content nav {
+    color: white;
+    position: absolute;
+    font-size: 3rem;
+    padding: 0;
+    width: 9vw;
+    height: 9vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .instagram.lightbox .content .prev {
+    left: 0;
+    top: 50%;
+  }
+
+  .instagram.lightbox .content .next {
+    right: 0;
+    top: 50%;
+  }
+
+  .instagram.lightbox .content .close {
+    right: 0;
+    top: 0;
   }
 
   @media screen and (orientation: portrait) {
