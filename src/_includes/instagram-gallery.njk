@@ -15,7 +15,7 @@
   </ul>
 </section>
 
-{# ----- Single Image Lightbox ----- #}
+{# ----- Instagram Lightbox ----- #}
 
 {% for item in instagram_images -%}
   <div id="instagram_{{ loop.index }}" class="instagram lightbox">
@@ -27,8 +27,16 @@
         </figure>
       </div>
       <p>{{ item.caption }}</p>
-      {% if loop.index > 1 %}<a href="#instagram_{{ loop.index - 1 }}"><nav class="prev">&lt;</nav></a>{% endif %}
-      {% if loop.index < 12 %}<a href="#instagram_{{ loop.index + 1 }}"><nav class="next">&gt;</nav></a>{% endif %}
+      {% if loop.index > 1 %}
+        <a href="#instagram_{{ loop.index - 1 }}"><nav class="prev">&lt;</nav></a>
+      {% else %}
+        <a href="#instagram_1"><nav class="prev">&nbsp;</nav></a>
+      {% endif %}
+      {% if loop.index < 12 %}
+        <a href="#instagram_{{ loop.index + 1 }}"><nav class="next">&gt;</nav></a>
+      {% else %}
+        <a href="#instagram_12"><nav class="next">&nbsp;</nav></a>
+      {% endif %}
       <a href="#_" onclick="closeModal()"><nav class="close">&times;</nav></a>
     </div>
   </div>

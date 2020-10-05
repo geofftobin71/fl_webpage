@@ -547,6 +547,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
+    cursor: inherit;
   }
 
   .instagram.lightbox .content {
@@ -554,9 +555,10 @@ section {
     color: var(--color-dark);
     background: var(--color-white);
     width: 80vw;
+    max-width: 1500px;
     max-height: 80vh;
     display: flex;
-    /* position: relative; */
+    position: relative;
   }
 
   .instagram.lightbox .content > div {
@@ -573,28 +575,28 @@ section {
   .instagram.lightbox .content nav {
     color: white;
     position: absolute;
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 0;
-    width: 9vw;
-    height: 9vw;
+    width: 5vw;
+    height: 5vw;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .instagram.lightbox .content .prev {
-    left: 0;
+    left: -5vw;
     top: 50%;
   }
 
   .instagram.lightbox .content .next {
-    right: 0;
+    right: -5vw;
     top: 50%;
   }
 
   .instagram.lightbox .content .close {
-    right: 0;
-    top: 0;
+    right: -5vw;
+    top: -5vw;
   }
 
   @media screen and (orientation: portrait) {
