@@ -5,6 +5,10 @@ admin_path: ''
 webhook_url: 
 sections:
 - type: document
+  path: src/_data/faq.json
+  label: FAQ
+  match: "**/*"
+- type: document
   path: src/_data/reviews.json
   label: Reviews
 upload_dir: ''
