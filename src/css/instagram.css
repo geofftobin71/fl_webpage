@@ -1,0 +1,67 @@
+
+  .instagram.lightbox .content {
+    z-index: 2;
+    color: var(--color-dark);
+    background: var(--color-white);
+    width: 80vw;
+    max-width: 1500px;
+    max-height: 80vh;
+    display: flex;
+    position: relative;
+  }
+
+  .instagram.lightbox .content > div {
+    flex: 3;
+  }
+
+  .instagram.lightbox .content > p {
+    flex: 2;
+    padding: 1em;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .instagram.lightbox .content nav {
+    color: white;
+    position: absolute;
+    font-size: 2rem;
+    padding: 0;
+    width: 5vw;
+    height: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .instagram.lightbox .content .prev {
+    left: -5vw;
+    top: 50%;
+  }
+
+  .instagram.lightbox .content .next {
+    right: -5vw;
+    top: 50%;
+  }
+
+  .instagram.lightbox .content .close {
+    right: -5vw;
+    top: -5vw;
+  }
+
+  @media screen and (orientation: portrait) {
+    .instagram.lightbox .content {
+      flex-direction: column;
+    }
+
+    .instagram.lightbox .content > * {
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .instagram.lightbox .content {
+      font-size: var(--step--1);
+    }
+  }
+

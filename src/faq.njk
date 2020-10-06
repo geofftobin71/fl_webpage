@@ -1,0 +1,19 @@
+---
+title: FAQ
+layout: layouts/faq.njk
+---
+
+<main>
+<section class="wrapper">
+  <h1>{{ title }}</h1>
+  <ul class="faq flow">
+    {% for item in faq -%}
+      <li>
+        <input id="faq_{{ loop.index }}" type="checkbox" class="visually-hidden">
+        <h3><label for="faq_{{ loop.index }}">{{ item.question }}</label></h3>
+        <p>{{ item.answer }}</p>
+      </li>
+    {% endfor -%}
+  </ul>
+</section>
+</main>
