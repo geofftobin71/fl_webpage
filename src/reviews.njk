@@ -1,16 +1,16 @@
 ---
 title: Reviews
-layout: layouts/base.njk
+layout: layouts/reviews.njk
 ---
 
 <main>
 <section class="wrapper">
   <h1>{{ title }}</h1>
-  <ul class="flow">
+  <ul class="reviews flow">
     {% for item in reviews | shuffle -%}
       <li>
         <p>{{ item.review }}</p>
-        <p style="text-align:right">{{ item.name }}</p>
+        <h4 style="text-align:right">{{ item.name }}</h4>
       </li>
     {% endfor -%}
   </ul>
