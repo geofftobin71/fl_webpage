@@ -1,0 +1,35 @@
+---
+title: Date
+layout: layouts/base.njk
+closed_dates: ["08 Oct 2020", "10 Oct 2020"]
+shop_hours: ["11:00am - 5:30pm", "11:00am - 5:30pm", "11:00am - 5:30pm", "11:00am - 5:30pm", "11:00am - 5:30pm", "10:00am - 2:00pm", "Closed"]
+---
+
+<style>
+td { padding-right: 2em; }
+</style>
+<main>
+<section class="wrapper">
+  <h1>{{ title }}</h1>
+</section>
+<section class="wrapper">
+  <h3>{{ date_data.now }}</h3>
+  <h3>{{ date_data.now | readableDate }}</h3>
+  <h3>{{ date_data.now | htmlDateString }}</h3>
+  <h3>{{ date_data.now.zoneName }}</h3>
+  <h3>{{ date_data.now.startOf('week') }}</h3>
+  <h3>{{ date_data.now.endOf('week') }}</h3>
+
+  <table>
+  {% set monday = date_data.now.startOf('week') %}
+  {% set days = [ monday, monday.plus({days:1}), monday.plus({days:2}), monday.plus({days:3}), monday.plus({days:4}), monday.plus({days:5}), monday.plus({days:6}) ] %}
+  {% for day in days %}
+    {% if day | readableDate in closed_dates %}
+      <tr><td>{{ day.weekdayLong }}</td><td><del>{{ shop_hours[ loop.index0 ] }}</del></td><td>Closed {{ day | readableDate }}</td></tr>
+    {% else %}
+      <tr><td>{{ day.weekdayLong }}</td><td>{{ shop_hours[ loop.index0 ] }}</td></tr>
+    {% endif %}
+  {% endfor %}
+  </table>
+</section>
+</main>
