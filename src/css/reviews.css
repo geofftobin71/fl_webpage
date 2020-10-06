@@ -1,6 +1,7 @@
 
 .reviews {
   --flow-space: 3rem;
+  --wrapper-width: 900px;
 }
 
 .reviews li {

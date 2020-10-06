@@ -5,7 +5,9 @@ alt: Wedding Flowers by Floriade
 ---
 
 <main>
-<h1>{{ title }}</h1>
+<section class="wrapper">
+  <h1>{{ title }}</h1>
+</section>
 <section class="wrapper page-wrapper bg-white">
   <ul class="auto-grid gallery">
     {% set gallery = wedding_flowers_gallery.resources | shuffle %}
@@ -36,6 +38,6 @@ alt: Wedding Flowers by Floriade
   <div class="reel" style="--height:90vmin;margin:auto 0">
     {% for item in gallery -%}
       <img src="{{ site.cloudinary_url }}{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
-    {%- endfor %}
+      {%- endfor %}
   </div>
 </section>
