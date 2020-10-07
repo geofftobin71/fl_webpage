@@ -2,6 +2,13 @@
 label: Closed Dates
 hide_body: true
 fields:
-- type: list
-  name: Closed dates
-  label: Closed dates
+- name: date
+  type: datetime
+  label: Date
+  description: ''
+  config:
+    required: false
+    date_format: DD MMM YYYY
+    time_format: 
+    display_utc: false
+    export_format: DD MMM YYYY
