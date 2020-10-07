@@ -7,7 +7,6 @@ sections:
 - type: document
   path: src/_data/shop_hours.json
   label: Shop Hours
-  match: "**/*"
 - type: document
   path: src/_data/faq.json
   label: FAQ
