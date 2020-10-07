@@ -7,7 +7,6 @@ sections:
 - type: document
   path: src/_data/closed_dates.json
   label: Closed Dates
-  match: "**/*"
 - type: document
   path: src/_data/shop_hours.json
   label: Shop Hours
