@@ -5,7 +5,7 @@
     {% if day | readableDate in closed_dates %}
       <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;Closed {{ day | readableDate }}</td></tr>
     {% else %}
-      <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ shop_hours[ loop.index0 ] }}</td></tr>
+      <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ shop_hours[ day.weekdayLong | lower ] }}</td></tr>
     {% endif %}
   {% endfor %}
 </table>
