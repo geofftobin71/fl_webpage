@@ -1,17 +1,26 @@
 *, ::before, ::after { box-sizing: border-box; }
 
 html {
+  height: 100vh;
   scroll-behavior: smooth;
   line-height: 1.5;
-  height: -webkit-fill-available;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
-  min-height: -webkit-fill-available;
   text-rendering: optimizeSpeed;
   overflow-x: hidden;
+}
+
+@supports (background: -webkit-named-image(i)) {
+  html {
+    height: -webkit-fill-available;
+  }
+
+  body {
+    min-height: -webkit-fill-available;
+  }
 }
 
 body, h1, h2, h3, h4, h5, h6, p, ul[class], ol[class], figure, blockquote, dl, dd {

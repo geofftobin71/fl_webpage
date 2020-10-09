@@ -32,8 +32,8 @@ footer {
 -----------------------------------------------------------------------*/
 
 section {
-  padding-top: var(--step-3);
-  padding-bottom: var(--step-3);
+  padding-top: var(--step-4);
+  padding-bottom: var(--step-4);
 }
 
 /* Flow
@@ -61,6 +61,10 @@ section {
   .page-wrapper {
     --wrapper-width: 1500px;
     --padding: 0;
+  }
+
+  .text-wrapper {
+    --wrapper-width: var(--measure);
   }
 
   /* Other
@@ -378,7 +382,12 @@ section {
 
   .full-height {
     height: 100vh;
-    height: -webkit-fill-available;
+  }
+
+  @supports (background: -webkit-named-image(i)) {
+    .full-height {
+      min-height: -webkit-fill-available;
+    }
   }
 
   .half-height {
@@ -532,9 +541,14 @@ section {
     left: 0;
     width: 100vw;
     height: 100vh;
-    height: -webkit-fill-available;
     justify-content: center;
     align-items: center;
+  }
+
+  @supports (background: -webkit-named-image(i)) {
+    .lightbox {
+      min-height: -webkit-fill-available;
+    }
   }
 
   .lightbox:target {

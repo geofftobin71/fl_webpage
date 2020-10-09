@@ -12,7 +12,7 @@ layout: layouts/reviews.njk
     <ul class="flow">
       {% for item in reviews | shuffle -%}
         <li>
-          <p>{{ item.review }}</p>
+          <p>{{ item.review }}</p><br>
           <h4 style="text-align:right">{{ item.name }}</h4>
         </li>
       {% endfor -%}

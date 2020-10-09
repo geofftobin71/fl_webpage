@@ -1,0 +1,71 @@
+<style>
+.slider {
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+}
+.slider__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  transition: left 0.5s;
+}
+.slider__content {
+  width: 100%;
+  height: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.slider__content .stack {
+  width: 100%;
+  height: 80%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.slider__nav {
+  z-index: 10;
+  padding-left:1.5rem;
+}
+.slider__nav:checked:nth-of-type(1) ~ .slider__inner {
+  left: 0%;
+}
+.slider__nav:checked:nth-of-type(2) ~ .slider__inner {
+  left: -100%;
+}
+.slider__nav:checked:nth-of-type(3) ~ .slider__inner {
+  left: -200%;
+}
+.slider__nav:checked:nth-of-type(4) ~ .slider__inner {
+  left: -300%;
+}
+.slider__nav:checked:nth-of-type(5) ~ .slider__inner {
+  left: -400%;
+}
+</style>
+<section class="bg-shade1 half-height" style="min-height:400px">
+  <div class="slider">
+    <input type="radio" name="slider" title="slide1" class="slider__nav" checked="checked"/>
+    <input type="radio" name="slider" title="slide2" class="slider__nav"/>
+    <input type="radio" name="slider" title="slide3" class="slider__nav"/>
+    <input type="radio" name="slider" title="slide4" class="slider__nav"/>
+    <input type="radio" name="slider" title="slide5" class="slider__nav"/>
+    <div class="slider__inner">
+      {% for item in reviews | shuffle | head(5) -%}
+        <div class="slider__content center center-both">
+          <div class="stack font-secondary">
+            <p class="font-size-1">{{ item.review }}</p>
+            <p class="font-size-0" style="align-self:flex-end">{{ item.name }}</p>
+          </div>
+        </div>
+      {% endfor -%}
+    </div>
+  </div>
+</section>
