@@ -81,6 +81,18 @@ section {
     white-space: nowrap;
   }
 
+  .text-left {
+    text-align: left;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
   .button {
     font: inherit;
     display: inline-block;

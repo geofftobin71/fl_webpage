@@ -57,6 +57,14 @@ module.exports = function (config) {
     return array;
   });
 
+  config.addFilter("removeLongReviews", (array, limit) => {
+    var filtered = [];
+    for (var i = 0; i < array.length; ++i) {
+      if(array[i].review.length <= limit) { filtered[filtered.length] = array[i]; }
+    }
+    return filtered;
+  });
+
   // Convert uppercase to hyphen-lowercase : fooBar => foo-bar
   config.addFilter("hyphenate", (word) => {
     function upperToHyphenLower(match, offset, string) {
