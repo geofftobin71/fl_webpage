@@ -1,22 +1,18 @@
 ---
 title: Reviews
-layout: layouts/reviews.njk
+layout: layouts/base.njk
 ---
 
 <main>
 <section class="wrapper">
   <h1>{{ title }}</h1>
 </section>
-<section class="wrapper bg-lighter-grey">
-  <div class="reviews wrapper">
-    <ul class="flow">
-      {% for item in reviews | shuffle -%}
-        <li>
-          <p>{{ item.review }}</p><br>
-          <h4 style="text-align:right">{{ item.name }}</h4>
-        </li>
-      {% endfor -%}
-    </ul>
-  </div>
-</section>
+{% for item in reviews | shuffle -%}
+  <section {% if loop.index % 2 %} class="bg-shade1" {% endif %}>
+    <div class="stack center font-secondary">
+      <p class="font-size-1">{{ item.review }}</p>
+      <p class="font-size-0 text-center">{{ item.name }}</p>
+    </div>
+  </section>
+{% endfor -%}
 </main>
