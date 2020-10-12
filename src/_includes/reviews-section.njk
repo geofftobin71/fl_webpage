@@ -28,21 +28,9 @@
   justify-content: center;
 }
 .slider__nav {
-  z-index: 10;
+  z-index: 1;
   padding-left:0.5em;
 }
-
-/*
-.slider__nav::before {
-  content: "";
-  display: block;
-  width: 1em;
-  height: 1em;
-  border: 0.1em solid currentColor;
-  border-radius: 50%;
-}
-*/
-
 .slider__nav:checked:nth-of-type(1) ~ .slider__inner {
   left: 0%;
 }
@@ -58,13 +46,13 @@
 .slider__nav:checked:nth-of-type(5) ~ .slider__inner {
   left: -400%;
 }
-input[type="radio"] {
+.slider__nav {
   opacity: 0;
   width: 0;
   height: 0;
 }
-input[type="radio"] + label {
-  z-index:10;
+.slider__nav + label {
+  z-index:1;
   content: "";
   width: 1em;
   height: 1em;
@@ -72,7 +60,7 @@ input[type="radio"] + label {
   border: 0.1em solid currentColor;
     border-radius: 50%;
 }
-input[type="radio"]:checked + label {
+.slider__nav:checked + label {
   background: radial-gradient(currentcolor 40%, rgba(255, 0, 0, 0) 41%);
 }
 </style>
