@@ -29,8 +29,20 @@
 }
 .slider__nav {
   z-index: 10;
-  padding-left:1.5rem;
+  padding-left:0.5em;
 }
+
+/*
+.slider__nav::before {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid currentColor;
+  border-radius: 50%;
+}
+*/
+
 .slider__nav:checked:nth-of-type(1) ~ .slider__inner {
   left: 0%;
 }
@@ -46,15 +58,32 @@
 .slider__nav:checked:nth-of-type(5) ~ .slider__inner {
   left: -400%;
 }
+input[type="radio"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+input[type="radio"] + label {
+  z-index:10;
+  content: "";
+  width: 1em;
+  height: 1em;
+  display: block;
+  border: 0.1em solid currentColor;
+    border-radius: 50%;
+}
+input[type="radio"]:checked + label {
+  background: radial-gradient(currentcolor 40%, rgba(255, 0, 0, 0) 41%);
+}
 </style>
 
 <section class="full-width bg-shade1 font-size-1" style="height:20em">
   <div class="slider">
-    <input type="radio" name="slider" title="slide1" class="slider__nav" checked="checked"/>
-    <input type="radio" name="slider" title="slide2" class="slider__nav"/>
-    <input type="radio" name="slider" title="slide3" class="slider__nav"/>
-    <input type="radio" name="slider" title="slide4" class="slider__nav"/>
-    <input type="radio" name="slider" title="slide5" class="slider__nav"/>
+    <input type="radio" name="slider" id="slide1" class="slider__nav" checked="checked"/><label class="font-size-0" for="slide1"></label>
+    <input type="radio" name="slider" id="slide2" class="slider__nav"/><label class="font-size-0" for="slide2"></label>
+    <input type="radio" name="slider" id="slide3" class="slider__nav"/><label class="font-size-0" for="slide3"></label>
+    <input type="radio" name="slider" id="slide4" class="slider__nav"/><label class="font-size-0" for="slide4"></label>
+    <input type="radio" name="slider" id="slide5" class="slider__nav"/><label class="font-size-0" for="slide5"></label>
     <div class="slider__inner">
       {% for item in reviews | removeLongReviews(300) | shuffle | head(5) -%}
         <div class="wrapper" style="width:100%;height:100%">

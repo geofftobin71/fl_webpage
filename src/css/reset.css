@@ -105,6 +105,14 @@ select {
   font: inherit;
 }
 
+option[disabled] {
+  text-decoration: line-through;
+}
+
+option[default] {
+  display: none;
+}
+
 img:not([alt]) {
   filter: blur(10px);
 }
