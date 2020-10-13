@@ -1,0 +1,44 @@
+
+{# ----- Instagram Thumbnails ----- #}
+
+{% set instagram_images = instagram | head(12) %}
+
+<section class="wrapper">
+  <ul class="auto-grid" style="--auto-grid-min-size:220px">
+    {% for item in instagram_images -%}
+      <a href="#instagram_{{ loop.index }}" onclick="openModal()">
+        <li class="frame frame1x1 shadow">
+          <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+        </li>
+      </a>
+    {% endfor %}
+  </ul>
+</section>
+
+{# ----- Instagram Lightbox ----- #}
+
+{% for item in instagram_images -%}
+  <div id="instagram_{{ loop.index }}" class="instagram lightbox">
+    <a href="#_" onclick="closeModal()"></a>
+    <div class="content">
+      <div>
+        <figure class="frame frame1x1">
+          <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+        </figure>
+      </div>
+      <p>{{ item.caption }}</p>
+      {% if loop.index > 1 %}
+        <a href="#instagram_{{ loop.index - 1 }}"><nav class="prev">&lt;</nav></a>
+      {% else %}
+        <a href="#instagram_1"><nav class="prev">&nbsp;</nav></a>
+      {% endif %}
+      {% if loop.index < 12 %}
+        <a href="#instagram_{{ loop.index + 1 }}"><nav class="next">&gt;</nav></a>
+      {% else %}
+        <a href="#instagram_12"><nav class="next">&nbsp;</nav></a>
+      {% endif %}
+      <a href="#_" onclick="closeModal()"><nav class="close">&times;</nav></a>
+    </div>
+  </div>
+{% endfor %}
+

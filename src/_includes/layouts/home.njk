@@ -1,41 +1,9 @@
-{% extends 'layouts/base.njk' %}
+{% extends "layouts/base.njk" %}
 
 {% block head %}
   <link rel="stylesheet" href="{{ '/css/instagram.css' | url }}">
-  <link rel="stylesheet" href="{{ '/css/datepicker.min.css' | url }}">
 {% endblock %}
 
 {% block foot %}
-  <script>
-    function openModal() {
-      document.documentElement.setAttribute("data-modal-active", true);
-    }
-
-    function closeModal() {
-      document.documentElement.setAttribute("data-modal-active", false);
-    }
-
-  </script>
-  <script src="{{ '/scripts/datepicker.min.js' | url }}"></script>
-  <script>
-    const elem1 = document.querySelector('input[name="datepicker"]');
-const datepicker1 = new Datepicker(elem1, {
-  buttonClass: 'button',
-  datesDisabled: ['Monday 17 August 2020'],
-  daysOfWeekDisabled: [0],
-  minDate: new Date(),
-  disableTouchKeyboard: true,
-  format: 'D d M yyyy',
-  maxView: 0,
-  nextArrow: '>',
-  prevArrow: '<',
-
-});
-
-const elem2 = document.getElementById('inline');
-const datepicker2 = new Datepicker(elem2, {
-  buttonClass: 'button',
-});
-
-  </script>
+  {% include "lightbox.njk" %}
 {% endblock %}

@@ -1,66 +1,70 @@
 
-  .instagram.lightbox .content {
+  .instagram .lightbox__slide {
     z-index: 11;
     color: var(--color-dark);
     background: var(--color-white);
     width: 80vw;
     max-width: 1500px;
     max-height: 80vh;
-    display: flex;
+    display: none;
     position: relative;
   }
 
-  .instagram.lightbox .content > div {
+  .instagram .lightbox__slide > div {
     flex: 3;
+    overflow: hidden;
   }
 
-  .instagram.lightbox .content > p {
+  .instagram .lightbox__slide > p {
     flex: 2;
     padding: 1em;
     overflow-x: hidden;
     overflow-y: auto;
   }
 
-  .instagram.lightbox .content nav {
+  .instagram .lightbox__slide nav, #lightbox .close {
     color: white;
     position: absolute;
     font-size: 2rem;
     padding: 0;
-    width: 5vw;
-    height: 5vw;
+    width: 10vw;
+    height: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
-  .instagram.lightbox .content .prev {
-    left: -5vw;
+  .instagram .lightbox__slide .prev {
+    left: -10vw;
     top: 50%;
+    transform: translateY(-50%);
   }
 
-  .instagram.lightbox .content .next {
-    right: -5vw;
+  .instagram .lightbox__slide .next {
+    right: -10vw;
     top: 50%;
+    transform: translateY(-50%);
   }
 
-  .instagram.lightbox .content .close {
-    right: -5vw;
-    top: -5vw;
+  #lightbox .close {
+    right: 0;
+    top: 0;
   }
 
   @media screen and (orientation: portrait) {
-    .instagram.lightbox .content {
+    .instagram .lightbox__slide {
       flex-direction: column;
     }
 
-    .instagram.lightbox .content > * {
+    .instagram .lightbox__slide > * {
       width: 100%;
       flex: 1;
     }
   }
 
   @media screen and (max-width: 750px) {
-    .instagram.lightbox .content {
+    .instagram .lightbox__slide {
       font-size: var(--step--1);
     }
   }

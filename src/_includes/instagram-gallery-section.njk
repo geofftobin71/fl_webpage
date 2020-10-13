@@ -6,21 +6,19 @@
 <section class="wrapper">
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
     {% for item in instagram_images -%}
-      <a href="#instagram_{{ loop.index }}" onclick="openModal()">
-        <li class="frame frame1x1 shadow">
-          <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
-        </li>
-      </a>
+      <li class="frame frame1x1 shadow">
+        <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" onclick="openModal();showSlide({{ loop.index }})" loading="lazy">
+      </li>
     {% endfor %}
   </ul>
 </section>
 
 {# ----- Instagram Lightbox ----- #}
 
-{% for item in instagram_images -%}
-  <div id="instagram_{{ loop.index }}" class="instagram lightbox">
-    <a href="#_" onclick="closeModal()"></a>
-    <div class="content">
+<div id="lightbox" class="instagram">
+  <nav class="close" onclick="closeModal()">&times;</nav>
+  {% for item in instagram_images -%}
+    <div class="lightbox__slide">
       <div>
         <figure class="frame frame1x1">
           <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
@@ -28,17 +26,16 @@
       </div>
       <p>{{ item.caption }}</p>
       {% if loop.index > 1 %}
-        <a href="#instagram_{{ loop.index - 1 }}"><nav class="prev">&lt;</nav></a>
+        <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
       {% else %}
-        <a href="#instagram_1"><nav class="prev">&nbsp;</nav></a>
+        <nav class="prev">&nbsp;</nav>
       {% endif %}
       {% if loop.index < 12 %}
-        <a href="#instagram_{{ loop.index + 1 }}"><nav class="next">&gt;</nav></a>
+        <nav class="next" onclick="showSlide({{ loop.index + 1 }})">&gt;</nav>
       {% else %}
-        <a href="#instagram_12"><nav class="next">&nbsp;</nav></a>
+        <nav class="next">&nbsp;</nav>
       {% endif %}
-      <a href="#_" onclick="closeModal()"><nav class="close">&times;</nav></a>
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
+</div>
 

@@ -545,9 +545,9 @@ section {
   /* Lightbox
   -----------------------------------------------------------------------*/
 
-  .lightbox {
+  #lightbox {
     display:none;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.9);
     position: fixed;
     top: 0;
     left: 0;
@@ -559,11 +559,12 @@ section {
   }
 
   @supports (background: -webkit-named-image(i)) {
-    .lightbox {
+    #lightbox {
       min-height: -webkit-fill-available;
     }
   }
 
+  /*
   .lightbox:target {
     display: flex;
   }
@@ -577,6 +578,7 @@ section {
     cursor: inherit;
     z-index: 10;
   }
+  */
 
   /* Modal
   -----------------------------------------------------------------------*/
