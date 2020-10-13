@@ -30,7 +30,7 @@
       {% else %}
         <nav class="prev">&nbsp;</nav>
       {% endif %}
-      {% if loop.index < 12 %}
+      {% if loop.index < instagram_images | length %}
         <nav class="next" onclick="showSlide({{ loop.index + 1 }})">&gt;</nav>
       {% else %}
         <nav class="next">&nbsp;</nav>

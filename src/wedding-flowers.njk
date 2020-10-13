@@ -1,6 +1,6 @@
 ---
 title: Wedding Flowers
-layout: layouts/base.njk
+layout: layouts/gallery.njk
 alt: Wedding Flowers by Floriade
 ---
 
@@ -28,7 +28,7 @@ alt: Wedding Flowers by Floriade
           {% set height = "480" %}
         {% endif %}
         <li class="frame frame{{ aspect }} shadow">
-          <img src="{{ site.cloudinary_url }}c_fill,w_{{ width }},h_{{ height }},q_auto,g_auto:subject/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ width }}" height="{{ height }}" loading="lazy">
+          <img src="{{ site.cloudinary_url }}c_fill,w_{{ width }},h_{{ height }},q_auto,g_auto:subject/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openModal();showSlide({{ loop.index }})" style="cursor:pointer" loading="lazy">
         </li>
         {%- endfor %}
     </ul>
@@ -36,10 +36,27 @@ alt: Wedding Flowers by Floriade
 </section>
 </main>
 
-<!-- <section class="full-height bg-black">
-  <div class="reel" style="--height:90vmin;margin:auto 0">
+{# ----- Gallery Lightbox ----- #}
+
+<div id="lightbox" class="gallery">
+  <nav class="close" onclick="closeModal()">&times;</nav>
   {% for item in gallery -%}
-    <img src="{{ site.cloudinary_url }}{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
-    {%- endfor %}
+    <div class="lightbox__slide">
+      <img src="{{ site.cloudinary_url }}{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
+      <div class="caption">
+        <h3>{{ item.context.alt or alt }}</h3>
+        <h4>{{ item.context.caption | safe }}</h4>
+      </div>
+      {% if loop.index > 1 %}
+        <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
+      {% else %}
+        <nav class="prev">&nbsp;</nav>
+      {% endif %}
+      {% if loop.index < gallery | length %}
+        <nav class="next" onclick="showSlide({{ loop.index + 1 }})">&gt;</nav>
+      {% else %}
+        <nav class="next">&nbsp;</nav>
+      {% endif %}
     </div>
-    </section> -->
+    {%- endfor %}
+</div>

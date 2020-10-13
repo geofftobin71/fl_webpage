@@ -1,0 +1,9 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ '/css/lightbox.css' | url }}">
+{% endblock %}
+
+{% block foot %}
+  {% include "lightbox.njk" %}
+{% endblock %}
