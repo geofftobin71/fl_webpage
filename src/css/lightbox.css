@@ -1,12 +1,24 @@
 
   .lightbox__slide {
-    z-index: 11;
-    color: white;
-    width: 80vw;
+    z-index: 1;
     max-width: 1500px;
-    max-height: 80vh;
-    display: none;
+    overflow: hidden;
+    display: flex;
     position: relative;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    transition: width 0s 0s, height 0s 0s, opacity 0s 0s;
+    /* transition: width 0s 1s, height 0s 1s, opacity 1s 0s; */
+  }
+
+  .lightbox__slide.visible {
+    z-index: 11;
+    width: 80vw;
+    height: 80vh;
+    overflow: visible;
+    opacity: 1;
+    transition: width 0s 0s, height 0s 0s, opacity 1s 0s;
   }
 
   .lightbox__slide img {
@@ -46,11 +58,11 @@
 
   .lightbox__slide .caption {
     color: white;
-    background: var(--color-darker-grey); /* rgba(0,0,0,0.75); */
-    position: absolute;
+    background: var(--color-darker-grey);
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     text-align: center;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem 1.5rem 1rem;
   }

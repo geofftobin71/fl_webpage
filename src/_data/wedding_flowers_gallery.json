@@ -1,6 +1,6 @@
 {
     "total_count": 56,
-    "time": 39,
+    "time": 99,
     "resources": [
         {
             "public_id": "wedding-flowers/wedding-flowers-by-floriade-00176",
@@ -1835,7 +1835,7 @@
             "pixels": 9375000,
             "context": {
                 "alt": "Bride on the beach holding wedding flowers",
-                "caption": "Photo credit <a href=“https://lovemiphoto.com/”>lovemiphoto</a>"
+                "caption": "Photo credit <a href=\"https://lovemiphoto.com/\" target=\"_blank\">lovemiphoto</a>"
             },
             "url": "http://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00001.jpg",
             "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00001.jpg",
@@ -1856,6 +1856,6 @@
         }
     ],
     "rate_limit_allowed": 500,
-    "rate_limit_reset_at": "2020-09-28T08:00:00.000Z",
-    "rate_limit_remaining": 499
+    "rate_limit_reset_at": "2020-10-13T22:00:00.000Z",
+    "rate_limit_remaining": 496
 }

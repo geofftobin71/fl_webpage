@@ -45,7 +45,7 @@ alt: Wedding Flowers by Floriade
       <img src="{{ site.cloudinary_url }}{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
       <div class="caption">
         <h3>{{ item.context.alt or alt }}</h3>
-        <h4>{{ item.context.caption | safe }}</h4>
+        <h4 class="link-light">{{ item.context.caption | safe }}</h4>
       </div>
       {% if loop.index > 1 %}
         <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
