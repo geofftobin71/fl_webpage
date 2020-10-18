@@ -1,3 +1,14 @@
+<style>
+.lightbox__slide.instagram {
+  align-items: center;
+}
+
+@media screen and (orientation: portrait) {
+  .lightbox__slide.instagram {
+    align-items: flex-start;
+  }
+}
+</style>
 
 {# ----- Instagram Thumbnails ----- #}
 
@@ -15,16 +26,19 @@
 
 {# ----- Instagram Lightbox ----- #}
 
-<div id="lightbox" class="instagram">
+<div id="lightbox">
   <nav class="close" onclick="closeModal()">&times;</nav>
   {% for item in instagram_images -%}
-    <div class="lightbox__slide">
-      <div>
-        <figure class="frame frame1x1">
-          <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
-        </figure>
+    <div class="lightbox__slide instagram">
+      <div class="domino" style="--domino-space:0">
+        <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+        <div style="max-height:40vmax;overflow-x:hidden;overflow-y:auto">
+          <div style="display:flex;align-items:center;min-height:100%">
+            <p>{{ item.caption }}</p>
+          </div>
+        </div>
       </div>
-      <p>{{ item.caption }}</p>
+
       {% if loop.index > 1 %}
         <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
       {% else %}

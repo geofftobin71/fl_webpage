@@ -23,9 +23,13 @@
   height: 85%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.slider__content > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width:100%;
+  min-height:100%;
 }
 .slider__nav {
   z-index: 1;
@@ -65,7 +69,7 @@
 }
 </style>
 
-<section class="full-width bg-shade1 font-size-1" style="height:20em">
+<section class="full-width bg-shade1 font-size-1" style="height:22em;max-height:100vh">
   <div class="slider">
     <input type="radio" name="slider" id="slide1" class="slider__nav" checked="checked"/><label class="font-size-0" for="slide1"></label>
     <input type="radio" name="slider" id="slide2" class="slider__nav"/><label class="font-size-0" for="slide2"></label>
@@ -75,9 +79,11 @@
     <div class="slider__inner">
       {% for item in reviews | removeLongReviews(300) | shuffle | head(5) -%}
         <div class="wrapper" style="width:100%;height:100%">
-          <div class="slider__content center flow font-secondary">
-            <p class="font-size-1">{{ item.review }}</p>
-            <p class="font-size-0 text-center">{{ item.name }}</p>
+          <div class="slider__content center font-secondary">
+            <div class="flow">
+              <p class="font-size-1">{{ item.review }}</p>
+              <p class="font-size-0 text-center">{{ item.name }}</p>
+            </div>
           </div>
         </div>
       {% endfor -%}

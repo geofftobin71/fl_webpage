@@ -9,6 +9,7 @@ module.exports = function (config) {
     return collection.getFilteredByGlob("./src/posts/*.md");
   });
   
+  config.addPassthroughCopy("./src/*.ico");
   config.addPassthroughCopy("./src/css/*.css");
   config.addPassthroughCopy("./src/fonts");
   config.addPassthroughCopy("./src/scripts");

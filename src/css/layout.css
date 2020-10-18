@@ -252,6 +252,21 @@ section {
     flex-basis: 100%;
   }
 
+  /* Domino
+  -----------------------------------------------------------------------*/
+
+  .domino {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: var(--domino-space, 1em);
+  }
+
+  @media screen and (orientation: portrait) {
+    .domino {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* The Cover
   -----------------------------------------------------------------------*/
   .cover {
@@ -629,8 +644,6 @@ section {
     left: 0;
     width: 100vw;
     height: 100vh;
-    justify-content: center;
-    align-items: center;
     z-index: 10;
   }
 

@@ -38,7 +38,7 @@ alt: Wedding Flowers by Floriade
 
 {# ----- Gallery Lightbox ----- #}
 
-<div id="lightbox" class="gallery">
+<div id="lightbox">
   <nav class="close" onclick="closeModal()">&times;</nav>
   {% for item in gallery -%}
     <div class="lightbox__slide">
@@ -47,6 +47,7 @@ alt: Wedding Flowers by Floriade
         <h3>{{ item.context.alt or alt }}</h3>
         <h4 class="link-light">{{ item.context.caption | safe }}</h4>
       </div>
+
       {% if loop.index > 1 %}
         <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
       {% else %}
