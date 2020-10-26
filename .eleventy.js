@@ -14,6 +14,7 @@ module.exports = function (config) {
   config.addPassthroughCopy("./src/fonts");
   config.addPassthroughCopy("./src/scripts");
   config.addPassthroughCopy("./src/images");
+  config.addPassthroughCopy("./admin");
 
   config.addTransform("htmlmin", function(content, outputPath) {
     if( (process.env.ELEVENTY_ENV == "production") && outputPath.endsWith(".html") ) {
