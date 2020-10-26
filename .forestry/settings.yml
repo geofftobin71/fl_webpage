@@ -1,9 +1,12 @@
 ---
 new_page_extension: md
 auto_deploy: false
-admin_path: ''
+admin_path: admin
 webhook_url: 
 sections:
+- type: document
+  path: src/_data/non_delivery_dates.json
+  label: Non Delivery Dates
 - type: document
   path: src/_data/shop_closed_dates.json
   label: Shop Closed Dates
