@@ -5,6 +5,10 @@ admin_path: ''
 webhook_url: 
 sections:
 - type: document
+  path: src/_data/non_delivery_dates.json
+  label: Non Delivery Dates
+  match: "**/*"
+- type: document
   path: src/_data/shop_closed_dates.json
   label: Shop Closed Dates
 - type: document
