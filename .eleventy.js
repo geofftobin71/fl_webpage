@@ -2,14 +2,15 @@ require("dotenv").config();
 const { DateTime } = require("luxon"); 
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
+const { minify } = require("terser");
 const fs = require("fs");
 
 module.exports = function (eleventyConfig) {
-  
+
   eleventyConfig.addCollection("posts", function (collection) {
     return collection.getFilteredByGlob("./src/posts/*.md");
   });
-  
+
   eleventyConfig.addPassthroughCopy("./src/*.ico");
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/scripts");
@@ -34,6 +35,17 @@ module.exports = function (eleventyConfig) {
       return new CleanCSS({}).minify(code).styles;
     } else {
       return code;
+    }
+  });
+
+  eleventyConfig.addNunjucksAsyncFilter("jsmin", async function(code, callback) {
+    try {
+      const minified = await minify(code);
+      callback(null, minified.code);
+    } catch (err) {
+      console.error("Terser error: ", err);
+      // Fail gracefully.
+      callback(null, code);
     }
   });
 

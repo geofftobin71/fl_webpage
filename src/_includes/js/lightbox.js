@@ -1,8 +1,7 @@
-<script>
-  function openModal() {
-    document.documentElement.setAttribute("data-modal-active", true);
-    document.getElementById("lightbox").style.display = "block";
-  }
+function openModal() {
+  document.documentElement.setAttribute("data-modal-active", true);
+  document.getElementById("lightbox").style.display = "block";
+}
 
 function closeModal() {
   document.documentElement.setAttribute("data-modal-active", false);
@@ -19,4 +18,3 @@ function showSlide(n) {
   }
   slides[n-1].classList.add("visible");
 }
-</script>

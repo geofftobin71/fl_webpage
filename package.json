@@ -28,6 +28,7 @@
     "html-minifier": "^4.0.0",
     "luxon": "^1.24.1",
     "node-fetch": "^2.6.1",
-    "stripe": "^8.117.0"
+    "stripe": "^8.117.0",
+    "terser": "^5.3.8"
   }
 }

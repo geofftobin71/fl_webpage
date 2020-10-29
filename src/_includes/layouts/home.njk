@@ -11,5 +11,11 @@
 {% endblock %}
 
 {% block foot %}
-  {% include "lightbox.njk" %}
+  {% set js %}
+      {% include "js/lightbox.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
 {% endblock %}
