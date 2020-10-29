@@ -1,0 +1,673 @@
+:root {
+  --measure: 60ch;
+  --padding: calc(1rem * 1.4);
+}
+
+@media screen and (min-width: 1200px) {
+  :root {
+    --measure: 75ch;
+  }
+}
+
+/* Measure
+-----------------------------------------------------------------------*/
+/*
+* {
+  max-width: var(--measure);
+}
+
+html,
+body,
+div,
+header,
+nav,
+main,
+section,
+footer {
+  max-width: inherit;
+}
+*/
+
+/* Section
+-----------------------------------------------------------------------*/
+
+section {
+  padding-top: var(--step-4);
+  padding-bottom: var(--step-4);
+}
+
+/* Flow
+-----------------------------------------------------------------------*/
+  article > * + * {
+    margin-top: 1em;
+  }
+
+  .flow > * + * {
+    margin-top: var(--flow-space, 1rem);
+  }
+
+  /* Wrapper
+  -----------------------------------------------------------------------*/
+  .wrapper {
+    --wrapper-width: 1200px;
+    --padding: calc(1rem * 1.4);
+    max-width: var(--wrapper-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+  }
+
+  .page-wrapper {
+    --wrapper-width: 1500px;
+    --padding: 0;
+  }
+
+  .text-wrapper {
+    --wrapper-width: var(--measure);
+  }
+
+  /* Other
+  -----------------------------------------------------------------------*/
+  .visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+
+  .text-left {
+    text-align: left;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .button {
+    font: inherit;
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+    border: 1px solid #ff8484;
+    background: #ff8484;
+    padding: 0.6rem 1.5rem;
+    position: relative;
+    font-weight: 700;
+  }
+  .button[data-variant=ghost] {
+    border-color: currentColor;
+    background: transparent;
+  }
+  .button:focus {
+    outline-offset: -0.4rem;
+    outline: 1px solid;
+  }
+  .button:hover {
+    background: #231651;
+    border-color: #231651;
+    color: #fafafa;
+  }
+  .button:active {
+    transform: scale(0.95);
+  }
+
+  /* Box
+  -----------------------------------------------------------------------*/
+  .box {
+    display: block;
+    padding: var(--padding);
+  }
+
+  /* The Stack
+  -----------------------------------------------------------------------*/
+  .stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    --space: 1.5rem;
+  }
+
+  .stack > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .stack > * + * {
+    margin-top: var(--space);
+  }
+
+  /* The Center
+  -----------------------------------------------------------------------*/
+  .center {
+    box-sizing: content-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--measure);
+    /* ↓ Intrinsic Centering: That is, centering elements based on their natural, content-based widths. */
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+
+  /* ↓ Gutters (i.e. 1em) */
+  /* padding-left: 1em;
+  padding-right: 1em; */
+}
+
+.center-both {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The Cluster
+-----------------------------------------------------------------------*/
+  .cluster {
+    --space: 1rem;
+    overflow: hidden;
+  }
+
+  .cluster > * {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: calc(var(--space) / 2 * -1);
+  }
+
+  .cluster > * > * {
+    margin: calc(var(--space) / 2);
+  }
+
+  /* The Sidebar
+  -----------------------------------------------------------------------*/
+
+  /* ↓ targets the intermediary wrapper */
+  .sidebar {
+    overflow: hidden;
+    --space: 1em;
+    --side-width: 15rem;
+    --content-min: 50%;
+  }
+
+  .sidebar > * {
+    display: flex;
+    flex-wrap: wrap;
+    margin: calc((var(--space) / 2) * -1);
+  }
+
+  .sidebar > * > * {
+    flex-basis: var(--side-width);
+    flex-grow: 1;
+    /* ↓ applies to both elements */
+    margin: calc((var(--space) / 2));
+  }
+
+  /* ↓ if is a right sidebar (side: right) -> :first-child */
+  .sidebar > * > :last-child {
+    /* ↓ grow from nothing */
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: calc(var(--content-min) - var(--space));
+  }
+
+  /* The Switcher
+  -----------------------------------------------------------------------*/
+  .switcher {
+    --threshold: 30rem;
+    --space: 1rem;
+    --large: calc(1 + 7 / 10);
+  }
+
+  .switcher > * {
+    display: flex;
+    flex-wrap: wrap;
+    /* ↓ Multiply by -1 to make negative */
+    margin: calc(var(--space) / 2 * -1);
+  }
+
+  .switcher > * > * {
+    flex-grow: 1;
+    flex-basis: calc((var(--threshold) - (100% - var(--space))) * 999);
+    /* ↓ Half the value to each element, combining to make the whole */
+    margin: calc(var(--space) / 2);
+  }
+
+  /* .switcher > * > :nth-child(1) {
+  flex-grow: var(--large);
+  } */
+
+  .switcher > * > :nth-last-child(n + 4),
+  .switcher > * > :nth-last-child(n + 4) ~ * {
+    flex-basis: 100%;
+  }
+
+  /* Domino
+  -----------------------------------------------------------------------*/
+
+  .domino {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: var(--domino-space, 1em);
+  }
+
+  @media screen and (orientation: portrait) {
+    .domino {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* The Cover
+  -----------------------------------------------------------------------*/
+  .cover {
+    --padding: 1rem;
+    --min-height: 50vh;
+    --space: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: var(--min-height);
+    /* ↓ noPad padding: 0; */
+    padding: var(--padding);
+  }
+
+  .cover > * {
+    margin-top: var(--space);
+    margin-bottom: var(--space);
+  }
+
+  /* ↓ h2 is the centered selector but can be any selector */
+  .cover > :first-child:not(h2) {
+    margin-top: 0;
+  }
+
+  .cover > :last-child:not(h2) {
+    margin-bottom: 0;
+  }
+
+  /* ↓ h2 is the centered selector but can be any selector */
+  .cover > h2 {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  /* The Grid
+  -----------------------------------------------------------------------*/
+  .grid {
+    --min: 15rem;
+    --space: 1rem;
+    align-content: start;
+    display: grid;
+    gap: var(--space);
+    grid-template-columns: 100%;
+  }
+
+  /* needs javascript for when the container size is wider than the grid width */
+  .grid.aboveMin {
+    grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+  }
+
+  /* Auto Grid
+  -----------------------------------------------------------------------*/
+  .auto-grid {
+    max-width: 25rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .auto-grid > * + * {
+    margin-top: 1rem;
+  }
+
+  @supports (display: grid) {
+    .auto-grid {
+      display: grid;
+      grid-template-columns: repeat( auto-fit, minmax(var(--auto-grid-min-size, 16rem), 1fr));
+      grid-gap: var(--auto-grid-gap, 1rem);
+      grid-auto-flow: dense;
+    }
+
+    .auto-grid {
+      max-width: unset;
+    }
+
+    .auto-grid, .auto-grid > * + * {
+      margin: unset;
+    }
+  }
+
+  /* Gallery
+  -----------------------------------------------------------------------*/
+
+  .gallery {
+    padding: 16px !important;
+    --auto-grid-gap: 16px;
+    --auto-grid-min-size: 96px;
+  }
+
+  .gallery .frame4x3 {
+    grid-column-end: span 4;
+    grid-row-end: span 3;
+  }
+
+  .gallery .frame3x2 {
+    grid-column-end: span 3;
+    grid-row-end: span 2;
+  }
+
+  .gallery .frame2x1 {
+    grid-column-end: span 4;
+    grid-row-end: span 2;
+  }
+
+  .gallery .frame1x1 {
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+  }
+
+  .gallery .frame1x2 {
+    grid-column-end: span 2;
+    grid-row-end: span 4;
+  }
+
+  .gallery .frame2x3 {
+    grid-column-end: span 2;
+    grid-row-end: span 3;
+  }
+
+  .gallery .frame3x4 {
+    grid-column-end: span 3;
+    grid-row-end: span 4;
+  }
+
+  @media screen and (min-width: 401px) and (max-width: 450px) {
+    .gallery {
+      --auto-grid-min-size: 180px;
+    }
+
+    .gallery .frame4x3 {
+      grid-column-end: span 2;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame3x2 {
+      grid-column-end: span 2;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame2x1 {
+      grid-column-end: span 2;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame1x1 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame1x2 {
+      grid-column-end: span 1;
+      grid-row-end: span 2;
+    }
+
+    .gallery .frame2x3 {
+      grid-column-end: span 1;
+      grid-row-end: span 2;
+    }
+
+    .gallery .frame3x4 {
+      grid-column-end: span 1;
+      grid-row-end: span 2;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .gallery {
+      --auto-grid-min-size: 280px;
+    }
+
+    .gallery .frame4x3 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame3x2 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame2x1 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame1x1 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame1x2 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame2x3 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+
+    .gallery .frame3x4 {
+      grid-column-end: span 1;
+      grid-row-end: span 1;
+    }
+  }
+
+  /* Full Width
+  -----------------------------------------------------------------------*/
+
+  .full-width {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  /* Full Height
+  -----------------------------------------------------------------------*/
+
+  .full-height {
+    height: 100vh;
+  }
+
+  @supports (background: -webkit-named-image(i)) {
+    .full-height {
+      height: -webkit-fill-available;
+    }
+  }
+
+  .half-height {
+    height: 50vh;
+  }
+
+  .third-height {
+    height: 33vh;
+  }
+
+  .quarter-height {
+    height: 25vh;
+  }
+
+  /* The Frame
+  -----------------------------------------------------------------------*/
+  .frame {
+    padding-bottom: calc(var(--n) / var(--d) * 100%);
+    position: relative;
+  }
+
+  .frame16x9 {
+    --n: 9;
+    --d: 16;
+  }
+
+  .frame4x3 {
+    --n: 3;
+    --d: 4;
+  }
+
+  .frame3x2 {
+    --n: 2;
+    --d: 3;
+  }
+
+  .frame2x1 {
+    --n: 1;
+    --d: 2;
+  }
+
+  .frame1x1 {
+    --n: 1;
+    --d: 1;
+  }
+
+  .frame1x2 {
+    --n: 2;
+    --d: 1;
+  }
+
+  .frame2x3 {
+    --n: 3;
+    --d: 2;
+  }
+
+  .frame3x4 {
+    --n: 4;
+    --d: 3;
+  }
+
+  .frame.shadow {
+    box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .frame > * {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .frame > img,
+  .frame > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* The Reel
+  -----------------------------------------------------------------------*/
+
+  .reel {
+    --space: 1rem;
+    --itemWidth: auto;
+    --height: auto;
+    --trackColor: gray;
+    --thumbColor: #fff;
+    display: flex;
+    /* ↓ For images, which may be very large or use differing aspect ratios, we may want to set the Reel’s height. */
+    height: var(--height);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-color: var(--thumbColor) var(--trackColor);
+    scroll-snap-type: x mandatory;
+    scroll-padding: 50%;
+  }
+
+  .reel::-webkit-scrollbar {
+    height: 1rem;
+  }
+
+  .reel::-webkit-scrollbar-track {
+    background-color: var(--trackColor);
+  }
+
+  .reel::-webkit-scrollbar-thumb {
+    background-color: var(--trackColor);
+    background-image: linear-gradient(
+    var(--trackColor) 0,
+    var(--trackColor) 0.25rem,
+    var(--thumbColor) 0.25rem,
+    var(--thumbColor) 0.75rem,
+    var(--trackColor) 0.75rem
+    );
+  }
+
+  .reel > * {
+    flex: 0 0 var(--itemWidth);
+    scroll-snap-align: center;
+  }
+
+  .reel > img {
+    height: 100%;
+    width: auto;
+    flex-basis: auto;
+    object-fit: contain;
+  }
+
+  .reel > * + * {
+    margin-left: var(--space);
+  }
+
+  .reel.overflowing {
+    padding-bottom: var(--space);
+  }
+
+  /* Lightbox
+  -----------------------------------------------------------------------*/
+
+  #lightbox {
+    display:none;
+    background: var(--color-darker-grey);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+  }
+
+  @supports (background: -webkit-named-image(i)) {
+    #lightbox {
+      height: -webkit-fill-available;
+    }
+  }
+
+  /* Modal
+  -----------------------------------------------------------------------*/
+
+  html[data-modal-active="true"] {
+    touch-action: none;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+  }
+
+  [data-modal-active="true"] body {
+    touch-action: none;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    overflow: hidden;
+  }

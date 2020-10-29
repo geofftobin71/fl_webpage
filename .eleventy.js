@@ -1,23 +1,23 @@
 require("dotenv").config();
 const { DateTime } = require("luxon"); 
 const htmlmin = require("html-minifier");
+const CleanCSS = require("clean-css");
 const fs = require("fs");
 
-module.exports = function (config) {
+module.exports = function (eleventyConfig) {
   
-  config.addCollection("posts", function (collection) {
+  eleventyConfig.addCollection("posts", function (collection) {
     return collection.getFilteredByGlob("./src/posts/*.md");
   });
   
-  config.addPassthroughCopy("./src/*.ico");
-  config.addPassthroughCopy("./src/css/*.css");
-  config.addPassthroughCopy("./src/fonts");
-  config.addPassthroughCopy("./src/scripts");
-  config.addPassthroughCopy("./src/images");
-  config.addPassthroughCopy("./admin");
+  eleventyConfig.addPassthroughCopy("./src/*.ico");
+  eleventyConfig.addPassthroughCopy("./src/fonts");
+  eleventyConfig.addPassthroughCopy("./src/scripts");
+  eleventyConfig.addPassthroughCopy("./src/images");
+  eleventyConfig.addPassthroughCopy("./admin");
 
-  config.addTransform("htmlmin", function(content, outputPath) {
-    if( (process.env.ELEVENTY_ENV == "production") && outputPath.endsWith(".html") ) {
+  eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
+    if( (process.env.ELEVENTY_ENV != "development") && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
@@ -29,19 +29,27 @@ module.exports = function (config) {
     return content;
   });
 
-  config.addFilter("readableDate", (dateObj) => {
+  eleventyConfig.addFilter("cssmin", function(code) {
+    if(process.env.ELEVENTY_ENV != "development") {
+      return new CleanCSS({}).minify(code).styles;
+    } else {
+      return code;
+    }
+  });
+
+  eleventyConfig.addFilter("readableDate", (dateObj) => {
     return dateObj.toFormat("dd LLL yyyy");
     // return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  config.addFilter('htmlDateString', (dateObj) => {
+  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
     return dateObj.toFormat('yyyy-LL-dd');
     // return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
   // Get the first `n` elements of a collection.
-  config.addFilter("head", (array, n) => {
+  eleventyConfig.addFilter("head", (array, n) => {
     if( n < 0 ) {
       return array.slice(n);
     }
@@ -49,7 +57,7 @@ module.exports = function (config) {
     return array.slice(0, n);
   });
 
-  config.addFilter("shuffle", (array) => {
+  eleventyConfig.addFilter("shuffle", (array) => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var temp = array[i];
@@ -59,7 +67,7 @@ module.exports = function (config) {
     return array;
   });
 
-  config.addFilter("removeLongReviews", (array, limit) => {
+  eleventyConfig.addFilter("removeLongReviews", (array, limit) => {
     var filtered = [];
     for (var i = 0; i < array.length; ++i) {
       if(array[i].review.length <= limit) { filtered[filtered.length] = array[i]; }
@@ -68,14 +76,14 @@ module.exports = function (config) {
   });
 
   // Convert uppercase to hyphen-lowercase : fooBar => foo-bar
-  config.addFilter("hyphenate", (word) => {
+  eleventyConfig.addFilter("hyphenate", (word) => {
     function upperToHyphenLower(match, offset, string) {
       return (offset > 0 ? '-' : '') + match.toLowerCase();
     }
     return word.replace(/[A-Z]/g, upperToHyphenLower);
   });
 
-  config.setBrowserSyncConfig({
+  eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function(err, bs) {
 

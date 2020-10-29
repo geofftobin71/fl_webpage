@@ -1,4 +1,4 @@
-<style>
+{% set css %}
 .lightbox__slide.instagram {
   align-items: center;
 }
@@ -8,6 +8,10 @@
     align-items: flex-start;
   }
 }
+{% endset %}
+
+<style>
+  {{ css | cssmin | safe }}
 </style>
 
 {# ----- Instagram Thumbnails ----- #}

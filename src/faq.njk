@@ -3,7 +3,7 @@ title: FAQ
 layout: layouts/base.njk
 ---
 
-<style>
+{% set css %}
 .faq label{
   cursor: pointer;
   position: relative;
@@ -43,6 +43,10 @@ layout: layouts/base.njk
   padding: 1em;
   max-height: 100%;
 }
+{% endset %}
+
+<style>
+  {{ css | cssmin | safe }}
 </style>
 
 <main>

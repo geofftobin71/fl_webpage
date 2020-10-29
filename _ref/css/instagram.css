@@ -1,0 +1,71 @@
+
+  .instagram .lightbox__slide {
+    z-index: 11;
+    color: var(--color-dark);
+    background: var(--color-white);
+    width: 80vw;
+    max-width: 1500px;
+    max-height: 80vh;
+    display: none;
+    position: relative;
+  }
+
+  .instagram .lightbox__slide > div {
+    flex: 3;
+    overflow: hidden;
+  }
+
+  .instagram .lightbox__slide > p {
+    flex: 2;
+    padding: 1em;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .instagram .lightbox__slide nav, #lightbox .close {
+    color: white;
+    position: absolute;
+    font-size: 2rem;
+    padding: 0;
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .instagram .lightbox__slide .prev {
+    left: -10vw;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .instagram .lightbox__slide .next {
+    right: -10vw;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #lightbox .close {
+    right: 0;
+    top: 0;
+  }
+
+  @media screen and (orientation: portrait) {
+    .instagram .lightbox__slide {
+      flex-direction: column;
+    }
+
+    .instagram .lightbox__slide > * {
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .instagram .lightbox__slide {
+      font-size: var(--step--1);
+    }
+  }
+

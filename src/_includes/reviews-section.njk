@@ -1,4 +1,4 @@
-<style>
+{% set css %}
 .slider {
   position: relative;
   overflow-x: hidden;
@@ -67,6 +67,10 @@
 .slider__nav:checked + label {
   background: radial-gradient(currentcolor 40%, rgba(255, 0, 0, 0) 41%);
 }
+{% endset %}
+
+<style>
+  {{ css | cssmin | safe }}
 </style>
 
 <section class="full-width bg-shade1 font-size-1" style="height:22em;max-height:100vh">
