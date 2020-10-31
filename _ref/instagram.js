@@ -2,9 +2,12 @@ const fetch = require('node-fetch');
 
 module.exports = function() {
 
-  return fetch('https://graph.instagram.com/me/media?fields=media_url,caption&access_token=IGQVJWSWZA2YkQ0NnBKODJOQ2tFYktweVl1c3ZArSUh4QnRnRE8xRjYzekd4YzgyOU8xUC1McktaRWswa0RxemxKMkdyMHU4emZAwVWtocmJtRVRZAbGI4bWpMdHFKUjN5Uml6MmR2ZATJtZAWdYMm1xQmt3ZAQZDZD')
+  fetch('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' + process.env.INSTAGRAM_TOKEN);
+  // .then(res => res.json())
+  // .then(json => console.log(json));
+
+  return fetch('https://graph.instagram.com/me/media?fields=media_url,caption&access_token=' + process.env.INSTAGRAM_TOKEN)
   .then(res => res.json())
-  .then(json => console.log(json.data));
-  // .then(json => { return json.data; });
+  .then(json => { return json.data; });
   
 };

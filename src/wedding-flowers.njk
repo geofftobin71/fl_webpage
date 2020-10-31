@@ -5,9 +5,12 @@ alt: Wedding Flowers by Floriade
 ---
 
 <main>
-<section class="wrapper">
-  <h1>{{ title }}</h1>
-</section>
+<header style="height:20vh;min-height:128px;background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('{{ site.cloudinary_url }}c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/wedding-flowers/wedding-flowers-by-floriade-00033');background-position:center top;background-size:cover">
+  <div class="wrapper page-wrapper" style="padding:16px;height:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center">
+    <img src="{{ '/images/floriade-logo.png' | url }}" alt="Floriade logo" width="320" height="269" style="width:16.5vh;height:14vh;min-width:107px;min-height:90px;filter:drop-shadow(0 0 2px rgba(0,0,0,0.2)) drop-shadow(0 0 8px rgba(0,0,0,0.2))">
+    <h1 class="text-center" style="text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2)">{{ title | lower }}</h1>
+  </div>
+</header>
 <section class="bg-white">
   <div class="wrapper page-wrapper">
     <ul class="auto-grid gallery">
@@ -45,13 +48,14 @@ alt: Wedding Flowers by Floriade
   {% for item in gallery -%}
     <div class="lightbox__slide">
       <img srcset="
-         {% for size in sizes %}
-           {{ site.cloudinary_url }}c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ item.public_id }} {{ size }}w,
-         {% endfor %}
-         " sizes="{{ "80vh" if item.aspect_ratio < 1 else "80vw" }}" src="{{ site.cloudinary_url }}c_limit,w_900,h_900,q_auto,f_auto/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
+      {% for size in sizes %}
+        {{ site.cloudinary_url }}c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ item.public_id }} {{ size }}w,
+      {% endfor %}
+      " sizes="{{ "80vh" if item.aspect_ratio < 1 else "80vw" }}" src="{{ site.cloudinary_url }}c_limit,w_900,h_900,q_auto,f_auto/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context.caption | length %} - {{ item.context.caption | striptags }}{% endif %}" width="{{ item.width }}" height="{{ item.height }}" loading="lazy">
       <div class="caption">
         <h3>{{ item.context.alt or alt }}</h3>
         <h4 class="link-light">{{ item.context.caption | safe }}</h4>
+        <h4 class="link-light"><a href="mailto:flowers@floriade.co.nz?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0A%0A{{ item.context.alt or alt }}%0A%0A{{ site.cloudinary_url }}c_limit,w_1200,h_1200,q_auto,f_auto/{{ item.public_id }}">Email Floriade about this image ( {{ item.public_id }} )</a></h4>
       </div>
 
       {% if loop.index > 1 %}
