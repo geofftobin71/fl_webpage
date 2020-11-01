@@ -96,6 +96,10 @@ ol[class] {
   list-style: none;
 }
 
+a {
+  color: inherit;
+}
+
 a:not([class]) {
   text-decoration: none;
   text-decoration-skip-ink: auto;
