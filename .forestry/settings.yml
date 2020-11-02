@@ -5,6 +5,10 @@ admin_path: admin
 webhook_url: 
 sections:
 - type: document
+  path: src/_data/photographers.json
+  label: Photographers
+  match: "**/*"
+- type: document
   path: src/_data/shop_hours.json
   label: Shop Hours
 - type: document
