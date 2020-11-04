@@ -51,6 +51,7 @@
 
   .lightbox__slide .caption {
     visibility: hidden;
+    opacity: 0;
     color: white;
     background: var(--color-darker-grey);
     text-align: center;
@@ -63,6 +64,7 @@
 
   .lightbox__slide.visible .caption {
     visibility: visible;
+    opacity: 1;
   }
 
   .lightbox__slide nav, #lightbox .close {

@@ -12,8 +12,11 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy("./src/*.ico");
+  eleventyConfig.addPassthroughCopy("./src/*.png");
+  eleventyConfig.addPassthroughCopy("./src/*.svg");
+  eleventyConfig.addPassthroughCopy("./src/*.xml");
+  eleventyConfig.addPassthroughCopy("./src/site.webmanifest");
   eleventyConfig.addPassthroughCopy("./src/fonts");
-  eleventyConfig.addPassthroughCopy("./src/scripts");
   eleventyConfig.addPassthroughCopy("./src/images");
   eleventyConfig.addPassthroughCopy("./admin");
 

@@ -1,6 +1,6 @@
 {
     "total_count": 56,
-    "time": 99,
+    "time": 47,
     "resources": [
         {
             "public_id": "wedding-flowers/wedding-flowers-by-floriade-00176",
@@ -1257,9 +1257,9 @@
             }
         },
         {
-            "public_id": "wedding-flowers/wedding-flowers-by-floriade-00064_5.40.02_PM",
+            "public_id": "wedding-flowers/wedding-flowers-by-floriade-00064",
             "folder": "wedding-flowers",
-            "filename": "wedding-flowers-by-floriade-00064_5.40.02_PM",
+            "filename": "wedding-flowers-by-floriade-00064",
             "format": "jpg",
             "version": 1596539386,
             "resource_type": "image",
@@ -1272,8 +1272,8 @@
             "height": 3750,
             "aspect_ratio": 0.66667,
             "pixels": 9375000,
-            "url": "http://res.cloudinary.com/floriade/image/upload/v1596539386/wedding-flowers/wedding-flowers-by-floriade-00064_5.40.02_PM.jpg",
-            "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1596539386/wedding-flowers/wedding-flowers-by-floriade-00064_5.40.02_PM.jpg",
+            "url": "http://res.cloudinary.com/floriade/image/upload/v1596539386/wedding-flowers/wedding-flowers-by-floriade-00064.jpg",
+            "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1596539386/wedding-flowers/wedding-flowers-by-floriade-00064.jpg",
             "status": "active",
             "access_mode": "public",
             "access_control": null,
@@ -1470,6 +1470,10 @@
             "height": 1667,
             "aspect_ratio": 1.4997,
             "pixels": 4167500,
+            "context": {
+                "Credit Link": "https://georgiaverrells.com/",
+                "Credit Name": "Georgia Verrells"
+            },
             "url": "http://res.cloudinary.com/floriade/image/upload/v1596539394/wedding-flowers/wedding-flowers-by-floriade-00033.jpg",
             "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1596539394/wedding-flowers/wedding-flowers-by-floriade-00033.jpg",
             "status": "active",
@@ -1834,8 +1838,9 @@
             "aspect_ratio": 0.66667,
             "pixels": 9375000,
             "context": {
-                "alt": "Bride on the beach holding wedding flowers",
-                "caption": "Photo credit <a href=\"https://lovemiphoto.com/\" target=\"_blank\">lovemiphoto</a>"
+                "Credit Link": "https://lovemiphoto.com/",
+                "Credit Name": "lovemiphoto",
+                "alt": "Bride on the beach holding wedding flowers"
             },
             "url": "http://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00001.jpg",
             "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1596539392/wedding-flowers/wedding-flowers-by-floriade-00001.jpg",
@@ -1856,6 +1861,6 @@
         }
     ],
     "rate_limit_allowed": 500,
-    "rate_limit_reset_at": "2020-10-13T22:00:00.000Z",
-    "rate_limit_remaining": 496
+    "rate_limit_reset_at": "2020-11-02T23:00:00.000Z",
+    "rate_limit_remaining": 497
 }
