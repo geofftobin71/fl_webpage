@@ -1,11 +1,13 @@
 function openModal() {
   document.documentElement.setAttribute("data-modal-active", true);
   document.getElementById("lightbox").style.display = "block";
+  document.getElementById("menu").style.display = "none";
 }
 
 function closeModal() {
   document.documentElement.setAttribute("data-modal-active", false);
   document.getElementById("lightbox").style.display = "none";
+  document.getElementById("menu").style.display = "block";
 }
 
 function showSlide(n) {

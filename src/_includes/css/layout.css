@@ -9,35 +9,49 @@
   }
 }
 
-/* Measure
------------------------------------------------------------------------*/
-/*
-* {
-  max-width: var(--measure);
-}
+  /* Header
+  -----------------------------------------------------------------------*/
 
-html,
-body,
-div,
-header,
-nav,
-main,
-section,
-footer {
-  max-width: inherit;
-}
-*/
+  .header {
+    height:20vh;
+    min-height:128px;
+    background-position:center top;
+    background-size:cover;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    position:relative;
+  }
 
-/* Section
------------------------------------------------------------------------*/
+  .header > div {
+    padding-left:var(--step-0);
+    padding-right:var(--step-1);
+    height:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
 
-section {
-  padding-top: var(--step-4);
-  padding-bottom: var(--step-4);
-}
+  .header h1 {
+    text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
+  }
 
-/* Flow
------------------------------------------------------------------------*/
+  .header img {
+    width:16.5vh;
+    height:14vh;
+    min-width:107px;
+    min-height:90px;
+    filter:drop-shadow(0 0 2px rgba(0,0,0,0.2)) drop-shadow(0 0 8px rgba(0,0,0,0.2));
+  }
+
+  /* Section
+  -----------------------------------------------------------------------*/
+
+  section {
+    padding-top: var(--step-4);
+    padding-bottom: var(--step-4);
+  }
+
+  /* Flow
+  -----------------------------------------------------------------------*/
   article > * + * {
     margin-top: 1em;
   }
