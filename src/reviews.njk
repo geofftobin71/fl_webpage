@@ -1,12 +1,10 @@
 ---
 title: Reviews
-layout: layouts/base.njk
+header_image: fresh-flowers/fresh-flowers-by-floriade-00057
+layout: layouts/page.njk
 ---
 
 <main>
-<section class="wrapper">
-  <h1>{{ title }}</h1>
-</section>
 {% for item in reviews | shuffle -%}
   <section {% if loop.index % 2 %} class="bg-shade1" {% endif %}>
     <div class="stack center font-secondary">

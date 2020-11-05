@@ -1,6 +1,7 @@
 ---
 title: FAQ
-layout: layouts/base.njk
+header_image: fresh-flowers/fresh-flowers-by-floriade-00029
+layout: layouts/page.njk
 ---
 
 {% set css %}
@@ -50,16 +51,15 @@ layout: layouts/base.njk
 </style>
 
 <main>
-<section class="wrapper">
-  <h1>{{ title }}</h1>
-</section>
-<section class="wrapper">
+<section>
   <ul class="faq flow">
     {% for item in faq -%}
-      <li>
-        <input id="faq_{{ loop.index }}" type="checkbox" class="visually-hidden">
-        <h3><label for="faq_{{ loop.index }}">{{ item.question }}</label></h3>
-        <p class="wrapper text-wrapper">{{ item.answer }}</p>
+      <li {% if loop.index % 2 %} class="bg-shade1" {% endif %}>
+        <div class="wrapper" style="padding:1rem">
+          <input id="faq_{{ loop.index }}" type="checkbox" class="visually-hidden">
+          <h3><label for="faq_{{ loop.index }}">{{ item.question }}</label></h3>
+          <p class="wrapper text-wrapper">{{ item.answer }}</p>
+        </div>
       </li>
     {% endfor -%}
   </ul>

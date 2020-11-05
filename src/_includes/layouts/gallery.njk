@@ -1,4 +1,4 @@
-{% extends "layouts/base.njk" %}
+{% extends "layouts/page.njk" %}
 
 {% block head %}
     {% set css %}
@@ -12,7 +12,7 @@
 
 {% block foot %}
   {% set js %}
-      {% include "js/lightbox.js" %}
+    {% include "js/lightbox.js" %}
   {% endset %}
 
   <script>
