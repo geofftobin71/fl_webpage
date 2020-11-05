@@ -1,4 +1,5 @@
 require("dotenv").config();
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { DateTime } = require("luxon"); 
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
@@ -6,6 +7,8 @@ const { minify } = require("terser");
 const fs = require("fs");
 
 module.exports = function (eleventyConfig) {
+
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
   eleventyConfig.addCollection("posts", function (collection) {
     return collection.getFilteredByGlob("./src/posts/*.md");

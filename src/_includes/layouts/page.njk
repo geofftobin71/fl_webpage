@@ -4,3 +4,13 @@
   {% include "header.njk" %}
   {{ super() }}
 {% endblock %}
+
+{% block foot %}
+  {% set js %}
+    {% include "js/menu.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}

@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block foot %}
+  {{ super() }}
   {% set js %}
     {% include "js/lightbox.js" %}
   {% endset %}
