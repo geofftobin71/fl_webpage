@@ -1,7 +1,10 @@
-<header class="header" style="background-image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('{{ site.cloudinary_url }}c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header_image }}')">
+<header class="header">
+  <figure>
+    <img alt="Header Image" src="{{ site.cloudinary_url }}c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header_image }}">
+  </figure>
   <div class="wrapper page-wrapper">
     <a href="/">
-      <img src="{{ '/images/floriade-logo.png' | url }}" alt="Floriade logo" width="320" height="269">
+      <img class="logo" src="{{ '/images/floriade-logo.png' | url }}" alt="Floriade logo" width="320" height="269">
     </a>
     <h1 class="text-center">{{ title | lower }}</h1>
   </div>
