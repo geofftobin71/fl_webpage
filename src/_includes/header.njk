@@ -1,6 +1,6 @@
 <header class="header">
   <figure>
-    <img alt="Header Image" src="{{ site.cloudinary_url }}c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header_image }}">
+    <img alt="Header Image" src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header_image }}" style="-webkit-filter:brightness(0.7);filter:brightness(0.7)">
   </figure>
   <div class="wrapper page-wrapper">
     <a href="/">
@@ -9,3 +9,13 @@
     <h1 class="text-center">{{ title | lower }}</h1>
   </div>
 </header>
+<style>
+.dt-menu ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+</style>
+<nav class="dt-menu text-center" style="background-color:var(--color-primary);color:white;width:100vw">
+      {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+</nav>

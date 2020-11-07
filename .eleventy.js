@@ -1,5 +1,7 @@
 require("dotenv").config();
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const sitemap = require("@quasibit/eleventy-plugin-sitemap");
+const schema = require("@quasibit/eleventy-plugin-schema");
 const { DateTime } = require("luxon"); 
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
@@ -9,6 +11,14 @@ const fs = require("fs");
 module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+  eleventyConfig.addPlugin(sitemap, {
+    sitemap: {
+      hostname: "https://floriade.co.nz",
+    },
+  });
+
+  eleventyConfig.addPlugin(schema);
 
   eleventyConfig.addCollection("posts", function (collection) {
     return collection.getFilteredByGlob("./src/posts/*.md");

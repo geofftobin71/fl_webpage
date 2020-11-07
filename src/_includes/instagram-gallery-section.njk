@@ -22,7 +22,7 @@
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
     {% for item in instagram_images -%}
       <li class="frame frame1x1 shadow">
-        <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" onclick="openLightbox();showSlide({{ loop.index }})" loading="lazy">
+        <img src="{{ site.cloudinary_url }}/image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" onclick="openLightbox();showSlide({{ loop.index }})" loading="lazy">
       </li>
     {% endfor %}
   </ul>
@@ -35,7 +35,7 @@
   {% for item in instagram_images -%}
     <div class="lightbox__slide instagram">
       <div class="domino" style="--domino-space:0">
-        <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
+        <img src="{{ site.cloudinary_url }}/image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
         <div style="max-height:40vmax;overflow-x:hidden;overflow-y:auto">
           <div style="display:flex;align-items:center;min-height:100%">
             <p>{{ item.caption }}</p>
