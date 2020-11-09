@@ -24,18 +24,18 @@ module.exports = function (eleventyConfig) {
     return collection.getFilteredByGlob("./src/posts/*.md");
   });
 
-  eleventyConfig.addPassthroughCopy("./src/*.ico");
-  eleventyConfig.addPassthroughCopy("./src/*.png");
-  eleventyConfig.addPassthroughCopy("./src/*.svg");
-  eleventyConfig.addPassthroughCopy("./src/*.xml");
-  eleventyConfig.addPassthroughCopy("./src/site.webmanifest");
+  eleventyConfig.addPassthroughCopy({"./src/favicon/*.ico" : "/"});
+  eleventyConfig.addPassthroughCopy({"./src/favicon/*.png" : "/"});
+  eleventyConfig.addPassthroughCopy({"./src/favicon/*.svg" : "/"});
+  eleventyConfig.addPassthroughCopy({"./src/favicon/*.xml" : "/"});
+  eleventyConfig.addPassthroughCopy({"./src/favicon/*.webmanifest" : "/"});
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/images");
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("./admin");
 
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
-    if( (process.env.ELEVENTY_ENV != "development") && outputPath.endsWith(".html") ) {
+    if( (process.env.ELEVENTY_ENV == "prod") && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
@@ -48,7 +48,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("cssmin", function(code) {
-    if(process.env.ELEVENTY_ENV != "development") {
+    if(process.env.ELEVENTY_ENV == "prod") {
       return new CleanCSS({}).minify(code).styles;
     } else {
       return code;

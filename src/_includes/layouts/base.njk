@@ -2,20 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content="{{ description or site.description }}" />
-
-    {% set css %}
-      {% include "css/reset.css" %}
-      {% include "css/modular-scale.css" %}
-      {% include "css/theme.njk" %}
-      {% include "css/layout.css" %}
-    {% endset %}
-
-    <style>
-      {{ css | cssmin | safe }}
-    </style>
+    {% if sitemap.ignore %}
+    <meta name="robots" content="noindex" />
+    {% else %}
+    <meta name="robots" content="index, follow" />
+    {% endif %}
+    <link rel="canonical" href="{{ site.url if env.isProd }}{{ page.url }}" />
 
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" sizes="16x16 32x32 48x48 64x64" href="/favicon.ico">
@@ -29,10 +24,21 @@
     <meta name="msapplication-TileColor" content="#3d4844">
     <meta name="theme-color" content="#ffffff">
 
+    {% set css %}
+    {% include "css/reset.css" %}
+    {% include "css/modular-scale.css" %}
+    {% include "css/theme.njk" %}
+    {% include "css/layout.css" %}
+    {% endset %}
+
+    <style>
+    {{ css | cssmin | safe }}
+    </style>
+
     {% block head %}
     {% endblock %}
 
-  <title>{% if title | length %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} | {{ site.tagline }}{% endif %}</title>
+    <title>{% if title | length %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} | {{ site.tagline }}{% endif %}</title>
   </head>
 
   <body>
