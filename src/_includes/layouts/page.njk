@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block foot %}
+  {{ super() }}
   {% set js %}
     {% include "js/menu.js" %}
   {% endset %}

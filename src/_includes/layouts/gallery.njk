@@ -1,14 +1,15 @@
 {% extends "layouts/page.njk" %}
 
 {% block head %}
- <script src="{{ '/js/lazysizes.min.js' | url }}"></script>
-    {% set css %}
-      {% include "css/lightbox.css" %}
-    {% endset %}
+  {{ super() }}
+  <script src="{{ '/js/lazysizes.min.js' | url }}"></script>
+  {% set css %}
+    {% include "css/lightbox.css" %}
+  {% endset %}
 
-    <style>
-      {{ css | cssmin | safe }}
-    </style>
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
 {% endblock %}
 
 {% block foot %}
