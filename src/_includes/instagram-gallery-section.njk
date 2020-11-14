@@ -19,9 +19,9 @@
 {% set instagram_images = instagram | head(12) %}
 
 <section class="wrapper">
-  <ul class="auto-grid" style="--auto-grid-min-size:220px">
+  <ul class="auto-grid new-layer" style="--auto-grid-min-size:220px">
     {% for item in instagram_images -%}
-      <li class="frame frame1x1 shadow">
+      <li class="frame frame1x1 round shadow">
         <img src="{{ site.cloudinary_url }}/image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" onclick="openLightbox();showSlide({{ loop.index }})" loading="lazy">
       </li>
     {% endfor %}
