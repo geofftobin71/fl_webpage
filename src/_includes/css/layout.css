@@ -59,7 +59,7 @@
     height:14vh;
     min-width:107px;
     min-height:90px;
-    filter:drop-shadow(0 0 2px rgba(0,0,0,0.2)) drop-shadow(0 0 8px rgba(0,0,0,0.2));
+    /* filter:drop-shadow(0 0 2px rgba(0,0,0,0.2)) drop-shadow(0 0 8px rgba(0,0,0,0.2)); */
   }
 
   /* Section
@@ -590,9 +590,8 @@
     border-radius: var(--frame-radius, 0.45rem);
   }
 
-  .frame.shadow {
-    /* box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4); */
-    filter:drop-shadow(3px 2px 6px rgba(0,0,0,0.4));
+  .frame.shadow img {
+    box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
   }
 
   .frame > * {
