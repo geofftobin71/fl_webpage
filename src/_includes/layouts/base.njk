@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{% if title | length %}{{ title }} | {{ site.name }}{% else %}{{ site.name }} | {{ site.tagline }}{% endif %}</title>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="{{ description or site.description }}" />
+    {% include "partials/meta-info.njk" %}
     {% if sitemap.ignore %}
     <meta name="robots" content="noindex" />
     {% else %}
     <meta name="robots" content="index, follow" />
     {% endif %}
-    <link rel="canonical" href="{{ site.url if env.isProd }}{{ page.url }}" />
 
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" sizes="16x16 32x32 48x48 64x64" href="/favicon.ico">
