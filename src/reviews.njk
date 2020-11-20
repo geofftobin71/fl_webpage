@@ -8,12 +8,12 @@ eleventyNavigation:
 ---
 
 <main>
-{% for item in reviews | shuffle -%}
-  <section {% if loop.index % 2 %} class="bg-shade1" {% endif %}>
-    <div class="stack center font-secondary">
-      <p class="font-size-0">{{ item.review }}</p>
-      <p class="font-size-0 text-center">{{ item.name }}</p>
+<section class="bg-shade1 flow" style="--flow-space:var(--step-4)">
+  {% for item in reviews | shuffle -%}
+    <div class="round-box stack center bg-primary color-light border-shade2 shadow-primary text-center">
+      <p>{{ item.review }}</p>
+      <p class="font-secondary color-shade4">{{ item.name }}</p>
     </div>
-  </section>
-{% endfor -%}
+  {% endfor -%}
+</section>
 </main>

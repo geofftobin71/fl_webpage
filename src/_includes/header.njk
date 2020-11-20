@@ -13,9 +13,9 @@
 .dt-menu ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); */
 }
 </style>
-<nav class="dt-menu text-center" style="background-color:var(--color-primary);color:white;width:100vw">
+<nav class="dt-menu text-center font-secondary" style="background-color:var(--color-primary);color:light;text-transform:lowercase;width:100vw">
       {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
 </nav>

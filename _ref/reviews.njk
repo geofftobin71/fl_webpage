@@ -1,0 +1,19 @@
+---
+title: Reviews
+header_image: fresh-flowers/fresh-flowers-by-floriade-00057
+layout: layouts/page.njk
+eleventyNavigation:
+  key: Reviews
+  order: 10
+---
+
+<main>
+{% for item in reviews | shuffle -%}
+  <section {% if loop.index % 2 %} class="bg-shade1" {% endif %}>
+    <div class="stack center font-secondary">
+      <p class="font-size-0">{{ item.review }}</p>
+      <p class="font-size-0 text-center">{{ item.name }}</p>
+    </div>
+  </section>
+{% endfor -%}
+</main>
