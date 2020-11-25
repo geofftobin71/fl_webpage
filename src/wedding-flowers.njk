@@ -118,7 +118,7 @@ eleventyNavigation:
 </style>
 
 <main>
-<section class="bg-white">
+<section class="bg-shade1">
   <div class="wrapper page-wrapper">
     <ul class="auto-grid gallery">
       {% set gallery = wedding_flowers_gallery.resources | shuffle %}
@@ -137,7 +137,7 @@ eleventyNavigation:
           {% set width = "320" %}
           {% set height = "480" %}
         {% endif %}
-        <li class="frame frame{{ aspect }} round shadow">
+        <li class="frame frame{{ aspect }} round shadow-primary">
           <img data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ item.public_id }}" alt="{{ item.context.alt or alt }}" title="{{ item.context.alt or alt }}{% if item.context["Credit Name"] | length %} - Photo credit {{ item.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox();showSlide({{ loop.index }})" style="cursor:pointer" class="lazyload">
         </li>
         {%- endfor %}
@@ -148,6 +148,7 @@ eleventyNavigation:
 
 {# ----- Hamburger Menu ----- #}
 
+{#
 <div id="menu" class="menu">
   <input class="menu__toggle" type="checkbox" onclick="toggleMenu(this)">
   <div class="menu__burger">
@@ -161,6 +162,7 @@ eleventyNavigation:
   </div>
   <div class="menu__backdrop"></div>
 </div>
+#}
 
 {# ----- Gallery Lightbox ----- #}
 

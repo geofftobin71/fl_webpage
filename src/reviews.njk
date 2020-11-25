@@ -7,6 +7,14 @@ eleventyNavigation:
   order: 10
 ---
 
+<style>
+@media screen and (max-width: 420px) {
+  .round-box {
+    --box-padding: var(--step-0);
+  }
+}
+</style>
+
 <main>
 <section class="bg-shade1 flow" style="--flow-space:var(--step-4)">
   {% for item in reviews | shuffle -%}
