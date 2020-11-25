@@ -1,9 +1,9 @@
 {
-  "monday": "Online orders only",
-  "tuesday": "11am - 5:30pm",
-  "wednesday": "11am - 5:30pm",
-  "thursday": "11am - 5:30pm",
-  "friday": "11am - 5:30pm",
-  "saturday": "10am - 2pm",
+  "monday": "Closed",
+  "tuesday": "10am - 5:30pm",
+  "wednesday": "10am - 5:30pm",
+  "thursday": "10am - 5:30pm",
+  "friday": "10am - 5:30pm",
+  "saturday": "10am - 3pm",
   "sunday": "Closed"
 }
