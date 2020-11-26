@@ -1,0 +1,14 @@
+<style>
+.dt-menu ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin:0;
+  padding: 0.25rem;
+}
+</style>
+
+<div class="shadow" style="position:relative">
+  <nav class="dt-menu bg-primary color-light text-center text-lowercase font-secondary">
+    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+  </nav>
+</div>
