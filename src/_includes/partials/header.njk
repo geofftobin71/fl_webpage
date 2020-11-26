@@ -1,14 +1,3 @@
-<header class="header">
-  <figure>
-    <img alt="Header Image" src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header_image }}">
-  </figure>
-  <div class="wrapper page-wrapper">
-    <a href="/">
-      <img class="logo" src="{{ '/images/floriade-logo.png' | url }}" alt="Floriade logo" width="320" height="269">
-    </a>
-    <h1 class="text-center">{{ title | lower }}</h1>
-  </div>
-</header>
 <style>
 .dt-menu ul {
   display: grid;
@@ -17,8 +6,24 @@
   padding: 0.25rem;
 }
 </style>
+
 <div class="shadow" style="position:relative">
   <nav class="dt-menu bg-primary color-light text-center text-lowercase font-secondary">
     {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
   </nav>
 </div>
+
+<header id="header">
+  <figure>
+    <img alt="Header Image" src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header_image }}">
+  </figure>
+  <div class="wrapper page-wrapper">
+    <figure>
+      <a href="/">
+        <img class="logo" src="{{ '/images/floriade-logo.png' | url }}" alt="Floriade logo" width="320" height="269">
+      </a>
+    </figure>
+    <span></span>
+    <h1>{{ title | lower }}</h1>
+  </div>
+</header>
