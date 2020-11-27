@@ -1,107 +1,126 @@
 
-  .lightbox__slide {
-    --fade-duration: 0.5s;
-    z-index: 1;
-    overflow: hidden;
-    display: flex;
-    position: fixed;
-    top: 10vh;
-    left: 10vw;
-    height: 0;
-    width: 0;
-    transition: width 0s var(--fade-duration), height 0s var(--fade-duration);
-  }
+/* ----- Lightbox ----- */
 
-  .lightbox__slide.visible {
-    z-index: 11;
-    width: 80vw;
-    height: 80vh;
-    overflow: visible;
-    transition: width 0s 0s, height 0s 0s;
-  }
+#lightbox {
+  display:none;
+  background: var(--color-darker-grey);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
 
-  .lightbox__slide img {
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity var(--fade-duration) 0s ease-out;
+@supports (background: -webkit-named-image(i)) {
+  #lightbox {
+    height: -webkit-fill-available;
   }
+}
 
-  .lightbox__slide.visible img {
-    opacity: 1;
-    transition: opacity var(--fade-duration) 0s ease-in;
-  }
+.lightbox__slide {
+  --fade-duration: 0.5s;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  position: fixed;
+  top: 10vh;
+  left: 10vw;
+  height: 0;
+  width: 0;
+  transition: width 0s var(--fade-duration), height 0s var(--fade-duration);
+}
 
+.lightbox__slide.visible {
+  z-index: 11;
+  width: 80vw;
+  height: 80vh;
+  overflow: visible;
+  transition: width 0s 0s, height 0s 0s;
+}
+
+.lightbox__slide img {
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity var(--fade-duration) 0s ease-out;
+}
+
+.lightbox__slide.visible img {
+  opacity: 1;
+  transition: opacity var(--fade-duration) 0s ease-in;
+}
+
+.lightbox__slide p {
+  visibility: hidden;
+  color: white;
+  background: var(--color-darker-grey);
+  text-align: center;
+  padding: 0.5rem 1rem 1.5rem 1rem;
+}
+
+@media screen and (max-width: 700px) {
   .lightbox__slide p {
-    visibility: hidden;
-    color: white;
-    background: var(--color-darker-grey);
-    text-align: center;
-    padding: 0.5rem 1rem 1.5rem 1rem;
+    text-align: left;
   }
+}
 
-  @media screen and (max-width: 700px) {
-    .lightbox__slide p {
-      text-align: left;
-    }
-  }
+.lightbox__slide.visible p {
+  visibility: visible;
+}
 
-  .lightbox__slide.visible p {
-    visibility: visible;
-  }
+.lightbox__slide .caption {
+  visibility: hidden;
+  opacity: 0;
+  color: white;
+  background: var(--color-darker-grey);
+  text-align: center;
+  padding: 0.5rem 1rem 1.5rem 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-  .lightbox__slide .caption {
-    visibility: hidden;
-    opacity: 0;
-    color: white;
-    background: var(--color-darker-grey);
-    text-align: center;
-    padding: 0.5rem 1rem 1.5rem 1rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+.lightbox__slide.visible .caption {
+  visibility: visible;
+  opacity: 1;
+}
 
-  .lightbox__slide.visible .caption {
-    visibility: visible;
-    opacity: 1;
-  }
+.lightbox__slide nav, #lightbox .close {
+  color: white;
+  position: fixed;
+  font-size: 2rem;
+  padding: 0;
+  width: 10vw;
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
 
-  .lightbox__slide nav, #lightbox .close {
-    color: white;
-    position: fixed;
-    font-size: 2rem;
-    padding: 0;
-    width: 10vw;
-    height: 10vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-  }
+.lightbox__slide nav {
+  display: none;
+}
 
-  .lightbox__slide nav {
-    display: none;
-  }
+.lightbox__slide.visible nav {
+  display: flex;
+}
 
-  .lightbox__slide.visible nav {
-    display: flex;
-  }
+.lightbox__slide .prev {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .lightbox__slide .prev {
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.lightbox__slide .next {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  .lightbox__slide .next {
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  #lightbox .close {
-    right: 0;
-    top: 0;
-  }
+#lightbox .close {
+  right: 0;
+  top: 0;
+}

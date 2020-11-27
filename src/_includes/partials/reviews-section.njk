@@ -83,7 +83,7 @@
     <div class="slider__inner">
       {% for item in reviews | removeLongReviews(300) | shuffle | head(5) -%}
         <div class="wrapper" style="width:100%;height:100%">
-          <div class="slider__content center font-secondary">
+          <div class="slider__content wrapper text-wrapper font-secondary">
             <div class="flow">
               <p class="font-size-1">{{ item.review }}</p>
               <p class="font-size-0 text-center">{{ item.name }}</p>
