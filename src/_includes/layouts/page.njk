@@ -1,15 +1,16 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  {% include "partials/menu.njk" %}
+  {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
   {{ super() }}
+  {% include "partials/footer.njk" %}
 {% endblock %}
 
 {% block foot %}
   {{ super() }}
   {% set js %}
-    {% include "js/menu.js" %}
+  {% include "js/menu.js" %}
   {% endset %}
 
   <script>

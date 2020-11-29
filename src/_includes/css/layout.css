@@ -12,12 +12,6 @@
   }
 }
 
-.center-contents {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -59,6 +53,14 @@
   padding: var(--box-padding);
   border-radius: var(--box-border-radius, 0.5rem);
   border-width: var(--box-border-width, 2px);
+}
+
+/* ----- Center ----- */
+
+.center-hv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ----- Header ----- */
@@ -112,9 +114,10 @@
 
 /* ----- Section ----- */
 
-section {
-  padding-top: var(--step-4);
-  padding-bottom: var(--step-4);
+section, .section {
+  --section-padding: var(--step-4);
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
 }
 
 /* ----- Flow ----- */
@@ -183,7 +186,11 @@ article > * + * {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  --space: 1.5rem;
+  --space: 1rem;
+}
+
+.stack.center {
+  align-items: center;
 }
 
 .stack > * {
@@ -365,3 +372,25 @@ html[data-modal-active="true"] {
   -webkit-overflow-scrolling: auto;
   overflow: hidden;
 }
+
+/* ----- The Switcher ----- */
+
+.switcher {
+  --threshold: 30rem;
+  --space: 1rem;
+}
+
+.switcher > * {
+  display: flex;
+  flex-wrap: wrap;
+  /* ↓ Multiply by -1 to make negative */
+  margin: calc(var(--space) / 2 * -1);
+}
+
+.switcher > * > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--threshold) - (100% - var(--space))) * 999);
+  /* ↓ Half the value to each element, combining to make the whole */
+  margin: calc(var(--space) / 2);
+}
+

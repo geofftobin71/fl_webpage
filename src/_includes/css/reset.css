@@ -58,7 +58,10 @@ audio { width: 100%; }
 
 img { border-style: none; }
 
-svg { overflow: hidden; }
+svg {
+  overflow: hidden;
+  fill: currentColor;
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;

@@ -1,5 +1,6 @@
 require("dotenv").config();
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const schema = require("@quasibit/eleventy-plugin-schema");
 const { DateTime } = require("luxon"); 
@@ -11,6 +12,8 @@ const fs = require("fs");
 module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+
+  eleventyConfig.addPlugin(svgContents);
 
   eleventyConfig.addPlugin(sitemap, {
     sitemap: {

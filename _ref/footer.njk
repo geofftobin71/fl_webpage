@@ -1,0 +1,22 @@
+<footer class="bg-shade1 wrapper page-wrapper font-size--1">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr))">
+    <section class="wrapper flow">
+      <h4 class="text-center">Location</h4>
+      <p>{{ site.address }}<br>{{ site.address2 }}<br>{{ site.address3 }}</p>
+    </section>
+    <section class="wrapper flow">
+      <h4 class="text-center">Hours</h4>
+      <p>
+      {% include "partials/shop-hours.njk" %}
+      </p>
+    </section>
+    <section class="wrapper flow text-center">
+      <h4 class="text-center">Contact</h4>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      <p><a href="tel:{{ site.phone_intl }}">{{ site.phone }}</a></p>
+    </section>
+  </div>
+  <section class="wrapper flow text-center">
+    <p>© Floriade Ltd {{ now_nz.year }}. All rights reserved</p>
+  </section>
+</footer>

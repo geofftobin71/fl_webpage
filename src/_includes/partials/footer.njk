@@ -1,2 +1,34 @@
-<footer style="min-height:64px">
+<footer class="section bg-shade1 wrapper page-wrapper font-size--1">
+  <div class="switcher" style="--space:0">
+    <div>
+      <div class="stack center" style="padding-bottom:var(--section-padding)">
+        <h4>Location</h4>
+        <a href="{{ site.google_maps }}" title="Open in Google Maps">
+          <p>{{ site.address }}<br>{{ site.address2 }}<br>{{ site.address3 }}<br>New Zealand</p>
+        </a>
+      </div>
+      <div class="stack center" style="padding-bottom:var(--section-padding)">
+        <h4>Hours</h4>
+        {% include "partials/shop-hours.njk" %}
+      </div>
+      <div class="stack center" style="padding-bottom:var(--section-padding)">
+        <h4>Contact</h4>
+        <p><a href="mailto:{{ site.email }}?subject=Flowers Enquiry" title="Email us">{{ site.email }}</a></p>
+        <p><a href="tel:{{ site.phone_intl }}" title="Call us">{{ site.phone }}</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="stack center" style="--space:var(--step-1)">
+    <div class="color-light" style="width:250px;height:2rem;display:flex;justify-content:space-between">
+      <a href="{{ site.facebook }}" target="_blank" style="width:12px" title="Follow us on Facebook">
+        {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
+      <a href="{{ site.instagram }}" target="_blank" style="width:20px" title="Follow us on Instagram">
+        {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
+      <a href="{{ site.pinterest }}" target="_blank" style="width:20px" title="Pin us on Pinterest">
+        {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
+      <a href="{{ site.google_review }}" target="_blank" style="width:20px" title="Review us on Google">
+        {{ '/src/svg/google.svg' | svgContents | safe }}</a>
+    </div>
+    <p>© Floriade Ltd {{ now_nz.year }}. All rights reserved</p>
+  </div>
 </footer>
