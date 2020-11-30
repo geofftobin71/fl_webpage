@@ -15,13 +15,21 @@ eleventyNavigation:
 }
 </style>
 
+{% set sizes = [ 430, 294, 186, 179, 288 ] %}
+
 <main>
-<section class="wrapper bg-shade1 flow" style="--flow-space:var(--step-4)">
+<section class="wrapper stack center" style="--space:var(--step-4)">
   {% for item in reviews | shuffle -%}
-    <div class="round-box stack center bg-primary color-light border-shade2 shadow-primary text-center">
-      <p>{{ item.review }}</p>
-      <p class="font-secondary color-shade4">{{ item.name }}</p>
+    <div class="round-box bg-shade1 color-light border-shade2 shadow text-center">
+      <div class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
+        <p>{{ item.review }}</p>
+        <p class="font-secondary color-shade4">{{ item.name }}</p>
+      </div>
+    </div>
+    <div style="width:100%;max-width:{{ sizes[loop.index0 % 5] }}px;opacity:0.25">
+      <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament">
     </div>
   {% endfor -%}
 </section>
+<p class="font-size--1 text-center" style="margin-bottom:2rem;opacity:0.5"><a href='https://www.freepik.com/vectors/flower'>Flower vectors created by freepik - www.freepik.com</a></p>
 </main>

@@ -66,6 +66,7 @@
 /* ----- Header ----- */
 
 .header {
+  height: 30vh;
   min-height:200px;
   position:relative;
 }
@@ -101,9 +102,8 @@
 }
 
 .header .logo img {
-  width:10vmax;
+  width:15vh;
   min-width:125px;
-  max-width:165px;
 }
 
 .header h1 {
