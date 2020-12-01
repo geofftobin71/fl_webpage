@@ -1,0 +1,84 @@
+---
+title: About
+headerTitle: About Floriade
+headerImage: fresh-flowers/fresh-flowers-by-floriade-00029
+layout: layouts/page.njk
+eleventyNavigation:
+  key: About
+  order: 5
+---
+
+<style>
+.domino {
+  --domino-space: 0;
+}
+.domino > * {
+  height: 100%;
+}
+.domino img {
+  max-height: 100vh;
+}
+.domino article {
+  padding: 1rem;
+}
+.domino article > * + * {
+  margin-top:2rem;
+}
+@media screen and (orientation:portrait) {
+  .domino article {
+    padding-top: var(--section-padding);
+  }
+}
+@media screen and (orientation:landscape) {
+  .domino figure {
+    padding-right: 1rem;
+    padding-left: 0;
+  }
+  .domino article {
+    --measure: 50ch;
+  }
+  .domino:nth-of-type(2) figure {
+    padding-left: 1rem;
+    padding-right: 0;
+    order: 2;
+  }
+  .domino:nth-of-type(2) article {
+    padding-left: 2rem;
+  }
+  .domino img {
+    position: sticky;
+    top: 0;
+  }
+}
+</style>
+
+<main>
+<section class="flow" style="--flow-space:var(--section-padding)">
+  <div class="domino">
+    <figure>
+      <img class="img-cover" src="{{ site.cloudinary_url }}/site/floriade-dried-flower-room-00001" alt="Floriade dried flower room">
+    </figure>
+    <div class="center-hv">
+      <article class="wrapper text-wrapper">
+        <p>Floriade is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.</p>
+
+        <p>We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.</p>
+      </article>
+    </div>
+  </div>
+  <div class="domino">
+    <figure>
+      <img class="img-cover" src="{{ site.cloudinary_url }}/dried-flowers/dried-flowers-by-floriade-00073" alt="Dried flower arrangement">
+    </figure>
+    <div class="center-hv">
+      <article class="wrapper text-wrapper">
+        <p>Floriade is Wellington’s dried flowers specialist. We create large dried floral sculptures for corporate events, weddings and commercial installations.</p>
+
+        <p>A large part of our business ethos is to be as sustainable as possible by preventing wastage. We intentionally source our flowers with the intention of drying whatever we can.</p>
+
+        <p>Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>

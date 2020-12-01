@@ -2,7 +2,7 @@
 /* ----- Misc ----- */
 
 :root {
-  --measure: 60ch;
+  --measure: 65ch;
   --padding: var(--step-0);
 }
 
@@ -89,7 +89,7 @@
 }
 
 .header .content {
-  padding: 1rem;
+  padding: var(--step-1);
   height: 100%;
   min-height:200px;
   display:flex;
@@ -115,7 +115,7 @@
 /* ----- Section ----- */
 
 section, .section {
-  --section-padding: var(--step-4);
+  --section-padding: 10vh; /* var(--step-4); */
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
 }
@@ -257,9 +257,9 @@ article > * + * {
   }
 }
 
-/* ----- Full Width ----- */
+/* ----- Full Width Breakout ----- */
 
-.full-width {
+.full-width-breakout {
   width: 100vw;
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -267,15 +267,17 @@ article > * + * {
 
 /* ----- Full Height ----- */
 
-.full-height {
-  height: 100vh;
+.height-full {
+  min-height: 100vh;
 }
 
+/*
 @supports (background: -webkit-named-image(i)) {
   .full-height {
     height: -webkit-fill-available;
   }
 }
+*/
 
 /* ----- The Frame ----- */
 
@@ -349,7 +351,8 @@ article > * + * {
 }
 
 .frame > img,
-.frame > video {
+.frame > video,
+.img-cover {
   width: 100%;
   height: 100%;
   object-fit: cover;

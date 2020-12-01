@@ -4,7 +4,7 @@ window.onscroll = function() {
   if (prevScrollpos >= currentScrollPos) {
     document.getElementById("site-menu").style.top = "0";
   } else {
-    document.getElementById("site-menu").style.top = "-3rem";
+    document.getElementById("site-menu").style.top = "-8rem";
   }
   prevScrollpos = currentScrollPos > 0 ? currentScrollPos : 0;
 }
