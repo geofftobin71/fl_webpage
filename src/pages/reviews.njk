@@ -1,26 +1,18 @@
 ---
 title: Reviews
 header_image: fresh-flowers/fresh-flowers-by-floriade-00057
-layout: layouts/page.njk
+layout: layouts/reviews.njk
 eleventyNavigation:
   key: Reviews
   order: 10
 ---
-
-<style>
-@media screen and (max-width: 420px) {
-  .round-box {
-    --box-padding: var(--step-0);
-  }
-}
-</style>
 
 {% set sizes = [ 430, 294, 186, 179, 288 ] %}
 
 <main>
 <section class="wrapper stack center" style="--space:var(--step-4)">
   {% for item in reviews | shuffle -%}
-    <div class="round-box bg-shade1 color-light border-shade2 shadow text-center">
+    <div class="review round-box bg-shade1 color-light border-shade2 shadow text-center">
       <div class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
         <p>{{ item.review }}</p>
         <p class="font-secondary color-shade4">{{ item.name }}</p>

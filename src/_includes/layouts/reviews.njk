@@ -1,0 +1,51 @@
+{% extends "layouts/page.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  .review {
+    transform: translateY(0px);
+    opacity: 1;
+    transition: transform 500ms ease , opacity 500ms linear;
+  }
+  .review.hidden {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  @media screen and (max-width: 420px) {
+    .round-box {
+      --box-padding: var(--step-0);
+    }
+  }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  const reviews = document.querySelectorAll(".review");
+  const options = { root: null, threshold: 0.25, rootMargin: "0px" };
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) {
+        entry.target.classList.add("hidden");
+        return;
+      }
+      entry.target.classList.remove("hidden");
+      observer.unobserve(entry.target);
+    });
+  }, options);
+
+  reviews.forEach(review => {
+    observer.observe(review);
+  });
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}
