@@ -8,18 +8,24 @@ eleventyNavigation:
   order: 5
 ---
 
+{% set sizes = [ 430, 294, 186, 179, 288 ] %}
+
 <style>
 .domino {
   --domino-space: 0;
 }
-.domino > * {
-  height: 100%;
+.domino figure {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 .domino img {
-  max-height: 100vh;
+  max-width: 100%;
+  max-height: 90vh;
+  box-shadow: 0 0 50px rgba(0,0,0,0.2);
+  border-radius: var(--step--2);
 }
 .domino article {
-  padding: 1rem;
+  padding: 1.5rem 1rem 1rem 1rem;
 }
 .domino article > * + * {
   margin-top:2rem;
@@ -30,30 +36,43 @@ eleventyNavigation:
   }
 }
 @media screen and (orientation:landscape) {
-  .domino figure {
-    padding-right: 1rem;
-    padding-left: 0;
+  .domino {
+    height: 100%;
+    min-height: 100vh;
+  }
+  .domino img {
+    position: sticky;
+    top: 5vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
   }
   .domino article {
     --measure: 50ch;
   }
-  .domino:nth-of-type(2) figure {
-    padding-left: 1rem;
+  .domino:nth-of-type(odd) figure {
+    padding-left: 0;
+  }
+  .domino:nth-of-type(even) figure {
     padding-right: 0;
     order: 2;
   }
-  .domino:nth-of-type(2) article {
-    padding-left: 2rem;
+  .domino:nth-of-type(odd) img {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
-  .domino img {
-    position: sticky;
-    top: 0;
+  .domino:nth-of-type(even) img {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .domino:nth-of-type(even) article {
+    padding-left: 2rem;
   }
 }
 </style>
 
 <main>
 <section class="flow" style="--flow-space:var(--section-padding)">
+
   <div class="domino">
     <figure>
       <img class="img-cover" src="{{ site.cloudinary_url }}/site/floriade-dried-flower-room-00001" alt="Floriade dried flower room">
@@ -66,6 +85,15 @@ eleventyNavigation:
       </article>
     </div>
   </div>
+
+  {#
+  <figure class="stack center">
+    <div style="width:75%;max-width:{{ sizes[0] }}px;opacity:0.25">
+      <img src="/images/floral-ornament-01.svg" alt="floral ornament">
+    </div>
+  </figure>
+  #}
+
   <div class="domino">
     <figure>
       <img class="img-cover" src="{{ site.cloudinary_url }}/dried-flowers/dried-flowers-by-floriade-00073" alt="Dried flower arrangement">
@@ -80,5 +108,46 @@ eleventyNavigation:
       </article>
     </div>
   </div>
+
+  {#
+  <figure class="stack center">
+    <div style="width:75%;max-width:{{ sizes[1] }}px;opacity:0.25">
+      <img src="/images/floral-ornament-02.svg" alt="floral ornament">
+    </div>
+  </figure>
+  #}
+
+  <div class="domino">
+    <figure>
+      <img class="img-cover" src="{{ site.cloudinary_url }}/dried-flowers/dried-flowers-by-floriade-00073" alt="Dried flower arrangement">
+    </figure>
+    <div class="center-hv">
+      <article class="wrapper text-wrapper">
+        <p>At Floriade, we design flowers for any occasion - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.</p>
+
+        <p>Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.</p>
+      </article>
+    </div>
+  </div>
+
+  {#
+  <figure class="stack center">
+    <div style="width:75%;max-width:{{ sizes[2] }}px;opacity:0.25">
+      <img src="/images/floral-ornament-03.svg" alt="floral ornament">
+    </div>
+  </figure>
+  #}
+
+  <div class="domino">
+    <figure>
+      <img class="img-cover" src="{{ site.cloudinary_url }}/site/annwyn-tobin-holding-flowers-00001" alt="Annwyn Tobin holding a bouquet of flowers">
+    </figure>
+    <div class="center-hv">
+      <article class="wrapper text-wrapper">
+        <p>Annwyn Tobin, owner and lead designer at Floriade is a former landscape architect and photographer. Her passion for designing with flowers and foliage was the inspiration to open Floriade, Wellington’s very own local boutique floral design store.</p><p>Annwyn has extensive experience in floral design including many weddings and events for more than 20 years.</p><p>She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.</p>
+      </article>
+    </div>
+  </div>
+
 </section>
 </main>

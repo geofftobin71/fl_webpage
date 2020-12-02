@@ -63,6 +63,14 @@
   align-items: center;
 }
 
+/* ----- Site Menu ----- */
+
+@media screen and (max-width: 900px) {
+  #site-menu {
+    display: none;
+  }
+}
+
 /* ----- Header ----- */
 
 .header {
