@@ -97,7 +97,7 @@
 }
 
 .header .content {
-  padding: var(--step-1);
+  padding: 2rem;
   height: 100%;
   min-height:200px;
   display:flex;
@@ -123,7 +123,7 @@
 /* ----- Section ----- */
 
 section, .section {
-  --section-padding: 10vh; /* var(--step-4); */
+  --section-padding: 10vmax; /* var(--step-4); */
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
 }

@@ -16,7 +16,11 @@
   height: 100%;
   display: flex;
   flex-wrap: nowrap;
-  transition: left 0.5s;
+  transition: transform 500ms;
+}
+.slider__inner > div {
+  width: 100%;
+  height: 100%;
 }
 .slider__content {
   width: 100%;
@@ -36,19 +40,19 @@
   padding-left:0.5em;
 }
 .slider__nav:checked:nth-of-type(1) ~ .slider__inner {
-  left: 0%;
+  transform: translateX(0%);
 }
 .slider__nav:checked:nth-of-type(2) ~ .slider__inner {
-  left: -100%;
+  transform: translateX(-20%);
 }
 .slider__nav:checked:nth-of-type(3) ~ .slider__inner {
-  left: -200%;
+  transform: translateX(-40%);
 }
 .slider__nav:checked:nth-of-type(4) ~ .slider__inner {
-  left: -300%;
+  transform: translateX(-60%);
 }
 .slider__nav:checked:nth-of-type(5) ~ .slider__inner {
-  left: -400%;
+  transform: translateX(-80%);
 }
 .slider__nav {
   opacity: 0;
@@ -82,10 +86,10 @@
     <input type="radio" name="slider" id="slide5" class="slider__nav"/><label class="font-size-0" for="slide5"></label>
     <div class="slider__inner">
       {% for item in reviews | removeLongReviews(300) | shuffle | head(5) -%}
-        <div class="wrapper" style="width:100%;height:100%">
+        <div class="wrapper">
           <div class="slider__content wrapper text-wrapper font-secondary">
             <div class="flow">
-              <p class="font-size-1">{{ item.review }}</p>
+              <p class="font-size-1 text-center">{{ item.review }}</p>
               <p class="font-size-0 text-center">{{ item.name }}</p>
             </div>
           </div>
