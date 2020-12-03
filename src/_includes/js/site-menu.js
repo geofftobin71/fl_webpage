@@ -1,3 +1,4 @@
+/*
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -8,3 +9,4 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos > 0 ? currentScrollPos : 0;
 }
+*/
