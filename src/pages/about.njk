@@ -41,6 +41,17 @@ body {
 .domino article > * + * {
   margin-top:2em;
 }
+.domino.wide {
+  background-size: cover;
+  background-position: center;
+}
+.domino.wide article {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 1em;
+  background-color: rgba(255,255,255,0.3);
+  padding: 2em;
+}
   @media screen and (min-width: 1400px) {
     .domino article {
       font-size: var(--step-1);
@@ -107,12 +118,11 @@ body {
     </div>
   </div>
 
-  <div class="domino">
-    <figure>
-      <img class="img-cover" src="{{ site.cloudinary_url }}/dried-flowers/dried-flowers-by-floriade-00073" alt="Dried flower arrangement">
+  <div class="domino wide" style="background-image:url('{{ site.cloudinary_url }}/fresh-flowers/fresh-flowers-by-floriade-00058')">
+    <div></div>
     </figure>
     <div class="center-hv">
-      <article class="wrapper text-wrapper">
+      <article class="wrapper text-wrapper font-secondary color-primary">
         <p>At Floriade, we design flowers for any occasion - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.</p>
 
         <p>Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.</p>
