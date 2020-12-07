@@ -9,27 +9,8 @@ eleventyNavigation:
 ---
 
 <style>
-/*
-body {
-  scroll-snap-type: y mandatory;
-  scroll-snap-type: mandatory;
-  -ms-scroll-snap-type: mandatory;
-  -webkit-scroll-snap-type: mandatory;
-  -webkit-scroll-snap-destination: 0% 0%;  
-  -webkit-overflow-scrolling: touch;
-}
-*/
-.domino__container {
-  --flow-space:var(--section-padding);
-}
 .domino {
   --domino-space: 0;
-    /*
-  scroll-snap-align: start;
-  -webkit-scroll-snap-coordinate: 0% 0%;
-  scroll-snap-coordinate: 0% 0%;
-  overflow: visible;
-    */
 }
 .domino img {
   max-height: 90vh;
@@ -43,17 +24,6 @@ body {
 }
 article > * + * {
   margin-top:2em;
-}
-.domino.wide {
-  background-size: cover;
-  background-position: center;
-}
-.domino.wide article {
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-radius: 1em;
-  background-color: rgba(61,72,68,0.6);
-  padding: 2em;
 }
   @media screen and (min-width: 1400px) {
     .domino article {
@@ -95,19 +65,21 @@ article > * + * {
 }
 </style>
 
-<section class="domino__container flow">
-
+<main>
+<section style="padding-bottom:0">
   <article class="wrapper text-wrapper">
     <p><span class="bigword color-shade3">Floriade</span> is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.</p>
 
     <p>We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.</p>
   </article>
+</section>
 
+<section>
   <div class="domino">
     <figure>
       <img class="img-cover" src="{{ site.cloudinary_url }}/dried-flowers/dried-flowers-by-floriade-00073" alt="Dried flower arrangement">
     </figure>
-    <div class="center-hv">
+    <div class="center-both">
       <article class="wrapper text-wrapper">
         <p>Floriade is Wellington’s <span class="bigword color-shade3">dried flowers</span> specialist. We create large dried floral sculptures for corporate events, weddings and commercial installations.</p>
 
@@ -117,28 +89,31 @@ article > * + * {
       </article>
     </div>
   </div>
+</section>
 
-  <div class="domino wide" style="background-image:url('{{ site.cloudinary_url }}/fresh-flowers/fresh-flowers-by-floriade-00058')">
-    <div></div>
+<section>
+  <div class="cover" style="--min-height:90vh">
+    <figure class="background">
+      <img class="darken" src="{{ site.cloudinary_url }}/fresh-flowers/fresh-flowers-by-floriade-00058" alt="Flowers">
     </figure>
-    <div class="center-hv">
-      <article class="wrapper text-wrapper font-secondary color-shade4">
-        <p>At Floriade, we design <span class="bigword color-light">flowers for any occasion</span> - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.</p>
+    <article class="centered wrapper text-wrapper bg-shade1 round-box shadow" style="--padding: var(--step-3)">
+      <p>At Floriade, we design <span class="bigword color-shade3">flowers for any occasion</span> - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.</p>
 
-        <p>Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.</p>
-      </article>
-    </div>
+      <p>Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.</p>
+    </article>
   </div>
+</section>
 
+<section>
   <div class="domino right">
     <figure>
       <img class="img-cover" src="{{ site.cloudinary_url }}/site/annwyn-tobin-holding-flowers-00001" alt="Annwyn Tobin holding a bouquet of flowers">
     </figure>
-    <div class="center-hv">
+    <div class="center-both">
       <article class="wrapper text-wrapper">
         <p><span class="bigword color-shade3">Annwyn Tobin</span> - owner and lead designer at Floriade is a former landscape architect and photographer. Her passion for designing with flowers and foliage was the inspiration to open Floriade, Wellington’s very own local boutique floral design store.</p><p>Annwyn has extensive experience in floral design including many weddings and events for more than 20 years.</p><p>She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.</p>
       </article>
     </div>
   </div>
-
 </section>
+</main>
