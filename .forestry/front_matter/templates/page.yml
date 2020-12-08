@@ -1,0 +1,20 @@
+---
+label: Page
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- type: text
+  name: headerImage
+  label: headerImage
+- type: text
+  name: layout
+  label: layout
+- type: field_group
+  name: sitemap
+  label: sitemap
+  fields:
+  - type: boolean
+    name: ignore
+    label: ignore
