@@ -33,11 +33,6 @@ front_matter_path: ''
 use_front_matter_path: true
 file_template: ":filename:"
 build:
-  preview_env:
-  - CLOUDINARY_URL=cloudinary://389122341319441:YCfjrlDSaDP-jco84gFhVeG37dg@floriade
-  - INSTAGRAM_TOKEN=IGQVJWSWZA2YkQ0NnBKODJOQ2tFYktweVl1c3ZArSUh4QnRnRE8xRjYzekd4YzgyOU8xUC1McktaRWswa0RxemxKMkdyMHU4emZAwVWtocmJtRVRZAbGI4bWpMdHFKUjN5Uml6MmR2ZATJtZAWdYMm1xQmt3ZAQZDZD
-  - STRIPE_TEST_PUBLIC_KEY=pk_test_O4912F34mcFHrGimRhPaLlP0
-  - STRIPE_TEST_SECRET_KEY=sk_test_CO8jd2TaqN8JpIwGXupz87a8
   preview_output_directory: preview
   install_dependencies_command: npm install
   preview_docker_image: forestryio/node:12
