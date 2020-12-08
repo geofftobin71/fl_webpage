@@ -5,9 +5,11 @@ fields:
 - type: text
   name: title
   label: title
-- type: text
-  name: headerImage
-  label: headerImage
+- name: headerImage
+  type: file
+  config:
+    maxSize: 64
+  label: header image
 - type: text
   name: layout
   label: layout
