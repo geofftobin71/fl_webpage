@@ -20,3 +20,5 @@ fields:
   - type: boolean
     name: ignore
     label: ignore
+pages:
+- src/pages/terms-and-conditions.md
