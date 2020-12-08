@@ -4,6 +4,7 @@ headerImage: dried-flowers/dried-flowers-by-floriade-00038
 layout: layouts/markdown.njk
 sitemap:
   ignore: true
+
 ---
 Customers of Floriade Ltd. ordering flowers or plants online from floriade.co.nz or by other means such as over the phone, via email or txt agree to the following terms and conditions:
 
@@ -29,11 +30,11 @@ Specific times for delivery cannot be guaranteed, however we do attempt to get f
 
 Whilst Floriade Ltd. does offer same-day delivery of flowers to the Wellington region, there are some situations or exceptions where this may not be possible. These may include, but are not necessarily limited to the following:
 
-- Floriade Ltd. has been provided with an incorrect delivery address or name of recipient.
-- There is nobody at the address and/or the courier believes that there is a risk of theft or damage to the flowers.
-For example, bad weather may damage the flowers, if there is no shade to leave the flowers in or if the flowers are visible from the street.
-- The recipient’s contact number is incorrect and they cannot be contacted for delivery.
-- Circumstances beyond our control such as emergency, auto failure, auto accident, fire, natural disaster, personal injury etc
+* Floriade Ltd. has been provided with an incorrect delivery address or name of recipient.
+* There is nobody at the address and/or the courier believes that there is a risk of theft or damage to the flowers.
+  For example, bad weather may damage the flowers, if there is no shade to leave the flowers in or if the flowers are visible from the street.
+* The recipient’s contact number is incorrect and they cannot be contacted for delivery.
+* Circumstances beyond our control such as emergency, auto failure, auto accident, fire, natural disaster, personal injury etc
 
 It is the responsibility of the person placing the order to ensure that the name and address of the recipient provided is correct. If the order is delivered to the wrong person or address because of incorrect information supplied, it is not the responsibility of Floriade Ltd. to provide a refund or to deliver the item again.
 
@@ -79,7 +80,7 @@ All complaints, questions or concerns regarding your flower order must be receiv
 
 Floriade Ltd. keeps all of your personal details private and confidential. When you place an order, you are agreeing to our terms and conditions and this includes us protecting your personal details. We do not share any of your details with any other party.
 
-All credit card transactions are securely handled by Stripe. (See www.stripe.com for details). Floriade Ltd. does not store your credit card details. Credit card details provided via our online order form are encrypted and PCI DSS compliant. Where credit card details are provided via other methods such as over the phone, the details are retained only for the purpose of completing the transaction and then destroyed.
+All credit card transactions are securely handled by Stripe. (See [https://www.stripe.com]() for details). Floriade Ltd. does not store your credit card details. Credit card details provided via our online order form are encrypted and PCI DSS compliant. Where credit card details are provided via other methods such as over the phone, the details are retained only for the purpose of completing the transaction and then destroyed.
 
 ## liability
 
@@ -91,4 +92,4 @@ A brief message for the recipient may be included along with the flowers or plan
 
 ## image copyright
 
-All images on our website remain property of Floriade Ltd. or that of credited photographers as labelled. No images are to be used without our permission. Please contact us at flowers@floriade.co.nz if you would like permission to use any of our images.
+All images on our website remain property of Floriade Ltd. or that of credited photographers as labelled. No images are to be used without our permission. Please contact us at [flowers@floriade.co.nz]() if you would like permission to use any of our images.
