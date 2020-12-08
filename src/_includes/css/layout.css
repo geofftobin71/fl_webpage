@@ -97,6 +97,25 @@
 
 /* ----- Site Menu ----- */
 
+#site-menu {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  transition: top 300ms;
+}
+
+#site-menu ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  margin:0;
+  padding: 0.25rem;
+}
+
+#site-menu li {
+  text-align: center;
+}
+
 @media screen and (max-width: 900px) {
   #site-menu {
     display: none;

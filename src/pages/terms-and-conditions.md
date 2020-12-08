@@ -80,7 +80,7 @@ All complaints, questions or concerns regarding your flower order must be receiv
 
 Floriade Ltd. keeps all of your personal details private and confidential. When you place an order, you are agreeing to our terms and conditions and this includes us protecting your personal details. We do not share any of your details with any other party.
 
-All credit card transactions are securely handled by Stripe. (See [https://www.stripe.com]() for details). Floriade Ltd. does not store your credit card details. Credit card details provided via our online order form are encrypted and PCI DSS compliant. Where credit card details are provided via other methods such as over the phone, the details are retained only for the purpose of completing the transaction and then destroyed.
+All credit card transactions are securely handled by Stripe. (See [stripe.com](https://stripe.com) for details). Floriade Ltd. does not store your credit card details. Credit card details provided via our online order form are encrypted and PCI DSS compliant. Where credit card details are provided via other methods such as over the phone, the details are retained only for the purpose of completing the transaction and then destroyed.
 
 ## liability
 
@@ -92,4 +92,4 @@ A brief message for the recipient may be included along with the flowers or plan
 
 ## image copyright
 
-All images on our website remain property of Floriade Ltd. or that of credited photographers as labelled. No images are to be used without our permission. Please contact us at [flowers@floriade.co.nz]() if you would like permission to use any of our images.
+All images on our website remain property of Floriade Ltd. or that of credited photographers as labelled. No images are to be used without our permission. Please contact us at [flowers@floriade.co.nz](mailto\:flowers@floriade.co.nz\?subject\=Image%20enquiry) if you would like permission to use any of our images.
