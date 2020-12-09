@@ -1,6 +1,6 @@
 ---
 title: Terms and Conditions
-headerImage: dried-flowers/dried-flowers-by-floriade-00038
+headerImage: https://res.cloudinary.com/floriade/image/upload/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg
 layout: layouts/markdown.njk
 sitemap:
   ignore: true
