@@ -1,6 +1,6 @@
 ---
 title: Terms and Conditions
-headerImage: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
+headerImage: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg"
 layout: layouts/markdown.njk
 sitemap:
   ignore: true
