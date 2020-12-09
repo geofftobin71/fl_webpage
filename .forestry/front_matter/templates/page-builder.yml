@@ -20,5 +20,13 @@ fields:
   - type: boolean
     name: ignore
     label: ignore
+- name: page_sections
+  type: blocks
+  label: Page Sections
+  template_types:
+  - split-image-text-section
+  config:
+    min: 
+    max: 
 pages:
 - src/pages/about.md
