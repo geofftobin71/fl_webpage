@@ -1,0 +1,24 @@
+---
+label: Page Builder
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: title
+- name: headerImage
+  type: file
+  config:
+    maxSize: 64
+  label: header image
+- type: text
+  name: layout
+  label: layout
+- type: field_group
+  name: sitemap
+  label: sitemap
+  fields:
+  - type: boolean
+    name: ignore
+    label: ignore
+pages:
+- src/pages/about.md

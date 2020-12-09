@@ -1,5 +1,16 @@
 {% extends "layouts/base.njk" %}
 
+{% block head %}
+  {{ super() }}
+  {% set css %}
+    {% include "css/about.css" %}
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
 {% block content %}
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
