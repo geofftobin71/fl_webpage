@@ -1,9 +1,9 @@
-{% macro split_image_text(image, text) %}
+{% macro split_image_text_section(image, text) %}
 
 <section>
   <div class="domino">
     <figure>
-      <img class="img-cover" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ image_alt or alt or site.alt }}">
+      <img class="img-cover" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
     </figure>
     <div class="center-both">
       <article class="wrapper text-wrapper">

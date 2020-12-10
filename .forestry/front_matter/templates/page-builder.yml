@@ -13,13 +13,6 @@ fields:
 - type: text
   name: layout
   label: layout
-- type: field_group
-  name: sitemap
-  label: sitemap
-  fields:
-  - type: boolean
-    name: ignore
-    label: ignore
 - name: page_sections
   type: blocks
   label: Page Sections

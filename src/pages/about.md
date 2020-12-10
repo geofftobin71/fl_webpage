@@ -2,8 +2,6 @@
 title: About
 headerImage: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00029.jpg"
 layout: layouts/page-builder.njk
-sitemap:
-  ignore: false
 page_sections:
 - template: split-image-text-section
   image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"

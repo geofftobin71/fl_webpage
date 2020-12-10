@@ -1,12 +1,13 @@
 {% extends "layouts/page.njk" %}
-{% import "macros/page-builder.njk" as page_builder with context %}
+{% from "macros/page-builder.njk" import split_image_text_section with context %}
 
 {% block content %}
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
-  {# <pre>{{ page_sections | dump(2) }}</pre> #}
   {% for section in page_sections %}
-    {{ page_builder.split_image_text(section.image, section.text) }}
+    {% if section.template == "split-image-text-section" %}
+      {{ split_image_text_section(section.image, section.text) }}
+    {% endif %}
   {% endfor %}
   {% include "partials/footer.njk" %}
 {% endblock %}
