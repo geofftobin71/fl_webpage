@@ -1,10 +1,13 @@
 {% extends "layouts/page.njk" %}
+{% import "macros/page-builder.njk" as page_builder with context %}
 
 {% block content %}
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
-  <section>
-  </section>
-{% include "partials/footer.njk" %}
+  {# <pre>{{ page_sections | dump(2) }}</pre> #}
+  {% for section in page_sections %}
+    {{ page_builder.split_image_text(section.image, section.text) }}
+  {% endfor %}
+  {% include "partials/footer.njk" %}
 {% endblock %}
 

@@ -38,9 +38,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("./admin");
 
-  eleventyConfig.addNunjucksShortcode(
+  config.addNunjucksShortcode(
     "markdown",
-    content => `${markdown.render(content)}`
+    content => '${markdown.render(content)}'
   );
 
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {

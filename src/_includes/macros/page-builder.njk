@@ -1,0 +1,16 @@
+{% macro split_image_text(image, text) %}
+
+<section>
+  <div class="domino">
+    <figure>
+      <img class="img-cover" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ image_alt or alt or site.alt }}">
+    </figure>
+    <div class="center-both">
+      <article class="wrapper text-wrapper">
+        {% markdown text %}
+      </article>
+    </div>
+  </div>
+</section>
+
+{% endmacro %}
