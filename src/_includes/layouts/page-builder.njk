@@ -6,7 +6,7 @@
   {% include "partials/header.njk" %}
   {% for section in page_sections %}
     {% if section.template == "split-image-text-section" %}
-      {{ split_image_text_section(section.image, section.text) }}
+      {{ split_image_text_section(section.image, section.text, section.swap) }}
     {% endif %}
   {% endfor %}
   {% include "partials/footer.njk" %}

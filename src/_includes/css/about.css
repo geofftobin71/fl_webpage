@@ -39,10 +39,10 @@ article > * + * {
     --measure: 50ch;
     padding: 1em;
   }
-  .domino.right figure {
+  .domino.swap figure {
     order: 2;
   }
-  .domino.right article {
+  .domino.swap article {
     padding-left: 2em;
   }
 }

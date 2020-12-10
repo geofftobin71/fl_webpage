@@ -1,7 +1,7 @@
-{% macro split_image_text_section(image, text) %}
+{% macro split_image_text_section(image, text, swap) %}
 
 <section>
-  <div class="domino">
+  <div class="domino{{ ' swap' if swap }}">
     <figure>
       <img class="img-cover" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
     </figure>
