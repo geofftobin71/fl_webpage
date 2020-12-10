@@ -17,3 +17,7 @@ fields:
     schema:
       format: markdown
   label: Text
+- name: swap
+  type: boolean
+  label: Swap
+  description: Swap the order so the text is on the left and the image is on the right.
