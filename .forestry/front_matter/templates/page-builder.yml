@@ -18,6 +18,7 @@ fields:
   label: Page Sections
   template_types:
   - split-image-text-section
+  - hero-section
   config:
     min: 
     max: 
