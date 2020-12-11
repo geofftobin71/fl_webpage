@@ -12,6 +12,12 @@ page_sections:
 
     Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.
   swap: false
+- template: hero-section
+  image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
+  text: |-
+    At Floriade, we design **flowers for any occasion** - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.
+
+    Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.
 - template: split-image-text-section
   image: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
   text: |-
@@ -21,11 +27,5 @@ page_sections:
 
     She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.
   swap: true
-- template: hero-section
-  image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
-  text: |-
-    At Floriade, we design **flowers for any occasion** - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.
-
-    Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.
 
 ---
