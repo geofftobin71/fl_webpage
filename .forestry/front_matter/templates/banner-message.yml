@@ -1,0 +1,7 @@
+---
+label: Banner Message
+hide_body: true
+fields:
+- type: textarea
+  name: message
+  label: message
