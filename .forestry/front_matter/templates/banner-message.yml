@@ -10,3 +10,5 @@ fields:
     wysiwyg: true
     schema:
       format: html-blocks
+pages:
+- src/_data/banner_message.json
