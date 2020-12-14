@@ -4,6 +4,10 @@ auto_deploy: false
 admin_path: admin
 webhook_url: 
 sections:
+- type: document
+  path: src/_data/banner_message.json
+  label: Banner Message
+  match: "**/*"
 - type: directory
   path: src/pages
   label: Pages
