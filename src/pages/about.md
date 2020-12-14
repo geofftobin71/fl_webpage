@@ -2,6 +2,9 @@
 title: About
 header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00029.jpg"
 layout: layouts/page-builder.njk
+eleventyNavigation:
+  key: About
+  order: 5
 page_sections:
 - template: text-section
   content: |-

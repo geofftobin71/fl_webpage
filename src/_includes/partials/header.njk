@@ -8,9 +8,9 @@
         <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo">
       </a>
     </figure>
-    <h1>{{ (headerTitle or title) | lower }}</h1>
+    <h1>{{ (header_title or title) | lower }}</h1>
   </div>
 </header>
-<div class="banner-message">
+<div class="banner-message link-dark">
   {% markdown banner_message.message %}
 </div>

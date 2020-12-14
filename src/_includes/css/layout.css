@@ -190,7 +190,7 @@
 /* ----- Section ----- */
 
 section {
-  --section-padding: 10vh;
+  --section-padding: 7.5vh;
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
 }

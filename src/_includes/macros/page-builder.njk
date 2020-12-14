@@ -34,7 +34,11 @@
 <section>
   <div class="domino{{ ' swap' if swap }}">
     <figure>
-      <img class="img-cover" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
+      <img sizes="(orientation: landscape) 50vw, 100vw" data-srcset="
+      {%- for size in image_sizes %}
+        {{ site.cloudinary_url }}/c_fill,w_{{ size }},h_{{ size }},q_auto,f_auto,g_auto:subject/{{ image }} {{ size }}w{{ ',' if not loop.last }}
+      {%- endfor %}
+      " sizes="{{ "80vh" if item.aspect_ratio < 1 else "80vw" }}" data-src="{{ site.cloudinary_url }}/c_fill,w_900,h_900,q_auto,f_auto,g_auto:subject/{{ image }}" alt="{{ alt or site.alt }}" width="900" height="900" class="img-cover lazyload">
     </figure>
     <div class="center-both">
       <article class="wrapper text-wrapper">
