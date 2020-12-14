@@ -4,15 +4,15 @@ hide_body: true
 fields:
 - type: text
   name: title
-  label: title
-- name: headerImage
+  label: Title
+- name: header_image
   type: file
   config:
     maxSize: 64
-  label: header image
+  label: Header Image
 - type: text
   name: layout
-  label: layout
+  label: Layout
 - name: page_sections
   type: blocks
   label: Page Sections

@@ -1,4 +1,35 @@
-{% macro split_image_text_section(image, text, swap) %}
+{% macro text_section(content) %}
+
+<section>
+  <div class="cover" style="--min-height:1vh">
+    <article class="centered wrapper text-wrapper">
+      {% markdown content %}
+    </article>
+  </div>
+</section>
+
+{% endmacro %}
+
+
+
+{% macro hero_section(image, content) %}
+
+<section>
+  <div class="cover" style="--min-height:100vh">
+    <figure class="background">
+      <img class="darken" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
+    </figure>
+    <article class="centered wrapper text-wrapper bg-shade1 round-box shadow" style="--padding: var(--step-3)">
+      {% markdown content %}
+    </article>
+  </div>
+</section>
+
+{% endmacro %}
+
+
+
+{% macro split_image_text_section(image, content, swap) %}
 
 <section>
   <div class="domino{{ ' swap' if swap }}">
@@ -7,26 +38,9 @@
     </figure>
     <div class="center-both">
       <article class="wrapper text-wrapper">
-        {% markdown text %}
+        {% markdown content %}
       </article>
     </div>
-  </div>
-</section>
-
-{% endmacro %}
-
-
-
-{% macro hero_section(image, text) %}
-
-<section>
-  <div class="cover" style="--min-height:100vh">
-    <figure class="background">
-      <img class="darken" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
-    </figure>
-    <article class="centered wrapper text-wrapper bg-shade1 round-box shadow" style="--padding: var(--step-3)">
-      {% markdown text %}
-    </article>
   </div>
 </section>
 
