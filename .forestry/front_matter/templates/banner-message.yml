@@ -4,4 +4,9 @@ hide_body: true
 fields:
 - type: textarea
   name: message
-  label: message
+  label: Message
+  description: Message to display below the banner image on each page.
+  config:
+    wysiwyg: true
+    schema:
+      format: html-blocks
