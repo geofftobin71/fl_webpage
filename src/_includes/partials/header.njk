@@ -10,4 +10,7 @@
     </figure>
     <h1>{{ (headerTitle or title) | lower }}</h1>
   </div>
+  <div class="banner-message">
+    {{ banner_message.message | safe }}
+  </div>
 </header>

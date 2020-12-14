@@ -154,6 +154,14 @@
   text-align: right;
 }
 
+.header .banner-message {
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  color: var(--color-dark);
+  background: var(--color-shade4);
+  padding: 0.5rem 1rem;
+}
+
 /* ----- Background Image ----- */
 
 .background {
