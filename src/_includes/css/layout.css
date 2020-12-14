@@ -154,7 +154,7 @@
   text-align: right;
 }
 
-.header .banner-message {
+.banner-message {
   text-align: center;
   font-family: var(--font-family-secondary);
   color: var(--color-dark);
