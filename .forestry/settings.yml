@@ -4,17 +4,14 @@ auto_deploy: false
 admin_path: admin
 webhook_url: 
 sections:
-- type: document
-  path: src/_data/banner_message.json
-  label: Banner Message
 - type: directory
   path: src/pages
   label: Pages
   create: all
   match: "**/*"
 - type: document
-  path: src/_data/photographers.json
-  label: Photographers
+  path: src/_data/banner_message.json
+  label: Banner Message
 - type: document
   path: src/_data/shop_hours.json
   label: Shop Hours
@@ -30,6 +27,9 @@ sections:
 - type: document
   path: src/_data/reviews.json
   label: Reviews
+- type: document
+  path: src/_data/photographers.json
+  label: Photographers
 upload_dir: ''
 public_path: https://res.cloudinary.com/floriade/image/upload
 front_matter_path: ''
