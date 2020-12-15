@@ -38,10 +38,29 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("./admin");
 
-  eleventyConfig.addNunjucksShortcode(
-    "markdown",
+  eleventyConfig.addNunjucksShortcode("markdown",
     content => `${markdown.render(content)}`
   );
+
+  // [300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400]
+
+  eleventyConfig.cloudinaryCloudName = 'floriade';
+  eleventyConfig.srcsetWidths = [ 300, 600, 900, 1200, 1500, 1800, 2100, 2400 ];
+  eleventyConfig.fallbackWidth = 900;
+
+  eleventyConfig.addShortcode('respimg', (path, alt, sizes, transforms, classes, lazy ) => {
+    const fetchBase = `https://res.cloudinary.com/${eleventyConfig.cloudinaryCloudName}`;
+    const src = `${fetchBase}/${transforms ? transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${path}`;
+    const srcset = eleventyConfig.srcsetWidths.map(w => {
+      return `${fetchBase}/${transforms ? transforms : 'q_auto,f_auto'},w_${w}/${path} ${w}w`;
+    }).join(', ');
+
+    if(lazy) {
+      return `<noscript><img src="${src}" srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}"></noscript><img data-src="${src}" data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}" loading="lazy">`;
+    } else {
+      return `<img src="${src}" srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}">`;
+    }
+  });
 
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
     if( (process.env.ELEVENTY_ENV == "prod") && outputPath.endsWith(".html") ) {

@@ -2,7 +2,7 @@
   {% set monday = now_nz.startOf('week') %}
   {% set days = [ monday, monday.plus({days:1}), monday.plus({days:2}), monday.plus({days:3}), monday.plus({days:4}), monday.plus({days:5}), monday.plus({days:6}) ] %}
   {% for day in days %}
-    {% if day | readableDate in shop_closed_dates %}
+    {% if ( day | readableDate in shop_closed_dates ) and ( shop_hours[ day.weekdayLong | lower ] | lower != "closed" ) %}
       <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;Closed {{ day | readableDate }}</td></tr>
     {% else %}
       <tr><td>{{ day.weekdayLong }}&nbsp;</td><td>&nbsp;{{ shop_hours[ day.weekdayLong | lower ] }}</td></tr>

@@ -3,7 +3,7 @@ About page img srcset / sizes
 Merge unique css/js into page
 Radio button icons
 Watch out for utility class explosion
-Fix instagram lightbox
+Fix instagram lightbox + lazyload
 Add schema frontmatter
 :placeholder-shown  Kevin Powell
 cursor pointer class

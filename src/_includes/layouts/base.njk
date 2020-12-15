@@ -21,8 +21,15 @@
     {{ css | cssmin | safe }}
     </style>
 
+    <noscript>
+      <style>
+        [data-src] {
+          display: none;
+        }
+      </style>
+    </noscript>
+
     {% block head %}
-      <script src="{{ '/js/lazysizes.min.js' | url }}"></script>
     {% endblock %}
   </head>
 
@@ -32,6 +39,13 @@
     {% endblock %}
 
     {% block foot %}
+      {% set js %}
+      {% include "js/lazy-images.js" %}
+      {% endset %}
+
+      <script>
+        {{ js | jsmin | safe }}
+      </script>
     {% endblock %}
   </body>
 </html>
