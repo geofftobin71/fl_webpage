@@ -7,8 +7,11 @@ sections:
 - type: directory
   path: src/pages
   label: Pages
-  create: all
+  create: documents
   match: "**/*"
+  templates:
+  - page
+  - gallery
 - type: document
   path: src/_data/banner_message.json
   label: Banner Message
