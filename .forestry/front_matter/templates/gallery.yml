@@ -13,6 +13,8 @@ fields:
 - type: text
   name: layout
   label: Layout
+  hidden: true
+  default: layouts/gallery.njk
 - type: text
   name: gallery_folder
   label: Gallery Folder
@@ -25,10 +27,10 @@ fields:
   type: blocks
   label: Page Sections
   template_types:
+  - gallery-section
   - hero-section
   - text-section
   - split-image-text-section
-  - gallery-section
   config:
     min: 
     max: 
