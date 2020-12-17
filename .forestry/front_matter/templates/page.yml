@@ -13,6 +13,8 @@ fields:
 - type: text
   name: layout
   label: Layout
+  hidden: true
+  default: layouts/page-builder.njk
 - name: page_sections
   type: blocks
   label: Page Sections
