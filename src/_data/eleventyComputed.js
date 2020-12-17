@@ -1,13 +1,20 @@
 var cloudinary = require('cloudinary').v2;
 
-module.exports = function() {
+const gallery_images = (folder) => {
+
+  if(!folder) { return; }
 
   return cloudinary.search
-    .expression('folder:wedding-flowers')
+    .expression('folder:' + folder)
     .sort_by('public_id','desc')
     .with_field('context')
     .max_results(500)
     .execute()
     .then( result => { return result.resources; });
-    // .then(result=>console.log(JSON.stringify(result, null, 4)));
+};
+
+module.exports = {
+
+  gallery: (data) => gallery_images(data.gallery_folder)
+
 };

@@ -12,6 +12,8 @@ const markdown = require("markdown-it")({ html: true });
 
 module.exports = function (eleventyConfig) {
 
+  // eleventyConfig.deepDataMerge(true);
+
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
   eleventyConfig.addPlugin(svgContents);

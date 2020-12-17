@@ -1,0 +1,14 @@
+---
+label: Text Section
+hide_body: true
+display_field: text
+fields:
+- name: text
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Text

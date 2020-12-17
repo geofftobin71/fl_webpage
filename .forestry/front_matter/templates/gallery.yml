@@ -1,5 +1,5 @@
 ---
-label: Page
+label: Gallery
 hide_body: true
 fields:
 - type: text
@@ -13,6 +13,14 @@ fields:
 - type: text
   name: layout
   label: Layout
+- type: text
+  name: gallery_folder
+  label: Gallery Folder
+  description: Cloudinary folder to source images from
+- type: text
+  name: alt
+  label: Default Alt Text
+  description: Default Alt Text for any image that doesn't have its own Alt Text
 - name: page_sections
   type: blocks
   label: Page Sections
@@ -20,9 +28,10 @@ fields:
   - hero-section
   - text-section
   - split-image-text-section
+  - gallery-section
   config:
     min: 
     max: 
 pages:
-- src/pages/about.md
-- src/pages/terms-and-conditions.md
+- src/pages/dried-flowers.md
+- src/pages/wedding-flowers.md
