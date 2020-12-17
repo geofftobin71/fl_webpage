@@ -14,7 +14,9 @@
 {% block content %}
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
+  <main>
   {{ super() }}
+  </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
 

@@ -1,0 +1,58 @@
+---
+label: SEO
+hide_body: true
+fields:
+- type: text
+  name: title
+  label: Title
+  description: The Title of the page. Appears in the header and on the browser tab.
+- type: text
+  name: description
+  label: Description
+  description: SEO page description. Appears on Google search results.
+- type: text
+  name: alt
+  label: Default Alt Text
+  description: Default Alt Text for any image that doesn't have its own Alt Text.
+- name: header
+  type: field_group
+  config: {}
+  fields:
+  - type: text
+    name: title
+    label: Title
+    description: Override the page title in the header (optional).
+  - name: image
+    type: file
+    config:
+      maxSize: 64
+    label: Image
+    description: The background image for the page header.
+  label: Header
+- name: eleventyNavigation
+  type: field_group
+  config: {}
+  fields:
+  - name: key
+    type: text
+    config:
+      required: false
+    label: Name
+    description: The Name that appears on the main menu for this page.
+  - name: parent
+    type: text
+    config:
+      required: false
+    label: Parent
+    description: The Parent item in the menu for this page (optional).
+  - name: order
+    type: number
+    label: Order
+    description: The order that this page appears in the main menu.
+    default: 1
+    required: false
+    config:
+      min: 
+      max: 
+      step: 
+  label: Menu

@@ -9,6 +9,7 @@ with context %}
 {% block content %}
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
+  <main>
   {% for section in page_sections %}
     {% if section.template == "text-section" %}
       {{ text_section(section.content) }}
@@ -20,6 +21,7 @@ with context %}
       {{ gallery_section() }}
     {% endif %}
   {% endfor %}
+  </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
 
