@@ -1,4 +1,19 @@
 ---
 label: Page2
 hide_body: true
-fields: []
+fields:
+- name: seo
+  type: include
+  config: {}
+  template: seo
+  label: SEO
+- name: page_sections
+  type: blocks
+  label: Page Sections
+  template_types:
+  - text-section
+  - hero-section
+  - split-image-text-section
+  config:
+    min: 
+    max: 
