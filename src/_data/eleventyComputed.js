@@ -10,7 +10,10 @@ const gallery_images = (folder) => {
     .with_field('context')
     .max_results(500)
     .execute()
-    .then( result => { return result.resources; });
+    .then( result => {
+      console.log(result.resources);
+      return result.resources;
+    });
 };
 
 module.exports = {
