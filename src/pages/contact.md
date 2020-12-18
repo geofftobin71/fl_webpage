@@ -1,4 +1,5 @@
 ---
+layout: layouts/page-builder.njk
 eleventyNavigation:
   order: 100
   key: Contact
@@ -11,6 +12,6 @@ header:
   image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 page_sections:
 - template: text-section
-  text: This is the **contact** page.
+  content: This is the **contact** page.
 
 ---

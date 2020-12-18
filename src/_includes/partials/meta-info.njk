@@ -1,25 +1,22 @@
 {% set metaTitle = title + " - " + site.name %}
-{% set metaDesc = site.description %}
-{% set metaImage = site.url + site.social_image %}
-{% set siteTitle = site.name %}
+{% set metaDesc = description or site.description %}
+{% set metaImage = social_image or site.url + site.social_image %}
 {% set currentUrl = site.url + page.url %}
 
 {% if page.url == "/" %}
   {% set metaTitle = site.name + " - " + site.tagline %}
 {% endif %}
 
-{% if description %}
-  {% set metaDesc = description %}
-{% endif %}
-
+{#
 {% if social_image %}
   {% set metaImage = social_image %}
 {% endif %}
+#}
 
 <title>{{ metaTitle }}</title>
 <link rel="canonical" href="{{ currentUrl }}" />
 
-<meta property="og:site_name" content="{{ siteTitle }}" />
+<meta property="og:site_name" content="{{ site.name }}" />
 <meta property="og:title" content="{{ metaTitle }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ currentUrl }}" />

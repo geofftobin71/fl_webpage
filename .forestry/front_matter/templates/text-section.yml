@@ -1,9 +1,9 @@
 ---
 label: Text Section
 hide_body: true
-display_field: text
+display_field: content
 fields:
-- name: text
+- name: content
   type: textarea
   default: ''
   config:
@@ -11,4 +11,4 @@ fields:
     wysiwyg: true
     schema:
       format: markdown
-  label: Text
+  label: Content

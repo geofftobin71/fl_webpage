@@ -4,6 +4,9 @@
   {{ super() }}
   {% set css %}
   .review {
+    color: var(--color-light);
+    background: var(--color-shade1);
+    text-align: center;
     transform: translateY(0px);
     opacity: 1;
     transition: transform 500ms ease , opacity 500ms linear;
@@ -13,7 +16,7 @@
     opacity: 0;
   }
   @media screen and (max-width: 420px) {
-    .round-box {
+    .review .round-box {
       --box-padding: var(--step-0);
     }
   }

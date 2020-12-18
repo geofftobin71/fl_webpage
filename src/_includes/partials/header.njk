@@ -1,6 +1,6 @@
 <header class="header">
   <figure class="background">
-    <img class="darken" src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto/{{ header_image }}" alt="Header image">
+    <img class="darken" src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto/{{ header.image }}" alt="Header image">
   </figure>
   <div class="content">
     <figure class="logo">
@@ -8,7 +8,7 @@
         <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo">
       </a>
     </figure>
-    <h1>{{ (header_title or title) | lower }}</h1>
+    <h1>{{ (header.title or title) | lower }}</h1>
   </div>
 </header>
 <div class="banner-message link-dark">

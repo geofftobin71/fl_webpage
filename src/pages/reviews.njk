@@ -1,24 +1,25 @@
 ---
 title: Reviews
-header_image: fresh-flowers/fresh-flowers-by-floriade-00057
+header:
+  image: fresh-flowers/fresh-flowers-by-floriade-00057
 layout: layouts/reviews.njk
 eleventyNavigation:
   key: Reviews
   order: 10
 ---
 
-{% set sizes = [ 430, 294, 186, 179, 288 ] %}
+{% set divider_sizes = [ 430, 294, 186, 179, 288 ] %}
 
 <main>
 <section class="wrapper stack center" style="--space:var(--step-4)">
   {% for item in reviews | shuffle -%}
-    <div class="review round-box bg-shade1 color-light border-shade2 shadow text-center">
+    <div class="review round-box border-shade2 shadow">
       <div class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
         <p>{{ item.review }}</p>
         <p class="font-secondary color-shade4">{{ item.name }}</p>
       </div>
     </div>
-    <div style="width:100%;max-width:{{ sizes[loop.index0 % 5] }}px;opacity:0.25">
+    <div style="width:100%;max-width:{{ divider_sizes[loop.index0 % 5] }}px;opacity:0.25">
       <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament">
     </div>
   {% endfor -%}

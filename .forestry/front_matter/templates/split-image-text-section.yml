@@ -1,14 +1,14 @@
 ---
 label: Split Image Text Section
 hide_body: true
-display_field: text
+display_field: content
 fields:
 - name: image
   type: file
   config:
     maxSize: 64
   label: Image
-- name: text
+- name: content
   type: textarea
   default: ''
   config:
@@ -16,7 +16,7 @@ fields:
     wysiwyg: true
     schema:
       format: markdown
-  label: Text
+  label: Content
 - name: swap
   type: boolean
   label: Swap
