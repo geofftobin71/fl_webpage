@@ -1,5 +1,5 @@
-Indent on TnC page
-About page img srcset / sizes
+Lightbox lazy loading ?
+Hero Section img srcset / sizes
 Merge unique css/js into page
 Radio button icons
 Watch out for utility class explosion
@@ -7,4 +7,3 @@ Fix instagram lightbox + lazyload
 Add schema frontmatter
 :placeholder-shown  Kevin Powell
 cursor pointer class
-DIY lazy loading

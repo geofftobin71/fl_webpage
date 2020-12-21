@@ -1,6 +1,7 @@
 ---
 title: Terms and Conditions
-header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg"
+header:
+  image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg"
 layout: layouts/page-builder.njk
 sitemap:
   ignore: true

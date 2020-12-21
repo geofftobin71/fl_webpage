@@ -8,7 +8,7 @@ if ('loading' in HTMLImageElement.prototype) {
 } else if('IntersectionObserver' in window) {
   // Intersection Observer
   const images = document.querySelectorAll('img[loading="lazy"]');
-  const options = { root: null, threshold: 0, rootMargin: "0px 0px 200px 0px" };
+  const options = { root: null, threshold: 0, rootMargin: "0px 0px 500px 0px" };
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) { return; }
