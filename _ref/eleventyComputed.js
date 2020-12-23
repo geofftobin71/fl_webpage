@@ -35,7 +35,7 @@ const gallery_images = (folder) => {
     .then( result => {
       return getPreviews(result.resources)
         .then( final => { 
-          console.log(JSON.stringify(final));
+          // console.log(JSON.stringify(final));
           return final;
         });
     });
