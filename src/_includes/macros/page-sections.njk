@@ -54,15 +54,16 @@
 <section>
   <div class="wrapper page-wrapper">
     <ul class="auto-grid gallery">
+
       {% if gallery_folder == "dried-flowers" %}
         {% set images = dried_flowers_gallery | shuffle %}
       {% elif gallery_folder == "fresh-flowers" %}
         {% set images = fresh_flowers_gallery | shuffle %}
       {% elif gallery_folder == "wedding-flowers" %}
         {% set images = wedding_flowers_gallery | shuffle %}
+      {% else %}
+        {# {% set images = gallery | shuffle %} #}
       {% endif %}
-
-      {# {% set images = gallery | shuffle %} #}
 
       {% for image in images -%}
         {% if image.aspect_ratio > 1.38 %}
@@ -82,7 +83,7 @@
           <noscript>
             <a href="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}"><img src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ image.public_id }}" alt="{{ image.context.alt or alt or site.alt }}" title="{{ image.context.alt or alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" style="cursor:pointer"></a>
           </noscript>
-          <img src="{{ site.cloudinary_url }}/c_fill,w_{{ width / 10 }},h_{{ height / 10 }},q_1,f_auto,e_blur:200/{{ image.public_id }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ image.public_id }}" alt="{{ image.context.alt or alt or site.alt }}" title="{{ image.context.alt or alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox();showSlide({{ loop.index }})" style="cursor:pointer" loading="xlazy">
+          <img src="{{ image.preview }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ image.public_id }}" alt="{{ image.context.alt or alt or site.alt }}" title="{{ image.context.alt or alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox();showSlide({{ loop.index }})" style="cursor:pointer" loading="lazy">
         </li>
         {%- endfor %}
     </ul>

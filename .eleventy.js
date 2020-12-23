@@ -40,7 +40,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("./admin");
 
-  eleventyConfig.addNunjucksShortcode("markdown",
+  eleventyConfig.addShortcode("markdown",
     content => `${markdown.render(content)}`
   );
 
@@ -50,7 +50,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.srcsetWidths = [ 300, 600, 900, 1200, 1500, 1800, 2100, 2400 ];
   eleventyConfig.fallbackWidth = 900;
 
-  eleventyConfig.addShortcode('respimg', (path, alt, sizes, transforms, classes, lazy ) => {
+  eleventyConfig.addShortcode("respimg", (path, alt, sizes, transforms, classes, lazy ) => {
     const fetchBase = `https://res.cloudinary.com/${eleventyConfig.cloudinaryCloudName}`;
     const src = `${fetchBase}/${transforms ? transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${path}`;
     const srcset = eleventyConfig.srcsetWidths.map(w => {
@@ -61,6 +61,17 @@ module.exports = function (eleventyConfig) {
       return `<noscript><img src="${src}" srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}"></noscript><img data-src="${src}" data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}" loading="lazy">`;
     } else {
       return `<img src="${src}" srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}">`;
+    }
+  });
+
+  eleventyConfig.addNunjucksAsyncFilter("jsmin", async function(code, callback) {
+    try {
+      const minified = await minify(code);
+      callback(null, minified.code);
+    } catch (err) {
+      console.error("Terser error: ", err);
+      // Fail gracefully.
+      callback(null, code);
     }
   });
 
@@ -82,17 +93,6 @@ module.exports = function (eleventyConfig) {
       return new CleanCSS({}).minify(code).styles;
     } else {
       return code;
-    }
-  });
-
-  eleventyConfig.addNunjucksAsyncFilter("jsmin", async function(code, callback) {
-    try {
-      const minified = await minify(code);
-      callback(null, minified.code);
-    } catch (err) {
-      console.error("Terser error: ", err);
-      // Fail gracefully.
-      callback(null, code);
     }
   });
 
