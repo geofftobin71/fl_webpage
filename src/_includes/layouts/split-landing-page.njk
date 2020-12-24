@@ -3,9 +3,26 @@
 {% block head %}
   {{ super() }}
   {% set css %}
-  .split-landing {
+  #split-landing {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   @media screen and (orientation: portrait) {
+    #split-landing {
+      grid-template-columns: 1fr;
+    }
+  }
+  @supports (background: -webkit-named-image(i)) {
+    #split-landing {
+      height: -webkit-fill-available;
+    }
+  }
+  .header {
+    height: 100%;
+  }
+  .header .content {
+    align-items: flex-start;
   }
   {% endset %}
 
@@ -16,13 +33,28 @@
 
 {% block content %}
   <main>
-  <div class="split-landing">
-    <figure>
-      <img src="" alt="{{ alt or site.alt }}">
-    </figure>
-    <article>
-    </article>
+  <div id="split-landing">
+    <header class="header">
+      <figure class="background">
+        {% respimg images[0], alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
+      </figure>
+      <div class="content">
+        <figure class="logo">
+          <a href="/">
+            <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo">
+          </a>
+        </figure>
+        <h1>{{ title | lower }}</h1>
+      </div>
+    </header>
+    <div>
+      <div class="center-both">
+        <article class="wrapper text-wrapper">
+          {% markdown content %}
+        </article>
+      </div>
+      {% include "partials/footer.njk" %}
+    </div>
   </div>
   </main>
-  {% include "partials/footer.njk" %}
 {% endblock %}
