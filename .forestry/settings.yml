@@ -10,9 +10,9 @@ sections:
   create: documents
   match: "**/*"
   templates:
-  - page2
   - page
   - gallery-page
+  - split-landing-page
 - type: document
   path: src/_data/banner_message.json
   label: Banner Message

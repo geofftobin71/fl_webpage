@@ -15,10 +15,10 @@
 {% macro hero_section(image, content) %}
 
 <section>
-  <div class="cover shadow" style="--min-height:50vmin">
+  <div class="cover shadow" style="--min-height:75vmin">
     <figure class="background">
       {# <img src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}"> #}
-      <img style="filter:grayscale(100%) contrast(30%) brightness(80%) opacity(50%)" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
+      <img style="filter:grayscale(100%) contrast(70%) brightness(80%) opacity(50%)" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
     </figure>
     <article class="centered wrapper text-wrapper">
       {% markdown content %}

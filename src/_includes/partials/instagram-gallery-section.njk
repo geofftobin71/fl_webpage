@@ -8,6 +8,18 @@
     align-items: flex-start;
   }
 }
+.lightbox__domino {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0;
+}
+
+@media screen and (orientation: portrait) {
+  .lightbox__domino {
+    grid-template-columns: 1fr;
+  }
+}
+
 {% endset %}
 
 <style>
@@ -34,7 +46,7 @@
   <nav class="close" onclick="closeLightbox()">&times;</nav>
   {% for item in instagram_images -%}
     <div class="lightbox__slide instagram">
-      <div class="domino" style="--domino-space:0">
+      <div class="lightbox__domino">
         <img data-src="{{ site.cloudinary_url }}/image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
         <div style="max-height:40vmax;overflow-x:hidden;overflow-y:auto">
           <div style="display:flex;align-items:center;min-height:100%">

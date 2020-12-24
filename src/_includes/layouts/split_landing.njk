@@ -1,0 +1,28 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  .split-landing {
+  }
+  @media screen and (orientation: portrait) {
+  }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block content %}
+  <main>
+  <div class="split-landing">
+    <figure>
+      <img src="" alt="{{ alt or site.alt }}">
+    </figure>
+    <article>
+    </article>
+  </div>
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}

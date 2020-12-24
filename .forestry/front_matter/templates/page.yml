@@ -1,59 +1,28 @@
 ---
-label: Page
+label: Page2
 hide_body: true
 fields:
-- type: text
-  name: title
-  label: Title
-  description: The Title that appears in the header and on the browser tab
-- name: header_image
-  type: file
-  config:
-    maxSize: 64
-  label: Header Image
-  description: The background image for the page header
 - type: text
   name: layout
   label: Layout
   hidden: true
   default: layouts/page-builder.njk
-- name: eleventyNavigation
-  type: field_group
+- name: seo
+  type: include
   config: {}
-  fields:
-  - name: key
-    type: text
-    config:
-      required: false
-    label: Name
-    description: The Name that appears on the main menu for this page
-  - name: parent
-    type: text
-    config:
-      required: false
-    label: Parent
-    description: The Parent item in the menu for this page
-  - name: order
-    type: number
-    label: Order
-    description: The order that this page appears in the main menu
-    default: 1
-    required: true
-    config:
-      min: 
-      max: 
-      step: 
-  label: Menu
+  template: seo
+  label: SEO
 - name: page_sections
   type: blocks
   label: Page Sections
   template_types:
-  - hero-section
   - text-section
+  - hero-section
   - split-image-text-section
   config:
     min: 
     max: 
 pages:
 - src/pages/about.md
+- src/pages/contact.md
 - src/pages/terms-and-conditions.md
