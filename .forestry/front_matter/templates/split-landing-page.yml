@@ -1,8 +1,18 @@
 ---
 label: Split Landing Page
 hide_body: true
-display_field: content
+display_field: title
 fields:
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: layouts/split-landing-page.njk
+- name: seo
+  type: include
+  config: {}
+  template: seo
+  label: SEO
 - name: images
   type: image_gallery
   config: {}
