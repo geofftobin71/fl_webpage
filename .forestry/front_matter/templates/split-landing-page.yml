@@ -20,3 +20,5 @@ fields:
   type: boolean
   label: Swap
   description: Swap the order so the text is on the left and the image is on the right.
+pages:
+- src/pages/cake-flowers.md
