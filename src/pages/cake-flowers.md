@@ -1,6 +1,6 @@
 ---
 title: Cake Flowers
-description: Cake Flowers are awesome
+description: Cake Flowers by Floriade are awesome
 alt: Cake Flowers by Floriade
 images:
 - "/v1608242593/cake-flowers/cake-flowers-by-floriade-00001.jpg"
@@ -17,5 +17,13 @@ content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit ame
   \n\nPhasellus a facilisis nisi. Praesent interdum finibus magna, vitae consequat
   sapien rutrum ac. Donec eu lectus sit amet purus scelerisque euismod."
 swap: false
+layout: ''
+header:
+  title: ''
+  image: ''
+eleventyNavigation:
+  key: ''
+  parent: ''
+  order: 
 
 ---
