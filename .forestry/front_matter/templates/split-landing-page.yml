@@ -3,11 +3,10 @@ label: Split Landing Page
 hide_body: true
 display_field: content
 fields:
-- name: image
-  type: file
-  config:
-    maxSize: 64
-  label: Image
+- name: images
+  type: image_gallery
+  config: {}
+  label: Images
 - name: content
   type: textarea
   default: ''
