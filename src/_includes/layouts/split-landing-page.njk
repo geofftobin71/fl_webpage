@@ -6,43 +6,49 @@
   #split-landing {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 100%;
   }
-  @media screen and (orientation: portrait) {
-    #split-landing {
-      grid-template-columns: 1fr;
-    }
+  #split-landing .header {
+    height: 55vh;
   }
-  /*
-  @supports (background: -webkit-named-image(i)) {
-    #split-landing {
-      height: -webkit-fill-available;
-    }
-  }
-  */
-  .header {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  @supports (background: -webkit-named-image(i)) {
-    .header {
-      height: -webkit-fill-available;
-    }
-  }
-  .header .content {
+  #split-landing .header .content {
     align-items: flex-start;
+  }
+  #split-landing article {
+    padding: 0 1.5em;
+  }
+  @media screen and (orientation: landscape) {
+    #split-landing {
+      grid-template-columns: 1fr 1fr;
+    }
+    #split-landing .header {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+    }
+    @supports (background: -webkit-named-image(i)) {
+      #split-landing .header {
+        height: -webkit-fill-available;
+      }
+    }
+    #split-landing article {
+      --measure: 50ch;
+      padding: 1em;
+    }
+    #split-landing.swap header {
+      order: 2;
+    }
   }
   {% endset %}
 
   <style>
-    {{ css | cssmin | safe }}
+{{ css | cssmin | safe }}
   </style>
 {% endblock %}
 
 {% block content %}
   <main>
-  <div id="split-landing">
+  <div id="split-landing" {{ ' class="swap"' | safe if swap }}>
     <header class="header">
       <figure class="background">
         {% respimg images[0], alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
@@ -57,11 +63,11 @@
       </div>
     </header>
     <div>
-      <div class="center-both">
+      <section class="center-both">
         <article class="wrapper text-wrapper">
-          {% markdown content %}
+          {% markdown text %}
         </article>
-      </div>
+      </section>
       {% include "partials/footer.njk" %}
     </div>
   </div>

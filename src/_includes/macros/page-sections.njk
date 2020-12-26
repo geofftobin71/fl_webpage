@@ -1,9 +1,9 @@
-{% macro text_section(content) %}
+{% macro text_section(text) %}
 
 <section>
   <div class="cover" style="--min-height:1vh">
     <article class="centered wrapper text-wrapper">
-      {% markdown content %}
+      {% markdown text %}
     </article>
   </div>
 </section>
@@ -12,7 +12,7 @@
 
 
 
-{% macro hero_section(image, content) %}
+{% macro hero_section(image, text) %}
 
 <section>
   <div class="cover shadow" style="--min-height:75vmin">
@@ -21,7 +21,7 @@
       <img style="filter:grayscale(100%) contrast(70%) brightness(80%) opacity(50%)" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
     </figure>
     <article class="centered wrapper text-wrapper">
-      {% markdown content %}
+      {% markdown text %}
     </article>
   </div>
 </section>
@@ -30,7 +30,7 @@
 
 
 
-{% macro split_image_text_section(image, content, swap) %}
+{% macro split_image_text_section(image, text, swap) %}
 
 <section>
   <div class="domino{{ ' swap' if swap }}">
@@ -39,7 +39,7 @@
     </figure>
     <div class="center-both">
       <article class="wrapper text-wrapper">
-        {% markdown content %}
+        {% markdown text %}
       </article>
     </div>
   </div>

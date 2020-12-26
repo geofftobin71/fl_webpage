@@ -1,14 +1,14 @@
 ---
 label: Hero Section
 hide_body: true
-display_field: content
+display_field: text
 fields:
 - name: image
   type: file
   config:
     maxSize: 64
   label: Image
-- name: content
+- name: text
   type: textarea
   default: ''
   config:
@@ -16,4 +16,4 @@ fields:
     wysiwyg: true
     schema:
       format: markdown
-  label: Content
+  label: Text

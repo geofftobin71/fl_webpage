@@ -12,11 +12,11 @@ with context %}
   <main>
   {% for section in page_sections %}
     {% if section.template == "text-section" %}
-      {{ text_section(section.content) }}
+      {{ text_section(section.text) }}
     {% elif section.template == "hero-section" %}
-      {{ hero_section(section.image, section.content) }}
+      {{ hero_section(section.image, section.text) }}
     {% elif section.template == "split-image-text-section" %}
-      {{ split_image_text_section(section.image, section.content, section.swap) }}
+      {{ split_image_text_section(section.image, section.text, section.swap) }}
     {% elif section.template == "gallery-section" %}
       {{ gallery_section() }}
     {% endif %}

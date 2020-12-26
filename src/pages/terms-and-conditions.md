@@ -7,7 +7,7 @@ sitemap:
   ignore: true
 page_sections:
 - template: text-section
-  content: |-
+  text: |-
     Customers of Floriade Ltd. ordering flowers or plants online from floriade.co.nz or by other means such as over the phone, via email or txt agree to the following terms and conditions:
 
     ## flowers
