@@ -24,7 +24,7 @@ text: |-
   Sed viverra ut urna ut vehicula. Morbi placerat felis sed mauris vehicula dignissim. Donec sit amet vehicula lorem. Integer faucibus aliquam sollicitudin.
 
   Phasellus a facilisis nisi. Praesent interdum finibus magna, vitae consequat sapien rutrum ac. Donec eu lectus sit amet purus scelerisque euismod.
-swap: true
+swap: false
 layout: layouts/split-landing-page.njk
 eleventyNavigation:
   key: Cake Flowers
