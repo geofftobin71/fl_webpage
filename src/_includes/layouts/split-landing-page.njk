@@ -4,7 +4,7 @@
   {{ super() }}
   {% set css %}
   #split-landing {
-    height: 100vh;
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -13,13 +13,22 @@
       grid-template-columns: 1fr;
     }
   }
+  /*
   @supports (background: -webkit-named-image(i)) {
     #split-landing {
       height: -webkit-fill-available;
     }
   }
+  */
   .header {
-    height: 100%;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+  @supports (background: -webkit-named-image(i)) {
+    .header {
+      height: -webkit-fill-available;
+    }
   }
   .header .content {
     align-items: flex-start;
