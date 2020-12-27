@@ -1,11 +1,9 @@
 {% macro text_section(text) %}
 
 <section>
-  <div class="cover" style="--min-height:1vh">
-    <article class="centered wrapper text-wrapper">
-      {% markdown text %}
-    </article>
-  </div>
+  <article class="wrapper text-wrapper">
+    {% markdown text %}
+  </article>
 </section>
 
 {% endmacro %}
@@ -52,20 +50,20 @@
 {% macro contact_form_section(heading) %}
 
 <section>
-  <div class="wrapper text-wrapper">
-    <h2>{{ heading }}</h2>
+  <div class="wrapper text-wrapper flow">
+    <h2 class="heading">{{ heading }}</h2>
     <form class="contact-form" action="">
       <label for="name-input">
-        Your Name
-        <input id="name-input" name="name-input" type="text" required>
+        Name
+        <input id="name-input" name="name-input" type="text" placeholder="Your Name" required>
       </label>
       <label for="email-input">
-        Your Email
-        <input id="email-input" name="email-input" type="email" required>
+        Email
+        <input id="email-input" name="email-input" type="email" placeholder="Your Email" required>
       </label>
       <label for="message-input">
         Message
-        <textarea id="message-input" name="message-input" required></textarea>
+        <textarea id="message-input" name="message-input" placeholder="Your Message" rows="10" required></textarea>
       </label>
       <input type="submit" value="Submit">
     </form>

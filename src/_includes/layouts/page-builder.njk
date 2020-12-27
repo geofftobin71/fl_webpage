@@ -6,6 +6,17 @@
   gallery_section
 with context %}
 
+{% block head %}
+  {{ super() }}
+  {% set css %}
+    {% include "css/form.css" %}
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
 {% block content %}
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}

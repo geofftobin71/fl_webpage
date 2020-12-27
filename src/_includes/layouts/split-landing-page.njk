@@ -4,14 +4,17 @@
   contact_form_section
 with context %}
 
-
 {% block head %}
   {{ super() }}
+
   {% set fade_in_time = 2 %}
   {% set visible_time = 4 %}
   {% set animation_duration = (fade_in_time + visible_time) * (images | length) %}
   {% set one_second = 100 / animation_duration %}
+
   {% set css %}
+    {% include "css/form.css" %}
+
   @keyframes fade {
     0% { opacity: 0; }
     {{ fade_in_time * one_second}}% { opacity: 1; }
@@ -32,12 +35,11 @@ with context %}
   #split-landing .header .content {
     align-items: flex-start;
   }
-  #split-landing article {
-    padding: 1.5em;
+  #split-landing > div {
+    padding: 0 1.5em;
   }
   @media screen and (orientation: landscape) and (min-width:900px) {
     #split-landing {
-      display: grid;
       grid-template-columns: 1fr 1fr;
     }
     #split-landing .header {
@@ -49,10 +51,6 @@ with context %}
       #split-landing .header {
         height: -webkit-fill-available;
       }
-    }
-    #split-landing article {
-      --measure: 50ch;
-      padding: 1.5em;
     }
     #split-landing.swap .header {
       order: 2;
@@ -92,14 +90,7 @@ with context %}
         <h1>{{ title | lower }}</h1>
       </div>
     </header>
-    <div>
-      {#
-      <div class="center-both">
-        <article class="wrapper text-wrapper">
-          {% markdown text %}
-        </article>
-      </div>
-      #}
+    <div style="--section-padding: 2em">
 		  {% for section in page_sections %}
 		    {% if section.template == "text-section" %}
 		      {{ text_section(section.text) }}
