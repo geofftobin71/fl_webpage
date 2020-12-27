@@ -2,23 +2,37 @@
 
 {% block head %}
   {{ super() }}
+  {% set fade_in_time = 2 %}
+  {% set visible_time = 4 %}
+  {% set animation_duration = (fade_in_time + visible_time) * (images | length) %}
+  {% set one_second = 100 / animation_duration %}
   {% set css %}
+  @keyframes fade {
+    0% { opacity: 0; }
+    {{ fade_in_time * one_second}}% { opacity: 1; }
+    {{ (fade_in_time + visible_time) * one_second }}% { opacity: 1; }
+    {{ (fade_in_time + visible_time + fade_in_time) * one_second }}% { opacity: 0; }
+    100% { opacity: 0; }
+  }
   #split-landing {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 100%;
   }
   #split-landing .header {
-    height: 55vh;
+    height: 75vh;
+    background: var(--color-darker-grey);
+    position: relative;
   }
   #split-landing .header .content {
     align-items: flex-start;
   }
   #split-landing article {
-    padding: 0 1.5em;
+    padding: 1.5em;
   }
-  @media screen and (orientation: landscape) {
+  @media screen and (orientation: landscape) and (min-width:900px) {
     #split-landing {
+      display: grid;
       grid-template-columns: 1fr 1fr;
     }
     #split-landing .header {
@@ -33,16 +47,25 @@
     }
     #split-landing article {
       --measure: 50ch;
-      padding: 1em;
+      padding: 1.5em;
     }
-    #split-landing.swap header {
+    #split-landing.swap .header {
       order: 2;
     }
   }
+  #split-landing .background { 
+    opacity:0; 
+    animation-name: fade; 
+    animation-duration: {{ animation_duration }}s; 
+    animation-iteration-count: infinite; 
+  }
+  {% for image in images %}
+    #split-landing .background:nth-child({{ loop.index }}) { animation-delay: {{ (fade_in_time + visible_time) * loop.index0 }}s; }
+  {% endfor %}
   {% endset %}
 
   <style>
-{{ css | cssmin | safe }}
+    {{ css | cssmin | safe }}
   </style>
 {% endblock %}
 
@@ -50,9 +73,11 @@
   <main>
   <div id="split-landing" {{ ' class="swap"' | safe if swap }}>
     <header class="header">
-      <figure class="background">
-        {% respimg images[0], alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
-      </figure>
+      {% for image in images %}
+        <figure class="background">
+          {% respimg image, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
+        </figure>
+      {% endfor %}
       <div class="content">
         <figure class="logo">
           <a href="/">
@@ -62,13 +87,10 @@
         <h1>{{ title | lower }}</h1>
       </div>
     </header>
-    <div>
-      <section class="center-both">
-        <article class="wrapper text-wrapper">
-          {% markdown text %}
-        </article>
-      </section>
-      {% include "partials/footer.njk" %}
+    <div class="center-both">
+      <article class="wrapper text-wrapper">
+        {% markdown text %}
+      </article>
     </div>
   </div>
   </main>

@@ -46,21 +46,20 @@ module.exports = function (eleventyConfig) {
 
   // [300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400]
 
-  eleventyConfig.cloudinaryCloudName = 'floriade';
-  eleventyConfig.srcsetWidths = [ 300, 600, 900, 1200, 1500, 1800, 2100, 2400 ];
+  eleventyConfig.srcsetWidths = [ 600, 900, 1200, 1500, 1800, 2100, 2400 ];
   eleventyConfig.fallbackWidth = 900;
 
   eleventyConfig.addShortcode("respimg", (path, alt, sizes, transforms, classes, lazy ) => {
-    const fetchBase = `https://res.cloudinary.com/${eleventyConfig.cloudinaryCloudName}`;
-    const src = `${fetchBase}/${transforms ? transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${path}`;
+    const cloudinary = `https://res.cloudinary.com/floriade`;
+    const src = `${cloudinary}/${transforms ? transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${path}`;
     const srcset = eleventyConfig.srcsetWidths.map(w => {
-      return `${fetchBase}/${transforms ? transforms : 'q_auto,f_auto'},w_${w}/${path} ${w}w`;
+      return `${cloudinary}/${transforms ? transforms : 'q_auto,f_auto'},w_${w}/${path} ${w}w`;
     }).join(', ');
 
     if(lazy) {
-      return `<noscript><img src="${src}" srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}"></noscript><img data-src="${src}" data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}" loading="lazy">`;
+      return `<noscript><img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}"></noscript><img data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" data-src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}" loading="lazy">`;
     } else {
-      return `<img src="${src}" srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" alt="${alt ? alt : ''}" class="${classes ? classes : ''}">`;
+      return `<img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}">`;
     }
   });
 
