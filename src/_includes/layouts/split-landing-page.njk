@@ -1,4 +1,9 @@
 {% extends "layouts/base.njk" %}
+{% from "macros/page-sections.njk" import
+  text_section,
+  contact_form_section
+with context %}
+
 
 {% block head %}
   {{ super() }}
@@ -87,10 +92,21 @@
         <h1>{{ title | lower }}</h1>
       </div>
     </header>
-    <div class="center-both">
-      <article class="wrapper text-wrapper">
-        {% markdown text %}
-      </article>
+    <div>
+      {#
+      <div class="center-both">
+        <article class="wrapper text-wrapper">
+          {% markdown text %}
+        </article>
+      </div>
+      #}
+		  {% for section in page_sections %}
+		    {% if section.template == "text-section" %}
+		      {{ text_section(section.text) }}
+		    {% elif section.template == "contact-form-section" %}
+		      {{ contact_form_section(section.heading) }}
+		    {% endif %}
+		  {% endfor %}
     </div>
   </div>
   </main>

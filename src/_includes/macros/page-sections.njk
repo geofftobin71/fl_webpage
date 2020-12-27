@@ -49,6 +49,33 @@
 
 
 
+{% macro contact_form_section(heading) %}
+
+<section>
+  <div class="wrapper text-wrapper">
+    <h2>{{ heading }}</h2>
+    <form class="contact-form" action="">
+      <label for="name-input">
+        Your Name
+        <input id="name-input" name="name-input" type="text" required>
+      </label>
+      <label for="email-input">
+        Your Email
+        <input id="email-input" name="email-input" type="email" required>
+      </label>
+      <label for="message-input">
+        Message
+        <textarea id="message-input" name="message-input" required></textarea>
+      </label>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</section>
+
+{% endmacro %}
+
+
+
 {% macro gallery_section() %}
 
 <section>
