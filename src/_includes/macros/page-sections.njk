@@ -47,12 +47,12 @@
 
 
 
-{% macro contact_form_section(heading, message, button, email_subject, email_heading) %}
+{% macro contact_form_section(heading, message, button, email_subject, email_heading, email_banner, alt) %}
 
 <section>
   <div class="wrapper text-wrapper flow">
     <h2 class="heading">{{ heading or 'Contact Us' }}</h2>
-    <form class="contact-form" action="">
+    <form class="contact-form" action="https://floriade.co.nz/contact-form-handler.php">
       <label for="name-input">
         Name
         <input id="name-input" name="name" type="text" placeholder="Your Name" required>
@@ -66,7 +66,9 @@
         <textarea id="message-input" name="message" placeholder="{{ message or 'How can we help you?' }}" rows="10" required></textarea>
       </label>
       <input name="subject" type="hidden" value="{{ email_subject or 'Flowers Enquiry' }}">
-      <input name="heading" type="hidden" value="{{ email_heading or 'Thankyou for contacting Floriade regarding Flowers.' }}">
+      <input name="heading" type="hidden" value="{{ email_heading or 'Thankyou for contacting Floriade.' }}">
+      <input name="banner" type="hidden" value="{{ email_banner or 'https://floriade.co.nz/images/floriade-icon-round-512.png' }}">
+      <input name="alt" type="hidden" value="{{ alt or 'Flowers by Floriade' }}">
       <button type="submit">{{ button or 'Send Message' }}</button>
     </form>
   </div>

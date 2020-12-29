@@ -95,7 +95,7 @@ with context %}
 		    {% if section.template == "text-section" %}
 		      {{ text_section(section.text) }}
 		    {% elif section.template == "contact-form-section" %}
-		      {{ contact_form_section(section.heading, section.message, section.button, section.email_subject, section.email_heading) }}
+		      {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, alt or site.alt ) }}
 		    {% endif %}
 		  {% endfor %}
     </div>

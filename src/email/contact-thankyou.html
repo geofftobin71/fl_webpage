@@ -1,7 +1,7 @@
 ---
 permalink: email/contact-thankyou.html
 sitemap:
-ignore: true
+  ignore: true
 ---
 <!DOCTYPE html>
 <html lang="en" xmlns="https://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -39,23 +39,23 @@ ignore: true
               <td style="padding:20px 0;">
             <![endif]-->
             <div class="outer" style="width:96%;max-width:660px;margin:20px auto;">
+
+{% include "email/header_banner.njk" %}
+
               <table role="presentation" width="100%">
                 <tr>
-                  <td style="padding:10px 10px 20px 10px;font-family:Arial,sans-serif;font-size:24px;line-height:28px;font-weight:bold;">
-                    <img src="%banner_image%" width="640" alt="%alt_text%" style="width:100%;height:auto;" />
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:10px;text-align:left;">
-                    <h1 style="margin-top:0;margin-bottom:16px;font-family:Arial,sans-serif;font-size:26px;line-height:32px;font-weight:bold;">%email_heading%</h1>
-                    <p style="margin:0;font-family:Arial,sans-serif;font-size:18px;line-height:24px;">We have received your message and will endeavour to respond as soon as possible.</p>
-                    <p style="margin:0;font-family:Arial,sans-serif;font-size:18px;line-height:24px;">Kind regards<br><br>Annwyn Tobin</p>
-                    <p style="margin:0;font-family:Arial,sans-serif;font-size:18px;line-height:24px;">Floriade<br><br>18 Cambridge Terrace<br>Te Aro, Wellington<br>New Zealand<br><br>floriade.co.nz<br><br>04 213 7952</p>
+                  <td style="padding:10px;text-align:left;font-family:Arial,sans-serif;font-size:18px;line-height:24px;">
+                    <p style="margin:0 0 18px 0;">Hi %name%,</p>
+                    <p style="margin:0 0 18px 0;">We have received your message and will endeavour to respond to your enquiry as soon as possible.</p>
+                    <p style="margin:0 0 18px 0;">Kind regards<br>Annwyn Tobin</p>
                   </td>
                 </tr>
               </table>
 
-              <div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div>
+{% include "email/divider.njk" %}
+
+{% include "email/footer.njk" %}
+
             </div>
             <!--[if mso]>
               </td>

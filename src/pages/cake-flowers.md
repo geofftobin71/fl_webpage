@@ -30,5 +30,6 @@ page_sections:
   message: How can we help you with Cake Flowers?
   email_subject: Cake Flowers
   email_heading: Thankyou for contacting Floriade regarding Cake Flowers.
+  email_banner: /v1608242593/cake-flowers/cake-flowers-by-floriade-00005.jpg
 
 ---
