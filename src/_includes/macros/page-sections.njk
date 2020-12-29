@@ -47,25 +47,27 @@
 
 
 
-{% macro contact_form_section(heading) %}
+{% macro contact_form_section(heading, message, button, email_subject, email_heading) %}
 
 <section>
   <div class="wrapper text-wrapper flow">
-    <h2 class="heading">{{ heading }}</h2>
+    <h2 class="heading">{{ heading or 'Contact Us' }}</h2>
     <form class="contact-form" action="">
       <label for="name-input">
         Name
-        <input id="name-input" name="name-input" type="text" placeholder="Your Name" required>
+        <input id="name-input" name="name" type="text" placeholder="Your Name" required>
       </label>
       <label for="email-input">
         Email
-        <input id="email-input" name="email-input" type="email" placeholder="Your Email" required>
+        <input id="email-input" name="email" type="email" placeholder="Your Email" required>
       </label>
       <label for="message-input">
         Message
-        <textarea id="message-input" name="message-input" placeholder="Your Message" rows="10" required></textarea>
+        <textarea id="message-input" name="message" placeholder="{{ message or 'How can we help you?' }}" rows="10" required></textarea>
       </label>
-      <input type="submit" value="Submit">
+      <input name="subject" type="hidden" value="{{ email_subject or 'Flowers Enquiry' }}">
+      <input name="heading" type="hidden" value="{{ email_heading or 'Thankyou for contacting Floriade regarding Flowers.' }}">
+      <button type="submit">{{ button or 'Send Message' }}</button>
     </form>
   </div>
 </section>

@@ -35,9 +35,6 @@ with context %}
   #split-landing .header .content {
     align-items: flex-start;
   }
-  #split-landing > div {
-    padding: 0 1.5em;
-  }
   @media screen and (orientation: landscape) and (min-width:900px) {
     #split-landing {
       grid-template-columns: 1fr 1fr;
@@ -54,6 +51,9 @@ with context %}
     }
     #split-landing.swap .header {
       order: 2;
+    }
+    #split-landing > div {
+      padding: 0 1.5em;
     }
   }
   #split-landing .background { 
@@ -95,7 +95,7 @@ with context %}
 		    {% if section.template == "text-section" %}
 		      {{ text_section(section.text) }}
 		    {% elif section.template == "contact-form-section" %}
-		      {{ contact_form_section(section.heading) }}
+		      {{ contact_form_section(section.heading, section.message, section.button, section.email_subject, section.email_heading) }}
 		    {% endif %}
 		  {% endfor %}
     </div>

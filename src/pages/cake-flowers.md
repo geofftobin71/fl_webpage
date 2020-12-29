@@ -26,6 +26,9 @@ page_sections:
     Phasellus a facilisis nisi. Praesent interdum finibus magna, vitae consequat sapien rutrum ac. Donec eu lectus sit amet purus scelerisque euismod.
 
 - template: contact-form-section
-  heading: Cake Flowers Enquiry
+  heading: Ask us about Cake Flowers
+  message: How can we help you with Cake Flowers?
+  email_subject: Cake Flowers
+  email_heading: Thankyou for contacting Floriade regarding Cake Flowers.
 
 ---
