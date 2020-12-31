@@ -100,11 +100,14 @@
 /* ----- Site Menu ----- */
 
 #site-menu {
-  position: sticky;
+  background: transparent;
+  position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 99;
-  transition: top 300ms;
+  transition: background 150ms ease-in;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
 }
 
 #site-menu ul {
@@ -118,11 +121,19 @@
   text-align: center;
 }
 
+#site-menu.opaque {
+  background: var(--color-shade1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
+}
+
+/*
 @media screen and (max-width: 900px) {
   #site-menu {
     display: none;
   }
 }
+*/
 
 /* ----- Header ----- */
 
@@ -165,8 +176,14 @@
   text-align: center;
   font-family: var(--font-family-secondary);
   color: var(--color-dark);
-  background: var(--color-shade4);
+  background: var(--color-shade3);
   padding: 0.5rem 1rem;
+}
+
+@media screen and (orientation: landscape) {
+  .header {
+    height: 40vh;
+  }
 }
 
 /* ----- Background Image ----- */
