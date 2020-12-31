@@ -19,8 +19,8 @@ if ($_POST) {
   $email_banner = clean($_POST['banner']);
   $alt_text = clean($_POST['alt']);
 
-  $mail_template = file_get_contents('/email/contact-thankyou.html');
-  $self_mail_template = file_get_contents('/email/contact-message.html');
+  $mail_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/email/contact-thankyou.html');
+  $self_mail_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/email/contact-message.html');
 
   $placeholders = [
     '%name%',
@@ -66,7 +66,7 @@ if ($_POST) {
 
       } catch (Exception $e) {
         http_response_code(500);
-        echo '<span style="color:red">There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
+        echo '<span style="color:red">A: There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
         return;
       }
 
@@ -83,7 +83,7 @@ if ($_POST) {
 
       } catch (Exception $e) {
         http_response_code(500);
-        echo '<span style="color:red">There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
+        echo '<span style="color:red">B: There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
         return;
       }
 
@@ -92,72 +92,14 @@ if ($_POST) {
 
     } else {
       http_response_code(500);
-      echo '<span style="color:red">There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
+      echo '<span style="color:red">C: There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
       return;
     }
   } elseif($responseKeys["error-codes"]) {
     http_response_code(500);
-    echo '<span style="color:red">There was a problem sending your message.<br>' . json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT) . '</span>';
+    echo '<span style="color:red">D: There was a problem sending your message.<br>' . json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT) . '</span>';
     return;
   }
 }
-    /*
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, array(
-      'secret' => $recaptcha_secret,
-      'response' => $response,
-      'remoteip' => $remoteip
-    ));
-    $curlData = curl_exec($curl);
-    curl_close($curl);
-
-    $recaptcha = json_decode($curlData, true);
-
-    if ($recaptcha["success"]) {
-
-      // ========== Contact Form Email ==========
-
-      try {
-        $selfmail->setFrom($email_address, $name);
-        $selfmail->addAddress('flowers@floriade.co.nz', 'Floriade');
-        $selfmail->Subject = $subject;
-
-        $selfmail->Body = $self_mail_body;
-
-        $selfmail->send();
-
-      } catch (Exception $e) {
-        http_response_code(500);
-        echo '<span style="color:red">There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
-        return;
-      }
-
-      // ========== Confirmation Email ==========
-
-      try {
-        $mail->addAddress($email_address, $name);
-        $mail->setFrom('flowers@floriade.co.nz', 'Floriade');
-        $mail->Subject = $subject . ' (auto-reply)';
-
-        $mail->Body = $mail_body;
-
-        $mail->send();
-
-      } catch (Exception $e) {
-        http_response_code(500);
-        echo '<span style="color:red">There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
-        return;
-      }
-
-      echo '<span style="color:#67902a">Thanks for contacting us. Your message was sent successfully.</span>';
-    }
-    else {
-      http_response_code(500);
-      echo '<span style="color:red">There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
-    }
-     */
 
 ?>
