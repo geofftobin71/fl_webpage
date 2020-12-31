@@ -96,6 +96,12 @@ with context %}
 		      {{ text_section(section.text) }}
 		    {% elif section.template == "contact-form-section" %}
 		      {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, alt or site.alt ) }}
+          {% set js %}
+            {% include "js/contact-form-handler.js" %}
+          {% endset %}
+          <script>
+            {{ js | jsmin | safe }}
+          </script>
 		    {% endif %}
 		  {% endfor %}
     </div>

@@ -52,25 +52,30 @@
 <section>
   <div class="wrapper text-wrapper flow">
     <h2 class="heading">{{ heading or 'Contact Us' }}</h2>
-    <form class="contact-form" action="https://floriade.co.nz/contact-form-handler.php">
+    <form id="contact-form" action="/php/contact-form-handler.php" method="post">
       <label for="name-input">
         Name
-        <input id="name-input" name="name" type="text" placeholder="Your Name" required>
+        <input id="name-input" name="name" type="text" placeholder="Your Name">
       </label>
       <label for="email-input">
         Email
-        <input id="email-input" name="email" type="email" placeholder="Your Email" required>
+        <input id="email-input" name="email" type="email" placeholder="Your Email">
       </label>
       <label for="message-input">
         Message
-        <textarea id="message-input" name="message" placeholder="{{ message or 'How can we help you?' }}" rows="10" required></textarea>
+        <textarea id="message-input" name="message" placeholder="{{ message or 'How can we help you?' }}" rows="10"></textarea>
       </label>
-      <input name="subject" type="hidden" value="{{ email_subject or 'Flowers Enquiry' }}">
-      <input name="heading" type="hidden" value="{{ email_heading or 'Thankyou for contacting Floriade.' }}">
-      <input name="banner" type="hidden" value="{{ email_banner or 'https://floriade.co.nz/images/floriade-icon-round-512.png' }}">
-      <input name="alt" type="hidden" value="{{ alt or 'Flowers by Floriade' }}">
-      <button type="submit">{{ button or 'Send Message' }}</button>
+      <input id="subject-input" name="subject" type="hidden" value="{{ email_subject or 'Flowers Enquiry' }}">
+      <input id="heading-input" name="heading" type="hidden" value="{{ email_heading or 'Thankyou for contacting Floriade.' }}">
+      <input id="banner-input" name="banner" type="hidden" value="{{ email_banner or 'https://floriade.co.nz/images/floriade-icon-round-512.png' }}">
+      <input id="alt-input" name="alt" type="hidden" value="{{ alt or 'Flowers by Floriade' }}">
+      <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
+
+      <p class="text-center font-secondary" style="color:red;min-height:1.5em" id="response-message">&nbsp;</p>
+      {# <button type="submit">{{ button or 'Send Message' }}</button> #}
+      <div class="text-center"><button class="button" type="submit">{{ button or 'Send Message' }}</button></div>
     </form>
+    <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
   </div>
 </section>
 

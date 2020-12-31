@@ -21,16 +21,12 @@
     {{ css | cssmin | safe }}
     </style>
 
-    <noscript>
-      <style>
-        [data-src] {
-          display: none;
-        }
-      </style>
-    </noscript>
+    <noscript><style>[data-src]{display:none;}</style></noscript>
 
     {% block head %}
     {% endblock %}
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{ keys.recaptcha_site_key }}" async defer></script>
   </head>
 
   <body>
