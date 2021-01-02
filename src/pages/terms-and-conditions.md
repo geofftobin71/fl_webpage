@@ -94,6 +94,6 @@ page_sections:
 
     ## image copyright
 
-    All images on our website remain property of Floriade Ltd. or that of credited photographers as labelled. No images are to be used without our permission. Please contact us at [flowers@floriade.co.nz](mailto\:flowers@floriade.co.nz\?subject\=Image%20enquiry) if you would like permission to use any of our images.
+    All images on our website remain property of Floriade Ltd. or that of credited photographers as labelled. No images are to be used without our permission. Please contact us at [flowers@floriade.co.nz](mailto\:flowers@floriade.co.nz\?subject\=Image%20Enquiry) if you would like permission to use any of our images.
 
 ---

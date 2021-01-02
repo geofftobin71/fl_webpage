@@ -14,7 +14,7 @@
         </div>
         <div class="stack center" style="padding-bottom:var(--section-padding)">
           <h4>Contact</h4>
-          <p><a href="mailto:{{ site.email }}?subject=Flowers Enquiry" title="Send us a message">{{ site.email }}</a></p>
+          <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message">{{ site.email_obf | safe }}</a></p>
           <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
         </div>
       </div>

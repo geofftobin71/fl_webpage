@@ -70,6 +70,8 @@ with context %}
   <style>
     {{ css | cssmin | safe }}
   </style>
+
+  <script src="https://www.google.com/recaptcha/api.js?render={{ keys.recaptcha_site_key }}" async defer></script>
 {% endblock %}
 
 {% block content %}
@@ -78,7 +80,7 @@ with context %}
     <header class="header">
       {% for image in images %}
         <figure class="background">
-          {% respimg image, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
+          {% respimg image | stripVersion, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
         </figure>
       {% endfor %}
       <div class="content">

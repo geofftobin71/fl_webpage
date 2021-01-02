@@ -15,8 +15,8 @@
 <section>
   <div class="cover shadow" style="--min-height:75vmin">
     <figure class="background">
-      {# <img src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}"> #}
-      <img style="filter:grayscale(100%) contrast(70%) brightness(80%) opacity(50%)" src="{{ site.cloudinary_url }}{{ image }}" alt="{{ alt or site.alt }}">
+      {# <img src="{{ site.cloudinary_url }}{{ image | stripVersion }}" alt="{{ alt or site.alt }}"> #}
+      <img style="filter:grayscale(100%) contrast(70%) brightness(80%) opacity(50%)" src="{{ site.cloudinary_url }}{{ image | stripVersion }}" alt="{{ alt or site.alt }}">
     </figure>
     <article class="centered wrapper text-wrapper">
       {% markdown text %}
@@ -33,7 +33,7 @@
 <section>
   <div class="domino{{ ' swap' if swap }}">
     <figure>
-      {% respimg image, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "img-cover", true %}
+      {% respimg image | stripVersion, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "img-cover", true %}
     </figure>
     <div class="center-both">
       <article class="wrapper text-wrapper">
@@ -52,7 +52,7 @@
 <section>
   <div class="wrapper text-wrapper flow">
     <h2 class="heading">{{ heading or 'Contact Us' }}</h2>
-    <form id="contact-form" action="/php/contact-form-handler.php" method="post">
+    <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
       <label for="name-input">
         Name
         <input id="name-input" name="name" type="text" placeholder="Your Name">
@@ -74,8 +74,14 @@
       <p class="text-center font-secondary" style="color:red;min-height:1.5em" id="response-message">&nbsp;</p>
       {# <button type="submit">{{ button or 'Send Message' }}</button> #}
       <div class="text-center"><button class="button" type="submit">{{ button or 'Send Message' }}</button></div>
+      <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
     </form>
-    <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
+    <noscript>
+      <div class="text-center flow" style="margin-top:1em">
+        <p><a href="{{ site.mailto_obf | safe }}?subject={{ email_subject or 'Flowers Enquiry' }}" title="Send us a message">{{ site.email_obf | safe }}</a></p>
+        <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
+      </div>
+    </noscript>
   </div>
 </section>
 
@@ -138,7 +144,7 @@
       <div class="caption">
         <h4>{{ image.context.alt or alt or site.alt }}</h4>
       <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
-      <h5 class="link-light"><a href="mailto:{{ site.email }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0A%0A{{ image.context.alt or alt or site.alt }}%0A%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image{# ( {{ image.public_id }} ) #}</a></h5>
+      <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image{# ( {{ image.public_id }} ) #}</a></h5>
       </div>
 
       {% if loop.index > 1 %}

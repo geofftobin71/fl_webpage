@@ -12,6 +12,8 @@
   "address": "18 Cambridge Terrace",
   "address2": "Te Aro, Wellington, 6011",
   "email": "flowers@floriade.co.nz",
+  "email_obf": "&#x66;&#108;&#x6f;&#119;&#101;&#x72;&#x73;&#64;&#102;&#108;&#x6f;&#x72;&#105;&#97;&#x64;&#101;&#x2e;&#99;&#111;&#46;&#110;&#x7a;",
+  "mailto_obf": "&#x6d;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x66;&#108;&#111;&#x77;&#101;&#114;&#115;&#x40;&#102;&#x6c;&#x6f;&#114;&#x69;&#x61;&#x64;&#101;&#x2e;&#x63;&#x6f;&#x2e;&#110;&#122;",
   "facebook": "https://www.facebook.com/floriadewellingtonnz/",
   "instagram": "https://instagram.com/floriade_wellington",
   "pinterest": "https://nz.pinterest.com/floriade0826",

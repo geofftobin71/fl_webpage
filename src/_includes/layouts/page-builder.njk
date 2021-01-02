@@ -3,6 +3,7 @@
   text_section,
   hero_section,
   split_image_text_section,
+  contact_form_section,
   gallery_section
 with context %}
 
@@ -15,6 +16,8 @@ with context %}
   <style>
     {{ css | cssmin | safe }}
   </style>
+
+  <script src="https://www.google.com/recaptcha/api.js?render={{ keys.recaptcha_site_key }}" async defer></script>
 {% endblock %}
 
 {% block content %}

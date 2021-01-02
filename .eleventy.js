@@ -1,4 +1,6 @@
-require("dotenv").config();
+if(process.env.NODE_ENV === 'development') {
+      require("dotenv").config();
+}
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
@@ -12,7 +14,7 @@ const markdown = require("markdown-it")({ html: true });
 
 module.exports = function (eleventyConfig) {
 
-  // eleventyConfig.deepDataMerge(true);
+  eleventyConfig.setDataDeepMerge(true);
 
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
@@ -66,8 +68,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async function(code, callback) {
     try {
-      const minified = await minify(code);
-      callback(null, minified.code);
+      if(process.env.NODE_ENV != 'development') {
+        const minified = await minify(code);
+        callback(null, minified.code);
+      } else {
+        callback(null, code);
+      }
     } catch (err) {
       console.error("Terser error: ", err);
       // Fail gracefully.
@@ -76,7 +82,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
-    if( (process.env.ELEVENTY_ENV == "prod") && outputPath.endsWith(".html") ) {
+    if( (process.env.NODE_ENV != 'development') && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
@@ -89,7 +95,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("cssmin", function(code) {
-    if(process.env.ELEVENTY_ENV == "prod") {
+    if(process.env.NODE_ENV != 'development') {
       return new CleanCSS({}).minify(code).styles;
     } else {
       return code;
@@ -140,6 +146,10 @@ module.exports = function (eleventyConfig) {
       return (offset > 0 ? '-' : '') + match.toLowerCase();
     }
     return word.replace(/[A-Z]/g, upperToHyphenLower);
+  });
+
+  eleventyConfig.addFilter("stripVersion", (path) => {
+    return path.replace(/^\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '');
   });
 
   eleventyConfig.setBrowserSyncConfig({

@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "build": "ELEVENTY_ENV=prod eleventy",
-    "dev": "ELEVENTY_ENV=dev eleventy",
-    "serve": "ELEVENTY_ENV=dev eleventy --serve",
-    "debug": "DEBUG=Eleventy* ELEVENTY_ENV=dev eleventy",
+    "dev":   "NODE_ENV=development eleventy",
+    "build": "NODE_ENV=production eleventy",
+    "serve": "NODE_ENV=development eleventy --serve",
+    "debug": "DEBUG=Eleventy* NODE_ENV=development eleventy",
     "start": "eleventy --serve"
   },
   "repository": {

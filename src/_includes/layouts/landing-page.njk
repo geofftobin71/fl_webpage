@@ -30,7 +30,7 @@
   <main>
   <div class="cover" style="--min-height:100vh;position:relative">
     <figure class="background">
-      {% respimg image, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken" %}
+      {% respimg image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken" %}
     </figure>
     <div class="centered wrapper text-wrapper flow text-center text-shadow" style="--measure:60ch">
       <h1>{{ title | lower }}</h1>
