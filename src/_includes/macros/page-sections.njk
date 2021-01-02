@@ -13,12 +13,11 @@
 {% macro hero_section(image, text) %}
 
 <section>
-  <div class="cover shadow" style="--min-height:75vmin">
+  <div class="cover shadow" style="--min-height:90vmin">
     <figure class="background">
-      {# <img src="{{ site.cloudinary_url }}{{ image | stripVersion }}" alt="{{ alt or site.alt }}"> #}
-      <img style="filter:grayscale(100%) contrast(70%) brightness(80%) opacity(50%)" src="{{ site.cloudinary_url }}{{ image | stripVersion }}" alt="{{ alt or site.alt }}">
+      {% respimg image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken30", true %}
     </figure>
-    <article class="centered wrapper text-wrapper">
+    <article class="bigfonts font-secondary centered wrapper text-wrapper flow text-center text-shadow">
       {% markdown text %}
     </article>
   </div>
@@ -51,7 +50,7 @@
 
 <section>
   <div class="wrapper text-wrapper flow">
-    <h2 class="heading">{{ heading or 'Contact Us' }}</h2>
+    <h2 class="heading text-center">{{ heading or 'Contact Us' }}</h2>
     <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
       <label for="name-input">
         Name

@@ -28,7 +28,7 @@
 {% block content %}
   {% include "partials/site-menu.njk" %}
   <main>
-  <div class="cover" style="--min-height:100vh;position:relative">
+  <div class="cover" style="--min-height:100vh">
     <figure class="background">
       {% respimg image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken" %}
     </figure>

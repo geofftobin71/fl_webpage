@@ -215,6 +215,11 @@
   filter: brightness(0.6);
 }
 
+.background .darken30 {
+  -webkit-filter: brightness(0.3);
+  filter: brightness(0.3);
+}
+
 /* ----- Section ----- */
 
 section {
@@ -376,7 +381,7 @@ article > * + * {
 strong {
   color: var(--color-shade3);
   font-family: var(--font-family-secondary);
-  font-size: var(--step-2);
+  font-size: 160%; /* var(--step-2); */
   font-weight: normal;
   display:inline;
   line-height: 1;

@@ -33,9 +33,27 @@ with context %}
       {{ split_image_text_section(section.image, section.text, section.swap) }}
     {% elif section.template == "gallery-section" %}
       {{ gallery_section() }}
+		{% elif section.template == "contact-form-section" %}
+		  {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, alt or site.alt ) }}
+      {% set js %}
+        {% include "js/contact-form-handler.js" %}
+      {% endset %}
+      <script>
+        {{ js | jsmin | safe }}
+      </script>
     {% endif %}
   {% endfor %}
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
 
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  {% include "js/lazy-images.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}
