@@ -3,53 +3,24 @@ label: Gallery Page
 hide_body: true
 fields:
 - type: text
-  name: title
-  label: Title
-- name: header_image
-  type: file
-  config:
-    maxSize: 64
-  label: Header Image
-- type: text
   name: layout
   label: Layout
   hidden: true
   default: layouts/gallery.njk
-- name: eleventyNavigation
-  type: field_group
-  config: {}
-  fields:
-  - name: key
-    type: text
-    config:
-      required: false
-    label: Name
-    description: The Name that appears on the main menu for this page
-  - name: parent
-    type: text
-    config:
-      required: false
-    label: Parent
-    description: The Parent item in the menu for this page
-  - name: order
-    type: number
-    label: Order
-    description: The order that this page appears in the main menu
-    default: 1
-    required: true
-    config:
-      min: 
-      max: 
-      step: 
-  label: Menu
 - type: text
   name: gallery_folder
   label: Gallery Folder
   description: Cloudinary folder to source images from
-- type: text
-  name: alt
-  label: Default Alt Text
-  description: Default Alt Text for any image that doesn't have its own Alt Text
+- name: seo
+  type: include
+  config: {}
+  template: seo
+  label: SEO
+- name: header
+  type: include
+  config: {}
+  template: header
+  label: Header
 - name: page_sections
   type: blocks
   label: Page Sections
