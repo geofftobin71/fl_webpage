@@ -8,8 +8,12 @@ alt: Fresh Flowers by Floriade
 eleventyNavigation:
   key: Fresh Flowers
   order: 45
+  parent: ''
 page_sections:
-  - template: gallery-section
-    text: ''
+- template: gallery-section
+  text: ''
+  folder: fresh-flowers
+description: ''
+image: ''
 
 ---
