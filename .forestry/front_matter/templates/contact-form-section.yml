@@ -1,4 +1,40 @@
 ---
 label: Contact Form Section
 hide_body: true
-fields: []
+fields:
+- name: heading
+  type: text
+  config:
+    required: false
+  label: Form Heading
+  description: 'The Heading for the form.<br><em>default: Contact Us</em>'
+- name: message
+  type: text
+  config:
+    required: false
+  label: Message Placeholder
+  description: 'Message field placeholder text.<br><em>default: How can we help you?</em>'
+- name: button
+  type: text
+  config:
+    required: false
+  label: Button Label
+  description: 'Send Button Label<br><em>default: Send Message</em>'
+- name: email_subject
+  type: text
+  config:
+    required: false
+  label: Email Subject
+  description: 'Email Subject<br><em>default: Flowers Enquiry</em>'
+- name: email_heading
+  type: text
+  config:
+    required: false
+  label: Email Heading
+  description: 'Email Heading<br><em>default: Thankyou for contacting Floriade</em>'
+- name: email_banner
+  type: file
+  config:
+    maxSize: 64
+  label: Email Banner
+  description: 'Email Banner Image<br><em>default: Floriade Logo</em>'
