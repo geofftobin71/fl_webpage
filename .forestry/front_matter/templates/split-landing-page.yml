@@ -17,15 +17,15 @@ fields:
   type: image_gallery
   config: {}
   label: Images
-- name: text
-  type: textarea
-  default: ''
+- name: page_sections
+  type: blocks
+  label: Page Sections
+  template_types:
+  - text-section
+  - contact-form-section
   config:
-    required: false
-    wysiwyg: true
-    schema:
-      format: markdown
-  label: Text
+    min: 
+    max: 
 - name: swap
   type: boolean
   label: Swap
