@@ -25,6 +25,7 @@ fields:
   - text-section
   - hero-section
   - split-image-text-section
+  - contact-form-section
   config:
     min: 
     max: 
