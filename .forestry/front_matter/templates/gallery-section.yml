@@ -2,7 +2,7 @@
 label: Gallery Section
 hide_body: true
 fields:
-- name: text
+- name: folder
   type: text
-  hidden: true
-  label: Text
+  hidden: false
+  label: Folder
