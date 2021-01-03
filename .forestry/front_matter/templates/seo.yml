@@ -14,21 +14,6 @@ fields:
   name: alt
   label: Default Alt Text
   description: Default Alt Text for any image that doesn't have its own Alt Text.
-- name: header
-  type: field_group
-  config: {}
-  fields:
-  - type: text
-    name: title
-    label: Title
-    description: Override the page title in the header (optional).
-  - name: image
-    type: file
-    config:
-      maxSize: 64
-    label: Image
-    description: The background image for the page header.
-  label: Header
 - name: eleventyNavigation
   type: field_group
   config: {}
