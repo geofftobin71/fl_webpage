@@ -3,11 +3,6 @@ label: Gallery Section
 hide_body: true
 fields:
 - name: text
-  type: textarea
-  default: ''
-  config:
-    required: false
-    wysiwyg: true
-    schema:
-      format: markdown
+  type: text
+  hidden: true
   label: Text
