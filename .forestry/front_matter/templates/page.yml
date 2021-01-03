@@ -13,6 +13,11 @@ fields:
   config: {}
   template: seo
   label: SEO
+- name: header
+  type: include
+  config: {}
+  template: header
+  label: Header
 - name: page_sections
   type: blocks
   label: Page Sections
