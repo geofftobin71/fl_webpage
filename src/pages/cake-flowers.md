@@ -12,8 +12,8 @@ swap: false
 layout: layouts/split-landing-page.njk
 eleventyNavigation:
   key: Cake Flowers
-  parent: ''
-  order: 51
+  parent: Flowers
+  order: 140
 page_sections:
 - template: text-section
   text: |-

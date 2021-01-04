@@ -6,7 +6,7 @@ header:
 layout: layouts/page-builder.njk
 eleventyNavigation:
   key: About
-  order: 5
+  order: 30
 page_sections:
 - template: text-section
   text: |-

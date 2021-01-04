@@ -1,20 +1,20 @@
 {% extends "layouts/page.njk" %}
 {% from "macros/page-sections.njk" import
-  text_section,
-  hero_section,
-  split_image_text_section,
-  contact_form_section,
-  gallery_section
+text_section,
+hero_section,
+split_image_text_section,
+contact_form_section,
+gallery_section
 with context %}
 
 {% block head %}
   {{ super() }}
   {% set css %}
-    {% include "css/form.css" %}
+  {% include "css/form.css" %}
   {% endset %}
 
   <style>
-    {{ css | cssmin | safe }}
+{{ css | cssmin | safe }}
   </style>
 
   <script src="https://www.google.com/recaptcha/api.js?render={{ keys.recaptcha_site_key }}" async defer></script>
@@ -22,8 +22,8 @@ with context %}
 
 {% block content %}
   {% include "partials/site-menu.njk" %}
+  <main class="scroll-container">
   {% include "partials/header.njk" %}
-  <main>
   {% for section in page_sections %}
     {% if section.template == "text-section" %}
       {{ text_section(section.text) }}
@@ -33,18 +33,18 @@ with context %}
       {{ split_image_text_section(section.image, section.text, section.swap) }}
     {% elif section.template == "gallery-section" %}
       {{ gallery_section() }}
-		{% elif section.template == "contact-form-section" %}
-		  {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, alt or site.alt ) }}
+    {% elif section.template == "contact-form-section" %}
+      {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, alt or site.alt ) }}
       {% set js %}
-        {% include "js/contact-form-handler.js" %}
+      {% include "js/contact-form-handler.js" %}
       {% endset %}
       <script>
         {{ js | jsmin | safe }}
       </script>
     {% endif %}
   {% endfor %}
-  </main>
   {% include "partials/footer.njk" %}
+  </main>
 {% endblock %}
 
 {% block foot %}

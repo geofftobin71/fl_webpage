@@ -1,3 +1,4 @@
 <nav id="site-menu" class="text-lowercase font-secondary link-lighter">
     {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+    {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
 </nav>

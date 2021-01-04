@@ -1,12 +1,12 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
+  <main class="scroll-container">
   {% include "partials/site-menu.njk" %}
   {% include "partials/header.njk" %}
-  <main>
   {{ super() }}
-  </main>
   {% include "partials/footer.njk" %}
+  </main>
 {% endblock %}
 
 {% block foot %}

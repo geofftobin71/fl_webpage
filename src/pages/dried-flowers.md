@@ -7,7 +7,8 @@ gallery_folder: dried-flowers
 alt: Dried Flowers by Floriade
 eleventyNavigation:
   key: Dried Flowers
-  order: 45
+  parent: Flowers
+  order: 120
 page_sections:
 - template: gallery-section
 

@@ -62,6 +62,24 @@
   border-width: var(--box-border-width, 2px);
 }
 
+.scroll-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+@supports (background: -webkit-named-image(i)) {
+  .scroll-container {
+    height: -webkit-fill-available;
+  }
+}
+
+.scroll-section {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
 /* ----- The Cover ----- */
 
 .cover {
@@ -116,13 +134,14 @@
 
 #site-menu ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
   margin:0;
   padding: 0.25rem;
 }
 
 #site-menu li {
   text-align: center;
+  white-space: nowrap;
 }
 
 #site-menu.opaque {
@@ -131,26 +150,28 @@
   text-shadow: none;
 }
 
-/*
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 750px) {
   #site-menu {
     display: none;
   }
 }
-*/
+
+@media screen and (orientation: landscape) and (max-width: 950px) {
+  #site-menu {
+    display: none;
+  }
+}
 
 /* ----- Header ----- */
 
 .header {
-  height: 30vh;
-  min-height:200px;
-  position:relative;
+  height: min-content;
+  position: relative;
 }
 
 .header .content {
-  padding: 2rem;
+  padding: 10vh 3vw;
   height: 100%;
-  min-height:200px;
   display:flex;
   align-items:center;
   flex-wrap: wrap;
@@ -165,8 +186,8 @@
 .header .logo img {
   width:15vh;
   min-width:125px;
-  -webkit-filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2)); */
-  filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2)); */
+  -webkit-filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+  filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
 }
 
 .header h1 {
@@ -176,18 +197,25 @@
   z-index: 2;
 }
 
+@media screen and (orientation: portrait) and (max-width: 750px) {
+  .header .content {
+    padding: 5vh 3vw;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+  .header h1 {
+    margin-top: 1em;
+    text-align: center;
+  }
+}
+
 .banner-message {
   text-align: center;
   font-family: var(--font-family-secondary);
   color: var(--color-dark);
   background: var(--color-shade3);
   padding: 0.5rem 1rem;
-}
-
-@media screen and (orientation: landscape) {
-  .header {
-    height: 40vh;
-  }
 }
 
 /* ----- Background Image ----- */
@@ -313,13 +341,13 @@ article > * + * {
 
 /*
 .center {
-  box-sizing: content-box;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--measure);
+box-sizing: content-box;
+display: block;
+margin-left: auto;
+margin-right: auto;
+max-width: var(--measure);
 }
-*/
+ */
 
 /* ----- Domino ----- */
 
@@ -431,11 +459,11 @@ strong {
 
 /*
 @supports (background: -webkit-named-image(i)) {
-  .full-height {
-    height: -webkit-fill-available;
-  }
+.full-height {
+height: -webkit-fill-available;
 }
-*/
+}
+ */
 
 /* ----- The Frame ----- */
 

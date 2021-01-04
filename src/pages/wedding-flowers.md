@@ -7,7 +7,8 @@ gallery_folder: wedding-flowers
 alt: Wedding Flowers by Floriade
 eleventyNavigation:
   key: Wedding Flowers
-  order: 40
+  parent: Flowers
+  order: 130
 page_sections:
 - template: gallery-section
 
