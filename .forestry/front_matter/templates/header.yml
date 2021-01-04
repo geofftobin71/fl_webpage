@@ -18,15 +18,15 @@ fields:
       maxSize: 64
     label: Image
     description: The background image for the page header.
+  - name: brightness
+    type: number
+    label: Brightness
+    description: Brightness of the header image. Allow the header text and menu to
+      be more visible.
+    default: 0
+    required: true
+    config:
+      min: 10
+      max: 100
+      step: 10
   label: Header
-- name: brightness
-  type: number
-  label: Brightness
-  description: Brightness of the header image. Allows the header text and menu to
-    be more visible.
-  default: 0
-  required: true
-  config:
-    min: 10
-    max: 100
-    step: 10
