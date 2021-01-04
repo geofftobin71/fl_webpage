@@ -44,7 +44,7 @@
 }
 
 .text-shadow {
-  text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
+  text-shadow: 0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
 }
 
 .shadow {
@@ -62,6 +62,7 @@
   border-width: var(--box-border-width, 2px);
 }
 
+/*
 .scroll-container {
   height: 100vh;
   overflow-y: auto;
@@ -76,9 +77,10 @@
 }
 
 .scroll-section {
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   scroll-snap-stop: normal;
 }
+*/
 
 /* ----- The Cover ----- */
 
@@ -132,14 +134,14 @@
   text-shadow: 0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
 }
 
-#site-menu ul {
+#site-menu ul, .site-menu ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
   margin:0;
   padding: 0.25rem;
 }
 
-#site-menu li {
+#site-menu li, .site-menu li {
   text-align: center;
   white-space: nowrap;
 }
@@ -151,13 +153,13 @@
 }
 
 @media screen and (max-width: 750px) {
-  #site-menu {
+  #site-menu, .site-menu {
     display: none;
   }
 }
 
 @media screen and (orientation: landscape) and (max-width: 950px) {
-  #site-menu {
+  #site-menu, .site-menu {
     display: none;
   }
 }

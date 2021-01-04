@@ -2,6 +2,9 @@
   <figure class="background">
     <img class="darken" src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto/{{ header.image | stripVersion }}" alt="Header image">
   </figure>
+  <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
+    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+  </nav>
   <div class="content">
     <figure class="logo">
       <a href="/">
@@ -10,6 +13,9 @@
     </figure>
     <h1>{{ (header.title or title) | lower }}</h1>
   </div>
+  <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
+    {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
+  </nav>
 </header>
 <aside class="banner-message link-dark">
   {% markdown banner_message.message %}

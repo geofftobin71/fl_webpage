@@ -26,12 +26,16 @@
 {% endblock %}
 
 {% block content %}
-  {% include "partials/site-menu.njk" %}
+  {# include "partials/site-menu.njk" #}
   <main>
   <div class="cover" style="--min-height:100vh">
     <figure class="background">
       {% respimg image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken" %}
     </figure>
+    <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
+      {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+      {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
+    </nav>
     <div class="centered wrapper text-wrapper flow text-center text-shadow" style="--measure:60ch">
       <h1>{{ title | lower }}</h1>
       {% markdown text %}
