@@ -1,7 +1,10 @@
+horizontal scroll snap reviews section / lightbox
+lqip for single images
+Header Cover with top / bottom menus (sticky?)
+gallery_folder => gallery:folder
 Split landing page template text=>page builder
 landing-page forestry template =>
 contact form error page
-Move Header section out of Page forestry template
 Subdivide layout.css ?
 Move lazy-images.js from base.njk ?
 Lightbox lazy loading ?

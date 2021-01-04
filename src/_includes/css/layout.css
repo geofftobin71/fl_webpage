@@ -76,8 +76,8 @@
 }
 
 .scroll-section {
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 /* ----- The Cover ----- */
