@@ -241,13 +241,9 @@
 }
 
 .background .darken {
-  -webkit-filter: brightness(0.6);
-  filter: brightness(0.6);
-}
-
-.background .darken30 {
-  -webkit-filter: brightness(0.3);
-  filter: brightness(0.3);
+  --brightness: 50%;
+  -webkit-filter: brightness(var(--brightness));
+  filter: brightness(var(--brightness));
 }
 
 /* ----- Section ----- */
@@ -452,20 +448,6 @@ strong {
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
 }
-
-/* ----- Full Height ----- */
-
-.height-full {
-  min-height: 100vh;
-}
-
-/*
-@supports (background: -webkit-named-image(i)) {
-.full-height {
-height: -webkit-fill-available;
-}
-}
- */
 
 /* ----- The Frame ----- */
 

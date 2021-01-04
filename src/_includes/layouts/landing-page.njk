@@ -4,13 +4,15 @@
   {{ super() }}
   {% set css %}
   .cover {
-    height: 100vh;
+    /* min-height: 100vh; */
   }
+  /*
   @supports (background: -webkit-named-image(i)) {
     .cover {
-      height: -webkit-fill-available;
+      min-height: -webkit-fill-available;
     }
   }
+  */
   .cover h1 {
     font-size: var(--step-4);
   }
