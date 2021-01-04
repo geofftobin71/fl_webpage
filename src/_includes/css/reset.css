@@ -1,7 +1,7 @@
 *, ::before, ::after { box-sizing: border-box; }
 
 html {
-  height: 100vh;
+  height: -webkit-fill-available;
   scroll-behavior: smooth;
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
@@ -12,18 +12,9 @@ html {
 
 body {
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   text-rendering: optimizeSpeed;
   overflow-x: hidden;
-}
-
-@supports (background: -webkit-named-image(i)) {
-  html {
-    height: -webkit-fill-available;
-  }
-
-  body {
-    min-height: -webkit-fill-available;
-  }
 }
 
 body, h1, h2, h3, h4, h5, h6, p, ul[class], ol[class], figure, blockquote, dl, dd {
@@ -170,5 +161,6 @@ option[default] {
 }
 
 img:not([alt]) {
-  filter: blur(10px);
+  /* filter: blur(10px); */
+  border: 4px solid red;
 }

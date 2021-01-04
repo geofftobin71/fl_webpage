@@ -1,46 +1,26 @@
 {% extends "layouts/base.njk" %}
 
-{% block head %}
-  {{ super() }}
-  {% set css %}
-  .cover {
-    /* min-height: 100vh; */
-  }
-  /*
-  @supports (background: -webkit-named-image(i)) {
-    .cover {
-      min-height: -webkit-fill-available;
-    }
-  }
-  */
-  .cover h1 {
-    font-size: var(--step-4);
-  }
-  .cover p {
-    font-size: var(--step-1);
-    font-family: var(--font-family-secondary);
-  }
-  {% endset %}
-
-  <style>
-    {{ css | cssmin | safe }}
-  </style>
-{% endblock %}
-
 {% block content %}
-  {# include "partials/site-menu.njk" #}
+  <style>body,main{flex:1;display:flex;flex-direction:column;}.logo{width:20vmin;min-width:125px;margin:0 auto;}.site-menu{position:absolute;top:0;left:0;right:0;}</style>
   <main>
-  <div class="cover" style="--min-height:100vh">
-    <figure class="background">
-      {% respimg image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken" %}
+  <div class="cover" style="flex:1;">
+    <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
+      {% respimg header.image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
     </figure>
     <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
       {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
       {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
     </nav>
-    <div class="centered wrapper text-wrapper flow text-center text-shadow" style="--measure:60ch">
-      <h1>{{ title | lower }}</h1>
-      {% markdown text %}
+    <div class="centered">
+      <figure class="logo">
+        <a href="/">
+          <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo">
+        </a>
+      </figure>
+      <div class="wrapper text-wrapper flow bigfonts font-secondary text-center text-shadow" style="--measure:60ch">
+        <h1>{{ title | lower }}</h1>
+        {% markdown text %}
+      </div>
     </div>
   </div>
   </main>

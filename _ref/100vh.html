@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>100vh</title>
+    <style>
+    *, ::before, ::after { box-sizing: border-box; }
+    html {
+      height: -webkit-fill-available;
+      background: lightgray;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      background: lightgreen;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    div {
+      background: coral;
+      margin: 0;
+      padding: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-size: 3rem;
+      text-align: center;
+    }
+    div + div {
+      background: lightblue;
+    }
+    @supports (xbackground: -webkit-named-image(i)) {
+      html {
+        height: -webkit-fill-available;
+      }
+      body {
+        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div>Top</div>
+    <div>Bottom</div>
+  </body>
+</html>

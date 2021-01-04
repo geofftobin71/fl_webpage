@@ -44,11 +44,6 @@ with context %}
       position: sticky;
       top: 0;
     }
-    @supports (background: -webkit-named-image(i)) {
-      #split-landing .header {
-        height: -webkit-fill-available;
-      }
-    }
     #split-landing.swap .header {
       order: 2;
     }
@@ -79,7 +74,7 @@ with context %}
   <div id="split-landing" {{ ' class="swap"' | safe if swap }}>
     <header class="header">
       {% for image in images %}
-        <figure class="background">
+        <figure class="background" style="--brightness:75%">
           {% respimg image | stripVersion, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject" %}
         </figure>
       {% endfor %}

@@ -64,16 +64,11 @@
 
 /*
 .scroll-container {
-  height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
-}
-
-@supports (background: -webkit-named-image(i)) {
-  .scroll-container {
-    height: -webkit-fill-available;
-  }
 }
 
 .scroll-section {
@@ -185,8 +180,8 @@
   z-index: 2;
 }
 
-.header .logo img {
-  width:15vh;
+.logo img {
+  width:20vmin;
   min-width:125px;
   -webkit-filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
   filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
@@ -223,6 +218,7 @@
 /* ----- Background Image ----- */
 
 .background {
+  --brightness: 50%;
   position: absolute;
   top: 0;
   left: 0;
@@ -238,10 +234,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
-}
-
-.background .darken {
-  --brightness: 50%;
   -webkit-filter: brightness(var(--brightness));
   filter: brightness(var(--brightness));
 }

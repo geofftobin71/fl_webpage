@@ -14,14 +14,6 @@
   z-index: 998;
 }
 
-/*
-@supports (background: -webkit-named-image(i)) {
-  #lightbox {
-    height: -webkit-fill-available;
-  }
-}
-*/
-
 .lightbox__slide {
   --fade-duration: 0.5s;
   z-index: 1;
