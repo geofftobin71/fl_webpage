@@ -1,5 +1,5 @@
 const cloudinary = require('cloudinary').v2;
-const fetch = require('fetch-base64');
+const fetch64 = require('fetch-base64');
 
 const getPreview = async (item) => {
   let newItem = {};
@@ -12,7 +12,7 @@ const getPreview = async (item) => {
   }
 
   let source = "https://res.cloudinary.com/floriade/c_limit,w_32,h_32,f_jpg,e_blur:200/" + item.public_id;
-  let base64 = await fetch.remote(source);
+  let base64 = await fetch64.remote(source);
   newItem.preview = "data:image/jpeg;base64," + base64[0];
 
   return (newItem);

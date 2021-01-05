@@ -55,12 +55,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("respimg", (path, alt, sizes, transforms, classes, lazy ) => {
     const cloudinary = `https://res.cloudinary.com/floriade`;
     const src = `${cloudinary}/${transforms ? transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${path}`;
+    const preview = `${cloudinary}/c_limit,w_64,h_64,f_jpg,e_blur:200/${path}`;
     const srcset = eleventyConfig.srcsetWidths.map(w => {
       return `${cloudinary}/${transforms ? transforms : 'q_auto,f_auto'},w_${w}/${path} ${w}w`;
     }).join(', ');
 
     if(lazy) {
-      return `<noscript><img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}"></noscript><img data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" data-src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}" loading="lazy">`;
+      return `<noscript><img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}"></noscript><img data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" data-src="${src}" src="${preview}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}" loading="xlazy">`;
     } else {
       return `<img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}">`;
     }
