@@ -2,18 +2,20 @@
 title: Cake Flowers
 description: Cake Flowers by Floriade are awesome
 alt: Cake Flowers by Floriade
-header:
-  image: "/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg"
-  brightness: 50
-layout: layouts/page-builder.njk
+images:
+- "/v1609034592/cake-flowers/cake-flowers-by-floriade-00001.jpg"
+- "/v1608242592/cake-flowers/cake-flowers-by-floriade-00002.jpg"
+- "/v1608242593/cake-flowers/cake-flowers-by-floriade-00003.jpg"
+- "/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg"
+- "/v1608242593/cake-flowers/cake-flowers-by-floriade-00005.jpg"
+swap: false
+layout: layouts/split-landing-page.njk
 eleventyNavigation:
   key: Cake Flowers
   parent: Flowers
   order: 140
 page_sections:
-- template: split-image-text-section
-  swap: true
-  image: "/v1609034592/cake-flowers/cake-flowers-by-floriade-00001.jpg"
+- template: text-section
   text: |-
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus porta, commodo leo eget, finibus lacus. Suspendisse accumsan ante eget tincidunt hendrerit.
   
@@ -28,6 +30,6 @@ page_sections:
   message: How can we help you with Cake Flowers?
   email_subject: Cake Flowers
   email_heading: Thankyou for contacting Floriade regarding Cake Flowers.
-  email_banner: /v1608242593/cake-flowers/cake-flowers-by-floriade-00002.jpg
+  email_banner: /v1608242593/cake-flowers/cake-flowers-by-floriade-00005.jpg
 
 ---

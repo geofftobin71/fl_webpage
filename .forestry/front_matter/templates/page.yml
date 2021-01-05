@@ -31,5 +31,6 @@ fields:
     max: 
 pages:
 - src/pages/about.md
+- src/pages/cake-flowers.md
 - src/pages/contact.md
 - src/pages/terms-and-conditions.md
