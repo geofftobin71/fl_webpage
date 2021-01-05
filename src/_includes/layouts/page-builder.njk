@@ -21,8 +21,7 @@ with context %}
 {% endblock %}
 
 {% block content %}
-  {# include "partials/site-menu.njk" #}
-  <main class="scroll-container">
+  <main>
   {% include "partials/header.njk" %}
   {% for section in page_sections %}
     {% if section.template == "text-section" %}

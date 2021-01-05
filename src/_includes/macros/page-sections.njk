@@ -1,6 +1,6 @@
 {% macro text_section(text) %}
 
-<section class="scroll-section">
+<section>
   <article class="wrapper text-wrapper">
     {% markdown text %}
   </article>
@@ -12,7 +12,7 @@
 
 {% macro hero_section(image, text) %}
 
-<section class="scroll-section">
+<section>
   <div class="cover shadow" style="--min-height:90vmin">
     <figure class="background">
       {% respimg image | stripVersion, alt or site.alt, "100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "darken", true %}
@@ -29,7 +29,7 @@
 
 {% macro split_image_text_section(image, text, swap) %}
 
-<section class="scroll-section">
+<section>
   <div class="domino{{ ' swap' if swap }}">
     <figure>
       {% respimg image | stripVersion, alt or site.alt, "(orientation: landscape) 50vw, 100vw", "c_fill,ar_1,q_auto,f_auto,g_auto:subject", "img-cover", true %}
@@ -48,7 +48,7 @@
 
 {% macro contact_form_section(heading, message, button, email_subject, email_heading, email_banner, alt) %}
 
-<section class="scroll-section">
+<section>
   <div class="wrapper text-wrapper flow">
     <h2 class="heading text-center">{{ heading or 'Contact Us' }}</h2>
     <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">

@@ -13,7 +13,7 @@ eleventyNavigation:
 
 <section class="wrapper stack center" style="--space:var(--step-4)">
   {% for item in reviews | shuffle -%}
-    <div class="scroll-section review round-box border-shade2 shadow">
+    <div class="review round-box border-shade2 shadow">
       <div class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
         <p>{{ item.review }}</p>
         <p class="font-secondary color-shade4">{{ item.name }}</p>

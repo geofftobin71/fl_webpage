@@ -62,21 +62,6 @@
   border-width: var(--box-border-width, 2px);
 }
 
-/*
-.scroll-container {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.scroll-section {
-  scroll-snap-align: center;
-  scroll-snap-stop: normal;
-}
-*/
-
 /* ----- The Cover ----- */
 
 .cover {
@@ -118,43 +103,26 @@
 
 /* ----- Site Menu ----- */
 
-#site-menu {
-  background: transparent;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  transition: background 150ms ease-in;
-  text-shadow: 0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
-}
-
-#site-menu ul, .site-menu ul {
+.site-menu ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
   margin:0;
   padding: 0.25rem;
 }
 
-#site-menu li, .site-menu li {
+.site-menu li {
   text-align: center;
   white-space: nowrap;
 }
 
-#site-menu.opaque {
-  background: var(--color-shade1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  text-shadow: none;
-}
-
 @media screen and (max-width: 750px) {
-  #site-menu, .site-menu {
+  .site-menu {
     display: none;
   }
 }
 
 @media screen and (orientation: landscape) and (max-width: 950px) {
-  #site-menu, .site-menu {
+  .site-menu {
     display: none;
   }
 }

@@ -1,21 +1,9 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <main class="scroll-container">
-  {# include "partials/site-menu.njk" #}
+  <main>
   {% include "partials/header.njk" %}
   {{ super() }}
   {% include "partials/footer.njk" %}
   </main>
-{% endblock %}
-
-{% block foot %}
-  {{ super() }}
-  {% set js %}
-  {% include "js/site-menu.js" %}
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
 {% endblock %}
