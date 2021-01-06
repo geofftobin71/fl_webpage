@@ -50,24 +50,6 @@ module.exports = function (eleventyConfig) {
 
   // [300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400]
 
-  eleventyConfig.srcsetWidths = [ 600, 900, 1200, 1500, 1800, 2100, 2400 ];
-  eleventyConfig.fallbackWidth = 900;
-
-  eleventyConfig.addShortcode("respimg", (opt) => {
-    const cloudinary = `https://res.cloudinary.com/floriade`;
-    const src = `${cloudinary}/${opt.transforms ? opt.transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${opt.path}`;
-    const preview = `${cloudinary}/c_limit,w_64,h_64,f_jpg,e_blur:200/${opt.path}`;
-    const srcset = eleventyConfig.srcsetWidths.map(w => {
-      return `${cloudinary}/${opt.transforms ? opt.transforms : 'q_auto,f_auto'},w_${w}/${opt.path} ${w}w`;
-    }).join(', ');
-
-    if(opt.lazy) {
-      return `<noscript><img srcset="${srcset}" sizes="${opt.sizes ? opt.sizes : '100vw'}" src="${src}" alt="${opt.alt ? opt.alt : 'Flowers by Floriade'}" class="${opt.classes ? opt.classes : ''}"></noscript><img data-srcset="${srcset}" sizes="${opt.sizes ? opt.sizes : '100vw'}" data-src="${src}" src="${opt.lqip_image ? opt.lqip_image : preview}" alt="${opt.alt ? opt.alt : 'Flowers by Floriade'}" class="${opt.classes ? opt.classes : ''}" loading="lazy">`;
-    } else {
-      return `<img srcset="${srcset}" sizes="${opt.sizes ? opt.sizes : '100vw'}" src="${src}" alt="${opt.alt ? opt.alt : 'Flowers by Floriade'}" class="${opt.classes ? opt.classes : ''}">`;
-    }
-  });
-
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async function(code, callback) {
     try {
       if(process.env.NODE_ENV != 'development') {

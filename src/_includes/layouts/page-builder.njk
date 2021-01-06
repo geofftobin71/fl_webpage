@@ -27,9 +27,13 @@ with context %}
     {% if section.template == "text-section" %}
       {{ text_section(section.text) }}
     {% elif section.template == "hero-section" %}
-      {{ hero_section(section.image, section.text) }}
+      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,f_jpg,g_auto:subject,e_blur:200/" + (section.image | stripVersion) %}
+      {% set lqip_data = lqip_path | lqip %}
+      {{ hero_section(section.image, section.alt, section.text, lqip_data) }}
     {% elif section.template == "split-image-text-section" %}
-      {{ split_image_text_section(section.image, section.text, section.swap) }}
+      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,f_jpg,g_auto:subject,e_blur:200/" + (section.image | stripVersion) %}
+      {% set lqip_data = lqip_path | lqip %}
+      {{ split_image_text_section(section.image, section.alt, section.text, section.swap, lqip_data) }}
     {% elif section.template == "gallery-section" %}
       {{ gallery_section() }}
     {% elif section.template == "contact-form-section" %}

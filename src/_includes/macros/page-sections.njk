@@ -10,14 +10,21 @@
 
 
 
-{% macro hero_section(image, text) %}
+{% macro hero_section(image, alt, text, lqip_data) %}
 
 <section>
-  <div class="cover shadow" style="--min-height:90vmin">
+  <div class="cover shadow" style="--min-height:90vh">
     <figure class="background">
-      {% set lqip_path = "https://res.cloudinary.com/floriade/c_limit,w_64,h_64,f_jpg,e_blur:200/" + image | stripVersion %}
-      {% set lqip_data = lqip_path | lqip %}
-      {% respimg path = image | stripVersion, lqip_image = lqip_data, alt = alt or site.alt, sizes = "100vw", transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject", lazy = true %}
+      {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+      {% set src = site.cloudinary_url + "/w_900," + transforms + (image | stripVersion) %}
+      <noscript><img src="{{ src }}" alt="{{ alt or site.alt }}"></noscript>
+      <img data-srcset="
+      {%- set comma = joiner() -%}
+      {%- for w in image_sizes -%}
+      {%- set srcset = site.cloudinary_url + "/w_" + w + "," + transforms + (image | stripVersion) + " " + w + "w" -%}
+      {{ comma() }}{{ srcset }}
+      {%- endfor -%}
+      " sizes="100vw" data-src="{{ src }}" src="{{ lqip_data }}" alt="{{ alt or site.alt }}" loading="lazy">
     </figure>
     <article class="bigfonts font-secondary centered wrapper text-wrapper flow text-center text-shadow">
       {% markdown text %}
@@ -29,14 +36,21 @@
 
 
 
-{% macro split_image_text_section(image, text, swap) %}
+{% macro split_image_text_section(image, alt, text, swap, lqip_data) %}
 
 <section>
   <div class="domino{{ ' swap' if swap }}">
     <figure>
-      {% set lqip_path = "https://res.cloudinary.com/floriade/c_limit,w_64,h_64,f_jpg,e_blur:200/" + image | stripVersion %}
-      {% set lqip_data = lqip_path | lqip %}
-      {% respimg path = image | stripVersion, lqip_image = lqip_data, alt = alt or site.alt, sizes = "(orientation: landscape) 50vw, 100vw", transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject", classes = "img-cover", lazy = true %}
+      {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+      {% set src = site.cloudinary_url + "/w_900," + transforms + (image | stripVersion) %}
+      <noscript><img class="img-cover" src="{{ src }}" alt="{{ alt or site.alt }}"></noscript>
+      <img class="img-cover" data-srcset="
+      {%- set comma = joiner() -%}
+      {%- for w in image_sizes -%}
+      {%- set srcset = site.cloudinary_url + "/w_" + w + "," + transforms + (image | stripVersion) + " " + w + "w" -%}
+      {{ comma() }}{{ srcset }}
+      {%- endfor -%}
+      " sizes="(orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ lqip_data }}" alt="{{ alt or site.alt }}" loading="lazy">
     </figure>
     <div class="center-both">
       <article class="wrapper text-wrapper">
