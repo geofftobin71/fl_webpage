@@ -8,18 +8,18 @@ if ('loading' in HTMLImageElement.prototype) {
 } else if('IntersectionObserver' in window) {
   // Intersection Observer
   const images = document.querySelectorAll('img[loading="lazy"]');
-  const options = { root: null, threshold: 0, rootMargin: "0px 0px 500px 0px" };
-  const observer = new IntersectionObserver((entries, observer) => {
+  const lazy_images_options = { root: null, threshold: 0, rootMargin: "0px 0px 500px 0px" };
+  const lazy_images_observer = new IntersectionObserver((entries, lazy_images_observer) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) { return; }
       if(entry.target.dataset.srcset) { entry.target.srcset = entry.target.dataset.srcset; }
       if(entry.target.dataset.src) { entry.target.src = entry.target.dataset.src; }
-      observer.unobserve(entry.target);
+      lazy_images_observer.unobserve(entry.target);
     });
-  }, options);
+  }, lazy_images_options);
 
   images.forEach(image => {
-    observer.observe(image);
+    lazy_images_observer.observe(image);
   });
 } else {
   // Non-lazy Fallback

@@ -30,21 +30,22 @@
 {% block foot %}
   {{ super() }}
   {% set js %}
+  {% include "js/lazy-images.js" %}
   const reviews = document.querySelectorAll(".review");
-  const options = { root: null, threshold: 0.25, rootMargin: "0px" };
-  const observer = new IntersectionObserver((entries, observer) => {
+  const reviews_options = { root: null, threshold: 0.25, rootMargin: "0px" };
+  const reviews_observer = new IntersectionObserver((entries, reviews_observer) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) {
         entry.target.classList.add("hidden");
         return;
       }
       entry.target.classList.remove("hidden");
-      observer.unobserve(entry.target);
+      reviews_observer.unobserve(entry.target);
     });
-  }, options);
+  }, reviews_options);
 
   reviews.forEach(review => {
-    observer.observe(review);
+    reviews_observer.observe(review);
   });
   {% endset %}
 

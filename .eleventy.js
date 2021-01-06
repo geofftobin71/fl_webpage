@@ -142,7 +142,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("stripVersion", (path) => {
-    return path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '');
+    return path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
   });
 
   eleventyConfig.setBrowserSyncConfig({

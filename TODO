@@ -1,15 +1,12 @@
 hero section brightness
-lqip for single images
+hero / split section alt text
 horizontal scroll snap reviews section / lightbox
 gallery_folder => gallery:folder
 landing-page forestry template =>
   contact form error page
 Subdivide layout.css ?
-Move lazy-images.js from base.njk ?
 Lightbox lazy loading ?
-Merge unique css/js into page
 Radio button icons
 Fix instagram lightbox + lazyload
 Add schema frontmatter
 :placeholder-shown  Kevin Powell
-cursor pointer class
