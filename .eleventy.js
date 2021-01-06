@@ -11,6 +11,7 @@ const CleanCSS = require("clean-css");
 const { minify } = require("terser");
 const fs = require("fs");
 const markdown = require("markdown-it")({ html: true });
+const fetch64 = require('fetch-base64');
 
 module.exports = function (eleventyConfig) {
 
@@ -52,18 +53,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.srcsetWidths = [ 600, 900, 1200, 1500, 1800, 2100, 2400 ];
   eleventyConfig.fallbackWidth = 900;
 
-  eleventyConfig.addShortcode("respimg", (path, alt, sizes, transforms, classes, lazy ) => {
+  eleventyConfig.addShortcode("respimg", (opt) => {
     const cloudinary = `https://res.cloudinary.com/floriade`;
-    const src = `${cloudinary}/${transforms ? transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${path}`;
-    const preview = `${cloudinary}/c_limit,w_64,h_64,f_jpg,e_blur:200/${path}`;
+    const src = `${cloudinary}/${opt.transforms ? opt.transforms : 'q_auto,f_auto'},w_${eleventyConfig.fallbackWidth}/${opt.path}`;
+    const preview = `${cloudinary}/c_limit,w_64,h_64,f_jpg,e_blur:200/${opt.path}`;
     const srcset = eleventyConfig.srcsetWidths.map(w => {
-      return `${cloudinary}/${transforms ? transforms : 'q_auto,f_auto'},w_${w}/${path} ${w}w`;
+      return `${cloudinary}/${opt.transforms ? opt.transforms : 'q_auto,f_auto'},w_${w}/${opt.path} ${w}w`;
     }).join(', ');
 
-    if(lazy) {
-      return `<noscript><img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}"></noscript><img data-srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" data-src="${src}" src="${preview}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}" loading="xlazy">`;
+    if(opt.lazy) {
+      return `<noscript><img srcset="${srcset}" sizes="${opt.sizes ? opt.sizes : '100vw'}" src="${src}" alt="${opt.alt ? opt.alt : 'Flowers by Floriade'}" class="${opt.classes ? opt.classes : ''}"></noscript><img data-srcset="${srcset}" sizes="${opt.sizes ? opt.sizes : '100vw'}" data-src="${src}" src="${opt.lqip_image ? opt.lqip_image : preview}" alt="${opt.alt ? opt.alt : 'Flowers by Floriade'}" class="${opt.classes ? opt.classes : ''}" loading="lazy">`;
     } else {
-      return `<img srcset="${srcset}" sizes="${sizes ? sizes : '100vw'}" src="${src}" alt="${alt ? alt : 'Flowers by Floriade'}" class="${classes ? classes : ''}">`;
+      return `<img srcset="${srcset}" sizes="${opt.sizes ? opt.sizes : '100vw'}" src="${src}" alt="${opt.alt ? opt.alt : 'Flowers by Floriade'}" class="${opt.classes ? opt.classes : ''}">`;
     }
   });
 
@@ -80,6 +81,15 @@ module.exports = function (eleventyConfig) {
       // Fail gracefully.
       callback(null, code);
     }
+  });
+
+  eleventyConfig.addNunjucksAsyncFilter("lqip", async function(path, callback) {
+    let base64 = await fetch64.remote(path).catch((err) => {
+      console.error("LQIP error: ", err);
+      callback(null, path);
+    });
+    let preview = "data:image/jpeg;base64," + base64[0];
+    callback(null, preview);
   });
 
   eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
@@ -150,7 +160,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("stripVersion", (path) => {
-    return path.replace(/^\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '');
+    return path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '');
   });
 
   eleventyConfig.setBrowserSyncConfig({

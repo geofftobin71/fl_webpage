@@ -1,8 +1,11 @@
 <header id="header" class="header">
   <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
-    <img src="{{ site.cloudinary_url }}/c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/{{ header.image | stripVersion }}" alt="Header image">
+    {% set image_path = site.cloudinary_url + "/c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/" + header.image %}
+    {% set lqip_path = site.cloudinary_url + "/c_fill,w_192,h_30,f_jpg,g_auto:subject,e_blur:200/" + header.image %}
+    <noscript><img src="{{ image_path | stripVersion }}" alt="Header image"></noscript>
+    <img data-src="{{ image_path | stripVersion }}" src="{{ lqip_path | stripVersion | lqip }}" alt="Header image" loading="lazy">
   </figure>
-  <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
+  <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
     {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
   </nav>
   <div class="content">
@@ -13,7 +16,7 @@
     </figure>
     <h1>{{ (header.title or title) | lower }}</h1>
   </div>
-  <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
+  <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
     {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
   </nav>
 </header>
