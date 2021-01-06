@@ -21,8 +21,7 @@ fields:
   - name: brightness
     type: number
     label: Brightness
-    description: Brightness of the header image. Allow the header text and menu to
-      be more visible.
+    description: Brightness of the header image. Allow the header text and menu to be more visible.
     default: 0
     required: true
     config:

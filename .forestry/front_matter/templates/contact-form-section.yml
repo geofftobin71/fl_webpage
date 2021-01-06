@@ -38,3 +38,9 @@ fields:
     maxSize: 64
   label: Email Banner
   description: 'Email Banner Image<br><em>default: Floriade Logo</em>'
+- name: email_alt
+  type: text
+  config:
+    required: false
+  label: Email Banner Alt Text
+  description: 'Email Banner Alt Text<br><em>default: Flowers by Floriade</em>'

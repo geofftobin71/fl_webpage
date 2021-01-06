@@ -11,7 +11,7 @@ fields:
   label: Description
   description: SEO page description. Appears on Google search results.
 - type: text
-  name: alt
+  name: page_alt
   label: Default Alt Text
   description: Default Alt Text for any image that doesn't have its own Alt Text.
 - name: eleventyNavigation

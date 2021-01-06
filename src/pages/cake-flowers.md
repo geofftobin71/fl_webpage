@@ -1,7 +1,7 @@
 ---
 title: Cake Flowers
 description: Cake Flowers by Floriade are awesome
-alt: Cake Flowers by Floriade
+page_alt: Cake Flowers by Floriade
 header:
   image: "/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg"
   brightness: 50

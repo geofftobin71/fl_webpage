@@ -8,6 +8,10 @@ fields:
   config:
     maxSize: 64
   label: Image
+- type: text
+  name: alt
+  label: Alt Text
+  description: Image Alt Text.
 - name: text
   type: textarea
   default: ''
@@ -17,3 +21,13 @@ fields:
     schema:
       format: markdown
   label: Text
+- name: brightness
+  type: number
+  label: Brightness
+  description: Brightness of the background image. Allows the text to be more visible.
+  default: 50
+  required: false
+  config:
+    min: 10
+    max: 100
+    step: 10
