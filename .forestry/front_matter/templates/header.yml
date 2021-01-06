@@ -18,6 +18,10 @@ fields:
       maxSize: 64
     label: Image
     description: The background image for the page header.
+  - type: text
+    name: alt
+    label: Alt Text
+    description: Image Alt Text.
   - name: brightness
     type: number
     label: Brightness
