@@ -21,8 +21,8 @@ with context %}
 {% endblock %}
 
 {% block content %}
-  <main>
   {% include "partials/header.njk" %}
+  <main>
   {% for section in page_sections %}
     {% if section.template == "text-section" %}
       {{ text_section(section.text) }}
@@ -46,17 +46,6 @@ with context %}
       </script>
     {% endif %}
   {% endfor %}
-  {% include "partials/footer.njk" %}
   </main>
-{% endblock %}
-
-{% block foot %}
-  {{ super() }}
-  {% set js %}
-  {% include "js/lazy-images.js" %}
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
+  {% include "partials/footer.njk" %}
 {% endblock %}

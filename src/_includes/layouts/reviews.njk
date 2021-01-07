@@ -30,7 +30,6 @@
 {% block foot %}
   {{ super() }}
   {% set js %}
-  {% include "js/lazy-images.js" %}
   const reviews = document.querySelectorAll(".review");
   const reviews_options = { root: null, threshold: 0.25, rootMargin: "0px" };
   const reviews_observer = new IntersectionObserver((entries, reviews_observer) => {

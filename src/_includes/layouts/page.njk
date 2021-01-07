@@ -1,9 +1,9 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <main>
   {% include "partials/header.njk" %}
+  <main>
   {{ super() }}
-  {% include "partials/footer.njk" %}
   </main>
+  {% include "partials/footer.njk" %}
 {% endblock %}

@@ -21,14 +21,3 @@
   }
   </script>
 {% endblock %}
-
-{% block foot %}
-  {{ super() }}
-  {% set js %}
-  {% include "js/lazy-images.js" %}
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
-{% endblock %}

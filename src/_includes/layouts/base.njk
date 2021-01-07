@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -34,6 +34,14 @@
     {% endblock %}
 
     {% block foot %}
+      {% set js %}
+      {% include "js/lazy-images.js" %}
+      {% endset %}
+
+      <script>
+        {{ js | jsmin | safe }}
+      </script>
     {% endblock %}
+
   </body>
 </html>

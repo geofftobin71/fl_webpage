@@ -70,7 +70,7 @@ module.exports = function (eleventyConfig) {
       console.error("LQIP error: ", err);
       callback(null, path);
     });
-    let preview = "data:image/jpeg;base64," + base64[0];
+    let preview = "data:image/jpg;base64," + base64[0];
     callback(null, preview);
   });
 

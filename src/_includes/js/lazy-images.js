@@ -1,14 +1,14 @@
-if ('loading' in HTMLImageElement.prototype) {
+/* if ('loading' in HTMLImageElement.prototype) {
   // Native Lazy Loading
-  const images = document.querySelectorAll('img[loading="lazy"]');
+  const images = document.querySelectorAll('img[data-loading="lazy"]');
   images.forEach(img => {
     if(img.dataset.srcset) { img.srcset = img.dataset.srcset; }
     if(img.dataset.src) { img.src = img.dataset.src; }
   });
-} else if('IntersectionObserver' in window) {
+} else */ if('IntersectionObserver' in window) {
   // Intersection Observer
-  const images = document.querySelectorAll('img[loading="lazy"]');
-  const lazy_images_options = { root: null, threshold: 0, rootMargin: "0px 0px 500px 0px" };
+  const images = document.querySelectorAll('img[data-loading="lazy"]');
+  const lazy_images_options = { root: null, threshold: 0, rootMargin: "0px 0px 300px 0px" };
   const lazy_images_observer = new IntersectionObserver((entries, lazy_images_observer) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) { return; }
@@ -23,7 +23,7 @@ if ('loading' in HTMLImageElement.prototype) {
   });
 } else {
   // Non-lazy Fallback
-  const images = document.querySelectorAll('img[loading="lazy"]');
+  const images = document.querySelectorAll('img[data-loading="lazy"]');
   images.forEach(img => {
     if(img.dataset.srcset) { img.srcset = img.dataset.srcset; }
     if(img.dataset.src) { img.src = img.dataset.src; }
