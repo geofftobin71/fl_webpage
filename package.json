@@ -41,6 +41,6 @@
     "terser": "^5.3.8"
   },
   "dependencies": {
-    "axios": "^0.21.1"
+    "github-secret-dotenv": "^1.1.3"
   }
 }
