@@ -34,6 +34,7 @@
     "fetch-base64": "^2.1.2",
     "html-minifier": "^4.0.0",
     "luxon": "^1.24.1",
+    "murmurhash": "^2.0.0",
     "node-fetch": "^2.6.1",
     "sharp": "^0.27.0",
     "stripe": "^8.117.0",
