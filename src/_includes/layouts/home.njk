@@ -11,6 +11,13 @@
   </style>
 {% endblock %}
 
+{% block content %}
+  <main>
+  {{ super() }}
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
+
 {% block foot %}
   {{ super() }}
   {% set js %}
