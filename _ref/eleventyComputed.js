@@ -11,7 +11,7 @@ const getPreview = async (item) => {
     newItem.context = item.context;
   }
 
-  let source = "https://res.cloudinary.com/floriade/c_limit,w_32,h_32,f_jpg,e_blur:200/" + item.public_id;
+  let source = "https://res.cloudinary.com/floriade/c_limit,w_64,h_64,f_jpg,e_blur:200/" + item.public_id;
   let base64 = await fetch64.remote(source);
   newItem.preview = "data:image/jpeg;base64," + base64[0];
 
@@ -35,7 +35,7 @@ const gallery_images = (folder) => {
     .then( result => {
       return getPreviews(result.resources)
         .then( final => { 
-          // console.log(JSON.stringify(final));
+          console.log(JSON.stringify(final));
           return final;
         });
     });

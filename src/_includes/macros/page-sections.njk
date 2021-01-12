@@ -145,43 +145,50 @@
 {# ----- Gallery Lightbox ----- #}
 
 <div id="lightbox">
-  <nav class="close" onclick="closeLightbox()">&times;</nav>
-  <div style="width:{{ images.length * 100 }}%;height:100%;overflow-y:hidden;overflow-x:auto;display:flex">
+  <nav class="close text-shadow" onclick="closeLightbox()">&times;</nav>
+  <ul class="hello" style="position:absolute;top:0;left:0;bottom:0;right:0;overflow-y:hidden;overflow-x:scroll;scroll-padding:0 50%;scroll-snap-type:x mandatory;display:flex">
     {% for image in images -%}
-    <div class="center-both" style="width:100%;height:100%">
-      <img data-srcset="
-      {%- for size in image_sizes %}
-      {{ site.cloudinary_url }}/c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ image.public_id }} {{ size }}w{{ ',' if not loop.last }}
-      {%- endfor %}
-      " sizes="{{ "100vh" if image.aspect_ratio < 1 else "100vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" style="max-width:100%;max-height:100%;object-fit:contain" data-loading="lazy">
-    {#
-    <div class="lightbox__slide">
-      <img data-srcset="
-      {%- for size in image_sizes %}
-      {{ site.cloudinary_url }}/c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ image.public_id }} {{ size }}w{{ ',' if not loop.last }}
-      {%- endfor %}
-      " sizes="{{ "80vh" if image.aspect_ratio < 1 else "80vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" data-loading="lazy">
-      <div class="caption">
-        <h4>{{ image.context.alt or page_alt or site.alt }}</h4>
-      <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
-      <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or page_alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></h5>
-      </div>
+      <li class="center-both" style="position:relative;flex-grow:1;flex-shrink:0;width:100vw;height:100%;scroll-snap-align:center">
+        <figure style="width:auto;height:100%">
+          <img src="{{ image.preview }}" data-srcset="
+          {%- for size in image_sizes -%}
+          {{ site.cloudinary_url }}/c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ image.public_id }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor -%}
+          " sizes="{{ "100vh" if image.aspect_ratio < 1 else "100vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" data-loading="lazy" style="width:auto;height:100%;object-fit:contain" />
+        <div class="text-shadow" style="position:absolute;left:0;right:0;bottom:0;text-align:center;color:light;padding:2rem;background-image:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.9))">
+          <h4>{{ image.context.alt or page_alt or site.alt }}</h4>
+        <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
+        <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or page_alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></h5>
+        </div>
+        </figure>
+        {#
+        <div class="lightbox__slide">
+          <img data-srcset="
+          {%- for size in image_sizes %}
+          {{ site.cloudinary_url }}/c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ image.public_id }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor %}
+          " sizes="{{ "80vh" if image.aspect_ratio < 1 else "80vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" data-loading="lazy">
+          <div class="caption">
+            <h4>{{ image.context.alt or page_alt or site.alt }}</h4>
+          <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
+          <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or page_alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></h5>
+          </div>
 
-      {% if loop.index > 1 %}
-        <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
-      {% else %}
-        <nav class="prev">&nbsp;</nav>
-      {% endif %}
-      {% if loop.index < images | length %}
-        <nav class="next" onclick="showSlide({{ loop.index + 1 }})">&gt;</nav>
-      {% else %}
-        <nav class="next">&nbsp;</nav>
-      {% endif %}
-    </div>
-      #}
-    </div>
-    {%- endfor %}
-  </div>
+          {% if loop.index > 1 %}
+            <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
+          {% else %}
+            <nav class="prev">&nbsp;</nav>
+          {% endif %}
+          {% if loop.index < images | length %}
+            <nav class="next" onclick="showSlide({{ loop.index + 1 }})">&gt;</nav>
+          {% else %}
+            <nav class="next">&nbsp;</nav>
+          {% endif %}
+        </div>
+        #}
+      </li>
+      {%- endfor %}
+  </ul>
 </div>
 
 {% endmacro %}

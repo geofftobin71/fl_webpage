@@ -28,7 +28,7 @@ async function getImage(item, index) {
     });
 
   return sharp('dist' + newItem.image)
-    .resize(32, 32)
+    .resize(64, 64)
     .blur(2)
     .toBuffer()
     .then((data) => {
@@ -68,7 +68,7 @@ module.exports = function() {
 
         let cache_data = JSON.parse(contents);
 
-        if(json.data.length == cache_data.length)
+        if(json && json.data && (json.data.length == cache_data.length))
         {
           let i;
           for(i = 0; i < json.data.length; ++i) {
@@ -80,10 +80,12 @@ module.exports = function() {
         }
 
         if(cache_data.length) {
-          console.log("Instagram cache up to date.");
+          console.log("Read Instagram cache.");
           return cache_data;
         }
       }
+
+      if(!json) { return []; }
 
       fs.mkdirSync(cache_path, { recursive: true });
       fs.mkdirSync('dist/images/instagram/thumbs/', { recursive: true });

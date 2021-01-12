@@ -1,5 +1,6 @@
 .env
 _site/
 dist/
+cache/
 node_modules/
 package-lock.json

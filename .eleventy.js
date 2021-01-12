@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV === 'development') {
+if(process.env.NODE_ENV != 'deploy') {
       require("dotenv").config();
 }
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
