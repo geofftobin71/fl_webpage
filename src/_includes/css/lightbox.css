@@ -86,7 +86,7 @@
   opacity: 1;
 }
 
-.lightbox__slide nav, #lightbox .close {
+#lightbox nav {
   z-index: 999;
   color: white;
   position: fixed;
@@ -109,13 +109,13 @@
   display: flex;
 }
 
-.lightbox__slide .prev {
+#lightbox .prev {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.lightbox__slide .next {
+#lightbox .next {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
