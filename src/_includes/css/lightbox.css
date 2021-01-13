@@ -1,6 +1,3 @@
-
-/* ----- Lightbox ----- */
-
 #lightbox {
   display:none;
   background: var(--color-darker-grey);
@@ -9,81 +6,30 @@
   left: 0;
   bottom: 0;
   right: 0;
-  /* width: 100vw;
-  height: 100vh; */
   z-index: 990;
 }
 
 #lightbox figure {
   position: relative;
+  width:auto;
+  height:100%;
 }
 
-.lightbox__slide {
-  --fade-duration: 0.5s;
-  z-index: 1;
-  overflow: hidden;
-  display: flex;
-  position: fixed;
-  top: 10vh;
-  left: 10vw;
-  height: 0;
-  width: 0;
-  transition: width 0s var(--fade-duration), height 0s var(--fade-duration);
+#lightbox figcaption {
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  text-align:center;
+  color:light;
+  padding:2rem;
+  background-image:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.99));
 }
 
-.lightbox__slide.visible {
-  z-index: 999;
-  width: 80vw;
-  height: 80vh;
-  overflow: visible;
-  transition: width 0s 0s, height 0s 0s;
-}
-
-.lightbox__slide img {
+#lightbox img {
+  width:auto;
+  height:100%;
   object-fit: contain;
-  opacity: 0;
-  transition: opacity var(--fade-duration) 0s ease-out;
-}
-
-.lightbox__slide.visible img {
-  opacity: 1;
-  transition: opacity var(--fade-duration) 0s ease-in;
-}
-
-.lightbox__slide p {
-  visibility: hidden;
-  color: white;
-  background: var(--color-darker-grey);
-  text-align: center;
-  padding: 0.5rem 1rem 1.5rem 1rem;
-}
-
-@media screen and (max-width: 700px) {
-  .lightbox__slide p {
-    text-align: left;
-  }
-}
-
-.lightbox__slide.visible p {
-  visibility: visible;
-}
-
-.lightbox__slide .caption {
-  visibility: hidden;
-  opacity: 0;
-  color: white;
-  background: var(--color-darker-grey);
-  text-align: center;
-  padding: 0.5rem 1rem 1.5rem 1rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.lightbox__slide.visible .caption {
-  visibility: visible;
-  opacity: 1;
 }
 
 #lightbox nav {
@@ -99,14 +45,6 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
-}
-
-.lightbox__slide nav {
-  display: none;
-}
-
-.lightbox__slide.visible nav {
-  display: flex;
 }
 
 #lightbox .prev {
@@ -125,3 +63,27 @@
   right: 0;
   top: 0;
 }
+
+#lightbox .slider {
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  overflow-y:hidden;
+  overflow-x:scroll;
+  scroll-padding:0 50%;
+  scroll-snap-type:x mandatory;
+  display:flex;
+  -webkit-overflow-scrolling:touch;
+}
+
+#lightbox .slider-item {
+  position:relative;
+  flex-grow:1;
+  flex-shrink:0;
+  width:100vw;
+  height:100%;
+  scroll-snap-align:center;
+}
+

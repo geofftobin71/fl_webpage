@@ -12,7 +12,7 @@ async function getImage(item, index) {
   const buffer = await response.buffer();
   const path = '/images/instagram/';
   // const filename = 'floriade_wellington_' + ('0000' + (index + 1)).slice(-4) + '.jpg';
-  const filename = 'floriade_wellington_' + murmurhash.v3(newItem.source) + '.jpg';
+  const filename = 'floriade_wellington_' + murmurhash.v3(newItem.source.split('?',1)[0]) + '.jpg';
 
   newItem.image = path + filename;
   newItem.thumbnail = path + 'thumbs/' + filename;
@@ -74,6 +74,9 @@ module.exports = function() {
           for(i = 0; i < json.data.length; ++i) {
             let json_media = json.data[i].thumbnail_url ? json.data[i].thumbnail_url : json.data[i].media_url;
             let cache_media = cache_data[i].source;
+
+            json_media = json_media.split('?',1)[0];
+            cache_media = cache_media.split('?',1)[0];
 
             if(json_media != cache_media) { cache_data = []; break; }
           }
