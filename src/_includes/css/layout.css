@@ -62,6 +62,11 @@
   border-width: var(--box-border-width, 2px);
 }
 
+.soft-box {
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 0 2rem 2rem rgba(0,0,0,0.5);
+}
+
 /* ----- The Cover ----- */
 
 .cover {

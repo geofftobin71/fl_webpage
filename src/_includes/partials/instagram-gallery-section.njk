@@ -1,44 +1,3 @@
-{#
-{% set css %}
-#lightbox .slider-item {
-  align-items: center;
-}
-
-@media screen and (orientation: portrait) {
-  #lightbox .slider-item {
-    align-items: flex-start;
-  }
-}
-.lightbox__domino {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0;
-}
-.lightbox__domino p {
-  padding: 2rem 6vw 2rem 2rem;
-}
-@media screen and (orientation: portrait) {
-  .lightbox__domino {
-    grid-template-columns: 1fr;
-  }
-  .lightbox__domino p {
-    padding: 2rem;
-  }
-}
-{% set css %}
-#lightbox img {
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-{% endset %}
-
-<style>
-{{ css | cssmin | safe }}
-</style>
-#}
-
 {# ----- Instagram Thumbnails ----- #}
 
 {% set instagram_images = instagram_gallery | head(12) %}
@@ -64,27 +23,12 @@
       <li id="item{{ loop.index }}" class="slider-item">
         <figure class="center-both">
           <img data-src="{{ item.image | url }}" src="{{ item.preview }}" width="1440" height="1440" alt="{{ item.caption }}" data-loading="lazy" />
-          <figcaption class="text-shadow flow">
-            <h4 class="wrapper text-wrapper">{{ item.caption }}</h4>
+          <figcaption class="wrapper text-wrapper">
+            <div class="text-center text-shadow flow">
+              <h4>{{ item.caption }}</h4>
+            </div>
           </figcaption>
         </figure>
-
-        {#
-        <div class="lightbox__slide instagram">
-          <div class="lightbox__domino">
-            <div class="frame frame1x1">
-              <figure>
-                <img data-src="{{ item.image | url }}" src="{{ item.preview }}" width="1440" height="1440" alt="{{ item.caption }}" style="max-width:none" data-loading="lazy">
-              </figure>
-            </div>
-            <div style="max-height:40vmax;overflow-x:hidden;overflow-y:auto">
-              <div style="display:flex;align-items:center;min-height:100%">
-                <p>{{ item.caption }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        #}
       </li>
       {%- endfor %}
   </ul>
