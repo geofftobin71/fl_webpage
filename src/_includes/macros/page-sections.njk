@@ -135,7 +135,7 @@
           <noscript>
             <a href="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}"><img src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" style="cursor:pointer" /></a>
           </noscript>
-          <img src="{{ image.preview }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox({{ loop.index }})" style="cursor:pointer" data-loading="lazy" />
+          <img src="{{ image.preview }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto:subject/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index }}')" style="cursor:pointer" data-loading="lazy" />
         </li>
         {%- endfor %}
     </ul>
@@ -145,12 +145,9 @@
 {# ----- Gallery Lightbox ----- #}
 
 <div id="lightbox">
-  <nav class="close text-shadow" onclick="closeLightbox()">&times;</nav>
-  <nav class="prev text-shadow" onclick="scrollToPrevItem()">&lt;</nav>
-  <nav class="next text-shadow" onclick="scrollToNextItem()">&gt;</nav>
   <ul class="slider">
     {% for image in images -%}
-      <li class="slider-item center-both">
+      <li id="item{{ loop.index }}" class="slider-item center-both">
         <figure>
           <img src="{{ image.preview }}" data-srcset="
           {%- for size in image_sizes -%}
@@ -159,16 +156,17 @@
           " sizes="{{ "100vh" if image.aspect_ratio < 1 else "100vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or page_alt or site.alt }}" title="{{ image.context.alt or page_alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" data-loading="lazy" />
           <figcaption class="text-shadow flow" style="position:absolute;left:0;right:0;bottom:0;text-align:center;color:light;padding:2rem;background-image:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.9))">
             <h4>{{ image.context.alt or page_alt or site.alt }}</h4>
+            <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or page_alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></h5>
           <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
-          <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or page_alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></h5>
           </figcaption>
         </figure>
       </li>
       {%- endfor %}
   </ul>
+  <nav class="close text-shadow" onclick="closeLightbox()">&times;</nav>
+  <nav class="prev text-shadow" onclick="scrollToPrevItem()">&lt;</nav>
+  <nav class="next text-shadow" onclick="scrollToNextItem()">&gt;</nav>
 </div>
 
 {% endmacro %}
-
-
 

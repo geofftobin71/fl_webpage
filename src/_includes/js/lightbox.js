@@ -1,32 +1,25 @@
-function openLightbox(n) {
-  const lightbox = document.querySelector('#lightbox');
-  document.documentElement.setAttribute("data-modal-active", true);
-  lightbox.style.display = "block";
-  // document.getElementById("menu").style.display = "none";
-  setTimeout(() => { showSlide(n); }, 10);
+function openLightbox(id) {
+  document.documentElement.setAttribute('data-modal-active', true);
+  document.querySelector('#lightbox').style.visibility = 'visible';
+  // document.querySelector('menu').style.display = 'none';
+
+  document.querySelector(id).scrollIntoView({behavior: 'auto', inline: 'center', block: 'center'});
+
+  /*
+  let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
+  document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
+  */
 }
 
 function closeLightbox() {
-  const lightbox = document.querySelector('#lightbox');
-  document.documentElement.setAttribute("data-modal-active", false);
-  lightbox.style.display = "none";
-  // document.getElementById("menu").style.display = "block";
-}
-
-function showSlide(n) {
-  const scroller = document.querySelector('#lightbox .slider');
-  const item = document.querySelector('#lightbox .slider-item');
-  const itemWidth = item.clientWidth;
-  while(scroller.scrollLeft != (n - 1) * itemWidth) {
-    scroller.scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
-  }
-  console.log(scroller.scrollLeft);
+  document.documentElement.setAttribute('data-modal-active', false);
+  document.querySelector('#lightbox').style.visibility = 'hidden';
+  // document.querySelector('menu').style.display = 'block';
 }
 
 function scrollToNextItem() {
-  const scroller = document.querySelector('#lightbox .slider');
-  const item = document.querySelector('#lightbox .slider-item');
-  const itemWidth = item.clientWidth;
+  let scroller = document.querySelector('#lightbox .slider');
+  let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
   if(scroller.scrollLeft < (scroller.scrollWidth - itemWidth)) {
     scroller.scrollBy({left: itemWidth, top: 0, behavior:'smooth'});
   } else {
@@ -35,9 +28,8 @@ function scrollToNextItem() {
 }
 
 function scrollToPrevItem() {
-  const scroller = document.querySelector('#lightbox .slider');
-  const item = document.querySelector('#lightbox .slider-item');
-  const itemWidth = item.clientWidth;
+  let scroller = document.querySelector('#lightbox .slider');
+  let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
   if(scroller.scrollLeft != 0) {
     scroller.scrollBy({left: -itemWidth, top: 0, behavior:'smooth'});
   } else {

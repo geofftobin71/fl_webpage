@@ -1,5 +1,5 @@
 #lightbox {
-  display:none;
+  visibility: hidden;
   background: var(--color-darker-grey);
   position: fixed;
   top: 0;
@@ -11,24 +11,23 @@
 
 #lightbox figure {
   position: relative;
-  width:auto;
-  height:100%;
+  width: 100%;
+  height: 100%;
 }
 
 #lightbox figcaption {
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  text-align:center;
-  color:light;
-  padding:2rem;
-  background-image:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.99));
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  color: light;
+  padding: 2rem;
+  background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.99));
 }
 
 #lightbox img {
-  width:auto;
-  height:100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -65,25 +64,25 @@
 }
 
 #lightbox .slider {
-  position:absolute;
-  top:0;
-  left:0;
-  bottom:0;
-  right:0;
-  overflow-y:hidden;
-  overflow-x:scroll;
-  scroll-padding:0 50%;
-  scroll-snap-type:x mandatory;
-  display:flex;
-  -webkit-overflow-scrolling:touch;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  /* scroll-padding: 0 50%; */
+  scroll-snap-type: x mandatory;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
 }
 
 #lightbox .slider-item {
-  position:relative;
-  flex-grow:1;
-  flex-shrink:0;
-  width:100vw;
-  height:100%;
-  scroll-snap-align:center;
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100%;
+  scroll-snap-align: center;
 }
 
