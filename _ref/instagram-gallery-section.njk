@@ -1,44 +1,79 @@
+{% set css %}
+.lightbox__slide.instagram {
+  align-items: center;
+}
+
+@media screen and (orientation: portrait) {
+  .lightbox__slide.instagram {
+    align-items: flex-start;
+  }
+}
+.lightbox__domino {
+  width:100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0;
+}
+
+@media screen and (orientation: portrait) {
+  .lightbox__domino {
+    grid-template-columns: 1fr;
+  }
+}
+
+{% endset %}
+
+<style>
+{{ css | cssmin | safe }}
+</style>
 
 {# ----- Instagram Thumbnails ----- #}
 
-{% set instagram_images = instagram | head(12) %}
+{% set instagram_images = instagram_gallery | head(12) %}
 
 <section class="wrapper">
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
     {% for item in instagram_images -%}
-      <a href="#instagram_{{ loop.index }}" onclick="openModal()">
-        <li class="frame frame1x1 shadow">
-          <img src="{{ site.cloudinary_url }}image/fetch/c_fill,w_460,h_460,q_auto,f_auto,g_auto:subject/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
-        </li>
-      </a>
+      <li class="frame frame1x1 round shadow">
+        <figure>
+          <noscript><a href="{{ item.image | url }}"><img src="{{ item.thumbnail | url }}" width="460" height="460" alt="{{ item.caption }}" style="cursor:pointer"></a></noscript>
+          <img data-src="{{ item.thumbnail | url }}" src="{{ item.preview }}" width="460" height="460" alt="{{ item.caption }}" onclick="openLightbox();showSlide({{ loop.index }})" style="cursor:pointer" data-loading="lazy">
+        </figure>
+      </li>
     {% endfor %}
   </ul>
 </section>
 
 {# ----- Instagram Lightbox ----- #}
 
-{% for item in instagram_images -%}
-  <div id="instagram_{{ loop.index }}" class="instagram lightbox">
-    <a href="#_" onclick="closeModal()"></a>
-    <div class="content">
-      <div>
-        <figure class="frame frame1x1">
-          <img src="{{ site.cloudinary_url }}image/fetch/{{ item.media_url | urlencode }}" alt="{{ item.caption }}" loading="lazy">
-        </figure>
+<div id="lightbox">
+  <nav class="close" onclick="closeLightbox()">&times;</nav>
+  {% for item in instagram_images -%}
+    <div class="lightbox__slide instagram">
+      <div class="lightbox__domino">
+        <div class="frame frame1x1">
+          <figure>
+            <img data-src="{{ item.image | url }}" src="{{ item.preview }}" width="1440" height="1440" alt="{{ item.caption }}" style="max-width:none" data-loading="lazy">
+          </figure>
+        </div>
+        <div style="max-height:40vmax;overflow-x:hidden;overflow-y:auto">
+          <div style="display:flex;align-items:center;min-height:100%">
+            <p>{{ item.caption }}</p>
+          </div>
+        </div>
       </div>
-      <p>{{ item.caption }}</p>
+
       {% if loop.index > 1 %}
-        <a href="#instagram_{{ loop.index - 1 }}"><nav class="prev">&lt;</nav></a>
+        <nav class="prev" onclick="showSlide({{ loop.index - 1 }})">&lt;</nav>
       {% else %}
-        <a href="#instagram_1"><nav class="prev">&nbsp;</nav></a>
+        <nav class="prev">&nbsp;</nav>
       {% endif %}
-      {% if loop.index < 12 %}
-        <a href="#instagram_{{ loop.index + 1 }}"><nav class="next">&gt;</nav></a>
+      {% if loop.index < instagram_images | length %}
+        <nav class="next" onclick="showSlide({{ loop.index + 1 }})">&gt;</nav>
       {% else %}
-        <a href="#instagram_12"><nav class="next">&nbsp;</nav></a>
+        <nav class="next">&nbsp;</nav>
       {% endif %}
-      <a href="#_" onclick="closeModal()"><nav class="close">&times;</nav></a>
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
+</div>
 

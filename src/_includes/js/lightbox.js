@@ -3,12 +3,14 @@ function openLightbox(id) {
   document.querySelector('#lightbox').style.visibility = 'visible';
   // document.querySelector('menu').style.display = 'none';
 
-  document.querySelector(id).scrollIntoView({behavior: 'auto', inline: 'center', block: 'center'});
+  // document.querySelector(id).scrollIntoView({behavior: 'auto', inline: 'center', block: 'center'});
 
-  /*
+  let n = parseInt(id.slice(5));
+
   let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
   document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
-  */
+  console.log(n);
+  console.log(itemWidth);
 }
 
 function closeLightbox() {
@@ -25,6 +27,7 @@ function scrollToNextItem() {
   } else {
     scroller.scrollTo({left: 0, top: 0, behavior:'auto'});
   }
+  console.log(scroller.scrollWidth);
 }
 
 function scrollToPrevItem() {
@@ -35,4 +38,5 @@ function scrollToPrevItem() {
   } else {
     scroller.scrollTo({left: scroller.scrollWidth, top: 0, behavior:'auto'});
   }
+  console.log(scroller.scrollWidth);
 }

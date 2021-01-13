@@ -64,23 +64,20 @@
 }
 
 #lightbox .slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  width:100vw;
+  height:100%;
   overflow-y: hidden;
   overflow-x: scroll;
   /* scroll-padding: 0 50%; */
   scroll-snap-type: x mandatory;
   display: flex;
+  justify-content: flex-start;
   -webkit-overflow-scrolling: touch;
 }
 
 #lightbox .slider-item {
   position: relative;
-  flex-grow: 1;
-  flex-shrink: 0;
+  flex: 1 0 100vw;
   width: 100vw;
   height: 100%;
   scroll-snap-align: center;
