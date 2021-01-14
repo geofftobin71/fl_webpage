@@ -1,12 +1,12 @@
-<div id="menu" class="menu">
-  <input class="menu__toggle" type="checkbox" onclick="toggleMenu(this)">
-  <nav class="menu__burger">
+<div id="menu">
+  <input class="toggle" type="checkbox" onclick="toggleMenu(this)">
+  <nav class="burger">
     <span title="Menu"></span>
   </nav>
-  <nav class="menu__close">
+  <nav class="close">
     <span style="width:var(--step-1)" title="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
   </nav>
-  <div class="menu__content">
+  <div class="content">
     <figure class="logo">
       <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" style="margin:0 auto">
     </figure>
@@ -15,5 +15,5 @@
       {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
     </nav>
   </div>
-  <div class="menu__backdrop"></div>
+  <div class="backdrop"></div>
 </div>
