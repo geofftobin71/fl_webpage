@@ -370,6 +370,7 @@ max-width: var(--measure);
     padding-left: 2em;
   }
 }
+
 strong {
   color: var(--color-shade3);
   font-family: var(--font-family-secondary);
@@ -378,6 +379,7 @@ strong {
   display:inline;
   line-height: 1;
 }
+
 /* ----- Auto Grid ----- */
 
 .auto-grid {
@@ -492,7 +494,7 @@ strong {
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
 }
 
 /* ----- Modal ----- */

@@ -32,16 +32,16 @@
       </li>
       {%- endfor %}
   </ul>
-  <nav class="toggle-captions text-shadow" onclick="toggleCaptions()">
+  <nav class="toggle-captions" onclick="toggleCaptions()">
     <span style="width:var(--step-1)" title="Toggle Captions">{{ '/src/svg/comment-o.svg' | svgContents | safe }}</span>
   </nav>
-  <nav class="close text-shadow" onclick="closeLightbox()">
+  <nav class="close" onclick="closeLightbox()">
     <span style="width:var(--step-1)" title="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
   </nav>
-  <nav class="prev text-shadow" onclick="scrollToPrevItem()">
+  <nav class="prev" onclick="scrollToPrevItem()">
     <span style="width:var(--step-1)" title="Prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
   </nav>
-  <nav class="next text-shadow" onclick="scrollToNextItem()">
+  <nav class="next" onclick="scrollToNextItem()">
     <span style="width:var(--step-1)" title="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
   </nav>
 </div>
