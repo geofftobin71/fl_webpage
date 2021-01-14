@@ -8,62 +8,14 @@ eleventyNavigation:
   order: 50
 ---
 
-{% set css %}
-.faq label{
-  cursor: pointer;
-  position: relative;
-  display: block;
-  padding-left: 30px;
-}
-
-.faq label::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 50%;
-  left: 10px;
-  border-left: 8px solid white;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  margin-top: -8px;
-}
-
-.faq input[type="checkbox"]:checked ~ h3 label::before {
-  border-left: 8px solid transparent;
-  border-top: 8px solid white;
-  border-right: 8px solid transparent;
-  margin-left: -4px;
-  margin-top: -4px;
-}
-
-.faq p {
-  padding: 0;
-  max-height: 0;
-  overflow: hidden;
-  padding-left: 30px;
-}
-
-.faq input[type="checkbox"]:checked ~ h3 ~ p {
-  padding: 1em;
-  max-height: 100%;
-}
-{% endset %}
-
-<style>
-  {{ css | cssmin | safe }}
-</style>
-
-<section>
-  <ul class="faq flow">
+<section class="wrapper">
+  <ul class="faq stack center" style="--space:var(--step-4)">
     {% for item in faq -%}
-      <li {% if loop.index % 2 %} class="bg-shade1" {% endif %}>
-        <div class="wrapper" style="padding:1rem">
-          <input id="faq_{{ loop.index }}" type="checkbox" class="visually-hidden">
-          <h3><label for="faq_{{ loop.index }}">{{ item.question }}</label></h3>
-          <p class="wrapper text-wrapper">{{ item.answer }}</p>
-        </div>
-      </li>
-    {% endfor -%}
+        <li class="color-light bg-shade1 text-center flow round-box wrapper text-wrapper border-shade2 shadow">
+            <input id="faq_{{ loop.index }}" type="checkbox" class="visually-hidden">
+            <h3><label for="faq_{{ loop.index }}">{{ item.question }}</label></h3>
+            <p>{{ item.answer }}</p>
+        </li>
+      {% endfor -%}
   </ul>
 </section>

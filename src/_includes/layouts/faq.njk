@@ -20,4 +20,59 @@
     ]
   }
   </script>
+
+  {% set css %}
+  .faq label{
+    cursor: pointer;
+    position: relative;
+    display: block;
+    padding-left: 30px;
+  }
+
+  .faq label::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 10px;
+    border-left: 8px solid white;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-top: -8px;
+  }
+
+  .faq input[type="checkbox"]:checked ~ h3 label::before {
+    border-left: 8px solid transparent;
+    border-top: 8px solid white;
+    border-right: 8px solid transparent;
+    margin-left: -4px;
+    margin-top: -4px;
+  }
+
+  .faq p {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  .faq input[type="checkbox"]:checked ~ h3 ~ p {
+    padding: 1em;
+    max-height: 100%;
+  }
+
+  @media screen and (max-width: 420px) {
+    .faq .round-box {
+      --box-padding: var(--step-0);
+    }
+    .faq input[type="checkbox"]:checked ~ h3 ~ p {
+      padding: 0;
+    }
+  }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+
 {% endblock %}
