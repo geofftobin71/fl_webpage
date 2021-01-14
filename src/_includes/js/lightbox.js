@@ -40,3 +40,11 @@ function scrollToPrevItem() {
   }
   console.log(scroller.scrollWidth);
 }
+
+function toggleCaptions() {
+  const captions = document.querySelectorAll('figcaption');
+  captions.forEach(caption => {
+    caption.classList.toggle('hidden');
+  });
+}
+
