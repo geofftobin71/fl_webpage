@@ -1,16 +1,5 @@
 {% extends "layouts/base.njk" %}
 
-{% block head %}
-  {{ super() }}
-  {% set css %}
-    {% include "css/hamburger-menu.css" %}
-  {% endset %}
-
-  <style>
-    {{ css | cssmin | safe }}
-  </style>
-{% endblock %}
-
 {% block content %}
   <style>body,main{flex:1;display:flex;flex-direction:column;}.logo{width:20vmin;min-width:125px;margin:0 auto;}.site-menu{position:absolute;top:0;left:0;right:0;}</style>
   <main>
@@ -45,16 +34,4 @@
     </div>
   </div>
   </main>
-  {% include "partials/hamburger-menu.njk" %}
-{% endblock %}
-
-{% block foot %}
-  {{ super() }}
-  {% set js %}
-    {% include "js/hamburger-menu.js" %}
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
 {% endblock %}

@@ -15,6 +15,7 @@
     {% include "css/modular-scale.css" %}
     {% include "css/theme.njk" %}
     {% include "css/layout.css" %}
+    {% include "css/hamburger-menu.css" %}
     {% endset %}
 
     <style>
@@ -34,8 +35,10 @@
     {% endblock %}
 
     {% block foot %}
+      {% include "partials/hamburger-menu.njk" %}
       {% set js %}
       {% include "js/lazy-images.js" %}
+      {% include "js/hamburger-menu.js" %}
       {% endset %}
 
       <script>

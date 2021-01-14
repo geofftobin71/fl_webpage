@@ -1,32 +1,9 @@
 {% extends "layouts/base.njk" %}
 
-{% block head %}
-  {{ super() }}
-  {% set css %}
-    {% include "css/hamburger-menu.css" %}
-  {% endset %}
-
-  <style>
-    {{ css | cssmin | safe }}
-  </style>
-{% endblock %}
-
 {% block content %}
   {% include "partials/header.njk" %}
   <main>
   {{ super() }}
   </main>
   {% include "partials/footer.njk" %}
-  {% include "partials/hamburger-menu.njk" %}
-{% endblock %}
-
-{% block foot %}
-  {{ super() }}
-  {% set js %}
-    {% include "js/hamburger-menu.js" %}
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
 {% endblock %}
