@@ -1,7 +1,7 @@
 <div id="menu">
   <input class="toggle" type="checkbox" onclick="toggleMenu(this)">
   <nav class="burger">
-    <span title="Menu"></span>
+    <span style="width:var(--step-1)" title="Menu">{{ '/src/svg/bars.svg' | svgContents | safe }}</span>
   </nav>
   <nav class="close">
     <span style="width:var(--step-1)" title="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
