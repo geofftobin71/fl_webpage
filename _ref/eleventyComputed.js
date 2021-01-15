@@ -27,7 +27,7 @@ const gallery_images = (folder) => {
   if(!folder) { return };
 
   return cloudinary.search
-    .expression('folder:' + folder)
+    .expression('folder=' + folder)
     .sort_by('public_id','desc')
     .with_field('context')
     .max_results(500)

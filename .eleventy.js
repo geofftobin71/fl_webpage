@@ -115,6 +115,12 @@ module.exports = function (eleventyConfig) {
     return array.slice(0, n);
   });
 
+  eleventyConfig.addFilter("sortISO8601", (array) => {
+    return array.sort(function(a, b) {
+      return (a.context.timestamp < b.context.timestamp) ? -1 : ((a.context.timestamp > b.context.timestamp) ? 1 : 0);
+    });
+  });
+
   eleventyConfig.addFilter("shuffle", (array) => {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
