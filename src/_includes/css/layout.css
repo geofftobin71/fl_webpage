@@ -251,33 +251,40 @@ article > * + * {
 
 /* ----- Button ----- */
 
-.button {
-  font: inherit;
+button {
+  --button-fg: var(--color-shade3); */
+  --button-bg: transparent;
+  --button-hl: var(--color-shade1);
+  color: var(--button-fg);
+  background: var(--button-bg);
   display: inline-block;
   line-height: 1;
   text-decoration: none;
-  border: 1px solid #ff8484;
-  background: #ff8484;
+  border: 1.5px solid var(--button-fg);
   padding: 0.6rem 1.5rem;
   position: relative;
-  font-weight: 700;
+  font-family: var(--font-family-secondary);
+  text-transform: lowercase;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-.button[data-variant=ghost] {
-  border-color: currentColor;
-  background: transparent;
-}
-.button:focus {
-  outline-offset: -0.4rem;
+button:focus {
+  outline-offset: -0.2rem;
   outline: 1px solid;
 }
-.button:hover {
-  background: #231651;
-  border-color: #231651;
-  color: #fafafa;
+button:hover {
+  background: var(--button-fg);
+  color: var(--button-hl);
+  border-color: var(--button-hl);
 }
-.button:active {
+button:active {
   transform: scale(0.95);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+button a:link { color: var(--button-fg); }
+button a:visited { color: var(--button-fg); }
+button a:hover { color: var(--button-hl); }
+button a:active { color: var(--button-hl); }
 
 /* ----- The Stack ----- */
 
@@ -469,7 +476,7 @@ strong {
 }
 
 .frame.shadow img {
-  box-shadow: 3px 2px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
 }
 
 .frame.shadow-primary img {
