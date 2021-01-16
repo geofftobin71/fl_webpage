@@ -1,75 +1,19 @@
 {% set css %}
-.slider {
-  position: relative;
-  overflow-x: hidden;
+nav {
+  color: white;
+  padding: 0;
+  width: var(--step-4);
+  height: var(--step-4);
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
-  align-items: flex-end;
-  height: 100%;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
 }
-.slider__inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 500%;
-  height: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  transition: transform 500ms;
-}
-.slider__inner > div {
-  width: 100%;
-  height: 100%;
-}
-.slider__content {
-  width: 100%;
-  height: 85%;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.slider__content > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width:100%;
-  min-height:100%;
-}
-.slider__nav {
-  z-index: 1;
-  padding-left:0.5em;
-}
-.slider__nav:checked:nth-of-type(1) ~ .slider__inner {
-  transform: translateX(0%);
-}
-.slider__nav:checked:nth-of-type(2) ~ .slider__inner {
-  transform: translateX(-20%);
-}
-.slider__nav:checked:nth-of-type(3) ~ .slider__inner {
-  transform: translateX(-40%);
-}
-.slider__nav:checked:nth-of-type(4) ~ .slider__inner {
-  transform: translateX(-60%);
-}
-.slider__nav:checked:nth-of-type(5) ~ .slider__inner {
-  transform: translateX(-80%);
-}
-.slider__nav {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-.slider__nav + label {
-  z-index: 1;
-  content: "";
-  width: 1em;
-  height: 1em;
-  display: block;
-  border: 0.1em solid currentColor;
-  border-radius: 50%;
-}
-.slider__nav:checked + label {
-  background: radial-gradient(currentcolor 40%, rgba(255, 0, 0, 0) 41%);
+
+nav svg {
+  -webkit-filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+  filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
 }
 {% endset %}
 
@@ -77,24 +21,27 @@
   {{ css | cssmin | safe }}
 </style>
 
-<section class="full-width-breakout bg-shade1 font-size-1" style="height:22em;max-height:100vh">
-  <div class="slider">
-    <input type="radio" name="slider" id="slide1" class="slider__nav" checked="checked"/><label class="font-size-0" for="slide1"></label>
-    <input type="radio" name="slider" id="slide2" class="slider__nav"/><label class="font-size-0" for="slide2"></label>
-    <input type="radio" name="slider" id="slide3" class="slider__nav"/><label class="font-size-0" for="slide3"></label>
-    <input type="radio" name="slider" id="slide4" class="slider__nav"/><label class="font-size-0" for="slide4"></label>
-    <input type="radio" name="slider" id="slide5" class="slider__nav"/><label class="font-size-0" for="slide5"></label>
-    <div class="slider__inner">
-      {% for item in reviews | removeLongReviews(300) | shuffle | head(5) -%}
-        <div class="wrapper">
-          <div class="slider__content wrapper text-wrapper font-secondary">
-            <div class="flow">
-              <p class="font-size-1 text-center">{{ item.review }}</p>
-              <p class="font-size-0 text-center">{{ item.name }}</p>
-            </div>
+<section id="reviews" class="bg-shade1 font-size-1">
+  <ul class="slider center-both" style="padding:1em 0">
+    {% for item in reviews | removeLongReviews(300) | shuffle | head(5) -%}
+      <li id="item{{ loop.index }}" class="slider-item">
+        <div class="wrapper text-wrapper font-secondary">
+          <div class="stack">
+            <p class="font-size-1 text-center">{{ item.review }}</p>
+            <p class="font-size-0 text-center">{{ item.name }}</p>
           </div>
         </div>
-      {% endfor -%}
-    </div>
+      </li>
+    {% endfor -%}
+  </ul>
+  <noscript><p class="color-shade2 text-center font-secondary font-size--1">&lt;&lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;scroll&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;&gt;<br><br></p></noscript>
+  <div class="req-js" style="display:flex;justify-content:space-between">
+    <nav class="prev" onclick="scrollToPrevItem('#reviews')">
+      <span style="width:var(--step-1)" title="Prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
+    </nav>
+    <nav class="next" onclick="scrollToNextItem('#reviews')">
+      <span style="width:var(--step-1)" title="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
+    </nav>
   </div>
+  <div class="text-center font-size-0"><a href="/reviews" class="button">Read More Reviews</a></div>
 </section>

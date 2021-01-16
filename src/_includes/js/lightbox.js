@@ -19,9 +19,9 @@ function closeLightbox() {
   // document.querySelector('menu').style.display = 'block';
 }
 
-function scrollToNextItem() {
-  let scroller = document.querySelector('#lightbox .slider');
-  let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
+function scrollToNextItem(id) {
+  let scroller = document.querySelector(id + ' .slider');
+  let itemWidth = document.querySelector(id + ' .slider-item').clientWidth;
   if(scroller.scrollLeft < (scroller.scrollWidth - itemWidth)) {
     scroller.scrollBy({left: itemWidth, top: 0, behavior:'smooth'});
   } else {
@@ -30,9 +30,9 @@ function scrollToNextItem() {
   console.log(scroller.scrollWidth);
 }
 
-function scrollToPrevItem() {
-  let scroller = document.querySelector('#lightbox .slider');
-  let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
+function scrollToPrevItem(id) {
+  let scroller = document.querySelector(id + ' .slider');
+  let itemWidth = document.querySelector(id + ' .slider-item').clientWidth;
   if(scroller.scrollLeft != 0) {
     scroller.scrollBy({left: -itemWidth, top: 0, behavior:'smooth'});
   } else {
