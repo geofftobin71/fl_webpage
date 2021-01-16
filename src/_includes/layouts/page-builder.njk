@@ -3,8 +3,7 @@
 text_section,
 hero_section,
 split_image_text_section,
-contact_form_section,
-gallery_section
+contact_form_section
 with context %}
 
 {% block head %}
@@ -14,7 +13,7 @@ with context %}
   {% endset %}
 
   <style>
-{{ css | cssmin | safe }}
+    {{ css | cssmin | safe }}
   </style>
 
   <script src="https://www.google.com/recaptcha/api.js?render={{ keys.recaptcha_site_key }}" async defer></script>
@@ -23,29 +22,7 @@ with context %}
 {% block content %}
   {% include "partials/header.njk" %}
   <main>
-  {% for section in page_sections %}
-    {% if section.template == "text-section" %}
-      {{ text_section(section.text) }}
-    {% elif section.template == "hero-section" %}
-      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,f_jpg,g_auto:subject,e_blur:200/" + (section.image | stripVersion) %}
-      {% set lqip_data = lqip_path | lqip %}
-      {{ hero_section(section.image, section.alt or page_alt or site.alt, section.text, section.brightness or '50', lqip_data) }}
-    {% elif section.template == "split-image-text-section" %}
-      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,f_jpg,g_auto:subject,e_blur:200/" + (section.image | stripVersion) %}
-      {% set lqip_data = lqip_path | lqip %}
-      {{ split_image_text_section(section.image, section.alt or page_alt or site.alt, section.text, section.swap, lqip_data) }}
-    {% elif section.template == "gallery-section" %}
-      {{ gallery_section() }}
-    {% elif section.template == "contact-form-section" %}
-      {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, section.email_alt or page_alt or site.alt ) }}
-      {% set js %}
-      {% include "js/contact-form-handler.js" %}
-      {% endset %}
-      <script>
-        {{ js | jsmin | safe }}
-      </script>
-    {% endif %}
-  {% endfor %}
+  {% include "partials/page-sections.njk" %}
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}

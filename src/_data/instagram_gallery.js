@@ -1,5 +1,6 @@
 const cloudinary = require('cloudinary').v2;
 const fetch = require('node-fetch');
+const cache = require('../../_cache/instagram_gallery.json');
 
 async function getImage(item) {
   return Promise.resolve(cloudinary.uploader.upload(item.thumbnail_url ? item.thumbnail_url : item.media_url,
@@ -20,9 +21,13 @@ async function getImages(json_data) {
 };
 
 module.exports = function() {
-  fetch('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' + process.env.INSTAGRAM_TOKEN)
-    .then(res => res.json())
-    .then(json => console.log(json));
+  if(process.env.NODE_ENV == 'development') { console.log('Using Instagram gallery cache'); return cache; }
+
+  console.log('Updating Instagram gallery');
+
+  fetch('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' + process.env.INSTAGRAM_TOKEN);
+    // .then(res => res.json())
+    // .then(json => console.log(json));
 
   return fetch('https://graph.instagram.com/me/media?fields=id,media_url,thumbnail_url,caption,timestamp&access_token=' + process.env.INSTAGRAM_TOKEN)
     .then(res => res.json())

@@ -10,6 +10,5 @@ eleventyNavigation:
   parent: Flowers
   order: 120
 page_sections:
-- template: gallery-section
 
 ---

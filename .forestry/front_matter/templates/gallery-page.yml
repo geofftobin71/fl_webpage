@@ -25,7 +25,6 @@ fields:
   type: blocks
   label: Page Sections
   template_types:
-  - gallery-section
   - hero-section
   - text-section
   - split-image-text-section

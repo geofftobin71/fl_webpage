@@ -10,8 +10,5 @@ eleventyNavigation:
   parent: Flowers
   order: 110
 page_sections:
-- template: gallery-section
-  folder: fresh-flowers
-description: ''
 
 ---
