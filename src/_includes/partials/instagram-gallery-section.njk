@@ -22,7 +22,7 @@
 
 {% set instagram_image_sizes = [640, 750, 900, 1080, 1260, 1440] %}
 
-<div id="lightbox">
+<div id="lightbox" class="slider-controls">
   <ul class="slider">
     {% for item in instagram_images -%}
       <li id="item{{ loop.index }}" class="slider-item">

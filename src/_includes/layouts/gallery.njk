@@ -3,9 +3,8 @@
 {% block head %}
   {{ super() }}
   {% set css %}
-  {% include "css/lightbox.css" %}
-  {% include "css/gallery.css" %}
   {% include "css/slider.css" %}
+  {% include "css/gallery.css" %}
   {% endset %}
 
   <style>
@@ -62,7 +61,7 @@
 
   {# ----- Gallery Lightbox ----- #}
 
-  <div id="lightbox">
+  <div id="lightbox" class="slider-controls">
     <ul class="slider">
       {% for image in images -%}
         <li id="item{{ loop.index }}" class="slider-item">
@@ -104,7 +103,7 @@
 {% block foot %}
   {{ super() }}
   {% set js %}
-  {% include "js/lightbox.js" %}
+  {% include "js/slider.js" %}
   {% endset %}
 
   <script>
