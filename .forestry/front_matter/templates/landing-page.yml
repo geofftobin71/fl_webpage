@@ -1,0 +1,32 @@
+---
+label: Landing Page
+hide_body: true
+display_field: title
+fields:
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: layouts/landing-page.njk
+- name: seo
+  type: include
+  config: {}
+  template: seo
+  label: SEO
+- name: header
+  type: include
+  config: {}
+  template: header
+  label: Header
+- name: page_sections
+  type: blocks
+  label: Page Sections
+  template_types:
+  - text-section
+  - split-image-text-section
+  - contact-form-section
+  config:
+    min: 
+    max: 
+pages:
+- src/pages/sorry-contact-form.md

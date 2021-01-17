@@ -1,10 +1,4 @@
-{% extends "layouts/page.njk" %}
-{% from "macros/page-sections.njk" import
-text_section,
-hero_section,
-split_image_text_section,
-contact_form_section
-with context %}
+{% extends "layouts/base.njk" %}
 
 {% block head %}
   {{ super() }}
@@ -26,3 +20,4 @@ with context %}
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
+

@@ -29,7 +29,15 @@
       </figure>
       <div class="wrapper text-wrapper flow bigfonts font-secondary text-center text-shadow" style="--measure:60ch">
         <h1>{{ (header.title or title) | lower }}</h1>
-        {% markdown text %}
+        {% for section in page_sections %}
+          {% if section.template == "text-section" %}
+            <section>
+              <article class="wrapper text-wrapper">
+                {% markdown section.text %}
+              </article>
+            </section>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>

@@ -1,16 +1,85 @@
 {% for section in page_sections %}
   {% if section.template == "text-section" %}
-    {{ text_section(section.text) }}
+    <section>
+      <article class="wrapper text-wrapper">
+        {% markdown section.text %}
+      </article>
+    </section>
   {% elif section.template == "hero-section" %}
-    {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
-    {% set lqip_data = lqip_path | lqip %}
-    {{ hero_section(section.image, section.alt or page_alt or site.alt, section.text, section.brightness or '50', lqip_data) }}
+    <section>
+      <div class="cover shadow" style="--min-height:90vh">
+        <figure class="background" style="--brightness:{{ section.brightness or '50' }}%">
+          {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
+          {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+          {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
+          <noscript><img src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" /></noscript>
+          <img data-srcset="
+          {%- for size in image_sizes -%}
+          {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor -%}
+          " sizes="100vw" data-src="{{ src }}" src="{{ lqip_path | lqip }}" alt="{{ section.alt or page_alt or site.alt }}" data-loading="lazy" />
+        </figure>
+        <article class="bigfonts font-secondary centered wrapper text-wrapper flow text-center text-shadow">
+          {% markdown section.text %}
+        </article>
+      </div>
+    </section>
   {% elif section.template == "split-image-text-section" %}
-    {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
-    {% set lqip_data = lqip_path | lqip %}
-    {{ split_image_text_section(section.image, section.alt or page_alt or site.alt, section.text, section.swap, lqip_data) }}
+    <section>
+      <div class="domino{{ ' swap' if section.swap }}">
+        <figure>
+          {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
+          {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+          {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
+          <noscript><img class="img-cover" src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" /></noscript>
+          <img class="img-cover" data-srcset="
+          {%- for size in image_sizes -%}
+          {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor -%}
+          " sizes="(orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ lqip_data }}" alt="{{ section.alt or page_alt or site.alt }}" data-loading="lazy" />
+        </figure>
+        <div class="center-both">
+          <article class="wrapper text-wrapper">
+            {% markdown section.text %}
+          </article>
+        </div>
+      </div>
+    </section>
   {% elif section.template == "contact-form-section" %}
-    {{ contact_form_section( section.heading, section.message, section.button, section.email_subject, section.email_heading, section.email_banner, section.email_alt or page_alt or site.alt ) }}
+    <section>
+      <div class="wrapper text-wrapper flow">
+        <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
+        <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
+          <label for="name-input">
+            Name
+            <input id="name-input" name="name" type="text" placeholder="Your Name">
+          </label>
+          <label for="email-input">
+            Email
+            <input id="email-input" name="email" type="email" placeholder="Your Email">
+          </label>
+          <label for="message-input">
+            Message
+            <textarea id="message-input" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
+          </label>
+          <input id="subject-input" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
+          <input id="heading-input" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
+          <input id="banner-input" name="banner" type="hidden" value="{{ section.email_banner or 'https://floriade.co.nz/images/floriade-icon-round-512.png' }}">
+          <input id="alt-input" name="alt" type="hidden" value="{{ section.email_alt or page_alt or site.alt }}">
+          <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
+
+          <p class="text-center font-secondary" style="color:red;min-height:1.5em" id="response-message">&nbsp;</p>
+          <div class="text-center"><button type="submit">{{ section.button or 'Send Message' }}</button></div>
+          <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
+        </form>
+        <noscript>
+          <div class="text-center flow" style="margin-top:1em">
+            <p><a href="{{ site.mailto_obf | safe }}?subject={{ section.email_subject or 'Flowers Enquiry' }}" title="Send us a message">{{ site.email_obf | safe }}</a></p>
+            <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
+          </div>
+        </noscript>
+      </div>
+    </section>
     {% set js %}
     {% include "js/contact-form-handler.js" %}
     {% endset %}
