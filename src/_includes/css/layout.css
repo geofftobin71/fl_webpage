@@ -402,6 +402,8 @@ strong {
 @supports (display: grid) {
   .auto-grid {
     display: grid;
+    justify-content: stretch;
+    align-items: stretch;
     grid-template-columns: repeat( auto-fit, minmax(var(--auto-grid-min-size, 16rem), 1fr));
     grid-gap: var(--auto-grid-gap, 1rem);
     grid-auto-flow: dense;
@@ -427,6 +429,7 @@ strong {
 /* ----- The Frame ----- */
 
 .frame {
+  height: 0;
   padding-bottom: calc(var(--n) / var(--d) * 100%);
   position: relative;
 }

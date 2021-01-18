@@ -3,7 +3,7 @@
     {% set image_path = site.cloudinary_url + "/c_fill,w_1920,h_300,q_auto,f_auto,g_auto:subject/" + (header.image | stripVersion) %}
     {% set lqip_path = site.cloudinary_url + "/c_fill,w_192,h_30,f_jpg,g_auto:subject,e_blur:200/" + (header.image | stripVersion) %}
     <noscript><img src="{{ image_path }}" alt="{{ header.alt or page_alt or site.alt }}"></noscript>
-    <img data-src="{{ image_path }}" src="{{ lqip_path | lqip }}" alt="{{ header.alt or page_alt or site.alt }}" data-loading="lazy">
+    <img data-src="{{ image_path }}" src="{{ lqip_path | lqip }}" alt="{{ header.alt or page_alt or site.alt }}" data-loading="lazy" decoding="async" />
   </figure>
   <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
     {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}

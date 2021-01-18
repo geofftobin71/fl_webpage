@@ -17,7 +17,7 @@
           {%- for size in image_sizes -%}
           {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
           {%- endfor -%}
-          " sizes="100vw" data-src="{{ src }}" src="{{ lqip_path | lqip }}" alt="{{ section.alt or page_alt or site.alt }}" data-loading="lazy" />
+          " sizes="100vw" data-src="{{ src }}" src="{{ lqip_path | lqip }}" alt="{{ section.alt or page_alt or site.alt }}" data-loading="lazy" decoding="async" />
         </figure>
         <article class="bigfonts font-secondary centered wrapper text-wrapper flow text-center text-shadow">
           {% markdown section.text %}
@@ -36,7 +36,7 @@
           {%- for size in image_sizes -%}
           {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
           {%- endfor -%}
-          " sizes="(orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ lqip_data }}" alt="{{ section.alt or page_alt or site.alt }}" data-loading="lazy" />
+          " sizes="(orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ lqip_data }}" alt="{{ section.alt or page_alt or site.alt }}" data-loading="lazy" decoding="async" />
         </figure>
         <div class="center-both">
           <article class="wrapper text-wrapper">

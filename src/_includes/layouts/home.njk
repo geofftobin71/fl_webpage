@@ -3,12 +3,52 @@
 {% block head %}
   {{ super() }}
   {% set css %}
-    {% include "css/slider.css" %}
+  {% include "css/slider.css" %}
   {% endset %}
 
   <style>
     {{ css | cssmin | safe }}
   </style>
+
+  <script type="application/ld+json"> 
+  {
+    "@context": "http://www.schema.org",
+    "@type": "Florist",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}",
+    "email": "{{ site.email }}",
+    "logo": "{{ site.logo }}",
+    "image": "{{ site.logo }}",
+    "description": "{{ site.description | safe }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.address }}",
+      "addressLocality": "{{ site.address_locality }}",
+      "addressRegion": "{{ site.address_region }}",
+      "postalCode": "{{ site.address_postcode }}",
+      "addressCountry": "New Zealand"
+    },
+    "hasMap": "{{ site.google_maps }}",
+    "openingHoursSpecification": [
+      {%- for day, hours in shop_hours -%}
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "{{ day | capitalize }}"
+          {%- if (hours | lower) != 'closed' -%}
+          ,"opens": "{{ hours | splitHours(0) | twentyFour('am') }}",
+          "closes": "{{ hours | splitHours(1) | twentyFour('pm') }}"
+          {%- endif -%}
+        }{{ ',' if not loop.last }}
+      {%- endfor -%}
+    ],
+    "telephone": "{{ site.phone_intl }}",
+    "sameAs": [
+      "{{ site.facebook }}",
+      "{{ site.instagram }}",
+      "{{ site.pinterest }}"
+    ]
+  }
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +61,7 @@
 {% block foot %}
   {{ super() }}
   {% set js %}
-    {% include "js/slider.js" %}
+  {% include "js/slider.js" %}
   {% endset %}
 
   <script>

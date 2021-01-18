@@ -5,13 +5,15 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
 const schema = require("@quasibit/eleventy-plugin-schema");
-const { DateTime } = require("luxon"); 
+const { Settings, DateTime } = require("luxon"); 
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
 const { minify } = require("terser");
 const fs = require("fs");
 const markdown = require("markdown-it")({ html: true });
 const fetch64 = require('fetch-base64');
+
+Settings.defaultZoneName = "Pacific/Auckland";
 
 module.exports = function (eleventyConfig) {
 
@@ -29,8 +31,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(schema);
 
-  eleventyConfig.addCollection("posts", function (collection) {
-    return collection.getFilteredByGlob("./src/posts/*.md");
+  eleventyConfig.addCollection("blog", function (collection) {
+    return collection.getFilteredByGlob("./src/blog/*.md");
   });
 
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.ico" : "/"});
@@ -95,15 +97,36 @@ module.exports = function (eleventyConfig) {
     }
   });
 
+  eleventyConfig.addFilter("splitHours", (hours, index) => {
+    return hours.split('-')[index].trim();
+  });
+
+  eleventyConfig.addFilter("twentyFour", (time, ampm = 'pm') => {
+    let pm = (ampm == 'pm');
+
+    if(time.trim().slice(-2).toLowerCase() == 'am') { pm = false; }
+    if(time.trim().slice(-2).toLowerCase() == 'pm') { pm = true; }
+
+    const bits = time.split(/[^0-9]/);
+
+    let hour_num = ((bits.length > 0) && (bits[0])) ? parseInt(bits[0]) : 0;
+    hour_num += ((hour_num < 12) && (pm) ? 12 : 0);
+
+    let minute_num = ((bits.length > 1) && (bits[1])) ? parseInt(bits[1]) : 0;
+
+    const hour = ('00' + hour_num).slice(-2);
+    const minute = ('00' + minute_num).slice(-2);
+
+    return hour + ':' + minute;
+  });
+
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return dateObj.toFormat("dd LLL yyyy");
-    // return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
+    return DateTime.fromJSDate(dateObj, {zone: 'Pacific/Auckland'}).toFormat("dd LLL yyyy");
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return dateObj.toFormat('yyyy-LL-dd');
-    // return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
+    return DateTime.fromJSDate(dateObj, {zone: 'Pacific/Auckland'}).toFormat('yyyy-LL-dd');
   });
 
   // Get the first `n` elements of a collection.
