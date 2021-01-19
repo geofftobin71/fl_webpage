@@ -25,7 +25,15 @@ page_sections:
       convallis. Mauris sit amet semper magna. Morbi ullamcorper, enim sit amet sollicitudin
       tristique, massa nisi congue enim, eleifend pellentesque eros ante ut sem. Aliquam
       a ante quam. Donec in enim et lorem laoreet consectetur quis at elit.
-  right_sections: []
+  right_sections:
+  - template: contact-form-section
+    heading: ''
+    message: ''
+    button: ''
+    email_subject: ''
+    email_heading: ''
+    email_banner: ''
+    email_alt: ''
 - template: text-section
   text: |-
     **Floriade** is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.
