@@ -29,5 +29,3 @@ fields:
   config:
     min: 
     max: 
-pages:
-- src/pages/sorry-contact-form.md
