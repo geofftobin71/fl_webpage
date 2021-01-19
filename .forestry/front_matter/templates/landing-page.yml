@@ -25,6 +25,7 @@ fields:
   - text-section
   - split-image-text-section
   - contact-form-section
+  - two-column-section
   config:
     min: 
     max: 

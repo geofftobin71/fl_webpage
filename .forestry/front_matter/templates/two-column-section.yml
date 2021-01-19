@@ -1,0 +1,24 @@
+---
+label: Two Column Section
+hide_body: true
+fields:
+- name: left_sections
+  type: blocks
+  label: Left Sections
+  template_types:
+  - text-section
+  - hero-section
+  - contact-form-section
+  config:
+    min: 
+    max: 
+- name: right_sections
+  type: blocks
+  label: Right Sections
+  template_types:
+  - text-section
+  - hero-section
+  - contact-form-section
+  config:
+    min: 
+    max: 
