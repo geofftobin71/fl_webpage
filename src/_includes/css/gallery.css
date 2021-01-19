@@ -2,8 +2,12 @@
 /* ----- Gallery ----- */
 
 .gallery {
-  --auto-grid-gap: var(--step-0);
+  --auto-grid-gap: 0;
   --auto-grid-min-size: 96px;
+}
+
+.gallery li {
+  margin: calc(var(--step--2) / 2);
 }
 
 .gallery .frame4x3 {

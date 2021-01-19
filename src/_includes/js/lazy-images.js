@@ -1,13 +1,13 @@
-/* if ('loading' in HTMLImageElement.prototype) {
+if ('loading' in HTMLImageElement.prototype) {
   // Native Lazy Loading
-  const images = document.querySelectorAll('img[data-loading="lazy"]');
+  const images = document.querySelectorAll('img[loading="lazy"]');
   images.forEach(img => {
     if(img.dataset.srcset) { img.srcset = img.dataset.srcset; }
     if(img.dataset.src) { img.src = img.dataset.src; }
   });
-} else */ if('IntersectionObserver' in window) {
+} else if('IntersectionObserver' in window) {
   // Intersection Observer
-  const images = document.querySelectorAll('img[data-loading="lazy"]');
+  const images = document.querySelectorAll('img[loading="lazy"]');
   const lazy_images_options = { root: null, threshold: 0, rootMargin: "500px 500px 500px 500px" };
   const lazy_images_observer = new IntersectionObserver((entries, lazy_images_observer) => {
     entries.forEach(entry => {
@@ -23,7 +23,7 @@
   });
 } else {
   // Non-lazy Fallback
-  const images = document.querySelectorAll('img[data-loading="lazy"]');
+  const images = document.querySelectorAll('img[loading="lazy"]');
   images.forEach(img => {
     if(img.dataset.srcset) { img.srcset = img.dataset.srcset; }
     if(img.dataset.src) { img.src = img.dataset.src; }

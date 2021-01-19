@@ -21,7 +21,7 @@ eleventyNavigation:
         </div>
       </li>
       <figure style="width:100%;max-width:{{ divider_sizes[loop.index0 % 5] }}px;opacity:0.25">
-        <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament">
+        <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament" loading="eager" />
       </figure>
     {% endfor -%}
   </ul>
