@@ -344,16 +344,17 @@ max-width: var(--measure);
 .two-columns {
   --h-space: var(--step-0);
   --v-space: 7.5vh;
-  --space: var(--h-space);
+  --space: var(--v-space);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  grid-template-columns: 1fr;
   grid-gap: var(--space, 1em);
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (orientation: landscape) and (min-width: 950px) {
   .two-columns {
-    --space: var(--v-space);
-    grid-template-columns: 1fr;
+    --space: var(--h-space);
+    grid-template-columns: 1fr 1fr;
   }
 }
 

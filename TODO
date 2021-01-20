@@ -1,7 +1,10 @@
+image section sizes= if enclosed in two column section
+refactor domino => instagram slide item
+section width / background color options
+image(s) section
 markdown button
 markdown image srcset
 layouts/blog.njk schema
-refactor domino
 landing-page forestry template => contact form error page
 Subdivide layout.css ?
 Add schema frontmatter

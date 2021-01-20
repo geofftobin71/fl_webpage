@@ -1,7 +1,11 @@
 <header id="header" class="header">
   <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
     {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,f_jpg,g_auto:subject,e_blur:200/" + (header.image | stripVersion) %}
-    <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto:subject/{{ header.image | stripVersion }}" style="background-image:url({{ lqip_path | lqip }})" alt="{{ header.alt or page_alt or site.alt }}" loading="eager" decoding="async" />
+    <img srcset="
+    {%- for size in image_sizes -%}
+      {{ site.cloudinary_url }}/w_2048,h_320,c_fill,g_auto:subject/w_{{ size }},h_320,c_crop,q_auto,f_auto/{{ header.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
+    {%- endfor -%}
+    " sizes="100vw" src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto:subject/{{ header.image | stripVersion }}" style="background-image:url({{ lqip_path | lqip }})" alt="{{ header.alt or page_alt or site.alt }}" loading="eager" decoding="async" />
   </figure>
   <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
     {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
