@@ -339,9 +339,27 @@ max-width: var(--measure);
 }
  */
 
+/* ----- Two Columns ----- */
+
+.two-columns {
+  --h-space: var(--step-0);
+  --v-space: 7.5vh;
+  --space: var(--h-space);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--space, 1em);
+}
+
+@media screen and (orientation: portrait) {
+  .two-columns {
+    --space: var(--v-space);
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ----- Domino ----- */
 
-.domino, .two-columns {
+.domino {
   --domino-space: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -349,7 +367,7 @@ max-width: var(--measure);
 }
 
 @media screen and (orientation: portrait) {
-  .domino, .two-columns {
+  .domino {
     grid-template-columns: 1fr;
   }
 }
