@@ -1,4 +1,5 @@
 module.exports = {
+  NODE_ENV: process.env.NODE_ENV,
   CLOUDINARY_URL: process.env.CLOUDINARY_URL,
   INSTAGRAM_TOKEN: process.env.INSTAGRAM_TOKEN,
   STRIPE_TEST_PUBLIC_KEY: process.env.STRIPE_TEST_PUBLIC_KEY,

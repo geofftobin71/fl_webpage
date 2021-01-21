@@ -21,7 +21,7 @@ async function getImages(json_data) {
 };
 
 module.exports = function() {
-  if(process.env.NODE_ENV == 'development') { console.log('Using Instagram gallery cache'); return cache; }
+  if(process.env.NODE_ENV == 'develop') { console.log('Using Instagram gallery cache'); return cache; }
 
   console.log('Updating Instagram gallery');
 

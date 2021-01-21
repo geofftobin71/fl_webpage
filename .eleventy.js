@@ -56,7 +56,7 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
     try {
-      if(process.env.NODE_ENV != 'development') {
+      if(process.env.NODE_ENV != 'develop') {
         const minified = await minify(code);
         callback(null, minified.code);
       } else {
@@ -79,7 +79,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
-    if( (process.env.NODE_ENV != 'development') && outputPath.endsWith(".html") ) {
+    if( (process.env.NODE_ENV != 'develop') && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
@@ -92,7 +92,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("cssmin", (code) => {
-    if(process.env.NODE_ENV != 'development') {
+    if(process.env.NODE_ENV != 'develop') {
       return new CleanCSS({}).minify(code).styles;
     } else {
       return code;

@@ -2,7 +2,7 @@ const cloudinary = require('cloudinary').v2;
 const cache = require('../../_cache/fresh_flowers_gallery.json');
 
 module.exports = function() {
-  if(process.env.NODE_ENV == 'development') { console.log('Using Fresh Flowers gallery cache'); return cache; }
+  if(process.env.NODE_ENV == 'develop') { console.log('Using Fresh Flowers gallery cache'); return cache; }
 
   console.log('Updating Fresh Flowers gallery');
 
