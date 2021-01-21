@@ -1,0 +1,36 @@
+{% extends "layouts/page.njk" %}
+
+{% block head %}
+{{ super() }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ title }}",
+    "description": "{{ description }}",
+    "image": [
+      "{{ site.cloudinary_url }}/w_1440,ar_1,c_fill,f_jpg,q_auto,g_auto:subject/{{ header.image | stripVersion }}",
+      "{{ site.cloudinary_url }}/w_1440,ar_4:3,c_fill,f_jpg,q_auto,g_auto:subject/{{ header.image | stripVersion }}",
+      "{{ site.cloudinary_url }}/w_1440,ar_16:9,c_fill,f_jpg,q_auto,g_auto:subject/{{ header.image | stripVersion }}"
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "{{ author or 'Annwyn Tobin' }}"
+    },  
+    "publisher": {
+      "@type": "Organization",
+      "name": "Floriade",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://floriade.co.nz/images/floriade-word-60.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ site.url }}{{ page.url }}"
+    },
+    "datePublished": "{{ page.date | htmlDateString }}",
+    "dateModified": "{{ page.date | htmlDateString }}"
+  }
+  </script>
+{% endblock %}
