@@ -11,37 +11,6 @@ eleventyNavigation:
   order: 30
   parent: ''
 page_sections:
-- template: two-column-section
-  left_sections:
-  - template: text-section
-    text: |-
-      ## Dolor repudiandae at explicabo dolore
-      **Lorem ipsum dolor sit amet**, consectetur adipiscing elit. Pellentesque ac
-      velit varius ante efficitur eleifend. Vestibulum ante ipsum primis in faucibus
-      orci luctus et ultrices posuere cubilia curae; Sed consequat a lectus in suscipit.
-
-      Nullam eu dictum nisl, vel hendrerit ante. Vivamus eu maximus massa, id ultricies
-      nulla. Ut finibus auctor dictum. Nam posuere eros at leo congue aliquet. Sed
-      commodo, erat quis vulputate pharetra, odio enim aliquet tortor, ultrices vehicula
-      nisl massa in erat.
-      
-      Suspendisse potenti. Aliquam ac mattis neque. Nullam metus
-      erat, dapibus vel lorem sed, congue consequat enim. Etiam commodo nisi ut cursus
-      convallis. Mauris sit amet semper magna.
-      
-      Morbi ullamcorper, enim sit amet sollicitudin
-      tristique, massa nisi congue enim, eleifend pellentesque eros ante ut sem. Aliquam
-      a ante quam. Donec in enim et lorem laoreet consectetur quis at elit.
-
-  right_sections:
-  - template: contact-form-section
-    heading: ''
-    message: ''
-    button: ''
-    email_subject: ''
-    email_heading: ''
-    email_banner: ''
-    email_alt: ''
 - template: text-section
   text: |-
     **Floriade** is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.

@@ -11,5 +11,17 @@ header:
 page_sections:
 - template: text-section
   text: This is the **contact** page.
+- template: two-column-section
+  left_sections:
+  - template: google-maps-section
+  right_sections:
+  - template: contact-form-section
+    heading: ''
+    message: ''
+    button: ''
+    email_subject: ''
+    email_heading: ''
+    email_banner: ''
+    email_alt: ''
 
 ---
