@@ -7,11 +7,12 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "{{ title | safe }}",
-    "description": "{{ description | safe }}",
+    "description": "{{ description or site.description | safe }}",
+    {% set header_image = (header.image | stripVersion) or (site.header_image | stripVersion) %}
     "image": [
-      "{{ site.cloudinary_url }}/w_1440,ar_1,c_fill,f_jpg,q_auto,g_auto:subject/{{ header.image | stripVersion }}",
-      "{{ site.cloudinary_url }}/w_1440,ar_4:3,c_fill,f_jpg,q_auto,g_auto:subject/{{ header.image | stripVersion }}",
-      "{{ site.cloudinary_url }}/w_1440,ar_16:9,c_fill,f_jpg,q_auto,g_auto:subject/{{ header.image | stripVersion }}"
+      "{{ site.cloudinary_url }}/w_1440,ar_1,c_fill,f_jpg,q_auto,g_auto:subject/{{ header_image }}",
+      "{{ site.cloudinary_url }}/w_1440,ar_4:3,c_fill,f_jpg,q_auto,g_auto:subject/{{ header_image }}",
+      "{{ site.cloudinary_url }}/w_1440,ar_16:9,c_fill,f_jpg,q_auto,g_auto:subject/{{ header_image }}"
     ],
     "author": {
       "@type": "Person",

@@ -7,10 +7,9 @@
   {% set metaTitle = site.name + " - " + site.tagline %}
 {% endif %}
 
-{% if header.image %}
-  {% set brightness = 100 - (header.brightness or 50) %}
-  {% set metaImage = site.cloudinary_url + "/c_fill,g_auto:subject,h_627,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + (header.image | stripVersion) %}
-{% endif %}
+{% set header_image = (header.image | stripVersion) or (site.header_image | stripVersion) %}
+{% set brightness = 100 - (header.brightness or 50) %}
+{% set metaImage = site.cloudinary_url + "/c_fill,g_auto:subject,h_627,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + header_image %}
 
 <title>{{ metaTitle }}</title>
 <link rel="canonical" href="{{ currentUrl }}" />

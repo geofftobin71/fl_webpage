@@ -12,7 +12,6 @@ pagination:
   data: collections.blog
   size: 5
   alias: posts
-  reverse: true
 ---
 
 <section class="wrapper">

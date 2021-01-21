@@ -15,7 +15,7 @@ const fetch64 = require('fetch-base64');
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
-module.exports = function (eleventyConfig) {
+module.exports = (eleventyConfig) => {
 
   eleventyConfig.setDataDeepMerge(true);
 
@@ -31,8 +31,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(schema);
 
-  eleventyConfig.addCollection("blog", function (collection) {
-    return collection.getFilteredByGlob("./src/blog/*.md");
+  eleventyConfig.addCollection("blog", (collection) => {
+    const now = DateTime.local();
+    const livePosts = p => p.date <= now && !p.data.draft;
+    return collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
   });
 
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.ico" : "/"});
@@ -52,7 +54,7 @@ module.exports = function (eleventyConfig) {
 
   // [300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400]
 
-  eleventyConfig.addNunjucksAsyncFilter("jsmin", async function(code, callback) {
+  eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
     try {
       if(process.env.NODE_ENV != 'development') {
         const minified = await minify(code);
@@ -67,7 +69,7 @@ module.exports = function (eleventyConfig) {
     }
   });
 
-  eleventyConfig.addNunjucksAsyncFilter("lqip", async function(path, callback) {
+  eleventyConfig.addNunjucksAsyncFilter("lqip", async (path, callback) => {
     let base64 = await fetch64.remote(path).catch((err) => {
       console.error("LQIP error: ", err);
       callback(null, path);
@@ -76,7 +78,7 @@ module.exports = function (eleventyConfig) {
     callback(null, preview);
   });
 
-  eleventyConfig.addTransform("htmlmin", function(content, outputPath) {
+  eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
     if( (process.env.NODE_ENV != 'development') && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
@@ -89,7 +91,7 @@ module.exports = function (eleventyConfig) {
     return content;
   });
 
-  eleventyConfig.addFilter("cssmin", function(code) {
+  eleventyConfig.addFilter("cssmin", (code) => {
     if(process.env.NODE_ENV != 'development') {
       return new CleanCSS({}).minify(code).styles;
     } else {
@@ -139,7 +141,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("sortISO8601", (array) => {
-    return array.sort(function(a, b) {
+    return array.sort((a, b) => {
       return (a.context.timestamp < b.context.timestamp) ? -1 : ((a.context.timestamp > b.context.timestamp) ? 1 : 0);
     });
   });
@@ -171,12 +173,12 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("stripVersion", (path) => {
-    return path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
+    return (path) ? path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'') : '';
   });
 
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
-      ready: function(err, bs) {
+      ready: (err, bs) => {
 
         bs.addMiddleware("*", (req, res) => {
           const content_404 = fs.readFileSync('dist/404.html');
