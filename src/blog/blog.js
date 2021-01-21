@@ -1,0 +1,3 @@
+{
+  "metaType": "blog"
+}

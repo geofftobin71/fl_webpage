@@ -18,8 +18,8 @@
     "@id": "{{ site.url }}",
     "url": "{{ site.url }}",
     "email": "{{ site.email }}",
-    "logo": "{{ site.logo }}",
-    "image": "{{ site.logo }}",
+    "logo": "{{ site.url }}{{ site.logo }}",
+    "image": "{{ site.url }}{{ site.social_image }}",
     "description": "{{ site.description | safe }}",
     "address": {
       "@type": "PostalAddress",

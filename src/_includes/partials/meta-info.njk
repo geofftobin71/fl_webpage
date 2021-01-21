@@ -16,13 +16,13 @@
 <link rel="canonical" href="{{ currentUrl }}" />
 
 <meta property="og:site_name" content="{{ site.name }}" />
-<meta property="og:title" content="{{ metaTitle }}" />
+<meta property="og:title" content="{{ metaTitle | safe }}" />
 <meta property="og:type" content="{{ metaType or 'website' }}" />
 <meta property="og:url" content="{{ currentUrl }}" />
 
-<meta name="description" content="{{ metaDesc }}" />
-<meta name="twitter:description" content="{{ metaDesc }}" />
-<meta property="og:description" content="{{ metaDesc }}" />
+<meta name="description" content="{{ metaDesc | safe }}" />
+<meta name="twitter:description" content="{{ metaDesc | safe }}" />
+<meta property="og:description" content="{{ metaDesc | safe }}" />
 
 <meta name="google-site-verification" content="jKxqqGfwRXbvUEf4V-wnsFmeRN9RxYmzBE4AuhjfHvQ">
 <meta name="p:domain_verify" content="08604940072e4c11a3b6f34dc6225e86"/>
