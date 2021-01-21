@@ -2,6 +2,7 @@ const contact_form = document.getElementById("contact-form");
 const name_input = document.getElementById("name-input");
 const email_input = document.getElementById("email-input");
 const message_input = document.getElementById("message-input");
+const recaptcha_site_key = document.getElementById("recaptcha-site-key");
 
 var response_message = document.getElementById("response-message");
 
@@ -29,7 +30,7 @@ contact_form.addEventListener("submit", event => {
   response_message.textContent = " ";
 
   grecaptcha.ready(function() {
-    grecaptcha.execute("6LeI5xoaAAAAAIWX0byiYYLlvUeTxEiOao452xbl", {action: "contactform"}).then(function(token) {
+    grecaptcha.execute(recaptcha_site_key.value, {action: "contactform"}).then(function(token) {
       document.getElementById("gRecaptchaResponse").value = token;
       contact_form.submit();
     });
