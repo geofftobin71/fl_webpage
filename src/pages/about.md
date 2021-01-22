@@ -38,6 +38,9 @@ page_sections:
     Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.
   alt: ''
   brightness: 
+- template: image-section
+  aspect: 2x1
+  image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
 - template: two-column-section
   left_sections:
   - template: image-section

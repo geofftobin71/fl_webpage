@@ -1,8 +1,8 @@
 image(s) section
 image section forestry template
-image section sizes= if enclosed in two column section
+image section sizes= if enclosed in one or two column section
 draft and author fields for blog posts
-section background color options
+deprecate hero-section => section background color / image options
 markdown button (?) or button section
 markdown embedded image srcset (?) or image section
 landing-page forestry template => contact form error page

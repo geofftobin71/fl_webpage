@@ -1,7 +1,7 @@
 <footer class="bg-shade1 font-size--1">
   <section class="wrapper page-wrapper">
     <div style="display:flex;justify-content:center;margin-bottom:2em"><a href="#top" title="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'});return false;})();return false;" style="width:24px">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div>
-    <div class="switcher" style="--threshold:35rem;--space:0">
+    <div class="switcher" style="--threshold:35rem;--switcher-space:0">
       <div>
         <div class="stack center" style="padding-bottom:var(--section-padding)">
           <h4>Location</h4>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="stack center" style="--space:var(--step-1)">
+    <div class="stack center" style="--stack-space:var(--step-1)">
       <div class="color-light" style="width:240px;height:2rem;display:flex;justify-content:space-between">
         <a href="{{ site.facebook }}" target="_blank" style="width:12px" title="Follow us on Facebook">
           {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>

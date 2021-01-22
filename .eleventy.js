@@ -33,8 +33,11 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPlugin(schema);
 
   eleventyConfig.addCollection("blog", (collection) => {
-    const now = DateTime.local();
-    const livePosts = p => p.date <= now && !p.data.draft;
+    const today = DateTime.local().set({hours:0,minutes:0,seconds:0,milliseconds:0});
+    const livePosts = (p) => { 
+      const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
+      post_date <= today && !p.data.draft; 
+    }
     return collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
   });
 

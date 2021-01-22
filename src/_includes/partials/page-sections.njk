@@ -3,7 +3,7 @@
 {% include "partials/page-sections-inner.njk" %}
 {% if outer_section.template == "two-column-section" %}
   <section>
-    <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0">
+    <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0;--align:{{ outer_section.align or 'center' }}">
       <div class="flow">
         {% asyncEach inner_section in outer_section.left_sections %}
         {% set section = inner_section %}

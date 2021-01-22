@@ -1,6 +1,7 @@
 ---
 title: FAQ
 header:
+  title: Frequently Asked Questions
   image: fresh-flowers/fresh-flowers-by-floriade-00029
 layout: layouts/faq.njk
 eleventyNavigation:
@@ -9,7 +10,7 @@ eleventyNavigation:
 ---
 
 <section class="wrapper">
-  <ul class="faq stack center" style="--space:var(--step-4)">
+  <ul class="faq stack center" style="--stack-space:var(--step-4)">
     {% for item in faq -%}
         <li class="color-light bg-shade1 text-center flow round-box wrapper text-wrapper border-shade2 shadow">
             <input id="faq_{{ loop.index }}" type="checkbox" class="visually-hidden">

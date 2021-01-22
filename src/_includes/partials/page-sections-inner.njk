@@ -29,16 +29,16 @@
 
 {% if section.template == "image-section" %}
   <section>
-    <figure>
+    <figure class="frame frame{{ section.aspect or '1x1' }} shadow">
       {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
       {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
       {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
       <noscript><img class="img-cover" src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
-      <img class="img-cover" data-srcset="
+      <div><img class="img-cover" data-srcset="
       {%- for size in image_sizes -%}
       {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
       {%- endfor -%}
-      " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" />
+      " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
     </figure>
   </section>
 {% endif %}
@@ -96,6 +96,41 @@
       {{ '<noscript>' | safe if env.NODE_ENV == 'deploy' }}
         <a target="_blank" title="Open in Google Maps" href="{{ site.google_maps }}"><img class="img-cover" src="{{ '/images/floriade-map.jpg' | url }}" width="1024" height="1024" alt="Map of the location of Floriade at {{ site.address }}, {{ site.address_locality }}, {{ site.address_region }}"></a>
       {{ '</noscript>' | safe if env.NODE_ENV == 'deploy' }}
+    </div>
+    <noscript><p class="text-center font-size--1">Click to open in Google Maps</p></noscript>
+  </section>
+{% endif %}
+
+{% if section.template == "contact-details-section" %}
+  <section>
+    <div class="stack center">
+      <h2 class="heading text-center">Contact Us</h2>
+      <div class="stack center" style="--stack-space:2rem">
+        <a href="{{ site.google_maps }}" title="Open in Google Maps" target="_blank">
+          <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
+        </a>
+        <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message">{{ site.email_obf | safe }}</a></p>
+        <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
+        <div class="color-light" style="width:240px;height:2rem;display:flex;justify-content:space-between">
+          <a href="{{ site.facebook }}" target="_blank" style="width:12px" title="Follow us on Facebook">
+            {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
+          <a href="{{ site.instagram }}" target="_blank" style="width:20px" title="Follow us on Instagram">
+            {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
+          <a href="{{ site.pinterest }}" target="_blank" style="width:20px" title="Pin us on Pinterest">
+            {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
+          <a href="{{ site.google_review }}" target="_blank" style="width:20px" title="Leave a Google review">
+            {{ '/src/svg/google.svg' | svgContents | safe }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if section.template == "shop-hours-section" %}
+  <section>
+    <div class="stack center">
+      <h2 class="heading text-center">Shop Hours</h2>
+      {% include "partials/shop-hours.njk" %}
     </div>
   </section>
 {% endif %}

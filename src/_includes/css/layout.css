@@ -87,7 +87,7 @@ strong {
 .cover {
   --padding: var(--step-0);
   --min-height: 50vh;
-  --space: var(--step-0);
+  --cover-space: var(--step-0);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -96,8 +96,8 @@ strong {
 }
 
 .cover > * {
-  margin-top: var(--space);
-  margin-bottom: var(--space);
+  margin-top: var(--cover-space);
+  margin-bottom: var(--cover-space);
 }
 
 .cover > :first-child:not(.centered) {
@@ -307,7 +307,7 @@ button a:active { color: var(--button-hl); }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  --space: 1rem;
+  --stack-space: 1rem;
 }
 
 .stack.center {
@@ -320,24 +320,25 @@ button a:active { color: var(--button-hl); }
 }
 
 .stack > * + * {
-  margin-top: var(--space);
+  margin-top: var(--stack-space);
 }
 
 /* ----- Two Columns ----- */
 
 .two-columns {
-  --h-space: var(--step-0);
-  --v-space: 7.5vh;
-  --space: var(--v-space);
+  --h-gap: var(--step-0);
+  --v-gap: 7.5vh;
+  --grid-gap: var(--v-gap);
+  --align: center;
   display: grid;
-  align-items: center;
+  align-items: var(--align);
   grid-template-columns: 1fr;
-  grid-gap: var(--space, 1em);
+  grid-gap: var(--grid-gap, 1em);
 }
 
 @media screen and (orientation: landscape) and (min-width: 950px) {
   .two-columns {
-    --space: var(--h-space);
+    --grid-gap: var(--h-gap);
     grid-template-columns: 1fr 1fr;
   }
   .two-columns.swap > div:first-child {
@@ -491,20 +492,20 @@ html[data-modal-active="true"] {
 
 .switcher {
   --threshold: 30rem;
-  --space: 1rem;
+  --switcher-space: 1rem;
 }
 
 .switcher > * {
   display: flex;
   flex-wrap: wrap;
   /* ↓ Multiply by -1 to make negative */
-  margin: calc(var(--space) / 2 * -1);
+  margin: calc(var(--switcher-space) / 2 * -1);
 }
 
 .switcher > * > * {
   flex-grow: 1;
-  flex-basis: calc((var(--threshold) - (100% - var(--space))) * 999);
+  flex-basis: calc((var(--threshold) - (100% - var(--switcher-space))) * 999);
   /* ↓ Half the value to each element, combining to make the whole */
-  margin: calc(var(--space) / 2);
+  margin: calc(var(--switcher-space) / 2);
 }
 

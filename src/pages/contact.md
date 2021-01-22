@@ -7,16 +7,22 @@ eleventyNavigation:
 title: Contact
 description: Contact Floriade for all your fresh & dried flower needs.
 header:
+  title: Contact Floriade
   image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 page_sections:
-- template: text-section
-  text: This is the **contact** page.
 - template: two-column-section
+  align: start
   left_sections:
-  - template: google-maps-section
+  - template: contact-details-section
   right_sections:
+  - template: shop-hours-section
+- template: two-column-section
+  align: start
+  right_sections:
+  - template: google-maps-section
+  left_sections:
   - template: contact-form-section
-    heading: ''
+    heading: 'Send us a Message'
     message: ''
     button: ''
     email_subject: ''
