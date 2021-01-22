@@ -17,7 +17,6 @@ page_sections:
 
     We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
 - template: two-column-section
-  wrapper: no-wrapper
   left_sections:
   - template: image-section
     image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
@@ -39,14 +38,18 @@ page_sections:
     Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.
   alt: ''
   brightness: 
-- template: split-image-text-section
-  image: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
-  text: |-
-    **Annwyn Tobin** - owner and lead designer at Floriade is a former landscape architect and photographer. Her passion for designing with flowers and foliage was the inspiration to open Floriade, Wellington’s very own local boutique floral design store.
+- template: two-column-section
+  left_sections:
+  - template: image-section
+    image: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
+  right_sections:
+  - template: text-section
+    text: |-
+      **Annwyn Tobin** - owner and lead designer at Floriade is a former landscape architect and photographer. Her passion for designing with flowers and foliage was the inspiration to open Floriade, Wellington’s very own local boutique floral design store.
 
-    Annwyn has extensive experience in floral design including many weddings and events for more than 20 years.
+      Annwyn has extensive experience in floral design including many weddings and events for more than 20 years.
 
-    She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.
+      She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.
   swap: true
   alt: ''
 description: ''

@@ -1,18 +1,22 @@
 {% asyncEach outer_section in page_sections %}
-  {% set section = outer_section %}
-  {% include "partials/page-sections-inner.njk" %}
-  {% if outer_section.template == "two-column-section" %}
-    <section>
-      <div class="wrapper {{ outer_section.wrapper }} two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0">
+{% set section = outer_section %}
+{% include "partials/page-sections-inner.njk" %}
+{% if outer_section.template == "two-column-section" %}
+  <section>
+    <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0">
+      <div class="flow">
         {% asyncEach inner_section in outer_section.left_sections %}
-          {% set section = inner_section %}
-          {% include "partials/page-sections-inner.njk" %}
-        {% endeach %}
-        {% asyncEach inner_section in outer_section.right_sections %}
-          {% set section = inner_section %}
-          {% include "partials/page-sections-inner.njk" %}
+        {% set section = inner_section %}
+        {% include "partials/page-sections-inner.njk" %}
         {% endeach %}
       </div>
-    </section>
-  {% endif %}
+      <div class="flow">
+        {% asyncEach inner_section in outer_section.right_sections %}
+        {% set section = inner_section %}
+        {% include "partials/page-sections-inner.njk" %}
+        {% endeach %}
+      </div>
+    </div>
+  </section>
+{% endif %}
 {% endeach %}

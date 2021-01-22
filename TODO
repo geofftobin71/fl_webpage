@@ -1,13 +1,11 @@
-audit css
 image section forestry template
+draft and author fields for blog posts
 image section sizes= if enclosed in two column section
 refactor domino => instagram slide item
-section width / background color options
+section width / padding / background color options
 image(s) section
-markdown button
-markdown image srcset
-layouts/blog.njk schema
+markdown button (?) or button section
+markdown embedded image srcset (?) or image section
 landing-page forestry template => contact form error page
-Subdivide layout.css ?
-Add schema frontmatter
 :placeholder-shown / form styling
+flower-delivery-wellington

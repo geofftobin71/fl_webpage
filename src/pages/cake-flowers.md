@@ -11,17 +11,21 @@ eleventyNavigation:
   parent: Flowers
   order: 140
 page_sections:
-- template: split-image-text-section
+- template: two-column-section
   swap: true
-  image: "/v1609034592/cake-flowers/cake-flowers-by-floriade-00001.jpg"
-  text: |-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus porta, commodo leo eget, finibus lacus. Suspendisse accumsan ante eget tincidunt hendrerit.
+  left_sections:
+  - template: image-section
+    image: "/v1609034592/cake-flowers/cake-flowers-by-floriade-00001.jpg"
+  right_sections:
+  - template: text-section
+    text: |-
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus porta, commodo leo eget, finibus lacus. Suspendisse accumsan ante eget tincidunt hendrerit.
   
-    Nulla non turpis id nunc hendrerit malesuada. Nam vitae accumsan nisl, commodo hendrerit urna. Duis sed eros nec arcu fringilla scelerisque vel nec nisl.
+      Nulla non turpis id nunc hendrerit malesuada. Nam vitae accumsan nisl, commodo hendrerit urna. Duis sed eros nec arcu fringilla scelerisque vel nec nisl.
   
-    Sed viverra ut urna ut vehicula. Morbi placerat felis sed mauris vehicula dignissim. Donec sit amet vehicula lorem. Integer faucibus aliquam sollicitudin.
+      Sed viverra ut urna ut vehicula. Morbi placerat felis sed mauris vehicula dignissim. Donec sit amet vehicula lorem. Integer faucibus aliquam sollicitudin.
   
-    Phasellus a facilisis nisi. Praesent interdum finibus magna, vitae consequat sapien rutrum ac. Donec eu lectus sit amet purus scelerisque euismod.
+      Phasellus a facilisis nisi. Praesent interdum finibus magna, vitae consequat sapien rutrum ac. Donec eu lectus sit amet purus scelerisque euismod.
 
 - template: contact-form-section
   heading: Ask us about Cake Flowers
