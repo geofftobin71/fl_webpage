@@ -2,6 +2,10 @@
 label: Two Column Section
 hide_body: true
 fields:
+- name: swap
+  type: boolean
+  label: Swap
+  description: Swap the order of the left / right sections in landscape view
 - name: left_sections
   type: blocks
   label: Left Sections

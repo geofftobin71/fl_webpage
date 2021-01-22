@@ -345,64 +345,6 @@ button a:active { color: var(--button-hl); }
   }
 }
 
-/* ----- Domino ----- */
-
-.domino {
-  --domino-space: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: var(--domino-space, 1em);
-}
-
-@media screen and (orientation: portrait) {
-  .domino {
-    grid-template-columns: 1fr;
-  }
-}
-
-.domino img {
-  max-height: 90vh;
-  box-shadow: 0 0 50px rgba(0,0,0,0.3);
-}
-.domino article {
-  padding: 0 1.5em;
-}
-.domino article > * + * {
-  margin-top:2em;
-}
-@media screen and (min-width: 1400px) {
-  .domino article {
-    font-size: var(--step-1);
-  }
-}
-@media screen and (orientation:portrait) {
-  .domino article {
-    padding-top: var(--section-padding);
-  }
-}
-@media screen and (orientation:landscape) {
-  .domino {
-    height: 100%;
-    min-height: 100vh;
-  }
-  .domino img {
-    position: sticky;
-    top: 5vh;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-  }
-  .domino article {
-    --measure: 50ch;
-    padding: 1em;
-  }
-  .domino.swap figure {
-    order: 2;
-  }
-  .domino.swap article {
-    padding-left: 2em;
-  }
-}
-
 /* ----- Auto Grid ----- */
 
 .auto-grid {
