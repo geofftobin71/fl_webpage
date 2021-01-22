@@ -10,7 +10,7 @@
     {{ css | cssmin | safe }}
   </style>
 
-  <script type="application/ld+json"> 
+  {% set jsonld %}  
   {
     "@context": "http://www.schema.org",
     "@type": "Florist",
@@ -49,6 +49,10 @@
       "{{ site.pinterest }}"
     ]
   }
+  {% endset %}
+
+  <script type="application/ld+json"> 
+    {{ jsonld | jsonmin | safe }}
   </script>
 {% endblock %}
 

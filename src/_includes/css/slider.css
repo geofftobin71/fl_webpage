@@ -70,7 +70,7 @@
 
 #lightbox {
   visibility: hidden;
-  background: var(--color-darker-grey);
+  background: var(--color-dark-grey);
   position: fixed;
   top: 0;
   left: 0;

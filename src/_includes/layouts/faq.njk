@@ -2,7 +2,7 @@
 
 {% block head %}
   {{ super() }}
-  <script type="application/ld+json">
+  {% set jsonld %}
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -19,6 +19,10 @@
     {% endfor -%}
     ]
   }
+  {% endset %}
+
+  <script type="application/ld+json">
+    {{ jsonld | jsonmin | safe }}
   </script>
 
   {% set css %}

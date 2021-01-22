@@ -41,27 +41,27 @@
 a:link { color: var(--color-shade3); }
 a:visited { color: var(--color-shade3); }
 a:hover { color: var(--color-shade4); }
-a:active { color: var(--color-white); }
+a:active { color: var(--color-shade4); }
 
 .link-light a:link { color: var(--color-shade4); }
 .link-light a:visited { color: var(--color-shade4); }
 .link-light a:hover { color: var(--color-light); }
-.link-light a:active { color: var(--color-white); }
+.link-light a:active { color: var(--color-light); }
 
 .link-dark a:link { color: var(--color-shade1); }
 .link-dark a:visited { color: var(--color-shade1); }
 .link-dark a:hover { color: var(--color-shade2); }
-.link-dark a:active { color: var(--color-shade3); }
+.link-dark a:active { color: var(--color-shade2); }
 
 .link-lighter a:link { color: var(--color-light); }
 .link-lighter a:visited { color: var(--color-light); }
 .link-lighter a:hover { color: var(--color-shade3); }
-.link-lighter a:active { color: var(--color-shade4); }
+.link-lighter a:active { color: var(--color-shade3); }
 
 .link-darker a:link { color: var(--color-dark); }
 .link-darker a:visited { color: var(--color-dark); }
 .link-darker a:hover { color: var(--color-primary); }
-.link-darker a:active { color: var(--color-shade1); }
+.link-darker a:active { color: var(--color-primary); }
 
 .font-base {
   font-family: var(--font-family-base);
@@ -116,13 +116,14 @@ h6 { font-size: var(--step--2); }
 .bigfonts h5 { font-size: var(--step--2); }
 .bigfonts h6 { font-size: var(--step--3); }
 
-.heading, article h1, article h2, article h3, article h4, article h5 {
+article h1, article h2, article h3, article h4, article h5 {
   text-transform: lowercase;
   color: var(--color-shade3);
   transform: translateX(-0.5em);
 }
 
 .heading {
-  transform: translateX(0);
+  text-transform: lowercase;
+  color: var(--color-shade3);
 }
 

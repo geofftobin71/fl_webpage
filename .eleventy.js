@@ -9,6 +9,7 @@ const { Settings, DateTime } = require("luxon");
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
 const { minify } = require("terser");
+const jsonminify = require("jsonminify");
 const fs = require("fs");
 const markdown = require("markdown-it")({ html: true });
 const fetch64 = require('fetch-base64');
@@ -94,6 +95,14 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("cssmin", (code) => {
     if(process.env.NODE_ENV != 'develop') {
       return new CleanCSS({}).minify(code).styles;
+    } else {
+      return code;
+    }
+  });
+
+  eleventyConfig.addFilter("jsonmin", (code) => {
+    if(process.env.NODE_ENV != 'develop') {
+      return jsonminify(code);
     } else {
       return code;
     }

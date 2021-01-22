@@ -8,7 +8,7 @@
       {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
       {% set header_image = (header.image | stripVersion) or (site.header_image | stripVersion) %}
       {% set src = site.cloudinary_url + "/w_900," + transforms + header_image %}
-      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,f_jpg,g_auto:subject,e_blur:200/" + header_image %}
+      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto:low,f_jpg,g_auto:subject,e_blur:100/" + header_image %}
       <img srcset="
       {%- for size in image_sizes -%}
         {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ header_image }} {{ size }}w{{ ',' if not loop.last }}

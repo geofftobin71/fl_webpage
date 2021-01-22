@@ -64,16 +64,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   padding: 0;
 }
 
-nav ul {
-  padding: 0;
-  list-style: none;
-}
-
-nav li:before {
-  content: "\200B";
-  position: absolute;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-delay: -1ms !important;
@@ -86,10 +76,18 @@ nav li:before {
   }
 }
 
+nav ul,
 ul[class],
 ol[class] {
   padding: 0;
   list-style: none;
+}
+
+nav li:before,
+ul[class] li:before,
+ol[class] li:before {
+  content: "\200B";
+  position: absolute;
 }
 
 a {

@@ -10,7 +10,7 @@
   <section>
     <div class="cover shadow" style="--min-height:90vh">
       <figure class="background" style="--brightness:{{ section.brightness or '50' }}%">
-        {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
+        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
         <noscript><img src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
@@ -30,7 +30,7 @@
 {% if section.template == "image-section" %}
   <section>
     <figure>
-      {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
+      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
       {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
       {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
       <noscript><img class="img-cover" src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
@@ -47,7 +47,7 @@
   <section>
     <div class="domino{{ ' swap' if section.swap }}">
       <figure>
-        {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,f_jpg,e_blur:200/" + (section.image | stripVersion) %}
+        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
         <noscript><img class="img-cover" src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>

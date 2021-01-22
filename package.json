@@ -34,6 +34,7 @@
     "eleventy-plugin-svg-contents": "^0.7.0",
     "fetch-base64": "^2.1.2",
     "html-minifier": "^4.0.0",
+    "jsonminify": "^0.4.1",
     "luxon": "^1.24.1",
     "node-fetch": "^2.6.1",
     "stripe": "^8.117.0",
