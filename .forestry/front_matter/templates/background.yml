@@ -6,6 +6,12 @@ fields:
   type: field_group
   config: {}
   fields:
+  - name: color
+    type: color
+    label: Color
+    config:
+      required: false
+      color_format: Hex
   - name: image
     type: file
     config:
