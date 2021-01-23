@@ -27,6 +27,7 @@ fields:
       file: 
       path: 
   label: Align
+  description: Text alignment
 - name: bigfonts
   type: boolean
   label: Big Fonts
