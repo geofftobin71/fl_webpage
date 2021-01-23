@@ -1,11 +1,11 @@
-<figure class="background" style="--brightness:{{ section.brightness or '50' }}%">
-  {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,q_auto:low,f_jpg,e_blur:200/" + (section.background_image | stripVersion) %}
+<figure class="background" style="--brightness:{{ section.background.brightness or '50' }}%">
+  {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,q_auto:low,f_jpg,e_blur:200/" + (section.background.image | stripVersion) %}
   {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
-  {% set src = site.cloudinary_url + "/w_900," + transforms + (section.background_image | stripVersion) %}
-  <noscript><img src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
+  {% set src = site.cloudinary_url + "/w_900," + transforms + (section.background.image | stripVersion) %}
+  <noscript><img src="{{ src }}" alt="{{ section.background.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
   <img data-srcset="
   {%- for size in image_sizes -%}
-  {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.background_image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
+  {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.background.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
   {%- endfor -%}
-  " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" />
+  " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.background.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" />
 </figure>

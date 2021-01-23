@@ -1,23 +1,17 @@
 ---
-label: Header
+label: Background
 hide_body: true
 fields:
-- name: header
+- name: background
   type: field_group
   config: {}
   fields:
-  - name: title
-    type: text
-    config:
-      required: false
-    label: Title
-    description: Override the page title in the header (optional).
   - name: image
     type: file
     config:
       maxSize: 64
     label: Image
-    description: The background image for the page header.
+    description: The background image for the section.
   - type: text
     name: alt
     label: Alt Text
@@ -25,11 +19,10 @@ fields:
   - name: brightness
     type: number
     label: Brightness
-    description: Brightness of the header image. Allow the header text and menu to
-      be more visible.
+    description: Brightness of the background image. Allow the text to be more visible.
     default: 0
     config:
       min: 10
       max: 100
       step: 10
-  label: Header
+  label: Background

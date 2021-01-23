@@ -12,3 +12,12 @@ fields:
     schema:
       format: markdown
   label: Text
+- name: bigfonts
+  type: boolean
+  label: Big Fonts
+  description: Make the fonts bigger
+- name: background
+  type: include
+  config: {}
+  template: background
+  label: Background

@@ -8,11 +8,11 @@ fields:
   label: Layout
   hidden: true
   default: layouts/landing-page.njk
-- name: seo
+- name: base
   type: include
   config: {}
-  template: seo
-  label: SEO
+  template: base
+  label: Base
 - name: header
   type: include
   config: {}

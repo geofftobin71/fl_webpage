@@ -29,7 +29,8 @@ page_sections:
 
       Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.
 - template: text-section
-  background_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
+  background:
+    image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
   align: center
   bigfonts: true
   text: |-

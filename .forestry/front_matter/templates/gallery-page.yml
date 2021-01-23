@@ -11,11 +11,11 @@ fields:
   name: gallery_folder
   label: Gallery Folder
   description: Cloudinary folder to source images from
-- name: seo
+- name: base
   type: include
   config: {}
-  template: seo
-  label: SEO
+  template: base
+  label: Base
 - name: header
   type: include
   config: {}

@@ -3,11 +3,11 @@
 {% endif %}
 
 {% if section.template == "text-section" %}
-  <section class="text-section" {{ ' style="margin:var(--section-padding) 0"' | safe if section.background_image }}>
-    {% ifAsync section.background_image %}
+  <section class="text-section" {{ ' style="margin:var(--section-padding) 0"' | safe if section.background.image }}>
+    {% ifAsync section.background.image %}
       {% include "partials/section-background.njk" %}
     {% endif %}
-    <article class="wrapper text-wrapper text-{{ section.align or 'left' }} {{ ' text-shadow' if section.background_image }} {{ ' bigfonts font-secondary' if section.bigfonts }}">
+    <article class="wrapper text-wrapper text-{{ section.align or 'left' }} {{ ' text-shadow' if section.background.image }} {{ ' bigfonts font-secondary' if section.bigfonts }}">
       {% markdown section.text %}
     </article>
   </section>
