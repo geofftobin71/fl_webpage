@@ -12,6 +12,21 @@ fields:
     schema:
       format: markdown
   label: Text
+- name: align
+  type: select
+  default: Left
+  config:
+    required: false
+    options:
+    - Left
+    - Center
+    - Right
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Align
 - name: bigfonts
   type: boolean
   label: Big Fonts
