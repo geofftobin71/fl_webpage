@@ -91,7 +91,7 @@ strong {
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: var(--min-height);
+  /* min-height: var(--min-height); */
   padding: var(--padding);
 }
 
@@ -230,8 +230,13 @@ strong {
 /* ----- Section ----- */
 
 section {
+  position: relative;
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
+}
+
+section + .button-section {
+  padding-top: 0;
 }
 
 /* ----- Flow ----- */

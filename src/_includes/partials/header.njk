@@ -1,7 +1,7 @@
 <header id="header" class="header">
   <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
     {% set header_image = (header.image | stripVersion) or (site.header_image | stripVersion) %}
-    {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto:low,f_jpg,g_auto:subject,e_blur:100/" + header_image %}
+    {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto:low,f_jpg,g_auto:subject,e_blur:200/" + header_image %}
     <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto:subject/{{ header_image }}" style="background-image:url({{ lqip_path | lqip }})" alt="{{ header.alt or page_alt or site.alt }}" loading="eager" decoding="async" />
   </figure>
   <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">

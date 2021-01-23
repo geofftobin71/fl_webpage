@@ -2,15 +2,18 @@
 {% set section = outer_section %}
 {% include "partials/page-sections-inner.njk" %}
 {% if outer_section.template == "two-column-section" %}
-  <section>
+  <section class="two-column-section">
+    {% ifAsync section.background_image %}
+      {% include "partials/section-background.njk" %}
+    {% endif %}
     <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0;--align:{{ outer_section.align or 'center' }}">
-      <div class="flow">
+      <div class="flow" style="--flow-space:2em">
         {% asyncEach inner_section in outer_section.left_sections %}
         {% set section = inner_section %}
         {% include "partials/page-sections-inner.njk" %}
         {% endeach %}
       </div>
-      <div class="flow">
+      <div class="flow" style="--flow-space:2em">
         {% asyncEach inner_section in outer_section.right_sections %}
         {% set section = inner_section %}
         {% include "partials/page-sections-inner.njk" %}

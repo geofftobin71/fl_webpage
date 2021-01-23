@@ -1,50 +1,44 @@
+{% if section.template == "divider-section" %}
+  <hr>
+{% endif %}
+
 {% if section.template == "text-section" %}
-  <section>
-    <article class="wrapper text-wrapper">
+  <section class="text-section" {{ ' style="margin:var(--section-padding) 0"' | safe if section.background_image }}>
+    {% ifAsync section.background_image %}
+      {% include "partials/section-background.njk" %}
+    {% endif %}
+    <article class="wrapper text-wrapper text-{{ section.align or 'left' }} {{ ' text-shadow' if section.background_image }} {{ ' bigfonts font-secondary' if section.bigfonts }}">
       {% markdown section.text %}
     </article>
   </section>
 {% endif %}
 
-{% if section.template == "hero-section" %}
-  <section>
-    <div class="cover shadow" style="--min-height:90vh">
-      <figure class="background" style="--brightness:{{ section.brightness or '50' }}%">
-        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
-        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
-        {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
-        <noscript><img src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
-        <img data-srcset="
-        {%- for size in image_sizes -%}
-        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
-        {%- endfor -%}
-        " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" />
-      </figure>
-      <article class="bigfonts font-secondary centered wrapper text-wrapper flow text-center text-shadow">
-        {% markdown section.text %}
-      </article>
-    </div>
+{% if section.template == "button-section" %}
+  <section class="button-section">
+    <div class="text-center font-size-0"><button><a href="{{ section.link }}" {{ ' target="_blank"' | safe if section.new_page }}>{{ section.text }}</a></button></div>
   </section>
 {% endif %}
 
 {% if section.template == "image-section" %}
-  <section>
-    <figure class="frame frame{{ section.aspect or '1x1' }} shadow">
-      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
-      {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
-      {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
-      <noscript><img class="img-cover" src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
-      <div><img class="img-cover" data-srcset="
-      {%- for size in image_sizes -%}
-      {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
-      {%- endfor -%}
-      " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
-    </figure>
+  <section class="image-section">
+    <div class="wrapper">
+      <figure class="frame frame{{ section.aspect or '1x1' }} shadow">
+        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto:low,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
+        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+        {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
+        <noscript><img src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
+        <div><img data-srcset="
+        {%- for size in image_sizes -%}
+        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
+        {%- endfor -%}
+        " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
+      </figure>
+    </div>
   </section>
 {% endif %}
 
 {% if section.template == "contact-form-section" %}
-  <section>
+  <section class="contact-form-section">
     <div class="wrapper text-wrapper flow">
       <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
       <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
@@ -88,21 +82,21 @@
 {% endif %}
 
 {% if section.template == "google-maps-section" %}
-  <section>
+  <section class="google-maps-section">
     <div class="frame frame1x1 shadow">
       {% if env.NODE_ENV == 'deploy' %}
         <iframe class="req-js" frameborder="0" style="width:100%;height:100%;border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
       {% endif %}
       {{ '<noscript>' | safe if env.NODE_ENV == 'deploy' }}
         <a target="_blank" title="Open in Google Maps" href="{{ site.google_maps }}"><img class="img-cover" src="{{ '/images/floriade-map.jpg' | url }}" width="1024" height="1024" alt="Map of the location of Floriade at {{ site.address }}, {{ site.address_locality }}, {{ site.address_region }}"></a>
-      {{ '</noscript>' | safe if env.NODE_ENV == 'deploy' }}
+        {{ '</noscript>' | safe if env.NODE_ENV == 'deploy' }}
     </div>
     <noscript><p class="text-center font-size--1">Click to open in Google Maps</p></noscript>
   </section>
 {% endif %}
 
 {% if section.template == "contact-details-section" %}
-  <section>
+  <section class="contact-details-section">
     <div class="stack center">
       <h2 class="heading text-center">Contact Us</h2>
       <div class="stack center" style="--stack-space:2rem">
@@ -127,7 +121,7 @@
 {% endif %}
 
 {% if section.template == "shop-hours-section" %}
-  <section>
+  <section class="shop-hours-section">
     <div class="stack center">
       <h2 class="heading text-center">Shop Hours</h2>
       {% include "partials/shop-hours.njk" %}

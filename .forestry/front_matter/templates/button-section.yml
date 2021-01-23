@@ -1,0 +1,15 @@
+---
+label: Button Section
+hide_body: true
+display_field: text
+fields:
+- name: text
+  type: text
+  label: Text
+- name: link
+  type: text
+  label: Link
+- name: new_page
+  type: boolean
+  label: New Page
+  description: Open the link in a new browser tab / window

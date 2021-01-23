@@ -28,16 +28,14 @@ page_sections:
       A large part of our business ethos is to be as sustainable as possible by preventing wastage. We intentionally source our flowers with the intention of drying whatever we can.
 
       Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.
-  swap: false
-  alt: ''
-- template: hero-section
-  image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
+- template: text-section
+  background_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
+  align: center
+  bigfonts: true
   text: |-
     At Floriade, we design **flowers for any occasion** - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.
 
     Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.
-  alt: ''
-  brightness: 
 - template: image-section
   aspect: 2x1
   image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
