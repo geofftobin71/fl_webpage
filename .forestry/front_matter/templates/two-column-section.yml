@@ -11,6 +11,7 @@ fields:
   label: Left Sections
   template_types:
   - text-section
+  - image-section
   - contact-form-section
   config:
     min: 
@@ -20,6 +21,7 @@ fields:
   label: Right Sections
   template_types:
   - text-section
+  - image-section
   - contact-form-section
   config:
     min: 
