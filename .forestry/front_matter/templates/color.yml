@@ -4,16 +4,16 @@ hide_body: true
 fields:
 - name: color
   type: select
-  default: None
+  default: Transparent
   config:
     required: false
     options:
+    - Transparent
     - Primary
     - Shade1
     - Shade2
     - Shade3
     - Shade4
-    - None
     source:
       type: simple
       section: 

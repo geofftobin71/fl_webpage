@@ -37,3 +37,18 @@ fields:
   config: {}
   template: background
   label: Background
+- name: button
+  type: field_group
+  label: Button
+  config: {}
+  fields:
+	- name: text
+	  type: text
+	  label: Text
+	- name: link
+	  type: text
+	  label: Link
+	- name: new_page
+	  type: boolean
+	  label: New Page
+	  description: Open the link in a new browser tab / window

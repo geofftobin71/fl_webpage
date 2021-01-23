@@ -235,10 +235,6 @@ section {
   padding-bottom: var(--section-padding);
 }
 
-section + .button-section {
-  padding-top: 0;
-}
-
 /* ----- Flow ----- */
 
 article > * + * {

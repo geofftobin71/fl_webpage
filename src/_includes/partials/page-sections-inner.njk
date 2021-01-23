@@ -3,19 +3,16 @@
 {% endif %}
 
 {% if section.template == "text-section" %}
-  <section class="text-section" {{ ' style="margin:var(--section-padding) 0"' | safe if section.background.image }}>
+  <section class="text-section {{ ' bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" {{ ' style="margin:var(--section-padding) 0"' | safe if section.background.image }}>
     {% ifAsync section.background.image %}
       {% include "partials/section-background.njk" %}
     {% endif %}
     <article class="wrapper text-wrapper text-{{ section.align or 'left' }} {{ ' text-shadow' if section.background.image }} {{ ' bigfonts font-secondary' if section.bigfonts }}">
       {% markdown section.text %}
+      {% if section.button.text %}
+        <div class="text-center font-size-0"><button><a href="{{ section.button.link }}" {{ ' target="_blank"' | safe if section.button.new_page }}>{{ section.button.text }}</a></button></div>
+      {% endif %}
     </article>
-  </section>
-{% endif %}
-
-{% if section.template == "button-section" %}
-  <section class="button-section">
-    <div class="text-center font-size-0"><button><a href="{{ section.link }}" {{ ' target="_blank"' | safe if section.new_page }}>{{ section.text }}</a></button></div>
   </section>
 {% endif %}
 
