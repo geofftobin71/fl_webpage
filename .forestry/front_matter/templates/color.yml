@@ -1,4 +1,22 @@
 ---
 label: Color
 hide_body: true
-fields: []
+fields:
+- name: color
+  type: select
+  default: None
+  config:
+    required: false
+    options:
+    - Primary
+    - Shade1
+    - Shade2
+    - Shade3
+    - Shade4
+    - None
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Color
