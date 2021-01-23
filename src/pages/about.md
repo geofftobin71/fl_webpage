@@ -23,10 +23,16 @@ page_sections:
     image: ''
     alt: ''
     brightness: 
+  button:
+    text: Click Here
+    link: "/"
+    new_page: true
 - template: two-column-section
   left_sections:
   - template: image-section
     image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
+    alt: ''
+    aspect: ''
   right_sections:
   - template: text-section
     text: |-
@@ -42,6 +48,10 @@ page_sections:
       image: ''
       alt: ''
       brightness: 
+    button:
+      text: ''
+      link: ''
+      new_page: false
   swap: false
 - template: text-section
   background:
@@ -55,13 +65,20 @@ page_sections:
     At Floriade, we design **flowers for any occasion** - anniversary bouquets, birthday flowers, sympathy bouquets, cake flowers, floral crowns and wedding flowers.
 
     Whether it’s a bountiful bouquet, a petite posy or a bespoke installation piece, we would love to work with you to meet your floral and botanical design needs.
+  button:
+    text: ''
+    link: ''
+    new_page: false
 - template: image-section
-  aspect: 2x1
+  aspect: ''
   image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
+  alt: ''
 - template: two-column-section
   left_sections:
   - template: image-section
     image: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
+    alt: ''
+    aspect: ''
   right_sections:
   - template: text-section
     text: |-
@@ -77,6 +94,10 @@ page_sections:
       image: ''
       alt: ''
       brightness: 
+    button:
+      text: ''
+      link: ''
+      new_page: false
   swap: true
   alt: ''
 description: ''
