@@ -25,7 +25,6 @@ fields:
   type: blocks
   label: Page Sections
   template_types:
-  - hero-section
   - text-section
   - contact-form-section
   - two-column-section

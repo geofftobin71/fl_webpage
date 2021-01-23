@@ -23,7 +23,6 @@ fields:
   label: Page Sections
   template_types:
   - text-section
-  - hero-section
   - contact-form-section
   - two-column-section
   config:
