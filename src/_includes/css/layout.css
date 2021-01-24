@@ -71,13 +71,12 @@ strong {
 }
 
 .round {
-  border: 0;
   border-radius: var(--radius, 0.5rem);
 }
 
 .round-box {
-  --padding: var(--step-3);
-  padding: var(--padding);
+  --box-padding: var(--step-0);
+  padding: var(--box-padding);
   border-radius: var(--box-border-radius, 0.5rem);
   border-width: var(--box-border-width, 2px);
 }

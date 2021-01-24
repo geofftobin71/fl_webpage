@@ -36,7 +36,7 @@
 
 {% if section.template == "contact-form-section" %}
   <section class="contact-form-section">
-    <div class="wrapper text-wrapper flow{{ ' round shadow bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" style="padding:var(--padding)">
+    <div class="wrapper text-wrapper flow{{ ' round-box shadow border-shade2 bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" style="padding:var(--padding)">
       <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
       <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
         <label for="name-input">
@@ -80,7 +80,7 @@
 
 {% if section.template == "google-maps-section" %}
   <section class="google-maps-section">
-    <div class="frame frame1x1 shadow">
+    <div class="frame frame1x1 round shadow">
       {% if env.NODE_ENV == 'deploy' %}
         <iframe class="req-js" frameborder="0" style="width:100%;height:100%;border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
       {% endif %}
