@@ -1,0 +1,14 @@
+---
+label: Background
+hide_body: true
+fields:
+- name: background
+  type: field_group
+  config: {}
+  fields:
+  - name: color
+    type: include
+    config: {}
+    template: color
+    label: Color
+  label: Background

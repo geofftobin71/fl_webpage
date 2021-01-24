@@ -44,3 +44,8 @@ fields:
     required: false
   label: Email Banner Alt Text
   description: 'Email Banner Alt Text<br><em>default: Flowers by Floriade</em>'
+- name: background
+  type: include
+  config: {}
+  template: background-color
+  label: Background

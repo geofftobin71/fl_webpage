@@ -26,3 +26,8 @@ fields:
   config:
     min: 
     max: 
+- name: background
+  type: include
+  config: {}
+  template: background-image
+  label: Background

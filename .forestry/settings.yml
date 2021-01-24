@@ -12,6 +12,7 @@ sections:
   templates:
   - page
   - gallery-page
+  - landing-page
 - type: document
   path: src/_data/banner_message.json
   label: Banner Message
