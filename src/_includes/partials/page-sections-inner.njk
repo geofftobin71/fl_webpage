@@ -36,20 +36,20 @@
 
 {% if section.template == "contact-form-section" %}
   <section class="contact-form-section">
-    <div class="wrapper text-wrapper flow">
+    <div class="wrapper text-wrapper flow{{ ' round shadow bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" style="padding:var(--padding)">
       <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
       <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
         <label for="name-input">
           Name
-          <input id="name-input" name="name" type="text" placeholder="Your Name">
+          <input class="round" id="name-input" name="name" type="text" placeholder="Your Name">
         </label>
         <label for="email-input">
           Email
-          <input id="email-input" name="email" type="email" placeholder="Your Email">
+          <input class="round" id="email-input" name="email" type="email" placeholder="Your Email">
         </label>
         <label for="message-input">
           Message
-          <textarea id="message-input" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
+          <textarea class="round" id="message-input" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
         </label>
         <input id="subject-input" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
         <input id="heading-input" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">

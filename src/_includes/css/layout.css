@@ -70,6 +70,11 @@ strong {
   box-shadow: 0 10px 20px rgba(61,72,68,0.5);
 }
 
+.round {
+  border: 0;
+  border-radius: var(--radius, 0.5rem);
+}
+
 .round-box {
   --padding: var(--step-3);
   padding: var(--padding);
@@ -451,8 +456,8 @@ button a:active { color: var(--button-hl); }
 }
 
 .frame.round {
-  border-radius: var(--frame-radius, 0.5rem);
   border: 0;
+  border-radius: var(--frame-radius, 0.5rem);
   -webkit-background-clip: padding;
   -moz-background-clip: padding;
   background-clip: padding-box;
