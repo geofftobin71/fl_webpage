@@ -23,16 +23,10 @@ page_sections:
     image: ''
     alt: ''
     brightness: 
-  button:
-    text: Click Here
-    link: "/"
-    new_page: true
 - template: two-column-section
   left_sections:
   - template: image-section
     image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
-    alt: ''
-    aspect: ''
   right_sections:
   - template: text-section
     text: |-
@@ -69,10 +63,6 @@ page_sections:
     text: ''
     link: ''
     new_page: false
-- template: image-section
-  aspect: ''
-  image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
-  alt: ''
 - template: two-column-section
   left_sections:
   - template: image-section

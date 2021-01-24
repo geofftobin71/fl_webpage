@@ -265,6 +265,11 @@ article > * + * {
   --wrapper-width: var(--measure);
 }
 
+.no-wrapper {
+  --padding: 0;
+  max-width: none;
+}
+
 /* ----- Button ----- */
 
 button {
@@ -277,6 +282,7 @@ button {
   line-height: 1;
   text-decoration: none;
   border: 1.5px solid var(--button-fg);
+  border-radius: var(--button-radius, 0.5rem);
   padding: 0.6rem 1.5rem;
   position: relative;
   font-family: var(--font-family-secondary);
@@ -409,6 +415,11 @@ button a:active { color: var(--button-hl); }
   --d: 3;
 }
 
+.frame3x1 {
+  --n: 1;
+  --d: 3;
+}
+
 .frame2x1 {
   --n: 1;
   --d: 2;
@@ -432,6 +443,11 @@ button a:active { color: var(--button-hl); }
 .frame3x4 {
   --n: 4;
   --d: 3;
+}
+
+.frame9x16 {
+  --n: 16;
+  --d: 9;
 }
 
 .frame.round {

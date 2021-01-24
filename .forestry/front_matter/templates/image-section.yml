@@ -22,7 +22,13 @@ fields:
     - 1x1
     - 16x9
     - 4x3
+    - 3x2
+    - 3x1
+    - 2x1
+    - 1x2
+    - 2x3
     - 3x4
+    - 9x16
     source:
       type: simple
       section: 
@@ -30,3 +36,20 @@ fields:
       path: 
   label: Aspect
   description: Image aspect ratio on the page
+- name: width
+  type: select
+  default: Paragraph
+  config:
+    required: false
+    options:
+    - Paragraph
+    - Wide
+    - Extra Wide
+    - Full
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Width
+  description: Max Image width
