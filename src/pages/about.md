@@ -16,6 +16,8 @@ page_sections:
     **Floriade** is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.
 
     We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
+
+    ![](https://res.cloudinary.com/floriade/image/upload/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg)
   align: ''
   bigfonts: false
   background:
@@ -23,11 +25,17 @@ page_sections:
     image: ''
     alt: ''
     brightness: 
+  button:
+    text: ''
+    link: ''
+    new_page: false
 - template: two-column-section
   left_sections:
   - template: image-section
     image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
     width: Paragraph
+    alt: ''
+    aspect: ''
   right_sections:
   - template: text-section
     text: |-
@@ -48,6 +56,12 @@ page_sections:
       link: ''
       new_page: false
   swap: false
+  background:
+    color: ''
+    image: ''
+    alt: ''
+    brightness: 
+  align: ''
 - template: text-section
   background:
     image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
@@ -92,6 +106,12 @@ page_sections:
       new_page: false
   swap: true
   alt: ''
+  background:
+    color: ''
+    image: ''
+    alt: ''
+    brightness: 
+  align: ''
 description: ''
 page_alt: ''
 
