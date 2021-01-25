@@ -16,6 +16,18 @@ const fetch64 = require('fetch-base64');
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
+markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
+  const srcfilename = tokens[idx].attrs[0][1];
+  const title_txt = tokens[idx].attrs[2][1];
+  var caption = '';
+  if(title_txt) {
+    caption = '<figcaption class="md">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+  }
+  var alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
+
+  return '<figure><img class="round shadow"' + alt + ' src="' + srcfilename + '">' + caption + '</figure>';
+}
+
 module.exports = (eleventyConfig) => {
 
   eleventyConfig.setDataDeepMerge(true);
@@ -56,7 +68,7 @@ module.exports = (eleventyConfig) => {
     content => `${markdown.render(content)}`
   );
 
-  // [300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400]
+  eleventyConfig.setLibrary("md", markdown);
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
     try {

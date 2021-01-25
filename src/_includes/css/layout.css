@@ -28,6 +28,14 @@ strong {
   line-height: 1;
 }
 
+figcaption.md {
+  font-size: var(--step--1);
+  font-family: var(--font-family-secondary);
+  opacity: 0.5;
+  text-align: right;
+  margin-right: 0.5em;
+}
+
 .grecaptcha-badge {display: none;}
 
 .visually-hidden {

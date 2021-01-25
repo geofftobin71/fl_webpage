@@ -42,7 +42,7 @@ function scrollToPrevItem(id) {
 }
 
 function toggleCaptions() {
-  const captions = document.querySelectorAll('figcaption');
+  const captions = document.querySelectorAll('#lightbox figcaption');
   captions.forEach(caption => {
     caption.classList.toggle('hidden');
   });

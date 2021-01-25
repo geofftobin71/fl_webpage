@@ -1,10 +1,7 @@
-code template options -> forestry
 image(s) section
-image section forestry template
-image section sizes= if enclosed in one or two column section
 draft and author fields for blog posts
-section background color / image options
 markdown embedded image srcset (?) or image section
 landing-page forestry template => contact form error page
 :placeholder-shown / form styling
-flower-delivery-wellington
+flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
+Email Floriade about this image -> php mail handler
