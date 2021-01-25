@@ -2,10 +2,6 @@
 label: Two Column Section
 hide_body: true
 fields:
-- name: swap
-  type: boolean
-  label: Swap
-  description: Swap the order of the left / right sections in landscape view
 - name: left_sections
   type: blocks
   label: Left Sections
@@ -31,3 +27,23 @@ fields:
   config: {}
   template: background-image
   label: Background
+- name: swap
+  type: boolean
+  label: Swap
+  description: Swap the order of the left / right sections in landscape view
+- name: align
+  type: select
+  default: Center
+  config:
+    required: false
+    options:
+    - Start
+    - Center
+    - End
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Align
+  description: Align items vertically

@@ -3,10 +3,11 @@
 {% include "partials/page-sections-inner.njk" %}
 {% if outer_section.template == "two-column-section" %}
   <section class="two-column-section{{ ' bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}"{{ ' style="margin:var(--section-padding) 0"' | safe if section.background.image }}>
-    {% ifAsync section.background_image %}
+    {% ifAsync section.background.image %}
       {% include "partials/section-background.njk" %}
     {% endif %}
-    <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0;--align:{{ outer_section.align or 'center' }}">
+    {% set two_columns = true %}
+    <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0;--align:{{ outer_section.align | lower or 'center' }}">
       <div class="flow" style="--flow-space:2em">
         {% asyncEach inner_section in outer_section.left_sections %}
         {% set section = inner_section %}
@@ -20,6 +21,7 @@
         {% endeach %}
       </div>
     </div>
+    {% set two_columns = false %}
   </section>
 {% endif %}
 {% endeach %}

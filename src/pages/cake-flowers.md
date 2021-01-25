@@ -16,6 +16,7 @@ page_sections:
   left_sections:
   - template: image-section
     image: "/v1609034592/cake-flowers/cake-flowers-by-floriade-00001.jpg"
+    width: Paragraph
   right_sections:
   - template: text-section
     text: |-

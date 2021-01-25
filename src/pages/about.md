@@ -27,6 +27,7 @@ page_sections:
   left_sections:
   - template: image-section
     image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
+    width: Paragraph
   right_sections:
   - template: text-section
     text: |-
@@ -67,6 +68,7 @@ page_sections:
   left_sections:
   - template: image-section
     image: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
+    width: Paragraph
     alt: ''
     aspect: ''
   right_sections:

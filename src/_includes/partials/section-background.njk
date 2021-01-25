@@ -7,5 +7,9 @@
   {%- for size in image_sizes -%}
   {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.background.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
   {%- endfor -%}
-  " sizes="100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.background.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" />
+  {%- set sizes = '100vw' -%}
+  {%- if two_columns -%}
+    {%- set sizes = '(orientation: landscape) 50vw, 100vw' -%}
+  {%- endif -%}
+  " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.background.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" />
 </figure>
