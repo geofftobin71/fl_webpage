@@ -9,6 +9,8 @@ header:
   image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 ---
 
-<section class="wrapper text-wrapper">
-<p>This is the <strong>shop</strong> page.</p>
+<section>
+  <div class="wrapper text-wrapper">
+    <p>This is the <strong>shop</strong> page.</p>
+  </div>
 </section>

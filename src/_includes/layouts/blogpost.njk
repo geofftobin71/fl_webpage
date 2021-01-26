@@ -1,4 +1,4 @@
-{% extends "layouts/base.njk" %}
+{% extends "layouts/simple-page.njk" %}
 
 {% block head %}
 {{ super() }}
@@ -38,18 +38,4 @@
   <script type="application/ld+json">
     {{ jsonld | jsonmin | safe }}
   </script>
-{% endblock %}
-
-{% block content %}
-  {% include "partials/header.njk" %}
-  <main>
-  <section>
-    <div class="wrapper text-wrapper">
-      <article>
-        {{ super() }}
-      </article>
-    </div>
-  </section>
-  </main>
-  {% include "partials/footer.njk" %}
 {% endblock %}
