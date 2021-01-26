@@ -43,9 +43,9 @@
           {%- endif -%}
         {%- elif section.width == 'Paragraph' -%}
           {%- if two_columns -%}
-            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 65ch) 65ch, 100vw' -%}
+            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 900px) 900px, 100vw' -%}
           {%- else -%}
-            {%- set sizes = '(min-width: 65ch) 65ch, 100vw' -%}
+            {%- set sizes = '(min-width: 900px) 900px, 100vw' -%}
           {%- endif -%}
         {%- else -%}
           {%- if two_columns -%}
