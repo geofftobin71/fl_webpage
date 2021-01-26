@@ -67,11 +67,13 @@ module.exports = (eleventyConfig) => {
     },
   });
 
+  eleventyConfig.setLibrary("md", markdown);
+
   eleventyConfig.addCollection("blog", (collection) => {
     const today = DateTime.local().set({hours:0,minutes:0,seconds:0,milliseconds:0});
     const livePosts = (p) => { 
       const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
-      post_date <= today && !p.data.draft; 
+      return (post_date <= today) && (!p.data.draft);
     }
     return collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
   });
@@ -90,8 +92,6 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addShortcode("markdown",
     content => `${markdown.render(content)}`
   );
-
-  eleventyConfig.setLibrary("md", markdown);
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
     try {
