@@ -1,5 +1,5 @@
 ---
-label: Background
+label: Background Color
 hide_body: true
 fields:
 - name: background
