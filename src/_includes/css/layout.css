@@ -36,6 +36,23 @@ figcaption.md {
   margin-right: 0.5em;
 }
 
+blockquote {
+  font-family: var(--font-family-secondary);
+  background: var(--color-shade1);
+  --box-padding: var(--step-0);
+  padding: var(--box-padding);
+  border: 2px solid var(--color-shade2);
+  border-radius: var(--box-border-radius, 0.5rem);
+  border-width: var(--box-border-width, 2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 450px) {
+  blockquote {
+    --box-padding: var(--step-3);
+  }
+}
+
 .grecaptcha-badge {display: none;}
 
 .visually-hidden {
@@ -286,20 +303,20 @@ article > * + * {
 
 button {
   --button-fg: var(--color-shade3); */
-  --button-bg: transparent;
-  --button-hl: var(--color-shade1);
-  color: var(--button-fg);
-  background: var(--button-bg);
-  display: inline-block;
-  line-height: 1;
-  text-decoration: none;
-  border: 1.5px solid var(--button-fg);
-  border-radius: var(--button-radius, 0.5rem);
-  padding: 0.6rem 1.5rem;
-  position: relative;
-  font-family: var(--font-family-secondary);
-  text-transform: lowercase;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+--button-bg: transparent;
+--button-hl: var(--color-shade1);
+color: var(--button-fg);
+background: var(--button-bg);
+display: inline-block;
+line-height: 1;
+text-decoration: none;
+border: 1.5px solid var(--button-fg);
+border-radius: var(--button-radius, 0.5rem);
+padding: 0.6rem 1.5rem;
+position: relative;
+font-family: var(--font-family-secondary);
+text-transform: lowercase;
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 button:focus {
   outline-offset: -0.2rem;
