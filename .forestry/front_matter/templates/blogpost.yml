@@ -28,6 +28,7 @@ fields:
 - type: text
   name: author
   label: Author
+  default: Annwyn Tobin
 - name: draft
   type: boolean
   label: Draft
