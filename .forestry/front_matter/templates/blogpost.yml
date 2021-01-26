@@ -13,6 +13,18 @@ fields:
   config: {}
   template: base
   label: Base
+- name: date
+  type: datetime
+  label: Date
+  description: Publish date for this blog post. Defaults to <em>today</em>. Can be
+    set to a later date to schedule publishing for the future.
+  config:
+    required: false
+    date_format: DD MMM YYYY
+    time_format: 
+    display_utc: false
+    export_format: YYYY-MM-DD
+  default: now
 - type: text
   name: author
   label: Author
