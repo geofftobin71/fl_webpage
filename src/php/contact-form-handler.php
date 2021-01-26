@@ -65,8 +65,9 @@ if ($_POST) {
         $selfmail->send();
 
       } catch (Exception $e) {
-        http_response_code(500);
-        echo '<span style="color:red">A: There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
+        header('Location: /sorry-contact-form');
+        // http_response_code(500);
+        // echo '<span style="color:red">A: There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
         return;
       }
 
@@ -82,8 +83,9 @@ if ($_POST) {
         $mail->send();
 
       } catch (Exception $e) {
-        http_response_code(500);
-        echo '<span style="color:red">B: There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
+        header('Location: /sorry-contact-form');
+        // http_response_code(500);
+        // echo '<span style="color:red">B: There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
         return;
       }
 
@@ -91,13 +93,15 @@ if ($_POST) {
       exit();
 
     } else {
-      http_response_code(500);
-      echo '<span style="color:red">C: There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
+      header('Location: /sorry-contact-form');
+      // http_response_code(500);
+      // echo '<span style="color:red">C: There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
       return;
     }
   } elseif($responseKeys["error-codes"]) {
-    http_response_code(500);
-    echo '<span style="color:red">D: There was a problem sending your message.<br>' . json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT) . '</span>';
+    header('Location: /sorry-contact-form');
+    // http_response_code(500);
+    // echo '<span style="color:red">D: There was a problem sending your message.<br>' . json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT) . '</span>';
     return;
   }
 }
