@@ -16,8 +16,8 @@ fields:
 - name: date
   type: datetime
   label: Date
-  description: Publish date for this blog post. Defaults to <em>today</em>. Can be
-    set to a later date to schedule publishing for the future.
+  description: Publish date for this blog post. Defaults to <strong>today</strong>.
+    Can be set to a later date to schedule publishing for the future.
   config:
     required: false
     date_format: DD MMM YYYY
