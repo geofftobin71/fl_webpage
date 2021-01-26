@@ -1,0 +1,31 @@
+---
+label: Menu
+hide_body: true
+fields:
+- name: eleventyNavigation
+  type: field_group
+  config: {}
+  fields:
+  - name: key
+    type: text
+    config:
+      required: false
+    label: Name
+    description: The Name that appears on the main menu for this page.
+  - name: parent
+    type: text
+    config:
+      required: false
+    label: Parent (optional)
+    description: The Parent item in the menu for this page.
+  - name: order
+    type: number
+    label: Order (optional)
+    description: The order that this page appears in the main menu.
+    default: 1
+    required: false
+    config:
+      min: 
+      max: 
+      step: 
+  label: Menu

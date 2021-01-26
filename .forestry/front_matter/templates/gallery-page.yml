@@ -21,6 +21,11 @@ fields:
   config: {}
   template: header
   label: Header
+- name: menu
+  type: include
+  config: {}
+  template: menu
+  label: Menu
 - name: page_sections
   type: blocks
   label: Page Sections
