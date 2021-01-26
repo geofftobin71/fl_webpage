@@ -4,7 +4,6 @@ if(process.env.NODE_ENV != 'deploy') {
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
-const schema = require("@quasibit/eleventy-plugin-schema");
 const { Settings, DateTime } = require("luxon"); 
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
@@ -13,19 +12,45 @@ const jsonminify = require("jsonminify");
 const fs = require("fs");
 const markdown = require("markdown-it")({ html: true });
 const fetch64 = require('fetch-base64');
+const site = require('./src/_data/site.json');
+const image_sizes = require('./src/_data/image_sizes.json');
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
   const srcfilename = tokens[idx].attrs[0][1];
   const title_txt = tokens[idx].attrs[2][1];
-  var caption = '';
+  const public_id = srcfilename.replace('https://res.cloudinary.com/floriade/image/upload', '').replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
+
+  let caption = '';
   if(title_txt) {
     caption = '<figcaption class="md">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
-  var alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
 
-  return '<figure><img class="round shadow"' + alt + ' src="' + srcfilename + '">' + caption + '</figure>';
+  let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
+
+  if(alt == ' alt=""') {
+    alt = ' alt="Flowers by Floriade"';
+  }
+
+  let transforms = ",c_fill,ar_1,q_auto,f_auto,g_auto:subject/";
+  let src = site.cloudinary_url + '/w_900' + transforms + public_id;
+
+  let srcset = ' data-srcset="';
+  let first = true;
+  image_sizes.forEach(size => {
+    if(!first) { srcset += ','; }
+    srcset += site.cloudinary_url + '/w_' + size + transforms + public_id + ' ' + size + 'w';
+    first = false;
+  });
+  srcset += '"';
+
+  let sizes = ' sizes="(min-width: 900px) 900px, 100vw"';
+
+  let lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto:subject,e_blur:200/" + public_id;
+
+  return '<figure><noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" /></noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + site.transgif + '"' + srcset + sizes + 'data-src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" />'
+    + caption + '</figure>';
 }
 
 module.exports = (eleventyConfig) => {
@@ -41,8 +66,6 @@ module.exports = (eleventyConfig) => {
       hostname: "https://floriade.co.nz",
     },
   });
-
-  eleventyConfig.addPlugin(schema);
 
   eleventyConfig.addCollection("blog", (collection) => {
     const today = DateTime.local().set({hours:0,minutes:0,seconds:0,milliseconds:0});
@@ -171,9 +194,9 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("shuffle", (array) => {
-    for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
       array[i] = array[j];
       array[j] = temp;
     }
@@ -181,8 +204,8 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("removeLongReviews", (array, limit) => {
-    var filtered = [];
-    for (var i = 0; i < array.length; ++i) {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
       if(array[i].review.length <= limit) { filtered[filtered.length] = array[i]; }
     }
     return filtered;

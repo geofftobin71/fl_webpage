@@ -349,6 +349,7 @@ button a:active { color: var(--button-hl); }
   --v-gap: 7.5vh;
   --grid-gap: var(--v-gap);
   --align: center;
+  --padding: 0;
   display: grid;
   align-items: var(--align);
   grid-template-columns: 1fr;

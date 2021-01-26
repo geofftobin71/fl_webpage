@@ -7,7 +7,7 @@
     {% for item in instagram_images -%}
       <li class="frame frame1x1 round shadow">
         <figure>
-          {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto:low,f_jpg,g_auto:subject,e_blur:100/" + (item.public_id | stripVersion) %}
+          {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto:subject,e_blur:100/" + (item.public_id | stripVersion) %}
           {% set thumbnail_path = site.cloudinary_url + "/c_fill,w_350,h_350,q_auto,f_auto,g_auto:subject/" + (item.public_id | stripVersion) %}
           {% set image_path = site.cloudinary_url + "/c_fill,w_1440,h_1440,q_auto,f_auto,g_auto:subject/" + (item.public_id | stripVersion) %}
           <noscript><a href="{{ image_path }}" height="100%"><img src="{{ thumbnail_path }}" width="350" height="350" alt="{{ item.context.caption }}" style="background-image:url({{ lqip_path | lqip }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
@@ -27,7 +27,7 @@
     {% for item in instagram_images -%}
       <li id="item{{ loop.index }}" class="slider-item">
         <figure class="center-both">
-          {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto:low,f_jpg,g_auto:subject,e_blur:100/" + (item.public_id | stripVersion) %}
+          {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto:subject,e_blur:100/" + (item.public_id | stripVersion) %}
           {% set image_path = site.cloudinary_url + "/c_fill,w_900,h_900,q_auto,f_auto,g_auto:subject/" + (item.public_id | stripVersion) %}
           <img data-srcset="
           {%- for size in instagram_image_sizes -%}

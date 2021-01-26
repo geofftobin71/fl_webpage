@@ -1,5 +1,5 @@
 <figure class="background" style="--brightness:{{ section.background.brightness or '50' }}%">
-  {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,q_auto:low,f_jpg,e_blur:200/" + (section.background.image | stripVersion) %}
+  {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,q_auto,f_jpg,e_blur:200/" + (section.background.image | stripVersion) %}
   {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
   {% set src = site.cloudinary_url + "/w_900," + transforms + (section.background.image | stripVersion) %}
   <noscript><img src="{{ src }}" alt="{{ section.background.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
