@@ -1,15 +1,15 @@
 ---
-label: Base
+label: Blog Base
 hide_body: true
 fields:
 - type: text
   name: title
   label: Title
-  description: The Title of the page. Appears in the header and on the browser tab.
+  description: The Title of the blog post. Appears in the header and on the browser tab.
 - type: text
   name: description
   label: Description
-  description: SEO page description. Appears on Google search results.
+  description: Blog post description. Used as the excerpt on the blog index page and appears on Google search results.
 - type: text
   name: page_alt
   label: Default Alt Text

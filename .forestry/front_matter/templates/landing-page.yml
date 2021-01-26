@@ -11,7 +11,7 @@ fields:
 - name: base
   type: include
   config: {}
-  template: base
+  template: page-base
   label: Base
 - name: header
   type: include
@@ -35,5 +35,6 @@ fields:
     min: 
     max: 
 pages:
+- src/pages/404.md
 - src/pages/sorry-contact-form.md
 - src/pages/thankyou-for-contacting-floriade.md

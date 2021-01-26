@@ -14,7 +14,7 @@ fields:
 - name: base
   type: include
   config: {}
-  template: base
+  template: page-base
   label: Base
 - name: header
   type: include

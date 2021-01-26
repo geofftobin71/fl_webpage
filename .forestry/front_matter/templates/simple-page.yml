@@ -1,13 +1,13 @@
 ---
-label: Page
-hide_body: true
+label: Simple Page
+hide_body: false
 display_field: title
 fields:
 - type: text
   name: layout
   label: Layout
   hidden: true
-  default: layouts/page-builder.njk
+  default: layouts/simple-page.njk
 - name: base
   type: include
   config: {}
@@ -23,18 +23,5 @@ fields:
   config: {}
   template: menu
   label: Menu
-- name: page_sections
-  type: blocks
-  label: Page Sections
-  template_types:
-  - text-section
-  - image-section
-  - contact-form-section
-  - two-column-section
-  config:
-    min: 
-    max: 
 pages:
-- src/pages/about.md
-- src/pages/cake-flowers.md
-- src/pages/contact.md
+- src/pages/terms-and-conditions.md

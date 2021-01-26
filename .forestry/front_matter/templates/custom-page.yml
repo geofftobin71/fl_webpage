@@ -1,0 +1,25 @@
+---
+label: Custom Page
+hide_body: true
+display_field: title
+fields:
+- name: base
+  type: include
+  config: {}
+  template: page-base
+  label: Base
+- name: header
+  type: include
+  config: {}
+  template: header
+  label: Header
+- name: menu
+  type: include
+  config: {}
+  template: menu
+  label: Menu
+pages:
+- src/pages/blog.md
+- src/pages/faq.md
+- src/pages/reviews.md
+- src/pages/shop.md

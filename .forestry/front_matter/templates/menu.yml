@@ -16,11 +16,11 @@ fields:
     type: text
     config:
       required: false
-    label: Parent (optional)
+    label: Parent
     description: The Parent item in the menu for this page.
   - name: order
     type: number
-    label: Order (optional)
+    label: Order
     description: The order that this page appears in the main menu.
     default: 1
     required: false

@@ -11,7 +11,7 @@ fields:
 - name: base
   type: include
   config: {}
-  template: base
+  template: blog-base
   label: Base
 - name: date
   type: datetime
