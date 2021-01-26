@@ -17,6 +17,11 @@ page_sections:
 
     We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
 
+    > “The time has come” the Walrus said “to talk of many things. Of shoes and ships and sealing wax, of cabbages and kings. Of why the sea is boiling hot, and whether pigs have wings!”
+
+    **Floriade** is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.
+
+    We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
   align: ''
   bigfonts: false
   background:
