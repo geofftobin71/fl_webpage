@@ -48,4 +48,4 @@ fields:
   type: include
   config: {}
   template: background-color
-  label: Background
+  label: Background Color
