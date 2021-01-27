@@ -28,9 +28,4 @@ sitemap:
   ignore: true
 description: ''
 page_alt: ''
-eleventyNavigation:
-  key: ''
-  parent: ''
-  order: 
-
 ---

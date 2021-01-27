@@ -2,7 +2,6 @@
 title: "This is my second post"
 header_image: "/fresh-flowers/fresh-flowers-by-floriade-00053"
 date: "2019-08-25"
-draft: true
 ---
 ## Prologue
 Elit adipisci earum maiores placeat iste! Neque repellendus recusandae harum eos ea, vero. Velit velit officiis sunt enim corrupti Similique est praesentium beatae ipsam excepturi? Qui voluptatum nihil accusantium et maiores? Consequatur sequi reprehenderit quia ducimus animi cumque. Recusandae ad sapiente quod velit eius? Aut provident dicta non ipsa consequatur!
