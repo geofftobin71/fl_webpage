@@ -20,6 +20,7 @@ sections:
   - page
   - gallery-page
   - landing-page
+  - simple-page
 - type: document
   path: src/_data/banner_message.json
   label: Banner Message

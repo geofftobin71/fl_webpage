@@ -24,4 +24,5 @@ fields:
   template: menu
   label: Menu
 pages:
+- src/pages/privacy.md
 - src/pages/terms-and-conditions.md
