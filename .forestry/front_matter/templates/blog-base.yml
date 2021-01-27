@@ -5,18 +5,22 @@ fields:
 - type: text
   name: title
   label: Title
-  description: The Title of the Blog Post. Appears in the header and on the browser tab.
+  description: The Title of the Blog Post. Appears in the header and on the browser
+    tab.
 - type: text
   name: description
   label: Description
-  description: Blog Post description. Used as the excerpt on the blog index page and appears on Google search results.
+  description: Blog Post description. Used as the excerpt on the blog index page and
+    appears on Google search results.
 - type: text
   name: page_alt
   label: Default Alt Text
-  description: Default Alt Text for any image on this page that doesn't have its own Alt Text.
+  description: Default Alt Text for any image on this page that doesn't have its own
+    Alt Text.
 - name: header_image
   type: file
   config:
     maxSize: 64
   label: Header Image
-  description: The background image for the page header. Also used when sharing this Blog Post on social media.
+  description: The background image for the page header. Also used when sharing this
+    Blog Post on social media.
