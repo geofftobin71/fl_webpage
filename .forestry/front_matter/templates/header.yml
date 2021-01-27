@@ -12,22 +12,16 @@ fields:
       required: false
     label: Title
     description: Override the page title on the header.
-  - name: image
-    type: file
-    config:
-      maxSize: 64
-    label: Image
-    description: The background image for the page header.
   - type: text
     name: alt
     label: Alt Text
-    description: Background Image Alt Text.
+    description: Header Image Alt Text.
   - name: brightness
     type: number
     label: Brightness
     description: Brightness of the header image. Allow the header text and menu to
       be more visible.<br>10 - 100
-    default: 0
+    default: 100
     config:
       min: 10
       max: 100

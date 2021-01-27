@@ -1,7 +1,7 @@
 ---
 title: Reviews
+header_image: fresh-flowers/fresh-flowers-by-floriade-00057
 header:
-  image: fresh-flowers/fresh-flowers-by-floriade-00057
   brightness: 40
 layout: layouts/reviews.njk
 eleventyNavigation:

@@ -6,12 +6,12 @@
   <div class="cover" style="flex:1;">
     <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
       {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
-      {% set header_image = (header.image | stripVersion) or (site.header_image | stripVersion) %}
-      {% set src = site.cloudinary_url + "/w_900," + transforms + header_image %}
-      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto:subject,e_blur:100/" + header_image %}
+      {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
+      {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+      {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto:subject,e_blur:100/" + image_id %}
       <img srcset="
       {%- for size in image_sizes -%}
-        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ header_image }} {{ size }}w{{ ',' if not loop.last }}
+        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
       {%- endfor -%}
       " sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_path | lqip }})" alt="{{ header.alt or page_alt or site.alt }}" loading="eager" decoding="async" />
     </figure>

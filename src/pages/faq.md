@@ -1,8 +1,8 @@
 ---
 title: FAQ
+header_image: fresh-flowers/fresh-flowers-by-floriade-00029
 header:
   title: Frequently Asked Questions
-  image: fresh-flowers/fresh-flowers-by-floriade-00029
 layout: layouts/faq.njk
 eleventyNavigation:
   key: FAQ

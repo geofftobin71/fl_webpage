@@ -1,4 +1,4 @@
 {
-  "layout": "layouts/blogpost.njk",
+  "layout": "layouts/blog-post.njk",
   "metaType": "article"
 }

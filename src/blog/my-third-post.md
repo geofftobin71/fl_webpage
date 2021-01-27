@@ -1,5 +1,6 @@
 ---
 title: "This is my third post"
+header_image: "/fresh-flowers/fresh-flowers-by-floriade-00054"
 date: "2019-08-27"
 ---
 ## Prologue

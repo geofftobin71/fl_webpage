@@ -2,9 +2,9 @@
 layout: layouts/page.njk
 title: Blog
 description: Floriade Blog
+header_image: "/fresh-flowers/fresh-flowers-by-floriade-00051"
 header:
   title: Floriade Blog
-  image: "/fresh-flowers/fresh-flowers-by-floriade-00051"
 eleventyNavigation:
   order: 56
   key: Blog

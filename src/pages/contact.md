@@ -6,9 +6,9 @@ eleventyNavigation:
   parent: ''
 title: Contact
 description: Contact Floriade for all your fresh & dried flower needs.
+header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 header:
   title: Contact Floriade
-  image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 page_sections:
 - template: two-column-section
   align: Start

@@ -1,7 +1,6 @@
 ---
 title: Wedding Flowers
-header:
-  image: wedding-flowers/wedding-flowers-by-floriade-00033
+header_image: wedding-flowers/wedding-flowers-by-floriade-00033
 layout: layouts/gallery.njk
 gallery_folder: wedding-flowers
 page_alt: Wedding Flowers by Floriade

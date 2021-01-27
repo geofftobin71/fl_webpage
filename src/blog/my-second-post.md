@@ -1,5 +1,6 @@
 ---
 title: "This is my second post"
+header_image: "/fresh-flowers/fresh-flowers-by-floriade-00053"
 date: "2019-08-25"
 draft: true
 ---

@@ -1,9 +1,9 @@
 ---
 title: Sorry - Contact Form Error
 layout: layouts/landing-page.njk
+header_image: "/site/floriade-dried-flower-room-00001.jpg"
 header:
   title: Sorry :(
-  image: "/site/floriade-dried-flower-room-00001.jpg"
   brightness: 40
   alt: ''
 page_sections:

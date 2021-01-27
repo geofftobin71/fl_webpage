@@ -1,8 +1,8 @@
 ---
 title: Thankyou for contacting Floriade
 layout: layouts/landing-page.njk
+header_image: "/site/floriade-dried-flower-room-00001.jpg"
 header:
-  image: "/site/floriade-dried-flower-room-00001.jpg"
   brightness: 40
 page_sections:
 - template: text-section
