@@ -10,7 +10,7 @@ const CleanCSS = require("clean-css");
 const { minify } = require("terser");
 const jsonminify = require("jsonminify");
 const fs = require("fs");
-const markdown = require("markdown-it")({ html: true });
+const markdown = require("markdown-it")({ html: true }).disable('code');
 const fetch64 = require('fetch-base64');
 const site = require('./src/_data/site.json');
 const image_sizes = require('./src/_data/image_sizes.json');
@@ -24,7 +24,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let caption = '';
   if(title_txt) {
-    caption = '<figcaption class="md">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+    caption = '<figcaption class="caption">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
   let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';

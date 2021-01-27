@@ -28,7 +28,7 @@ strong {
   line-height: 1;
 }
 
-figcaption.md {
+.caption {
   font-size: var(--step--1);
   font-family: var(--font-family-secondary);
   opacity: 0.5;

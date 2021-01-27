@@ -1,6 +1,6 @@
 ---
 title: "This is my fourth post"
-description: Amet unde modi est odit minus! Quaerat sequi qui minus enim dolore? Voluptatum neque quam non ratione inventore reprehenderit. Asperiores corrupti ad ipsam fugiat tempore? Similique illo at quae impedit sit! Voluptatem laudantium repudiandae et perferendis a. Quis accusamus nisi a modi quae eligendi tempore Molestiae perferendis inventore saepe voluptatibus.
+description: Consectetur repellat iste quod aliquam officia nesciunt Quae provident possimus eius neque voluptates architecto? Accusantium sunt saepe minus quae ab, odit Veniam nemo minus itaque.
 header_image: "/fresh-flowers/fresh-flowers-by-floriade-00052"
 date: "2021-01-22"
 ---

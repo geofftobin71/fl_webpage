@@ -1,5 +1,6 @@
 ---
 title: "This is my second post"
+description: Lorem consectetur similique nostrum inventore suscipit Sint vel nam deserunt quidem aut. Illum non amet cumque laboriosam corporis tempore debitis sapiente.
 header_image: "/fresh-flowers/fresh-flowers-by-floriade-00053"
 date: "2019-08-25"
 ---
