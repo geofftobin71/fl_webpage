@@ -11,13 +11,13 @@ header:
   image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 page_sections:
 - template: two-column-section
-  align: start
+  align: Start
   left_sections:
   - template: contact-details-section
   right_sections:
   - template: shop-hours-section
 - template: two-column-section
-  align: start
+  align: Start
   right_sections:
   - template: google-maps-section
   left_sections:

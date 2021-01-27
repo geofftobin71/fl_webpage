@@ -1,0 +1,8 @@
+---
+label: Google Maps Section
+hide_body: true
+fields:
+- name: text
+  type: text
+  label: Text
+  hidden: true
