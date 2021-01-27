@@ -36,5 +36,5 @@ fields:
     max: 
 pages:
 - src/pages/404.md
-- src/pages/sorry-contact-form.md
+- src/pages/sorry-contact-form-error.md
 - src/pages/thankyou-for-contacting-floriade.md
