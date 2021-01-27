@@ -5,7 +5,7 @@
       <div>
         <div class="stack center" style="padding-bottom:var(--section-padding)">
           <h4>Location</h4>
-          <a href="{{ site.google_maps }}" title="Open in Google Maps" target="_blank">
+          <a href="{{ site.google_maps }}" title="Open in Google Maps" target="_blank" rel="noreferrer noopener">
             <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
           </a>
         </div>
@@ -22,13 +22,13 @@
     </div>
     <div class="stack center" style="--stack-space:var(--step-1)">
       <div class="color-light" style="width:240px;height:2rem;display:flex;justify-content:space-between">
-        <a href="{{ site.facebook }}" target="_blank" style="width:12px" title="Follow us on Facebook">
+        <a href="{{ site.facebook }}" target="_blank" rel="noreferrer noopener" style="width:12px" title="Follow us on Facebook">
           {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
-        <a href="{{ site.instagram }}" target="_blank" style="width:20px" title="Follow us on Instagram">
+        <a href="{{ site.instagram }}" target="_blank" rel="noreferrer noopener" style="width:20px" title="Follow us on Instagram">
           {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
-        <a href="{{ site.pinterest }}" target="_blank" style="width:20px" title="Pin us on Pinterest">
+        <a href="{{ site.pinterest }}" target="_blank" rel="noreferrer noopener" style="width:20px" title="Pin us on Pinterest">
           {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
-        <a href="{{ site.google_review }}" target="_blank" style="width:20px" title="Leave a Google review">
+        <a href="{{ site.google_review }}" target="_blank" rel="noreferrer noopener" style="width:20px" title="Leave a Google review">
           {{ '/src/svg/google.svg' | svgContents | safe }}</a>
       </div>
       <p style="white-space:nowrap">© Floriade Ltd {{ now_nz.year }}. All rights reserved</p>

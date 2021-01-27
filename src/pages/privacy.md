@@ -2,7 +2,7 @@
 title: Privacy
 header:
   image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg"
-layout: layouts/simple-page.njk
+layout: layouts/privacy.njk
 sitemap:
   ignore: true
 ---
@@ -13,11 +13,11 @@ We collect personal information from you, including information about your:
 
 We collect your personal information in order to process and fulfill online orders, and contact you via our mailing list if you are subscribed.
 
-Providing some information is optional. If you choose not to enter correct billing or delivery information, we'll be unable to process or deliver your order.
+Providing some information is optional. However, if you choose not to enter correct billing or delivery information, we'll be unable to process or deliver your order.
 
 We keep your information only long enough to enable us to process your order. If you are subscribed to our mailing list, we keep your name and email address to enable us to contact you.
 
-We __do not__ store your credit card details. All credit card transactions are secured by <a href="https://stripe.com/" target="_blank">Stripe</a>. See their <a href="https://stripe.com/docs/security/stripe" target="_blank">security</a> and <a href="https://stripe.com/nz/privacy/" target="_blank">privacy</a> policies for details.
+We _do not_ store your credit card details. All credit card transactions are secured by [Stripe](https://stripe.com/). See their [security](https://stripe.com/docs/security/stripe) and [privacy](https://stripe.com/nz/privacy/) policies for details.
 
 **We do not share your personal information with any third party.**
 
