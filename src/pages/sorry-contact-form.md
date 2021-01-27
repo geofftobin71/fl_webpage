@@ -1,10 +1,11 @@
 ---
-title: Sorry
+title: Sorry Contact Form Error
 layout: layouts/landing-page.njk
 header:
-  title: sorry :(
+  title: Sorry :(
   image: "/site/floriade-dried-flower-room-00001.jpg"
   brightness: 40
+  alt: ''
 page_sections:
 - template: text-section
   text: |-
@@ -12,7 +13,24 @@ page_sections:
     Please email us at [flowers@floriade.co.nz](mailto\:flowers@floriade.co.nz\?subject\=Flowers%20Enquiry)
 
     or call us on [04 213 7952](tel:+6442137952)
-
+  align: ''
+  bigfonts: false
+  background:
+    color: ''
+    image: ''
+    alt: ''
+    brightness: 
+  button:
+    text: ''
+    link: ''
+    new_page: false
 sitemap:
   ignore: true
+description: ''
+page_alt: ''
+eleventyNavigation:
+  key: ''
+  parent: ''
+  order: 
+
 ---
