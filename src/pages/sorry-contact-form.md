@@ -1,5 +1,5 @@
 ---
-title: Sorry Contact Form Error
+title: Sorry - Contact Form Error
 layout: layouts/landing-page.njk
 header:
   title: Sorry :(
