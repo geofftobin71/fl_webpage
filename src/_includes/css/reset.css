@@ -37,6 +37,11 @@ hr {
   margin: 0 1em;
 }
 
+hr.vertical {
+  border-width: 0 1px 0 0;
+  height: 100%;
+}
+
 img, svg, video, canvas, audio, iframe, embed, object {
   display: block;
   vertical-align: middle;

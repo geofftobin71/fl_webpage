@@ -4,17 +4,17 @@
     <div class="switcher" style="--threshold:35rem;--switcher-space:0">
       <div>
         <div class="stack center" style="padding-bottom:var(--section-padding)">
-          <h4>Location</h4>
+          <h4 class="text-lowercase">Location</h4>
           <a href="{{ site.google_maps }}" title="Open in Google Maps" target="_blank" rel="noreferrer noopener">
             <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
           </a>
         </div>
         <div class="stack center" style="padding-bottom:var(--section-padding)">
-          <h4>Hours</h4>
+          <h4 class="text-lowercase">Hours</h4>
           {% include "partials/shop-hours.njk" %}
         </div>
         <div class="stack center" style="padding-bottom:var(--section-padding)">
-          <h4>Contact</h4>
+          <h4 class="text-lowercase">Contact</h4>
           <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message">{{ site.email_obf | safe }}</a></p>
           <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
           <div class="color-light" style="width:150px;margin-top:1.5em;height:2rem;display:flex;justify-content:space-between">

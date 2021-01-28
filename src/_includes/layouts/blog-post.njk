@@ -7,7 +7,7 @@
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "{{ title | safe }}",
-    "description": "{{ description or site.description | safe }}",
+    "description": "{{ description | safe }}",
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     "image": [
       "{{ site.cloudinary_url }}/w_1440,ar_1,c_fill,f_jpg,q_auto,g_auto:subject/{{ image_id }}",
@@ -39,25 +39,7 @@
     {{ jsonld | jsonmin | safe }}
   </script>
 
-  <style>
-.page-links {
-  padding:1em 0;
-  display:flex;
-  justify-content:space-between;
-}
-.page-links a {
-  display:flex;
-  align-items:center;
-}
-.page-links .prev {
-  width:var(--step-0);
-  margin-right:0.5em;
-}
-.page-links .next {
-  width:var(--step-0);
-  margin-left:0.5em;
-}
-  </style>
+<style>.page-links{padding:1em 0;display:grid;grid-gap:3em;grid-template-columns:1fr 1fr;}.page-links a{display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
 {% endblock %}
 
 {% block content %}
@@ -76,14 +58,14 @@
       {% if prevPost.url %}
         <a href="{{ prevPost.url }}" title="Prev">
           <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
-          <p>{{ prevPost.data.title }}</p>
+          <p class="text-lowercase">{{ prevPost.data.title }}</p>
         </a>
       {% else %}
         <p>&nbsp;</p>
       {% endif %}
       {% if nextPost.url %}
         <a href="{{ nextPost.url }}" title="Next">
-          <p class="text-right">{{ nextPost.data.title }}</p>
+          <p class="text-right text-lowercase">{{ nextPost.data.title }}</p>
           <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
         </a>
       {% else %}
