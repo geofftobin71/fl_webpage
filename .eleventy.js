@@ -75,7 +75,18 @@ module.exports = (eleventyConfig) => {
       const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
       return (post_date <= today) && (!p.data.draft);
     }
-    return collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
+
+    const coll = collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
+
+    for(let i = 0; i < coll.length ; i++) {
+      const prevPost = coll[i-1];
+      const nextPost = coll[i + 1];
+
+      coll[i].data["prevPost"] = prevPost;
+      coll[i].data["nextPost"] = nextPost;
+    }
+
+    return coll;
   });
 
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.ico" : "/"});

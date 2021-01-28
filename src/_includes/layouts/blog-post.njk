@@ -1,4 +1,4 @@
-{% extends "layouts/simple-page.njk" %}
+{% extends "layouts/base.njk" %}
 
 {% block head %}
 {{ super() }}
@@ -38,4 +38,59 @@
   <script type="application/ld+json">
     {{ jsonld | jsonmin | safe }}
   </script>
+
+  <style>
+.page-links {
+  padding:1em 0;
+  display:flex;
+  justify-content:space-between;
+}
+.page-links a {
+  display:flex;
+  align-items:center;
+}
+.page-links .prev {
+  width:var(--step-0);
+  margin-right:0.5em;
+}
+.page-links .next {
+  width:var(--step-0);
+  margin-left:0.5em;
+}
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <main>
+  <section>
+    <div class="wrapper text-wrapper">
+      <article>
+        {{ super() }}
+      </article>
+    </div>
+  </section>
+  <hr>
+  <div class="wrapper page-wrapper">
+    <nav class="page-links font-secondary">
+      {% if prevPost.url %}
+        <a href="{{ prevPost.url }}" title="Prev">
+          <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
+          <p>{{ prevPost.data.title }}</p>
+        </a>
+      {% else %}
+        <p>&nbsp;</p>
+      {% endif %}
+      {% if nextPost.url %}
+        <a href="{{ nextPost.url }}" title="Next">
+          <p class="text-right">{{ nextPost.data.title }}</p>
+          <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
+        </a>
+      {% else %}
+        <p>&nbsp;</p>
+      {% endif %}
+    </nav>
+  </div>
+  </main>
+  {% include "partials/footer.njk" %}
 {% endblock %}

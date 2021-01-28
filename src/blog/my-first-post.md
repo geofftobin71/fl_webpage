@@ -1,9 +1,8 @@
 ---
-title: This is my first post
+title: This is my first post. It has an incredibly long and drawn out title.
 description: Elit expedita numquam amet consequatur in Quos cupiditate natus eligendi officia facere? Itaque eos magnam blanditiis cum consequuntur quas! 
 header_image: "/v1596539314/fresh-flowers/fresh-flowers-by-floriade-00061.jpg"
 date: 2019-08-24
-
 ---
 ## Prologue
 Dolor exercitationem at vel molestias magnam Esse fugiat quibusdam magni sapiente libero, temporibus Ducimus similique fugiat doloribus molestias dignissimos Aspernatur illum nisi deleniti molestiae nobis! Ullam et tenetur quia nobis temporibus, nobis explicabo. Laboriosam id quas deleniti atque ipsa. Debitis vel saepe sunt possimus officia. Inventore eius autem autem rerum?
