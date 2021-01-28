@@ -9,7 +9,7 @@
 
 {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
 {% set brightness = 100 - (header.brightness or 50) %}
-{% set metaImage = site.cloudinary_url + "/c_fill,g_auto:subject,h_627,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + image_id %}
+{% set metaImage = site.cloudinary_url + "/c_fill,g_auto:subject,h_630,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + image_id %}
 
 <title>{{ metaTitle }}</title>
 <link rel="canonical" href="{{ currentUrl }}" />
@@ -27,6 +27,8 @@
 <meta name="p:domain_verify" content="08604940072e4c11a3b6f34dc6225e86"/>
 
 <meta property="og:image" content="{{ metaImage }}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta name="twitter:image" content="{{ metaImage }}" />
 <meta property="og:image:alt" content="Page image for {{ currentUrl }}" />
 <meta name="twitter:image:alt" content="Page image for {{ currentUrl }}" />

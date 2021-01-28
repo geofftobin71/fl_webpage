@@ -1,4 +1,5 @@
-<footer class="bg-shade1 font-size--1">
+<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;}}</style>
+<footer class="bg-shade1 link-light font-size--1">
   <section class="wrapper page-wrapper">
     <div style="display:flex;justify-content:center;margin-bottom:2em"><a href="#top" title="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'});return false;})();return false;" style="width:24px">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div>
     <div class="three-columns">
@@ -12,6 +13,7 @@
         <h4 class="text-lowercase">Contact</h4>
         <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message">{{ site.email_obf | safe }}</a></p>
         <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
+        <h4 class="text-lowercase">Follow</h4>
         <div class="color-light" style="width:150px;margin-top:1.5em;height:2rem;display:flex;justify-content:space-between">
           <a href="{{ site.facebook }}" target="_blank" rel="noreferrer noopener" style="width:12px" title="Follow us on Facebook">
             {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>

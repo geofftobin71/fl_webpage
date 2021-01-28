@@ -1,0 +1,46 @@
+{% extends "layouts/page.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  .blogpost {
+    transform: translateY(0px);
+    opacity: 1;
+    transition: transform 500ms ease , opacity 500ms linear;
+  }
+  .blogpost.hidden {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  const blogposts = document.querySelectorAll(".blogpost");
+  const blogposts_options = { root: null, threshold: 0.25, rootMargin: "0px" };
+  const blogposts_observer = new IntersectionObserver((entries, blogposts_observer) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) {
+        entry.target.classList.add("hidden");
+        return;
+      }
+      entry.target.classList.remove("hidden");
+      blogposts_observer.unobserve(entry.target);
+    });
+  }, blogposts_options);
+
+  blogposts.forEach(blogpost => {
+    blogposts_observer.observe(blogpost);
+  });
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}

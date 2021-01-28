@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/blog.njk
 title: Blog
 description: Floriade Blog
 header_image: "/fresh-flowers/fresh-flowers-by-floriade-00051"
@@ -14,12 +14,13 @@ eleventyNavigation:
   <div class="wrapper text-wrapper">
     <ul class="stack" style="--stack-space:var(--step-5)">
       {% for post in collections.blog -%}
-        <li>
+        <li class="blogpost">
           <div style="position:relative;padding:10vh 3vw">
             <figure class="round shadow background" style="--brightness:{{ post.data.header.brightness or '50' }}%">
               {% set image_id = (post.data.header_image | stripVersion) or (site.header_image | stripVersion) %}
               {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto:subject,e_blur:200/" + image_id %}
-              <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto:subject/{{ image_id }}" style="background-image:url({{ lqip_path | lqip }})" alt="{{ post.data.header.alt or page_alt or site.alt }}" loading="lazy" decoding="async" />
+              <noscript><img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto:subject/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ post.data.header.alt or page_alt or site.alt }}" loading="lazy" decoding="async" /></noscript>
+              <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto:subject/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ post.data.header.alt or page_alt or site.alt }}" loading="lazy" decoding="async" />
             </figure>
             <h2 class="text-right text-lowercase text-shadow">{{ post.data.title | safe }}</h2>
           </div>
