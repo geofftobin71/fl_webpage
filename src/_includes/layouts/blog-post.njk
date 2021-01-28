@@ -64,7 +64,7 @@
         <p>&nbsp;</p>
       {% endif %}
       {% if nextPost.url %}
-        <a href="{{ nextPost.url }}" title="Next">
+        <a href="{{ nextPost.url }}" title="Next" style="justify-self:end">
           <p class="text-right text-lowercase">{{ nextPost.data.title }}</p>
           <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
         </a>

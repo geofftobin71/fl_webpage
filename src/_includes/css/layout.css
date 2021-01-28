@@ -383,6 +383,25 @@ button a:active { color: var(--button-hl); }
   }
 }
 
+/* ----- Three Columns ----- */
+
+.three-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 750px) {
+  .three-columns {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .three-columns > div:nth-child(3) {
+    order: 2;
+  }
+  .three-columns > div:nth-child(2) {
+    order: 3;
+  }
+}
+
 /* ----- Auto Grid ----- */
 
 .auto-grid {
