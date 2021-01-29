@@ -1,10 +1,11 @@
 {% set metaTitle = title + " - " + site.name %}
-{% set metaDesc = description or site.description %}
+{% set metaDesc = description %}
 {% set metaImage = site.url + site.social_image %}
 {% set currentUrl = site.url + page.url %}
 
 {% if page.url == "/" %}
   {% set metaTitle = site.name + " - " + site.tagline %}
+  {% set metaDesc = site.description %}
 {% endif %}
 
 {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
@@ -12,23 +13,29 @@
 {% set metaImage = site.cloudinary_url + "/c_fill,g_auto:subject,h_630,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + image_id %}
 
 <title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDesc | safe }}" />
+
 <link rel="canonical" href="{{ currentUrl }}" />
 
 <meta property="og:site_name" content="{{ site.name }}" />
-<meta property="og:title" content="{{ metaTitle | safe }}" />
+<meta property="og:title" content="{{ title | safe }}" />
+<meta property="og:description" content="{{ metaDesc | safe }}" />
 <meta property="og:type" content="{{ metaType or 'website' }}" />
 <meta property="og:url" content="{{ currentUrl }}" />
-
-<meta name="description" content="{{ metaDesc | safe }}" />
-<meta name="twitter:description" content="{{ metaDesc | safe }}" />
-<meta property="og:description" content="{{ metaDesc | safe }}" />
-
-<meta name="google-site-verification" content="jKxqqGfwRXbvUEf4V-wnsFmeRN9RxYmzBE4AuhjfHvQ">
-<meta name="p:domain_verify" content="08604940072e4c11a3b6f34dc6225e86"/>
-
 <meta property="og:image" content="{{ metaImage }}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta name="twitter:image" content="{{ metaImage }}" />
 <meta property="og:image:alt" content="Page image for {{ currentUrl }}" />
+
+<meta name="twitter:title" content="{{ metaTitle | safe }}" />
+<meta name="twitter:description" content="{{ metaDesc | safe }}" />
+<meta name="twitter:card" content="summary_large_image">
+{#
+<meta name="twitter:site" content="@floriade">
+<meta name="twitter:creator" content="@floriade">
+#}
+<meta name="twitter:image" content="{{ metaImage }}" />
 <meta name="twitter:image:alt" content="Page image for {{ currentUrl }}" />
+
+<meta name="google-site-verification" content="jKxqqGfwRXbvUEf4V-wnsFmeRN9RxYmzBE4AuhjfHvQ">
+<meta name="p:domain_verify" content="08604940072e4c11a3b6f34dc6225e86"/>
