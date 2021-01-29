@@ -1,15 +1,10 @@
-.resp-sharing-button__link,
-.resp-sharing-button__icon {
-  display: block
-}
-
-.resp-sharing-button__link {
+a.resp-sharing-button-link {
   text-decoration: none;
   color: #fff;
-  margin: 0.5em
+  margin: 0.5em;
 }
 
-.resp-sharing-button {
+div.resp-sharing-button {
   border-radius: 5px;
   transition: 25ms ease-out;
   padding: 0.5em 0.75em;
@@ -20,186 +15,186 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.resp-sharing-button:active {
+div.resp-sharing-button:active {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.resp-sharing-button__icon svg {
+div.resp-sharing-button-icon svg {
   width: 1em;
   height: 1em;
   margin-right: 0.4em;
 }
 
-.resp-sharing-button--small svg {
+div.resp-sharing-button-small svg {
   margin: 0;
 }
 
 /* Non solid icons get a stroke */
-.resp-sharing-button__icon {
+div.resp-sharing-button-icon {
   stroke: #fff;
-  fill: none
+  fill: none;
 }
 
 /* Solid icons get a fill */
-.resp-sharing-button__icon--solid,
-.resp-sharing-button__icon--solidcircle {
+div.resp-sharing-button-icon-solid,
+div.resp-sharing-button-icon-solidcircle {
   fill: #fff;
-  stroke: none
+  stroke: none;
 }
 
-.resp-sharing-button--twitter {
-  background-color: #55acee
+div.resp-sharing-button-twitter {
+  background-color: #55acee;
 }
 
-.resp-sharing-button--twitter:hover {
-  background-color: #2795e9
+div.resp-sharing-button-twitter:hover {
+  background-color: #2795e9;
 }
 
-.resp-sharing-button--pinterest {
-  background-color: #bd081c
+div.resp-sharing-button-pinterest {
+  background-color: #bd081c;
 }
 
-.resp-sharing-button--pinterest:hover {
-  background-color: #8c0615
+div.resp-sharing-button-pinterest:hover {
+  background-color: #8c0615;
 }
 
-.resp-sharing-button--facebook {
-  background-color: #3b5998
+div.resp-sharing-button-facebook {
+  background-color: #3b5998;
 }
 
-.resp-sharing-button--facebook:hover {
-  background-color: #2d4373
+div.resp-sharing-button-facebook:hover {
+  background-color: #2d4373;
 }
 
-.resp-sharing-button--tumblr {
-  background-color: #35465C
+div.resp-sharing-button-tumblr {
+  background-color: #35465C;
 }
 
-.resp-sharing-button--tumblr:hover {
-  background-color: #222d3c
+div.resp-sharing-button-tumblr:hover {
+  background-color: #222d3c;
 }
 
-.resp-sharing-button--reddit {
-  background-color: #5f99cf
+div.resp-sharing-button-reddit {
+  background-color: #5f99cf;
 }
 
-.resp-sharing-button--reddit:hover {
-  background-color: #3a80c1
+div.resp-sharing-button-reddit:hover {
+  background-color: #3a80c1;
 }
 
-.resp-sharing-button--google {
-  background-color: #dd4b39
+div.resp-sharing-button-google {
+  background-color: #dd4b39;
 }
 
-.resp-sharing-button--google:hover {
-  background-color: #c23321
+div.resp-sharing-button-google:hover {
+  background-color: #c23321;
 }
 
-.resp-sharing-button--linkedin {
-  background-color: #0077b5
+div.resp-sharing-button-linkedin {
+  background-color: #0077b5;
 }
 
-.resp-sharing-button--linkedin:hover {
-  background-color: #046293
+div.resp-sharing-button-linkedin:hover {
+  background-color: #046293;
 }
 
-.resp-sharing-button--email {
-  background-color: #777
+div.resp-sharing-button-email {
+  background-color: #777;
 }
 
-.resp-sharing-button--email:hover {
-  background-color: #5e5e5e
+div.resp-sharing-button-email:hover {
+  background-color: #5e5e5e;
 }
 
-.resp-sharing-button--xing {
-  background-color: #1a7576
+div.resp-sharing-button-xing {
+  background-color: #1a7576;
 }
 
-.resp-sharing-button--xing:hover {
-  background-color: #114c4c
+div.resp-sharing-button-xing:hover {
+  background-color: #114c4c;
 }
 
-.resp-sharing-button--whatsapp {
-  background-color: #25D366
+div.resp-sharing-button-whatsapp {
+  background-color: #25D366;
 }
 
-.resp-sharing-button--whatsapp:hover {
-  background-color: #1da851
+div.resp-sharing-button-whatsapp:hover {
+  background-color: #1da851;
 }
 
-.resp-sharing-button--hackernews {
-  background-color: #FF6600
+div.resp-sharing-button-hackernews {
+  background-color: #FF6600;
 }
-.resp-sharing-button--hackernews:hover, .resp-sharing-button--hackernews:focus {   background-color: #FB6200 }
+div.resp-sharing-button-hackernews:hover, div.resp-sharing-button-hackernews:focus { background-color: #FB6200; }
 
-.resp-sharing-button--vk {
-  background-color: #507299
-}
-
-.resp-sharing-button--vk:hover {
-  background-color: #43648c
+div.resp-sharing-button-vk {
+  background-color: #507299;
 }
 
-.resp-sharing-button--facebook {
+div.resp-sharing-button-vk:hover {
+  background-color: #43648c;
+}
+
+div.resp-sharing-button-facebook {
   background-color: #3b5998;
   border-color: #3b5998;
 }
 
-.resp-sharing-button--facebook:hover,
-.resp-sharing-button--facebook:active {
+div.resp-sharing-button-facebook:hover,
+div.resp-sharing-button-facebook:active {
   background-color: #2d4373;
   border-color: #2d4373;
 }
 
-.resp-sharing-button--twitter {
+div.resp-sharing-button-twitter {
   background-color: #55acee;
   border-color: #55acee;
 }
 
-.resp-sharing-button--twitter:hover,
-.resp-sharing-button--twitter:active {
+div.resp-sharing-button-twitter:hover,
+div.resp-sharing-button-twitter:active {
   background-color: #2795e9;
   border-color: #2795e9;
 }
 
-.resp-sharing-button--email {
+div.resp-sharing-button-email {
   background-color: #777777;
   border-color: #777777;
 }
 
-.resp-sharing-button--email:hover,
-.resp-sharing-button--email:active {
+div.resp-sharing-button-email:hover,
+div.resp-sharing-button-email:active {
   background-color: #5e5e5e;
   border-color: #5e5e5e;
 }
 
-.resp-sharing-button--pinterest {
+div.resp-sharing-button-pinterest {
   background-color: #bd081c;
   border-color: #bd081c;
 }
 
-.resp-sharing-button--pinterest:hover,
-.resp-sharing-button--pinterest:active {
+div.resp-sharing-button-pinterest:hover,
+div.resp-sharing-button-pinterest:active {
   background-color: #8c0615;
   border-color: #8c0615;
 }
 
-.resp-sharing-button--linkedin {
+div.resp-sharing-button-linkedin {
   background-color: #0077b5;
   border-color: #0077b5;
 }
 
-.resp-sharing-button--linkedin:hover,
-.resp-sharing-button--linkedin:active {
+div.resp-sharing-button-linkedin:hover,
+div.resp-sharing-button-linkedin:active {
   background-color: #046293;
   border-color: #046293;
 }
 
 @media screen and (max-width: 550px) {
-  .resp-sharing-button__text {
+  span.resp-sharing-button-text {
     display: none;
   }
-  .resp-sharing-button__icon svg {
+  div.resp-sharing-button-icon svg {
     margin: 0;
   }
 }

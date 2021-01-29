@@ -1,27 +1,27 @@
 <style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;}}</style>
 <footer class="bg-shade1 link-light font-size--1">
   <section class="wrapper page-wrapper">
-    <div style="display:flex;justify-content:center;margin-bottom:2em"><a href="#top" title="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'});return false;})();return false;" style="width:24px">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div>
+    <div style="display:flex;justify-content:center;margin-bottom:2em"><a href="#top" title="Scroll to Top" aria-label="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'});return false;})();return false;" style="width:24px">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div>
     <div class="three-columns">
       <div class="stack center" style="padding-bottom:var(--section-padding)">
         <h4 class="text-lowercase">Location</h4>
-        <a href="{{ site.google_maps }}" title="Open in Google Maps" target="_blank" rel="noopener">
+        <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
           <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
         </a>
       </div>
       <div class="stack center" style="padding-bottom:var(--section-padding)">
         <h4 class="text-lowercase">Contact</h4>
-        <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message">{{ site.email_obf | safe }}</a></p>
-        <p><a href="tel:{{ site.phone_intl }}" title="Call now">{{ site.phone }}</a></p>
+        <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
+        <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
         <h4 class="text-lowercase">Follow</h4>
         <div class="color-light" style="width:150px;margin-top:1.5em;height:2rem;display:flex;justify-content:space-between">
-          <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:12px" title="Follow us on Facebook">
+          <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:12px" title="Follow us on Facebook" aria-label="Follow us on Facebook">
             {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
-          <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:20px" title="Follow us on Instagram">
+          <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:20px" title="Follow us on Instagram" aria-label="Follow us on Instagram">
             {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
-          <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:20px" title="Pin us on Pinterest">
+          <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:20px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest">
             {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
-          <a href="{{ site.google_review }}" target="_blank" rel="noopener" style="width:20px" title="Leave a Google review">
+          <a href="{{ site.google_review }}" target="_blank" rel="noopener" style="width:20px" title="Leave a Google review" aria-label="Leave a Google review">
             {{ '/src/svg/google.svg' | svgContents | safe }}</a>
         </div>
       </div>

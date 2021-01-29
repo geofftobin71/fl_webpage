@@ -1,10 +1,10 @@
 <div id="menu">
   <input class="toggle" type="checkbox" onclick="toggleMenu(this)">
   <nav class="burger">
-    <span style="width:var(--step-1)" title="Menu">{{ '/src/svg/bars.svg' | svgContents | safe }}</span>
+    <span role="button" style="width:var(--step-1)" title="Menu" aria-label="Menu">{{ '/src/svg/bars.svg' | svgContents | safe }}</span>
   </nav>
   <nav class="close">
-    <span style="width:var(--step-1)" title="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
+    <span role="button" style="width:var(--step-1)" title="Close" aria-label="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
   </nav>
   <div class="content">
     <figure class="logo">
