@@ -74,7 +74,7 @@
               <div class="text-center text-shadow flow">
                 <h4>{{ image.context.alt or page_alt or site.alt }}</h4>
                 <h5 class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or page_alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></h5>
-              <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank" rel="noreferrer noopener">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
+              <h5 class="link-light">{% if image.context["Credit Link"] %}Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank" rel="noopener">{{ image.context["Credit Name"] }}</a>{% else %}&nbsp;{% endif %}</h5>
               </div>
             </figcaption>
           </figure>

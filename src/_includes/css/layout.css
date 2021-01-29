@@ -301,7 +301,7 @@ article > * + * {
 
 /* ----- Button ----- */
 
-button {
+button, .button {
   --button-fg: var(--color-shade3); */
 --button-bg: transparent;
 --button-hl: var(--color-shade1);
@@ -318,24 +318,24 @@ font-family: var(--font-family-secondary);
 text-transform: lowercase;
 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-button:focus {
+button:focus, .button:focus {
   outline-offset: -0.2rem;
   outline: 1px solid;
 }
-button:hover {
+button:hover, .button:hover {
   background: var(--button-fg);
   color: var(--button-hl);
   border-color: var(--button-hl);
 }
-button:active {
+button:active, .button:active {
   transform: scale(0.95);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-button a:link { color: var(--button-fg); }
-button a:visited { color: var(--button-fg); }
-button a:hover { color: var(--button-hl); }
-button a:active { color: var(--button-hl); }
+a.button:link { color: var(--button-fg); }
+a.button:visited { color: var(--button-fg); }
+a.button:hover { color: var(--button-hl); }
+a.button:active { color: var(--button-hl); }
 
 /* ----- The Stack ----- */
 

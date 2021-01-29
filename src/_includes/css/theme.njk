@@ -121,14 +121,13 @@ h6 { font-size: var(--step--2); }
 .bigfonts h5 { font-size: var(--step--2); }
 .bigfonts h6 { font-size: var(--step--3); }
 
-article h1, article h2, article h3, article h4, article h5 {
-  text-transform: lowercase;
-  color: var(--color-shade3);
-  transform: translateX(-0.5em);
-}
-
-.heading {
+.heading, article h1, article h2, article h3, article h4, article h5 {
   text-transform: lowercase;
   color: var(--color-shade3);
 }
 
+@media screen and (min-width: 750px) {
+  article h1, article h2, article h3, article h4, article h5 {
+    transform: translateX(-0.5em);
+  }
+}
