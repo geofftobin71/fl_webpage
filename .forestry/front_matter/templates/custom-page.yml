@@ -18,8 +18,3 @@ fields:
   config: {}
   template: menu
   label: Menu
-pages:
-- src/pages/blog.md
-- src/pages/faq.md
-- src/pages/reviews.md
-- src/pages/shop.md
