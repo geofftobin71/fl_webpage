@@ -1,7 +1,8 @@
 ---
-title: Privacy
+title: Privacy Policy
+description: Floriade's Privacy Policy
 header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg"
-layout: layouts/privacy.njk
+layout: layouts/simple-page.njk
 sitemap:
   ignore: true
 ---
@@ -18,8 +19,19 @@ We keep your information only long enough to enable us to process your order. If
 
 We _do not_ store your credit card details. All credit card transactions are secured by [Stripe](https://stripe.com/). See their [security](https://stripe.com/docs/security/stripe) and [privacy](https://stripe.com/nz/privacy/) policies for details.
 
-**We do not share your personal information with any third party.**
+We use cookies to improve your browsing experience on our website, and to analyze our website traffic. For more information, please see our [Cookie Policy](https://floriade.co.nz/cookie-policy/).
 
 You have the right to ask for a copy of any personal information we hold about you, and to ask for it to be corrected if you think it is wrong.
-If you’d like to ask for a copy of your information, or to have it corrected, please contact us at [flowers@floriade.co.nz](mailto\:flowers@floriade.co.nz\?subject\=Privacy%20Enquiry), or [04 213 7952](tel:+6442137952).
+If you’d like to ask for a copy of your information, or to have it corrected, please contact us at:
+
+Floriade
+
+18 Cambridge Terrace,<br>
+Te Aro,<br>
+Wellington, 6011,<br>
+New Zealand
+
+[04 213 7952](tel:+6442137952)
+
+[flowers@floriade.co.nz](mailto\:flowers@floriade.co.nz\?subject\=Privacy%20Enquiry)
 

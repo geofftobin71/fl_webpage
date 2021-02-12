@@ -22,6 +22,8 @@
     {{ css | cssmin | safe }}
     </style>
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
     {% block head %}
     {% endblock %}
 
@@ -39,8 +41,28 @@
       {% set js %}
       {% include "js/lazy-images.js" %}
       {% include "js/hamburger-menu.js" %}
+		    window.cookieconsent.initialise({
+		        "palette": {
+		              "popup": {
+		                      "background": "#a6b3ae",
+		                      "text": "#3d4844"
+		                    },
+		              "button": {
+		                      "background": "#3d4844",
+		                      "text": "#a6b3ae"
+		                    }
+		            },
+		        "theme": "classic",
+		        "content": {
+		              "message": "We use cookies to improve your browsing experience on our website, and to analyze our website traffic.",
+		              "dismiss": "Accept",
+		              "link": "Read our Cookie Policy",
+		              "href": "https://floriade.co.nz/cookie-policy/"
+		            }
+		    });
       {% endset %}
 
+      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
       <script>
         {{ js | jsmin | safe }}
       </script>

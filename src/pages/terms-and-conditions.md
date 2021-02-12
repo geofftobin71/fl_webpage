@@ -1,5 +1,6 @@
 ---
 title: Terms and Conditions
+description: Floriade's Terms and Conditions
 header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00060.jpg"
 layout: layouts/simple-page.njk
 sitemap:

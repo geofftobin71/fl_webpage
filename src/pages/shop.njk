@@ -6,10 +6,14 @@ eleventyNavigation:
 title: Shop
 description: Contact Floriade for all your fresh & dried flower needs.
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
+permalink: "{{ page.fileSlug }}/index.php"
 ---
+
+<?php $date = new DateTime(); ?>
 
 <section>
   <div class="wrapper text-wrapper">
     <p>This is the <strong>shop</strong> page.</p>
+    <p>The date is <?php var_dump($date); ?></p>
   </div>
 </section>

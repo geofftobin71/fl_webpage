@@ -99,12 +99,15 @@ ol[class] li:before {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
+/*
 a:not([class]) {
   text-decoration: none;
   text-decoration-skip-ink: auto;
 }
+*/
 
 input,
 button,
