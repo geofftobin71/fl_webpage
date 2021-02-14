@@ -17,7 +17,7 @@ fields:
       type: documents
       section: ''
       file: src/_data/shop_category_names.json
-      path: ''
+      path: Shop category names
   label: Category
 pages:
 - src/products/vibrant-colours-bouquet.md
