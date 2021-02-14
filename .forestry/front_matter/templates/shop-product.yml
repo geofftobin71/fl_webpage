@@ -2,20 +2,11 @@
 label: Shop Product
 hide_body: true
 fields:
-- name: title
-  type: text
-  config:
-    required: false
-  label: Title
-- name: description
-  type: textarea
-  default: ''
-  config:
-    required: false
-    wysiwyg: false
-    schema:
-      format: markdown
-  label: Description
+- name: base
+  type: include
+  config: {}
+  template: page-base
+  label: Base
 - name: category
   type: select
   default: []
@@ -28,3 +19,5 @@ fields:
       file: 
       path: 
   label: Category
+pages:
+- src/products/vibrant-colours-bouquet.md
