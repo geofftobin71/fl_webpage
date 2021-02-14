@@ -1,5 +1,5 @@
 ---
-layout: layouts/page.njk
+layout: layouts/php-page.njk
 eleventyNavigation:
   order: 10
   key: Shop
@@ -12,8 +12,14 @@ permalink: "{{ page.fileSlug }}/index.php"
 <?php $date = new DateTime(); ?>
 
 <section>
-  <div class="wrapper text-wrapper">
-    <p>This is the <strong>shop</strong> page.</p>
-    <p>The date is <?php var_dump($date); ?></p>
+  <?php foreach($categoryStore->findBy(["disabled", "!=", true],["sort" => "asc"]) as $category) { 
+  $category_id = $category['_id'];
+  $category_name = $category['name'];
+  $category_description = $category['description'];
+  ?>
+  <div class="wrapper">
+    <h2><?php echo $category_name; ?></h2>
+    <p><?php echo $category_description; ?></p>
   </div>
+  <?php } ?>
 </section>

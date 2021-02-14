@@ -89,6 +89,14 @@ module.exports = (eleventyConfig) => {
     return coll;
   });
 
+  eleventyConfig.addCollection("categories", (collection) => {
+    const coll = collection.getFilteredByGlob("./src/php/categories/data/*.json");
+
+    console.log(JSON.stringify(coll, null, 2));
+
+    return coll;
+  });
+
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.ico" : "/"});
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.png" : "/"});
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.svg" : "/"});
