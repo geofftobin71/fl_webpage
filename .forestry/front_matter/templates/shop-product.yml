@@ -1,4 +1,30 @@
 ---
 label: Shop Product
 hide_body: true
-fields: []
+fields:
+- name: name
+  type: text
+  config:
+    required: false
+  label: Name
+- name: description
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Description
+- name: category
+  type: select
+  default: []
+  config:
+    required: false
+    options: []
+    source:
+      type: pages
+      section: pages-06ea6c9b-bb0c-42cd-a496-ffe1083897b7
+      file: 
+      path: 
+  label: Category
