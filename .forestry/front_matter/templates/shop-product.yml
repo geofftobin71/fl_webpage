@@ -16,7 +16,7 @@ fields:
     source:
       type: documents
       section: ''
-      file: src/_data/shop_hours.json
+      file: src/_data/shop_category_names.json
       path: ''
   label: Category
 pages:
