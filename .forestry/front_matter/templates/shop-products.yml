@@ -38,7 +38,7 @@ fields:
     - type: number
       name: price
       label: Price
-      description: Price in whole-number cents. eg. $20 = 2000
+      description: Price in whole-number cents. eg. $20 = 2000, $6.50 = 650
     - type: boolean
       name: disabled
       label: Disabled
