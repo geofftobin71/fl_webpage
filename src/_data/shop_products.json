@@ -166,7 +166,59 @@
   },
   {
     "name": "Raspberry Milk Chocolate",
-    "description": "",
+    "description": "85g block of chocolate from Wellington Chocolate Factory",
+    "category": "Chocolate",
+    "disabled": false,
+    "variants": [
+      {
+        "name": "default",
+        "price": 800,
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "name": "Coconut Milk Chocolate",
+    "description": "85g block of chocolate from Wellington Chocolate Factory",
+    "category": "Chocolate",
+    "disabled": false,
+    "variants": [
+      {
+        "name": "default",
+        "price": 800,
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "name": "Original Milk Chocolate",
+    "description": "85g block of chocolate from Wellington Chocolate Factory",
+    "category": "Chocolate",
+    "disabled": false,
+    "variants": [
+      {
+        "name": "default",
+        "price": 800,
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "name": "Salted Caramel Dark Chocolate",
+    "description": "85g block of chocolate from Wellington Chocolate Factory",
+    "category": "Chocolate",
+    "disabled": false,
+    "variants": [
+      {
+        "name": "default",
+        "price": 800,
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "name": "Peru Dark Chocolate",
+    "description": "85g block of chocolate from Wellington Chocolate Factory",
     "category": "Chocolate",
     "disabled": false,
     "variants": [
