@@ -31,3 +31,5 @@ fields:
     - type: boolean
       name: disabled
       label: disabled
+pages:
+- src/_data/shop_products.json
