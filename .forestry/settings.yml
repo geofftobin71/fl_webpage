@@ -4,13 +4,8 @@ auto_deploy: false
 admin_path: admin
 webhook_url: 
 sections:
-- type: document
-  path: src/_data/shop_categories.json
-  label: Categories
-- type: document
-  path: src/_data/shop_category_names.json
-  label: Category Names
-  read_only: true
+- type: heading
+  label: Pages
 - type: directory
   path: src/blog
   label: Blog
@@ -28,6 +23,11 @@ sections:
   - gallery-page
   - landing-page
   - simple-page
+- type: heading
+  label: Shop
+- type: document
+  path: src/_data/shop_categories.json
+  label: Categories
 - type: directory
   path: src/products
   label: Products
@@ -35,6 +35,8 @@ sections:
   match: "**/*.{md,njk}"
   templates:
   - shop-product
+- type: heading
+  label: Website Data
 - type: document
   path: src/_data/banner_message.json
   label: Banner Message
@@ -58,6 +60,10 @@ sections:
 - type: document
   path: src/_data/photographers.json
   label: Photographers
+- type: document
+  path: src/_data/shop_category_names.json
+  label: Category Names
+  read_only: true
 upload_dir: ''
 public_path: https://res.cloudinary.com/floriade/image/upload
 front_matter_path: ''
