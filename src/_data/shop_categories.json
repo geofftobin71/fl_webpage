@@ -6,7 +6,8 @@
     "delivery": true,
     "finite": false,
     "parent": "",
-    "variant": "size"
+    "variant": "size",
+    "image": ""
   },
   {
     "name": "Chocolate",
@@ -15,7 +16,8 @@
     "delivery": true,
     "finite": false,
     "parent": "Bouquets",
-    "variant": ""
+    "variant": "",
+    "image": ""
   },
   {
     "name": "Workshops",
@@ -24,6 +26,7 @@
     "delivery": false,
     "finite": true,
     "parent": "",
-    "variant": "session"
+    "variant": "session",
+    "image": "/v1613195720/workshops/wreath-workshop-1.jpg"
   }
 ]
