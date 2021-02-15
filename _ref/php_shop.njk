@@ -1,0 +1,25 @@
+---
+layout: layouts/php-page.njk
+eleventyNavigation:
+  order: 10
+  key: Shop
+title: Shop
+description: Contact Floriade for all your fresh & dried flower needs.
+header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
+permalink: "{{ page.fileSlug }}/index.php"
+---
+
+<?php $date = new DateTime(); ?>
+
+<section>
+  <?php foreach($categoryStore->findBy(["disabled", "!=", true],["sort" => "asc"]) as $category) { 
+  $category_id = $category['_id'];
+  $category_name = $category['name'];
+  $category_description = $category['description'];
+  ?>
+  <div class="wrapper">
+    <h2><?php echo $category_name; ?></h2>
+    <p><?php echo $category_description; ?></p>
+  </div>
+  <?php } ?>
+</section>

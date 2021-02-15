@@ -12,12 +12,12 @@
 {% set brightness = 100 - (header.brightness or 50) %}
 {% set metaImage = site.cloudinary_url + "/c_fill,g_auto:subject,h_630,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + image_id %}
 
-<title>{{ metaTitle }}</title>
+<title>{{ metaTitle | safe }}</title>
 <meta name="description" content="{{ metaDesc | safe }}" />
 
 <link rel="canonical" href="{{ currentUrl }}" />
 
-<meta property="og:site_name" content="{{ site.name }}" />
+<meta property="og:site_name" content="{{ site.name | safe }}" />
 <meta property="og:title" content="{{ title | safe }}" />
 <meta property="og:description" content="{{ metaDesc | safe }}" />
 <meta property="og:type" content="{{ metaType or 'website' }}" />

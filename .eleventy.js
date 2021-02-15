@@ -14,6 +14,7 @@ const markdown = require("markdown-it")({ html: true }).disable('code');
 const fetch64 = require('fetch-base64');
 const site = require('./src/_data/site.json');
 const image_sizes = require('./src/_data/image_sizes.json');
+const cloudinary = require('cloudinary').v2;
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -126,6 +127,16 @@ module.exports = (eleventyConfig) => {
     });
     let preview = "data:image/jpg;base64," + base64[0];
     callback(null, preview);
+  });
+
+  eleventyConfig.addNunjucksAsyncFilter("imginfo", async (id, callback) => {
+    let info = await cloudinary.search
+      .expression('public_id=' + id)
+      .with_field('context')
+      .execute();
+
+    // console.log(info.rate_limit_remaining + ' / ' + info.rate_limit_allowed);
+    callback(null, info.resources[0]);
   });
 
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {

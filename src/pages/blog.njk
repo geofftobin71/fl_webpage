@@ -11,7 +11,7 @@ eleventyNavigation:
 ---
 
 <section>
-  <div class="wrapper text-wrapper">
+  <div class="wrapper">
     <ul class="stack" style="--stack-space:var(--step-5)">
       {% for post in collections.blog -%}
         <li class="blogpost">
@@ -27,7 +27,7 @@ eleventyNavigation:
           <p class="caption">{{ post.date | readableDate }}</p>
           <div class="wrapper text-wrapper flow" style="margin-top:1em">
             <p>{{ post.data.description | safe }}</p>
-            <p class="font-secondary text-center"><a href="{{ post.url | url }}">. . . read more . . .</a></p>
+            <p class="text-center"><a class="button" href="{{ post.url | url }}">read more</a></p>
           </div>
         </li>
       {% endfor -%}
