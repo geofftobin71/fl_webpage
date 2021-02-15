@@ -12,10 +12,6 @@ fields:
   - type: textarea
     name: description
     label: description
-  - type: number
-    name: sort
-    label: Sort Order
-    description: The order that this Category appears on the Shop page.
   - name: parent
     type: select
     default: []
