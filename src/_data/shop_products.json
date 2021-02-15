@@ -33,7 +33,8 @@
     ],
     "images": [
 
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Vintage Dried Bouquet",
@@ -69,7 +70,8 @@
     ],
     "images": [
 
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Subtle Pastels Bouquet",
@@ -105,7 +107,8 @@
     ],
     "images": [
 
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Wild Rustic Bouquet",
@@ -141,7 +144,8 @@
     ],
     "images": [
 
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Avant-garde Bouquet",
@@ -177,7 +181,8 @@
     ],
     "images": [
 
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Raspberry Milk Chocolate",
@@ -185,15 +190,12 @@
     "category": "Chocolate",
     "disabled": false,
     "variants": [
-      {
-        "name": "default",
-        "price": 800,
-        "disabled": false
-      }
+
     ],
     "images": [
       "/v1613194571/chocolate/chocolate-1.jpg"
-    ]
+    ],
+    "price": 800
   },
   {
     "name": "Coconut Milk Chocolate",
@@ -209,7 +211,8 @@
     ],
     "images": [
       "/v1613194575/chocolate/chocolate-2.jpg"
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Original Milk Chocolate",
@@ -225,7 +228,8 @@
     ],
     "images": [
       "/v1613194579/chocolate/chocolate-3.jpg"
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Salted Caramel Dark Chocolate",
@@ -241,7 +245,8 @@
     ],
     "images": [
       "/v1613194575/chocolate/chocolate-4.jpg"
-    ]
+    ],
+    "price": null
   },
   {
     "name": "Peru Dark Chocolate",
@@ -257,6 +262,7 @@
     ],
     "images": [
       "/v1613194572/chocolate/chocolate-5.jpg"
-    ]
+    ],
+    "price": null
   }
 ]
