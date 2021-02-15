@@ -14,7 +14,7 @@ fields:
     label: description
   - type: number
     name: sort
-    label: Sort
+    label: Sort Order
     description: The order that this Category appears on the Shop page.
   - name: parent
     type: select
@@ -34,7 +34,7 @@ fields:
     name: variant
     label: Variant Name
     description: If there are multiple variants of a product (eg. size) the product
-      page will show a selector:<br>Please choose a ..........
+      page will show a selector :<br><em>Please choose a ..........</em>
   - type: boolean
     name: disabled
     label: Disabled
@@ -42,7 +42,8 @@ fields:
   - type: boolean
     name: delivery
     label: Delivery
-    description: Delivery products ask for a Delivery Address at checkout.
+    description: Delivery Address will be collected at checkout if there are delivery
+      products in the cart.
   - type: boolean
     name: finite
     label: Finite
