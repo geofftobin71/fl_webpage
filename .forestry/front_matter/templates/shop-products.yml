@@ -9,6 +9,8 @@ fields:
   - type: text
     name: name
     label: Name
+    config:
+      required: true
   - type: textarea
     name: description
     label: Description
@@ -16,7 +18,7 @@ fields:
     type: select
     default: []
     config:
-      required: false
+      required: true
       options: []
       source:
         type: documents
@@ -36,13 +38,19 @@ fields:
       name: name
       label: Name
       description: The name that appears on the Variant selector on the Product page.
+      config:
+        required: true
     - type: number
       name: price
       label: Price
       description: Price in whole-number cents. eg. $20 = 2000, $6.50 = 650
+      config:
+        required: true
     - type: boolean
       name: disabled
       label: Disabled
       description: Disabled Variants won’t appear on the Product page.
+    config:
+      min: 1
 pages:
 - src/_data/shop_products.json
