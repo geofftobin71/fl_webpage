@@ -27,7 +27,7 @@ fields:
         section: ''
         file: src/_data/shop_category_names.json
         path: Shop category names
-    label: Parent
+    label: Parent Category
     description: A product from this Category can only be added to the cart if there
       is a product from the Parent Category in the cart already.
   - type: text
