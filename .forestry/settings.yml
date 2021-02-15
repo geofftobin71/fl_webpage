@@ -28,13 +28,6 @@ sections:
 - type: document
   path: src/_data/shop_categories.json
   label: Categories
-- type: directory
-  path: src/products
-  label: Products
-  create: documents
-  match: "**/*.{md,njk}"
-  templates:
-  - shop-product
 - type: heading
   label: Website Data
 - type: document
