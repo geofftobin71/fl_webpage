@@ -10,16 +10,6 @@
     "variant": "size"
   },
   {
-    "name": "Workshops",
-    "description": "Workshops description",
-    "sort": 40,
-    "disabled": false,
-    "delivery": false,
-    "finite": true,
-    "parent": "",
-    "variant": "session"
-  },
-  {
     "name": "Chocolate",
     "description": "Wellington Chocolate Factory chocolate",
     "sort": 30,
@@ -28,5 +18,15 @@
     "finite": false,
     "parent": "Bouquets",
     "variant": ""
+  },
+  {
+    "name": "Workshops",
+    "description": "Workshops description",
+    "sort": 40,
+    "disabled": false,
+    "delivery": false,
+    "finite": true,
+    "parent": "",
+    "variant": "session"
   }
 ]
