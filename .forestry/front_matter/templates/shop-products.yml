@@ -41,10 +41,6 @@ fields:
     type: image_gallery
     config: {}
     label: Images
-  - type: boolean
-    name: disabled
-    label: Disabled
-    description: Disabled Products won’t appear on the Shop page.
   - type: field_group_list
     name: variants
     label: Variants
@@ -67,5 +63,9 @@ fields:
       description: Disabled Variants won’t appear on the Product page.
     config:
       min: 
+  - type: boolean
+    name: disabled
+    label: Disabled
+    description: Disabled Products won’t appear on the Shop page.
 pages:
 - src/_data/shop_products.json
