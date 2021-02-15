@@ -5,6 +5,26 @@ admin_path: admin
 webhook_url: 
 sections:
 - type: heading
+  label: Website Data
+- type: document
+  path: src/_data/shop_hours.json
+  label: Shop Hours
+- type: document
+  path: src/_data/shop_closed_dates.json
+  label: Shop Closed Dates
+- type: document
+  path: src/_data/non_delivery_dates.json
+  label: Non Delivery Dates
+- type: document
+  path: src/_data/banner_message.json
+  label: Banner Message
+- type: document
+  path: src/_data/faq.json
+  label: FAQ
+- type: document
+  path: src/_data/reviews.json
+  label: Reviews
+- type: heading
   label: Pages
 - type: directory
   path: src/blog
@@ -28,26 +48,6 @@ sections:
 - type: document
   path: src/_data/shop_categories.json
   label: Categories
-- type: heading
-  label: Website Data
-- type: document
-  path: src/_data/banner_message.json
-  label: Banner Message
-- type: document
-  path: src/_data/shop_hours.json
-  label: Shop Hours
-- type: document
-  path: src/_data/shop_closed_dates.json
-  label: Shop Closed Dates
-- type: document
-  path: src/_data/non_delivery_dates.json
-  label: Non Delivery Dates
-- type: document
-  path: src/_data/faq.json
-  label: FAQ
-- type: document
-  path: src/_data/reviews.json
-  label: Reviews
 - type: heading
   label: Misc
 - type: document
