@@ -48,6 +48,10 @@ sections:
 - type: document
   path: src/_data/shop_categories.json
   label: Categories
+- type: document
+  path: src/_data/shop_products.json
+  label: Products
+  match: "**/*"
 - type: heading
   label: Misc
 - type: document
