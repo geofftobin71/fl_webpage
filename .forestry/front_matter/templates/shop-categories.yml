@@ -1,0 +1,32 @@
+---
+label: Shop Categories
+hide_body: true
+fields:
+- type: field_group_list
+  name: Shop categories
+  label: Shop categories
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: textarea
+    name: description
+    label: description
+  - type: number
+    name: sort
+    label: sort
+  - type: boolean
+    name: disabled
+    label: disabled
+  - type: boolean
+    name: delivery
+    label: delivery
+  - type: boolean
+    name: finite
+    label: finite
+  - type: text
+    name: parent
+    label: parent
+  - type: text
+    name: variant
+    label: variant
