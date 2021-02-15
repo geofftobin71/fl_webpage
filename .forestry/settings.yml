@@ -5,6 +5,10 @@ admin_path: admin
 webhook_url: 
 sections:
 - type: document
+  path: src/_data/shop_categories.json
+  label: Categories
+  match: "**/*"
+- type: document
   path: src/_data/shop_category_names.json
   label: Category Names
   read_only: true
