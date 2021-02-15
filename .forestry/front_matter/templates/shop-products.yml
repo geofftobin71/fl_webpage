@@ -14,6 +14,17 @@ fields:
   - type: textarea
     name: description
     label: Description
+  - name: price
+    type: number
+    label: Price
+    description: Price in whole-number cents. eg. $20 = 2000, $6.50 = 650<br>Required
+      if there are no Variants
+    default: 0
+    required: true
+    config:
+      min: 
+      max: 
+      step: 
   - name: category
     type: select
     default: []
