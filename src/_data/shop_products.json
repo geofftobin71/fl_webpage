@@ -1,18 +1,5 @@
 [
   {
-    "name": "Raspberry Milk Chocolate",
-    "description": "",
-    "category": "Chocolate",
-    "disabled": false,
-    "variants": [
-      {
-        "name": "default",
-        "price": 800,
-        "disabled": false
-      }
-    ]
-  },
-  {
     "name": "Vibrant Colours Bouquet",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Bouquets",
@@ -173,6 +160,19 @@
       {
         "name": "$200",
         "price": 20000,
+        "disabled": false
+      }
+    ]
+  },
+  {
+    "name": "Raspberry Milk Chocolate",
+    "description": "",
+    "category": "Chocolate",
+    "disabled": false,
+    "variants": [
+      {
+        "name": "default",
+        "price": 800,
         "disabled": false
       }
     ]
