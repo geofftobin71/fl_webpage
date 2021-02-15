@@ -189,8 +189,7 @@
     "description": "85g block of chocolate from Wellington Chocolate Factory",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
+    "variants": [ 
     ],
     "images": [
       "/v1613194571/chocolate/chocolate-1.jpg"
@@ -204,15 +203,12 @@
     "disabled": false,
     "variants": [
       {
-        "name": "default",
-        "price": 800,
-        "disabled": false
       }
     ],
     "images": [
       "/v1613194575/chocolate/chocolate-2.jpg"
     ],
-    "price": null
+    "price": 800
   },
   {
     "name": "Original Milk Chocolate",
@@ -221,15 +217,12 @@
     "disabled": false,
     "variants": [
       {
-        "name": "default",
-        "price": 800,
-        "disabled": false
       }
     ],
     "images": [
       "/v1613194579/chocolate/chocolate-3.jpg"
     ],
-    "price": null
+    "price": 800
   },
   {
     "name": "Salted Caramel Dark Chocolate",
@@ -238,15 +231,12 @@
     "disabled": false,
     "variants": [
       {
-        "name": "default",
-        "price": 800,
-        "disabled": false
       }
     ],
     "images": [
       "/v1613194575/chocolate/chocolate-4.jpg"
     ],
-    "price": null
+    "price": 800
   },
   {
     "name": "Peru Dark Chocolate",
@@ -255,14 +245,11 @@
     "disabled": false,
     "variants": [
       {
-        "name": "default",
-        "price": 800,
-        "disabled": false
       }
     ],
     "images": [
       "/v1613194572/chocolate/chocolate-5.jpg"
     ],
-    "price": null
+    "price": 800
   }
 ]
