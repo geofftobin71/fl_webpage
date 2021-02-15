@@ -51,6 +51,6 @@ fields:
       label: Disabled
       description: Disabled Variants won’t appear on the Product page.
     config:
-      min: 1
+      min: 
 pages:
 - src/_data/shop_products.json
