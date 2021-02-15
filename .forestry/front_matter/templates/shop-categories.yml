@@ -14,19 +14,36 @@ fields:
     label: description
   - type: number
     name: sort
-    label: sort
-  - type: boolean
-    name: disabled
-    label: disabled
-  - type: boolean
-    name: delivery
-    label: delivery
-  - type: boolean
-    name: finite
-    label: finite
-  - type: text
-    name: parent
-    label: parent
+    label: Sort
+    description: The order that this Category appears on the Shop page.
+  - name: parent
+    type: select
+    default: []
+    config:
+      required: false
+      options: []
+      source:
+        type: documents
+        section: ''
+        file: src/_data/shop_category_names.json
+        path: Shop category names
+    label: Parent
+    description: A product from this Category can only be added to the cart if there
+      is a product from the Parent Category in the cart already.
   - type: text
     name: variant
-    label: variant
+    label: Variant Name
+    description: If there are multiple variants of a product (eg. size) the product
+      page will show a selector:<br>Please choose a ..........
+  - type: boolean
+    name: disabled
+    label: Disabled
+    description: Disabled Categories won’t appear on the Shop page.
+  - type: boolean
+    name: delivery
+    label: Delivery
+    description: Delivery products ask for a Delivery Address at checkout.
+  - type: boolean
+    name: finite
+    label: Finite
+    description: Finite products track remaining stock. eg. Workshop tickets.
