@@ -35,6 +35,7 @@ fields:
     - type: text
       name: name
       label: Name
+      description: The name that appears on the Variant selector on the Product page.
     - type: number
       name: price
       label: Price
