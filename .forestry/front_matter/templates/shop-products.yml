@@ -26,6 +26,10 @@ fields:
         file: src/_data/shop_category_names.json
         path: Shop category names
     label: Category
+  - name: images
+    type: image_gallery
+    config: {}
+    label: Images
   - type: boolean
     name: disabled
     label: Disabled
