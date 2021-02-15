@@ -8,28 +8,39 @@ fields:
   fields:
   - type: text
     name: name
-    label: name
+    label: Name
   - type: textarea
     name: description
-    label: description
-  - type: text
-    name: category
-    label: category
+    label: Description
+  - name: category
+    type: select
+    default: []
+    config:
+      required: false
+      options: []
+      source:
+        type: documents
+        section: ''
+        file: src/_data/shop_category_names.json
+        path: Shop category names
+    label: Category
   - type: boolean
     name: disabled
-    label: disabled
+    label: Disabled
+    description: Disabled Products won’t appear on the Shop page.
   - type: field_group_list
     name: variants
-    label: variants
+    label: Variants
     fields:
     - type: text
       name: name
-      label: name
+      label: Name
     - type: number
       name: price
-      label: price
+      label: Price
     - type: boolean
       name: disabled
-      label: disabled
+      label: Disabled
+      description: Disabled Variants won’t appear on the Product page.
 pages:
 - src/_data/shop_products.json

@@ -8,10 +8,10 @@ fields:
   fields:
   - type: text
     name: name
-    label: name
+    label: Name
   - type: textarea
     name: description
-    label: description
+    label: Description
   - name: parent
     type: select
     default: []
