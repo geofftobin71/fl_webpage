@@ -4,10 +4,14 @@ auto_deploy: false
 admin_path: admin
 webhook_url: 
 sections:
+- type: heading
+  label: Misc
+- type: document
+  path: src/_data/photographers.json
+  label: Photographers
 - type: document
   path: src/_data/shop_categories.json
   label: Categories
-  match: "**/*"
 - type: document
   path: src/_data/shop_category_names.json
   label: Category Names
@@ -54,9 +58,6 @@ sections:
 - type: document
   path: src/_data/reviews.json
   label: Reviews
-- type: document
-  path: src/_data/photographers.json
-  label: Photographers
 upload_dir: ''
 public_path: https://res.cloudinary.com/floriade/image/upload
 front_matter_path: ''
