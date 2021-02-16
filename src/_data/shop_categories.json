@@ -7,7 +7,8 @@
     "finite": false,
     "parent": "",
     "variant": "size",
-    "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg"
+    "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
+    "brightness": null
   },
   {
     "name": "Chocolate",
@@ -17,7 +18,8 @@
     "finite": false,
     "parent": "Bouquets",
     "variant": "",
-    "image": "/v1613194575/chocolate/chocolate-4.jpg"
+    "image": "/v1613194575/chocolate/chocolate-4.jpg",
+    "brightness": 100
   },
   {
     "name": "Workshops",
@@ -27,6 +29,7 @@
     "finite": true,
     "parent": "",
     "variant": "session",
-    "image": "/v1613195720/workshops/wreath-workshop-1.jpg"
+    "image": "/v1613195720/workshops/wreath-workshop-1.jpg",
+    "brightness": null
   }
 ]
