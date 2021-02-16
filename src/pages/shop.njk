@@ -25,7 +25,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
           </div>
           <div class="wrapper text-wrapper flow" style="margin-top:1em">
             <p>{{ category.description | safe }}</p>
-            <p class="text-center"><a class="button" href="{{ post.url | url }}">shop for {{ category.name | lower }}</a></p>
+            <p class="text-center"><a class="button" href="{{ ( "/shop/categories/" + category.name | slug ) | url }}">shop for {{ category.name | lower }}</a></p>
           </div>
         </div>
       {% endfor %}

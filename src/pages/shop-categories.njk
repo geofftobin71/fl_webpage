@@ -1,0 +1,15 @@
+---
+layout: layouts/page.njk
+pagination:
+  data: shop_categories
+  size: 1
+  alias: category
+permalink: "shop/categories/{{ category.name | slug }}/index.html"
+eleventyComputed:
+  title: "{{ category.name }}"
+  description: "{{ category.description }}"
+  header_image: "{{ category.image }}"
+---
+
+<h2>{{ category.name }}</h2>
+<p>{{ category.description }}</p>
