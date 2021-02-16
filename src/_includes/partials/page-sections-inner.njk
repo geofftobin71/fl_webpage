@@ -79,9 +79,12 @@
           Message
           <textarea class="round" id="message-input" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
         </label>
+        {% set image_id = (section.email_banner | stripVersion) or 'icons/floriade-icon-round-512' %}
+        {% set image_info = image_id | imginfo %}
         <input id="subject-input" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
         <input id="heading-input" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
-        <input id="banner-input" name="banner" type="hidden" value="{{ section.email_banner or 'https://floriade.co.nz/images/floriade-icon-round-512.png' }}">
+        <input id="banner-input" name="banner" type="hidden" value="{{ image_id }}">
+        <input id="alt-input" name="alt" type="hidden" value="{{ image_info.context.alt or 'Floriade Logo' }}">
         <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ env.RECAPTCHA_SITE_KEY }}">
         <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
 
