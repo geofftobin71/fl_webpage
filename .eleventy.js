@@ -233,6 +233,14 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
+  eleventyConfig.addFilter("shopCategory", (array, category) => {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
+      if(array[i].category === category) { filtered[filtered.length] = array[i]; }
+    }
+    return filtered;
+  });
+
   // Convert uppercase to hyphen-lowercase : fooBar => foo-bar
   eleventyConfig.addFilter("hyphenate", (word) => {
     function upperToHyphenLower(match, offset, string) {

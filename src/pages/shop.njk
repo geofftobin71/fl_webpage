@@ -17,7 +17,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
             <figure class="round shadow background" style="--brightness:{{ category.brightness or '50' }}%">
               {% set image_id = (category.image | stripVersion) or (site.header_image | stripVersion) %}
               {% set image_info = image_id | imginfo %}
-              {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
+              {% set lqip_path = site.cloudinary_url + '/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/' + image_id %}
               <noscript><img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" /></noscript>
               <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" />
             </figure>
@@ -25,7 +25,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
           </div>
           <div class="wrapper text-wrapper flow" style="margin-top:1em">
             <p>{{ category.description | safe }}</p>
-            <p class="text-center"><a class="button" href="{{ ( "/shop/categories/" + category.name | slug ) | url }}">shop for {{ category.name | lower }}</a></p>
+            <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">shop for {{ category.name | lower }}</a></p>
           </div>
         </div>
       {% endfor %}

@@ -1,0 +1,13 @@
+{% extends "layouts/page.njk" %}
+
+{% block head %}
+  {{ super() }}
+
+  {% set css %}
+  {% include "css/page-links.css" %}
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
