@@ -28,6 +28,5 @@ page_sections:
     email_subject: ''
     email_heading: ''
     email_banner: ''
-    email_alt: ''
 
 ---

@@ -4,7 +4,6 @@ header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00037.jpg"
 header:
   title: About Floriade
   brightness: 70
-  alt: ''
 layout: layouts/page-builder.njk
 eleventyNavigation:
   key: About
@@ -21,7 +20,6 @@ page_sections:
   background:
     color: Shade1
     image: ''
-    alt: ''
     brightness: 
   button:
     text: ''
@@ -32,7 +30,6 @@ page_sections:
   - template: image-section
     image: "/v1596539268/dried-flowers/dried-flowers-by-floriade-00073.jpg"
     width: Paragraph
-    alt: ''
     aspect: ''
   right_sections:
   - template: text-section
@@ -47,7 +44,6 @@ page_sections:
     background:
       color: ''
       image: ''
-      alt: ''
       brightness: 
     button:
       text: ''
@@ -57,14 +53,12 @@ page_sections:
   background:
     color: ''
     image: ''
-    alt: ''
     brightness: 
   align: ''
 - template: text-section
   background:
     image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00058.jpg"
     color: ''
-    alt: ''
     brightness: 40
   align: center
   bigfonts: true
@@ -81,7 +75,6 @@ page_sections:
   - template: image-section
     image: "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
     width: Paragraph
-    alt: ''
     aspect: ''
   right_sections:
   - template: text-section
@@ -96,21 +89,17 @@ page_sections:
     background:
       color: ''
       image: ''
-      alt: ''
       brightness: 
     button:
       text: ''
       link: ''
       new_page: false
   swap: true
-  alt: ''
   background:
     color: ''
     image: ''
-    alt: ''
     brightness: 
   align: ''
 description: ''
-page_alt: ''
 
 ---

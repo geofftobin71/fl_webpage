@@ -10,9 +10,9 @@
     "description": "{{ description | safe }}",
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     "image": [
-      "{{ site.cloudinary_url }}/w_1440,ar_1,c_fill,f_jpg,q_auto,g_auto:subject/{{ image_id }}",
-      "{{ site.cloudinary_url }}/w_1440,ar_4:3,c_fill,f_jpg,q_auto,g_auto:subject/{{ image_id }}",
-      "{{ site.cloudinary_url }}/w_1440,ar_16:9,c_fill,f_jpg,q_auto,g_auto:subject/{{ image_id }}"
+      "{{ site.cloudinary_url }}/w_1440,ar_1,c_fill,f_jpg,q_auto,g_auto/{{ image_id }}",
+      "{{ site.cloudinary_url }}/w_1440,ar_4:3,c_fill,f_jpg,q_auto,g_auto/{{ image_id }}",
+      "{{ site.cloudinary_url }}/w_1440,ar_16:9,c_fill,f_jpg,q_auto,g_auto/{{ image_id }}"
     ],
     "author": {
       "@type": "Person",

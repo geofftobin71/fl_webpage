@@ -5,7 +5,6 @@ header_image: "/site/floriade-dried-flower-room-00001.jpg"
 header:
   title: Sorry :(
   brightness: 40
-  alt: ''
 page_sections:
 - template: text-section
   text: |-
@@ -18,7 +17,6 @@ page_sections:
   background:
     color: ''
     image: ''
-    alt: ''
     brightness: 
   button:
     text: ''
@@ -27,5 +25,4 @@ page_sections:
 sitemap:
   ignore: true
 description: ''
-page_alt: ''
 ---

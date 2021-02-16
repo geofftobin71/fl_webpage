@@ -20,13 +20,15 @@
   <section class="image-section">
     <div class="wrapper{{ ' text-wrapper' if section.width == 'Paragraph' }}{{ ' page-wrapper' if section.width == 'Extra Wide' }}{{ ' no-wrapper' if section.width == 'Full' }}">
       <figure class="frame frame{{ section.aspect or '1x1' }} round shadow">
-        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + (section.image | stripVersion) %}
-        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
-        {% set src = site.cloudinary_url + "/w_900," + transforms + (section.image | stripVersion) %}
-        <noscript><img src="{{ src }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
+        {% set image_id = section.image | stripVersion %}
+        {% set image_info = image_id | imginfo %}
+        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+        {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+        <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
         <div><img data-srcset="
         {%- for size in image_sizes -%}
-        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ section.image | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
+        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
         {%- endfor -%}
         {%- set sizes = '100vw' -%}
         {%- if section.width == 'Full' -%}
@@ -54,7 +56,7 @@
             {%- set sizes = '(min-width: 1200px) 1200px, 100vw' -%}
           {%- endif -%}
         {%- endif -%}
-        " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ section.alt or page_alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
+        " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
       </figure>
     </div>
   </section>
@@ -80,7 +82,6 @@
         <input id="subject-input" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
         <input id="heading-input" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
         <input id="banner-input" name="banner" type="hidden" value="{{ section.email_banner or 'https://floriade.co.nz/images/floriade-icon-round-512.png' }}">
-        <input id="alt-input" name="alt" type="hidden" value="{{ section.email_alt or page_alt or site.alt }}">
         <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ env.RECAPTCHA_SITE_KEY }}">
         <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
 
