@@ -9,7 +9,23 @@ eleventyComputed:
   title: "{{ category.name }}"
   description: "{{ category.description }}"
   header_image: "{{ category.image }}"
+  header:
+    brightness: "{{ category.brightness }}"
 ---
 
-<h2>{{ category.name }}</h2>
-<p>{{ category.description }}</p>
+<section class="text-section bg-shade1">
+  <article class="wrapper text-wrapper text-center">
+    <p>{{ category.description }}</p>
+  </article>
+</section>
+
+<section>
+  <ul>
+    {% for product in shop_products %}
+      <li>
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

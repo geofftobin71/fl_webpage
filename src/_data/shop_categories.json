@@ -8,7 +8,7 @@
     "parent": "",
     "variant": "size",
     "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
-    "brightness": null
+    "brightness": 66
   },
   {
     "name": "Chocolate",
@@ -19,7 +19,7 @@
     "parent": "Bouquets",
     "variant": "",
     "image": "/v1613194575/chocolate/chocolate-4.jpg",
-    "brightness": 100
+    "brightness": 66
   },
   {
     "name": "Workshops",
@@ -30,6 +30,6 @@
     "parent": "",
     "variant": "session",
     "image": "/v1613195720/workshops/wreath-workshop-1.jpg",
-    "brightness": null
+    "brightness": 66
   }
 ]

@@ -14,7 +14,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
       {% for category in shop_categories %}
         <div>
           <div style="position:relative;padding:10vh 3vw">
-            <figure class="round shadow background" style="--brightness:{{ header.brightness or '50' }}%">
+            <figure class="round shadow background" style="--brightness:{{ category.brightness or '50' }}%">
               {% set image_id = (category.image | stripVersion) or (site.header_image | stripVersion) %}
               {% set image_info = image_id | imginfo %}
               {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
