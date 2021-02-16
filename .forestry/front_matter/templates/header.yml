@@ -12,10 +12,6 @@ fields:
       required: false
     label: Title
     description: Override the page title on the header.
-  - type: text
-    name: alt
-    label: Alt Text
-    description: Header Image Alt Text.
   - name: brightness
     type: number
     label: Brightness
