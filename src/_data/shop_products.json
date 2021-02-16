@@ -1,5 +1,22 @@
 [
   {
+    "name": "Christmas Wreath Workshop",
+    "description": "Learn to make a Christmas Wreath to hang on your front door",
+    "price": null,
+    "category": "Workshops",
+    "images": [
+      "/v1613195720/workshops/wreath-workshop-1.jpg"
+    ],
+    "variants": [
+      {
+        "name": "Sat 22 Dec 2021",
+        "price": 18000,
+        "disabled": false
+      }
+    ],
+    "disabled": false
+  },
+  {
     "name": "Vibrant Colours Bouquet",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Bouquets",
