@@ -5,7 +5,7 @@
     "disabled": false,
     "delivery": true,
     "finite": false,
-    "parent": "",
+    "parents": [ ],
     "variant": "size",
     "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
     "brightness": 60
@@ -16,7 +16,11 @@
     "disabled": false,
     "delivery": true,
     "finite": false,
-    "parent": "Bouquets",
+    "parents": [
+      {
+        "parent": "Bouquets"
+      }
+    ],
     "variant": "",
     "image": "/v1613194575/chocolate/chocolate-2.jpg",
     "brightness": 60
@@ -27,7 +31,7 @@
     "disabled": false,
     "delivery": false,
     "finite": true,
-    "parent": "",
+    "parents": [ ],
     "variant": "session",
     "image": "/v1613195720/workshops/wreath-workshop-1.jpg",
     "brightness": 60
