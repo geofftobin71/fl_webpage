@@ -1,6 +1,19 @@
 [
   {
-    "name": "Bouquets",
+    "name": "Fresh Flowers",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "disabled": false,
+    "delivery": true,
+    "finite": false,
+    "parents": [
+
+    ],
+    "variant": "size",
+    "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
+    "brightness": 60
+  },
+  {
+    "name": "Dried Flowers",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "disabled": false,
     "delivery": true,
@@ -19,12 +32,7 @@
     "delivery": true,
     "finite": false,
     "parents": [
-      {
-        "parent": "Bouquets"
-      },
-      {
-        "parent": "Workshops"
-      }
+
     ],
     "variant": "",
     "image": "/v1613194575/chocolate/chocolate-2.jpg",
