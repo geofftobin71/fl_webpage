@@ -29,6 +29,28 @@ fields:
       min: 10
       max: 100
       step: 10
+  - name: parents
+    type: field_group_list
+    config:
+      min: 
+      max: 
+      labelField: parent
+    fields:
+    - name: parent
+      type: select
+      default: []
+      config:
+        required: false
+        options: []
+        source:
+          type: documents
+          section: ''
+          file: src/_data/shop_category_names.json
+          path: Shop category names
+      label: Parent Category
+      description: A product from this Category can only be added to the cart if there
+        is a product from the Parent Category in the cart already.
+    label: Parent Categories
   - type: text
     name: variant
     label: Variant Name
@@ -47,27 +69,5 @@ fields:
     name: finite
     label: Finite
     description: Finite products track remaining stock. eg. Workshop tickets.
-  - name: parents
-    type: field_group_list
-    config:
-      min: 
-      max: 
-      labelField: 
-    fields:
-    - name: parent
-      type: select
-      default: []
-      config:
-        required: false
-        options: []
-        source:
-          type: documents
-          section: ''
-          file: src/_data/shop_category_names.json
-          path: Shop category names
-      label: Parent Category
-      description: A product from this Category can only be added to the cart if there
-        is a product from the Parent Category in the cart already.
-    label: Parent Categories
 pages:
 - src/_data/shop_categories.json
