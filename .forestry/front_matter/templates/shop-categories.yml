@@ -30,27 +30,18 @@ fields:
       max: 100
       step: 10
   - name: parents
-    type: field_group_list
+    type: list
     config:
+      use_select: true
       min: 
       max: 
-      labelField: parent
-    fields:
-    - name: parent
-      type: select
-      default: []
-      config:
-        required: false
-        options: []
-        source:
-          type: documents
-          section: ''
-          file: src/_data/shop_category_names.json
-          path: Shop category names
-      label: Parent Category
-      description: A product from this Category can only be added to the cart if there
-        is a product from the Parent Category in the cart already.
+      source:
+        type: documents
+        file: src/_data/shop_category_names.json
+        path: Shop category names
     label: Parent Categories
+    description: Products from this category can only be added to the cart if there
+      is a product from a Parent Category already in the cart.
   - type: text
     name: variant
     label: Variant Name
