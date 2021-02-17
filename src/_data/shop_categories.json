@@ -32,7 +32,8 @@
     "delivery": true,
     "finite": false,
     "parents": [
-
+      "Fresh Flowers",
+      "Dried Flowers"
     ],
     "variant": "",
     "image": "/v1613194575/chocolate/chocolate-2.jpg",
