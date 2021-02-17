@@ -41,7 +41,6 @@
 
   {% set css %}
   {% include "css/sharing-buttons.css" %}
-  {% include "css/page-links.css" %}
   {% endset %}
 
   <style>
@@ -111,11 +110,12 @@
       </a>
     </div>
   </section>
+  <style>.page-links{padding:1em 0;display:grid;grid-gap:3em;grid-template-columns:1fr 1fr;}.page-links a{display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
   <hr>
   <div class="wrapper page-wrapper">
     <nav class="page-links font-secondary">
       {% if prevPost.url %}
-        <a href="{{ prevPost.url }}" title="Previous" aria-label="Previous">
+        <a href="{{ prevPost.url }}" aria-label="Previous">
           <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
           <p class="text-lowercase">{{ prevPost.data.title }}</p>
         </a>
@@ -123,7 +123,7 @@
         <p>&nbsp;</p>
       {% endif %}
       {% if nextPost.url %}
-        <a href="{{ nextPost.url }}" title="Next" aria-label="Next" style="justify-self:end">
+        <a href="{{ nextPost.url }}" aria-label="Next" style="justify-self:end">
           <p class="text-right text-lowercase">{{ nextPost.data.title }}</p>
           <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
         </a>

@@ -1,5 +1,5 @@
 ---
-layout: layouts/shop-categories.njk
+layout: layouts/page.njk
 pagination:
   data: shop_products
   size: 1
@@ -27,26 +27,7 @@ eleventyComputed:
   </div>
 </section>
 
-<hr>
-<div class="wrapper page-wrapper">
-  <nav class="page-links font-secondary">
-    {% if pagination.href.previous %}
-      <a href="{{ pagination.href.previous }}" title="Previous" aria-label="Previous">
-        <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
-        <p class="text-lowercase">{{ pagination.page.previous.name }}</p>
-      </a>
-    {% else %}
-      <p>&nbsp;</p>
-    {% endif %}
-    {% if pagination.href.next %}
-      <a href="{{ pagination.href.next }}" title="Next" aria-label="Next" style="justify-self:end">
-        <p class="text-right text-lowercase">{{ pagination.page.next.name }}</p>
-        <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
-      </a>
-    {% else %}
-      <p>&nbsp;</p>
-    {% endif %}
-  </nav>
-</div>
+{% include "partials/pagination.njk" %}
+
 </main>
 

@@ -278,7 +278,7 @@ article > * + * {
 
 .wrapper {
   --wrapper-width: 1200px;
-  --padding: var(--step-0);
+  --padding: var(--step-2);
   max-width: var(--wrapper-width);
   margin-left: auto;
   margin-right: auto;
@@ -376,7 +376,10 @@ a.button:active { color: var(--button-hl); }
 @media screen and (orientation: landscape) and (min-width: 950px) {
   .two-columns {
     --grid-gap: var(--h-gap);
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 10fr 11fr;
+  }
+  .two-columns.swap {
+    grid-template-columns: 11fr 10fr;
   }
   .two-columns.swap > div:first-child {
     order: 2;

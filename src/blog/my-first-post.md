@@ -1,5 +1,5 @@
 ---
-title: This is my first post. It has an incredibly long and drawn out title
+title: This is my first post. It has an incredibly long and drawn out title.
 description: Elit expedita numquam amet consequatur in Quos cupiditate natus eligendi officia facere? Itaque eos magnam blanditiis cum consequuntur quas! 
 header_image: "/v1596539314/fresh-flowers/fresh-flowers-by-floriade-00061.jpg"
 date: 2019-08-24
