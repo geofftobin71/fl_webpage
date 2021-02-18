@@ -22,7 +22,7 @@ fields:
     default: 0
     required: true
     config:
-      min: 
+      min: 500
       max: 
       step: 
   - name: category
@@ -57,6 +57,7 @@ fields:
       description: Price in whole-number cents. eg. $20 = 2000, $6.50 = 650
       config:
         required: true
+        min: 500
     - type: boolean
       name: disabled
       label: Disabled
