@@ -75,9 +75,9 @@
     "image": "/v1613195720/workshops/wreath-workshop-1.jpg",
     "brightness": 66,
     "eleventyNavigation": {
-      "key": "",
-      "parent": "",
-      "order": null
+      "key": "Workshops",
+      "parent": "Flowers",
+      "order": 150
     }
   }
 ]

@@ -245,6 +245,14 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
+  eleventyConfig.addFilter("removeEmpty", (array) => {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
+      if(array[i].key.length) { filtered[filtered.length] = array[i]; }
+    }
+    return filtered;
+  });
+
   eleventyConfig.addFilter("filterByCategory", (array, category) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {

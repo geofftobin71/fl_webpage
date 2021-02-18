@@ -4,6 +4,7 @@ pagination:
   data: shop_categories
   size: 1
   alias: category
+  addAllPagesToCollections: true
 permalink: "shop/categories/{{ category.name | slug }}/index.html"
 eleventyComputed:
   title: "{{ category.name }}"
