@@ -28,7 +28,6 @@ fields:
     config:
       min: 10
       max: 100
-      step: 10
   - name: parents
     type: list
     config:
@@ -43,10 +42,22 @@ fields:
     description: Products from this category can only be added to the cart if there
       is a product from a Parent Category already in the cart.
   - type: text
+    name: button
+    label: Button Text
+  - type: text
+    name: gallery_folder
+    label: Gallery Folder
+    description: Cloudinary folder to source images for the image gallery
+  - type: text
     name: variant
-    label: Variant Name
+    label: Variant Text
     description: If there are multiple variants of a product (eg. size) the product
-      page will show a selector :<br><em>Please choose a ..........</em>
+      page will show a selector with this text:<br><em>eg. Please choose a size</em>
+  - name: menu
+    type: include
+    config: {}
+    template: menu
+    label: Menu
   - type: boolean
     name: disabled
     label: Disabled

@@ -25,5 +25,4 @@ fields:
     config:
       min: 10
       max: 100
-      step: 10
   label: Background

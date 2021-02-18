@@ -129,7 +129,7 @@ module.exports = (eleventyConfig) => {
     callback(null, preview);
   });
 
-  eleventyConfig.addNunjucksAsyncFilter("imginfo", async (id, callback) => {
+  eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
     let info = await cloudinary.search
       .expression('public_id=' + id)
       .with_field('context')
@@ -137,6 +137,18 @@ module.exports = (eleventyConfig) => {
 
     // console.log(info.rate_limit_remaining + ' / ' + info.rate_limit_allowed);
     callback(null, info.resources[0]);
+  });
+
+  eleventyConfig.addNunjucksAsyncFilter("imgGallery", async (folder, callback) => {
+    let gallery = await cloudinary.search
+      .expression('folder=' + folder)
+      .sort_by('public_id','desc')
+      .with_field('context')
+      .max_results(500)
+      .execute();
+
+    // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
+    callback(null, gallery.resources);
   });
 
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
@@ -233,7 +245,7 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
-  eleventyConfig.addFilter("shopCategory", (array, category) => {
+  eleventyConfig.addFilter("filterByCategory", (array, category) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {
       if(array[i].category === category) { filtered[filtered.length] = array[i]; }

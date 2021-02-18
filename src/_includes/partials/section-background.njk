@@ -1,6 +1,6 @@
 <figure class="background" style="--brightness:{{ section.background.brightness or '50' }}%">
   {% set image_id = section.background.image | stripVersion %}
-  {% set image_info = image_id | imginfo %}
+  {% set image_info = image_id | imgInfo %}
   {% set lqip_path = site.cloudinary_url + "/c_limit,w_64,h_64,q_auto,f_jpg,e_blur:200/" + image_id %}
   {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
   {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}

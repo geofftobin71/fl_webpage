@@ -7,7 +7,7 @@
     <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
       {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
       {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
-      {% set image_info = image_id | imginfo %}
+      {% set image_info = image_id | imgInfo %}
       {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
       {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto,e_blur:100/" + image_id %}
       <img srcset="

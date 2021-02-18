@@ -17,7 +17,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
         <div>
           <figure class="frame frame1x1 round shadow">
             {% set image_id = (category.image | stripVersion) or (site.header_image | stripVersion) %}
-            {% set image_info = image_id | imginfo %}
+            {% set image_info = image_id | imgInfo %}
             {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
             {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
             {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
@@ -58,7 +58,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
         <div class="wrapper text-wrapper flow text-center">
           <h2 class="heading">{{ category.name | safe }}</h2>
           <p>{{ category.description | safe }}</p>
-          <p class="text-center" style="margin-top:2em"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">shop for {{ category.name | lower }}</a></p>
+          <p class="text-center" style="margin-top:2em"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ category.button | lower or 'shop now' }}</a></p>
         </div>
     </section>
 
@@ -68,7 +68,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
       <div style="position:relative;padding:10vh 3vw">
         <figure class="round shadow background" style="--brightness:{{ category.brightness or '50' }}%">
           {% set image_id = (category.image | stripVersion) or (site.header_image | stripVersion) %}
-          {% set image_info = image_id | imginfo %}
+          {% set image_info = image_id | imgInfo %}
           {% set lqip_path = site.cloudinary_url + '/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/' + image_id %}
           <noscript><img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" /></noscript>
           <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" />
