@@ -38,6 +38,4 @@ fields:
     min: 
     max: 
 pages:
-- src/pages/dried-flowers.md
-- src/pages/fresh-flowers.md
 - src/pages/wedding-flowers.md
