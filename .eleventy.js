@@ -100,6 +100,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("./src/js");
   eleventyConfig.addPassthroughCopy("./src/php");
   eleventyConfig.addPassthroughCopy("./admin");
+  eleventyConfig.addPassthroughCopy({"./src/_data/shop_categories.json" : "/php/shop_categories.json"});
+  eleventyConfig.addPassthroughCopy({"./src/_data/shop_products.json" : "/php/shop_products.json"});
 
   eleventyConfig.addShortcode("markdown",
     content => `${markdown.render(content)}`
