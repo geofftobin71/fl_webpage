@@ -8,27 +8,32 @@
       {
         "name": "$50",
         "price": 5000,
-        "disabled": false
+        "disabled": false,
+        "id": "3f32f5b3"
       },
       {
         "name": "$75",
         "price": 7500,
-        "disabled": false
+        "disabled": false,
+        "id": "7ccc48a2"
       },
       {
         "name": "$100",
         "price": 10000,
-        "disabled": false
+        "disabled": false,
+        "id": "52660263"
       },
       {
         "name": "$150",
         "price": 15000,
-        "disabled": false
+        "disabled": false,
+        "id": "c66b9160"
       },
       {
         "name": "$200",
         "price": 20000,
-        "disabled": false
+        "disabled": false,
+        "id": "8195d5f6"
       }
     ],
     "images": [
@@ -41,7 +46,8 @@
       "/v1613592812/shop/vibrant-colours-bouquet-3.jpg",
       "/v1613592813/shop/vibrant-colours-bouquet-4.jpg"
     ],
-    "price": null
+    "price": null,
+    "id": "19d9e651"
   },
   {
     "name": "Vintage Dried Bouquet",
@@ -52,27 +58,32 @@
       {
         "name": "$50",
         "price": 5000,
-        "disabled": false
+        "disabled": false,
+        "id": "e62143fa"
       },
       {
         "name": "$75",
         "price": 7500,
-        "disabled": false
+        "disabled": false,
+        "id": "76f1d73b"
       },
       {
         "name": "$100",
         "price": 10000,
-        "disabled": false
+        "disabled": false,
+        "id": "8147d18d"
       },
       {
         "name": "$150",
         "price": 15000,
-        "disabled": false
+        "disabled": false,
+        "id": "e398d403"
       },
       {
         "name": "$200",
         "price": 20000,
-        "disabled": false
+        "disabled": false,
+        "id": "f03806bc"
       }
     ],
     "images": [
@@ -85,7 +96,8 @@
       "/v1613593489/shop/vintage-dried-bouquet-6.jpg",
       "/v1613593490/shop/vintage-dried-bouquet-8.jpg"
     ],
-    "price": null
+    "price": null,
+    "id": "081fb724"
   },
   {
     "name": "Subtle Pastels Bouquet",
@@ -96,33 +108,37 @@
       {
         "name": "$50",
         "price": 5000,
-        "disabled": false
+        "disabled": false,
+        "id": "90dffffa"
       },
       {
         "name": "$75",
         "price": 7500,
-        "disabled": false
+        "disabled": false,
+        "id": "4a3e62b5"
       },
       {
         "name": "$100",
         "price": 10000,
-        "disabled": false
+        "disabled": false,
+        "id": "e3d4f22c"
       },
       {
         "name": "$150",
         "price": 15000,
-        "disabled": false
+        "disabled": false,
+        "id": "e0c69319"
       },
       {
         "name": "$200",
         "price": 20000,
-        "disabled": false
+        "disabled": false,
+        "id": "49d1bea7"
       }
     ],
-    "images": [
-
-    ],
-    "price": null
+    "images": [],
+    "price": null,
+    "id": "d4fc96e1"
   },
   {
     "name": "Wild Rustic Bouquet",
@@ -133,33 +149,37 @@
       {
         "name": "$50",
         "price": 5000,
-        "disabled": false
+        "disabled": false,
+        "id": "4a282702"
       },
       {
         "name": "$75",
         "price": 7500,
-        "disabled": false
+        "disabled": false,
+        "id": "0399d01e"
       },
       {
         "name": "$100",
         "price": 10000,
-        "disabled": false
+        "disabled": false,
+        "id": "0b0712ce"
       },
       {
         "name": "$150",
         "price": 15000,
-        "disabled": false
+        "disabled": false,
+        "id": "de2939c1"
       },
       {
         "name": "$200",
         "price": 20000,
-        "disabled": false
+        "disabled": false,
+        "id": "ab85846d"
       }
     ],
-    "images": [
-
-    ],
-    "price": null
+    "images": [],
+    "price": null,
+    "id": "73f635d1"
   },
   {
     "name": "Avant-garde Bouquet",
@@ -170,98 +190,97 @@
       {
         "name": "$50",
         "price": 5000,
-        "disabled": false
+        "disabled": false,
+        "id": "eab5d4a5"
       },
       {
         "name": "$75",
         "price": 7500,
-        "disabled": false
+        "disabled": false,
+        "id": "1750182c"
       },
       {
         "name": "$100",
         "price": 10000,
-        "disabled": false
+        "disabled": false,
+        "id": "61e0b964"
       },
       {
         "name": "$150",
         "price": 15000,
-        "disabled": false
+        "disabled": false,
+        "id": "3607dabf"
       },
       {
         "name": "$200",
         "price": 20000,
-        "disabled": false
+        "disabled": false,
+        "id": "52a1abfe"
       }
     ],
-    "images": [
-
-    ],
-    "price": null
+    "images": [],
+    "price": null,
+    "id": "fc6fef63"
   },
   {
     "name": "Raspberry Milk Chocolate",
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194571/chocolate/chocolate-1.jpg"
     ],
-    "price": 800
+    "price": 800,
+    "id": "d7f070bd"
   },
   {
     "name": "Coconut Milk Chocolate",
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194575/chocolate/chocolate-2.jpg"
     ],
-    "price": 800
+    "price": 800,
+    "id": "f7115aec"
   },
   {
     "name": "Original Milk Chocolate",
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194579/chocolate/chocolate-3.jpg"
     ],
-    "price": 800
+    "price": 800,
+    "id": "58adcfe1"
   },
   {
     "name": "Salted Caramel Dark Chocolate",
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194575/chocolate/chocolate-4.jpg"
     ],
-    "price": 800
+    "price": 800,
+    "id": "c084a9dc"
   },
   {
     "name": "Peru Dark Chocolate",
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194572/chocolate/chocolate-5.jpg"
     ],
-    "price": 800
+    "price": 800,
+    "id": "5b399a28"
   },
   {
     "name": "Christmas Wreath Workshop",
@@ -275,14 +294,17 @@
       {
         "name": "Sat 22 Dec 2021",
         "price": 18000,
-        "disabled": false
+        "disabled": false,
+        "id": "2662158d"
       },
       {
         "name": "Sun 23 Dec 2021",
         "price": 18000,
-        "disabled": false
+        "disabled": false,
+        "id": "1e16c9bc"
       }
     ],
-    "disabled": false
+    "disabled": false,
+    "id": "af2dcf05"
   }
 ]

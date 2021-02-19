@@ -24,21 +24,21 @@
   },
   "homepage": "https://github.com/geofftobin71/fl_webpage#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.0",
+    "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-navigation": "^0.1.6",
     "@quasibit/eleventy-plugin-schema": "^1.0.0",
-    "@quasibit/eleventy-plugin-sitemap": "^2.0.3",
+    "@quasibit/eleventy-plugin-sitemap": "^2.0.4",
     "clean-css": "^4.2.3",
-    "cloudinary": "^1.23.0",
+    "cloudinary": "^1.24.0",
     "dotenv": "^8.2.0",
     "eleventy-plugin-svg-contents": "^0.7.0",
     "fetch-base64": "^2.1.2",
     "html-minifier": "^4.0.0",
     "jsonminify": "^0.4.1",
-    "luxon": "^1.24.1",
+    "luxon": "^1.26.0",
     "node-fetch": "^2.6.1",
-    "stripe": "^8.117.0",
-    "terser": "^5.3.8"
+    "stripe": "^8.137.0",
+    "terser": "^5.6.0"
   },
   "dependencies": {}
 }

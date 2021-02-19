@@ -7,6 +7,10 @@ fields:
   label: Shop products
   fields:
   - type: text
+    name: id
+    label: Id
+    hidden: true
+  - type: text
     name: name
     label: Name
     config:
@@ -45,6 +49,10 @@ fields:
     name: variants
     label: Variants
     fields:
+    - type: text
+      name: id
+      label: Id
+      hidden: true
     - type: text
       name: name
       label: Name

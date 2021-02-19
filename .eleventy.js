@@ -15,6 +15,7 @@ const fetch64 = require('fetch-base64');
 const site = require('./src/_data/site.json');
 const image_sizes = require('./src/_data/image_sizes.json');
 const cloudinary = require('cloudinary').v2;
+const crypto = require('crypto');
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -55,6 +56,23 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 }
 
 module.exports = (eleventyConfig) => {
+
+  eleventyConfig.on('beforeBuild', () => {
+    let products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
+    products.forEach(product => {
+      if(!product.id) {
+        const buf = crypto.randomBytes(4);
+        product.id = buf.toString('hex');
+      }
+      product.variants.forEach(variant => {
+        if(!variant.id) {
+          const buf = crypto.randomBytes(4);
+          variant.id = buf.toString('hex');
+        }
+      });
+    });
+    fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(products, null, 2));
+  });
 
   eleventyConfig.setDataDeepMerge(true);
 
