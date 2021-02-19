@@ -72,9 +72,12 @@ fields:
       description: Disabled Variants won’t appear on the Product page.
     config:
       min: 
+      labelField: name
   - type: boolean
     name: disabled
     label: Disabled
     description: Disabled Products won’t appear on the Shop page.
+  config:
+    labelField: name
 pages:
 - src/_data/shop_products.json
