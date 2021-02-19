@@ -50,7 +50,7 @@ eleventyComputed:
   <div class="wrapper page-wrapper">
     <ul class="auto-grid gallery">
 
-      {% set images = gallery_folder | imgGallery %}
+      {% set images = gallery_folder | imgGallery | shuffle %}
 
       {% for image in images -%}
         {% if image.aspect_ratio > 1.3 %}

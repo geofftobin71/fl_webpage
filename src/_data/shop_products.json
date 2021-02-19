@@ -1,24 +1,5 @@
 [
   {
-    "id": "",
-    "name": "Test",
-    "description": "Test description ",
-    "price": 500,
-    "category": "Fresh Flowers",
-    "images": [
-
-    ],
-    "variants": [
-      {
-        "id": "",
-        "name": "First",
-        "price": 500,
-        "disabled": false
-      }
-    ],
-    "disabled": false
-  },
-  {
     "name": "Vibrant Colours Bouquet",
     "description": "Vibrant Colours Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Fresh Flowers",
@@ -155,9 +136,7 @@
         "id": "49d1bea7"
       }
     ],
-    "images": [
-
-    ],
+    "images": [],
     "price": null,
     "id": "d4fc96e1"
   },
@@ -198,9 +177,7 @@
         "id": "ab85846d"
       }
     ],
-    "images": [
-
-    ],
+    "images": [],
     "price": null,
     "id": "73f635d1"
   },
@@ -241,9 +218,7 @@
         "id": "52a1abfe"
       }
     ],
-    "images": [
-
-    ],
+    "images": [],
     "price": null,
     "id": "fc6fef63"
   },
@@ -252,9 +227,7 @@
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194571/chocolate/chocolate-1.jpg"
     ],
@@ -266,9 +239,7 @@
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194575/chocolate/chocolate-2.jpg"
     ],
@@ -280,9 +251,7 @@
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194579/chocolate/chocolate-3.jpg"
     ],
@@ -294,9 +263,7 @@
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194575/chocolate/chocolate-4.jpg"
     ],
@@ -308,9 +275,7 @@
     "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [
-
-    ],
+    "variants": [],
     "images": [
       "/v1613194572/chocolate/chocolate-5.jpg"
     ],
