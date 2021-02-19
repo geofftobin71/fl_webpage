@@ -11,7 +11,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 <main>
 <div class="wrapper page-wrapper">
   {% set swap = cycler("", "swap") %}
-  {% for category in shop_categories %}
+  {% for category in valid_shop_categories %}
     <section class="two-column-section">
       <div class="two-columns {{ swap.next() }}" style="--section-padding:0;--align:center">
         <div>

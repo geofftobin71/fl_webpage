@@ -1,7 +1,7 @@
 ---
 layout: layouts/shop-category.njk
 pagination:
-  data: shop_categories
+  data: valid_shop_categories
   size: 1
   alias: category
   addAllPagesToCollections: true
@@ -26,7 +26,7 @@ eleventyComputed:
 </section>
 
 {% set swap = cycler("", "swap") %}
-{% for product in shop_products | filterByCategory(category.name) %}
+{% for product in valid_shop_products | filterByCategory(category.name) %}
   <section class="two-column-section">
     <div class="wrapper page-wrapper">
       <div class="two-columns {{ swap.next() }}" style="--section-padding:0;--align:center">
