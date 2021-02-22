@@ -1,5 +1,9 @@
 {% extends "layouts/page.njk" %}
 
+{% block pre %}
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-admin-pre.php'; ?>
+{% endblock %}
+
 {% block head %}
   {{ super() }}
   {% set css %}
@@ -8,7 +12,7 @@
   {% endset %}
 
   <style>
-    {{ css | cssmin | safe }}
+{{ css | cssmin | safe }}
   </style>
 {% endblock %}
 

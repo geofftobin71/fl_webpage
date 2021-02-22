@@ -293,6 +293,14 @@ module.exports = (eleventyConfig) => {
     return (path) ? path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'') : '';
   });
 
+  eleventyConfig.addFilter("formatMoney", (cents) => {
+    if(Math.floor(cents / 100.0) == (cents / 100.0)) {
+      return '$' + (cents / 100.0);
+    } else {
+      return '$' + (cents / 100.0).toFixed(2);
+    }
+  });
+
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: (err, bs) => {

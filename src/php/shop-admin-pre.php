@@ -33,10 +33,7 @@ function uniqueId($length = 8) {
 }
 
 use SleekDB\Store;
-$categoryStore = new Store('categories', $sleekDir);
-$productStore = new Store('products', $sleekDir);
-$variantStore = new Store('variants', $sleekDir);
-$itemStore = new Store('items', $sleekDir);
+$stockStore = new Store('stocks', $sleekDir);
 
 date_default_timezone_set('Pacific/Auckland');
 
