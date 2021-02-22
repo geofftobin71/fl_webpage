@@ -1,15 +1,19 @@
-var cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary').v2;
+const cache = require('../../_cache/dried_flowers_gallery.json');
 
 module.exports = function() {
+  if(process.env.NODE_ENV == 'develop') { console.log('Using Dried Flowers gallery cache'); return cache; }
 
-  const gallery_name = "dried-flowers";
+  console.log('Updating Dried Flowers gallery');
 
   return cloudinary.search
-    .expression('folder:' + gallery_name)
+    .expression('folder=dried-flowers')
     .sort_by('public_id','desc')
     .with_field('context')
     .max_results(500)
     .execute()
-    .then( result => { return result.resources; });
-    // .then(result=>console.log(JSON.stringify(result, null, 4)));
+    .then( result => {
+      // console.log(JSON.stringify(result.resources, null, 2));
+      return result.resources;
+    });
 };

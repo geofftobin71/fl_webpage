@@ -160,14 +160,28 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgGallery", async (folder, callback) => {
-    let gallery = await cloudinary.search
-      .expression('folder=' + folder)
-      .sort_by('public_id','desc')
-      .with_field('context')
-      .max_results(500)
-      .execute();
+    let gallery = {}
 
-    // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
+    if(process.env.NODE_ENV == 'develop') {
+      console.log('Using ' + folder + ' gallery cache');
+
+      gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '.json'));
+    } else {
+      gallery = await cloudinary.search
+        .expression('folder=' + folder)
+        .sort_by('public_id','desc')
+        .with_field('context')
+        .max_results(500)
+        .execute();
+
+      if(process.env.NODE_ENV == 'build') {
+        // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
+        console.log('Updating ' + folder + ' gallery');
+
+        fs.writeFileSync('_cache/' + folder + '.json', JSON.stringify(gallery, null, 2));
+      }
+    }
+
     callback(null, gallery.resources);
   });
 
