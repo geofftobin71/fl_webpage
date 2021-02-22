@@ -17,6 +17,10 @@
   {% include "partials/header.njk" %}
   <main>
   {% include "partials/page-sections.njk" %}
+
+  {% set gallery_name = title %}
+  {% include "partials/gallery-section.njk" %}
+  {#
   <section>
     <div class="wrapper page-wrapper">
       <ul class="auto-grid gallery">
@@ -28,7 +32,7 @@
         {% elif gallery_folder == "wedding-flowers" %}
           {% set images = wedding_flowers_gallery | shuffle %}
         {% else %}
-          {# {% set images = gallery | shuffle %} #}
+          {% set images = gallery | shuffle %}
         {% endif %}
 
         {% for image in images -%}
@@ -56,8 +60,6 @@
       </ul>
     </div>
   </section>
-
-  {# ----- Gallery Lightbox ----- #}
 
   <div id="lightbox" class="slider-controls">
     <ul class="slider">
@@ -94,6 +96,8 @@
       <span role="button" style="width:var(--step-1)" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
     </nav>
   </div>
+  #}
+
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}

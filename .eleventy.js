@@ -163,9 +163,9 @@ module.exports = (eleventyConfig) => {
     let gallery = {}
 
     if(process.env.NODE_ENV == 'develop') {
-      console.log('Using ' + folder + ' gallery cache');
+      console.log('Using ' + folder + '-gallery cache');
 
-      gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '.json'));
+      gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '-gallery.json'));
     } else {
       gallery = await cloudinary.search
         .expression('folder=' + folder)
@@ -176,9 +176,9 @@ module.exports = (eleventyConfig) => {
 
       if(process.env.NODE_ENV == 'build') {
         // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
-        console.log('Updating ' + folder + ' gallery');
+        console.log('Updating ' + folder + '-gallery');
 
-        fs.writeFileSync('_cache/' + folder + '.json', JSON.stringify(gallery, null, 2));
+        fs.writeFileSync('_cache/' + folder + '-gallery.json', JSON.stringify(gallery, null, 2));
       }
     }
 
@@ -282,7 +282,10 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("removeEmpty", (array) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {
-      if(array[i].key.length) { filtered[filtered.length] = array[i]; }
+      array[i].url = array[i].url.replace("index.php","");
+      if(array[i].key.length) { 
+        filtered[filtered.length] = array[i]; 
+      }
     }
     return filtered;
   });

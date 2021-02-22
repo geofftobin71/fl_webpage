@@ -11,8 +11,8 @@
       <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" style="margin:0 auto" loading="eager" decoding="async" />
     </figure>
     <nav>
-      {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
-      {{ collections.all | eleventyNavigation("Flowers") | eleventyNavigationToHtml | safe }}
+      {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
+      {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
     </nav>
   </div>
   <div class="backdrop"></div>

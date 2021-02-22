@@ -1,6 +1,6 @@
 const cloudinary = require('cloudinary').v2;
 const fetch = require('node-fetch');
-const cache = require('../../_cache/instagram_gallery.json');
+const fs = require('fs');
 
 async function getImage(item) {
   return Promise.resolve(cloudinary.uploader.upload(item.thumbnail_url ? item.thumbnail_url : item.media_url,
@@ -21,13 +21,16 @@ async function getImages(json_data) {
 };
 
 module.exports = function() {
-  if(process.env.NODE_ENV == 'develop') { console.log('Using Instagram gallery cache'); return cache; }
 
-  console.log('Updating Instagram gallery');
+  if(process.env.NODE_ENV == 'develop') {
+    console.log('Using instagram-gallery cache');
+    const cache = require('../../_cache/instagram-gallery.json');
+    return cache;
+  }
 
   fetch('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=' + process.env.INSTAGRAM_TOKEN);
-    // .then(res => res.json())
-    // .then(json => console.log(json));
+  // .then(res => res.json())
+  // .then(json => console.log(json));
 
   return fetch('https://graph.instagram.com/me/media?fields=id,media_url,thumbnail_url,caption,timestamp&access_token=' + process.env.INSTAGRAM_TOKEN)
     .then(res => res.json())
@@ -37,10 +40,16 @@ module.exports = function() {
           return cloudinary.search
             .expression('folder=instagram')
             .with_field('context')
-            .max_results(50)
+            .max_results(500)
             .execute()
             .then(result => {
               // console.log(JSON.stringify(result.resources, null, 2));
+              if(process.env.NODE_ENV == 'build') {
+                console.log('Updating instagram-gallery');
+
+                fs.writeFileSync('_cache/instagram-gallery.json', JSON.stringify(result.resources, null, 2));
+              }
+
               return result.resources;
             });
         });
