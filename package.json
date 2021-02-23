@@ -10,6 +10,7 @@
     "deploy": "NODE_ENV=deploy eleventy",
     "serve": "NODE_ENV=develop eleventy --serve",
     "debug": "DEBUG=Eleventy* NODE_ENV=develop eleventy",
+    "debugb": "DEBUG=Eleventy* NODE_ENV=build eleventy",
     "start": "eleventy --serve"
   },
   "repository": {

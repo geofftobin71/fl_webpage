@@ -1,5 +1,38 @@
 [
   {
+    "asset_id": "eb0425afb3cd2fa521b68b3b1f0c8793",
+    "public_id": "instagram/floriade_wellington_17857953983500606",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17857953983500606",
+    "format": "jpg",
+    "version": 1614030965,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-02-22T21:56:05+00:00",
+    "uploaded_at": "2021-02-22T21:56:05+00:00",
+    "bytes": 313818,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "Loving these colours.",
+      "timestamp": "2021-02-22T21:55:14+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1614030965/instagram/floriade_wellington_17857953983500606.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1614030965/instagram/floriade_wellington_17857953983500606.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "04816da411c6b6b3c10ba671cf2f8cf4",
     "public_id": "instagram/floriade_wellington_17842715354541347",
     "folder": "instagram",

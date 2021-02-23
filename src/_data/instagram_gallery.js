@@ -44,10 +44,16 @@ module.exports = function() {
             .execute()
             .then(result => {
               // console.log(JSON.stringify(result.resources, null, 2));
-              if(process.env.NODE_ENV == 'build') {
-                console.log('Updating instagram-gallery');
+              if(result && result.resources && result.resources.length) {
+                if(process.env.NODE_ENV == 'build') {
+                  console.log('Updating instagram-gallery');
 
-                fs.writeFileSync('_cache/instagram-gallery.json', JSON.stringify(result.resources, null, 2));
+                  fs.writeFileSync('_cache/instagram-gallery.json', JSON.stringify(result.resources, null, 2));
+                }
+              } else {
+                console.log('Using instagram-gallery cache (fallback)');
+                const cache = require('../../_cache/instagram-gallery.json');
+                return cache;
               }
 
               return result.resources;

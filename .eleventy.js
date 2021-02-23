@@ -17,6 +17,9 @@ const image_sizes = require('./src/_data/image_sizes.json');
 const cloudinary = require('cloudinary').v2;
 const crypto = require('crypto');
 
+let image_info_exists = false;
+let image_info_written = false;
+
 Settings.defaultZoneName = "Pacific/Auckland";
 
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
@@ -58,6 +61,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 module.exports = (eleventyConfig) => {
 
   eleventyConfig.on('beforeBuild', () => {
+    // Add unique IDs to products
     let products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
     products.forEach(product => {
       if(!product.id) {
@@ -150,13 +154,46 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
-    let info = await cloudinary.search
-      .expression('public_id=' + id)
-      .with_field('context')
-      .execute();
+    if(process.env.NODE_ENV != 'develop') {
+      if(!image_info_exists) {
+        image_info_exists = true;
 
-    // console.log(info.rate_limit_remaining + ' / ' + info.rate_limit_allowed);
-    callback(null, info.resources[0]);
+        let resources = [];
+
+        let result = await cloudinary.search
+          .with_field('context')
+          .max_results(500)
+          .execute();
+
+        resources = resources.concat(result.resources);
+
+        while(result.next_cursor) {
+          result = await cloudinary.search
+            .next_cursor(result.next_cursor)
+            .with_field('context')
+            .max_results(500)
+            .execute();
+
+          resources = resources.concat(result.resources);
+        }
+
+        console.log('Updating image-info');
+        fs.writeFileSync('_cache/image-info.json', JSON.stringify(resources, null, 2));
+        image_info_written = true;
+      }
+
+      while(!image_info_written) {}
+    } else {
+        console.log('Using image-info cache');
+    }
+
+    let resources = JSON.parse(fs.readFileSync('_cache/image-info.json'));
+
+    resources.forEach(resource => {
+      if(resource.public_id === id) {
+        callback(null, resource);
+      }
+    });
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgGallery", async (folder, callback) => {
@@ -174,11 +211,16 @@ module.exports = (eleventyConfig) => {
         .max_results(500)
         .execute();
 
-      if(process.env.NODE_ENV == 'build') {
-        // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
-        console.log('Updating ' + folder + '-gallery');
+      if(gallery && gallery.resources && gallery.resources.length) {
+        if(process.env.NODE_ENV == 'build') {
+          // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
+          console.log('Updating ' + folder + '-gallery');
 
-        fs.writeFileSync('_cache/' + folder + '-gallery.json', JSON.stringify(gallery, null, 2));
+          fs.writeFileSync('_cache/' + folder + '-gallery.json', JSON.stringify(gallery, null, 2));
+        }
+      } else {
+        console.log('Using ' + folder + '-gallery cache (fallback)');
+        gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '-gallery.json'));
       }
     }
 
