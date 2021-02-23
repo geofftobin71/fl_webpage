@@ -15,8 +15,8 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
       <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
       <ul class="slider">
         {% for product in valid_shop_products | filterByCategory(category.name) %}
-          <li id="item{{ loop.index }}" class="slider-item">
-            <div class="stack center" style="width: calc((100% / 3) - 20px);flex: 0 0 auto;margin: 10px">
+          <li id="item{{ loop.index }}" class="slider-item" style="width:calc(100% / 3);flex:1 0 calc(100% / 3)">
+            <div class="stack center" style="padding: 10px">
               <figure class="frame frame1x1 round shadow" style="width:100%">
                 {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
                 {% set image_info = image_id | imgInfo %}
@@ -39,7 +39,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
       </ul>
       <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'more ' + category.name | lower }}</a></p>
     </section>
-    <hr>
+    {{ '<hr>' | safe if not loop.last }}
   {% endfor %}
 </div>
 </main>

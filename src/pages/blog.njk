@@ -31,6 +31,7 @@ eleventyNavigation:
             <p class="text-center"><a class="button" href="{{ post.url | url }}">read more</a></p>
           </div>
         </li>
+        {{ '<hr>' | safe if not loop.last }}
       {% endfor -%}
     </ul>
   </div>
