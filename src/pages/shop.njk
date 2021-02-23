@@ -14,10 +14,10 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
     <section class="flow" style="--flow-space:2em">
       <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
       <div style="">
-        <ul class="" style="display:flex;flex-wrap:nowrap;overflow-x:scroll;background:gray;width:fit-content;max-width:100%;margin:0 auto">
+        <ul class="bg-shade1 round shadow" style="display:flex;flex-wrap:nowrap;overflow-x:scroll;width:fit-content;max-width:100%;margin:0 auto">
           {% for product in valid_shop_products | filterByCategory(category.name) %}
             <li id="item{{ loop.index }}" class="" style="width:350px;flex:1 0 350px">
-              <div class="stack center text-center" style="padding: var(--step--1)">
+              <div class="stack center text-center" style="padding:var(--step-0)">
                 <figure class="frame frame1x1 round shadow" style="width:100%">
                   {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
                   {% set image_info = image_id | imgInfo %}
