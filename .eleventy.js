@@ -184,7 +184,10 @@ module.exports = (eleventyConfig) => {
 
       while(!image_info_written) {}
     } else {
+      if(!image_info_exists) {
+        image_info_exists = true;
         console.log('Using image-info cache');
+      }
     }
 
     let resources = JSON.parse(fs.readFileSync('_cache/image-info.json'));
