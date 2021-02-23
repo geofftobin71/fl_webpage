@@ -13,30 +13,40 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
   {% for category in valid_shop_categories %}
     <section class="flow" style="--flow-space:2em">
       <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
-      <ul class="slider">
-        {% for product in valid_shop_products | filterByCategory(category.name) %}
-          <li id="item{{ loop.index }}" class="slider-item" style="width:calc(100% / 3);flex:1 0 calc(100% / 3)">
-            <div class="stack center" style="padding: 10px">
-              <figure class="frame frame1x1 round shadow" style="width:100%">
-                {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
-                {% set image_info = image_id | imgInfo %}
-                {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
-                {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
-                {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-                <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
-                <div><img data-srcset="
-                {%- for size in image_sizes -%}
-                {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
-                {%- endfor -%}
-                {%- set sizes = '100vw' -%}
-                " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
-              </figure>
-              <h3 class="text-lowercase">{{ product.name }}</h3>
-              <p>{{ 'from ' + product.variants[0].price | formatMoney if product.variants | length else product.price | formatMoney }}</p>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
+      <div style="">
+        <ul class="" style="display:flex;flex-wrap:nowrap;overflow-x:scroll;background:gray;width:fit-content;max-width:100%;margin:0 auto">
+          {% for product in valid_shop_products | filterByCategory(category.name) %}
+            <li id="item{{ loop.index }}" class="" style="width:350px;flex:1 0 350px">
+              <div class="stack center text-center" style="padding: var(--step--1)">
+                <figure class="frame frame1x1 round shadow" style="width:100%">
+                  {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
+                  {% set image_info = image_id | imgInfo %}
+                  {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+                  {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+                  {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+                  <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
+                  <div><img data-srcset="
+                  {%- for size in image_sizes -%}
+                  {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+                  {%- endfor -%}
+                  {%- set sizes = '100vw' -%}
+                  " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
+                </figure>
+                <h3 class="text-lowercase">{{ product.name }}</h3>
+                {% if product.variants | length %}
+                  {% if ( product.variants | first ).price != ( product.variants | last ).price %}
+                    <p>{{ 'from ' + product.variants[0].price | formatMoney }}</p>
+                  {% else %}
+                    <p>{{ product.price | formatMoney }}</p>
+                  {% endif %}
+                {% else %}
+                  <p>{{ product.price | formatMoney }}</p>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
       <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'more ' + category.name | lower }}</a></p>
     </section>
     {{ '<hr>' | safe if not loop.last }}
