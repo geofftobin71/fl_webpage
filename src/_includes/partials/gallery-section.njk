@@ -27,7 +27,7 @@
             <noscript>
               <a href="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" style="height:100%"><img src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" style="background-image:url({{ lqip_path | lqip }});cursor:pointer" loading="lazy" decoding="async" /></a>
             </noscript>
-            <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_path | lqip }});cursor:pointer" loading="lazy" decoding="async" />
+            <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index }}');return false;" style="background-image:url({{ lqip_path | lqip }});cursor:pointer" loading="lazy" decoding="async" />
           </li>
           {%- endfor %}
       </ul>
@@ -57,16 +57,16 @@
         </li>
         {%- endfor %}
     </ul>
-    <nav class="toggle-captions" onclick="toggleCaptions()">
+    <nav class="toggle-captions" onclick="toggleCaptions();return false;">
       <span role="button" style="width:var(--step-1)" title="Toggle Captions" aria-label="Toggle Captions">{{ '/src/svg/comment-o.svg' | svgContents | safe }}</span>
     </nav>
-    <nav class="close" onclick="closeLightbox()">
+    <nav class="close" onclick="closeLightbox();return false;">
       <span role="button" style="width:var(--step-1)" title="Close" aria-label="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
     </nav>
-    <nav class="prev" onclick="scrollToPrevItem('#lightbox')">
+    <nav class="prev" onclick="scrollToPrevItem('#lightbox');return false;">
       <span role="button" style="width:var(--step-1)" title="Previous" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
     </nav>
-    <nav class="next" onclick="scrollToNextItem('#lightbox')">
+    <nav class="next" onclick="scrollToNextItem('#lightbox');return false;">
       <span role="button" style="width:var(--step-1)" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
     </nav>
   </div>

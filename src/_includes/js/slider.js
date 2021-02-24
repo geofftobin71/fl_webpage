@@ -9,14 +9,18 @@ function openLightbox(id) {
 
   let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
   document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
-  console.log(n);
-  console.log(itemWidth);
+  // console.log(n);
+  // console.log(itemWidth);
+
+  return false;
 }
 
 function closeLightbox() {
   document.documentElement.setAttribute('data-modal-active', false);
   document.querySelector('#lightbox').style.visibility = 'hidden';
   // document.querySelector('menu').style.display = 'block';
+
+  return false;
 }
 
 function scrollToNextItem(id) {
@@ -27,7 +31,9 @@ function scrollToNextItem(id) {
   } else {
     scroller.scrollTo({left: 0, top: 0, behavior:'auto'});
   }
-  console.log(scroller.scrollWidth);
+  // console.log(scroller.scrollWidth);
+
+  return false;
 }
 
 function scrollToPrevItem(id) {
@@ -38,7 +44,9 @@ function scrollToPrevItem(id) {
   } else {
     scroller.scrollTo({left: scroller.scrollWidth, top: 0, behavior:'auto'});
   }
-  console.log(scroller.scrollWidth);
+  // console.log(scroller.scrollWidth);
+
+  return false;
 }
 
 function toggleCaptions() {
@@ -46,5 +54,7 @@ function toggleCaptions() {
   captions.forEach(caption => {
     caption.classList.toggle('hidden');
   });
+
+  return false;
 }
 
