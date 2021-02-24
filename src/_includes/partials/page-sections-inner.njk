@@ -23,9 +23,10 @@
         {% set image_id = section.image | stripVersion %}
         {% set image_info = image_id | imgInfo %}
         {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+        {% set lqip_data = lqip_path | imgLqip %}
         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-        <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
+        <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
         <div><img data-srcset="
         {%- for size in image_sizes -%}
         {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -56,7 +57,7 @@
             {%- set sizes = '(min-width: 1200px) 1200px, 100vw' -%}
           {%- endif -%}
         {%- endif -%}
-        " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
+        " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></div>
       </figure>
     </div>
   </section>

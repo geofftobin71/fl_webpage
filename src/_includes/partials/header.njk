@@ -3,7 +3,8 @@
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     {% set image_info = image_id | imgInfo %}
     {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
-    <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_path | lqip }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
+    {% set lqip_data = lqip_path | imgLqip %}
+    <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
   </figure>
   <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
     {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}

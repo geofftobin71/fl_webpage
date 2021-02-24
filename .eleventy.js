@@ -144,7 +144,7 @@ module.exports = (eleventyConfig) => {
     }
   });
 
-  eleventyConfig.addNunjucksAsyncFilter("lqip", async (path, callback) => {
+  eleventyConfig.addNunjucksAsyncFilter("imgLqip", async (path, callback) => {
     let base64 = await fetch64.remote(path).catch((err) => {
       console.error("LQIP error: ", err);
       callback(null, path);

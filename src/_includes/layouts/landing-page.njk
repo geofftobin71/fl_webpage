@@ -10,11 +10,12 @@
       {% set image_info = image_id | imgInfo %}
       {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
       {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto,e_blur:100/" + image_id %}
+      {% set lqip_data = lqip_path | imgLqip %}
       <img srcset="
       {%- for size in image_sizes -%}
         {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
       {%- endfor -%}
-      " sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_path | lqip }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
+      " sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
     </figure>
     <nav class="site-menu text-lowercase text-shadow font-secondary link-lighter">
       {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}

@@ -9,8 +9,6 @@ function openLightbox(id) {
 
   let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
   document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
-  // console.log(n);
-  // console.log(itemWidth);
 
   return false;
 }
@@ -18,7 +16,6 @@ function openLightbox(id) {
 function closeLightbox() {
   document.documentElement.setAttribute('data-modal-active', false);
   document.querySelector('#lightbox').style.visibility = 'hidden';
-  // document.querySelector('menu').style.display = 'block';
 
   return false;
 }
@@ -28,10 +25,9 @@ function scrollToNextItem(id) {
   let itemWidth = document.querySelector(id + ' .slider-item').clientWidth;
   if(scroller.scrollLeft < (scroller.scrollWidth - itemWidth)) {
     scroller.scrollBy({left: itemWidth, top: 0, behavior:'smooth'});
-  } else {
+  } /* else {
     scroller.scrollTo({left: 0, top: 0, behavior:'auto'});
-  }
-  // console.log(scroller.scrollWidth);
+  } */
 
   return false;
 }
@@ -39,12 +35,11 @@ function scrollToNextItem(id) {
 function scrollToPrevItem(id) {
   let scroller = document.querySelector(id + ' .slider');
   let itemWidth = document.querySelector(id + ' .slider-item').clientWidth;
-  if(scroller.scrollLeft != 0) {
+  if(scroller.scrollLeft > 0) {
     scroller.scrollBy({left: -itemWidth, top: 0, behavior:'smooth'});
-  } else {
+  } /* else {
     scroller.scrollTo({left: scroller.scrollWidth, top: 0, behavior:'auto'});
-  }
-  // console.log(scroller.scrollWidth);
+  } */
 
   return false;
 }
