@@ -33,6 +33,12 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
   right: 0;
   bottom: 0;
 }
+.slider-item figure {
+  transition: transform 250ms ease;
+}
+.slider-item:hover figure {
+  transform: scale(1.025);
+}
 .slider-item {
   width: 230px;
   flex: 0 0 230px;
@@ -97,41 +103,43 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
     <section>
       <div class="flow" style="--flow-space:2em">
         <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
-            {% set product_list = valid_shop_products | filterByCategory(category.name) %}
-            {% set product_count = product_list | length %}
-            <div id="{{ category.name | slug }}" class="slider-controls {{ 'gt1' if product_count > 1 }} {{ 'gt2' if product_count > 2 }} {{ 'gt3' if product_count > 3 }}">
+        {% set product_list = valid_shop_products | filterByCategory(category.name) %}
+        {% set product_count = product_list | length %}
+        <div id="{{ category.name | slug }}" class="slider-controls {{ 'gt1' if product_count > 1 }} {{ 'gt2' if product_count > 2 }} {{ 'gt3' if product_count > 3 }}">
           <ul class="slider bg-shade1 round shadow" style="margin:0 auto">
             {% for product in product_list %}
               <li id="item{{ loop.index }}" class="slider-item">
-                <div class="stack center text-center" style="padding:var(--step--1)">
-                  <figure class="frame frame1x1 round shadow" style="width:100%">
-                    {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
-                    {% set image_info = image_id | imgInfo %}
-                    {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
-                    {% set lqip_data = lqip_path | imgLqip %}
-                    {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
-                    {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-                    <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
-                    <div><img data-srcset="
-                    {%- for size in image_sizes -%}
-                    {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
-                    {%- endfor -%}
-                    {%- set sizes = '100vw' -%}
-                    " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></div>
-                  </figure>
-                  <h3 class="text-lowercase">{{ product.name }}</h3>
-                  <div class="bigfonts font-secondary">
-                    {% if product.variants | length %}
-                      {% if ( product.variants | first ).price != ( product.variants | last ).price %}
-                        <p>{{ 'from ' + product.variants[0].price | formatMoney }}</p>
+                <a href="{{ ( '/shop/products/' + product.name | slug ) | url }}">
+                  <div class="stack center text-center" style="padding:var(--step--1)">
+                    <figure class="frame frame1x1 round shadow" style="width:100%">
+                      {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
+                      {% set image_info = image_id | imgInfo %}
+                      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+                      {% set lqip_data = lqip_path | imgLqip %}
+                      {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+                      {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+                      <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
+                      <div><img data-srcset="
+                      {%- for size in image_sizes -%}
+                      {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+                      {%- endfor -%}
+                      {%- set sizes = '100vw' -%}
+                      " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></div>
+                    </figure>
+                    <h3 class="text-lowercase">{{ product.name }}</h3>
+                    <div class="bigfonts font-secondary">
+                      {% if product.variants | length %}
+                        {% if ( product.variants | first ).price != ( product.variants | last ).price %}
+                          <p>{{ 'from ' + product.variants[0].price | formatMoney }}</p>
+                        {% else %}
+                          <p>{{ product.price | formatMoney }}</p>
+                        {% endif %}
                       {% else %}
                         <p>{{ product.price | formatMoney }}</p>
                       {% endif %}
-                    {% else %}
-                      <p>{{ product.price | formatMoney }}</p>
-                    {% endif %}
+                    </div>
                   </div>
-                </div>
+                </a>
               </li>
             {% endfor %}
           </ul>
@@ -142,7 +150,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
             <span role="button" style="width:var(--step-1)" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
           </nav>
         </div>
-        <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'more ' + category.name | lower }}</a></p>
+        <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'view ' + category.name | lower }}</a></p>
       </div>
     </section>
     {{ '<hr>' | safe if not loop.last }}
