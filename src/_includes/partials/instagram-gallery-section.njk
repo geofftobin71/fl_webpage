@@ -33,7 +33,7 @@
           {%- for size in instagram_image_sizes -%}
           {{ site.cloudinary_url }}/w_{{ size }},c_fill,ar_1,q_auto,f_auto,g_auto/{{ item.public_id | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
           {%- endfor -%}
-          " sizes="100vmin" data-src="{{ image_path }}" src="{{ lqip_path | lqip }}" width="1400" height="1400" alt="{{ item.context.caption }}" loading="lazy" decoding="async" />
+          " sizes="100vmin" data-src="{{ image_path }}" src="{{ site.transgif }}" style="background-image:url({{ lqip_path | lqip }});background-size:contain" width="1400" height="1400" alt="{{ item.context.caption }}" loading="lazy" decoding="async" />
           <figcaption class="wrapper text-wrapper">
             <div class="text-center text-shadow flow">
               <h4>{{ item.context.caption }}</h4>

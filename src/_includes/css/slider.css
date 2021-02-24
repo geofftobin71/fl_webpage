@@ -3,7 +3,6 @@
   height:100%;
   overflow-y: hidden;
   overflow-x: scroll;
-  /* scroll-padding: 0 50%; */
   scroll-snap-type: x mandatory;
   display: flex;
   justify-content: flex-start;
@@ -21,7 +20,7 @@
 }
 
 .slider::-webkit-scrollbar {
-  display: none;
+  visibility: hidden;
 }
 
 .slider-controls nav {
