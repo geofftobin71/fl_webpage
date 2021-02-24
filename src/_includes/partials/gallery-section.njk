@@ -41,7 +41,7 @@
         <li id="item{{ loop.index }}" class="slider-item">
           <figure class="center-both">
             {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + (image.public_id | stripVersion) %}
-            <img src="{{ lqip_path | lqip }}" data-srcset="
+            <img src="{{ site.transgif }}" style="background-image:url({{ lqip_path | lqip }});background-size:contain" data-srcset="
             {%- for size in image_sizes -%}
             {{ site.cloudinary_url }}/c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ image.public_id }} {{ size }}w{{ ',' if not loop.last }}
             {%- endfor -%}

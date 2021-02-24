@@ -8,64 +8,98 @@ description: Contact Floriade for all your fresh & dried flower needs.
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 ---
 <style>
-.shop-slider {
-  display: flex;
+.slider {
   flex-wrap: nowrap;
-  overflow-x: scroll;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   max-width: 100%;
   margin: 0 auto;
 }
-.shop-slider-item {
-  width: 350px;
-  flex: 0 0 350px;
+.slider-item {
+  width: 230px;
+  flex: 0 0 230px;
+}
+@media screen and (min-width:350px) {
+  .slider-item {
+    width: 270px;
+    flex: 0 0 270px;
+  }
+}
+@media screen and (min-width:400px) {
+  .slider-item {
+    width: 300px;
+    flex: 0 0 300px;
+  }
+}
+@media screen and (min-width:450px) {
+  .slider-item {
+    width: 330px;
+    flex: 0 0 330px;
+  }
+}
+@media screen and (min-width:1000px) {
+  .slider-item {
+    width: 300px;
+    flex: 0 0 300px;
+  }
+}
+@media screen and (min-width:1200px) {
+  .slider-item {
+    width: 375px;
+    flex: 0 0 375px;
+  }
+}
+@media screen and (min-width:1500px) {
+  .slider-item {
+    width: 425px;
+    flex: 0 0 425px;
+  }
 }
 </style>
 
-<div class="wrapper">
-{% for category in valid_shop_categories %}
-  <section>
-    <div class="flow" style="--flow-space:2em">
-      <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
-      <ul class="shop-slider bg-shade1 round shadow" style="margin:0 auto">
-        {% for product in valid_shop_products | filterByCategory(category.name) %}
-          <li id="item{{ loop.index }}" class="shop-slider-item">
-            <div class="stack center text-center" style="padding:var(--step-0)">
-              <figure class="frame frame1x1 round shadow" style="width:100%">
-                {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
-                {% set image_info = image_id | imgInfo %}
-                {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
-                {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
-                {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-                <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
-                <div><img data-srcset="
-                {%- for size in image_sizes -%}
-                {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
-                {%- endfor -%}
-                {%- set sizes = '100vw' -%}
-                " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
-              </figure>
-              <h3 class="text-lowercase">{{ product.name }}</h3>
-              <div class="bigfonts font-secondary">
-              {% if product.variants | length %}
-                {% if ( product.variants | first ).price != ( product.variants | last ).price %}
-                  <p>{{ 'from ' + product.variants[0].price | formatMoney }}</p>
-                {% else %}
-                  <p>{{ product.price | formatMoney }}</p>
-                {% endif %}
-              {% else %}
-                <p>{{ product.price | formatMoney }}</p>
-              {% endif %}
+<div class="wrapper page-wrapper">
+  {% for category in valid_shop_categories %}
+    <section>
+      <div class="flow" style="--flow-space:2em">
+        <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
+        <ul class="slider bg-shade1 round shadow" style="margin:0 auto">
+          {% for product in valid_shop_products | filterByCategory(category.name) %}
+            <li id="item{{ loop.index }}" class="slider-item">
+              <div class="stack center text-center" style="padding:var(--step--1)">
+                <figure class="frame frame1x1 round shadow" style="width:100%">
+                  {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
+                  {% set image_info = image_id | imgInfo %}
+                  {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+                  {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+                  {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+                  <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></noscript>
+                  <div><img data-srcset="
+                  {%- for size in image_sizes -%}
+                  {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+                  {%- endfor -%}
+                  {%- set sizes = '100vw' -%}
+                  " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_path | lqip }})" loading="lazy" decoding="async" /></div>
+                </figure>
+                <h3 class="text-lowercase">{{ product.name }}</h3>
+                <div class="bigfonts font-secondary">
+                  {% if product.variants | length %}
+                    {% if ( product.variants | first ).price != ( product.variants | last ).price %}
+                      <p>{{ 'from ' + product.variants[0].price | formatMoney }}</p>
+                    {% else %}
+                      <p>{{ product.price | formatMoney }}</p>
+                    {% endif %}
+                  {% else %}
+                    <p>{{ product.price | formatMoney }}</p>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-      <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'more ' + category.name | lower }}</a></p>
-    </div>
-  </section>
-  {{ '<hr>' | safe if not loop.last }}
-{% endfor %}
+            </li>
+          {% endfor %}
+        </ul>
+        <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'more ' + category.name | lower }}</a></p>
+      </div>
+    </section>
+    {{ '<hr>' | safe if not loop.last }}
+  {% endfor %}
 </div>
