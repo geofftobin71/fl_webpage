@@ -16,7 +16,7 @@ eleventyNavigation:
       {% for post in collections.blog -%}
         <li class="blogpost">
           <div style="position:relative;padding:10vh 3vw">
-            <figure class="round shadow background" style="--brightness:{{ post.data.header.brightness or '50' }}%">
+            <figure class="border-shade2 round-box shadow background" style="--brightness:{{ post.data.header.brightness or '50' }}%">
               {% set image_id = (post.data.header_image | stripVersion) or (site.header_image | stripVersion) %}
               {% set image_info = image_id | imgInfo %}
               {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}

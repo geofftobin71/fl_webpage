@@ -310,7 +310,7 @@ background: var(--button-bg);
 display: inline-block;
 line-height: 1;
 text-decoration: none;
-border: 1.5px solid var(--button-fg);
+border: 1px solid var(--button-fg);
 border-radius: var(--button-radius, 0.5rem);
 padding: 0.6rem 1.5rem;
 position: relative;
