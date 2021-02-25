@@ -7,102 +7,13 @@ title: Shop
 description: Contact Floriade for all your fresh & dried flower needs.
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 ---
-<style>
-.slider {
-  flex-wrap: nowrap;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto;
-}
-.slider-controls {
-  position: relative;
-}
-.slider-controls nav {
-  z-index: 999;
-  position: absolute;
-  display: none;
-  color: var(--color-shade3);
-}
-.slider-controls .prev {
-  left: 0;
-  bottom: 0;
-}
-.slider-controls .next {
-  right: 0;
-  bottom: 0;
-}
-.slider-item figure {
-  transition: transform 250ms ease;
-}
-.slider-item:hover figure {
-  transform: scale(1.025);
-}
-.slider-item {
-  width: 230px;
-  flex: 0 0 230px;
-}
-.slider-controls.gt1 nav {
-  display: flex;
-}
-@media screen and (min-width:350px) {
-  .slider-item {
-    width: 270px;
-    flex: 0 0 270px;
-  }
-}
-@media screen and (min-width:400px) {
-  .slider-item {
-    width: 300px;
-    flex: 0 0 300px;
-  }
-}
-@media screen and (min-width:450px) {
-  .slider-item {
-    width: 330px;
-    flex: 0 0 330px;
-  }
-}
-@media screen and (min-width:700px) {
-  .slider-controls.gt1 nav {
-    display: none;
-  }
-  .slider-controls.gt2 nav {
-    display: flex;
-  }
-}
-@media screen and (min-width:1000px) {
-  .slider-item {
-    width: 300px;
-    flex: 0 0 300px;
-  }
-  .slider-controls.gt2 nav {
-    display: none;
-  }
-  .slider-controls.gt3 nav {
-    display: flex;
-  }
-}
-@media screen and (min-width:1200px) {
-  .slider-item {
-    width: 375px;
-    flex: 0 0 375px;
-  }
-}
-@media screen and (min-width:1500px) {
-  .slider-item {
-    width: 425px;
-    flex: 0 0 425px;
-  }
-}
-</style>
+<style>.slider{flex-wrap:nowrap;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;max-width:100%;}.slider-controls{position:relative;}.slider-controls nav{z-index:999;position:absolute;display:none;color:var(--color-shade3);}.slider-controls .prev{left:0;bottom:0;}.slider-controls .next{right:0;bottom:0;}.slider-item figure{width:100%;transition:transform 250ms ease;}.slider-item:hover figure{transform:scale(1.025);}.slider-item{width:230px;flex:0 0 230px;}.slider-controls.gt1 nav{display:flex;}@media screen and (min-width:350px){.slider-item{width:270px;flex:0 0 270px;}}@media screen and (min-width:400px){.slider-item{width:300px;flex:0 0 300px;}}@media screen and (min-width:450px){.slider-item{width:330px;flex:0 0 330px;}}@media screen and (min-width:700px){.slider-controls.gt1 nav{display:none;}.slider-controls.gt2 nav{display:flex;}}@media screen and (min-width:1000px){.slider-item{width:300px;flex:0 0 300px;}.slider-controls.gt2 nav{display:none;}.slider-controls.gt3 nav{display:flex;}}@media screen and (min-width:1200px){.slider-item{width:375px;flex:0 0 375px;}}@media screen and (min-width:1500px){.slider-item{width:425px;flex:0 0 425px;}}</style>
 
 <div class="wrapper page-wrapper">
   {% for category in valid_shop_categories %}
     <section>
       <div class="flow" style="--flow-space:2em">
-        <h2 class="heading text-center" style="margin-bottom:1em">{{ category.name | safe }}</h2>
+        <h2 class="heading text-center">{{ category.name | safe }}</h2>
         {% set product_list = valid_shop_products | filterByCategory(category.name) %}
         {% set product_count = product_list | length %}
         <div id="{{ category.name | slug }}" class="slider-controls {{ 'gt1' if product_count > 1 }} {{ 'gt2' if product_count > 2 }} {{ 'gt3' if product_count > 3 }}">
@@ -111,7 +22,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
               <li id="item{{ loop.index }}" class="slider-item">
                 <a href="{{ ( '/shop/products/' + product.name | slug ) | url }}">
                   <div class="stack center text-center" style="padding:var(--step--1)">
-                    <figure class="frame frame1x1 round shadow" style="width:100%">
+                    <figure class="frame frame1x1 round shadow fader">
                       {% set image_id = (product.images[0] | stripVersion) or (site.header_image | stripVersion) %}
                       {% set image_info = image_id | imgInfo %}
                       {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
@@ -123,7 +34,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
                       {%- for size in image_sizes -%}
                       {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
                       {%- endfor -%}
-                      {%- set sizes = '100vw' -%}
+                      {%- set sizes = '(min-width:1200px) 375px, 320px' -%}
                       " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></div>
                     </figure>
                     <h3 class="text-lowercase">{{ product.name }}</h3>
@@ -144,10 +55,10 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
             {% endfor %}
           </ul>
           <nav class="prev" onclick="scrollToPrevItem('#{{ category.name | slug }}');return false;">
-            <span role="button" style="width:var(--step-1)" title="Previous" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
+            <span role="button" title="Previous" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
           </nav>
           <nav class="next" onclick="scrollToNextItem('#{{ category.name | slug }}');return false;">
-            <span role="button" style="width:var(--step-1)" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
+            <span role="button" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
           </nav>
         </div>
         <p class="text-center"><a class="button" href="{{ ( '/shop/categories/' + category.name | slug ) | url }}">{{ 'view ' + category.name | lower }}</a></p>
