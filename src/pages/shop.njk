@@ -39,8 +39,8 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
                         {% set image_info = image_id | imgInfo %}
                         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
                         {% set src = site.cloudinary_url + "/w_640," + transforms + image_id %}
-                        <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
-                        <div><img data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
+                        <noscript><img class="round" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+                        <div><img class="round" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
                       {% endfor %}
                     </figure>
                     <h3 class="text-lowercase">{{ product.name }}</h3>
@@ -60,10 +60,10 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
               </li>
             {% endfor %}
           </ul>
-          <nav class="prev" onclick="scrollToPrevItem('#{{ category.name | slug }}');return false;">
+          <nav class="prev req-js" onclick="scrollToPrevItem('#{{ category.name | slug }}');return false;">
             <span role="button" title="Previous" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
           </nav>
-          <nav class="next" onclick="scrollToNextItem('#{{ category.name | slug }}');return false;">
+          <nav class="next req-js" onclick="scrollToNextItem('#{{ category.name | slug }}');return false;">
             <span role="button" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
           </nav>
         </div>
