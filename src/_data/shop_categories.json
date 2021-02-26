@@ -2,6 +2,7 @@
   {
     "name": "Fresh Flowers",
     "description": "Fresh Flowers description.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "page_description": "Fresh Flowers description. Sit quaerat dolor at dolore earum? Rem eum minus repellendus tenetur cumque corporis. Exercitationem vel quod eum repellendus illo Minus consequuntur soluta nostrum repellat quos. Velit asperiores sunt est velit maxime Ipsam nam vero quos voluptates cum Laborum nihil nisi at repudiandae hic. Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
     "finite": false,
@@ -22,6 +23,7 @@
   {
     "name": "Dried Flowers",
     "description": "Dried Flowers description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "page_description": "Dried Flowers description. Sit quaerat dolor at dolore earum? Rem eum minus repellendus tenetur cumque corporis. Exercitationem vel quod eum repellendus illo Minus consequuntur soluta nostrum repellat quos. Velit asperiores sunt est velit maxime Ipsam nam vero quos voluptates cum Laborum nihil nisi at repudiandae hic. Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
     "finite": false,
@@ -42,6 +44,7 @@
   {
     "name": "Chocolate",
     "description": "Wellington Chocolate Factory chocolate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "page_description": "Chocolate description. Sit quaerat dolor at dolore earum? Rem eum minus repellendus tenetur cumque corporis. Exercitationem vel quod eum repellendus illo Minus consequuntur soluta nostrum repellat quos. Velit asperiores sunt est velit maxime Ipsam nam vero quos voluptates cum Laborum nihil nisi at repudiandae hic. Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
     "finite": false,
@@ -63,6 +66,7 @@
   {
     "name": "Workshops",
     "description": "Workshops description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "page_description": "Workshops description. Sit quaerat dolor at dolore earum? Rem eum minus repellendus tenetur cumque corporis. Exercitationem vel quod eum repellendus illo Minus consequuntur soluta nostrum repellat quos. Velit asperiores sunt est velit maxime Ipsam nam vero quos voluptates cum Laborum nihil nisi at repudiandae hic. Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": false,
     "finite": true,
