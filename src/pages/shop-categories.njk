@@ -17,7 +17,79 @@ eleventyComputed:
     parent: "{{ category.eleventyNavigation.parent }}"
     order: "{{ category.eleventyNavigation.order }}"
 ---
-<style>#shop .slider{justify-content:center;flex-wrap:wrap;width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;max-width:100%;}#shop .slider-item figure{width:100%;transition:transform 250ms ease;}#shop .slider-item:hover figure{transform:scale(1.025);}#shop .slider-item{width:230px;flex:0 0 230px;padding:var(--step--1);padding-bottom:var(--step-1);}@media screen and (min-width:350px){ #shop .slider-item{width:270px;flex:0 0 270px;}}@media screen and (min-width:400px){ #shop .slider-item{width:300px;flex:0 0 300px;}}@media screen and (min-width:450px){ #shop .slider-item{width:330px;flex:0 0 330px;}}@media screen and (min-width:1000px){ #shop .slider-item{width:300px;flex:0 0 300px;}}@media screen and (min-width:1200px){ #shop .slider-item{width:375px;flex:0 0 375px;}}@media screen and (min-width:1500px){ #shop .slider-item{width:425px;flex:0 0 425px;}} #shop .fader img{opacity:0;animation-iteration-count:infinite;}</style>
+<style>
+#shop .slider {
+  justify-content: center;
+  flex-wrap: wrap;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+}
+
+#shop .slider-item figure {
+  width: 100%;
+  transition: transform 250ms ease;
+}
+
+#shop .slider-item:hover figure {
+  transform: scale(1.025);
+}
+
+#shop .slider-item {
+  width: 230px;
+  flex: 0 0 230px;
+  padding: var(--step--1);
+  padding-bottom: var(--step-1);
+}
+
+@media screen and (min-width:350px) {
+  #shop .slider-item {
+    width: 270px;
+    flex: 0 0 270px;
+  }
+}
+
+@media screen and (min-width:400px) {
+  #shop .slider-item {
+    width: 300px;
+    flex: 0 0 300px;
+  }
+}
+
+@media screen and (min-width:450px) {
+  #shop .slider-item {
+    width: 330px;
+    flex: 0 0 330px;
+  }
+}
+
+@media screen and (min-width:1000px) {
+  #shop .slider-item {
+    width: 300px;
+    flex: 0 0 300px;
+  }
+}
+
+@media screen and (min-width:1200px) {
+  #shop .slider-item {
+    width: 375px;
+    flex: 0 0 375px;
+  }
+}
+
+@media screen and (min-width:1500px) {
+  #shop .slider-item {
+    width: 425px;
+    flex: 0 0 425px;
+  }
+}
+
+#shop .fader img {
+  opacity: 0;
+  animation-iteration-count: infinite;
+}
+</style>
 
 <main>
 <section class="text-section bg-shade1">
@@ -59,7 +131,7 @@ eleventyComputed:
                 </figure>
                 <h3 class="color-light text-lowercase" style="margin-top:1em">{{ product.name }}</h3>
               </div>
-              <p class="color-shade4">{{ product.description | safe }}</p>
+              <p class="font-size--1 color-shade4" style="line-height:1.5">{{ product.description | safe }}</p>
               <div class="button bigfonts font-secondary">
                 {% if product.variants | length %}
                   {% if ( product.variants | first ).price != ( product.variants | last ).price %}
