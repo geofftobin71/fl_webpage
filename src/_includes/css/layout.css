@@ -299,6 +299,12 @@ article > * + * {
   max-width: none;
 }
 
+@media screen and (max-width: 750px) {
+  .wrapper {
+    --padding: var(--step-0);
+  }
+}
+
 /* ----- Button ----- */
 
 button, .button {

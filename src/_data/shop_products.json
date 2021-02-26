@@ -1,7 +1,8 @@
 [
   {
     "name": "Vibrant Colours Bouquet",
-    "description": "Vibrant Colours Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "Vibrant Colours Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Vibrant Colours Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Fresh Flowers",
     "disabled": false,
     "variants": [
@@ -51,7 +52,8 @@
   },
   {
     "name": "Subtle Pastels Bouquet",
-    "description": "Subtle Pastels Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "Subtle Pastels Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Subtle Pastels Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Fresh Flowers",
     "disabled": false,
     "variants": [
@@ -101,7 +103,8 @@
   },
   {
     "name": "Avant-garde Bouquet",
-    "description": "Avant-garde Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "Avant-garde Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Avent-garde Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Fresh Flowers",
     "disabled": false,
     "variants": [
@@ -151,7 +154,8 @@
   },
   {
     "name": "Vintage Dried Bouquet",
-    "description": "Vintage Dried Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "Vintage Dried Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Vintage Dried Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Dried Flowers",
     "disabled": false,
     "variants": [
@@ -201,7 +205,8 @@
   },
   {
     "name": "Wild Rustic Bouquet",
-    "description": "Wild Rustic Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "Wild Rustic Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Wild Rustic Bouquet description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Dried Flowers",
     "disabled": false,
     "variants": [
@@ -251,7 +256,8 @@
   },
   {
     "name": "Raspberry Milk Chocolate",
-    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Raspberry Milk Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
     "variants": [],
@@ -263,7 +269,8 @@
   },
   {
     "name": "Coconut Milk Chocolate",
-    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Coconut Milk Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
     "variants": [],
@@ -275,7 +282,8 @@
   },
   {
     "name": "Original Milk Chocolate",
-    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Original Milk Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
     "variants": [],
@@ -287,7 +295,8 @@
   },
   {
     "name": "Salted Caramel Dark Chocolate",
-    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Salted Caramel Dark Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
     "variants": [],
@@ -299,7 +308,8 @@
   },
   {
     "name": "Peru Dark Chocolate",
-    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "85g block of chocolate from Wellington Chocolate Factory. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Peru Dark Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
     "variants": [],
@@ -311,7 +321,8 @@
   },
   {
     "name": "Christmas Wreath Workshop",
-    "description": "Learn to make a Christmas Wreath to hang on your front door. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Nulla ut varius mi. Donec vel placerat mauris. Nulla blandit, nibh a tempor posuere, sem leo faucibus augue, at tempor sem orci quis elit.",
+    "description": "Learn to make a Christmas Wreath to hang on your front door. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
+    "page_description": "Christmas Wreath Workshop description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "price": 18000,
     "category": "Workshops",
     "images": [

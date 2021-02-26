@@ -18,6 +18,11 @@ fields:
   - type: textarea
     name: description
     label: Description
+    description: SEO page description. Appears on Google search results.
+  - type: textarea
+    name: page_description
+    label: Product Description
+    description: Appears on the Product page.
   - name: price
     type: number
     label: Price
