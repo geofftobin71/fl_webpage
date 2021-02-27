@@ -16,6 +16,9 @@ fields:
     label: Name
     config:
       required: false
+  - name: wedding
+    type: boolean
+    label: Wedding
   config:
     labelField: name
 pages:
