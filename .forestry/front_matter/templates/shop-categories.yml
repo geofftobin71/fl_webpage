@@ -14,7 +14,8 @@ fields:
   - type: textarea
     name: description
     label: Description
-    description: SEO page description. Appears on Google search results and on the Shop page.
+    description: SEO page description. Appears on Google search results and on the
+      Shop page.
   - type: textarea
     name: page_description
     label: Category Description
