@@ -324,6 +324,14 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
+  eleventyConfig.addFilter("filterWeddingReviews", (array, wedding) => {
+    let filtered = [];
+    for (let i = 0; i < array.length; ++i) {
+      if(array[i].wedding == wedding) { filtered[filtered.length] = array[i]; }
+    }
+    return filtered;
+  });
+
   eleventyConfig.addFilter("removeEmpty", (array) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {

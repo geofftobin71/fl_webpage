@@ -3,21 +3,21 @@ function openLightbox(id) {
   document.querySelector('#lightbox').style.visibility = 'visible';
   // document.querySelector('menu').style.display = 'none';
 
-  // document.querySelector(id).scrollIntoView({behavior: 'auto', inline: 'center', block: 'center'});
+  document.querySelector(id).scrollIntoView({behavior: 'auto', inline: 'center', block: 'center'});
 
-  let n = parseInt(id.slice(5));
+  // let n = parseInt(id.slice(5));
+  // let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
+  // document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
+}
 
-  let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
-  document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
-
-  return false;
+function scrollTo(id) {
+  console.log(id);
+  document.querySelector(id).scrollIntoView({behavior: 'smooth', inline: 'center', block: 'center'});
 }
 
 function closeLightbox() {
   document.documentElement.setAttribute('data-modal-active', false);
   document.querySelector('#lightbox').style.visibility = 'hidden';
-
-  return false;
 }
 
 function scrollToNextItem(id) {
@@ -28,8 +28,6 @@ function scrollToNextItem(id) {
   } /* else {
     scroller.scrollTo({left: 0, top: 0, behavior:'auto'});
   } */
-
-  return false;
 }
 
 function scrollToPrevItem(id) {
@@ -40,8 +38,6 @@ function scrollToPrevItem(id) {
   } /* else {
     scroller.scrollTo({left: scroller.scrollWidth, top: 0, behavior:'auto'});
   } */
-
-  return false;
 }
 
 function toggleCaptions() {
@@ -49,7 +45,5 @@ function toggleCaptions() {
   captions.forEach(caption => {
     caption.classList.toggle('hidden');
   });
-
-  return false;
 }
 

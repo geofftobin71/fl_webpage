@@ -294,6 +294,10 @@ article > * + * {
   --wrapper-width: var(--measure);
 }
 
+.image-wrapper {
+  --wrapper-width: 512px;
+}
+
 .no-wrapper {
   --padding: 0;
   max-width: none;
