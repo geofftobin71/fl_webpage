@@ -13,54 +13,90 @@ eleventyComputed:
     brightness: "{{ product.brightness }}"
 ---
 
-<section class="two-column-section">
-  <div class="wrapper page-wrapper two-columns" style="--align:start;--h-gap:0">
+{% set product_images_count = product.images | length %}
+{% set anim_fade_time = 1 %}
+{% set anim_show_time = 4 %}
+{% set anim_duration = (anim_fade_time + anim_show_time) * product_images_count %}
+{% set one_second = 100.0 / anim_duration %}
+{{ ( '<style>@keyframes ' + (product.name | slug) + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if product_images_count > 1 }}
+{% set image_id = (product.images | first | stripVersion) or (site.header_image | stripVersion) %}
+{% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+{% set lqip_data = lqip_path | imgLqip %}
+
+<style>
+.fader img {
+  opacity: 0;
+  animation-iteration-count: infinite;
+}
+.radio-label-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row;
+  justify-content:center;
+  margin: -4px;
+}
+.radio-label {
+  font-family: var(--font-family-secondary);
+  color: var(--color-shade3);
+  padding: var(--step--2) var(--step--1);
+  border: 1px solid currentcolor;
+  margin: 4px;
+}
+input[type="radio"]:checked + .radio-label {
+  color: var(--color-light);
+  background: var(--color-shade1);
+}
+</style>
+
+{% set variant_title = "Please choose" %}
+{% for category in shop_categories %}
+  {% if category.name == product.category %}
+    {% set variant_title = category.variant %}
+  {% endif %}
+{% endfor %}
+
+<section id="shop" class="two-column-section">
+  <div class="wrapper page-wrapper two-columns" style="--align:start">
     <div class="wrapper image-wrapper" style="width:100%">
-      <figure class="frame frame1x1 round shadow" style="width:100%">
-        {% set image_id = product.images[0] | stripVersion %}
-        {% set image_info = image_id | imgInfo %}
-        {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
-        {% set lqip_data = lqip_path | imgLqip %}
-        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
-        {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-        <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
-        <div><img data-srcset="
-        {%- for size in image_sizes -%}
-        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
-        {%- endfor -%}
-        {%- set sizes = '100vw' -%}
-        {#
-        {%- if section.width == 'Full' -%}
-          {%- if two_columns -%}
-            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, 100vw' -%}
-          {%- else -%}
-            {%- set sizes = '100vw' -%}
-          {%- endif -%}
-        {%- elif section.width == 'Extra Wide' -%}
-          {%- if two_columns -%}
-            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 1500px) 1500px, 100vw' -%}
-          {%- else -%}
-            {%- set sizes = '(min-width: 1500px) 1500px, 100vw' -%}
-          {%- endif -%}
-        {%- elif section.width == 'Paragraph' -%}
-          {%- if two_columns -%}
-            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 900px) 900px, 100vw' -%}
-          {%- else -%}
-            {%- set sizes = '(min-width: 900px) 900px, 100vw' -%}
-          {%- endif -%}
-        {%- else -%}
-          {%- if two_columns -%}
-            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 1200px) 1200px, 100vw' -%}
-          {%- else -%}
-            {%- set sizes = '(min-width: 1200px) 1200px, 100vw' -%}
-          {%- endif -%}
-        {%- endif -%}
-        #}
-" sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></div>
+      <figure class="frame frame1x1 round shadow {{ 'fader' if product_images_count > 1 }}" style="width:100%;background-image:url({{ lqip_data }})">
+        {% for product_image in product.images %}
+          {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+          {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
+          {% set image_info = image_id | imgInfo %}
+          {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+          {% set src = site.cloudinary_url + "/w_750," + transforms + image_id %}
+          <noscript><img class="round" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+          <div><img class="round" data-srcset="
+          {%- for size in image_sizes -%}
+          {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor -%}
+          {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 750px) 750px, 100vw' -%}
+          " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
+        {% endfor %}
       </figure>
     </div>
-    <div class="wrapper text-wrapper">
-      <p>{{ product.page_description | safe }}</p>
+    <div class="wrapper text-wrapper" style="height:100%">
+      <form id="add-to-cart-form" class="stack" action="/php/add-to-cart.php" method="post" style="height:100%">
+        <p>{{ product.page_description | safe }}</p>
+        <hr />
+        {% set valid_variants = product.variants | validProductVariants %}
+        {% if valid_variants | length %}
+          <p class="text-center">{{ variant_title }}</p>
+          <p></p>
+          <div class="radio-label-wrapper">
+            {% for variant in valid_variants %}
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }}>
+              <label class="radio-label text-center" for="{{ variant.id }}">{{ variant.name }}</label>
+            {% endfor %}
+          </div>
+        {% else %}
+          <input id="variant_id" name="variant_id" type="hidden" value="none" style="margin:0">
+        {% endif %}
+        <input id="product_id" name="product_id" type="hidden" value="{{ product.id }}" style="margin:0">
+        <p></p>
+        <hr style="display:block;margin-top:auto" />
+        <div class="text-center" style="xmargin-top:auto"><button type="submit">add to cart</button></div>
+      </form>
     </div>
   </div>
 </section>

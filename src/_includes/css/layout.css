@@ -295,12 +295,18 @@ article > * + * {
 }
 
 .image-wrapper {
-  --wrapper-width: 512px;
+  --wrapper-width: 100vmin;
 }
 
 .no-wrapper {
   --padding: 0;
   max-width: none;
+}
+
+@media screen and (min-width: 750px) and (orientation: portrait) {
+  .image-wrapper {
+    --wrapper-width: 70vmin;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -353,7 +359,7 @@ a.button:active { color: var(--button-hl); }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  --stack-space: 1rem;
+  --stack-space: 1.5em;
 }
 
 .stack.center {
@@ -372,7 +378,7 @@ a.button:active { color: var(--button-hl); }
 /* ----- Two Columns ----- */
 
 .two-columns {
-  --h-gap: var(--step-0);
+  --h-gap: 0;
   --v-gap: 7.5vh;
   --grid-gap: var(--v-gap);
   --align: center;
@@ -390,6 +396,10 @@ a.button:active { color: var(--button-hl); }
   }
   .two-columns.swap {
     grid-template-columns: 11fr 10fr;
+  }
+  .two-columns > div:first-child,
+  .two-columns > div:first-child .wrapper {
+    padding-right: 0;
   }
   .two-columns.swap > div:first-child {
     order: 2;

@@ -343,6 +343,17 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
+  eleventyConfig.addFilter("validProductVariants", (array) => {
+    let filtered = [];
+    if(!array) { return filtered; }
+    for (let i = 0; i < array.length; ++i) {
+      if(!array[i].disabled) { 
+        filtered[filtered.length] = array[i]; 
+      }
+    }
+    return filtered;
+  });
+
   eleventyConfig.addFilter("filterByCategory", (array, category) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {

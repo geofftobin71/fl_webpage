@@ -133,9 +133,10 @@ eleventyComputed:
               </div>
               <p class="font-size--1 color-shade4" style="line-height:1.5">{{ product.description | safe }}</p>
               <div class="button bigfonts font-secondary">
-                {% if product.variants | length %}
-                  {% if ( product.variants | first ).price != ( product.variants | last ).price %}
-                    <p>{{ 'from ' + product.variants[0].price | formatMoney }}</p>
+                {% set valid_variants = product.variants | validProductVariants %}
+                {% if valid_variants | length %}
+                  {% if ( valid_variants | first ).price != ( valid_variants | last ).price %}
+                    <p>{{ 'from ' + valid_variants[0].price | formatMoney }}</p>
                   {% else %}
                     <p>{{ product.price | formatMoney }}</p>
                   {% endif %}
