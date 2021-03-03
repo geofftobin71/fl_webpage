@@ -1,5 +1,5 @@
-FIX MOBILE MENU
-inline onclick on Edge
+left page-links size = 50% => min-content : right is OK
+inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 single column gallery spacing
 image(s) section
 :placeholder-shown / form styling

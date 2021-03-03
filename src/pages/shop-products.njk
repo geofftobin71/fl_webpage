@@ -46,6 +46,29 @@ input[type="radio"]:checked + .radio-label {
   color: var(--color-light);
   background: var(--color-shade1);
 }
+.stepper-controls nav {
+  color: var(--color-shade3);
+  padding: 0;
+  margin: 0 0.5em;
+  border-radius: 50%;
+  width: var(--step-2);
+  height: var(--step-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.stepper-controls nav span {
+  width: var(--step-1);
+}
+
+.stepper-controls nav svg {
+  -webkit-filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+  filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+}
+
 </style>
 
 {% set variant_title = "Please choose" %}
@@ -57,7 +80,7 @@ input[type="radio"]:checked + .radio-label {
 
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
-    <div class="wrapper image-wrapper" style="width:100%">
+    <div class="wrapper image-wrapper flow" style="width:100%">
       <figure class="frame frame1x1 round shadow {{ 'fader' if product_images_count > 1 }}" style="width:100%;background-image:url({{ lqip_data }})">
         {% for product_image in product.images %}
           {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
@@ -74,28 +97,40 @@ input[type="radio"]:checked + .radio-label {
           " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
         {% endfor %}
       </figure>
+      <p class="font-size--1">{{ product.page_description | safe }}</p>
     </div>
-    <div class="wrapper text-wrapper" style="height:100%">
+    <div class="wrapper text-wrapper" style="width:100%;height:100%">
       <form id="add-to-cart-form" class="stack" action="/php/add-to-cart.php" method="post" style="height:100%">
-        <p>{{ product.page_description | safe }}</p>
         <hr />
         {% set valid_variants = product.variants | validProductVariants %}
         {% if valid_variants | length %}
-          <p class="text-center">{{ variant_title }}</p>
+          <h3 class="heading text-center">{{ variant_title }}</h3>
           <p></p>
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }}>
-              <label class="radio-label text-center" for="{{ variant.id }}">{{ variant.name }}</label>
+              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}</label>
             {% endfor %}
           </div>
         {% else %}
           <input id="variant_id" name="variant_id" type="hidden" value="none" style="margin:0">
         {% endif %}
+
+        <h3 class="heading text-center">number of places</h3>
+        <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
+          <nav class="req-js" onclick="document.getElementById('product_count').stepDown();return false;">
+            <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
+          </nav>
+          <input required id="product_count" name="product_count" type="number" min="1" value="1" class="text-center round" style="width:3em">
+          <nav class="req-js" onclick="document.getElementById('product_count').stepUp();return false;">
+            <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
+          </nav>
+        </div>
+
         <input id="product_id" name="product_id" type="hidden" value="{{ product.id }}" style="margin:0">
         <p></p>
-        <hr style="display:block;margin-top:auto" />
-        <div class="text-center" style="xmargin-top:auto"><button type="submit">add to cart</button></div>
+        <hr style="margin-top:auto" />
+        <div class="bigfonts text-center"><button type="submit">add to cart</button></div>
       </form>
     </div>
   </div>

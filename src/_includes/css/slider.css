@@ -33,6 +33,7 @@
   align-items: center;
   text-align: center;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .slider-controls nav span {

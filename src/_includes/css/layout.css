@@ -271,7 +271,7 @@ article > * + * {
 }
 
 .flow > * + * {
-  margin-top: var(--flow-space, 1em);
+  margin-top: var(--flow-space, 1.5em);
 }
 
 /* ----- Wrapper ----- */
@@ -318,21 +318,21 @@ article > * + * {
 /* ----- Button ----- */
 
 button, .button {
-  --button-fg: var(--color-shade3); */
---button-bg: transparent;
---button-hl: var(--color-shade1);
-color: var(--button-fg);
-background: var(--button-bg);
-display: inline-block;
-line-height: 1;
-text-decoration: none;
-border: 1px solid var(--button-fg);
-border-radius: var(--button-radius, 0.5rem);
-padding: 0.6rem 1.5rem;
-position: relative;
-font-family: var(--font-family-secondary);
-text-transform: lowercase;
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --button-fg: var(--color-shade3);
+  --button-bg: transparent;
+  --button-hl: var(--color-shade1);
+  color: var(--button-fg);
+  background: var(--button-bg);
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid var(--button-fg);
+  border-radius: var(--button-radius, 0.5rem);
+  padding: 0.6rem 1.5rem;
+  position: relative;
+  font-family: var(--font-family-secondary);
+  text-transform: lowercase;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 button:focus, .button:focus {
   outline-offset: -0.2rem;
@@ -378,9 +378,7 @@ a.button:active { color: var(--button-hl); }
 /* ----- Two Columns ----- */
 
 .two-columns {
-  --h-gap: 0;
-  --v-gap: 7.5vh;
-  --grid-gap: var(--v-gap);
+  --grid-gap: var(--v-gap, 2em);
   --align: center;
   --padding: 0;
   display: grid;
@@ -391,7 +389,7 @@ a.button:active { color: var(--button-hl); }
 
 @media screen and (orientation: landscape) and (min-width: 950px) {
   .two-columns {
-    --grid-gap: var(--h-gap);
+    --grid-gap: var(--h-gap, 0);
     grid-template-columns: 10fr 11fr;
   }
   .two-columns.swap {
