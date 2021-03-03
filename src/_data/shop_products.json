@@ -10,31 +10,36 @@
         "name": "$50",
         "price": 5000,
         "disabled": false,
-        "id": "3f32f5b3"
+        "id": "3f32f5b3",
+        "stock": null
       },
       {
         "name": "$75",
         "price": 7500,
         "disabled": false,
-        "id": "7ccc48a2"
+        "id": "7ccc48a2",
+        "stock": null
       },
       {
         "name": "$100",
         "price": 10000,
         "disabled": false,
-        "id": "52660263"
+        "id": "52660263",
+        "stock": null
       },
       {
         "name": "$150",
         "price": 15000,
         "disabled": false,
-        "id": "c66b9160"
+        "id": "c66b9160",
+        "stock": null
       },
       {
         "name": "$200",
         "price": 20000,
         "disabled": false,
-        "id": "8195d5f6"
+        "id": "8195d5f6",
+        "stock": null
       }
     ],
     "images": [
@@ -48,7 +53,8 @@
       "/v1613592813/shop/vibrant-colours-bouquet-4.jpg"
     ],
     "price": null,
-    "id": "19d9e651"
+    "id": "19d9e651",
+    "stock": null
   },
   {
     "name": "Subtle Pastels Bouquet",
@@ -61,31 +67,36 @@
         "name": "$50",
         "price": 5000,
         "disabled": false,
-        "id": "90dffffa"
+        "id": "90dffffa",
+        "stock": null
       },
       {
         "name": "$75",
         "price": 7500,
         "disabled": false,
-        "id": "4a3e62b5"
+        "id": "4a3e62b5",
+        "stock": null
       },
       {
         "name": "$100",
         "price": 10000,
         "disabled": false,
-        "id": "e3d4f22c"
+        "id": "e3d4f22c",
+        "stock": null
       },
       {
         "name": "$150",
         "price": 15000,
         "disabled": false,
-        "id": "e0c69319"
+        "id": "e0c69319",
+        "stock": null
       },
       {
         "name": "$200",
         "price": 20000,
         "disabled": false,
-        "id": "49d1bea7"
+        "id": "49d1bea7",
+        "stock": null
       }
     ],
     "images": [
@@ -99,7 +110,8 @@
       "/v1613862323/shop/subtle-pastels-bouquet-8.jpg"
     ],
     "price": null,
-    "id": "d4fc96e1"
+    "id": "d4fc96e1",
+    "stock": null
   },
   {
     "name": "Avant-garde Bouquet",
@@ -112,31 +124,36 @@
         "name": "$50",
         "price": 5000,
         "disabled": false,
-        "id": "eab5d4a5"
+        "id": "eab5d4a5",
+        "stock": null
       },
       {
         "name": "$75",
         "price": 7500,
         "disabled": false,
-        "id": "1750182c"
+        "id": "1750182c",
+        "stock": null
       },
       {
         "name": "$100",
         "price": 10000,
         "disabled": false,
-        "id": "61e0b964"
+        "id": "61e0b964",
+        "stock": null
       },
       {
         "name": "$150",
         "price": 15000,
         "disabled": false,
-        "id": "3607dabf"
+        "id": "3607dabf",
+        "stock": null
       },
       {
         "name": "$200",
         "price": 20000,
         "disabled": false,
-        "id": "52a1abfe"
+        "id": "52a1abfe",
+        "stock": null
       }
     ],
     "images": [
@@ -150,7 +167,8 @@
       "/v1613862173/shop/avant-garde-bouquet-6.jpg"
     ],
     "price": null,
-    "id": "fc6fef63"
+    "id": "fc6fef63",
+    "stock": null
   },
   {
     "name": "Vintage Dried Bouquet",
@@ -163,31 +181,36 @@
         "name": "$50",
         "price": 5000,
         "disabled": false,
-        "id": "e62143fa"
+        "id": "e62143fa",
+        "stock": null
       },
       {
         "name": "$75",
         "price": 7500,
         "disabled": false,
-        "id": "76f1d73b"
+        "id": "76f1d73b",
+        "stock": null
       },
       {
         "name": "$100",
         "price": 10000,
         "disabled": false,
-        "id": "8147d18d"
+        "id": "8147d18d",
+        "stock": null
       },
       {
         "name": "$150",
         "price": 15000,
         "disabled": false,
-        "id": "e398d403"
+        "id": "e398d403",
+        "stock": null
       },
       {
         "name": "$200",
         "price": 20000,
         "disabled": false,
-        "id": "f03806bc"
+        "id": "f03806bc",
+        "stock": null
       }
     ],
     "images": [
@@ -201,7 +224,8 @@
       "/v1613593490/shop/vintage-dried-bouquet-8.jpg"
     ],
     "price": null,
-    "id": "081fb724"
+    "id": "081fb724",
+    "stock": null
   },
   {
     "name": "Wild Rustic Bouquet",
@@ -214,31 +238,36 @@
         "name": "$50",
         "price": 5000,
         "disabled": false,
-        "id": "4a282702"
+        "id": "4a282702",
+        "stock": null
       },
       {
         "name": "$75",
         "price": 7500,
         "disabled": false,
-        "id": "0399d01e"
+        "id": "0399d01e",
+        "stock": null
       },
       {
         "name": "$100",
         "price": 10000,
         "disabled": false,
-        "id": "0b0712ce"
+        "id": "0b0712ce",
+        "stock": null
       },
       {
         "name": "$150",
         "price": 15000,
         "disabled": false,
-        "id": "de2939c1"
+        "id": "de2939c1",
+        "stock": null
       },
       {
         "name": "$200",
         "price": 20000,
         "disabled": false,
-        "id": "ab85846d"
+        "id": "ab85846d",
+        "stock": null
       }
     ],
     "images": [
@@ -252,7 +281,8 @@
       "/v1613861930/shop/wild-rustic-bouquet-4.jpg"
     ],
     "price": null,
-    "id": "73f635d1"
+    "id": "73f635d1",
+    "stock": null
   },
   {
     "name": "Raspberry Milk Chocolate",
@@ -260,12 +290,15 @@
     "page_description": "Raspberry Milk Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [],
+    "variants": [
+
+    ],
     "images": [
       "/v1613194571/chocolate/chocolate-1.jpg"
     ],
     "price": 1500,
-    "id": "d7f070bd"
+    "id": "d7f070bd",
+    "stock": null
   },
   {
     "name": "Coconut Milk Chocolate",
@@ -273,12 +306,15 @@
     "page_description": "Coconut Milk Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [],
+    "variants": [
+
+    ],
     "images": [
       "/v1613194575/chocolate/chocolate-2.jpg"
     ],
     "price": 1500,
-    "id": "f7115aec"
+    "id": "f7115aec",
+    "stock": null
   },
   {
     "name": "Original Milk Chocolate",
@@ -286,12 +322,15 @@
     "page_description": "Original Milk Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [],
+    "variants": [
+
+    ],
     "images": [
       "/v1613194579/chocolate/chocolate-3.jpg"
     ],
     "price": 1500,
-    "id": "58adcfe1"
+    "id": "58adcfe1",
+    "stock": null
   },
   {
     "name": "Salted Caramel Dark Chocolate",
@@ -299,12 +338,15 @@
     "page_description": "Salted Caramel Dark Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [],
+    "variants": [
+
+    ],
     "images": [
       "/v1613194575/chocolate/chocolate-4.jpg"
     ],
     "price": 1500,
-    "id": "c084a9dc"
+    "id": "c084a9dc",
+    "stock": null
   },
   {
     "name": "Peru Dark Chocolate",
@@ -312,12 +354,15 @@
     "page_description": "Peru Dark Chocolate description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
     "category": "Chocolate",
     "disabled": false,
-    "variants": [],
+    "variants": [
+
+    ],
     "images": [
       "/v1613194572/chocolate/chocolate-5.jpg"
     ],
     "price": 1500,
-    "id": "5b399a28"
+    "id": "5b399a28",
+    "stock": null
   },
   {
     "name": "Christmas Wreath Workshop",
@@ -333,16 +378,19 @@
         "name": "10:30am Sat 22 Dec 2021",
         "price": 18000,
         "disabled": false,
-        "id": "2662158d"
+        "id": "2662158d",
+        "stock": 12
       },
       {
         "name": "2:00pm Sun 23 Dec 2021",
         "price": 18000,
         "disabled": false,
-        "id": "1e16c9bc"
+        "id": "1e16c9bc",
+        "stock": 12
       }
     ],
     "disabled": false,
-    "id": "af2dcf05"
+    "id": "af2dcf05",
+    "stock": null
   }
 ]
