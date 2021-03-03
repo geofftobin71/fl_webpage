@@ -34,6 +34,11 @@ fields:
       min: 500
       max: 
       step: 
+  - type: number
+    name: stock
+    label: Stock
+    description: Initial stock count
+    default: -1
   - name: category
     type: select
     default: []
@@ -71,6 +76,11 @@ fields:
       config:
         required: true
         min: 500
+    - type: number
+      name: stock
+      label: Stock
+      description: Initial stock count
+      default: -1
     - type: boolean
       name: disabled
       label: Disabled
