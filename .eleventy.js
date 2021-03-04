@@ -332,6 +332,10 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
+  eleventyConfig.addFilter("cleanUrl", (url) => {
+      return url.replace("index.php","");
+  });
+
   eleventyConfig.addFilter("removeEmpty", (array) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {

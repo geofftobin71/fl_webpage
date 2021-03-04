@@ -5,6 +5,11 @@ header('Expires: 0');
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../php/sleekdb-config.php';
 
+use SleekDB\Store;
+$stockStore = new Store('stock', $sleekDir);
+
+date_default_timezone_set('Pacific/Auckland');
+
 function clean($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -32,9 +37,17 @@ function uniqueId($length = 8) {
     return substr(bin2hex($bytes), 0, $length);
 }
 
-use SleekDB\Store;
-$stockStore = new Store('stock', $sleekDir);
+function isFinite($product, $variant) {
+  $items = $stockStore->findBy([["product", "=", $product], "AND", ["variant", "=", $variant], "AND", ["unique", "=", true]]);
+  return (count($items) > 0);
+}
 
-date_default_timezone_set('Pacific/Auckland');
+function stockCount($product, $variant) {
+  global $sleekDir;
+  return $sleekDir;
+  $items = $stockStore->findAll();
+  // $items = $stockStore->findBy([["product", "=", $product], "AND", ["variant", "=", $variant], "AND", ["sold", "=", false]]);
+  return count($items);
+}
 
 ?>

@@ -1,7 +1,7 @@
 {% set metaTitle = title + " - " + site.name %}
 {% set metaDesc = description %}
 {% set metaImage = site.url + site.social_image %}
-{% set currentUrl = site.url + page.url %}
+{% set currentUrl = (site.url + page.url) | cleanUrl %}
 
 {% if page.url == "/" %}
   {% set metaTitle = site.name + " - " + site.tagline %}

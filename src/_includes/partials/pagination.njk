@@ -3,7 +3,7 @@
 <div class="wrapper page-wrapper">
   <nav class="page-links font-secondary">
     {% if pagination.href.previous %}
-      <a href="{{ pagination.href.previous }}" aria-label="Previous">
+      <a href="{{ pagination.href.previous | cleanUrl }}" aria-label="Previous" style="justify-self:start">
         <span class="prev">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
         <p class="text-lowercase">{{ pagination.page.previous.name }}</p>
       </a>
@@ -11,7 +11,7 @@
       <p>&nbsp;</p>
     {% endif %}
     {% if pagination.href.next %}
-      <a href="{{ pagination.href.next }}" aria-label="Next" style="justify-self:end">
+      <a href="{{ pagination.href.next | cleanUrl }}" aria-label="Next" style="justify-self:end">
         <p class="text-right text-lowercase">{{ pagination.page.next.name }}</p>
         <span class="next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
       </a>

@@ -1,7 +1,15 @@
-<?php include "shop-admin-pre.php" ?>
+<?php include "shop-functions.php" ?>
 
 <?php $title = "Floriade Shop Stock"; ?>
-<?php include "shop-admin-head.php" ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <title><?php echo $title; ?></title>
+</head>
 
 <body>
   <main>

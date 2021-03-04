@@ -109,7 +109,7 @@ input[type="radio"]:checked + .radio-label {
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }}>
-              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}</label>
+              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}<br><span style="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span></label>
             {% endfor %}
           </div>
         {% else %}
