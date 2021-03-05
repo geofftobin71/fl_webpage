@@ -78,9 +78,5 @@ fields:
     label: Delivery
     description: Delivery Address will be collected at checkout if there are delivery
       products in the cart.
-  - type: boolean
-    name: finite
-    label: Finite
-    description: Finite products track remaining stock. eg. Workshop tickets.
 pages:
 - src/_data/shop_categories.json

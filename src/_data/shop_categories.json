@@ -5,7 +5,6 @@
     "page_description": "Fresh Flowers description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
-    "finite": false,
     "eleventyNavigation": {
       "key": "Fresh Flowers",
       "parent": "Flowers",
@@ -27,7 +26,6 @@
     "page_description": "Dried Flowers description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
-    "finite": false,
     "eleventyNavigation": {
       "key": "Dried Flowers",
       "parent": "Flowers",
@@ -49,7 +47,6 @@
     "page_description": "Chocolate description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
-    "finite": false,
     "parents": [
       "Fresh Flowers",
       "Dried Flowers"
@@ -72,7 +69,6 @@
     "page_description": "Workshops description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": false,
-    "finite": true,
     "parents": [
 
     ],

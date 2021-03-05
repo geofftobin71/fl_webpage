@@ -117,14 +117,14 @@ input[type="radio"]:checked + .radio-label {
           <p></p>
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }} <?php if(stockCount("{{ product.id }}", "{{ variant.id }}") == 0) { echo ' disabled'; } ?> >
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }} <?php if(stockCount("{{ product.id }}", "{{ variant.id }}") == 0) { echo " disabled"; } ?> >
               <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}
                 <?php if(isFinite("{{ product.id }}", "{{ variant.id }}")) { ?>
                   <?php if(stockCount("{{ product.id }}", "{{variant.id}}")) { ?>
                     <br><span class="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span>
                   <?php } else { ?>
                     <br><span class="font-size-0">( SOLD OUT )</span>
-                <?php } ?>
+                  <?php } ?>
                 <?php } ?>
               </label>
             {% endfor %}
@@ -140,7 +140,7 @@ input[type="radio"]:checked + .radio-label {
             <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
           </nav>
 
-          <input required id="product_count" name="product_count" type="number" min="1" value="1" class="text-center round" style="width:3em">
+          <input required id="product_count" name="product_count" type="number" min="1" value="<?php if(isset($_SESSION['product_count'])) { echo $$_SESSION['product_count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
 
           <nav class="req-js" onclick="document.getElementById('product_count').stepUp();return false;">
             <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
@@ -154,7 +154,7 @@ input[type="radio"]:checked + .radio-label {
         <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
-        <p id="error" <?php if(!isset($_GET["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo $_GET["error"]; ?></p>
+        <p id="error" <?php if(!isset($_SESSION["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo $_SESSION["error"]; // unset($_SESSION["error"]); ?></p>
         <div class="bigfonts text-center"><button type="submit">add to cart</button></div>
       </form>
     </div>
