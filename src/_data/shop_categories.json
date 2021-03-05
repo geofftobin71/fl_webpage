@@ -19,7 +19,7 @@
     "variant_heading": "Bouquet Size",
     "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
     "brightness": 66,
-    "number_heading": ""
+    "number_heading": "Number of Bouquets"
   },
   {
     "name": "Dried Flowers",
@@ -41,7 +41,7 @@
     "variant_heading": "Bouquet Size",
     "image": "/v1613593484/shop/vintage-dried-bouquet-2.jpg",
     "brightness": 66,
-    "number_heading": ""
+    "number_heading": "Number of Bouquets"
   },
   {
     "name": "Chocolate",
@@ -64,7 +64,7 @@
       "parent": "",
       "order": null
     },
-    "number_heading": ""
+    "number_heading": "Number of Blocks"
   },
   {
     "name": "Workshops",

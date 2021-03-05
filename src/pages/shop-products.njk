@@ -76,10 +76,12 @@ input[type="radio"]:checked + .radio-label {
 
 </style>
 
-{% set variant_heading = "Please choose" %}
+{% set variant_heading = "" %}
+{% set number_heading = "" %}
 {% for category in shop_categories %}
   {% if category.name == product.category %}
     {% set variant_heading = category.variant_heading %}
+    {% set number_heading = category.number_heading %}
   {% endif %}
 {% endfor %}
 
@@ -102,7 +104,7 @@ input[type="radio"]:checked + .radio-label {
           " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
         {% endfor %}
       </figure>
-      <p class="font-size--1">{{ product.page_description | safe }}</p>
+      <p class="font-size--1">{{ product.page_description }}</p>
     </div>
     <div class="wrapper text-wrapper" style="width:100%;height:100%">
       <form id="add-to-cart-form" class="stack" action="/php/add-to-cart.php" method="post" style="height:100%">
@@ -115,29 +117,43 @@ input[type="radio"]:checked + .radio-label {
           <p></p>
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }}>
-              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}<?php if(isFinite("{{ product.id }}", "{{ variant.id }}")) { ?><br><span class="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span><?php } ?></label>
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }} <?php if(stockCount("{{ product.id }}", "{{ variant.id }}") == 0) { echo ' disabled'; } ?> >
+              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}
+                <?php if(isFinite("{{ product.id }}", "{{ variant.id }}")) { ?>
+                  <?php if(stockCount("{{ product.id }}", "{{variant.id}}")) { ?>
+                    <br><span class="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span>
+                  <?php } else { ?>
+                    <br><span class="font-size-0">( SOLD OUT )</span>
+                <?php } ?>
+                <?php } ?>
+              </label>
             {% endfor %}
           </div>
         {% else %}
           <input id="variant_id" name="variant_id" type="hidden" value="none" style="margin:0">
         {% endif %}
 
-        <h3 class="text-lowercase text-center">number of places</h3>
+        {% if number_heading %}
+        <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
         <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
           <nav class="req-js" onclick="document.getElementById('product_count').stepDown();return false;">
             <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
           </nav>
+
           <input required id="product_count" name="product_count" type="number" min="1" value="1" class="text-center round" style="width:3em">
+
           <nav class="req-js" onclick="document.getElementById('product_count').stepUp();return false;">
             <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
           </nav>
         </div>
+        {% else %}
+          <input id="product_count" name="product_count" type="hidden" value="1">
+        {% endif %}
 
         <input id="product_id" name="product_id" type="hidden" value="{{ product.id }}" style="margin:0">
         <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
-        <hr style="margin-top:auto" />
+        <hr /> {# style="margin-top:auto" /> #}
         <p id="error" <?php if(!isset($_GET["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo $_GET["error"]; ?></p>
         <div class="bigfonts text-center"><button type="submit">add to cart</button></div>
       </form>
