@@ -58,11 +58,12 @@ fields:
     name: variant_heading
     label: Variant Heading
     description: If there are multiple variants of a product (eg. size) the product
-      page will show a selector with this text:<br><em>eg. Bouquet Size or Date & Time</em>
+      page will show a selector with this text:<br><em>eg. Bouquet Size or Date &
+      Time</em>
   - type: text
     name: number_heading
     label: Number Heading
-    description: <em>eg. Number of Tickets</em>
+    description: "<em>eg. Number of Tickets</em>"
   - name: menu
     type: include
     config: {}
