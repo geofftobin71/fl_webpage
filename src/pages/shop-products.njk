@@ -24,6 +24,11 @@ eleventyComputed:
 {% set lqip_data = lqip_path | imgLqip %}
 
 <style>
+#error {
+  font-family: var(--font-family-secondary);
+  text-align: center;
+  color: red;
+}
 .fader img {
   opacity: 0;
   animation-iteration-count: infinite;
@@ -71,10 +76,10 @@ input[type="radio"]:checked + .radio-label {
 
 </style>
 
-{% set variant_title = "Please choose" %}
+{% set variant_heading = "Please choose" %}
 {% for category in shop_categories %}
   {% if category.name == product.category %}
-    {% set variant_title = category.variant %}
+    {% set variant_heading = category.variant_heading %}
   {% endif %}
 {% endfor %}
 
@@ -101,22 +106,24 @@ input[type="radio"]:checked + .radio-label {
     </div>
     <div class="wrapper text-wrapper" style="width:100%;height:100%">
       <form id="add-to-cart-form" class="stack" action="/php/add-to-cart.php" method="post" style="height:100%">
+        <h2 class="heading text-center">{{ product.name }}</h2>
+        {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
         {% set valid_variants = product.variants | validProductVariants %}
         {% if valid_variants | length %}
-          <h3 class="heading text-center">{{ variant_title }}</h3>
+          <h3 class="text-lowercase text-center">{{ variant_heading }}</h3>
           <p></p>
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ 'checked' if loop.first }}>
-              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}<br><span style="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span></label>
+              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}<?php if(isFinite("{{ product.id }}", "{{ variant.id }}")) { ?><br><span class="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span><?php } ?></label>
             {% endfor %}
           </div>
         {% else %}
           <input id="variant_id" name="variant_id" type="hidden" value="none" style="margin:0">
         {% endif %}
 
-        <h3 class="heading text-center">number of places</h3>
+        <h3 class="text-lowercase text-center">number of places</h3>
         <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
           <nav class="req-js" onclick="document.getElementById('product_count').stepDown();return false;">
             <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
@@ -128,8 +135,10 @@ input[type="radio"]:checked + .radio-label {
         </div>
 
         <input id="product_id" name="product_id" type="hidden" value="{{ product.id }}" style="margin:0">
+        <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
         <hr style="margin-top:auto" />
+        <p id="error" <?php if(!isset($_GET["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo $_GET["error"]; ?></p>
         <div class="bigfonts text-center"><button type="submit">add to cart</button></div>
       </form>
     </div>

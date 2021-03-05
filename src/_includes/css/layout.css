@@ -271,7 +271,7 @@ article > * + * {
 }
 
 .flow > * + * {
-  margin-top: var(--flow-space, 1.5em);
+  margin-top: var(--flow-space, 1em);
 }
 
 /* ----- Wrapper ----- */
@@ -359,7 +359,7 @@ a.button:active { color: var(--button-hl); }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  --stack-space: 1.5em;
+  --stack-space: 1em;
 }
 
 .stack.center {

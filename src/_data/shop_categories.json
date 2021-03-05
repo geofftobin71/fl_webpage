@@ -16,7 +16,7 @@
     ],
     "button": "Order Fresh Flowers",
     "gallery_folder": "fresh-flowers",
-    "variant": "Please choose a size",
+    "variant_heading": "Bouquet Size",
     "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
     "brightness": 66
   },
@@ -37,7 +37,7 @@
     ],
     "button": "Order Dried Flowers",
     "gallery_folder": "dried-flowers",
-    "variant": "Please choose a size",
+    "variant_heading": "Bouquet Size",
     "image": "/v1613593484/shop/vintage-dried-bouquet-2.jpg",
     "brightness": 66
   },
@@ -54,7 +54,7 @@
     ],
     "button": "Add Chocolate",
     "gallery_folder": "",
-    "variant": "",
+    "variant_heading": "",
     "image": "/v1613194575/chocolate/chocolate-2.jpg",
     "brightness": 66,
     "eleventyNavigation": {
@@ -75,7 +75,7 @@
     ],
     "button": "Book Workshop",
     "gallery_folder": "workshops",
-    "variant": "Please choose a session",
+    "variant_heading": "Date & Time",
     "image": "/v1613195720/workshops/wreath-workshop-1.jpg",
     "brightness": 66,
     "eleventyNavigation": {

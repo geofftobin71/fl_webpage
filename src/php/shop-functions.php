@@ -17,6 +17,11 @@ function clean($data) {
   return $data;
 }
 
+function criticalError($page, $message) {
+    echo "<body style='text-align:center;font-family:sans-serif'><h1>Critical Error</h1><h2>" . $page . "</h2><p>" . $message . "</p></body>";
+    exit;
+}
+
 function formatMoney($number) {
     if (!$number) {
         $money = '0';
@@ -38,15 +43,14 @@ function uniqueId($length = 8) {
 }
 
 function isFinite($product, $variant) {
+  global $stockStore;
   $items = $stockStore->findBy([["product", "=", $product], "AND", ["variant", "=", $variant], "AND", ["unique", "=", true]]);
   return (count($items) > 0);
 }
 
 function stockCount($product, $variant) {
-  global $sleekDir;
-  return $sleekDir;
-  $items = $stockStore->findAll();
-  // $items = $stockStore->findBy([["product", "=", $product], "AND", ["variant", "=", $variant], "AND", ["sold", "=", false]]);
+  global $stockStore;
+  $items = $stockStore->findBy([["product", "=", $product], "AND", ["variant", "=", $variant], "AND", ["sold", "=", false]]);
   return count($items);
 }
 
