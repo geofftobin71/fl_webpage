@@ -1,8 +1,11 @@
 <?php
+session_start();
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Pragma: no-cache');
 header('Expires: 0');
-session_start();
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 if(!isset($_SESSION['cart'])) { $_SESSION['cart']=array(); }
 

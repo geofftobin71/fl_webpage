@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION["product_count"] = $stock_count;
       $_SESSION["error"] = "Number must be less than or equal to " . $stock_count;
       header("Location:" . $return_url . "#add-to-cart-form");
+      exit;
     }
   }
 
