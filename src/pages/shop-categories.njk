@@ -1,5 +1,5 @@
 ---
-layout: layouts/shop-page.njk
+layout: layouts/shop-php-page.njk
 pagination:
   data: valid_shop_categories
   size: 1
@@ -99,6 +99,7 @@ eleventyComputed:
 </section>
 
 <div class="wrapper page-wrapper">
+  {% include "partials/view-cart-button.njk" %}
   <section id="shop">
     <div>
       {% set product_list = valid_shop_products | filterByCategory(category.name) %}

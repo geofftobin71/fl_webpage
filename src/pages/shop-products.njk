@@ -1,5 +1,5 @@
 ---
-layout: layouts/shop-page.njk
+layout: layouts/shop-php-page.njk
 pagination:
   data: valid_shop_products
   size: 1
@@ -42,10 +42,20 @@ eleventyComputed:
 }
 .radio-label {
   font-family: var(--font-family-secondary);
-  color: var(--color-shade3);
+  background: var(--button-bg);
+  color: var(--button-fg);
   padding: var(--step--2) var(--step--1);
   border: 1px solid currentcolor;
   margin: 4px;
+}
+.radio-label:focus {
+  outline-offset: -0.2rem;
+  outline: 1px solid;
+}
+.radio-label:hover {
+  background: var(--button-fg);
+  color: var(--button-hl);
+  border-color: var(--button-hl);
 }
 input[type="radio"]:checked + .radio-label {
   color: var(--color-light);
@@ -85,6 +95,7 @@ input[type="radio"]:checked + .radio-label {
   {% endif %}
 {% endfor %}
 
+{% include "partials/view-cart-button.njk" %}
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
     <div class="wrapper image-wrapper flow" style="width:100%">
@@ -118,7 +129,7 @@ input[type="radio"]:checked + .radio-label {
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product_id"]) && isset($_SESSION["variant_id"]) && ($_SESSION["product_id"] == "{{ product.id }}") && ($_SESSION["variant_id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(stockCount("{{ product.id }}", "{{ variant.id }}") == 0) { echo " disabled"; } ?> >
-              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}
+              <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
                 <?php if(isFinite("{{ product.id }}", "{{ variant.id }}")) { ?>
                   <?php if(stockCount("{{ product.id }}", "{{variant.id}}")) { ?>
                     <br><span class="font-size--1">( <?php echo stockCount("{{ product.id }}", "{{ variant.id }}"); ?> available )</span>
@@ -155,7 +166,7 @@ input[type="radio"]:checked + .radio-label {
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
         <p id="error" <?php if(!isset($_SESSION["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
-        <div class="bigfonts text-center"><button type="submit">add to cart</button></div>
+        <div class="bigfonts text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
       </form>
     </div>
   </div>

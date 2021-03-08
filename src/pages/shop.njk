@@ -1,11 +1,12 @@
 ---
-layout: layouts/shop-page.njk
+layout: layouts/shop-php-page.njk
 eleventyNavigation:
   order: 10
   key: Shop
 title: Shop
 description: Contact Floriade for all your fresh & dried flower needs.
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
+permalink: "shop/index.php"
 ---
 <style>
 #shop .slider {
@@ -124,6 +125,7 @@ header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 </style>
 
 <div class="wrapper page-wrapper">
+  {% include "partials/view-cart-button.njk" %}
   {% for category in valid_shop_categories %}
     <section id="shop">
       <div class="flow" style="--flow-space:2em">

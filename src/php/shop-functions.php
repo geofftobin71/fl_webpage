@@ -40,7 +40,7 @@ function formatMoney($number) {
         }
     }
     
-    return $money;
+    return '$' . $money;
 }
 
 function uniqueId($length = 8) {

@@ -6,6 +6,7 @@ image(s) section
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler
 keyboard navigation / aria roles
+aria-label vs title
 aria-hidden on icons
 TEST social sharing buttons
 TEST Contact Form ALT text from image_info
