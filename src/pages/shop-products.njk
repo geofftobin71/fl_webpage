@@ -166,7 +166,7 @@ input[type="radio"]:checked + .radio-label {
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
         <p id="error" <?php if(!isset($_SESSION["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
-        <div class="bigfonts text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
+        <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
       </form>
     </div>
   </div>
