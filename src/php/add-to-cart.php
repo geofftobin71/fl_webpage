@@ -2,12 +2,6 @@
 
 <?php
 
-$product_id = "";
-$variant_id = "";
-$product_count = 1;
-$stock_count = 1;
-$return_url = "";
-
 $page = "Add to Cart";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,15 +33,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 
+  /*
   echo "Product ID: " . $_POST["product_id"] . "<br>";
   echo "Variant ID: " . $_POST["variant_id"] . "<br>";
   echo "Product count: " . $_POST["product_count"] . "<br>";
   echo "Return URL: " . $_POST["return_url"] . "<br>";
-  
+   */
+
+  $items_added = 0;
+
+  for($i = 0; $i < $product_count; $i++) {
+    $item = getStock($product_id, $variant_id);
+
+    if($item) {
+      $_SESSION["cart"][] = { "id" => $item["id"] };
+
+      if($item["unique"]) {
+        $item["cart"] = $_SESSION["cart_id"];
+        $item["updated"] = (new DateTime)->getTimestamp();
+
+        $stockStore->update($item);
+      }
+
+      $items_added++;
+    }
+  }
+
+  if($items_added == $product_count) {
+    unset($_SESSION["error"]);
+    $_SESSION["info"] = $items_added . " items were added to your cart";
+  } else {
+    unset($_SESSION["info"]);
+    $_SESSION["error"] = "Only " . $items_added . " items could be added to your cart";
+  }
+
   unset($_SESSION["product_id"]);
   unset($_SESSION["variant_id"]);
   unset($_SESSION["product_count"]);
-  unset($_SESSION["error"]);
+
+  header("Location:/cart/");
+  exit;
 }
 
 ?>

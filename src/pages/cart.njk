@@ -11,7 +11,7 @@ permalink: "cart/index.php"
 <section id="cart" style="min-height:50vh">
   <div class="wrapper text-wrapper">
     <?php $cart_count = count($_SESSION["cart"]); ?>
-    <?php if($cart_count < 0) { ?>
+    <?php if($cart_count < 0) { /* FIXME == 0 */ ?>
     <div class="center-both stack" style="--stack-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>
       <div class="text-center">
@@ -22,7 +22,19 @@ permalink: "cart/index.php"
     </div>
     <?php } else { ?>
 
-    <div class="flow" style="width:100%;--flow-space:2em">
+    <form id="cart-form" action="/checkout/" method="post" class="flow" style="width:100%;--flow-space:2em">
+
+      <pre>
+      <?php print_r($_SESSION); ?>
+      </pre>
+
+      <div class="stack">
+        <?php foreach($_SESSION["cart"] as $item) { ?>
+        <p><?php echo $item["id"]; ?></p>
+        <?php } ?>
+      </div>
+
+      <hr />
 
       <div id="summary" class="text-right font-family-secondary" style="display:grid;grid-template-columns:1fr auto auto;grid-gap:1em;align-items:center">
         <h3 class="heading">Cart Total</h3>
@@ -30,7 +42,7 @@ permalink: "cart/index.php"
         <p><?php echo formatMoney(125); ?></p>
 
         <h3 class="heading">Delivery To</h3>
-        <select id="delivery-suburb" name="delivery-suburb" class="select-css">
+        <select zrequired id="delivery-suburb" name="delivery-suburb" class="select-css">
           <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
           {% for suburb, fee in delivery_fees %}
             <option value="{{ suburb | lower }}">{{ suburb | title }}&nbsp;</option>
@@ -38,22 +50,24 @@ permalink: "cart/index.php"
         </select>
         <p><?php echo formatMoney(25); ?></p>
 
-        <h3 class="heading">TOTAL</h3>
+        <h3 class="font-size-1 text-lowercase">TOTAL</h3>
         <p></p>
-        <p><?php echo formatMoney(150); ?></p>
+        <p class="font-size-1"><?php echo formatMoney(150); ?></p>
       </div>
 
       <hr />
+
+      <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
 
       <div class="buttons">
         <a class="button icon-button" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span>Continue Shopping
         </a>
-        <a class="button icon-button" href="/php/checkout.php">
+        <button class="icon-button cursor-pointer" type="submit">
           <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span>Checkout
-        </a>
+        </button>
       </div>
-    </div>
+    </form>
     <?php } ?>
   </div>
 </section>
