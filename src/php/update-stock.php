@@ -18,18 +18,16 @@
 
 <?php
 
-$products = json_decode(file_get_contents("shop_products.json"), true);
-
-foreach($products as $product) {
-  if($product['variants']) {
-    foreach($product['variants'] as $variant) {
-      if($variant['stock']) {
-        $items = $stockStore->findBy([["product", "=", $product['id']], "AND", ["variant", "=", $variant['id']], "AND", ["unique", "=", true]]);
-        for($x = 0; $x < (intVal($variant['stock']) - count($items)); $x++) {
+foreach($shop_products as $product) {
+  if($product["variants"]) {
+    foreach($product["variants"] as $variant) {
+      if($variant["stock"]) {
+        $items = $stockStore->findBy([["product", "=", $product["id"]], "AND", ["variant", "=", $variant["id"]], "AND", ["unique", "=", true]]);
+        for($x = 0; $x < (intVal($variant["stock"]) - count($items)); $x++) {
           $stockStore->insert([
             "id" => uniqueId(),
-            "product" => $product['id'],
-            "variant" => $variant['id'],
+            "product" => $product["id"],
+            "variant" => $variant["id"],
             "updated" => (new DateTime)->getTimestamp(),
             "cart" => null,
             "unique" => true,
@@ -37,12 +35,12 @@ foreach($products as $product) {
           ]);
         }
       } else {
-        $items = $stockStore->findBy([["product", "=", $product['id']], "AND", ["variant", "=", $variant['id']], "AND", ["unique", "=", false]]);
+        $items = $stockStore->findBy([["product", "=", $product["id"]], "AND", ["variant", "=", $variant["id"]], "AND", ["unique", "=", false]]);
         if(count($items) == 0) {
           $stockStore->insert([
             "id" => uniqueId(),
-            "product" => $product['id'],
-            "variant" => $variant['id'],
+            "product" => $product["id"],
+            "variant" => $variant["id"],
             "updated" => (new DateTime)->getTimestamp(),
             "cart" => null,
             "unique" => false,
@@ -52,12 +50,12 @@ foreach($products as $product) {
       }
     }
   } else {
-    if($product['stock']) {
-      $items = $stockStore->findBy([["product", "=", $product['id']], "AND", ["variant", "=", "none"], "AND", ["unique", "=", true]]);
-      for($x = 0; $x < (intVal($product['stock']) - count($items)); $x++) {
+    if($product["stock"]) {
+      $items = $stockStore->findBy([["product", "=", $product["id"]], "AND", ["variant", "=", "none"], "AND", ["unique", "=", true]]);
+      for($x = 0; $x < (intVal($product["stock"]) - count($items)); $x++) {
         $stockStore->insert([
           "id" => uniqueId(),
-          "product" => $product['id'],
+          "product" => $product["id"],
           "variant" => "none",
           "updated" => (new DateTime)->getTimestamp(),
           "cart" => null,
@@ -66,11 +64,11 @@ foreach($products as $product) {
         ]);
       }
     } else {
-      $items = $stockStore->findBy([["product", "=", $product['id']], "AND", ["variant", "=", "none"], "AND", ["unique", "=", false]]);
+      $items = $stockStore->findBy([["product", "=", $product["id"]], "AND", ["variant", "=", "none"], "AND", ["unique", "=", false]]);
       if(count($items) == 0) {
         $stockStore->insert([
           "id" => uniqueId(),
-          "product" => $product['id'],
+          "product" => $product["id"],
           "variant" => "none",
           "updated" => (new DateTime)->getTimestamp(),
           "cart" => null,
@@ -82,21 +80,21 @@ foreach($products as $product) {
   }
 }
 
-foreach($products as $product) {
-  echo $product['name'] . '<br>';
-  $items = $stockStore->findBy([["product", "=", $product['id']], "AND", ["variant", "=", "none"]]);
+foreach($shop_products as $product) {
+  echo $product["name"] . "<br>";
+  $items = $stockStore->findBy([["product", "=", $product["id"]], "AND", ["variant", "=", "none"]]);
   foreach($items as $item) {
-    echo '&nbsp;&nbsp;' . $item['id'] . ' ' . (int)$item['unique'] . '<br>';
+    echo "&nbsp;&nbsp;" . $item["id"] . " " . (int)$item["unique"] . "<br>";
   }
-  echo '<br>';
+  echo "<br>";
 
-  foreach($product['variants'] as $variant) {
-    echo '&nbsp;&nbsp;' . $variant['name'] . '<br>';
-    $items = $stockStore->findBy([["product", "=", $product['id']], "AND", ["variant", "=", $variant['id']]]);
+  foreach($product["variants"] as $variant) {
+    echo "&nbsp;&nbsp;" . $variant["name"] . "<br>";
+    $items = $stockStore->findBy([["product", "=", $product["id"]], "AND", ["variant", "=", $variant["id"]]]);
     foreach($items as $item) {
-      echo '&nbsp;&nbsp;&nbsp;&nbsp;' . $item['id'] . ' ' . (int)$item['unique'] . '<br>';
+      echo "&nbsp;&nbsp;&nbsp;&nbsp;" . $item["id"] . " " . (int)$item["unique"] . "<br>";
     }
-    echo '<br>';
+    echo "<br>";
   }
 }
 

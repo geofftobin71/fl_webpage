@@ -34,7 +34,8 @@ hr {
   opacity: 0.5;
   height: 0;
   overflow: visible;
-  margin: 0 1em;
+  margin: 0;
+  /* margin: 0 1em; */
 }
 
 hr.vertical {

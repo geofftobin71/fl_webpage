@@ -24,11 +24,6 @@ eleventyComputed:
 {% set lqip_data = lqip_path | imgLqip %}
 
 <style>
-#error {
-  font-family: var(--font-family-secondary);
-  text-align: center;
-  color: red;
-}
 .fader img {
   opacity: 0;
   animation-iteration-count: infinite;
@@ -129,9 +124,10 @@ input[type="radio"]:checked + .radio-label {
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <?php $stock_count = stockCount("{{ product.id }}", "{{variant.id}}"); ?>
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product_id"]) && isset($_SESSION["variant_id"]) && ($_SESSION["product_id"] == "{{ product.id }}") && ($_SESSION["variant_id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if($stock_count == 0) { echo " disabled"; } ?> >
+              <?php $finite = isFinite("{{ product.id }}", "{{variant.id}}"); ?>
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product_id"]) && isset($_SESSION["variant_id"]) && ($_SESSION["product_id"] == "{{ product.id }}") && ($_SESSION["variant_id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(($finite) && ($stock_count == 0)) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
-                <?php if(isFinite("{{ product.id }}", "{{ variant.id }}")) { ?>
+                <?php if($finite) { ?>
                   <?php if($stock_count) { ?>
                     <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
                   <?php } else { ?>
@@ -166,7 +162,9 @@ input[type="radio"]:checked + .radio-label {
         <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
-        <p id="error" <?php if(!isset($_SESSION["error"])) { echo ' class="visually-hidden"'; } ?> ><?php echo isset($_SESSION["error"] ? $_SESSION["error"] : ''; unset($_SESSION["error"]); ?></p>
+        <?php if(isset($_SESSION["error"])) { ?>
+        <p id="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
+        <?php } ?>
         <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
       </form>
     </div>
@@ -176,7 +174,7 @@ input[type="radio"]:checked + .radio-label {
 {% include "partials/pagination.njk" %}
 
 <?php
-unset($_SESSION["product_id"]);
-unset($_SESSION["variant_id"]);
-unset($_SESSION["product_count"]);
-?>
+                                                                unset($_SESSION["product_id"]);
+                                                                unset($_SESSION["variant_id"]);
+                                                                unset($_SESSION["product_count"]);
+                                                                ?>
