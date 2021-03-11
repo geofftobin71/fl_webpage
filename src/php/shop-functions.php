@@ -165,6 +165,6 @@ function getStock($product_id, $variant_id) {
 }
 
 if(!isset($_SESSION["cart"])) { $_SESSION["cart"] = array(); }
-if(!isset($_SESSION["cart_id"])) { $_SESSION["cart_id"] = uniqueId(18); }
+if(!isset($_SESSION["cart-id"])) { $_SESSION["cart-id"] = uniqueId(18); }
 
 ?>

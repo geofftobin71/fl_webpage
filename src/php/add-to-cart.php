@@ -32,15 +32,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST["product-count"])) { $product_count = intval(clean($_POST["product-count"])); }
   $product_count = ($product_count < 1) ? 1 : $product_count;
 
-  $_SESSION["product_id"] = $product_id;
-  $_SESSION["variant_id"] = $variant_id;
-  $_SESSION["product_count"] = $product_count;
+  $_SESSION["product-id"] = $product_id;
+  $_SESSION["variant-id"] = $variant_id;
+  $_SESSION["product-count"] = $product_count;
 
   if(isFinite($product_id, $variant_id)) {
     $stock_count = stockCount($product_id, $variant_id);
 
     if($product_count > $stock_count) {
-      $_SESSION["product_count"] = $stock_count;
+      $_SESSION["product-count"] = $stock_count;
       $_SESSION["error"] = "Number must be less than or equal to " . $stock_count;
       header("Location:" . $return_url . "#add-to-cart-form");
       exit;
@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       $_SESSION["cart"][] = array("id" => $item["id"]);
 
       if($item["unique"]) {
-        $item["cart"] = $_SESSION["cart_id"];
+        $item["cart"] = $_SESSION["cart-id"];
         $item["updated"] = (new DateTime)->getTimestamp();
 
         $stockStore->update($item);
@@ -74,9 +74,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["error"] = $items_added . " of " . $product_count . " items could be added to your cart";
   }
 
-  unset($_SESSION["product_id"]);
-  unset($_SESSION["variant_id"]);
-  unset($_SESSION["product_count"]);
+  unset($_SESSION["product-id"]);
+  unset($_SESSION["variant-id"]);
+  unset($_SESSION["product-count"]);
 
   header("Location:/cart/");
   exit;
