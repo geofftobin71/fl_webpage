@@ -17,6 +17,7 @@ date_default_timezone_set("Pacific/Auckland");
 
 $shop_products = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_products.json"), true);
 $shop_categories = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_categories.json"), true);
+$delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_fees.json"), true);
 
 function clean($data) {
   $data = trim($data);
@@ -27,15 +28,15 @@ function clean($data) {
 
 function criticalError($page, $message) {
     echo "<body style=\"text-align:center;font-family:sans-serif\"><h1>Critical Error</h1><h2>" . $page . "</h2><p>" . $message . "</p>";
-    echo "<pre>"; print_r($_POST); echo "</pre>";
-    echo "<pre>"; print_r($_SESSION); echo "</pre>";
+    // echo "<pre>"; print_r($_POST); echo "</pre>";
+    // echo "<pre>"; print_r($_SESSION); echo "</pre>";
     echo "</body>";
     exit;
 }
 
 function formatMoney($cents) {
     if (!$cents) {
-        $money = "0";
+      return "free";
     } else {
         $f = floatval($cents) / 100.0;
         if (floor($f) == $f) {

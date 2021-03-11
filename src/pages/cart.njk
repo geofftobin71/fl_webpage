@@ -20,8 +20,10 @@ permalink: "cart/index.php"
 <section id="cart" style="min-height:50vh">
   <div class="wrapper text-wrapper">
     <?php $cart_count = count($_SESSION["cart"]); ?>
+    <?php $cart_total = 0; ?>
+    <?php $delivery_fee = 0; ?>
 
-    <?php if($cart_count < 0) { /* FIXME == 0 */ ?>
+    <?php if($cart_count == 0) { ?>
     <div class="center-both stack" style="--stack-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>
       <div class="text-center">
@@ -37,7 +39,6 @@ permalink: "cart/index.php"
       <hr />
 
       <div id="items" class="font-family-secondary" style="display:grid;grid-template-columns:1fr auto;grid-gap:1em;align-items:start">
-        <?php $cart_total = 0; ?>
         <?php foreach($_SESSION["cart"] as $cart_item) {
           $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
           $product = getProduct($item["product"]);
@@ -62,24 +63,23 @@ permalink: "cart/index.php"
         <p><?php echo formatMoney($cart_total); ?></p>
 
         <h3 class="heading">Delivery To</h3>
-        <select xrequired id="delivery-suburb" name="delivery-suburb" class="select-css"> {# FIXME xreq #}
+        <select required id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
           <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
           {% for suburb, fee in delivery_fees %}
-            <option value="{{ suburb | lower }}">{{ suburb | title }}&nbsp;</option>
+            <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
           {% endfor %}
         </select>
-        <?php $delivery_fee = 2500; ?>
-        <noscript><p>TBC</p></noscript>
-        <p class="req_js"><?php echo formatMoney($delivery_fee); ?></p>
+        <?php if(isset($_SESSION["delivery-suburb"])) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
+        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"])) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
 
         <h3 class="font-size-1 text-lowercase">TOTAL</h3>
         <p></p>
-        <p class="font-size-1"><?php echo formatMoney($cart_total + $delivery_fee); ?></p>
+        <p id="total" class="font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
       </div>
 
       <hr />
 
-      <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
+      <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
 
       <div class="buttons swap">
         <a class="button icon-button" href="/shop/">
@@ -96,3 +96,36 @@ permalink: "cart/index.php"
     <?php } ?>
   </div>
 </section>
+
+<p id="test"></p>
+
+<script>
+  var delivery_fees;
+
+  async function loadJSON(fname) {
+    var response = await fetch(fname);
+    delivery_fees = await response.json();
+  }
+
+  // loadJSON("{{ site.url }}/php/delivery_fees.json");
+  loadJSON("http://168.138.10.72/delivery_fees.json");
+
+  function formatMoney(cents) {
+    if(cents == 0) { return 'free'; }
+    if(Math.floor(cents / 100.0) == (cents / 100.0)) {
+      return '$' + (cents / 100.0);
+    } else {
+      return '$' + (cents / 100.0).toFixed(2);
+    }
+  };
+
+  function updateDeliveryFee() {
+    var suburb = document.getElementById("delivery-suburb").value;
+
+    var delivery_fee = delivery_fees[suburb] * 100;
+    var cart_total = <?php echo $cart_total; ?>;
+
+    document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
+    document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
+  }
+</script>

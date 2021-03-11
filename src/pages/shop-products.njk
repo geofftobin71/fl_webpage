@@ -125,7 +125,7 @@ input[type="radio"]:checked + .radio-label {
             {% for variant in valid_variants %}
               <?php $stock_count = stockCount("{{ product.id }}", "{{variant.id}}"); ?>
               <?php $finite = isFinite("{{ product.id }}", "{{variant.id}}"); ?>
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant_id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product_id"]) && isset($_SESSION["variant_id"]) && ($_SESSION["product_id"] == "{{ product.id }}") && ($_SESSION["variant_id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(($finite) && ($stock_count == 0)) { echo " disabled"; } ?> >
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product_id"]) && isset($_SESSION["variant_id"]) && ($_SESSION["product_id"] == "{{ product.id }}") && ($_SESSION["variant_id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(($finite) && ($stock_count == 0)) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
                 <?php if($finite) { ?>
                   <?php if($stock_count) { ?>
@@ -138,7 +138,7 @@ input[type="radio"]:checked + .radio-label {
             {% endfor %}
           </div>
         {% else %}
-          <input id="variant_id" name="variant_id" type="hidden" value="none" style="margin:0">
+          <input id="variant_id" name="variant-id" type="hidden" value="none" style="margin:0">
         {% endif %}
 
         {% if number_heading %}
@@ -148,18 +148,18 @@ input[type="radio"]:checked + .radio-label {
             <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
           </nav>
 
-          <input required id="product_count" name="product_count" type="number" min="1" value="<?php if(isset($_SESSION['product_count'])) { echo $_SESSION['product_count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
+          <input required id="product-count" name="product-count" type="number" min="1" value="<?php if(isset($_SESSION['product_count'])) { echo $_SESSION['product_count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
 
           <nav class="req-js" onclick="document.getElementById('product_count').stepUp();return false;">
             <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
           </nav>
         </div>
         {% else %}
-          <input id="product_count" name="product_count" type="hidden" value="1">
+          <input id="product-count" name="product-count" type="hidden" value="1">
         {% endif %}
 
-        <input id="product_id" name="product_id" type="hidden" value="{{ product.id }}" style="margin:0">
-        <input id="return_url" name="return_url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
+        <input id="product-id" name="product-id" type="hidden" value="{{ product.id }}" style="margin:0">
+        <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
         <?php if(isset($_SESSION["error"])) { ?>

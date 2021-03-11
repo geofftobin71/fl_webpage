@@ -1,4 +1,4 @@
-<?php if(count($_SESSION["cart"]) >= 0) { /* FIXME > 0 */ ?>
+<?php if(count($_SESSION["cart"]) > 0) { ?>
 <div class="center-both text-center" style="padding-top:calc(var(--section-padding) / 2)">
   <a class="button text-lowercase" style="display:flex" href="/cart/">
     <span style="width:1em;height:1em;margin-right:0.5em">{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>View your Cart</p>

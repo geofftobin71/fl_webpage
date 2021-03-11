@@ -124,6 +124,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("./admin");
   eleventyConfig.addPassthroughCopy({"./src/_data/shop_categories.json" : "/php/shop_categories.json"});
   eleventyConfig.addPassthroughCopy({"./src/_data/shop_products.json" : "/php/shop_products.json"});
+  eleventyConfig.addPassthroughCopy({"./src/_data/delivery_fees.json" : "/php/delivery_fees.json"});
+  eleventyConfig.addPassthroughCopy({"./src/_data/delivery_fees.json" : "/delivery_fees.json"});
 
   eleventyConfig.addShortcode("markdown",
     content => `${markdown.render(content)}`
@@ -379,6 +381,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("formatMoney", (cents) => {
+    if(cents == 0) { return 'free'; }
     if(Math.floor(cents / 100.0) == (cents / 100.0)) {
       return '$' + (cents / 100.0);
     } else {

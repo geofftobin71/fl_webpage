@@ -1,0 +1,30 @@
+{% extends "layouts/page.njk" %}
+
+{% block pre %}
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php'; ?>
+
+<?php
+
+$delivery_suburb = "";
+$return_url = "";
+
+$page = "Checkout";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  if(isset($_POST["return-url"])) { $return_url = clean($_POST["return-url"]); }
+  if(empty($return_url)) { criticalError($page, "No Return URL"); }
+
+  if(isset($_POST["delivery-suburb"])) { $delivery_suburb = clean($_POST["delivery-suburb"]); }
+
+  if(empty($delivery_suburb)) {
+    $_SESSION["error"] = "Please choose a delivery option";
+    header("Location:" . $return_url);
+    exit;
+  }
+
+  $_SESSION["delivery-suburb"] = $delivery_suburb;
+}
+
+?>
+{% endblock %}

@@ -14,29 +14,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   /*
   print_r($_POST);
 
-  echo "Product ID: " . $_POST["product_id"] . "<br>";
-  echo "Variant ID: " . $_POST["variant_id"] . "<br>";
-  echo "Product count: " . $_POST["product_count"] . "<br>";
-  echo "Return URL: " . $_POST["return_url"] . "<br>";
+  echo "Product ID: " . $_POST["product-id"] . "<br>";
+  echo "Variant ID: " . $_POST["variant-id"] . "<br>";
+  echo "Product count: " . $_POST["product-count"] . "<br>";
+  echo "Return URL: " . $_POST["return-url"] . "<br>";
   */
 
-  if(isset($_POST["product_id"])) { $product_id = clean($_POST["product_id"]); }
+  if(isset($_POST["product-id"])) { $product_id = clean($_POST["product-id"]); }
   if(empty($product_id)) { criticalError($page, "No Product ID"); }
 
-  if(isset($_POST["variant_id"])) { $variant_id = clean($_POST["variant_id"]); }
+  if(isset($_POST["variant-id"])) { $variant_id = clean($_POST["variant-id"]); }
   if(empty($variant_id)) { criticalError($page, "No Variant ID"); }
 
-  if(isset($_POST["return_url"])) { $return_url = clean($_POST["return_url"]); }
+  if(isset($_POST["return-url"])) { $return_url = clean($_POST["return-url"]); }
   if(empty($return_url)) { criticalError($page, "No Return URL"); }
 
-  if(isset($_POST["product_count"])) { $product_count = intval(clean($_POST["product_count"])); }
+  if(isset($_POST["product-count"])) { $product_count = intval(clean($_POST["product-count"])); }
   $product_count = ($product_count < 1) ? 1 : $product_count;
 
   $_SESSION["product_id"] = $product_id;
   $_SESSION["variant_id"] = $variant_id;
   $_SESSION["product_count"] = $product_count;
-
-  print_r($_SESSION);
 
   if(isFinite($product_id, $variant_id)) {
     $stock_count = stockCount($product_id, $variant_id);
