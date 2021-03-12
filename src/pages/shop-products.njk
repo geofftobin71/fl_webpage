@@ -113,6 +113,7 @@ input[type="radio"]:checked + .radio-label {
       <p class="font-size--1">{{ product.page_description }}</p>
     </div>
     <div class="wrapper text-wrapper" style="width:100%;height:100%">
+      <?php if(cartHasParents("{{ product.id }}")) { ?>
       <form id="add-to-cart-form" class="stack" action="/php/add-to-cart.php" method="post" style="height:100%">
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
@@ -128,11 +129,11 @@ input[type="radio"]:checked + .radio-label {
               <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(($finite) && ($stock_count == 0)) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
                 <?php if($finite) { ?>
-                  <?php if($stock_count) { ?>
-                    <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
-                  <?php } else { ?>
-                    <br><span class="font-size-0">( SOLD OUT )</span>
-                  <?php } ?>
+                <?php if($stock_count) { ?>
+                <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
+                <?php } else { ?>
+                <br><span class="font-size-0">( SOLD OUT )</span>
+                <?php } ?>
                 <?php } ?>
               </label>
             {% endfor %}
@@ -142,18 +143,18 @@ input[type="radio"]:checked + .radio-label {
         {% endif %}
 
         {% if number_heading %}
-        <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
-        <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
-          <nav class="req-js" onclick="document.getElementById('product-count').stepDown();return false;">
-            <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
-          </nav>
-
-          <input required id="product-count" name="product-count" type="number" min="1" value="<?php if(isset($_SESSION['product-count'])) { echo $_SESSION['product-count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
-
-          <nav class="req-js" onclick="document.getElementById('product-count').stepUp();return false;">
-            <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
-          </nav>
-        </div>
+          <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
+          <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
+            <nav class="req-js" onclick="document.getElementById('product-count').stepDown();return false;">
+              <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
+            </nav>
+        
+            <input required id="product-count" name="product-count" type="number" min="1" value="<?php if(isset($_SESSION['product-count'])) { echo $_SESSION['product-count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
+        
+            <nav class="req-js" onclick="document.getElementById('product-count').stepUp();return false;">
+              <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
+            </nav>
+          </div>
         {% else %}
           <input id="product-count" name="product-count" type="hidden" value="1">
         {% endif %}
@@ -167,6 +168,14 @@ input[type="radio"]:checked + .radio-label {
         <?php } ?>
         <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
       </form>
+      <?php }  else { ?>
+      <div class="stack">
+        <h2 class="heading text-center">{{ product.name }}</h2>
+        {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
+        <hr />
+        <p class="text-center">This product can only be added to the cart as an add-on to <?php echo listParents("{{ product.id }}"); ?>.</p>
+      </div>
+      <?php } ?>
     </div>
   </div>
 </section>
@@ -174,7 +183,7 @@ input[type="radio"]:checked + .radio-label {
 {% include "partials/pagination.njk" %}
 
 <?php
-unset($_SESSION["product-id"]);
-unset($_SESSION["variant-id"]);
-unset($_SESSION["product-count"]);
-?>
+                                                                                       unset($_SESSION["product-id"]);
+                                                                                       unset($_SESSION["variant-id"]);
+                                                                                       unset($_SESSION["product-count"]);
+                                                                                       ?>

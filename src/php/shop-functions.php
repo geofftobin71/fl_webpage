@@ -164,6 +164,66 @@ function getStock($product_id, $variant_id) {
   return $item;
 }
 
+function cartHasParents($product_id) {
+  global $stockStore;
+
+  $product = getProduct($product_id);
+  $category = getCategory($product["category"]);
+  if(empty($category["parents"])) { return true; }
+
+  foreach($_SESSION["cart"] as $cart_item) {
+    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
+    $cart_product = getProduct($item["product"]);
+    if(in_array($cart_product["category"], $category["parents"])) { return true; }
+  }
+
+  return false;
+}
+
+function listParents($product_id) {
+  $product = getProduct($product_id);
+  $category = getCategory($product["category"]);
+  $result = "";
+  $first = true;
+  foreach($category["parents"] as $parent) {
+    if(!$first) { $result .= " or "; }
+    $result .= $parent;
+    $first = false;
+  }
+
+  return $result;
+}
+
+function cartCount() {
+  return count($_SESSION["cart"]);
+}
+
+function cartTotal() {
+  global $stockStore;
+  $cart_total = 0;
+  foreach($_SESSION["cart"] as $cart_item) {
+    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
+    $product = getProduct($item["product"]);
+    $price = getPrice($product, $item["variant"]);
+    $cart_total += $price;
+  }
+
+  return $cart_total;
+}
+
+function cartHasDelivery() {
+  global $stockStore;
+  foreach($_SESSION["cart"] as $cart_item) {
+    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
+    $product = getProduct($item["product"]);
+    $category = getCategory($product["category"]);
+
+    if($category["delivery"]) { return true; }
+  }
+
+  return false;
+}
+
 if(!isset($_SESSION["cart"])) { $_SESSION["cart"] = array(); }
 if(!isset($_SESSION["cart-id"])) { $_SESSION["cart-id"] = uniqueId(18); }
 

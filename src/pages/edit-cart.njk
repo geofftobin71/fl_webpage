@@ -1,11 +1,9 @@
 ---
 layout: layouts/php-page.njk
-title: Cart
-description: Your Floriade shopping cart
+title: Edit Cart
+description: Edit your Floriade shopping cart
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
-header:
-  title: Your Cart
-permalink: "cart/index.php"
+permalink: "edit-cart/index.php"
 ---
 
 <style>
@@ -118,8 +116,8 @@ permalink: "cart/index.php"
         <a class="button icon-button" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
         </a>
-        <a class="button icon-button" href="/edit-cart/">
-          <span>{{ '/src/svg/edit.svg' | svgContents | safe }}</span><p>Edit Cart</p>
+        <a class="button icon-button" href="/php/empty-cart.php">
+          <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p>Empty Cart</p>
         </a>
         <button class="icon-button cursor-pointer bigfonts" type="submit">
           <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Checkout</p>
