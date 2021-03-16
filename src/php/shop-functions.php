@@ -102,9 +102,9 @@ function isUnique($product_id, $variant_id) {
 function stockCount($product_id, $variant_id) {
   global $stockStore;
 
-  $ten_minutes_ago = new DateTime;
-  $ten_minutes_ago->modify("-10 minutes");
-  $ten_minutes_ago = $ten_minutes_ago->getTimestamp();
+  $timeout = new DateTime;
+  $timeout->modify("-20 minutes");
+  $timeout = $timeout->getTimestamp();
 
   $items = $stockStore->findBy([
     ["product", "=", $product_id],
@@ -115,7 +115,7 @@ function stockCount($product_id, $variant_id) {
     "AND",
     ["sold", "=", false],
     "AND",
-    ["updated", "<", $ten_minutes_ago]
+    ["updated", "<", $timeout]
   ]);
 
   return count($items);
@@ -124,9 +124,9 @@ function stockCount($product_id, $variant_id) {
 function findStock($product_id, $variant_id) {
   global $stockStore;
 
-  $ten_minutes_ago = new DateTime;
-  $ten_minutes_ago->modify("-10 minutes");
-  $ten_minutes_ago = $ten_minutes_ago->getTimestamp();
+  $timeout = new DateTime;
+  $timeout->modify("-20 minutes");
+  $timeout = $timeout->getTimestamp();
 
   $item = $stockStore->findOneBy([
     ["product", "=", $product_id],
@@ -141,7 +141,7 @@ function findStock($product_id, $variant_id) {
         "AND",
         ["sold", "=", false],
         "AND",
-        ["updated", "<", $ten_minutes_ago]
+        ["updated", "<", $timeout]
       ]
     ]
   ]);

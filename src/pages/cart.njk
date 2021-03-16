@@ -38,14 +38,14 @@ permalink: "cart/index.php"
 </style>
 
 <?php
-  $ten_minutes_ago = new DateTime;
-  $ten_minutes_ago->modify("-10 minutes");
-  $ten_minutes_ago = $ten_minutes_ago->getTimestamp();
+  $timeout = new DateTime;
+  $timeout->modify("-20 minutes");
+  $timeout = $timeout->getTimestamp();
 
   foreach($_SESSION["cart"] as $cart_item) {
   if($cart_item["unique"]) {
     $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
-    if(($cart_item["updated"] < $ten_minutes_ago) || ($cart_item["updated"] < $item["updated"])) {
+    if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $item["updated"])) {
       unset($_SESSION["cart"]);
       $_SESSION["cart"] = array();
       $_SESSION["error"] = "Your session has timed out";
@@ -98,10 +98,10 @@ permalink: "cart/index.php"
             <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
           <?php } ?>
           <div class="font-size--1" style="display:flex">
-          <a class="icon-button" href="/php/remove-product.php?i=<?php echo $i; ?>">
+          <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
             <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
           </a>
-          <a class="icon-button" style="margin-left:2em" href="/php/edit-product.php?i=<?php echo $i; ?>">
+          <a class="icon-button" style="margin-left:2em" href="/php/edit-message.php?i=<?php echo $i; ?>">
             <span>{{ '/src/svg/edit.svg' | svgContents | safe }}</span><p class="text-lowercase">Add Message</p>
           </a>
         </div>
@@ -121,7 +121,7 @@ permalink: "cart/index.php"
         <?php if(cartHasDelivery()) { ?>
 
         <h3 class="heading">Delivery To</h3>
-        <select required id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
+        <select id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
           <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
           {% for suburb, fee in delivery_fees %}
             <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
