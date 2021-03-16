@@ -470,7 +470,7 @@ a.button:active { color: var(--button-hl); }
   justify-content: space-between;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:450px) {
   .buttons {
     flex-direction: column;
   }

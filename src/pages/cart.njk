@@ -85,18 +85,29 @@ permalink: "cart/index.php"
       <hr />
 
       <div id="items" class="font-family-secondary">
+        <?php $i = 0; ?>
         <?php foreach($_SESSION["cart"] as $cart_item) {
           $product = getProduct($cart_item["product"]);
           $price = getPrice($product, $cart_item["variant"]);
           $cart_total += $price;
         ?>
-        <p><?php echo $product["name"]; ?>
-        <?php if(hasVariants($product)) {
-           $variant = getVariant($product, $cart_item["variant"]); ?>
-           <br><span class="font-size--1"> ( <?php echo $variant["name"]; ?> )</span>
-        <?php } ?>
-        </p>
+        <div class="stack">
+          <p><?php echo $product["name"]; ?></p>
+          <?php if(hasVariants($product)) {
+            $variant = getVariant($product, $cart_item["variant"]); ?>
+            <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
+          <?php } ?>
+          <div class="font-size--1" style="display:flex">
+          <a class="icon-button" href="/php/remove-product.php?i=<?php echo $i; ?>">
+            <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
+          </a>
+          <a class="icon-button" style="margin-left:2em" href="/php/edit-product.php?i=<?php echo $i; ?>">
+            <span>{{ '/src/svg/edit.svg' | svgContents | safe }}</span><p class="text-lowercase">Add Message</p>
+          </a>
+        </div>
+        </div>
         <p class="text-right"><?php echo formatMoney($price); ?></p>
+        <?php $i++; ?>
         <?php } ?>
       </div>
 
@@ -134,9 +145,6 @@ permalink: "cart/index.php"
         <a class="button icon-button" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
         </a>
-        <a class="button icon-button" href="/edit-cart/">
-          <span>{{ '/src/svg/edit.svg' | svgContents | safe }}</span><p>Edit Cart</p>
-        </a>
         <button class="icon-button cursor-pointer bigfonts" type="submit">
           <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Checkout</p>
         </button>
@@ -151,30 +159,30 @@ permalink: "cart/index.php"
 <script>
   var delivery_fees;
 
-  async function loadJSON(fname) {
-    var response = await fetch(fname);
-    delivery_fees = await response.json();
+async function loadJSON(fname) {
+  var response = await fetch(fname);
+  delivery_fees = await response.json();
+}
+
+// loadJSON("{{ site.url }}/php/delivery_fees.json");
+loadJSON("http://168.138.10.72/delivery_fees.json");
+
+function formatMoney(cents) {
+  if(cents == 0) { return 'free'; }
+  if(Math.floor(cents / 100.0) == (cents / 100.0)) {
+    return '$' + (cents / 100.0);
+  } else {
+    return '$' + (cents / 100.0).toFixed(2);
   }
+};
 
-  // loadJSON("{{ site.url }}/php/delivery_fees.json");
-  loadJSON("http://168.138.10.72/delivery_fees.json");
+function updateDeliveryFee() {
+  var suburb = document.getElementById("delivery-suburb").value;
 
-  function formatMoney(cents) {
-    if(cents == 0) { return 'free'; }
-    if(Math.floor(cents / 100.0) == (cents / 100.0)) {
-      return '$' + (cents / 100.0);
-    } else {
-      return '$' + (cents / 100.0).toFixed(2);
-    }
-  };
+  var delivery_fee = delivery_fees[suburb] * 100;
+  var cart_total = <?php echo $cart_total; ?>;
 
-  function updateDeliveryFee() {
-    var suburb = document.getElementById("delivery-suburb").value;
-
-    var delivery_fee = delivery_fees[suburb] * 100;
-    var cart_total = <?php echo $cart_total; ?>;
-
-    document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
-    document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
-  }
+  document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
+  document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
+}
 </script>
