@@ -125,10 +125,10 @@ input[type="radio"]:checked + .radio-label {
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <?php $stock_count = stockCount("{{ product.id }}", "{{variant.id}}"); ?>
-              <?php $finite = isFinite("{{ product.id }}", "{{variant.id}}"); ?>
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(($finite) && ($stock_count == 0)) { echo " disabled"; } ?> >
+              <?php $unique = isUnique("{{ product.id }}", "{{variant.id}}"); ?>
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" {{ "checked" if loop.first }} <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}")) { echo " checked"; } ?> <?php if(($unique) && ($stock_count == 0)) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
-                <?php if($finite) { ?>
+                <?php if($unique) { ?>
                 <?php if($stock_count) { ?>
                 <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
                 <?php } else { ?>
@@ -174,6 +174,9 @@ input[type="radio"]:checked + .radio-label {
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
         <p class="text-center">This product can only be added to the cart as an add-on to <?php echo listParents("{{ product.id }}"); ?>.</p>
+        <a class="button icon-button" style="margin-left:auto;margin-right:auto" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
+        </a>
       </div>
       <?php } ?>
     </div>
@@ -183,7 +186,7 @@ input[type="radio"]:checked + .radio-label {
 {% include "partials/pagination.njk" %}
 
 <?php
-                                                                                       unset($_SESSION["product-id"]);
-                                                                                       unset($_SESSION["variant-id"]);
-                                                                                       unset($_SESSION["product-count"]);
-                                                                                       ?>
+                                                                                 unset($_SESSION["product-id"]);
+                                                                                 unset($_SESSION["variant-id"]);
+                                                                                 unset($_SESSION["product-count"]);
+                                                                                 ?>

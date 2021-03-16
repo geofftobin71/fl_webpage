@@ -11,15 +11,6 @@ $page = "Add to Cart";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  /*
-  print_r($_POST);
-
-  echo "Product ID: " . $_POST["product-id"] . "<br>";
-  echo "Variant ID: " . $_POST["variant-id"] . "<br>";
-  echo "Product count: " . $_POST["product-count"] . "<br>";
-  echo "Return URL: " . $_POST["return-url"] . "<br>";
-  */
-
   if(isset($_POST["product-id"])) { $product_id = clean($_POST["product-id"]); }
   if(empty($product_id)) { criticalError($page, "No Product ID"); }
 
@@ -36,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $_SESSION["variant-id"] = $variant_id;
   $_SESSION["product-count"] = $product_count;
 
-  if(isFinite($product_id, $variant_id)) {
+  if(isUnique($product_id, $variant_id)) {
     $stock_count = stockCount($product_id, $variant_id);
 
     if($product_count > $stock_count) {
@@ -50,17 +41,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $items_added = 0;
 
   for($i = 0; $i < $product_count; $i++) {
-    $item = getStock($product_id, $variant_id);
+    $item = findStock($product_id, $variant_id);
 
     if($item) {
-      $_SESSION["cart"][] = array("id" => $item["id"]);
-
       if($item["unique"]) {
-        $item["cart"] = $_SESSION["cart-id"];
         $item["updated"] = (new DateTime)->getTimestamp();
 
         $stockStore->update($item);
       }
+
+      $_SESSION["cart"][] = array(
+        "id" => $item["id"],
+        "product" => $item["product"],
+        "variant" => $item["variant"],
+        "updated" => $item["updated"],
+        "unique" => $item["unique"],
+        "sold" => $item["sold"]
+      );
 
       $items_added++;
     }

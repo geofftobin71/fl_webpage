@@ -9,7 +9,7 @@ permalink: "edit-cart/index.php"
 <style>
 #items {
   display:grid;
-  grid-template-columns:1fr auto;
+  grid-template-columns:1fr auto auto;
   align-items:start;
 }
 #items > * {
@@ -23,6 +23,9 @@ permalink: "edit-cart/index.php"
 #items > *:nth-child(2) {
   border-top:none;
 }
+#items > *:nth-child(3) {
+  border-top:none;
+}
 #summary {
   display:grid;
   grid-template-columns:1fr auto auto;
@@ -34,6 +37,23 @@ permalink: "edit-cart/index.php"
   padding:0.5em;
 }
 </style>
+
+<?php
+  $ten_minutes_ago = new DateTime;
+  $ten_minutes_ago->modify("-10 minutes");
+  $ten_minutes_ago = $ten_minutes_ago->getTimestamp();
+
+  foreach($_SESSION["cart"] as $cart_item) {
+  if($cart_item["unique"]) {
+    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
+    if(($cart_item["updated"] < $ten_minutes_ago) || ($cart_item["updated"] < $item["updated"])) {
+      unset($_SESSION["cart"]);
+      $_SESSION["cart"] = array();
+      $_SESSION["error"] = "Your session has timed out";
+    }
+  }
+}
+?>
 
 <div class="stack">
     <?php if(isset($_SESSION["info"])) { ?>
@@ -67,18 +87,20 @@ permalink: "edit-cart/index.php"
 
       <div id="items" class="font-family-secondary">
         <?php foreach($_SESSION["cart"] as $cart_item) {
-          $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
-          $product = getProduct($item["product"]);
-          $price = getPrice($product, $item["variant"]);
+          $product = getProduct($cart_item["product"]);
+          $price = getPrice($product, $cart_item["variant"]);
           $cart_total += $price;
         ?>
         <p><?php echo $product["name"]; ?>
         <?php if(hasVariants($product)) {
-           $variant = getVariant($product, $item["variant"]); ?>
+           $variant = getVariant($product, $cart_item["variant"]); ?>
            <br><span class="font-size--1"> ( <?php echo $variant["name"]; ?> )</span>
         <?php } ?>
         </p>
         <p class="text-right"><?php echo formatMoney($price); ?></p>
+        <a class="icon-button" href="/php/remove-product.php" style="align-items:flex-start">
+          <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span>
+        </a>
         <?php } ?>
       </div>
 
@@ -88,40 +110,19 @@ permalink: "edit-cart/index.php"
         <h3 class="heading">Cart Total</h3>
         <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
         <p><?php echo formatMoney($cart_total); ?></p>
-
-        <?php if(cartHasDelivery()) { ?>
-
-        <h3 class="heading">Delivery To</h3>
-        <select required id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
-          <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
-          {% for suburb, fee in delivery_fees %}
-            <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
-          {% endfor %}
-        </select>
-        <?php if(isset($_SESSION["delivery-suburb"])) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
-        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"])) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
-
-        <?php } ?>
-
-        <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>
-        <p class="top-border"></p>
-        <p id="total" class="top-border font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
       </div>
 
       <hr />
 
       <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
 
-      <div class="buttons swap">
-        <a class="button icon-button" href="/shop/">
-          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
+      <div class="buttons">
+        <a class="button icon-button" href="/cart/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Done</p>
         </a>
         <a class="button icon-button" href="/php/empty-cart.php">
           <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p>Empty Cart</p>
         </a>
-        <button class="icon-button cursor-pointer bigfonts" type="submit">
-          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Checkout</p>
-        </button>
       </div>
     </form>
     <?php } ?>

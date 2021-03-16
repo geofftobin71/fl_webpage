@@ -30,6 +30,7 @@ function criticalError($page, $message) {
     echo "<body style=\"text-align:center;font-family:sans-serif\"><h1>Critical Error</h1><h2>" . $page . "</h2><p>" . $message . "</p>";
     // echo "<pre>"; print_r($_POST); echo "</pre>";
     // echo "<pre>"; print_r($_SESSION); echo "</pre>";
+    echo "<br><a href='/'>Return to Home Page</a>";
     echo "</body>";
     exit;
 }
@@ -92,7 +93,7 @@ function getPrice($product, $variant_id) {
   return $product["price"];
 }
 
-function isFinite($product_id, $variant_id) {
+function isUnique($product_id, $variant_id) {
   global $stockStore;
   $items = $stockStore->findBy([["product", "=", $product_id], "AND", ["variant", "=", $variant_id], "AND", ["unique", "=", true]]);
   return (count($items) > 0);
@@ -114,21 +115,13 @@ function stockCount($product_id, $variant_id) {
     "AND",
     ["sold", "=", false],
     "AND",
-    [
-      ["cart", "=", null],
-      "OR",
-      [
-        ["cart", "!=", null],
-        "AND",
-        ["updated", "<", $ten_minutes_ago]
-      ]
-    ]
+    ["updated", "<", $ten_minutes_ago]
   ]);
 
   return count($items);
 }
 
-function getStock($product_id, $variant_id) {
+function findStock($product_id, $variant_id) {
   global $stockStore;
 
   $ten_minutes_ago = new DateTime;
@@ -148,15 +141,7 @@ function getStock($product_id, $variant_id) {
         "AND",
         ["sold", "=", false],
         "AND",
-        [
-          ["cart", "=", null],
-          "OR",
-          [
-            ["cart", "!=", null],
-            "AND",
-            ["updated", "<", $ten_minutes_ago]
-          ]
-        ]
+        ["updated", "<", $ten_minutes_ago]
       ]
     ]
   ]);
@@ -172,8 +157,7 @@ function cartHasParents($product_id) {
   if(empty($category["parents"])) { return true; }
 
   foreach($_SESSION["cart"] as $cart_item) {
-    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
-    $cart_product = getProduct($item["product"]);
+    $cart_product = getProduct($cart_item["product"]);
     if(in_array($cart_product["category"], $category["parents"])) { return true; }
   }
 
@@ -202,9 +186,8 @@ function cartTotal() {
   global $stockStore;
   $cart_total = 0;
   foreach($_SESSION["cart"] as $cart_item) {
-    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
-    $product = getProduct($item["product"]);
-    $price = getPrice($product, $item["variant"]);
+    $product = getProduct($cart_item["product"]);
+    $price = getPrice($product, $cart_item["variant"]);
     $cart_total += $price;
   }
 
@@ -214,8 +197,7 @@ function cartTotal() {
 function cartHasDelivery() {
   global $stockStore;
   foreach($_SESSION["cart"] as $cart_item) {
-    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
-    $product = getProduct($item["product"]);
+    $product = getProduct($cart_item["product"]);
     $category = getCategory($product["category"]);
 
     if($category["delivery"]) { return true; }
@@ -225,6 +207,5 @@ function cartHasDelivery() {
 }
 
 if(!isset($_SESSION["cart"])) { $_SESSION["cart"] = array(); }
-if(!isset($_SESSION["cart-id"])) { $_SESSION["cart-id"] = uniqueId(18); }
 
 ?>

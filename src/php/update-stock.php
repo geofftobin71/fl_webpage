@@ -29,7 +29,6 @@ foreach($shop_products as $product) {
             "product" => $product["id"],
             "variant" => $variant["id"],
             "updated" => (new DateTime)->getTimestamp(),
-            "cart" => null,
             "unique" => true,
             "sold" => false
           ]);
@@ -42,7 +41,6 @@ foreach($shop_products as $product) {
             "product" => $product["id"],
             "variant" => $variant["id"],
             "updated" => (new DateTime)->getTimestamp(),
-            "cart" => null,
             "unique" => false,
             "sold" => false
           ]);
@@ -58,7 +56,6 @@ foreach($shop_products as $product) {
           "product" => $product["id"],
           "variant" => "none",
           "updated" => (new DateTime)->getTimestamp(),
-          "cart" => null,
           "unique" => true,
           "sold" => false
         ]);
@@ -71,7 +68,6 @@ foreach($shop_products as $product) {
           "product" => $product["id"],
           "variant" => "none",
           "updated" => (new DateTime)->getTimestamp(),
-          "cart" => null,
           "unique" => false,
           "sold" => false
         ]);
