@@ -6,6 +6,7 @@ $product_id = "";
 $variant_id = "";
 $product_count = 0;
 $return_url = "";
+$variant_error = "Please choose an option";
 
 $page = "Add to Cart";
 
@@ -14,11 +15,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST["product-id"])) { $product_id = clean($_POST["product-id"]); }
   if(empty($product_id)) { criticalError($page, "No Product ID"); }
 
-  if(isset($_POST["variant-id"])) { $variant_id = clean($_POST["variant-id"]); }
-  if(empty($variant_id)) { criticalError($page, "No Variant ID"); }
-
   if(isset($_POST["return-url"])) { $return_url = clean($_POST["return-url"]); }
   if(empty($return_url)) { criticalError($page, "No Return URL"); }
+
+  if(isset($_POST["variant-error"])) { $variant_error = clean($_POST["variant-error"]); }
+
+  if(isset($_POST["variant-id"])) { $variant_id = clean($_POST["variant-id"]); }
+  if(empty($variant_id)) {
+      $_SESSION["error"] = $variant_error;
+      header("Location:" . $return_url);
+      exit;
+  }
 
   if(isset($_POST["product-count"])) { $product_count = intval(clean($_POST["product-count"])); }
   $product_count = ($product_count < 1) ? 1 : $product_count;
@@ -33,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($product_count > $stock_count) {
       $_SESSION["product-count"] = $stock_count;
       $_SESSION["error"] = "Number must be less than or equal to " . $stock_count;
-      header("Location:" . $return_url . "#add-to-cart-form");
+      header("Location:" . $return_url);
       exit;
     }
   }

@@ -19,6 +19,7 @@
 #info, #error {
   font-family: var(--font-family-secondary);
   text-align: center;
+  text-transform: lowercase;
   border-radius: var(--radius, 0.5rem);
   border: 1px solid currentcolor;
   margin-top: calc(var(--section-padding) / 2);
@@ -28,8 +29,8 @@
 }
 
 #info {
-  color: #00AA00;
-  background: #EEFFEE;
+  color: #008800;
+  background: #CCEECC;
 }
 
 #error {

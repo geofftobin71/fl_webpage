@@ -11,6 +11,7 @@ const { minify } = require("terser");
 const jsonminify = require("jsonminify");
 const fs = require("fs");
 const markdown = require("markdown-it")({ html: true }).disable('code');
+const fetch = require('node-fetch');
 const fetch64 = require('fetch-base64');
 const site = require('./src/_data/site.json');
 const image_sizes = require('./src/_data/image_sizes.json');
@@ -76,6 +77,9 @@ module.exports = (eleventyConfig) => {
       });
     });
     fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(products, null, 2));
+
+    // Upate Stock
+    fetch('http://168.138.10.72/php/update-stock.php');
   });
 
   eleventyConfig.setDataDeepMerge(true);
