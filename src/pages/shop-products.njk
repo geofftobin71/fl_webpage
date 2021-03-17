@@ -131,25 +131,22 @@ input[type="radio"]:checked + .radio-label {
             {% for variant in valid_variants %}
               <?php $stock_count = stockCount("{{ product.id }}", "{{variant.id}}"); ?>
               <?php $unique = isUnique("{{ product.id }}", "{{variant.id}}"); ?>
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}")) { if($unique) { if($stock_count > 0) { echo " checked"; } } else { echo " checked"; } } ?> <?php if(($unique) && ($stock_count == 0)) { echo " disabled"; } ?> >
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}") && ($stock_count != 0)) { echo " checked"; } ?> <?php if($stock_count == 0) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
-                <?php if($unique) { ?>
-                <?php if($stock_count) { ?>
+                <?php if($stock_count > 0) { ?>
                 <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
-                <?php } else { ?>
+                <?php } else if($stock_count == 0) { ?>
                 <br><span class="font-size-0">( SOLD OUT )</span>
-                <?php } ?>
                 <?php } ?>
               </label>
             {% endfor %}
           </div>
         {% else %}
           <?php $stock_count = stockCount("{{ product.id }}", "none"); ?>
-          <?php $unique = isUnique("{{ product.id }}", "none"); ?>
           <input id="variant-id" name="variant-id" type="hidden" value="none" style="margin:0">
         {% endif %}
 
-        <?php if((($unique) && ($stock_count > 0)) || (!$unique)) { ?>
+        <?php if($stock_count != 0) { ?>
         {% if number_heading %}
           <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
           <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
@@ -173,7 +170,7 @@ input[type="radio"]:checked + .radio-label {
         <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
-        <?php if((($unique) && ($stock_count > 0)) || (!$unique)) { ?>
+        <?php if($stock_count != 0) { ?>
         <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
         <?php } ?>
       </form>
@@ -195,7 +192,7 @@ input[type="radio"]:checked + .radio-label {
 {% include "partials/pagination.njk" %}
 
 <?php
-                                                                                 unset($_SESSION["product-id"]);
-                                                                                 unset($_SESSION["variant-id"]);
-                                                                                 unset($_SESSION["product-count"]);
-                                                                                 ?>
+unset($_SESSION["product-id"]);
+unset($_SESSION["variant-id"]);
+unset($_SESSION["product-count"]);
+?>

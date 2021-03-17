@@ -74,54 +74,70 @@ function getProduct($product_id) {
 }
 
 function getVariant($product, $variant_id) {
-  foreach($product["variants"] as $variant) {
-    if($variant["id"] == $variant_id) { return $variant; }
+  if($product && $product["variants"]) {
+    foreach($product["variants"] as $variant) {
+      if($variant["id"] == $variant_id) { return $variant; }
+    }
   }
 
   return null;
 }
 
 function hasVariants($product) {
-  return (isset($product["variants"]) && (count($product["variants"]) > 0));
+  return ($product && $product["variants"] && (count($product["variants"]) > 0));
 }
 
 function getPrice($product, $variant_id) {
-  foreach($product["variants"] as $variant) {
-    if($variant["id"] == $variant_id) { return $variant["price"] ? $variant["price"] : $product["price"]; }
+  if($product) {
+    if($product["variants"]) {
+      foreach($product["variants"] as $variant) {
+        if($variant["id"] == $variant_id) { return $variant["price"] ? $variant["price"] : $product["price"]; }
+      }
+    }
+    return $product["price"];
+  } else {
+    return null;
   }
-
-  return $product["price"];
 }
 
-function isUnique($product_id, $variant_id) {
-  global $stockStore;
-  $items = $stockStore->findBy([["product", "=", $product_id], "AND", ["variant", "=", $variant_id], "AND", ["unique", "=", true]]);
-  return (count($items) > 0);
+function hasStock($product_id, $variant_id) {
+  $product = getProduct($product_id);
+  $variant = getVariant($product, $variant_id);
+
+  if($variant) {
+    if($variant["stock"]) { return true; }
+  } else if($product) {
+    if($product["stock"]) { return true; }
+  }
+
+  return false;
 }
 
 function stockCount($product_id, $variant_id) {
   global $stockStore;
 
-  $timeout = new DateTime;
-  $timeout->modify("-20 minutes");
-  $timeout = $timeout->getTimestamp();
+  if(hasStock($product_id, $variant_id)) {
+    $timeout = new DateTime;
+    $timeout->modify("-20 minutes");
+    $timeout = $timeout->getTimestamp();
 
-  $items = $stockStore->findBy([
-    ["product", "=", $product_id],
-    "AND",
-    ["variant", "=", $variant_id],
-    "AND",
-    ["unique", "=", true],
-    "AND",
-    ["sold", "=", false],
-    "AND",
-    ["updated", "<", $timeout]
-  ]);
+    $items = $stockStore->findBy([
+      ["product-id", "=", $product_id],
+      "AND",
+      ["variant-id", "=", $variant_id],
+      "AND",
+      ["sold", "=", false],
+      "AND",
+      ["updated", "<", $timeout]
+    ]);
 
-  return count($items);
+    return count($items);
+  } else {
+    return -1;
+  }
 }
 
-function findStock($product_id, $variant_id) {
+function getStock($product_id, $variant_id) {
   global $stockStore;
 
   $timeout = new DateTime;
@@ -129,36 +145,33 @@ function findStock($product_id, $variant_id) {
   $timeout = $timeout->getTimestamp();
 
   $item = $stockStore->findOneBy([
-    ["product", "=", $product_id],
+    ["product-id", "=", $product_id],
     "AND",
-    ["variant", "=", $variant_id],
+    ["variant-id", "=", $variant_id],
     "AND",
-    [
-      ["unique", "=", false],
-      "OR",
-      [
-        ["unique", "=", true],
-        "AND",
-        ["sold", "=", false],
-        "AND",
-        ["updated", "<", $timeout]
-      ]
-    ]
+    ["sold", "=", false],
+    "AND",
+    ["updated", "<", $timeout]
   ]);
+
+  if($item) {
+    $item["updated"] = (new DateTime)->getTimestamp();
+    $stockStore->update($item);
+  }
 
   return $item;
 }
 
 function cartHasParents($product_id) {
-  global $stockStore;
-
   $product = getProduct($product_id);
+  if(!$product) { return false; }
+
   $category = getCategory($product["category"]);
-  if(empty($category["parents"])) { return true; }
+  if($category && empty($category["parents"])) { return true; }
 
   foreach($_SESSION["cart"] as $cart_item) {
     $cart_product = getProduct($cart_item["product"]);
-    if(in_array($cart_product["category"], $category["parents"])) { return true; }
+    if($cart_product && in_array($cart_product["category"], $category["parents"])) { return true; }
   }
 
   return false;
@@ -166,7 +179,10 @@ function cartHasParents($product_id) {
 
 function listParents($product_id) {
   $product = getProduct($product_id);
+  if(!$product) { return ""; }
   $category = getCategory($product["category"]);
+  if(!$category) { return ""; }
+
   $result = "";
   $first = true;
   foreach($category["parents"] as $parent) {
@@ -183,24 +199,25 @@ function cartCount() {
 }
 
 function cartTotal() {
-  global $stockStore;
   $cart_total = 0;
   foreach($_SESSION["cart"] as $cart_item) {
     $product = getProduct($cart_item["product"]);
-    $price = getPrice($product, $cart_item["variant"]);
-    $cart_total += $price;
+    if($product) {
+      $price = getPrice($product, $cart_item["variant"]);
+      $cart_total += $price;
+    }
   }
 
   return $cart_total;
 }
 
 function cartHasDelivery() {
-  global $stockStore;
   foreach($_SESSION["cart"] as $cart_item) {
     $product = getProduct($cart_item["product"]);
+    if(!$product) { return false; }
     $category = getCategory($product["category"]);
 
-    if($category["delivery"]) { return true; }
+    if($category && $category["delivery"]) { return true; }
   }
 
   return false;

@@ -34,36 +34,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $_SESSION["variant-id"] = $variant_id;
   $_SESSION["product-count"] = $product_count;
 
-  if(isUnique($product_id, $variant_id)) {
-    $stock_count = stockCount($product_id, $variant_id);
+  $stock_count = stockCount($product_id, $variant_id);
 
-    if($product_count > $stock_count) {
-      $_SESSION["product-count"] = $stock_count;
-      $_SESSION["error"] = "Number must be less than or equal to " . $stock_count;
-      header("Location:" . $return_url);
-      exit;
-    }
+  if(($stock_count > 0) && ($product_count > $stock_count)) {
+    $_SESSION["product-count"] = $stock_count;
+    $_SESSION["error"] = "Number must be less than or equal to " . $stock_count;
+    header("Location:" . $return_url);
+    exit;
+  }
+
+  if($stock_count == 0) {
+    $_SESSION["product-count"] = 0;
+    $_SESSION["error"] = "This product has Sold Out";
+    header("Location:" . $return_url);
+    exit;
   }
 
   $items_added = 0;
 
   for($i = 0; $i < $product_count; $i++) {
-    $item = findStock($product_id, $variant_id);
+    if($stock_count > 0) {
+      $item = getStock($product_id, $variant_id);
 
-    if($item) {
-      if($item["unique"]) {
-        $item["updated"] = (new DateTime)->getTimestamp();
+      if($item) {
+        $_SESSION["cart"][] = array(
+          "product-id" => $item["product-id"],
+          "variant-id" => $item["variant-id"],
+          "stock-id" => $item["stock-id"],
+          "updated" => $item["updated"]
+        );
 
-        $stockStore->update($item);
+        $items_added++;
       }
-
+    } else {
       $_SESSION["cart"][] = array(
-        "id" => $item["id"],
-        "product" => $item["product"],
-        "variant" => $item["variant"],
-        "updated" => $item["updated"],
-        "unique" => $item["unique"],
-        "sold" => $item["sold"]
+        "product-id" => $item["product-id"],
+        "variant-id" => $item["variant-id"]
       );
 
       $items_added++;

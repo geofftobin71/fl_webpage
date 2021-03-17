@@ -43,9 +43,9 @@ permalink: "cart/index.php"
   $timeout = $timeout->getTimestamp();
 
   foreach($_SESSION["cart"] as $cart_item) {
-  if($cart_item["unique"]) {
-    $item = $stockStore->findOneBy(["id", "=", $cart_item["id"]]);
-    if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $item["updated"])) {
+  if($cart_item["stock-id"]) {
+    $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+    if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
       unset($_SESSION["cart"]);
       $_SESSION["cart"] = array();
       $_SESSION["error"] = "Your session has timed out";
@@ -87,14 +87,14 @@ permalink: "cart/index.php"
       <div id="items" class="font-family-secondary">
         <?php $i = 0; ?>
         <?php foreach($_SESSION["cart"] as $cart_item) {
-          $product = getProduct($cart_item["product"]);
-          $price = getPrice($product, $cart_item["variant"]);
+          $product = getProduct($cart_item["product-id"]);
+          $price = getPrice($product, $cart_item["variant-id"]);
           $cart_total += $price;
         ?>
         <div class="stack">
           <p><?php echo $product["name"]; ?></p>
           <?php if(hasVariants($product)) {
-            $variant = getVariant($product, $cart_item["variant"]); ?>
+            $variant = getVariant($product, $cart_item["variant-id"]); ?>
             <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
           <?php } ?>
           <div class="font-size--1" style="display:flex">
