@@ -38,12 +38,15 @@ permalink: "cart/index.php"
 </style>
 
 <?php
+  /*
   $timeout = new DateTime;
   $timeout->modify("-20 minutes");
   $timeout = $timeout->getTimestamp();
+  */
+  $timeout = microtime(true) - 1200.0;
 
   foreach($_SESSION["cart"] as $cart_item) {
-  if($cart_item["stock-id"]) {
+  if(isset($cart_item["stock-id"])) {
     $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
     if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
       unset($_SESSION["cart"]);
@@ -68,6 +71,8 @@ permalink: "cart/index.php"
     <?php $cart_count = count($_SESSION["cart"]); ?>
     <?php $cart_total = 0; ?>
     <?php $delivery_fee = 0; ?>
+
+    <?php print_r($_SESSION); ?>
 
     <?php if($cart_count == 0) { ?>
     <div class="center-both stack" style="--stack-space:2em">

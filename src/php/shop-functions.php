@@ -117,9 +117,12 @@ function stockCount($product_id, $variant_id) {
   global $stockStore;
 
   if(hasStock($product_id, $variant_id)) {
+    /*
     $timeout = new DateTime;
     $timeout->modify("-20 minutes");
     $timeout = $timeout->getTimestamp();
+    */
+    $timeout = microtime(true) - 1200.0;
 
     $items = $stockStore->findBy([
       ["product-id", "=", $product_id],
@@ -140,9 +143,12 @@ function stockCount($product_id, $variant_id) {
 function getStock($product_id, $variant_id) {
   global $stockStore;
 
+  /*
   $timeout = new DateTime;
   $timeout->modify("-20 minutes");
   $timeout = $timeout->getTimestamp();
+  */
+  $timeout = microtime(true) - 1200.0;
 
   $item = $stockStore->findOneBy([
     ["product-id", "=", $product_id],
@@ -155,7 +161,8 @@ function getStock($product_id, $variant_id) {
   ]);
 
   if($item) {
-    $item["updated"] = (new DateTime)->getTimestamp();
+    // $item["updated"] = (new DateTime)->getTimestamp();
+    $item["updated"] = microtime(true);
     $stockStore->update($item);
   }
 
@@ -170,7 +177,7 @@ function cartHasParents($product_id) {
   if($category && empty($category["parents"])) { return true; }
 
   foreach($_SESSION["cart"] as $cart_item) {
-    $cart_product = getProduct($cart_item["product"]);
+    $cart_product = getProduct($cart_item["product-id"]);
     if($cart_product && in_array($cart_product["category"], $category["parents"])) { return true; }
   }
 
@@ -201,9 +208,9 @@ function cartCount() {
 function cartTotal() {
   $cart_total = 0;
   foreach($_SESSION["cart"] as $cart_item) {
-    $product = getProduct($cart_item["product"]);
+    $product = getProduct($cart_item["product-id"]);
     if($product) {
-      $price = getPrice($product, $cart_item["variant"]);
+      $price = getPrice($product, $cart_item["variant-id"]);
       $cart_total += $price;
     }
   }
@@ -213,7 +220,7 @@ function cartTotal() {
 
 function cartHasDelivery() {
   foreach($_SESSION["cart"] as $cart_item) {
-    $product = getProduct($cart_item["product"]);
+    $product = getProduct($cart_item["product-id"]);
     if(!$product) { return false; }
     $category = getCategory($product["category"]);
 

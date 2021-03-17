@@ -1,3 +1,4 @@
+isset(object["attribute"])
 Stock count / Sold Out for non variant products
 Button / Select / Radio css
 Product expiry date
