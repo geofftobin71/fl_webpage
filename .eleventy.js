@@ -79,6 +79,7 @@ module.exports = (eleventyConfig) => {
     fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(products, null, 2));
 
     // Upate Stock
+    // fetch('https://floriade.co.nz/php/update-stock.php');
     fetch('http://168.138.10.72/php/update-stock.php');
   });
 
@@ -160,7 +161,8 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
-    if(process.env.NODE_ENV != 'develop') {
+    // if(process.env.NODE_ENV != 'develop') {  XXX
+    if(false) {
       if(!image_info_exists) {
         image_info_exists = true;
 
@@ -208,7 +210,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addNunjucksAsyncFilter("imgGallery", async (folder, callback) => {
     let gallery = {}
 
-    if(process.env.NODE_ENV == 'develop') {
+    // if(process.env.NODE_ENV == 'develop') {  XXX
+    if(true) {
       console.log('Using ' + folder + '-gallery cache');
 
       gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '-gallery.json'));
@@ -221,7 +224,7 @@ module.exports = (eleventyConfig) => {
         .execute();
 
       if(gallery && gallery.resources && gallery.resources.length) {
-        if(process.env.NODE_ENV == 'build') {
+        if(process.env.NODE_ENV == 'XXXbuild') {
           // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
           console.log('Updating ' + folder + '-gallery');
 
@@ -244,6 +247,14 @@ module.exports = (eleventyConfig) => {
         collapseWhitespace: true
       });
       return minified;
+    }
+
+    return content;
+  });
+
+  eleventyConfig.addTransform("minifyphp", (content, outputPath) => {
+    if( (process.env.NODE_ENV != 'develop') && outputPath.endsWith(".php") ) {
+      return content.replace(/\s+\/\/.*?\n/g, '').replace(/\/\*[^]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '').replace(/\n/g, ' ');
     }
 
     return content;
