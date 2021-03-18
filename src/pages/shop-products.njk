@@ -123,6 +123,12 @@ input[type="radio"]:checked + .radio-label {
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
+        <?php $stock_count = stockCount("{{ product.id }}", "none"); ?>
+        <?php if($stock_count > 0) { ?>
+        <p class="color-shade3 text-center font-secondary">( <?php echo $stock_count; ?> available )</p>
+        <?php } else if($stock_count == 0) { ?>
+        <p></p><p class="color-shade3 text-center font-secondary">( SOLD OUT )</p>
+        <?php } ?>
         {% set valid_variants = product.variants | validProductVariants %}
         {% if valid_variants | length %}
           <h3 class="text-lowercase text-center">{{ variant_heading }}</h3>

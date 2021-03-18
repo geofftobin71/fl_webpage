@@ -53,6 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $items_added = 0;
 
   for($i = 0; $i < $product_count; $i++) {
+    $stock_count = stockCount($product_id, $variant_id);
+
     if($stock_count > 0) {
       $item = getStock($product_id, $variant_id);
 
@@ -66,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $items_added++;
       }
-    } else {
+    } else if($stock_count < 0) {
       $_SESSION["cart"][] = array(
         "product-id" => $product_id,
         "variant-id" => $variant_id
