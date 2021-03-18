@@ -134,6 +134,9 @@ eleventyComputed:
               </div>
               <p class="font-size--1 color-shade4" style="line-height:1.5">{{ product.description | safe }}</p>
               <div class="button bigfonts">
+                <?php if(totalStockCount("{{ product.id }}") == 0) { ?>
+                <p>SOLD OUT</p>
+                <?php } else { ?>
                 {% set valid_variants = product.variants | validProductVariants %}
                 {% if valid_variants | length %}
                   {% if ( valid_variants | first ).price != ( valid_variants | last ).price %}
@@ -144,6 +147,7 @@ eleventyComputed:
                 {% else %}
                   <p>{{ product.price | formatMoney }}</p>
                 {% endif %}
+                <?php } ?>
               </div>
             </li>
           </a>

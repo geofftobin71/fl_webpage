@@ -84,7 +84,7 @@ function getVariant($product, $variant_id) {
 }
 
 function hasVariants($product) {
-  return ($product && $product["variants"] && (count($product["variants"]) > 0));
+  return (isset($product) && isset($product["variants"]) && (count($product["variants"]) > 0));
 }
 
 function getPrice($product, $variant_id) {
@@ -117,11 +117,6 @@ function stockCount($product_id, $variant_id) {
   global $stockStore;
 
   if(hasStock($product_id, $variant_id)) {
-    /*
-    $timeout = new DateTime;
-    $timeout->modify("-20 minutes");
-    $timeout = $timeout->getTimestamp();
-    */
     $timeout = microtime(true) - 1200.0;
 
     $items = $stockStore->findBy([
@@ -140,14 +135,63 @@ function stockCount($product_id, $variant_id) {
   }
 }
 
+function totalStockCount($product_id) {
+  global $stockStore;
+
+  $total_stock = 0;
+  $has_stock = false;
+
+  $product = getProduct($product_id);
+  if(isset($product)) {
+    if(isset($product["stock"])) {
+      $has_stock = true;
+      $timeout = microtime(true) - 1200.0;
+
+      $items = $stockStore->findBy([
+        ["product-id", "=", $product_id],
+        "AND",
+        ["variant-id", "=", "none"],
+        "AND",
+        ["sold", "=", false],
+        "AND",
+        ["updated", "<", $timeout]
+      ]);
+
+      $total_stock += count($items);
+    }
+
+    if(isset($product["variants"])) {
+      foreach($product["variants"] as $variant) {
+        if(isset($variant["stock"])) {
+          $has_stock = true;
+          $timeout = microtime(true) - 1200.0;
+
+          $items = $stockStore->findBy([
+            ["product-id", "=", $product_id],
+            "AND",
+            ["variant-id", "=", $variant["id"]],
+            "AND",
+            ["sold", "=", false],
+            "AND",
+            ["updated", "<", $timeout]
+          ]);
+
+          $total_stock += count($items);
+        }
+      }
+    }
+  }
+
+  if($has_stock) {
+    return $total_stock;
+  } else {
+    return -1;
+  }
+}
+
 function getStock($product_id, $variant_id) {
   global $stockStore;
 
-  /*
-  $timeout = new DateTime;
-  $timeout->modify("-20 minutes");
-  $timeout = $timeout->getTimestamp();
-  */
   $timeout = microtime(true) - 1200.0;
 
   $item = $stockStore->findOneBy([
@@ -161,7 +205,6 @@ function getStock($product_id, $variant_id) {
   ]);
 
   if(isset($item)) {
-    // $item["updated"] = (new DateTime)->getTimestamp();
     $item["updated"] = microtime(true);
     $stockStore->update($item);
   }
