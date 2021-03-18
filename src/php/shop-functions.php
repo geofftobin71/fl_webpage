@@ -19,6 +19,9 @@ $shop_products = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php
 $shop_categories = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_categories.json"), true);
 $delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_fees.json"), true);
 
+$cart_expiry_time = 600.0;  // 10 minutes
+$cart_reset_time = 900.0;   // 15 minutes
+
 function clean($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -115,9 +118,10 @@ function hasStock($product_id, $variant_id) {
 
 function stockCount($product_id, $variant_id) {
   global $stockStore;
+  global $cart_expiry_time;
 
   if(hasStock($product_id, $variant_id)) {
-    $timeout = microtime(true) - 1200.0;
+    $timeout = microtime(true) - $cart_expiry_time;
 
     $items = $stockStore->findBy([
       ["product-id", "=", $product_id],
@@ -137,6 +141,7 @@ function stockCount($product_id, $variant_id) {
 
 function totalStockCount($product_id) {
   global $stockStore;
+  global $cart_expiry_time;
 
   $total_stock = 0;
   $has_stock = false;
@@ -145,7 +150,7 @@ function totalStockCount($product_id) {
   if(isset($product)) {
     if(isset($product["stock"])) {
       $has_stock = true;
-      $timeout = microtime(true) - 1200.0;
+      $timeout = microtime(true) - $cart_expiry_time;
 
       $items = $stockStore->findBy([
         ["product-id", "=", $product_id],
@@ -164,7 +169,7 @@ function totalStockCount($product_id) {
       foreach($product["variants"] as $variant) {
         if(isset($variant["stock"])) {
           $has_stock = true;
-          $timeout = microtime(true) - 1200.0;
+          $timeout = microtime(true) - $cart_expiry_time;
 
           $items = $stockStore->findBy([
             ["product-id", "=", $product_id],
@@ -191,8 +196,9 @@ function totalStockCount($product_id) {
 
 function getStock($product_id, $variant_id) {
   global $stockStore;
+  global $cart_expiry_time;
 
-  $timeout = microtime(true) - 1200.0;
+  $timeout = microtime(true) - $cart_expiry_time;
 
   $item = $stockStore->findOneBy([
     ["product-id", "=", $product_id],

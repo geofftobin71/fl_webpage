@@ -10,7 +10,7 @@ if(isset($_GET["i"])) {
     if(isset($cart_item["stock-id"])) {
       $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
       if($cart_item["updated"] == $stock_item["updated"]) {
-        $stock_item["updated"] = microtime(true) - 1800.0;
+        $stock_item["updated"] = microtime(true) - $cart_reset_time;
         $stockStore->update($stock_item);
       }
     }

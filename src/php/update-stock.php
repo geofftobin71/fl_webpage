@@ -12,8 +12,7 @@ foreach($shop_products as $product) {
             "stock-id" => uniqueId(),
             "product-id" => $product["id"],
             "variant-id" => $variant["id"],
-              /* "updated" => (new DateTime)->modify("-30 minutes")->getTimestamp(), */
-            "updated" => microtime(true) - 1800.0,
+            "updated" => microtime(true) - $cart_reset_time,
             "sold" => false
           ]);
         }
@@ -27,8 +26,7 @@ foreach($shop_products as $product) {
           "stock-id" => uniqueId(),
           "product-id" => $product["id"],
           "variant-id" => "none",
-            /* "updated" => (new DateTime)->modify("-30 minutes")->getTimestamp(), */
-          "updated" => microtime(true) - 1800.0,
+          "updated" => microtime(true) - $cart_reset_time,
           "sold" => false
         ]);
       }

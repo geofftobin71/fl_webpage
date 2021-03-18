@@ -38,23 +38,34 @@ permalink: "cart/index.php"
 </style>
 
 <?php
-  /*
-  $timeout = new DateTime;
-  $timeout->modify("-20 minutes");
-  $timeout = $timeout->getTimestamp();
-  */
-  $timeout = microtime(true) - 1200.0;
+  $timeout = microtime(true) - $cart_expiry_time;
+
+  $cart_expired = false;
 
   foreach($_SESSION["cart"] as $cart_item) {
-  if(isset($cart_item["stock-id"])) {
-    $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-    if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
-      unset($_SESSION["cart"]);
-      $_SESSION["cart"] = array();
-      $_SESSION["error"] = "Your session has timed out";
+    if(isset($cart_item["stock-id"])) {
+      $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+      if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
+        $cart_expired = true;
+      }
     }
   }
-}
+
+  if($cart_expired) {
+    foreach($_SESSION["cart"] as $cart_item) {
+      if(isset($cart_item["stock-id"])) {
+        $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+        if($cart_item["updated"] == $stock_item["updated"]) {
+          $stock_item["updated"] = microtime(true) - $cart_reset_time;
+          $stockStore->update($stock_item);
+        }
+      }
+    }
+
+    unset($_SESSION["cart"]);
+    $_SESSION["cart"] = array();
+    $_SESSION["error"] = "Your session has timed out";
+  }
 ?>
 
 <?php
@@ -62,6 +73,13 @@ permalink: "cart/index.php"
   $count = 0;
   foreach($_SESSION["cart"] as $cart_item) {
     if(!cartHasParents($cart_item["product-id"])) {
+      if(isset($cart_item["stock-id"])) {
+        $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+        if($cart_item["updated"] == $stock_item["updated"]) {
+          $stock_item["updated"] = microtime(true) - $cart_reset_time;
+          $stockStore->update($stock_item);
+        }
+      }
       array_splice($_SESSION["cart"], $i, 1);
       $count++;
     } else {
@@ -117,13 +135,15 @@ permalink: "cart/index.php"
             $variant = getVariant($product, $cart_item["variant-id"]); ?>
             <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
           <?php } ?>
-          <div class="font-size--1" style="display:flex">
+          <div class="font-size--1" style="display:flex;justify-content:flex-end">
           <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
             <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
           </a>
+          {#
           <a class="icon-button" style="margin-left:2em" href="/php/edit-message.php?i=<?php echo $i; ?>">
             <span>{{ '/src/svg/edit.svg' | svgContents | safe }}</span><p class="text-lowercase">Add Message</p>
           </a>
+          #}
         </div>
         </div>
         <p class="text-right"><?php echo formatMoney($price); ?></p>
