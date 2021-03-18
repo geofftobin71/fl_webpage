@@ -58,7 +58,7 @@ function uniqueId($length = 8) {
 function getCategory($category_name) {
   global $shop_categories;
   foreach($shop_categories as $category) {
-    if($category["name"] == $category_name) { return $category; }
+    if(isset($category["name"]) && ($category["name"] == $category_name)) { return $category; }
   }
 
   return null;
@@ -67,16 +67,16 @@ function getCategory($category_name) {
 function getProduct($product_id) {
   global $shop_products;
   foreach($shop_products as $product) {
-    if($product["id"] == $product_id) { return $product; }
+    if(isset($product["id"]) && ($product["id"] == $product_id)) { return $product; }
   }
 
   return null;
 }
 
 function getVariant($product, $variant_id) {
-  if($product && $product["variants"]) {
+  if(isset($product) && isset($product["variants"])) {
     foreach($product["variants"] as $variant) {
-      if($variant["id"] == $variant_id) { return $variant; }
+      if(isset($variant["id"]) && ($variant["id"] == $variant_id)) { return $variant; }
     }
   }
 
@@ -88,10 +88,10 @@ function hasVariants($product) {
 }
 
 function getPrice($product, $variant_id) {
-  if($product) {
-    if($product["variants"]) {
+  if(isset($product)) {
+    if(isset($product["variants"])) {
       foreach($product["variants"] as $variant) {
-        if($variant["id"] == $variant_id) { return $variant["price"] ? $variant["price"] : $product["price"]; }
+        if(isset($variant["id"]) && ($variant["id"] == $variant_id)) { return isset($variant["price"]) ? $variant["price"] : $product["price"]; }
       }
     }
     return $product["price"];
@@ -104,9 +104,9 @@ function hasStock($product_id, $variant_id) {
   $product = getProduct($product_id);
   $variant = getVariant($product, $variant_id);
 
-  if($variant) {
+  if(isset($variant)) {
     if($variant["stock"]) { return true; }
-  } else if($product) {
+  } else if(isset($product)) {
     if($product["stock"]) { return true; }
   }
 
@@ -160,7 +160,7 @@ function getStock($product_id, $variant_id) {
     ["updated", "<", $timeout]
   ]);
 
-  if($item) {
+  if(isset($item)) {
     // $item["updated"] = (new DateTime)->getTimestamp();
     $item["updated"] = microtime(true);
     $stockStore->update($item);
@@ -171,14 +171,14 @@ function getStock($product_id, $variant_id) {
 
 function cartHasParents($product_id) {
   $product = getProduct($product_id);
-  if(!$product) { return false; }
+  if(!isset($product)) { return false; }
 
   $category = getCategory($product["category"]);
-  if($category && empty($category["parents"])) { return true; }
+  if(isset($category) && empty($category["parents"])) { return true; }
 
   foreach($_SESSION["cart"] as $cart_item) {
     $cart_product = getProduct($cart_item["product-id"]);
-    if($cart_product && in_array($cart_product["category"], $category["parents"])) { return true; }
+    if(isset($cart_product) && isset($cart_product["category"]) && in_array($cart_product["category"], $category["parents"])) { return true; }
   }
 
   return false;
@@ -186,9 +186,9 @@ function cartHasParents($product_id) {
 
 function listParents($product_id) {
   $product = getProduct($product_id);
-  if(!$product) { return ""; }
+  if(!isset($product)) { return ""; }
   $category = getCategory($product["category"]);
-  if(!$category) { return ""; }
+  if(!isset($category)) { return ""; }
 
   $result = "";
   $first = true;
@@ -209,7 +209,7 @@ function cartTotal() {
   $cart_total = 0;
   foreach($_SESSION["cart"] as $cart_item) {
     $product = getProduct($cart_item["product-id"]);
-    if($product) {
+    if(isset($product)) {
       $price = getPrice($product, $cart_item["variant-id"]);
       $cart_total += $price;
     }
@@ -221,10 +221,10 @@ function cartTotal() {
 function cartHasDelivery() {
   foreach($_SESSION["cart"] as $cart_item) {
     $product = getProduct($cart_item["product-id"]);
-    if(!$product) { return false; }
+    if(!isset($product)) { return false; }
     $category = getCategory($product["category"]);
 
-    if($category && $category["delivery"]) { return true; }
+    if(isset($category) && isset($category["delivery"])) { return true; }
   }
 
   return false;

@@ -57,6 +57,23 @@ permalink: "cart/index.php"
 }
 ?>
 
+<?php
+  $i = 0;
+  $count = 0;
+  foreach($_SESSION["cart"] as $cart_item) {
+    if(!cartHasParents($cart_item["product-id"])) {
+      array_splice($_SESSION["cart"], $i, 1);
+      $count++;
+    } else {
+      $i++;
+    }
+  }
+
+  if($count) {
+    $_SESSION["error"] = (($count > 1) ? ($count . " add-on items were") : "1 add-on item was") . " removed from your cart";
+  }
+?>
+
 <div class="stack">
     <?php if(isset($_SESSION["info"])) { ?>
     <p id="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
@@ -71,8 +88,6 @@ permalink: "cart/index.php"
     <?php $cart_count = count($_SESSION["cart"]); ?>
     <?php $cart_total = 0; ?>
     <?php $delivery_fee = 0; ?>
-
-    <?php print_r($_SESSION); ?>
 
     <?php if($cart_count == 0) { ?>
     <div class="center-both stack" style="--stack-space:2em">
@@ -135,6 +150,8 @@ permalink: "cart/index.php"
         <?php if(isset($_SESSION["delivery-suburb"])) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
         <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"])) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
 
+        <?php } else { ?>
+        <input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">
         <?php } ?>
 
         <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>

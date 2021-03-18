@@ -178,7 +178,7 @@ input[type="radio"]:checked + .radio-label {
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
-        <p class="text-center">This product can only be added to the cart as an add-on to <?php echo listParents("{{ product.id }}"); ?>.</p>
+        <p class="text-center" style="margin-left:auto;margin-right:auto;max-width:45ch">This product can only be purchased as an add&#8209;on to <?php echo listParents("{{ product.id }}"); ?>.</p>
         <a class="button icon-button" style="margin-left:auto;margin-right:auto" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
         </a>

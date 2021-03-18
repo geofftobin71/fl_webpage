@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if($stock_count == 0) {
     $_SESSION["product-count"] = 0;
-    $_SESSION["error"] = "This product has Sold Out";
+    $_SESSION["error"] = "This product has sold out";
     header("Location:" . $return_url);
     exit;
   }
@@ -68,8 +68,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     } else {
       $_SESSION["cart"][] = array(
-        "product-id" => $item["product-id"],
-        "variant-id" => $item["variant-id"]
+        "product-id" => $product_id,
+        "variant-id" => $variant_id
       );
 
       $items_added++;
