@@ -3,12 +3,136 @@ layout: layouts/checkout.njk
 title: Checkout
 description: Floriade Checkout
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
+header:
+  title: Floriade Checkout
 permalink: "checkout/index.php"
 ---
 
-<?php
-// TEST COMMENT 1
-/* TEST COMMENT 2 */
-  // TEST COMMENT 3
-    // TEST COMMENT 4
-?>
+<style>
+#items {
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:start;
+}
+#items > * {
+  width:100%;
+  height:100%;
+  padding:0.5em;
+}
+#items > * + *, .top-border {
+  border-top:1px solid rgba(255, 255, 255, 0.1);
+}
+#items > *:nth-child(2) {
+  border-top:none;
+}
+#summary {
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  align-items:center;
+}
+#summary > *:not(select) {
+  width:100%;
+  height:100%;
+  padding:0.5em;
+}
+</style>
+
+<div class="stack">
+    <?php if(isset($_SESSION["info"])) { ?>
+    <p id="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
+    <?php } ?>
+    <?php if(isset($_SESSION["error"])) { ?>
+    <p id="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
+    <?php } ?>
+</div>
+
+<section id="checkout" style="min-height:50vh">
+  <div class="wrapper text-wrapper">
+    <?php $cart_count = count($_SESSION["cart"]); ?>
+    <?php $cart_total = 0; ?>
+    <?php $delivery_fee = 0; ?>
+
+    <?php if($cart_count == 0) { ?>
+    <div class="center-both stack" style="--stack-space:2em">
+      <h2 class="heading">Your Cart is Empty</h2>
+      <div class="text-center">
+        <a class="button icon-button" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
+        </a>
+      </div>
+    </div>
+    <?php } else { ?>
+
+    <form id="checkout-form" action="/php/place-order.php" method="post" class="flow" style="width:100%;--flow-space:2em">
+
+      <hr />
+
+      <div id="items" class="font-family-secondary">
+        <?php $i = 0; ?>
+        <?php foreach($_SESSION["cart"] as $cart_item) {
+          $product = getProduct($cart_item["product-id"]);
+          $price = getPrice($product, $cart_item["variant-id"]);
+          $cart_total += $price;
+        ?>
+        <div class="stack">
+          <p><?php echo $product["name"]; ?></p>
+          <?php if(hasVariants($product)) {
+            $variant = getVariant($product, $cart_item["variant-id"]); ?>
+            <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
+          <?php } ?>
+          <input required name="workshop-participant[]" type="text">
+          <div class="font-size--1" style="display:flex;justify-content:flex-end">
+            <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
+              <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
+            </a>
+          </div>
+        </div>
+        <p class="text-right"><?php echo formatMoney($price); ?></p>
+        <?php $i++; ?>
+        <?php } ?>
+      </div>
+
+      <hr />
+
+      <div id="summary" class="text-right font-family-secondary">
+        <h3 class="heading">Cart Total</h3>
+        <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
+        <p><?php echo formatMoney($cart_total); ?></p>
+
+        <?php if(cartHasDelivery()) { ?>
+
+        <h3 class="heading">Delivery To</h3>
+        <select id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
+          <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
+          {% for suburb, fee in delivery_fees %}
+            <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
+          {% endfor %}
+        </select>
+        <?php if(isset($_SESSION["delivery-suburb"])) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
+        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"])) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
+
+        <?php } else { ?>
+        <input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">
+        <?php } ?>
+
+        <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>
+        <p class="top-border"></p>
+        <p id="total" class="top-border font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
+      </div>
+
+      <hr />
+
+      <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
+
+      <div class="buttons swap">
+        <a class="button icon-button" href="/cart/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Return to Cart</p>
+        </a>
+        <button class="icon-button cursor-pointer bigfonts" type="submit">
+          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Place Order</p>
+        </button>
+      </div>
+    </form>
+    <?php } ?>
+  </div>
+</section>

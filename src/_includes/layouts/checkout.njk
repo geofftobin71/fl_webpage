@@ -23,6 +23,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
   }
 
+  $timeout = microtime(true) - $cart_expiry_time;
+
+  $cart_expired = false;
+
+  foreach($_SESSION["cart"] as $cart_item) {
+    if(isset($cart_item["stock-id"])) {
+      $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+      if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
+        $cart_expired = true;
+      }
+    }
+  }
+
+  if($cart_expired) {
+    foreach($_SESSION["cart"] as $cart_item) {
+      if(isset($cart_item["stock-id"])) {
+        $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+        if($cart_item["updated"] == $stock_item["updated"]) {
+          $stock_item["updated"] = microtime(true) - $cart_reset_time;
+          $stockStore->update($stock_item);
+        }
+      }
+    }
+
+    unset($_SESSION["cart"]);
+    $_SESSION["cart"] = array();
+    $_SESSION["error"] = "Your session has timed out";
+    header("Location:" . $return_url);
+    exit;
+  }
+
   $_SESSION["delivery-suburb"] = $delivery_suburb;
 }
 

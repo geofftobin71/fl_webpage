@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 
 if(isset($_GET["i"])) {

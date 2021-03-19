@@ -19,9 +19,6 @@ $shop_products = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php
 $shop_categories = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_categories.json"), true);
 $delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_fees.json"), true);
 
-// TEST COMMENT
-/* TEST COMMENT */
-
 $cart_expiry_time = 600.0;  // 10 minutes
 $cart_reset_time = 900.0;   // 15 minutes
 
@@ -276,7 +273,7 @@ function cartHasDelivery() {
     if(!isset($product)) { return false; }
     $category = getCategory($product["category"]);
 
-    if(isset($category) && isset($category["delivery"])) { return true; }
+    if(isset($category) && isset($category["delivery"]) && $category["delivery"]) { return true; }
   }
 
   return false;
