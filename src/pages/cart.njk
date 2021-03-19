@@ -199,15 +199,7 @@ permalink: "cart/index.php"
 <p id="test"></p>
 
 <script>
-  var delivery_fees;
-
-async function loadJSON(fname) {
-  var response = await fetch(fname);
-  delivery_fees = await response.json();
-}
-
-// loadJSON("{{ site.url }}/php/delivery_fees.json");
-loadJSON("http://168.138.10.72/php/delivery_fees.json");
+var delivery_fees = <?php echo(json_encode($delivery_fees)); ?>
 
 function formatMoney(cents) {
   if(cents == 0) { return 'free'; }
@@ -216,7 +208,7 @@ function formatMoney(cents) {
   } else {
     return '$' + (cents / 100.0).toFixed(2);
   }
-};
+}
 
 function updateDeliveryFee() {
   var suburb = document.getElementById("delivery-suburb").value;

@@ -92,8 +92,11 @@ module.exports = (eleventyConfig) => {
     fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(products, null, 2));
 
     // Upate Stock
-    // fetch('https://floriade.co.nz/php/update-stock.php');
-    fetch('http://168.138.10.72/php/update-stock.php');
+    if(process.env.NODE_ENV != 'deploy') {
+      fetch('http://168.138.10.72/php/update-stock.php');
+    } else {
+      fetch('https://floriade.co.nz/php/update-stock.php');
+    }
 
     // Minify Copy PHP files
     if(!fs.existsSync("./dist/php/")) { fs.mkdirSync("./dist/php/", true); }
