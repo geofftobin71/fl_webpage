@@ -10,6 +10,8 @@ const CleanCSS = require("clean-css");
 const { minify } = require("terser");
 const jsonminify = require("jsonminify");
 const fs = require("fs");
+const path = require("path");
+const glob = require("glob");
 const markdown = require("markdown-it")({ html: true }).disable('code');
 const fetch = require('node-fetch');
 const fetch64 = require('fetch-base64');
@@ -59,6 +61,17 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
     + caption + '</figure>';
 }
 
+function minifyCopy(input, output) {
+  let data = fs.readFileSync(input, 'utf8');
+
+  if(process.env.NODE_ENV != 'develop') {
+    let minified = data.replace(/\s+\/\/.*?\n/g, '').replace(/\/\*[^]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '').replace(/\n/g, ' ').replace(/\s*\;\s*/g, ';').replace(/\s*\:\s*/g, ':').replace(/\s*\{\s*/g, '{').replace(/\s*\}\s*/g, '}').replace(/\s*\[\s*/g, '[').replace(/\s*\]\s*/g, ']');
+    fs.writeFileSync(output, minified);
+  } else {
+    fs.writeFileSync(output, data);
+  }
+}
+
 module.exports = (eleventyConfig) => {
 
   eleventyConfig.on('beforeBuild', () => {
@@ -81,6 +94,22 @@ module.exports = (eleventyConfig) => {
     // Upate Stock
     // fetch('https://floriade.co.nz/php/update-stock.php');
     fetch('http://168.138.10.72/php/update-stock.php');
+
+    // Minify Copy PHP files
+    if(!fs.existsSync("./dist/php/")) { fs.mkdirSync("./dist/php/", true); }
+    minifyCopy("./src/_data/shop_categories.json", "./dist/php/shop_categories.json");
+    minifyCopy("./src/_data/shop_products.json", "./dist/php/shop_products.json");
+    minifyCopy("./src/_data/delivery_fees.json", "./dist/php/delivery_fees.json");
+
+    glob('./src/php/*', (err, files) => {
+      if(err) {
+        console.log(err);
+      } else {
+        files.forEach((file) => {
+          minifyCopy(file, "./dist/php/" + path.basename(file));
+        });
+      }
+    });
   });
 
   eleventyConfig.setDataDeepMerge(true);
@@ -124,13 +153,12 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy({"./src/favicon/*.webmanifest" : "/"});
   eleventyConfig.addPassthroughCopy("./src/fonts");
   eleventyConfig.addPassthroughCopy("./src/images");
-  eleventyConfig.addPassthroughCopy("./src/js");
-  eleventyConfig.addPassthroughCopy("./src/php");
   eleventyConfig.addPassthroughCopy("./admin");
-  eleventyConfig.addPassthroughCopy({"./src/_data/shop_categories.json" : "/php/shop_categories.json"});
-  eleventyConfig.addPassthroughCopy({"./src/_data/shop_products.json" : "/php/shop_products.json"});
-  eleventyConfig.addPassthroughCopy({"./src/_data/delivery_fees.json" : "/php/delivery_fees.json"});
-  eleventyConfig.addPassthroughCopy({"./src/_data/delivery_fees.json" : "/delivery_fees.json"});
+  // eleventyConfig.addPassthroughCopy("./src/js");
+  // eleventyConfig.addPassthroughCopy("./src/php");
+  // eleventyConfig.addPassthroughCopy({"./src/_data/shop_categories.json" : "/php/shop_categories.json"});
+  // eleventyConfig.addPassthroughCopy({"./src/_data/shop_products.json" : "/php/shop_products.json"});
+  // eleventyConfig.addPassthroughCopy({"./src/_data/delivery_fees.json" : "/php/delivery_fees.json"});
 
   eleventyConfig.addShortcode("markdown",
     content => `${markdown.render(content)}`
@@ -350,7 +378,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("cleanUrl", (url) => {
-      return url.replace("index.php","");
+    return url.replace("index.php","");
   });
 
   eleventyConfig.addFilter("removeEmpty", (array) => {
