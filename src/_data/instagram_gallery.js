@@ -22,8 +22,7 @@ async function getImages(json_data) {
 
 module.exports = function() {
 
-  // if(process.env.NODE_ENV == 'develop') {  XXX
-  if(true) {
+  if(process.env.NODE_ENV == 'develop') {
     console.log('Using instagram-gallery cache');
     const cache = require('../../_cache/instagram-gallery.json');
     return cache;

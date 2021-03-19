@@ -189,8 +189,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
-    // if(process.env.NODE_ENV != 'develop') {  XXX
-    if(false) {
+    if(process.env.NODE_ENV != 'develop') {
       if(!image_info_exists) {
         image_info_exists = true;
 
@@ -238,8 +237,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addNunjucksAsyncFilter("imgGallery", async (folder, callback) => {
     let gallery = {}
 
-    // if(process.env.NODE_ENV == 'develop') {  XXX
-    if(true) {
+    if(process.env.NODE_ENV == 'develop') {
       console.log('Using ' + folder + '-gallery cache');
 
       gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '-gallery.json'));
@@ -252,7 +250,7 @@ module.exports = (eleventyConfig) => {
         .execute();
 
       if(gallery && gallery.resources && gallery.resources.length) {
-        if(process.env.NODE_ENV == 'XXXbuild') {
+        if(process.env.NODE_ENV == 'build') {
           // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
           console.log('Updating ' + folder + '-gallery');
 
