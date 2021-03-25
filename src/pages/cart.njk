@@ -94,10 +94,10 @@ permalink: "cart/index.php"
 
 <div class="stack">
     <?php if(isset($_SESSION["info"])) { ?>
-    <p id="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
+    <p class="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
     <?php } ?>
     <?php if(isset($_SESSION["error"])) { ?>
-    <p id="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
+    <p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
     <?php } ?>
 </div>
 
@@ -129,21 +129,17 @@ permalink: "cart/index.php"
           $price = getPrice($product, $cart_item["variant-id"]);
           $cart_total += $price;
         ?>
-        <div class="stack">
-          <p><?php echo $product["name"]; ?></p>
+        <div class="stack" style="--stack-space:1em">
+          <p><?php echo $product["name"]; ?>
           <?php if(hasVariants($product)) {
             $variant = getVariant($product, $cart_item["variant-id"]); ?>
-            <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
+            <span class="font-size--1" style="white-space:nowrap"> ( <?php echo $variant["name"]; ?> )</span>
           <?php } ?>
-          <div class="font-size--1" style="display:flex;justify-content:flex-end">
+          </p>
+          <div class="font-size--1" style="display:flex;justify-content:flex-start">
           <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
             <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
           </a>
-          {#
-          <a class="icon-button" style="margin-left:2em" href="/php/edit-message.php?i=<?php echo $i; ?>">
-            <span>{{ '/src/svg/edit.svg' | svgContents | safe }}</span><p class="text-lowercase">Add Message</p>
-          </a>
-          #}
         </div>
         </div>
         <p class="text-right"><?php echo formatMoney($price); ?></p>
@@ -167,8 +163,8 @@ permalink: "cart/index.php"
             <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
           {% endfor %}
         </select>
-        <?php if(isset($_SESSION["delivery-suburb"])) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
-        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"])) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
+        <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
+        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
 
         <?php } else { ?>
         <input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">

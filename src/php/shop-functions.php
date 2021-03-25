@@ -19,8 +19,8 @@ $shop_products = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php
 $shop_categories = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_categories.json"), true);
 $delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_fees.json"), true);
 
-$cart_expiry_time = 600.0;  // 10 minutes
-$cart_reset_time = 900.0;   // 15 minutes
+$cart_expiry_time = 1200.0;  // 20 minutes
+$cart_reset_time = 1500.0;   // 25 minutes
 
 function clean($data) {
   $data = trim($data);

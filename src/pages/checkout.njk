@@ -38,12 +38,12 @@ permalink: "checkout/index.php"
 </style>
 
 <div class="stack">
-    <?php if(isset($_SESSION["info"])) { ?>
-    <p id="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
-    <?php } ?>
-    <?php if(isset($_SESSION["error"])) { ?>
-    <p id="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
-    <?php } ?>
+  <?php if(isset($_SESSION["info"])) { ?>
+  <p class="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
+  <?php } ?>
+  <?php if(isset($_SESSION["error"])) { ?>
+  <p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
+  <?php } ?>
 </div>
 
 <section id="checkout" style="min-height:50vh">
@@ -63,8 +63,18 @@ permalink: "checkout/index.php"
     </div>
     <?php } else { ?>
 
-    <form id="checkout-form" action="/php/place-order.php" method="post" class="flow" style="width:100%;--flow-space:2em">
+    <noscript>
+      <div class="center-both stack text-center" style="--stack-space:2em">
+        <h2 class="heading">Javascript is Required</h2>
+        <p>Javascript is currently disabled in your web browser.</p>
+        <p>This page cannot function unless Javascript is enabled.</p>
+        <p>Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/">enable Javascript</a> in your web browser.</p>
+      </div>
+    </noscript>
 
+    <form id="checkout-form" action="/php/place-order.php" method="post" class="req-js flow" style="width:100%;--flow-space:2em">
+
+      <h2 class="heading text-center">Order Summary</h2>
       <hr />
 
       <div id="items" class="font-family-secondary">
@@ -74,20 +84,26 @@ permalink: "checkout/index.php"
           $price = getPrice($product, $cart_item["variant-id"]);
           $cart_total += $price;
         ?>
-        <div class="stack">
-          <p><?php echo $product["name"]; ?></p>
-          <?php if(hasVariants($product)) {
-            $variant = getVariant($product, $cart_item["variant-id"]); ?>
-            <p class="font-size--1"> ( <?php echo $variant["name"]; ?> )</p>
-          <?php } ?>
-          <input required name="workshop-participant[]" type="text">
-          <div class="font-size--1" style="display:flex;justify-content:flex-end">
-            <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
-              <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
-            </a>
+          <div class="stack" style="--stack-space:1em">
+            <p><?php echo $product["name"]; ?>
+            <?php if(hasVariants($product)) {
+              $variant = getVariant($product, $cart_item["variant-id"]); ?>
+              <span class="font-size--1" style="white-space:nowrap"> ( <?php echo $variant["name"]; ?> )</span>
+            <?php } ?>
+            </p>
+            <?php if(strtolower($product["category"]) == "workshops") { ?>
+              <div>
+                <label for="ws-name-<?php echo $i; ?>"><h4 class="heading">Name</h4></label>
+                <input required class="input" style="width:100%" id="ws-name-<?php echo $i; ?>" name="workshop-attendee-name[<?php echo $cart_item['cart-id']; ?>]" type="text" autocomplete="name" placeholder="Name of the person attending">
+              </div>
+              <div>
+                <label for="ws-email-<?php echo $i; ?>"><h4 class="heading">Email</h4></label>
+                <input required class="input" style="width:100%" id="ws-email-<?php echo $i; ?>" name="workshop-attendee-email[<?php echo $cart_item['cart-id']; ?>]" type="email" autocomplete="email" inputmode="email" placeholder="Email of the person attending">
+                <p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>
+              </div>
+            <?php } ?>
           </div>
-        </div>
-        <p class="text-right"><?php echo formatMoney($price); ?></p>
+          <p class="text-right"><?php echo formatMoney($price); ?></p>
         <?php $i++; ?>
         <?php } ?>
       </div>
@@ -95,44 +111,76 @@ permalink: "checkout/index.php"
       <hr />
 
       <div id="summary" class="text-right font-family-secondary">
-        <h3 class="heading">Cart Total</h3>
+        <h3 class="heading text-left">Cart Total</h3>
         <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
         <p><?php echo formatMoney($cart_total); ?></p>
 
         <?php if(cartHasDelivery()) { ?>
 
-        <h3 class="heading">Delivery To</h3>
-        <select id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
-          <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
-          {% for suburb, fee in delivery_fees %}
-            <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
-          {% endfor %}
-        </select>
-        <?php if(isset($_SESSION["delivery-suburb"])) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
-        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"])) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
+        <h3 class="heading text-left" style="grid-column:1/span 2"><?php if(($delivery_suburb != "none") && ($delivery_suburb != "pickup in store")) { echo 'Delivery to '; } ?><span style="white-space:nowrap"><?php echo $delivery_suburb; ?><span></h3>
+        <?php if($delivery_suburb != "none") { $delivery_fee = $delivery_fees[$delivery_suburb] * 100; } ?>
+        <p id="delivery-fee"><?php if($delivery_suburb != "none") { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
 
         <?php } else { ?>
         <input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">
         <?php } ?>
 
-        <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>
+        <h3 class="top-border font-size-1 text-lowercase text-left">TOTAL</h3>
         <p class="top-border"></p>
         <p id="total" class="top-border font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
       </div>
 
       <hr />
 
+      <h2 class="heading text-center">Payment</h2>
+      <hr />
+
+      <div class="stack" style="--stack-space:1em">
+        <div>
+          <label for="cardholder-name"><h4 class="heading">Name on Credit Card</h4></label>
+          <input required class="input" style="width:100%" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" placeholder="Cardholder Name">
+        </div>
+
+        <div>
+          <label for="cardholder-email"><h4 class="heading">Email</h4></label>
+          <input required class="input" style="width:100%" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" placeholder="Cardholder Email">
+          <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
+        </div>
+
+        <div>
+          <label for="card-input"><h4 class="heading">Credit Card</h4></label>
+          <div id="card-input" class="input"></div>
+        </div>
+
+        <p id="card-errors" class="error" role="alert" style="visibility:hidden">&nbsp;</p>
+      </div>
+
+      <hr />
+
       <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
+
+      <div class="text-center font-secondary">
+        <p>All prices are in New Zealand dollars <span style="white-space:nowrap">and include GST.</span></p>
+        <p>By using this form you agree to our <a href="/terms-and-conditions/" target="_blank" title="Opens in a new page"><span style="white-space:nowrap">Terms and Conditions</span></a>.</p>
+      </div>
 
       <div class="buttons swap">
         <a class="button icon-button" href="/cart/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Return to Cart</p>
         </a>
         <button class="icon-button cursor-pointer bigfonts" type="submit">
-          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Place Order</p>
+          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Order Now</p>
         </button>
       </div>
+
+      <div class="text-center font-size--1 font-secondary">
+        <p>Floriade does not store your credit card details.</p>
+        <p>All credit card transactions are secured by <a href="https://stripe.com" target="_blank" title="Opens in a new page">Stripe</a>.</p>
+        <p>See their <a href="https://stripe.com/docs/security/stripe" target="_blank" title="Opens in a new page">security</a> and <a href="https://stripe.com/nz/privacy/" target="_blank" title="Opens in a new page">privacy</a> policies for details.</p>
+      </div>
+
     </form>
     <?php } ?>
+
   </div>
 </section>

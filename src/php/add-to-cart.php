@@ -60,6 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if($item) {
         $_SESSION["cart"][] = array(
+          "cart-id" => uniqueId(),
           "product-id" => $item["product-id"],
           "variant-id" => $item["variant-id"],
           "stock-id" => $item["stock-id"],
@@ -70,6 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       }
     } else if($stock_count < 0) {
       $_SESSION["cart"][] = array(
+        "cart-id" => uniqueId(),
         "product-id" => $product_id,
         "variant-id" => $variant_id
       );

@@ -8,6 +8,11 @@
   --button-fg: var(--color-shade3);
   --button-bg: transparent;
   --button-hl: var(--color-shade1);
+  --input-color: var(--color-dark);
+  --input-background: var(--color-shade4);
+  --input-border: var(--color-shade2);
+  --input-focus: var(--color-shade3);
+  --input-placeholder: var(--color-shade2);
 }
 
 @media screen and (min-width: 1200px) {
@@ -16,7 +21,95 @@
   }
 }
 
-#info, #error {
+@supports(appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type='text'], input[type='number'], input[type='email'], textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+.input {
+  font-size: 16px;
+  /* font-size: max(16px, 1em); */
+  font-family: inherit;
+  padding: 0.15em 0.3em;
+  color: var(--input-color);
+  background-color: var(--input-background);
+  border: 2px solid var(--input-border);
+  border-radius: var(--input-radius, 0.5rem);
+  transition: 180ms box-shadow ease-in-out;
+}
+
+.input:not(textarea) {
+  line-height: 1;
+  height: 2.25rem;
+}
+
+.input:focus {
+  --input-background: var(--color-light);
+  box-shadow: 0 0 0 2px var(--input-focus);
+  outline: 2px solid transparent;
+}
+
+.StripeElement * {
+  height: 100% !important;
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  font-size: 16px;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.15em 0.3em;
+  color: var(--input-color);
+  background-color: var(--input-background);
+  border: 2px solid var(--input-border);
+  border-radius: var(--input-radius, 0.5rem);
+  transition: 180ms box-shadow ease-in-out;
+  -webkit-text-fill-color: var(--input-color);
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-background) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  font-family: var(--font-family-secondary);
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  font-family: var(--font-family-secondary);
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  font-family: var(--font-family-secondary);
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-family: var(--font-family-secondary);
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+::placeholder {
+  font-family: var(--font-family-secondary);
+  color: var(--input-placeholder);
+  opacity: 1;
+}
+
+.info, .error, .stack .info, .stack .error {
   font-family: var(--font-family-secondary);
   text-align: center;
   text-transform: lowercase;
@@ -28,12 +121,12 @@
   padding: 0.25em 0.5em;
 }
 
-#info {
+.info, .stack .info {
   color: #008800;
   background: #CCEECC;
 }
 
-#error {
+.error, .stack .error {
   color: #DD0000;
   background: #FFDDDD;
 }
@@ -191,7 +284,7 @@ background-size: .65em auto, 100%;
   box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
   box-shadow: 0 0 0 3px -moz-mac-focusring;
   outline: none;
-  */
+   */
 }
 
 .select-css option {

@@ -1,4 +1,4 @@
-<header id="header" class="header">
+<header id="header" class="header shadow">
   <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     {% set image_info = image_id | imgInfo %}
@@ -20,7 +20,9 @@
   <nav class="site-menu wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
     {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
   </nav>
+  {% if banner_message.message %}
+    <aside class="banner-message link-dark">
+      {% markdown banner_message.message %}
+    </aside>
+  {% endif %}
 </header>
-<aside class="banner-message link-dark">
-  {% markdown banner_message.message %}
-</aside>

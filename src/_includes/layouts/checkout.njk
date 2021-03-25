@@ -59,3 +59,74 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 {% endblock %}
+
+{% block foot %}
+  {{ super() }}
+
+  <?php require $_SERVER['DOCUMENT_ROOT'] . '/../php/stripe-test-config.php'; ?>
+
+  {% set js %}
+  window.addEventListener('load', function() {
+    var stripe = Stripe('<?php echo $stripe_keys["publishable_key"]; ?>');
+  
+    var elements = stripe.elements({fonts:[
+      {
+        family: 'Poppins',
+        weight: 'normal',
+        src: 'url(https://floriade.co.nz/fonts/poppins-light.woff)',
+        display: 'swap'
+      },
+      {
+        family: 'Kollektif',
+        weight: 'normal',
+        src: 'url(https://floriade.co.nz/fonts/kollektif.woff)',
+        display: 'swap'
+      }
+    ]});
+
+    var card = elements.create('card', {
+    hidePostalCode: true,
+      style: {
+        base: {
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: 'normal',
+          fontSize: '16px',
+          lineHeight: '2em',
+          color: '#333333',
+          backgroundColor: '#CDDAD5',
+          ':focus': {
+            backgroundColor: '#CDDAD5',
+          },
+          ':-webkit-autofill': {
+            color: '#333333',
+            backgroundColor: '#CDDAD5',
+          },
+          '::placeholder': {
+            fontFamily: 'Kollektif, sans-serif',
+            color: '#818D89',
+          },
+        },
+      }
+    });
+  
+    card.mount('#card-input');
+  
+    card.addEventListener('change', function(event) {
+      var card_errors = document.getElementById('card-errors');
+
+      if (event.error) {
+        card_errors.innerText = event.error.message;
+        card_errors.style.visibility = "visible";
+      } else {
+        card_errors.innerHTML = '&nbsp;';
+        card_errors.style.visibility = "hidden";
+      }
+    });
+
+  }, false);
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}

@@ -93,7 +93,7 @@ input[type="radio"]:checked + .radio-label {
 {% include "partials/view-cart-button.njk" %}
 <?php if(isset($_SESSION["error"])) { ?>
 <div class="center-both text-center">
-<p id="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
+<p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
 </div>
 <?php } ?>
 <section id="shop" class="two-column-section">
