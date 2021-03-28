@@ -8,6 +8,12 @@
   --button-fg: var(--color-shade3);
   --button-bg: transparent;
   --button-hl: var(--color-shade1);
+  --error-color: #CC0000;
+  --error-background: #FFDDDD;
+  --error-link: #FF0000;
+  --error-link-hover: #DD0000;
+  --info-color: #008800;
+  --info-background: #CCEECC;
   --input-color: var(--color-dark);
   --input-background: var(--color-shade4);
   --input-border: var(--color-shade2);
@@ -122,13 +128,13 @@ select:-webkit-autofill:focus {
 }
 
 .info, .stack .info {
-  color: #008800;
-  background: #CCEECC;
+  color: var(--info-color);
+  background: var(--info_background);
 }
 
 .error, .stack .error {
-  color: #DD0000;
-  background: #FFDDDD;
+  color: var(--error-color);
+  background: var(--error-background);
 }
 
 img, figure {
@@ -428,6 +434,24 @@ background-size: .65em auto, 100%;
   background: var(--color-shade3);
   padding: 0.5rem 1rem;
 }
+
+.banner-message a:link { color: var(--color-shade1); }
+.banner-message a:visited { color: var(--color-shade1); }
+.banner-message a:hover { color: var(--color-shade2); }
+.banner-message a:active { color: var(--color-shade2); }
+
+.banner-error {
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  color: var(--error-color);
+  background: var(--error-background);
+  padding: 0.5rem 1rem;
+}
+
+.banner-error a:link { color: var(--error-link); }
+.banner-error a:visited { color: var(--error-link); }
+.banner-error a:hover { color: var(--error-link-hover); }
+.banner-error a:active { color: var(--error-link-hover); }
 
 /* ----- Background Image ----- */
 

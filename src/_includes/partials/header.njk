@@ -21,7 +21,7 @@
     {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
   </nav>
   {% if banner_message.message %}
-    <aside class="banner-message link-dark">
+    <aside class="banner-message">
       {% markdown banner_message.message %}
     </aside>
   {% endif %}

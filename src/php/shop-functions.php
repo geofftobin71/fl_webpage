@@ -12,6 +12,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/sleekdb-config.php";
 
 use SleekDB\Store;
 $stockStore = new Store("stock", $sleekDir, $sleekConfig);
+$orderStore = new Store("orders", $sleekDir, $sleekConfig);
 
 date_default_timezone_set("Pacific/Auckland");
 

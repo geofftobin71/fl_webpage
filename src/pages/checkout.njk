@@ -37,6 +37,12 @@ permalink: "checkout/index.php"
 }
 </style>
 
+<noscript>
+<aside class="banner-error">
+Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
+</aside>
+</noscript>
+
 <div class="stack">
   <?php if(isset($_SESSION["info"])) { ?>
   <p class="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
@@ -67,7 +73,7 @@ permalink: "checkout/index.php"
       <div class="center-both stack text-center" style="--stack-space:2em">
         <h2 class="heading">Javascript is Required</h2>
         <p>Javascript is currently disabled in your web browser.</p>
-        <p>This page cannot function unless Javascript is enabled.</p>
+        <p>This page cannot function properly unless Javascript is enabled.</p>
         <p>Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/">enable Javascript</a> in your web browser.</p>
       </div>
     </noscript>
@@ -77,7 +83,7 @@ permalink: "checkout/index.php"
       <h2 class="heading text-center">Order Summary</h2>
       <hr />
 
-      <div id="items" class="font-family-secondary">
+      <div id="items" class="font-secondary">
         <?php $i = 0; ?>
         <?php foreach($_SESSION["cart"] as $cart_item) {
           $product = getProduct($cart_item["product-id"]);
@@ -110,7 +116,7 @@ permalink: "checkout/index.php"
 
       <hr />
 
-      <div id="summary" class="text-right font-family-secondary">
+      <div id="summary" class="text-right font-secondary">
         <h3 class="heading text-left">Cart Total</h3>
         <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
         <p><?php echo formatMoney($cart_total); ?></p>
@@ -131,6 +137,33 @@ permalink: "checkout/index.php"
       </div>
 
       <hr />
+
+      <?php if(cartHasDelivery()) { ?>
+
+      <h2 class="heading text-center">Delivery</h2>
+      <hr />
+
+      <div class="stack" style="--stack-space:1em">
+        <div>
+          <label for="delivery-name"><h4 class="heading">Name</h4></label>
+          <input required class="input" style="width:100%" id="delivery-name" name="delivery-name" type="text" autocomplete="name" placeholder="Recipient Name">
+        </div>
+
+        <div>
+          <label for="delivery-phone"><h4 class="heading">Phone</h4></label>
+          <input required class="input" style="width:100%" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Recipient Phone number">
+          <p class="caption text-left text-lowercase">In case we are unable to deliver your order & need to contact the recipient</p>
+        </div>
+
+        <div>
+          <label for="delivery-date"><h4 class="heading">Date</h4></label>
+          <input required class="input" style="width:100%" id="delivery-date" name="delivery-date" type="date" placeholder="yyyy-mm-dd" min="<?php echo date('Y-m-d'); ?>">
+        </div>
+      </div>
+
+      <hr />
+
+      <?php } ?>
 
       <h2 class="heading text-center">Payment</h2>
       <hr />

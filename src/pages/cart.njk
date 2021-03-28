@@ -63,6 +63,7 @@ permalink: "cart/index.php"
     }
 
     unset($_SESSION["cart"]);
+    unset($_SESSION["order-id"]);
     $_SESSION["cart"] = array();
     $_SESSION["error"] = "Your session has timed out";
   }
@@ -91,6 +92,12 @@ permalink: "cart/index.php"
     $_SESSION["error"] = (($count > 1) ? ($count . " add-on items were") : "1 add-on item was") . " removed from your cart";
   }
 ?>
+
+<noscript>
+<aside class="banner-error">
+Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
+</aside>
+</noscript>
 
 <div class="stack">
     <?php if(isset($_SESSION["info"])) { ?>
@@ -122,7 +129,7 @@ permalink: "cart/index.php"
 
       <hr />
 
-      <div id="items" class="font-family-secondary">
+      <div id="items" class="font-secondary">
         <?php $i = 0; ?>
         <?php foreach($_SESSION["cart"] as $cart_item) {
           $product = getProduct($cart_item["product-id"]);
@@ -136,7 +143,7 @@ permalink: "cart/index.php"
             <span class="font-size--1" style="white-space:nowrap"> ( <?php echo $variant["name"]; ?> )</span>
           <?php } ?>
           </p>
-          <div class="font-size--1" style="display:flex;justify-content:flex-start">
+          <div class="font-base font-size--1" style="display:flex;justify-content:flex-start">
           <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
             <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
           </a>
@@ -149,7 +156,7 @@ permalink: "cart/index.php"
 
       <hr />
 
-      <div id="summary" class="text-right font-family-secondary">
+      <div id="summary" class="text-right font-secondary">
         <h3 class="heading">Cart Total</h3>
         <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
         <p><?php echo formatMoney($cart_total); ?></p>

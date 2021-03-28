@@ -5,6 +5,8 @@
 
 <?php
 
+if(!isset($_SESSION["order-id"])) { $_SESSION["order-id"] = uniqueId(16); }
+
 $delivery_suburb = "";
 $return_url = "";
 
@@ -48,6 +50,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     unset($_SESSION["cart"]);
+    unset($_SESSION["order-id"]);
     $_SESSION["cart"] = array();
     $_SESSION["error"] = "Your session has timed out";
     header("Location:" . $return_url);
