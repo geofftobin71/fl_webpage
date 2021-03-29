@@ -66,8 +66,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 {% block foot %}
   {{ super() }}
 
-  <?php require $_SERVER['DOCUMENT_ROOT'] . '/../php/stripe-test-config.php'; ?>
-
   {% set js %}
   window.addEventListener('load', function() {
     var stripe = Stripe('<?php echo $stripe_keys["publishable_key"]; ?>');

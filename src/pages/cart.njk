@@ -114,6 +114,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
     <?php $cart_total = 0; ?>
     <?php $delivery_fee = 0; ?>
 
+    <pre><?php print_r($_SESSION); ?></pre>
+
     <?php if($cart_count == 0) { ?>
     <div class="center-both stack" style="--stack-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>

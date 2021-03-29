@@ -132,7 +132,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addCollection("blog", (collection) => {
     const today = DateTime.local().set({hours:0,minutes:0,seconds:0,milliseconds:0});
     const livePosts = (p) => { 
-      const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
+      const post_date = DateTime.fromISO(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
+      // const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
       return (post_date <= today) && (!p.data.draft);
     }
 
@@ -329,12 +330,14 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'Pacific/Auckland'}).toFormat("dd LLL yyyy");
+    return DateTime.fromISO(dateObj).toFormat("dd LLL yyyy");
+    // return DateTime.fromJSDate(dateObj, {zone: 'Pacific/Auckland'}).toFormat("dd LLL yyyy");
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'Pacific/Auckland'}).toFormat('yyyy-LL-dd');
+    return DateTime.fromISO(dateObj).toFormat('yyyy-LL-dd');
+    // return DateTime.fromJSDate(dateObj, {zone: 'Pacific/Auckland'}).toFormat('yyyy-LL-dd');
   });
 
   // Get the first `n` elements of a collection.

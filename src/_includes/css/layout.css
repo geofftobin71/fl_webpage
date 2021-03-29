@@ -129,7 +129,7 @@ select:-webkit-autofill:focus {
 
 .info, .stack .info {
   color: var(--info-color);
-  background: var(--info_background);
+  background: var(--info-background);
 }
 
 .error, .stack .error {
