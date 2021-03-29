@@ -7,9 +7,6 @@ sections:
 - type: heading
   label: Website Data
 - type: document
-  path: src/_data/test_dates.json
-  label: Test Dates
-- type: document
   path: src/_data/shop_hours.json
   label: Shop Hours
 - type: document

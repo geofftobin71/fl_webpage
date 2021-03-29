@@ -75,6 +75,20 @@ function minifyCopy(input, output) {
 module.exports = (eleventyConfig) => {
 
   eleventyConfig.on('beforeBuild', () => {
+
+    // Fix shop_closed_dates and non_delivery_dates to have two digit dates
+    let shop_closed_dates = JSON.parse(fs.readFileSync('src/_data/shop_closed_dates.json'));
+    shop_closed_dates.forEach((date, i, dates) => {
+      if(!isNaN(parseInt(date[0])) && isNaN(parseInt(date[1]))) { dates[i] = '0' + date; }
+    });
+    fs.writeFileSync('src/_data/shop_closed_dates.json', JSON.stringify(shop_closed_dates, null, 2));
+
+    let non_delivery_dates = JSON.parse(fs.readFileSync('src/_data/non_delivery_dates.json'));
+    non_delivery_dates.forEach((date, i, dates) => {
+      if(!isNaN(parseInt(date[0])) && isNaN(parseInt(date[1]))) { dates[i] = '0' + date; }
+    });
+    fs.writeFileSync('src/_data/non_delivery_dates.json', JSON.stringify(non_delivery_dates, null, 2));
+
     // Add unique IDs to products
     let products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
     products.forEach(product => {
