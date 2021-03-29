@@ -4,12 +4,11 @@ auto_deploy: false
 admin_path: admin
 webhook_url: 
 sections:
+- type: heading
+  label: Website Data
 - type: document
   path: src/_data/test_dates.json
   label: Test Dates
-  match: "**/*"
-- type: heading
-  label: Website Data
 - type: document
   path: src/_data/shop_hours.json
   label: Shop Hours
