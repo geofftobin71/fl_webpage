@@ -1,4 +1,24 @@
 ---
 label: Test Dates
 hide_body: true
-fields: []
+fields:
+- name: dates
+  type: field_group_list
+  fields:
+  - name: date
+    type: datetime
+    label: Date
+    description: ''
+    config:
+      required: false
+      date_format: DD MMM YYYY
+      time_format: 
+      display_utc: false
+      export_format: DD MMM YYYY
+  config:
+    min: 
+    max: 
+    labelField: 
+  label: Dates
+pages:
+- src/_data/test_dates.json
