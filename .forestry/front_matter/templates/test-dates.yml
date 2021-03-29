@@ -3,22 +3,12 @@ label: Test Dates
 hide_body: true
 fields:
 - name: dates
-  type: field_group_list
-  fields:
-  - name: date
-    type: datetime
-    label: Date
-    description: ''
-    config:
-      required: false
-      date_format: DD MMM YYYY
-      time_format: 
-      display_utc: false
-      export_format: DD MMM YYYY
+  type: list
   config:
+    use_select: false
     min: 
     max: 
-    labelField: 
   label: Dates
+  description: DD MMM YYYY<br>Two digit date, Three letter month, Four digit year
 pages:
 - src/_data/test_dates.json
