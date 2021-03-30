@@ -35,6 +35,13 @@ permalink: "checkout/index.php"
   height:100%;
   padding:0.5em;
 }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#spinner-icon {
+  animation: spin 1.5s linear infinite;
+}
 </style>
 
 <noscript>
@@ -211,7 +218,9 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Return to Cart</p>
         </a>
         <button class="icon-button cursor-pointer bigfonts" type="submit">
-          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Order Now</p>
+          <span id="cart-icon">{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span>
+          <span id="spinner-icon" style="display:none">{{ '/src/svg/spinner.svg' | svgContents | safe }}</span>
+          <p id="submit-text">Order Now</p>
         </button>
       </div>
 

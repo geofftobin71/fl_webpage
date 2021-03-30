@@ -566,6 +566,16 @@ button:active, .button:active {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+button[disabled], button[disabled]:hover, button[disabled]:focus, button[disabled]:active,
+.button[disabled], .button[disabled]:hover, .button[disabled]:focus, .button[disabled]:active {
+  background: var(--button-bg);
+  color: grey;
+  border-color: grey;
+  cursor: default;
+  pointer-events: none;
+  box-shadow: none;
+}
+
 a.button:link { color: var(--button-fg); }
 a.button:visited { color: var(--button-fg); }
 a.button:hover { color: var(--button-hl); }
