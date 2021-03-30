@@ -131,7 +131,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <?php if(cartHasDelivery()) { ?>
 
         <h3 class="heading text-left" style="grid-column:1/span 2"><?php if(($delivery_suburb != "none") && ($delivery_suburb != "pickup in store")) { echo 'Delivery to '; } ?><span style="white-space:nowrap"><?php echo $delivery_suburb; ?><span></h3>
-        <?php if($delivery_suburb != "none") { $delivery_fee = $delivery_fees[$delivery_suburb] * 100; } ?>
+        <?php if($delivery_suburb != "none") { $delivery_fee = $delivery_fees[$delivery_suburb]; } ?>
         <p id="delivery-fee"><?php if($delivery_suburb != "none") { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
 
         <?php } else { ?>

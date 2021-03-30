@@ -1,5 +1,4 @@
 single product width on mobile - padding too big
-deprecate cents
 Button / Select / Radio css
 Product auto expiry date
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView

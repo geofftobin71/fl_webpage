@@ -141,7 +141,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <p></p>
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
-              <?php $stock_count = stockCount("{{ product.id }}", "{{variant.id}}"); ?>
+              <?php $stock_count = stockCount("{{ product.id }}", "{{ variant.id }}"); ?>
               <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}") && ($stock_count != 0)) { echo " checked"; } ?> <?php if($stock_count == 0) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
                 <?php if($stock_count > 0) { ?>

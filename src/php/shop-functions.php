@@ -39,11 +39,11 @@ function criticalError($page, $message) {
     exit;
 }
 
-function formatMoney($cents) {
-    if (!$cents) {
+function formatMoney($price) {
+    if (!$price) {
       return "free";
     } else {
-        $f = floatval($cents) / 100.0;
+        $f = floatval($price);
         if (floor($f) == $f) {
             $money = number_format($f, 0);
         } else {

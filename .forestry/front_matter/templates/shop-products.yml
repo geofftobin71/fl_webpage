@@ -26,12 +26,11 @@ fields:
   - name: price
     type: number
     label: Price
-    description: Price in whole-number cents. eg. $20 = 2000, $6.50 = 650<br>Required
-      if there are no Variants
+    description: Required if there are no Variants
     default: 0
     required: true
     config:
-      min: 500
+      min: 1
       max: 
       step: 
   - type: number
@@ -72,10 +71,9 @@ fields:
     - type: number
       name: price
       label: Price
-      description: Price in whole-number cents. eg. $20 = 2000, $6.50 = 650
       config:
         required: false
-        min: 500
+        min: 1
     - type: number
       name: stock
       label: Stock

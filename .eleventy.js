@@ -441,12 +441,12 @@ module.exports = (eleventyConfig) => {
     return (path) ? path.replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'') : '';
   });
 
-  eleventyConfig.addFilter("formatMoney", (cents) => {
-    if(cents == 0) { return 'free'; }
-    if(Math.floor(cents / 100.0) == (cents / 100.0)) {
-      return '$' + (cents / 100.0);
+  eleventyConfig.addFilter("formatMoney", (price) => {
+    if(price == 0) { return 'free'; }
+    if(Math.floor(price) == (price)) {
+      return '$' + (price);
     } else {
-      return '$' + (cents / 100.0).toFixed(2);
+      return '$' + (price).toFixed(2);
     }
   });
 

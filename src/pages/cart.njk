@@ -89,7 +89,7 @@ permalink: "cart/index.php"
   }
 
   if($count) {
-    $_SESSION["error"] = (($count > 1) ? ($count . " add-on items were") : "1 add-on item was") . " removed from your cart";
+    $_SESSION["info"] .= "<br>" . (($count > 1) ? ($count . " add-on items were") : "1 add-on item was") . " removed from your cart";
   }
 ?>
 
@@ -172,7 +172,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
             <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
           {% endfor %}
         </select>
-        <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]] * 100; } ?>
+        <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]]; } ?>
         <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
 
         <?php } else { ?>
@@ -204,19 +204,19 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 <script>
 var delivery_fees = <?php echo(json_encode($delivery_fees)); ?>
 
-function formatMoney(cents) {
-  if(cents == 0) { return 'free'; }
-  if(Math.floor(cents / 100.0) == (cents / 100.0)) {
-    return '$' + (cents / 100.0);
+function formatMoney(price) {
+  if(price == 0) { return 'free'; }
+  if(Math.floor(price) == (price)) {
+    return '$' + (price);
   } else {
-    return '$' + (cents / 100.0).toFixed(2);
+    return '$' + (price).toFixed(2);
   }
 }
 
 function updateDeliveryFee() {
   var suburb = document.getElementById("delivery-suburb").value;
 
-  var delivery_fee = delivery_fees[suburb] * 100;
+  var delivery_fee = delivery_fees[suburb];
   var cart_total = <?php echo $cart_total; ?>;
 
   document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);

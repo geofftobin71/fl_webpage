@@ -8,35 +8,35 @@
     "variants": [
       {
         "name": "$50",
-        "price": 5000,
+        "price": 50,
         "disabled": false,
         "id": "3f32f5b3",
         "stock": null
       },
       {
         "name": "$75",
-        "price": 7500,
+        "price": 75,
         "disabled": false,
         "id": "7ccc48a2",
         "stock": null
       },
       {
         "name": "$100",
-        "price": 10000,
+        "price": 100,
         "disabled": false,
         "id": "52660263",
         "stock": null
       },
       {
         "name": "$150",
-        "price": 15000,
+        "price": 150,
         "disabled": false,
         "id": "c66b9160",
         "stock": null
       },
       {
         "name": "$200",
-        "price": 20000,
+        "price": 200,
         "disabled": false,
         "id": "8195d5f6",
         "stock": null
@@ -65,35 +65,35 @@
     "variants": [
       {
         "name": "$50",
-        "price": 5000,
+        "price": 50,
         "disabled": false,
         "id": "90dffffa",
         "stock": null
       },
       {
         "name": "$75",
-        "price": 7500,
+        "price": 75,
         "disabled": false,
         "id": "4a3e62b5",
         "stock": null
       },
       {
         "name": "$100",
-        "price": 10000,
+        "price": 100,
         "disabled": false,
         "id": "e3d4f22c",
         "stock": null
       },
       {
         "name": "$150",
-        "price": 15000,
+        "price": 150,
         "disabled": false,
         "id": "e0c69319",
         "stock": null
       },
       {
         "name": "$200",
-        "price": 20000,
+        "price": 200,
         "disabled": false,
         "id": "49d1bea7",
         "stock": null
@@ -122,35 +122,35 @@
     "variants": [
       {
         "name": "$50",
-        "price": 5000,
+        "price": 50,
         "disabled": false,
         "id": "eab5d4a5",
         "stock": null
       },
       {
         "name": "$75",
-        "price": 7500,
+        "price": 75,
         "disabled": false,
         "id": "1750182c",
         "stock": null
       },
       {
         "name": "$100",
-        "price": 10000,
+        "price": 100,
         "disabled": false,
         "id": "61e0b964",
         "stock": null
       },
       {
         "name": "$150",
-        "price": 15000,
+        "price": 150,
         "disabled": false,
         "id": "3607dabf",
         "stock": null
       },
       {
         "name": "$200",
-        "price": 20000,
+        "price": 200,
         "disabled": false,
         "id": "52a1abfe",
         "stock": null
@@ -179,35 +179,35 @@
     "variants": [
       {
         "name": "$50",
-        "price": 5000,
+        "price": 50,
         "disabled": false,
         "id": "e62143fa",
         "stock": null
       },
       {
         "name": "$75",
-        "price": 7500,
+        "price": 75,
         "disabled": false,
         "id": "76f1d73b",
         "stock": null
       },
       {
         "name": "$100",
-        "price": 10000,
+        "price": 100,
         "disabled": false,
         "id": "8147d18d",
         "stock": null
       },
       {
         "name": "$150",
-        "price": 15000,
+        "price": 150,
         "disabled": false,
         "id": "e398d403",
         "stock": null
       },
       {
         "name": "$200",
-        "price": 20000,
+        "price": 200,
         "disabled": false,
         "id": "f03806bc",
         "stock": null
@@ -236,35 +236,35 @@
     "variants": [
       {
         "name": "$50",
-        "price": 5000,
+        "price": 50,
         "disabled": false,
         "id": "4a282702",
         "stock": null
       },
       {
         "name": "$75",
-        "price": 7500,
+        "price": 75,
         "disabled": false,
         "id": "0399d01e",
         "stock": null
       },
       {
         "name": "$100",
-        "price": 10000,
+        "price": 100,
         "disabled": false,
         "id": "0b0712ce",
         "stock": null
       },
       {
         "name": "$150",
-        "price": 15000,
+        "price": 150,
         "disabled": false,
         "id": "de2939c1",
         "stock": null
       },
       {
         "name": "$200",
-        "price": 20000,
+        "price": 200,
         "disabled": false,
         "id": "ab85846d",
         "stock": null
@@ -294,7 +294,7 @@
     "images": [
       "/v1613194571/chocolate/chocolate-1.jpg"
     ],
-    "price": 1500,
+    "price": 15,
     "id": "d7f070bd",
     "stock": null
   },
@@ -308,7 +308,7 @@
     "images": [
       "/v1613194575/chocolate/chocolate-2.jpg"
     ],
-    "price": 1500,
+    "price": 15,
     "id": "f7115aec",
     "stock": 5
   },
@@ -322,7 +322,7 @@
     "images": [
       "/v1613194579/chocolate/chocolate-3.jpg"
     ],
-    "price": 1500,
+    "price": 15,
     "id": "58adcfe1",
     "stock": null
   },
@@ -336,7 +336,7 @@
     "images": [
       "/v1613194575/chocolate/chocolate-4.jpg"
     ],
-    "price": 1500,
+    "price": 15,
     "id": "c084a9dc",
     "stock": null
   },
@@ -350,7 +350,7 @@
     "images": [
       "/v1613194572/chocolate/chocolate-5.jpg"
     ],
-    "price": 1500,
+    "price": 15,
     "id": "5b399a28",
     "stock": null
   },
@@ -358,7 +358,7 @@
     "name": "Christmas Wreath Workshop",
     "description": "Learn to make a Christmas Wreath to hang on your front door. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
     "page_description": "Christmas Wreath Workshop description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac enim in ligula mollis mollis vitae sed tortor. Nam fermentum leo non fermentum vestibulum. Elit laborum aliquam laboriosam esse eaque veritatis! Ipsam natus ipsa dolorum amet debitis suscipit Fuga eos accusamus explicabo officiis incidunt Incidunt a eaque laboriosam maxime vero Laudantium ipsa autem sunt possimus illo molestiae Cupiditate odit in.",
-    "price": 18000,
+    "price": 180,
     "category": "Workshops",
     "images": [
       "/v1613195720/workshops/wreath-workshop-1.jpg"
