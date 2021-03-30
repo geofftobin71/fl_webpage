@@ -16,6 +16,10 @@ sections:
   path: src/_data/non_delivery_dates.json
   label: Non Delivery Dates
 - type: document
+  path: src/_data/delivery_fees.json
+  label: Delivery Fees
+  match: "**/*"
+- type: document
   path: src/_data/banner_message.json
   label: Banner Message
 - type: document
