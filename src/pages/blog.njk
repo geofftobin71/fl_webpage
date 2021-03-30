@@ -26,7 +26,7 @@ eleventyNavigation:
             </figure>
             <h2 class="text-right text-lowercase text-shadow">{{ post.data.title | safe }}</h2>
           </div>
-          <p class="caption">{{ post.date | readableDate }}</p>
+          <p class="caption">{{ post.date.toISOString() | readableDate }}</p>
           <div class="wrapper text-wrapper flow" style="margin-top:1em">
             <p>{{ post.data.description | safe }}</p>
             <p class="text-center"><a class="button" href="{{ post.url | url }}">read more</a></p>

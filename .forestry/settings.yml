@@ -18,7 +18,6 @@ sections:
 - type: document
   path: src/_data/delivery_fees.json
   label: Delivery Fees
-  match: "**/*"
 - type: document
   path: src/_data/banner_message.json
   label: Banner Message

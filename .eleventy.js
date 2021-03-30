@@ -146,8 +146,8 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addCollection("blog", (collection) => {
     const today = DateTime.local().set({hours:0,minutes:0,seconds:0,milliseconds:0});
     const livePosts = (p) => { 
-      const post_date = DateTime.fromISO(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
-      // const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
+      // const post_date = DateTime.fromISO(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
+      const post_date = DateTime.fromJSDate(p.date).set({hours:0,minutes:0,seconds:0,milliseconds:0});
       return (post_date <= today) && (!p.data.draft);
     }
 

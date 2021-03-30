@@ -30,8 +30,8 @@
       "@type": "WebPage",
       "@id": "{{ site.url }}{{ page.url }}"
     },
-    "datePublished": "{{ page.date | htmlDateString }}",
-    "dateModified": "{{ page.date | htmlDateString }}"
+    "datePublished": "{{ page.date.toISOString() | htmlDateString }}",
+    "dateModified": "{{ page.date.toISOString() | htmlDateString }}"
   }
   {% endset %}
 
