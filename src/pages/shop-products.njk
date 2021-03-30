@@ -56,6 +56,14 @@ input[type="radio"]:checked + .radio-label {
   color: var(--color-light);
   background: var(--color-shade1);
 }
+input[type="radio"][disabled] + .radio-label {
+  background: var(--button-bg);
+  color: grey;
+  border-color: grey;
+  cursor: default;
+  pointer-events: none;
+  box-shadow: none;
+}
 .stepper-controls nav {
   color: var(--color-shade3);
   padding: 0;
@@ -157,7 +165,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <input id="variant-id" name="variant-id" type="hidden" value="none" style="margin:0">
         {% endif %}
 
-        <?php if($stock_count != 0) { ?>
+        <?php $total_stock_count = totalStockCount("{{ product.id }}"); ?>
+        <?php if($total_stock_count != 0) { ?>
         {% if number_heading %}
           <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
           <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
@@ -181,7 +190,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
         <hr /> {# style="margin-top:auto" /> #}
-        <?php if($stock_count != 0) { ?>
+        <?php if($total_stock_count != 0) { ?>
         <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
         <?php } ?>
       </form>

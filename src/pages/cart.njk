@@ -63,7 +63,7 @@ permalink: "cart/index.php"
     }
 
     unset($_SESSION["cart"]);
-    unset($_SESSION["order-id"]);
+    unset($_SESSION["payment-intent-id"]);
     $_SESSION["cart"] = array();
     $_SESSION["error"] = "Your session has timed out";
   }

@@ -9,6 +9,7 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/sleekdb-config.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/stripe-test-config.php";
 
 use SleekDB\Store;
 $stockStore = new Store("stock", $sleekDir, $sleekConfig);
