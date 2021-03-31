@@ -48,7 +48,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     unset($_SESSION["cart"]);
-    // delete stripe payment intent ? FIXME
     unset($_SESSION["payment-intent-id"]);
     $_SESSION["cart"] = array();
     $_SESSION["error"] = "Your session has timed out";

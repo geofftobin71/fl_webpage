@@ -32,32 +32,32 @@ function clean($data) {
 }
 
 function criticalError($page, $message) {
-    echo "<body style=\"text-align:center;font-family:sans-serif\"><h1>Critical Error</h1><h2>" . $page . "</h2><p>" . $message . "</p>";
-    // echo "<pre>"; print_r($_POST); echo "</pre>";
-    // echo "<pre>"; print_r($_SESSION); echo "</pre>";
-    echo "<br><a href='/'>Return to Home Page</a>";
-    echo "</body>";
-    exit;
+  echo "<body style=\"text-align:center;font-family:sans-serif\"><h1>Critical Error</h1><h2>" . $page . "</h2><p>" . $message . "</p>";
+  // echo "<pre>"; print_r($_POST); echo "</pre>";
+  // echo "<pre>"; print_r($_SESSION); echo "</pre>";
+  echo "<br><a href='/'>Return to Home Page</a>";
+  echo "</body>";
+  exit;
 }
 
 function formatMoney($price) {
-    if (!$price) {
-      return "free";
+  if (!$price) {
+    return "free";
+  } else {
+    $f = floatval($price);
+    if (floor($f) == $f) {
+      $money = number_format($f, 0);
     } else {
-        $f = floatval($price);
-        if (floor($f) == $f) {
-            $money = number_format($f, 0);
-        } else {
-            $money = number_format(round($f, 2), 2);
-        }
+      $money = number_format(round($f, 2), 2);
     }
-    
-    return "$" . $money;
+  }
+
+  return "$" . $money;
 }
 
 function uniqueId($length = 8) {
-    $bytes = random_bytes(ceil($length / 2));
-    return substr(bin2hex($bytes), 0, $length);
+  $bytes = random_bytes(ceil($length / 2));
+  return substr(bin2hex($bytes), 0, $length);
 }
 
 function getCategory($category_name) {
@@ -280,6 +280,13 @@ function cartHasDelivery() {
 
   return false;
 }
+
+/*
+if(isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+  unset($_SESSION["cart"]);
+}
+ */
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
 if(!isset($_SESSION["cart"])) { $_SESSION["cart"] = array(); }
 
