@@ -119,9 +119,9 @@ select:-webkit-autofill:focus {
   font-family: var(--font-family-secondary);
   text-align: center;
   text-transform: lowercase;
-  border-radius: var(--radius, 0.5rem);
+  /* border-radius: var(--radius, 0.5rem); */
   border: 1px solid currentcolor;
-  margin-top: calc(var(--section-padding) / 2);
+  /* margin-top: calc(var(--section-padding) / 2); */
   margin-left: auto;
   margin-right: auto;
   padding: 0.25em 0.5em;

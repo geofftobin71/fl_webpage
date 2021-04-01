@@ -150,7 +150,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <?php $stock_count = stockCount("{{ product.id }}", "{{ variant.id }}"); ?>
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}") && ($stock_count != 0)) { echo " checked"; } ?> <?php if($stock_count == 0) { echo " disabled"; } ?> >
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')" <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}") && ($stock_count != 0)) { echo " checked"; } ?> <?php if($stock_count == 0) { echo " disabled"; } ?> >
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
                 <?php if($stock_count > 0) { ?>
                 <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
@@ -170,13 +170,13 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         {% if number_heading %}
           <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
           <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
-            <nav class="req-js" onclick="document.getElementById('product-count').stepDown();return false;">
+            <nav class="req-js" onclick="document.getElementById('product-count').stepDown();hideError();">
               <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
             </nav>
         
-            <input required id="product-count" name="product-count" type="number" min="1" value="<?php if(isset($_SESSION['product-count'])) { echo $_SESSION['product-count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
+            <input id="product-count" name="product-count" type="number" min="1" oninput="hideError()" value="<?php if(isset($_SESSION['product-count'])) { echo $_SESSION['product-count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
         
-            <nav class="req-js" onclick="document.getElementById('product-count').stepUp();return false;">
+            <nav class="req-js" onclick="document.getElementById('product-count').stepUp();hideError();">
               <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
             </nav>
           </div>
@@ -186,6 +186,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <?php } ?>
 
         <input id="product-id" name="product-id" type="hidden" value="{{ product.id }}" style="margin:0">
+        <input id="finite" name="finite" type="hidden" value="{{ 'true' if product.stock else 'false' }}" style="margin:0">
         <input id="variant-error" name="variant-error" type="hidden" value="Please choose a {{ variant_heading }}" style="margin:0">
         <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
         <p></p>
@@ -194,6 +195,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
         <?php } ?>
       </form>
+      <div class="stack center"><button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }})">{{ 'Add to JS Cart' | lower }}</button>
+      <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span></div>
       <?php } else { ?>
       <div class="stack">
         <h2 class="heading text-center">{{ product.name }}</h2>
@@ -210,6 +213,50 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 </section>
 
 {% include "partials/pagination.njk" %}
+
+<script>
+  // ON DOCUMENT LOAD
+
+  function showError(message) {
+    const error_msg = document.getElementById('error-msg');
+    error_msg.innerText = message;
+    error_msg.style.visibility = "visible";
+  }
+
+  function hideError() {
+    document.getElementById('error-msg').style.visibility = "hidden";
+  }
+
+  function addToCart(product_id, is_finite, has_variants) {
+    const product_count = parseInt(document.getElementById('product-count').value) || 0;
+
+    if(product_count < 1) {
+      showError("Number must be 1 or more");
+      return;
+    }
+
+    var variant_id = "none";
+    if(has_variants) {
+      var variant_input = document.querySelector('input[name="variant-id"]:checked');
+      if(variant_input) {
+        variant_id = variant_input.value;
+      } else {
+        showError("Please choose a {{ variant_heading | safe }}");
+        return;
+      }
+    }
+
+    console.log(product_id);
+    console.log(variant_id);
+    console.log(is_finite);
+    console.log(product_count);
+  }
+
+  function selectVariant(variant_id) {
+    hideError();
+  }
+
+</script>
 
 <?php
 unset($_SESSION["product-id"]);

@@ -56,30 +56,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   $_SESSION["delivery-suburb"] = $delivery_suburb;
-  
-  $total = cartTotal();
-
-  if($total > 0) {
-    if($delivery_suburb != "none") { $total += $delivery_fees[$delivery_suburb]; }
-
-    $total = $total * 100;
-
-    if(isset($_SESSION["payment-intent-id"])) {
-      $payment_intent = $stripe->paymentIntents->update(
-      $_SESSION["payment-intent-id"],
-      [
-        'amount' => $total,
-      ]);
-    } else {
-      $payment_intent = $stripe->paymentIntents->create([
-        'amount' => $total,
-        'currency' => 'nzd',
-        'payment_method_types' => ['card'],
-      ]);
-  
-      $_SESSION["payment-intent-id"] = $payment_intent.id;
-    }
-  }
 }
 
 ?>
@@ -89,78 +65,130 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   {{ super() }}
 
   {% set js %}
-  pay(stripe, card, clientSecret) {
-  }
+  var stripe;
 
-  window.addEventListener('load', function() {
+  var changeLoadingState = function(isLoading) {
+    if (isLoading) {
+      document.querySelector("button").disabled = true;
+      document.querySelector("#spinner-icon").style.display = "block";
+      document.querySelector("#cart-icon").style.display = "none";
+      document.querySelector("#submit-text").innerText = "Submitting";
+    } else {
+      document.querySelector("button").disabled = false;
+      document.querySelector("#spinner-icon").style.display = "none";
+      document.querySelector("#cart-icon").style.display = "block";
+      document.querySelector("#submit-text").innerText = "Order Now";
+    }
+  };
 
-    document.querySelector("button").disabled = true;
-
-    var stripe = Stripe('<?php echo $stripe_keys["publishable_key"]; ?>');
+  var setupElements = function(data) {
+    stripe = Stripe(data.publishableKey);
   
     var elements = stripe.elements({fonts:[
       {
-        family: 'Poppins',
-        weight: 'normal',
-        src: 'url(https://floriade.co.nz/fonts/poppins-light.woff)',
-        display: 'swap'
+        family: "Poppins",
+        weight: "normal",
+        src: "url(https://floriade.co.nz/fonts/poppins-light.woff)",
+        display: "swap"
       },
       {
-        family: 'Kollektif',
-        weight: 'normal',
-        src: 'url(https://floriade.co.nz/fonts/kollektif.woff)',
-        display: 'swap'
+        family: "Kollektif",
+        weight: "normal",
+        src: "url(https://floriade.co.nz/fonts/kollektif.woff)",
+        display: "swap"
       }
     ]});
   
-    var card = elements.create('card', {
+    var card = elements.create("card", {
       hidePostalCode: true,
       style: {
         base: {
-          fontFamily: 'Poppins, sans-serif',
-          fontWeight: 'normal',
-          fontSize: '16px',
-          lineHeight: '2em',
-          color: '#333333',
-          backgroundColor: '#CDDAD5',
-          ':focus': {
-            backgroundColor: '#CDDAD5',
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: "normal",
+          fontSize: "16px",
+          lineHeight: "2em",
+          color: "#333333",
+          backgroundColor: "#CDDAD5",
+          ":focus": {
+            backgroundColor: "#CDDAD5",
           },
-          ':-webkit-autofill': {
-            color: '#333333',
-            backgroundColor: '#CDDAD5',
+          ":-webkit-autofill": {
+            color: "#333333",
+            backgroundColor: "#CDDAD5",
           },
-          '::placeholder': {
-            fontFamily: 'Kollektif, sans-serif',
-            color: '#818D89',
+          "::placeholder": {
+            fontFamily: "Kollektif, sans-serif",
+            color: "#818D89",
           },
         },
       }
     });
   
-    card.mount('#card-input');
+    card.mount("#card-input");
   
-    card.addEventListener('change', function(event) {
-      var card_errors = document.getElementById('card-errors');
+    card.addEventListener("change", function(event) {
+      var card_errors = document.getElementById("card-errors");
   
-      if (event.error) {
+      if(event.error) {
         card_errors.innerText = event.error.message;
         card_errors.style.visibility = "visible";
       } else {
-        card_errors.innerHTML = '&nbsp;';
         card_errors.style.visibility = "hidden";
       }
     });
 
-    document.querySelector("button").disabled = false;
+    return {
+      stripe: stripe,
+      card: card,
+      clientSecret: data.clientSecret
+    };
+  };
 
-    var clientSecret = '<?php echo $payment_intent.client_secret; ?>';
+  var pay = function(stripe, card, clientSecret, form) {
+    changeLoadingState(true);
 
-    var form = document.getElementById("checkout-form");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+    stripe.confirmCardPayment(clientSecret, { payment_method: { card: card } })
+    .then(function(result) {
+      changeLoadingState(false);
+      if (result.error) {
+        var card_errors = document.getElementById("card-errors");
+        card_errors.innerText = result.error.message;
+        card_errors.style.visibility = "visible";
+      } else {
+        form.submit();
+      }
+    });
+  };
 
-      pay(stripe, card, clientSecret);
+  window.addEventListener("load", function() {
+
+    document.querySelector("button").disabled = true;
+
+    /*
+    fetch("/php/create-payment-intent.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(orderData)
+    })
+    */
+
+    fetch("/php/create-payment-intent.php", { method: "POST" })
+    .then(function(result) {
+      return result.json();
+    })
+    .then(function(data) {
+      return setupElements(data);
+    })
+    .then(function({ stripe, card, clientSecret }) {
+      document.querySelector("button").disabled = false;
+
+      var form = document.getElementById("checkout-form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        pay(stripe, card, clientSecret, form);
+      });
     });
 
   }, false);

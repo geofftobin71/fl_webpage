@@ -421,6 +421,22 @@ module.exports = (eleventyConfig) => {
     return filtered;
   });
 
+  eleventyConfig.addFilter("hasVariants", (product) => {
+    return ((product.variants) && (product.variants.length > 0));
+  });
+
+  eleventyConfig.addFilter("hasStock", (product) => {
+    var has_stock = false;
+
+    if(product.stock) { has_stock = true; }
+
+    product.variants.forEach(variant => {
+      if(variant.stock) { has_stock = true; }
+    });
+
+    return has_stock;
+  });
+
   eleventyConfig.addFilter("filterByCategory", (array, category) => {
     let filtered = [];
     for (let i = 0; i < array.length; ++i) {
