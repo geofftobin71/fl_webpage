@@ -195,8 +195,11 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
         <?php } ?>
       </form>
-      <div class="stack center"><button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }})">{{ 'Add to JS Cart' | lower }}</button>
-      <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span></div>
+      <div class="stack center">
+        <button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }})">{{ 'Add to JS Cart' | lower }}</button>
+        <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear JS Cart' | lower }}</button>
+        <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span>
+      </div>
       <?php } else { ?>
       <div class="stack">
         <h2 class="heading text-center">{{ product.name }}</h2>
@@ -217,6 +220,15 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 <script>
   // ON DOCUMENT LOAD
 
+  function uniqueId(len = 8) {
+    const hex = '0123456789abcdef';
+    let output = '';
+    for (let i = 0; i < len; ++i) {
+      output += hex.charAt(Math.floor(Math.random() * hex.length));
+    }
+    return output;
+  }
+
   function showError(message) {
     const error_msg = document.getElementById('error-msg');
     error_msg.innerText = message;
@@ -225,6 +237,10 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
   function hideError() {
     document.getElementById('error-msg').style.visibility = "hidden";
+  }
+
+  function clearCart() {
+    localStorage.removeItem("floriade-cart");
   }
 
   function addToCart(product_id, is_finite, has_variants) {
@@ -246,13 +262,61 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       }
     }
 
-    console.log(product_id);
-    console.log(variant_id);
-    console.log(is_finite);
-    console.log(product_count);
+    // console.log(product_id);
+    // console.log(variant_id);
+    // console.log(is_finite);
+    // console.log(product_count);
+    // console.log(uniqueId());
+    // console.log('------');
+
+    var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+    if(is_finite) {
+      fetch("/php/get-stock.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          "product-id": product_id,
+          "variant-id": variant_id,
+          "product-count": product_count
+        })
+      })
+      .then(response => {
+        if(!response.ok) {
+          showError(response.statusText);
+          throw Error(response.statusText);
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => {
+        if(json.error) {
+          showError(json.error);
+          return;
+        } else {
+          if(json.cart) {
+            cart = cart.concat(json.cart);
+            localStorage.setItem("floriade-cart", JSON.stringify(cart));
+          }
+        }
+      });
+    } else {
+      for(let i = 0; i < product_count; ++i) {
+        cart.push({
+          "cart-id": uniqueId(),
+          "product-id": product_id,
+          "variant-id": variant_id
+        });
+      }
+
+      localStorage.setItem("floriade-cart", JSON.stringify(cart));
+    }
   }
 
   function selectVariant(variant_id) {
+    // Set variant max
     hideError();
   }
 
