@@ -20,8 +20,11 @@ const image_sizes = require('./src/_data/image_sizes.json');
 const cloudinary = require('cloudinary').v2;
 const crypto = require('crypto');
 
-let image_info_exists = false;
-let image_info_written = false;
+var image_info_exists = false;
+var image_info_written = false;
+
+var shop_products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
+var shop_categories = JSON.parse(fs.readFileSync('src/_data/shop_categories.json'));
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
@@ -90,8 +93,7 @@ module.exports = (eleventyConfig) => {
     fs.writeFileSync('src/_data/non_delivery_dates.json', JSON.stringify(non_delivery_dates, null, 2));
 
     // Add unique IDs to products
-    let products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
-    products.forEach(product => {
+    shop_products.forEach(product => {
       if(!product.id) {
         const buf = crypto.randomBytes(4);
         product.id = buf.toString('hex');
@@ -103,7 +105,7 @@ module.exports = (eleventyConfig) => {
         }
       });
     });
-    fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(products, null, 2));
+    fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(shop_products, null, 2));
 
     // Upate Stock
     if(process.env.NODE_ENV != 'deploy') {
@@ -426,7 +428,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("hasStock", (product) => {
-    var has_stock = false;
+    let has_stock = false;
 
     if(product.stock) { has_stock = true; }
 
@@ -443,6 +445,26 @@ module.exports = (eleventyConfig) => {
       if(array[i].category === category) { filtered[filtered.length] = array[i]; }
     }
     return filtered;
+  });
+
+  eleventyConfig.addFilter("listParents", (product) => {
+    let category;
+    let result = "";
+    let first = true;
+
+    shop_categories.forEach(cat => {
+      if(cat.name === product.category) {
+        category = cat;
+      }
+    });
+
+    category.parents.forEach(parent => {
+      if(!first) { result += " or "; }
+      result += parent;
+      first = false;
+    });
+
+		return result;
   });
 
   // Convert uppercase to hyphen-lowercase : fooBar => foo-bar

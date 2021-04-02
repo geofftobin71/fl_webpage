@@ -220,6 +220,36 @@ function getStock($product_id, $variant_id) {
   return $item;
 }
 
+function acquireStock($product_id, $variant_id, $product_count) {
+  global $stockStore;
+  global $cart_expiry_time;
+
+  $timeout = microtime(true) - $cart_expiry_time;
+
+  $items = $stockStore->findBy([
+    ["product-id", "=", $product_id],
+    "AND",
+    ["variant-id", "=", $variant_id],
+    "AND",
+    ["sold", "=", false],
+    "AND",
+    ["updated", "<", $timeout]
+  ], null, $product_count);
+
+  if(count($items) == $product_count) {
+    foreach($items as $key => $item) {
+      $item["updated"] = microtime(true);
+      $items[$key] = $item;
+    }
+
+    $stockStore->update($items);
+
+    return $items;
+  } else {
+    return null;
+  }
+}
+
 function cartHasParents($product_id) {
   $product = getProduct($product_id);
   if(!isset($product)) { return false; }

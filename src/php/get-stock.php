@@ -30,25 +30,19 @@ if($stock_count == 0) {
 
 $cart = array();
 
-for($i = 0; $i < $product_count; $i++) {
-  $stock_count = stockCount($product_id, $variant_id);
+$items = acquireStock($product_id, $variant_id, $product_count);
 
-  if($stock_count > 0) {
-    $item = getStock($product_id, $variant_id);
-
-    if($item) {
-      $cart[] = array(
-        "cart-id" => uniqueId(),
-        "product-id" => $item["product-id"],
-        "variant-id" => $item["variant-id"],
-        "stock-id" => $item["stock-id"],
-        "updated" => $item["updated"]
-      );
-    }
+if($items) {
+  foreach($items as $key => $item) {
+    $cart[] = array(
+      "cart-id" => uniqueId(),
+      "product-id" => $item["product-id"],
+      "variant-id" => $item["variant-id"],
+      "stock-id" => $item["stock-id"],
+      "updated" => $item["updated"]
+    );
   }
-}
-
-if(count($cart) != $product_count) {
+} else {
   echo json_encode(['error' => 'Not enough stock available']);
   exit;
 }
