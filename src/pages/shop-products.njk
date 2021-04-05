@@ -1,10 +1,10 @@
 ---
-layout: layouts/shop-php-page.njk
+layout: layouts/shop-page.njk
 pagination:
   data: valid_shop_products
   size: 1
   alias: product
-permalink: "shop/products/{{ product.name | slug }}/index.php"
+permalink: "shop/products/{{ product.name | slug }}/index.html"
 eleventyComputed:
   title: "{{ product.name }}"
   description: "{{ product.description }}"
@@ -63,6 +63,13 @@ input[type="radio"][disabled] + .radio-label {
   cursor: default;
   pointer-events: none;
   box-shadow: none;
+}
+.stepper-controls {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-left:auto;
+  margin-right:auto;
 }
 .stepper-controls nav {
   color: var(--color-shade3);
@@ -128,16 +135,17 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <p class="font-size--1">{{ product.page_description }}</p>
     </div>
     <div class="wrapper text-wrapper" style="width:100%;height:100%">
-      <?php if(cartHasParents("{{ product.id }}")) { ?>
-      <form id="add-to-cart-form" class="stack" action="/php/add-to-cart.php" method="post">
+
+      <div id="parents-in-cart" class="stack">
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
         <p id="product-stock-count" class="color-shade3 text-center font-secondary" style="display:none"></p>
+
         {% set valid_variants = product.variants | validProductVariants %}
         {% if valid_variants | length %}
           <h3 class="text-lowercase text-center">{{ variant_heading }}</h3>
-          <p></p>
+
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
@@ -148,43 +156,33 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           </div>
         {% endif %}
 
-        <?php $total_stock_count = totalStockCount("{{ product.id }}"); ?>
-        <?php if($total_stock_count != 0) { ?>
         {% if number_heading %}
-          <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
-          <div class="stepper-controls" style="display:flex;align-items:center;margin-left:auto;margin-right:auto">
-            <nav class="req-js" onclick="document.getElementById('product-count').stepDown();hideError();">
-              <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
-            </nav>
-        
-            <input id="product-count" name="product-count" type="number" min="1" oninput="hideError()" value="<?php if(isset($_SESSION['product-count'])) { echo $_SESSION['product-count']; } else { echo '1'; } ?>" class="text-center round" style="width:3em">
-        
-            <nav class="req-js" onclick="document.getElementById('product-count').stepUp();hideError();">
-              <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
-            </nav>
-          </div>
-        {% else %}
-          <input id="product-count" name="product-count" type="hidden" value="1">
-        {% endif %}
-        <?php } ?>
+          <div id="number-group">
+            <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
+            <div class="stepper-controls">
+              <nav class="req-js" onclick="document.getElementById('product-count').stepDown();hideError();">
+                <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
+              </nav>
 
-        <input id="product-id" name="product-id" type="hidden" value="{{ product.id }}" style="margin:0">
-        <input id="finite" name="finite" type="hidden" value="{{ 'true' if product.stock else 'false' }}" style="margin:0">
-        <input id="variant-error" name="variant-error" type="hidden" value="Please choose a {{ variant_heading }}" style="margin:0">
-        <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
-        <p></p>
-        <hr /> {# style="margin-top:auto" /> #}
-        <?php if($total_stock_count != 0) { ?>
-        <div class="text-center"><button class="cursor-pointer" type="submit">{{ 'Add to Cart' | lower }}</button></div>
-        <?php } ?>
-      </form>
-      <div class="stack center">
-        <button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }})">{{ 'Add to JS Cart' | lower }}</button>
-        <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear JS Cart' | lower }}</button>
-        <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span>
+              <input id="product-count" name="product-count" type="number" min="1" oninput="hideError()" value="1" class="text-center round" style="width:3em">
+
+              <nav class="req-js" onclick="document.getElementById('product-count').stepUp();hideError();">
+                <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>
+              </nav>
+            </div>
+          </div>
+        {% endif %}
+
+        <hr />
+
+        <div id="button-group" class="stack center">
+          <button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }})">{{ 'Add to Cart' | lower }}</button>
+          {# <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button> #}
+          <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span>
+        </div>
       </div>
-      <?php } else { ?>
-      <div class="stack">
+
+      <div id="no-parents-in-cart" class="stack" style="display:none">
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
@@ -193,7 +191,6 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
         </a>
       </div>
-      <?php } ?>
     </div>
   </div>
 </section>
@@ -201,8 +198,6 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 {% include "partials/pagination.njk" %}
 
 <script>
-"use strict";
-
 var stock_count;
 var total_stock_count = -1;
 
@@ -239,15 +234,18 @@ window.addEventListener("load", function() {
             for(const key in stock_count) {
               if(key === "total") {
                 total_stock_count = parseInt(stock_count["total"]);
+                if(total_stock_count === 0) {
+                  document.getElementById("number-group").style.display = "none";
+                  document.getElementById("button-group").style.display = "none";
+                  document.getElementById("product-stock-count").innerText = "( SOLD OUT )";
+                  document.getElementById("product-stock-count").style.display = "block";
+                }
               } else if(key === "none") { 
                 var key_id = "product-stock-count";
                 var value = stock_count[key];
 
                 if(parseInt(value) > 0) {
                   document.getElementById(key_id).innerText = "( " + value + " available )";
-                  document.getElementById(key_id).style.display = "block";
-                } else {
-                  document.getElementById(key_id).innerText = "( SOLD OUT )";
                   document.getElementById(key_id).style.display = "block";
                 }
               } else {
@@ -269,6 +267,11 @@ window.addEventListener("load", function() {
           }
         }
       });
+  }
+
+  if(!cartHasParents("{{ product.id }}")) {
+    document.getElementById("parents-in-cart").style.display = "none";
+    document.getElementById("no-parents-in-cart").style.display = "block";
   }
 });
 
@@ -293,6 +296,37 @@ function hideError() {
 
 function clearCart() {
   localStorage.removeItem("floriade-cart");
+}
+
+function cartHasParents(product_id) {
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+  return fetch("/php/cart-has-parents.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "product-id": product_id,
+      "cart": cart
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        showError(json.error);
+        return false;
+      } else {
+        return json.result;
+      }
+    });
 }
 
 function addToCart(product_id, is_finite, has_variants) {
@@ -373,9 +407,3 @@ function selectVariant(variant_id) {
 }
 
 </script>
-
-<?php
-                                                                                 unset($_SESSION["product-id"]);
-                                                                                 unset($_SESSION["variant-id"]);
-                                                                                 unset($_SESSION["product-count"]);
-                                                                                 ?>
