@@ -33,7 +33,9 @@ eleventyComputed:
   flex-wrap:wrap;
   flex-direction:row;
   justify-content:center;
-  margin: -4px;
+  margin-left: -4px;
+  margin-right: -4px;
+  margin-bottom: -4px;
 }
 .radio-label {
   font-family: var(--font-family-secondary);
@@ -138,7 +140,9 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
       <div id="parents-in-cart" class="stack">
         <h2 class="heading text-center">{{ product.name }}</h2>
-        {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
+        {% if product.price %}
+        <p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>
+        {% endif %}
         <hr />
         <p id="product-stock-count" class="color-shade3 text-center font-secondary" style="display:none"></p>
 
@@ -157,7 +161,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         {% endif %}
 
         {% if number_heading %}
-          <div id="number-group">
+          <div id="number-group" class="stack">
             <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
             <div class="stepper-controls">
               <nav class="req-js" onclick="document.getElementById('product-count').stepDown();hideError();">
@@ -273,7 +277,17 @@ window.addEventListener("load", function() {
     document.getElementById("parents-in-cart").style.display = "none";
     document.getElementById("no-parents-in-cart").style.display = "block";
   }
+
+  viewCart();
 });
+
+function viewCart() {
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+  if(cart.length > 0) {
+    document.getElementById('view-cart').style.display = "flex";
+  }
+}
 
 function uniqueId(len = 8) {
   const hex = '0123456789abcdef';
