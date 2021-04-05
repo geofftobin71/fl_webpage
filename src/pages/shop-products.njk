@@ -105,11 +105,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 </noscript>
 
 {% include "partials/view-cart-button.njk" %}
-<?php if(isset($_SESSION["error"])) { ?>
-<div class="center-both text-center">
-<p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
-</div>
-<?php } ?>
+
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
     <div class="wrapper image-wrapper flow" style="width:100%">
@@ -137,32 +133,19 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />
-        <?php $stock_count = stockCount("{{ product.id }}", "none"); ?>
-        <?php if($stock_count > 0) { ?>
-        <p class="color-shade3 text-center font-secondary">( <?php echo $stock_count; ?> available )</p>
-        <?php } else if($stock_count == 0) { ?>
-        <p></p><p class="color-shade3 text-center font-secondary">( SOLD OUT )</p>
-        <?php } ?>
+        <p id="product-stock-count" class="color-shade3 text-center font-secondary" style="display:none"></p>
         {% set valid_variants = product.variants | validProductVariants %}
         {% if valid_variants | length %}
           <h3 class="text-lowercase text-center">{{ variant_heading }}</h3>
           <p></p>
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
-              <?php $stock_count = stockCount("{{ product.id }}", "{{ variant.id }}"); ?>
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')" <?php if(isset($_SESSION["product-id"]) && isset($_SESSION["variant-id"]) && ($_SESSION["product-id"] == "{{ product.id }}") && ($_SESSION["variant-id"] == "{{ variant.id }}") && ($stock_count != 0)) { echo " checked"; } ?> <?php if($stock_count == 0) { echo " disabled"; } ?> >
+              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
               <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
-                <?php if($stock_count > 0) { ?>
-                <br><span class="font-size--1">( <?php echo $stock_count; ?> available )</span>
-                <?php } else if($stock_count == 0) { ?>
-                <br><span class="font-size-0">( SOLD OUT )</span>
-                <?php } ?>
+                <br><span id="{{ variant.id }}-stock-count" style="display:none"></span>
               </label>
             {% endfor %}
           </div>
-        {% else %}
-          <?php $stock_count = stockCount("{{ product.id }}", "none"); ?>
-          <input id="variant-id" name="variant-id" type="hidden" value="none" style="margin:0">
         {% endif %}
 
         <?php $total_stock_count = totalStockCount("{{ product.id }}"); ?>
@@ -218,73 +201,140 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 {% include "partials/pagination.njk" %}
 
 <script>
-  // ON DOCUMENT LOAD
+"use strict";
+
+var stock_count;
+var total_stock_count = -1;
+
+window.addEventListener("load", function() {
 
   // Set product max
 
-  function uniqueId(len = 8) {
-    const hex = '0123456789abcdef';
-    let output = '';
-    for (let i = 0; i < len; ++i) {
-      output += hex.charAt(Math.floor(Math.random() * hex.length));
-    }
-    return output;
+  if({{ product | hasStock }}) {
+    fetch("/php/stock-count.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "product-id": "{{ product.id }}"
+      })
+    })
+      .then(response => {
+        if(!response.ok) {
+          showError(response.statusText);
+          throw Error(response.statusText);
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => {
+        if(json.error) {
+          showError(json.error);
+          return;
+        } else {
+          if(json["stock-count"]) {
+            stock_count = json["stock-count"];
+
+            for(const key in stock_count) {
+              if(key === "total") {
+                total_stock_count = parseInt(stock_count["total"]);
+              } else if(key === "none") { 
+                var key_id = "product-stock-count";
+                var value = stock_count[key];
+
+                if(parseInt(value) > 0) {
+                  document.getElementById(key_id).innerText = "( " + value + " available )";
+                  document.getElementById(key_id).style.display = "block";
+                } else {
+                  document.getElementById(key_id).innerText = "( SOLD OUT )";
+                  document.getElementById(key_id).style.display = "block";
+                }
+              } else {
+                var key_id = key + "-stock-count";
+                var value = stock_count[key];
+
+                if(parseInt(value) > 0) {
+                  document.getElementById(key_id).innerText = "( " + value + " available )";
+                  document.getElementById(key_id).style.display = "inline";
+                  document.getElementById(key_id).classList.add = "font-size--1";
+                  document.getElementById(key).disabled = false;
+                } else {
+                  document.getElementById(key_id).innerText = "( SOLD OUT )";
+                  document.getElementById(key_id).style.display = "inline";
+                  document.getElementById(key).disabled = true;
+                }
+              }
+            }
+          }
+        }
+      });
+  }
+});
+
+function uniqueId(len = 8) {
+  const hex = '0123456789abcdef';
+  let output = '';
+  for (let i = 0; i < len; ++i) {
+    output += hex.charAt(Math.floor(Math.random() * hex.length));
+  }
+  return output;
+}
+
+function showError(message) {
+  const error_msg = document.getElementById('error-msg');
+  error_msg.innerText = message;
+  error_msg.style.visibility = "visible";
+}
+
+function hideError() {
+  document.getElementById('error-msg').style.visibility = "hidden";
+}
+
+function clearCart() {
+  localStorage.removeItem("floriade-cart");
+}
+
+function addToCart(product_id, is_finite, has_variants) {
+  const product_count = parseInt(document.getElementById('product-count').value) || 0;
+
+  if(product_count < 1) {
+    showError("Number must be 1 or more");
+    return;
   }
 
-  function showError(message) {
-    const error_msg = document.getElementById('error-msg');
-    error_msg.innerText = message;
-    error_msg.style.visibility = "visible";
-  }
-
-  function hideError() {
-    document.getElementById('error-msg').style.visibility = "hidden";
-  }
-
-  function clearCart() {
-    localStorage.removeItem("floriade-cart");
-  }
-
-  function addToCart(product_id, is_finite, has_variants) {
-    const product_count = parseInt(document.getElementById('product-count').value) || 0;
-
-    if(product_count < 1) {
-      showError("Number must be 1 or more");
+  var variant_id = "none";
+  if(has_variants) {
+    var variant_input = document.querySelector('input[name="variant-id"]:checked');
+    if(variant_input) {
+      variant_id = variant_input.value;
+    } else {
+      showError("Please choose a {{ variant_heading | safe }}");
       return;
     }
+  }
 
-    var variant_id = "none";
-    if(has_variants) {
-      var variant_input = document.querySelector('input[name="variant-id"]:checked');
-      if(variant_input) {
-        variant_id = variant_input.value;
-      } else {
-        showError("Please choose a {{ variant_heading | safe }}");
-        return;
-      }
-    }
+  // console.log(product_id);
+  // console.log(variant_id);
+  // console.log(is_finite);
+  // console.log(product_count);
+  // console.log(uniqueId());
+  // console.log('------');
 
-    // console.log(product_id);
-    // console.log(variant_id);
-    // console.log(is_finite);
-    // console.log(product_count);
-    // console.log(uniqueId());
-    // console.log('------');
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 
-    var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
-
-    if(is_finite) {
-      fetch("/php/get-stock.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          "product-id": product_id,
-          "variant-id": variant_id,
-          "product-count": product_count
-        })
+  if(is_finite) {
+    fetch("/php/get-stock.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "product-id": product_id,
+        "variant-id": variant_id,
+        "product-count": product_count
       })
+    })
       .then(response => {
         if(!response.ok) {
           showError(response.statusText);
@@ -304,28 +354,28 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           }
         }
       });
-    } else {
-      for(let i = 0; i < product_count; ++i) {
-        cart.push({
-          "cart-id": uniqueId(),
-          "product-id": product_id,
-          "variant-id": variant_id
-        });
-      }
-
-      localStorage.setItem("floriade-cart", JSON.stringify(cart));
+  } else {
+    for(let i = 0; i < product_count; ++i) {
+      cart.push({
+        "cart-id": uniqueId(),
+        "product-id": product_id,
+        "variant-id": variant_id
+      });
     }
-  }
 
-  function selectVariant(variant_id) {
-    // Set variant max
-    hideError();
+    localStorage.setItem("floriade-cart", JSON.stringify(cart));
   }
+}
+
+function selectVariant(variant_id) {
+  // Set variant max
+  hideError();
+}
 
 </script>
 
 <?php
-unset($_SESSION["product-id"]);
-unset($_SESSION["variant-id"]);
-unset($_SESSION["product-count"]);
-?>
+                                                                                 unset($_SESSION["product-id"]);
+                                                                                 unset($_SESSION["variant-id"]);
+                                                                                 unset($_SESSION["product-count"]);
+                                                                                 ?>
