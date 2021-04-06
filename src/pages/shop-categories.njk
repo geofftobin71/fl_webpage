@@ -165,7 +165,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 {% include "partials/pagination.njk" %}
 
 <script>
-window.addEventListener("load", function() {
+document.addEventListener("DOMContentLoaded", function() {
   var product_prices = document.querySelectorAll(".product-price");
   product_prices.forEach(product_price => {
     showSoldOut(product_price);

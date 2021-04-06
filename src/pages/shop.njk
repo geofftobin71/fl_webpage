@@ -1,12 +1,12 @@
 ---
-layout: layouts/shop-php-page.njk
+layout: layouts/shop-page.njk
 eleventyNavigation:
   order: 10
   key: Shop
 title: Shop
 description: Contact Floriade for all your fresh & dried flower needs.
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
-permalink: "shop/index.php"
+permalink: "shop/index.html"
 ---
 <style>
 #shop .slider {
@@ -169,10 +169,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
                     <h3 class="color-light text-lowercase" style="margin-top:1em">{{ product.name }}</h3>
                   </div>
                   <p class="font-size--1 color-shade4" style="line-height:1.5">{{ product.description | safe }}</p>
-                  <div class="button bigfonts">
-                    <?php if(totalStockCount("{{ product.id }}") == 0) { ?>
-                    <p>SOLD OUT</p>
-                    <?php } else { ?>
+                  <div id="{{ product.id }}" class="product-price button bigfonts">
                     {% set valid_variants = product.variants | validProductVariants %}
                     {% if valid_variants | length %}
                       {% if ( valid_variants | first ).price != ( valid_variants | last ).price %}
@@ -183,7 +180,6 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
                     {% else %}
                       <p>{{ product.price | formatMoney }}</p>
                     {% endif %}
-                    <?php } ?>
                   </div>
                 </li>
               </a>
@@ -202,3 +198,60 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
     {{ '<hr>' | safe if not loop.last }}
   {% endfor %}
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var product_prices = document.querySelectorAll(".product-price");
+  product_prices.forEach(product_price => {
+    showSoldOut(product_price);
+  });
+
+  showViewCart();
+});
+
+function showSoldOut(product_price) {
+  fetch("/php/stock-count.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "product-id": product_price.id
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        // showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        // showError(json.error);
+        return;
+      } else {
+        if(json["stock-count"]) {
+          var stock_count = json["stock-count"];
+
+          for(const key in stock_count) {
+            if(key === "total") {
+              if(parseInt(stock_count["total"]) === 0) {
+                product_price.innerHTML = "<p>SOLD OUT</p>";
+              }
+            }
+          }
+        }
+      }
+    });
+}
+
+function showViewCart() {
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+  if(cart.length > 0) {
+    document.getElementById('view-cart').style.display = "flex";
+  }
+}
+</script>
