@@ -181,7 +181,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
         <div id="button-group" class="stack center">
           <button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }})">{{ 'Add to Cart' | lower }}</button>
-          {# <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button> #}
+          <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button>
           <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span>
         </div>
       </div>
@@ -278,10 +278,10 @@ window.addEventListener("load", function() {
     document.getElementById("no-parents-in-cart").style.display = "block";
   }
 
-  viewCart();
+  showViewCart();
 });
 
-function viewCart() {
+function showViewCart() {
   var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 
   if(cart.length > 0) {

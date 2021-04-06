@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NON
 $product_id = $body["product-id"];
 
 $total_stock = 0;
+$has_stock = false;
 
 $stock_count = array();
 
@@ -23,6 +24,8 @@ $timeout = microtime(true) - $cart_expiry_time;
 $product = getProduct($product_id);
 if(isset($product)) {
   if(isset($product["stock"])) {
+    $has_stock = true;
+
     $items = $stockStore->findBy([
       ["product-id", "=", $product_id],
       "AND",
@@ -40,6 +43,8 @@ if(isset($product)) {
   if(isset($product["variants"])) {
     foreach($product["variants"] as $variant) {
       if(isset($variant["stock"])) {
+        $has_stock = true;
+
         $items = $stockStore->findBy([
           ["product-id", "=", $product_id],
           "AND",
@@ -56,8 +61,11 @@ if(isset($product)) {
     }
   }
 
-  $stock_count["total"] = $total_stock;
-
+  if($has_stock) {
+    $stock_count["total"] = $total_stock;
+  } else {
+    $stock_count["total"] = -1;
+  }
 }
 
 echo json_encode(['stock-count' => $stock_count]);
