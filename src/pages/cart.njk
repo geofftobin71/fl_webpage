@@ -120,40 +120,11 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
     </div>
 
     <form id="cart-form" action="/checkout/" method="post" class="flow" style="display:none;width:100%;--flow-space:2em">
-
       <hr />
-
       <div id="items" class="font-secondary"></div>
-
-      {#
-        <?php $i = 0; ?>
-        <?php foreach($_SESSION["cart"] as $cart_item) {
-          $product = getProduct($cart_item["product-id"]);
-          $price = getPrice($product, $cart_item["variant-id"]);
-          $cart_total += $price;
-        ?>
-        <div class="stack" style="--stack-space:1em">
-          <p><?php echo $product["name"]; ?>
-          <?php if(hasVariants($product)) {
-            $variant = getVariant($product, $cart_item["variant-id"]); ?>
-            <span class="font-size--1" style="white-space:nowrap"> ( <?php echo $variant["name"]; ?> )</span>
-          <?php } ?>
-          </p>
-          <div class="font-base font-size--1" style="display:flex;justify-content:flex-start">
-          <a class="icon-button" href="/php/remove-from-cart.php?i=<?php echo $i; ?>">
-            <span>{{ '/src/svg/trash-o.svg' | svgContents | safe }}</span><p class="text-lowercase">Remove</p>
-          </a>
-        </div>
-        </div>
-        <p class="text-right"><?php echo formatMoney($price); ?></p>
-        <?php $i++; ?>
-        <?php } ?>
-      </div>
-      #}
-
       <hr />
-
-      <div id="summary" class="text-right font-secondary">
+      <div id="summary" class="text-right font-secondary"></div>
+        {#
         <h3 class="heading">Cart Total</h3>
         <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
         <p><?php echo formatMoney($cart_total); ?></p>
@@ -177,7 +148,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>
         <p class="top-border"></p>
         <p id="total" class="top-border font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
-      </div>
+        #}
 
       <hr />
 
@@ -199,11 +170,12 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded",function(){
-    showInfo();
-    checkCartExpired();
-    checkCartEmpty();
-  });
+var cart_total = 0;
+
+document.addEventListener("DOMContentLoaded",function(){
+  showInfo();
+  displayCart();
+});
 
 function showInfo() {
   var info = localStorage.getItem("floriade-cart-info") || "";
@@ -214,8 +186,22 @@ function showInfo() {
   }
 }
 
-function checkCartEmpty() {
+function displayCart() {
   var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+  var expired = false;
+  var timeout = microtime(true) - 1200.0;
+
+  cart.forEach(item => {
+    if((item.updated) && (item.updated < timeout)) {
+      expired = true;
+    }
+  });
+
+  if(expired) {
+    document.getElementById("cart-expired").style.display = "block";
+    localStorage.removeItem("floriade-cart");
+    cart = [];
+  }
 
   if(cart.length === 0) {
     document.getElementById("empty-cart").style.display = "flex";
@@ -245,29 +231,14 @@ function checkCartEmpty() {
         return;
       } else {
         document.getElementById("items").innerHTML = json["cart-items"];
+        document.getElementById("summary").innerHTML = json["cart-summary"];
+        cart_total = parseInt(json["cart-total"]);
       }
     });
 
   document.getElementById("cart-form").style.display = "block";
 }
 
-function checkCartExpired() {
-  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
-
-  var expired = false;
-  var timeout = microtime(true) - 300.0;
-
-  cart.forEach(item => {
-    if((item.updated) && (item.updated < timeout)) {
-      expired = true;
-    }
-  });
-
-  if(expired) {
-    document.getElementById("cart-expired").style.display = "block";
-    localStorage.removeItem("floriade-cart");
-  }
-}
 
 var delivery_fees = <?php echo(json_encode($delivery_fees)); ?>
 
@@ -284,9 +255,8 @@ function updateDeliveryFee() {
   var suburb = document.getElementById("delivery-suburb").value;
 
   var delivery_fee = delivery_fees[suburb];
-  var cart_total = <?php echo $cart_total; ?>;
 
   document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
   document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
 }
-</script>
+  </script>

@@ -299,8 +299,8 @@ function cartTotal() {
   return $cart_total;
 }
 
-function cartHasDelivery() {
-  foreach($_SESSION["cart"] as $cart_item) {
+function cartHasDelivery($cart) {
+  foreach($cart as $cart_item) {
     $product = getProduct($cart_item["product-id"]);
     if(!isset($product)) { return false; }
     $category = getCategory($product["category"]);
