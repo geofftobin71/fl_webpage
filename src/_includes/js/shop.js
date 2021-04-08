@@ -98,6 +98,7 @@ function hideError() {
 function clearCart() {
   localStorage.removeItem("floriade-cart");
   localStorage.removeItem("floriade-delivery-suburb");
+  window.location.href = "/cart/";
 }
 
 function checkCartHasParents(product_id) {
