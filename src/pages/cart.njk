@@ -1,11 +1,11 @@
 ---
-layout: layouts/shop-php-page.njk
+layout: layouts/shop-page.njk
 title: Cart
 description: Your Floriade shopping cart
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 header:
   title: Your Cart
-permalink: "cart/index.php"
+permalink: "cart/index.html"
 ---
 
 <style>
@@ -37,62 +37,6 @@ permalink: "cart/index.php"
 }
 </style>
 
-<?php
-  $timeout = microtime(true) - $cart_expiry_time;
-
-  $cart_expired = false;
-
-  foreach($_SESSION["cart"] as $cart_item) {
-    if(isset($cart_item["stock-id"])) {
-      $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-      if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
-        $cart_expired = true;
-      }
-    }
-  }
-
-  if($cart_expired) {
-    foreach($_SESSION["cart"] as $cart_item) {
-      if(isset($cart_item["stock-id"])) {
-        $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-        if($cart_item["updated"] == $stock_item["updated"]) {
-          $stock_item["updated"] = microtime(true) - $cart_reset_time;
-          $stockStore->update($stock_item);
-        }
-      }
-    }
-
-    unset($_SESSION["cart"]);
-    unset($_SESSION["payment-intent-id"]);
-    $_SESSION["cart"] = array();
-    $_SESSION["error"] = "Your session has timed out";
-  }
-?>
-
-<?php
-  $i = 0;
-  $count = 0;
-  foreach($_SESSION["cart"] as $cart_item) {
-    if(!cartHasParents($cart_item["product-id"])) {
-      if(isset($cart_item["stock-id"])) {
-        $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-        if($cart_item["updated"] == $stock_item["updated"]) {
-          $stock_item["updated"] = microtime(true) - $cart_reset_time;
-          $stockStore->update($stock_item);
-        }
-      }
-      array_splice($_SESSION["cart"], $i, 1);
-      $count++;
-    } else {
-      $i++;
-    }
-  }
-
-  if($count) {
-    $_SESSION["info"] .= "<br>" . (($count > 1) ? ($count . " add-on items were") : "1 add-on item was") . " removed from your cart";
-  }
-?>
-
 <noscript>
 <aside class="banner-error">
 Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
@@ -105,10 +49,6 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
 <section id="cart" style="min-height:50vh">
   <div class="wrapper text-wrapper">
-    <?php $cart_count = count($_SESSION["cart"]); ?>
-    <?php $cart_total = 0; ?>
-    <?php $delivery_fee = 0; ?>
-
     <div id="empty-cart" class="center-both stack" style="display:none;--stack-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>
       <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
@@ -172,8 +112,10 @@ function displayCart() {
   });
 
   if(expired) {
+      // XXX Reset stock item timeouts
     document.getElementById("cart-expired").style.display = "block";
     localStorage.removeItem("floriade-cart");
+    localStorage.removeItem("floriade-delivery-suburb");
     cart = [];
   }
 
@@ -181,8 +123,6 @@ function displayCart() {
     document.getElementById("empty-cart").style.display = "flex";
     return;
   }
-
-  console.log("DS " + localStorage.getItem("floriade-delivery-suburb"));
 
   fetch("/php/display-cart.php", {
     method: "POST",

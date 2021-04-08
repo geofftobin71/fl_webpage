@@ -250,14 +250,14 @@ function acquireStock($product_id, $variant_id, $product_count) {
   }
 }
 
-function cartHasParents($product_id) {
+function cartHasParents($cart, $product_id) {
   $product = getProduct($product_id);
   if(!isset($product)) { return false; }
 
   $category = getCategory($product["category"]);
   if(isset($category) && empty($category["parents"])) { return true; }
 
-  foreach($_SESSION["cart"] as $cart_item) {
+  foreach($cart as $cart_item) {
     $cart_product = getProduct($cart_item["product-id"]);
     if(isset($cart_product) && isset($cart_product["category"]) && in_array($cart_product["category"], $category["parents"])) { return true; }
   }

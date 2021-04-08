@@ -231,7 +231,7 @@ function removeFromCart(index) {
       } else {
         if(json.cart) {
           localStorage.setItem("floriade-cart", JSON.stringify(json.cart));
-          localStorage.setItem("floriade-cart-info", "1 item was removed from your cart");
+          localStorage.setItem("floriade-cart-info", json.count + (parseInt(json.count) == 1 ? " item was" : " items were") + " removed from your cart");
           window.location.href = "/cart/";
         }
       }
