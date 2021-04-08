@@ -97,6 +97,7 @@ function hideError() {
 
 function clearCart() {
   localStorage.removeItem("floriade-cart");
+  localStorage.removeItem("floriade-delivery-suburb");
 }
 
 function checkCartHasParents(product_id) {
@@ -200,6 +201,41 @@ function addToCart(product_id, is_finite, has_variants, variant_error) {
     localStorage.setItem("floriade-cart-info", product_count + (product_count == 1 ? " item was" : " items were") + " added to your cart");
     window.location.href = "/cart/";
   }
+}
+
+function removeFromCart(index) {
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+  fetch("/php/remove-from-cart.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "index": index,
+      "cart": cart
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        showError(json.error);
+        return;
+      } else {
+        if(json.cart) {
+          localStorage.setItem("floriade-cart", JSON.stringify(json.cart));
+          localStorage.setItem("floriade-cart-info", "1 item was removed from your cart");
+          window.location.href = "/cart/";
+        }
+      }
+    });
 }
 
 function selectVariant(variant_id) {

@@ -124,32 +124,6 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <div id="items" class="font-secondary"></div>
       <hr />
       <div id="summary" class="text-right font-secondary"></div>
-        {#
-        <h3 class="heading">Cart Total</h3>
-        <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
-        <p><?php echo formatMoney($cart_total); ?></p>
-
-        <?php if(cartHasDelivery()) { ?>
-
-        <h3 class="heading">Delivery To</h3>
-        <select id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">
-          <option default disabled selected hidden value="">{{ 'Please Choose' | lower }}</option>
-          {% for suburb, fee in delivery_fees %}
-            <option value="{{ suburb | lower }}" <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] == "{{ suburb | lower }}")) { echo ' selected'; } ?> >{{ suburb | title }}&nbsp;</option>
-          {% endfor %}
-        </select>
-        <?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { $delivery_fee = $delivery_fees[$_SESSION["delivery-suburb"]]; } ?>
-        <p id="delivery-fee"><?php if(isset($_SESSION["delivery-suburb"]) && ($_SESSION["delivery-suburb"] != "none")) { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
-
-        <?php } else { ?>
-        <input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">
-        <?php } ?>
-
-        <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>
-        <p class="top-border"></p>
-        <p id="total" class="top-border font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
-        #}
-
       <hr />
 
       <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
@@ -208,13 +182,16 @@ function displayCart() {
     return;
   }
 
+  console.log("DS " + localStorage.getItem("floriade-delivery-suburb"));
+
   fetch("/php/display-cart.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      "cart": cart
+      "cart": cart,
+      "delivery-suburb": localStorage.getItem("floriade-delivery-suburb")
     })
   })
     .then(response => {
@@ -239,24 +216,46 @@ function displayCart() {
   document.getElementById("cart-form").style.display = "block";
 }
 
-
-var delivery_fees = <?php echo(json_encode($delivery_fees)); ?>
-
-  function formatMoney(price) {
-    if(price == 0) { return 'free'; }
-    if(Math.floor(price) == (price)) {
-      return '$' + (price);
-    } else {
-      return '$' + (price).toFixed(2);
-    }
+function formatMoney(price) {
+  if(price == 0) { return 'free'; }
+  if(Math.floor(price) == (price)) {
+    return '$' + (price);
+  } else {
+    return '$' + (price).toFixed(2);
   }
+}
 
 function updateDeliveryFee() {
   var suburb = document.getElementById("delivery-suburb").value;
+  localStorage.setItem("floriade-delivery-suburb", suburb);
 
-  var delivery_fee = delivery_fees[suburb];
-
-  document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
-  document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
+  fetch("/php/delivery-fee.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "delivery-suburb": suburb
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        showError(json.error);
+        return;
+      } else {
+        var delivery_fee = parseInt(json["delivery-fee"]);
+        document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
+        document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
+      }
+    });
 }
-  </script>
+
+</script>
