@@ -89,6 +89,9 @@ function showError(message) {
   const error_msg = document.getElementById('error-msg');
   error_msg.innerText = message;
   error_msg.style.visibility = "visible";
+
+  const info = document.getElementById("info");
+  if(info) { info.style.display = "none"; }
 }
 
 function hideError() {
@@ -281,3 +284,168 @@ function showSoldOut(product_price) {
       }
     });
 }
+
+function checkCartExpired(cart) {
+  var expired = false;
+  var timeout = microtime(true) - 300.0; // 1200.0;
+
+  cart.forEach(item => {
+    if((item.updated) && (item.updated < timeout)) {
+      expired = true;
+    }
+  });
+
+  if(expired) {
+      // XXX Reset stock item timeouts
+    document.getElementById("cart-expired").style.display = "block";
+    localStorage.removeItem("floriade-cart");
+    localStorage.removeItem("floriade-delivery-suburb");
+    cart = [];
+  }
+
+  return cart;
+}
+
+function displayCart() {
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+  cart = checkCartExpired(cart);
+
+  if(cart.length === 0) {
+    document.getElementById("empty-cart").style.display = "flex";
+    return;
+  }
+
+  var info = localStorage.getItem("floriade-cart-info") || "";
+  if(info !== "") {
+    document.getElementById("info-msg").innerText = info;
+    document.getElementById("info").style.display = "flex";
+    localStorage.removeItem("floriade-cart-info");
+  }
+
+  fetch("/php/display-cart.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "cart": cart,
+      "delivery-suburb": localStorage.getItem("floriade-delivery-suburb")
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        showError(json.error);
+        return;
+      } else {
+        document.getElementById("items").innerHTML = json["cart-items"];
+        document.getElementById("summary").innerHTML = json["cart-summary"];
+        cart_total = parseInt(json["cart-total"]);
+      }
+    });
+
+  document.getElementById("cart-form").style.display = "block";
+}
+
+function displayCheckout() {
+  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+
+  cart = checkCartExpired(cart);
+
+  if(cart.length === 0) {
+    document.getElementById("empty-cart").style.display = "flex";
+    return;
+  }
+
+  fetch("/php/display-checkout.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "cart": cart,
+      "delivery-suburb": localStorage.getItem("floriade-delivery-suburb")
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        showError(json.error);
+        return;
+      } else {
+        document.getElementById("items").innerHTML = json["cart-items"];
+        document.getElementById("summary").innerHTML = json["cart-summary"];
+      }
+    });
+
+  document.getElementById("checkout-form").style.display = "block";
+}
+
+function formatMoney(price) {
+  if(price == 0) { return 'free'; }
+  if(Math.floor(price) == (price)) {
+    return '$' + (price);
+  } else {
+    return '$' + (price).toFixed(2);
+  }
+}
+
+function updateDeliveryFee() {
+  var suburb = document.getElementById("delivery-suburb").value;
+  localStorage.setItem("floriade-delivery-suburb", suburb);
+
+  fetch("/php/delivery-fee.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "delivery-suburb": suburb
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      if(json.error) {
+        showError(json.error);
+        return;
+      } else {
+        var delivery_fee = parseInt(json["delivery-fee"]);
+        document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
+        document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
+      }
+    });
+}
+
+function checkout() {
+  const suburb = document.getElementById("delivery-suburb").value || "";
+
+  if(suburb == "") {
+    showError("Please choose a delivery option");
+    return;
+  }
+
+  window.location.href = "/checkout/";
+}
+

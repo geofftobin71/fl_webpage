@@ -1,5 +1,5 @@
 ---
-layout: layouts/checkout.njk
+layout: layouts/shop-page.njk
 title: Checkout
 description: Floriade Checkout
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
@@ -50,47 +50,27 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 </aside>
 </noscript>
 
-<div class="stack">
-  <?php if(isset($_SESSION["info"])) { ?>
-  <p class="info"><?php echo $_SESSION["info"]; unset($_SESSION["info"]); ?></p>
-  <?php } ?>
-  <?php if(isset($_SESSION["error"])) { ?>
-  <p class="error"><?php echo $_SESSION["error"]; unset($_SESSION["error"]); ?></p>
-  <?php } ?>
-</div>
-
 <section id="checkout" style="min-height:50vh">
   <div class="wrapper text-wrapper">
-    <?php $cart_count = count($_SESSION["cart"]); ?>
-    <?php $cart_total = 0; ?>
-    <?php $delivery_fee = 0; ?>
 
-    <?php if($cart_count == 0) { ?>
-    <div class="center-both stack" style="--stack-space:2em">
+    <div id="empty-cart" class="center-both stack" style="display:none;--stack-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>
+      <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
       <div class="text-center">
         <a class="button icon-button" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
         </a>
       </div>
     </div>
-    <?php } else { ?>
 
-    <noscript>
-      <div class="center-both stack text-center" style="--stack-space:2em">
-        <h2 class="heading">Javascript is Required</h2>
-        <p>Javascript is currently disabled in your web browser.</p>
-        <p>This page cannot function properly unless Javascript is enabled.</p>
-        <p>Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/">enable Javascript</a> in your web browser.</p>
-      </div>
-    </noscript>
-
-    <form id="checkout-form" action="/php/place-order.php" method="post" class="req-js flow" style="width:100%;--flow-space:2em">
-
+    <form id="checkout-form" action="/php/place-order.php" method="post" class="flow" style="display:none;width:100%;--flow-space:2em">
       <h2 class="heading text-center">Order Summary</h2>
       <hr />
-
-      <div id="items" class="font-secondary">
+      <div id="items" class="font-secondary"></div>
+      <hr />
+      <div id="summary" class="text-right font-secondary"></div>
+      <hr />
+      {#
         <?php $i = 0; ?>
         <?php foreach($_SESSION["cart"] as $cart_item) {
           $product = getProduct($cart_item["product-id"]);
@@ -144,7 +124,9 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       </div>
 
       <hr />
+      #}
 
+      {#
       <?php if(cartHasDelivery()) { ?>
 
       <h2 class="heading text-center">Delivery</h2>
@@ -180,6 +162,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <hr />
 
       <?php } ?>
+      #}
 
       <h2 class="heading text-center">Payment</h2>
       <hr />
@@ -206,8 +189,6 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
       <hr />
 
-      <input id="return-url" name="return-url" type="hidden" value="{{ page.url | cleanUrl }}" style="margin:0">
-
       <div class="text-center font-secondary">
         <p>All prices are in New Zealand dollars <span style="white-space:nowrap">and include GST.</span></p>
         <p>By using this form you agree to our <a href="/terms-and-conditions/" target="_blank" title="Opens in a new page"><span style="white-space:nowrap">Terms and Conditions</span></a>.</p>
@@ -223,6 +204,9 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <p id="submit-text">Order Now</p>
         </button>
       </div>
+      <div class="stack center">
+        <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
+      </div>
 
       <div class="text-center font-size--1 font-secondary">
         <p>Floriade does not store your credit card details.</p>
@@ -231,7 +215,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       </div>
 
     </form>
-    <?php } ?>
 
   </div>
 </section>
+
+<script>var cart_total=0;document.addEventListener("DOMContentLoaded",function(){displayCheckout();});</script>

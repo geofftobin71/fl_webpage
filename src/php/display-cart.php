@@ -18,7 +18,7 @@ $cart_count = count($cart);
 $cart_items = "";
 $cart_summary = "";
 $cart_total = 0;
-$delivery_fee = $delivery_suburb ? $delivery_fees[$delivery_suburb] : 0;
+$delivery_fee = ($delivery_suburb && $delivery_suburb != "none") ? $delivery_fees[$delivery_suburb] : 0;
 
 $i = 0;
 foreach($cart as $cart_item) {
@@ -59,7 +59,7 @@ if(cartHasDelivery($cart)) {
     $cart_summary .= '<option ' . (strtolower($suburb) === strtolower($delivery_suburb) ? 'selected ' : '') . 'value="' . strtolower($suburb) . '">' . ucwords($suburb) . '&nbsp;</option>';
   }
   $cart_summary .= '</select>';
-  $cart_summary .= '<p id="delivery-fee">' . ($delivery_suburb ? formatMoney($delivery_fee) : 'TBC') . '</p>';
+  $cart_summary .= '<p id="delivery-fee">' . (($delivery_suburb && $delivery_suburb != "none") ? formatMoney($delivery_fee) : 'TBC') . '</p>';
 } else {
   $cart_summary .= '<input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">';
 }

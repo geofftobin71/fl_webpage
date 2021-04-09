@@ -43,8 +43,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 </aside>
 </noscript>
 
-<div id="info-wrapper" class="stack" style="display:none;margin-top:calc(var(--section-padding)/2)">
-    <p id="info" class="info"></p>
+<div id="info" class="stack" style="display:none;margin-top:calc(var(--section-padding)/2)">
+    <p id="info-msg" class="info"></p>
 </div>
 
 <section id="cart" style="min-height:50vh">
@@ -75,136 +75,10 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         </button>
       </div>
       <div class="stack center">
-        <span id="error-msg" class="error" style="visibility:hidden">&nbsp;</span>
+        <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
       </div>
     </div>
     </div>
 </section>
 
-<script>
-var cart_total = 0;
-
-document.addEventListener("DOMContentLoaded",function(){
-  showInfo();
-  displayCart();
-});
-
-function showInfo() {
-  var info = localStorage.getItem("floriade-cart-info") || "";
-  if(info !== "") {
-    document.getElementById("info").innerText = info;
-    document.getElementById("info-wrapper").style.display = "flex";
-    localStorage.removeItem("floriade-cart-info");
-  }
-}
-
-function displayCart() {
-  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
-  var expired = false;
-  var timeout = microtime(true) - 1200.0;
-
-  cart.forEach(item => {
-    if((item.updated) && (item.updated < timeout)) {
-      expired = true;
-    }
-  });
-
-  if(expired) {
-      // XXX Reset stock item timeouts
-    document.getElementById("cart-expired").style.display = "block";
-    localStorage.removeItem("floriade-cart");
-    localStorage.removeItem("floriade-delivery-suburb");
-    cart = [];
-  }
-
-  if(cart.length === 0) {
-    document.getElementById("empty-cart").style.display = "flex";
-    return;
-  }
-
-  fetch("/php/display-cart.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "cart": cart,
-      "delivery-suburb": localStorage.getItem("floriade-delivery-suburb")
-    })
-  })
-    .then(response => {
-      if(!response.ok) {
-        showError(response.statusText);
-        throw Error(response.statusText);
-      } else {
-        return response.json();
-      }
-    })
-    .then(json => {
-      if(json.error) {
-        showError(json.error);
-        return;
-      } else {
-        document.getElementById("items").innerHTML = json["cart-items"];
-        document.getElementById("summary").innerHTML = json["cart-summary"];
-        cart_total = parseInt(json["cart-total"]);
-      }
-    });
-
-  document.getElementById("cart-form").style.display = "block";
-}
-
-function formatMoney(price) {
-  if(price == 0) { return 'free'; }
-  if(Math.floor(price) == (price)) {
-    return '$' + (price);
-  } else {
-    return '$' + (price).toFixed(2);
-  }
-}
-
-function updateDeliveryFee() {
-  var suburb = document.getElementById("delivery-suburb").value;
-  localStorage.setItem("floriade-delivery-suburb", suburb);
-
-  fetch("/php/delivery-fee.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "delivery-suburb": suburb
-    })
-  })
-    .then(response => {
-      if(!response.ok) {
-        showError(response.statusText);
-        throw Error(response.statusText);
-      } else {
-        return response.json();
-      }
-    })
-    .then(json => {
-      if(json.error) {
-        showError(json.error);
-        return;
-      } else {
-        var delivery_fee = parseInt(json["delivery-fee"]);
-        document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
-        document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
-      }
-    });
-}
-
-function checkout() {
-  const suburb = document.getElementById("delivery-suburb").value;
-
-  if(suburb == "") {
-    showError("Please choose a delivery option");
-    return;
-  }
-
-  window.location.href = "/checkout/";
-}
-
-</script>
+<script>var cart_total=0;document.addEventListener("DOMContentLoaded",function(){displayCart();});</script>
