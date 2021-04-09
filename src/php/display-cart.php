@@ -34,6 +34,12 @@ foreach($cart as $cart_item) {
     $cart_items .= '<span class="font-size--1" style="white-space:nowrap"> ( ' . $variant["name"] . ' )</span>';
   }
 
+  /*
+  if(isset($cart_item["updated"])) {
+    $cart_items .= '<br><span class="font-size--1">' . (DateTime::createFromFormat("U", floor(floatVal($cart_item["updated"]) + floatVal($cart_expiry_time)))->setTimeZone(new DateTimeZone("Pacific/Auckland"))->format(DateTimeInterface::W3C)) . '</span>';
+  }
+  */
+
   $cart_items .= '</p>';
 
   $cart_items .= '<div class="font-base font-size--1" style="display:flex;justify-content:flex-start">';
