@@ -115,6 +115,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
 {% include "partials/view-cart-button.njk" %}
 
+<pre id="test"></pre>
+
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
     <div class="wrapper image-wrapper flow" style="width:100%">
@@ -205,4 +207,4 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
 {% include "partials/pagination.njk" %}
 
-<script>document.addEventListener("DOMContentLoaded",function(){checkCartHasParents("{{product.id}}");if({{product|hasStock}}){showProductStock("{{product.id}}");}showViewCart();enableAddToCartButton();});</script>
+<script>document.addEventListener("DOMContentLoaded",function(){displayProduct("{{product.id}}");});</script>
