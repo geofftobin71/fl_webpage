@@ -1,3 +1,5 @@
+deprecate placeholders
+Sanity check checkCartExpired - race conditions
 fetch payment intent
 single product width on mobile - padding too big
 Button / Select / Radio css

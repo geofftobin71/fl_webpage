@@ -5,7 +5,7 @@ description: Floriade Checkout
 header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
 header:
   title: Floriade Checkout
-permalink: "checkout/index.php"
+permalink: "checkout/index.html"
 ---
 
 <style>
@@ -18,6 +18,9 @@ permalink: "checkout/index.php"
   width:100%;
   height:100%;
   padding:0.5em;
+}
+#items > * + * {
+  margin-top: 1em;
 }
 #items > * + *, .top-border {
   border-top:1px solid rgba(255, 255, 255, 0.1);
@@ -70,99 +73,46 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <hr />
       <div id="summary" class="text-right font-secondary"></div>
       <hr />
-      {#
-        <?php $i = 0; ?>
-        <?php foreach($_SESSION["cart"] as $cart_item) {
-          $product = getProduct($cart_item["product-id"]);
-          $price = getPrice($product, $cart_item["variant-id"]);
-          $cart_total += $price;
-        ?>
-          <div class="stack" style="--stack-space:1em">
-            <p><?php echo $product["name"]; ?>
-            <?php if(hasVariants($product)) {
-              $variant = getVariant($product, $cart_item["variant-id"]); ?>
-              <span class="font-size--1" style="white-space:nowrap"> ( <?php echo $variant["name"]; ?> )</span>
-            <?php } ?>
-            </p>
-            <?php if(strtolower($product["category"]) == "workshops") { ?>
-              <div>
-                <label for="ws-name-<?php echo $i; ?>"><h4 class="heading">Name</h4></label>
-                <input required class="input" style="width:100%" id="ws-name-<?php echo $i; ?>" name="workshop-attendee-name[<?php echo $cart_item['cart-id']; ?>]" type="text" autocomplete="name" placeholder="Name of the person attending">
-              </div>
-              <div>
-                <label for="ws-email-<?php echo $i; ?>"><h4 class="heading">Email</h4></label>
-                <input required class="input" style="width:100%" id="ws-email-<?php echo $i; ?>" name="workshop-attendee-email[<?php echo $cart_item['cart-id']; ?>]" type="email" autocomplete="email" inputmode="email" placeholder="Email of the person attending">
-                <p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>
-              </div>
-            <?php } ?>
-          </div>
-          <p class="text-right"><?php echo formatMoney($price); ?></p>
-        <?php $i++; ?>
-        <?php } ?>
-      </div>
 
-      <hr />
-
-      <div id="summary" class="text-right font-secondary">
-        <h3 class="heading text-left">Cart Total</h3>
-        <p><?php echo $cart_count; echo ($cart_count == 1) ? ' item' : ' items'; ?></p>
-        <p><?php echo formatMoney($cart_total); ?></p>
-
-        <?php if(cartHasDelivery()) { ?>
-
-        <h3 class="heading text-left" style="grid-column:1/span 2"><?php if(($delivery_suburb != "none") && ($delivery_suburb != "pickup in store")) { echo 'Delivery to '; } ?><span style="white-space:nowrap"><?php echo $delivery_suburb; ?><span></h3>
-        <?php if($delivery_suburb != "none") { $delivery_fee = $delivery_fees[$delivery_suburb]; } ?>
-        <p id="delivery-fee"><?php if($delivery_suburb != "none") { echo formatMoney($delivery_fee); } else { echo "TBC"; } ?></p>
-
-        <?php } else { ?>
-        <input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">
-        <?php } ?>
-
-        <h3 class="top-border font-size-1 text-lowercase text-left">TOTAL</h3>
-        <p class="top-border"></p>
-        <p id="total" class="top-border font-size-1"><?php echo formatMoney($delivery_fee + $cart_total); ?></p>
-      </div>
-
-      <hr />
-      #}
-
-      {#
-      <?php if(cartHasDelivery()) { ?>
-
-      <h2 class="heading text-center">Delivery</h2>
-      <hr />
-
-      <div class="stack" style="--stack-space:1em">
+      <h2 class="delivery-group heading text-center" style="display:none">Delivery</h2>
+      <hr class="delivery-group" style="display:none" />
+      <div class="delivery-group stack" style="--stack-space:1em;display:none">
         <div>
-          <label for="delivery-name"><h4 class="heading">Delivery Name</h4></label>
-          <input required class="input" style="width:100%" id="delivery-name" name="delivery-name" type="text" autocomplete="name" placeholder="Recipient Name">
+          <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
+          <input class="input" style="width:100%" id="delivery-name" name="delivery-name" type="text" autocomplete="name" placeholder="Name of the person receiving the flowers">
+        </div>
+
+        <div class="delivery-address-group" style="display:none">
+          <label for="delivery-address"><h4 class="heading">Delivery Address</h4></label>
+          <input class="input" style="width:100%" id="delivery-address" name="delivery-address" type="text" autocomplete="address" placeholder="Delivery Address">
+        </div>
+
+        <div class="delivery-address-group" style="display:none">
+          <label for="delivery-suburb"><h4 class="heading">Delivery Suburb</h4></label>
+          <input class="input" style="width:100%" id="delivery-suburb" name="delivery-suburb" type="text" readonly>
         </div>
 
         <div>
-          <label for="delivery-phone"><h4 class="heading">Delivery Phone</h4></label>
-          <input required class="input" style="width:100%" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Recipient Phone number">
-          <p class="caption text-left text-lowercase">In case we are unable to deliver your order & need to contact the recipient</p>
+          <label for="delivery-phone"><h4 class="heading">Recipient Phone</h4></label>
+          <input class="input" style="width:100%" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Phone number of the person receiving the flowers">
+          <p class="caption text-left text-lowercase">In case we have trouble delivering your order & need to contact the recipient to make other arrangements</p>
         </div>
 
-        <?php $now = new DateTime; $ten_am = (new DateTime)->setTime(10, 0); ?>
         <div>
           <label for="delivery-date"><h4 class="heading">Delivery Date</h4></label>
-				  <select required class="select-css" id="delivery-date" name="delivery-date">
+				  <select class="select-css" id="delivery-date" name="delivery-date">
 				    <option default disabled selected hidden value="">Please choose...</option>
 				    {% set today = now_nz %}
 				    {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
 				    {% for day in days -%}
 				      {% set invalid = (day | readableDate in non_delivery_dates) or (day.weekday == 7) %}
-              <option {{ "disabled" if invalid }} <?php if(($now > $ten_am) && ((new DateTime("{{ day }}"))->setTime(0, 0) == (new DateTime("{{ today }}"))->setTime(0, 0))) { echo " disabled"; } ?> value="{{ day.weekdayLong }} {{ day | readableDate }}">{{ day.weekdayLong }} {{ day | readableDate }}{{ " (today)" if day == today }}</option>
+              <option {{ 'id="today"' | safe if day == today }} {{ ' disabled' if invalid }} value="{{ day.weekdayLong }} {{ day | readableDate }}">{{ day.weekdayLong }} {{ day | readableDate }}{{ ' (today)' if day == today }}</option>
 				    {%- endfor %}
 				  </select>
         </div>
       </div>
-
-      <hr />
-
-      <?php } ?>
-      #}
+      <p class="delivery-group font-size-1" style="display:none"></p>
+      <hr class="delivery-group" style="display:none" />
 
       <h2 class="heading text-center">Payment</h2>
       <hr />
@@ -170,12 +120,12 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <div class="stack" style="--stack-space:1em">
         <div>
           <label for="cardholder-name"><h4 class="heading">Name on Credit Card</h4></label>
-          <input required class="input" style="width:100%" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" placeholder="Cardholder Name">
+          <input class="input" style="width:100%" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" placeholder="Cardholder Name">
         </div>
 
         <div>
           <label for="cardholder-email"><h4 class="heading">Email</h4></label>
-          <input required class="input" style="width:100%" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" placeholder="Cardholder Email">
+          <input class="input" style="width:100%" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" placeholder="Cardholder Email">
           <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
         </div>
 
@@ -198,7 +148,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <a class="button icon-button" href="/cart/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Return to Cart</p>
         </a>
-        <button class="icon-button cursor-pointer bigfonts" type="submit">
+        <button id="place-order-button" disabled class="icon-button cursor-pointer bigfonts" type="submit">
           <span id="cart-icon">{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span>
           <span id="spinner-icon" style="display:none">{{ '/src/svg/spinner.svg' | svgContents | safe }}</span>
           <p id="submit-text">Order Now</p>
@@ -219,4 +169,4 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
   </div>
 </section>
 
-<script>var cart_total=0;document.addEventListener("DOMContentLoaded",function(){displayCheckout();});</script>
+<script>var cart_total=0;document.addEventListener("DOMContentLoaded",function(){displayCheckout();enablePlaceOrderButton();});</script>

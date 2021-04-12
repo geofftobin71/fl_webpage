@@ -36,6 +36,18 @@ foreach($cart as $cart_item) {
 
   $cart_items .= '</p>';
 
+  if(strtolower($product["category"]) == "workshops") {
+    $cart_items .= '<div>';
+    $cart_items .= '<label for="ws-name-' . $i . '"><h4 class="heading">Name</h4></label>';
+    $cart_items .= '<input class="input" style="width:100%" id="ws-name-' . $i . '" name="workshop-attendee-name[' . $cart_item['cart-id'] . ']" type="text" autocomplete="name" placeholder="Name of the person attending">';
+    $cart_items .= '</div>';
+    $cart_items .= '<div>';
+    $cart_items .= '<label for="ws-email-' . $i . '"><h4 class="heading">Email</h4></label>';
+    $cart_items .= '<input class="input" style="width:100%" id="ws-email-' . $i . '" name="workshop-attendee-email[' . $cart_item['cart-id'] . ']" type="email" autocomplete="email" inputmode="email" placeholder="Email of the person attending">';
+    $cart_items .= '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
+    $cart_items .= '</div>';
+  }
+
   $cart_items .= '</div>';
   $cart_items .= '<p class="text-right">' . formatMoney($price) . '</p>';
 

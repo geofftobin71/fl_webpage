@@ -182,7 +182,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         <hr />
 
         <div id="button-group" class="stack center">
-          <button class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
+          <button id="add-to-cart-button" disabled class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
           <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button>
           <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
         </div>
@@ -205,4 +205,4 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
 {% include "partials/pagination.njk" %}
 
-<script>document.addEventListener("DOMContentLoaded",function(){checkCartHasParents("{{product.id}}");if({{product|hasStock}}){showProductStock("{{product.id}}");}showViewCart();});</script>
+<script>document.addEventListener("DOMContentLoaded",function(){checkCartHasParents("{{product.id}}");if({{product|hasStock}}){showProductStock("{{product.id}}");}showViewCart();enableAddToCartButton();});</script>
