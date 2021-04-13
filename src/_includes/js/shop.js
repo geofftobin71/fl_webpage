@@ -63,29 +63,54 @@ async function fetchData() {
 }
 
 function getProduct(product_id) {
+  let result;
 
-  let product;
-
-  shop_products.forEach(p => {
-    if(p["id"] === product_id) { product = p; }
+  shop_products.forEach(product => {
+    if(product["id"] === product_id) { result = product; }
   });
 
-  return product;
+  return result;
 }
 
 function getCategory(category_name) {
+  let result;
 
-  let category;
-
-  shop_categories.forEach(c => {
-    if(c["name"] === category_name) { category = c; }
+  shop_categories.forEach(category => {
+    if(category["name"] === category_name) { result = category; }
   });
 
-  return category;
+  return result;
+}
+
+function getVariant(product, variant_id) {
+  let result;
+
+  if(product["variants"].length) {
+    product["variants"].forEach(variant => {
+      if(variant["id"] === variant_id) { result = variant; }
+    });
+  }
+
+  return result;
+}
+
+function getPrice(product, variant_id) {
+  let result;
+
+  if(product["variants"].length) {
+    product["variants"].forEach(variant => {
+      if(variant["id"] === variant_id) {
+        result = parseInt(variant["price"]) ? variant["price"] : product["price"];
+      }
+    });
+  } else {
+    result = product["price"];
+  }
+
+  return parseInt(result);
 }
 
 function hasStock(product) {
-
   let has_stock = false;
 
   if(product["stock"]) { has_stock = true; }
@@ -230,6 +255,144 @@ function addToCart(product_id, is_finite, has_variants, variant_error) {
   }
 }
 
+async function displayCart() {
+
+  await fetchData();
+
+  let info = localStorage.getItem("floriade-cart-info") || "";
+
+  if(info !== "") {
+    document.getElementById("info-msg").innerText = info;
+    document.getElementById("info").style.display = "flex";
+    localStorage.removeItem("floriade-cart-info");
+  }
+
+  checkCartExpired();
+
+  if(cart.length === 0) {
+    document.getElementById("empty-cart").style.display = "flex";
+    return;
+  }
+
+	let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
+	let cart_count = cart.length;
+	let cart_items = "";
+	let cart_summary = "";
+	let cart_total = 0;
+	let delivery_fee = (delivery_suburb && delivery_suburb != "none") ? delivery_fees[delivery_suburb] : 0;
+	
+	let i = 0;
+	cart.forEach(cart_item => {
+
+	  let product = getProduct(cart_item["product-id"]);
+	  let price = getPrice(product, cart_item["variant-id"]);
+
+	  cart_total += price;
+	
+	  cart_items += '<div class="stack" style="--stack-space:1em">';
+	  cart_items += '<p>' + product["name"];
+	
+	  if(product["variants"].length) {
+	    variant = getVariant(product, cart_item["variant-id"]);
+	    cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
+	  }
+	
+    /*
+	  if(cart_item["updated"]) {
+	    cart_items += '<br><span class="font-size--1">' + (DateTime::createFromFormat("U", floor(floatVal(cart_item["updated"]) + floatVal(cart_expiry_time)))->setTimeZone(new DateTimeZone("Pacific/Auckland"))->format(DateTimeInterface::W3C)) + '</span>';
+	  }
+    */
+	
+	  cart_items += '</p>';
+	
+	  cart_items += '<div class="font-base font-size--1" style="display:flex;justify-content:flex-start">';
+	  cart_items += '<div class="icon-button color-shade3" onclick="removeFromCart(' + i + ')">';
+	  cart_items += '<span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 736v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm256 0v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm256 0v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm128 724v-948h-896v948q0 22 7 40.5t14.5 27 10.5 8.5h832q3 0 10.5-8.5t14.5-27 7-40.5zm-672-1076h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z"/></svg></span><p class="text-lowercase">Remove</p>';
+	  cart_items += '</div>';
+	  cart_items += '</div>';
+	  cart_items += '</div>';
+	  cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
+	
+	  i++;
+	});
+	
+	cart_summary += '<h3 class="heading">Cart Total</h3>';
+	cart_summary += '<p class="color-shade3">' + cart_count + (cart_count == 1 ? ' item' : ' items') + '</p>';
+	cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
+	
+  let has_delivery = false;
+
+  cart.forEach(cart_item => {
+    const cart_product = getProduct(cart_item["product-id"]);
+    if(cart_product) {
+      const cart_category = getCategory(cart_product["category"]);
+      if(cart_category) {
+        if(cart_category["delivery"]) { has_delivery = true }
+      }
+    }
+  });
+
+  if(has_delivery) {
+    cart_summary += '<h3 class="heading">Delivery To</h3>';
+    cart_summary += '<select id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">';
+    cart_summary += '<option default disabled selected hidden value="">please choose</option>';
+    for(const suburb in delivery_fees) {
+      cart_summary += '<option ' + (suburb === delivery_suburb ? 'selected ' : '') + 'value="' + suburb + '">' + titleCase(suburb) + '&nbsp;</option>';
+    }
+    cart_summary += '</select>';
+    cart_summary += '<p id="delivery-fee" class="text-right">' + ((delivery_suburb && delivery_suburb != "none") ? formatMoney(delivery_fee) : 'TBC') + '</p>';
+  } else {
+    cart_summary += '<input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none">';
+  }
+
+  cart_summary += '<h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>';
+  cart_summary += '<p class="top-border"></p>';
+  cart_summary += '<p id="total" class="top-border font-size-1 text-right">' + formatMoney(delivery_fee + cart_total) + '</p>';
+
+  document.getElementById("items").innerHTML = cart_items;
+  document.getElementById("summary").innerHTML = cart_summary;
+  document.getElementById("cart-form").style.display = "block";
+  document.getElementById("checkout-button").disabled = false;
+}
+
+function checkCartExpired() {
+
+  let expired = false;
+  let timeout = microtime(true) - 1800.0;
+
+  cart.forEach(cart_item => {
+    if((cart_item.updated) && (cart_item.updated < timeout)) {
+      expired = true;
+    }
+  });
+
+  if(expired) {
+    fetch("/php/expire-cart.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "cart": cart
+      })
+    })
+      .then(response => {
+        if(!response.ok) {
+          showError(response.statusText);
+          throw Error(response.statusText);
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => {
+        document.getElementById("cart-expired").style.display = "block";
+        localStorage.removeItem("floriade-cart");
+        localStorage.removeItem("floriade-delivery-suburb");
+        cart = [];
+      });
+  }
+}
+
 function removeFromCart(index) {
   var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 
@@ -265,8 +428,7 @@ function removeFromCart(index) {
     });
 }
 
-function checkCartHasDelivery() {
-  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
+function cartHasDelivery() {
 
   fetch("/php/cart-has-delivery.php", {
     method: "POST",
@@ -342,95 +504,8 @@ function showSoldOut(product_price) {
     });
 }
 
-function checkCartExpired(cart) {
-  var expired = false;
-  var timeout = microtime(true) - 1800.0;
-
-  cart.forEach(item => {
-    if((item.updated) && (item.updated < timeout)) {
-      expired = true;
-    }
-  });
-
-  if(expired) {
-    fetch("/php/expire-cart.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        "cart": cart
-      })
-    })
-      .then(response => {
-        if(!response.ok) {
-          showError(response.statusText);
-          throw Error(response.statusText);
-        } else {
-          return response.json();
-        }
-      })
-      .then(json => {
-        document.getElementById("cart-expired").style.display = "block";
-        localStorage.removeItem("floriade-cart");
-        localStorage.removeItem("floriade-delivery-suburb");
-        cart = [];
-      });
-  }
-
-  return cart;
-}
-
-function displayCart() {
-  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
-
-  cart = checkCartExpired(cart);
-
-  if(cart.length === 0) {
-    document.getElementById("empty-cart").style.display = "flex";
-    return;
-  }
-
-  var info = localStorage.getItem("floriade-cart-info") || "";
-  if(info !== "") {
-    document.getElementById("info-msg").innerText = info;
-    document.getElementById("info").style.display = "flex";
-    localStorage.removeItem("floriade-cart-info");
-  }
-
-  fetch("/php/display-cart.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "cart": cart,
-      "delivery-suburb": localStorage.getItem("floriade-delivery-suburb")
-    })
-  })
-    .then(response => {
-      if(!response.ok) {
-        showError(response.statusText);
-        throw Error(response.statusText);
-      } else {
-        return response.json();
-      }
-    })
-    .then(json => {
-      if(json.error) {
-        showError(json.error);
-        return;
-      } else {
-        document.getElementById("items").innerHTML = json["cart-items"];
-        document.getElementById("summary").innerHTML = json["cart-summary"];
-        cart_total = parseInt(json["cart-total"]);
-      }
-    });
-
-  document.getElementById("cart-form").style.display = "block";
-}
-
 function displayCheckout() {
+
   const delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
 
   if(!delivery_suburb) {
@@ -447,7 +522,7 @@ function displayCheckout() {
 
   var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 
-  cart = checkCartExpired(cart);
+  checkCartExpired();
 
   if(cart.length === 0) {
     document.getElementById("empty-cart").style.display = "flex";
@@ -551,10 +626,6 @@ function titleCase(str) {
   return str.toLowerCase().split(' ').map(function(word) {
     return word.replace(word[0], word[0].toUpperCase());
   }).join(' ');
-}
-
-function enableCheckoutButton() {
-  document.getElementById("checkout-button").disabled = false;
 }
 
 function enablePlaceOrderButton() {
