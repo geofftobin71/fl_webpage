@@ -57,7 +57,7 @@ async function displayProduct(product_id) {
 }
 
 async function fetchData() {
-  var response;
+  let response;
   response = await fetch('/php/shop_products.json');
   shop_products = await response.json();
 
@@ -153,11 +153,11 @@ function showProductStock(product_id) {
         return;
       } else {
         if(json["stock-count"]) {
-          var stock_count = json["stock-count"];
+          let stock_count = json["stock-count"];
 
           for(const key in stock_count) {
             if(key === "total") {
-              var total_stock_count = parseInt(stock_count["total"]);
+              let total_stock_count = parseInt(stock_count["total"]);
               if(total_stock_count === 0) {
                 document.getElementById("number-group").style.display = "none";
                 document.getElementById("button-group").style.display = "none";
@@ -165,16 +165,16 @@ function showProductStock(product_id) {
                 document.getElementById("product-stock-count").style.display = "block";
               }
             } else if(key === "none") { 
-              var key_id = "product-stock-count";
-              var value = stock_count[key];
+              let key_id = "product-stock-count";
+              let value = stock_count[key];
 
               if(parseInt(value) > 0) {
                 document.getElementById(key_id).innerText = "( " + value + " available )";
                 document.getElementById(key_id).style.display = "block";
               }
             } else {
-              var key_id = key + "-stock-count";
-              var value = stock_count[key];
+              let key_id = key + "-stock-count";
+              let value = stock_count[key];
 
               if(parseInt(value) > 0) {
                 document.getElementById(key_id).innerText = "( " + value + " available )";
@@ -202,9 +202,9 @@ function addToCart(product_id, is_finite, has_variants, variant_error) {
     return;
   }
 
-  var variant_id = "none";
+  let variant_id = "none";
   if(has_variants) {
-    var variant_input = document.querySelector('input[name="variant-id"]:checked');
+    let variant_input = document.querySelector('input[name="variant-id"]:checked');
     if(variant_input) {
       variant_id = variant_input.value;
     } else {
@@ -214,6 +214,7 @@ function addToCart(product_id, is_finite, has_variants, variant_error) {
   }
 
   if(is_finite) {
+
     fetch("/php/get-stock.php", {
       method: "POST",
       headers: {
@@ -505,6 +506,7 @@ function checkCartExpired() {
   });
 
   if(expired) {
+
     fetch("/php/expire-cart.php", {
       method: "POST",
       headers: {
@@ -532,7 +534,6 @@ function checkCartExpired() {
 }
 
 function removeFromCart(index) {
-  var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 
   fetch("/php/remove-from-cart.php", {
     method: "POST",
@@ -575,6 +576,7 @@ function selectVariant(variant_id) {
 }
 
 function showSoldOut(product_price) {
+
   fetch("/php/stock-count.php", {
     method: "POST",
     headers: {
@@ -598,7 +600,7 @@ function showSoldOut(product_price) {
         return;
       } else {
         if(json["stock-count"]) {
-          var stock_count = json["stock-count"];
+          let stock_count = json["stock-count"];
 
           for(const key in stock_count) {
             if(key === "total") {
@@ -613,36 +615,12 @@ function showSoldOut(product_price) {
 }
 
 function updateDeliveryFee() {
-  var suburb = document.getElementById("delivery-suburb").value;
-  localStorage.setItem("floriade-delivery-suburb", suburb);
+  let delivery_suburb = document.getElementById("delivery-suburb").value;
+  localStorage.setItem("floriade-delivery-suburb", delivery_suburb);
 
-  fetch("/php/delivery-fee.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "delivery-suburb": suburb
-    })
-  })
-    .then(response => {
-      if(!response.ok) {
-        showError(response.statusText);
-        throw Error(response.statusText);
-      } else {
-        return response.json();
-      }
-    })
-    .then(json => {
-      if(json.error) {
-        showError(json.error);
-        return;
-      } else {
-        var delivery_fee = parseInt(json["delivery-fee"]);
-        document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
-        document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
-      }
-    });
+  let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
+  document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
+  document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
 }
 
 function checkout() {
@@ -680,8 +658,8 @@ function showViewCart() {
 }
 
 function microtime(get_as_float) {  
-  var now = new Date().getTime() / 1000;  
-  var s = parseInt(now);  
+  let now = new Date().getTime() / 1000;  
+  let s = parseInt(now);  
   return (get_as_float) ? now : (Math.round((now - s) * 1000) / 1000) + ' ' + s;  
 }
 
