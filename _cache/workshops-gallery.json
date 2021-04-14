@@ -1,6 +1,6 @@
 {
   "total_count": 9,
-  "time": 6086,
+  "time": 40,
   "resources": [
     {
       "asset_id": "c352c0e0765d05888b8a6926dce6e858",
@@ -337,6 +337,6 @@
     }
   ],
   "rate_limit_allowed": 500,
-  "rate_limit_reset_at": "2021-03-29T04:00:00.000Z",
-  "rate_limit_remaining": 493
+  "rate_limit_reset_at": "2021-04-14T02:00:00.000Z",
+  "rate_limit_remaining": 499
 }

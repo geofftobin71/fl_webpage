@@ -1,5 +1,73 @@
 [
   {
+    "asset_id": "42a1fbd45f766cd2e25f2587c5976c95",
+    "public_id": "instagram/floriade_wellington_18151402093179468",
+    "folder": "instagram",
+    "filename": "floriade_wellington_18151402093179468",
+    "format": "jpg",
+    "version": 1618362058,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-04-14T01:00:58+00:00",
+    "uploaded_at": "2021-04-14T01:00:58+00:00",
+    "bytes": 485277,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "One of our dreamy dried pastel bouquets. We go the extra mile to provide the widest range and highest quality of dried flowers for our design work. It’s a passion and a joy in our creative process.",
+      "timestamp": "2021-03-30T19:38:42+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1618362058/instagram/floriade_wellington_18151402093179468.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1618362058/instagram/floriade_wellington_18151402093179468.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "d42b01c8da9f5abeb253dcbf751ca317",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
+    "asset_id": "40679e808ced1b61c19dd3bf375514c8",
+    "public_id": "instagram/floriade_wellington_17871457463311770",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17871457463311770",
+    "format": "jpg",
+    "version": 1618362058,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-04-14T01:00:58+00:00",
+    "uploaded_at": "2021-04-14T01:00:58+00:00",
+    "bytes": 250750,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "A few snaps of our drying room. Lots of love goes into making our dried flowers from when we source the flowers to when we create our bespoke arrangements and sculptural pieces. We are taking a break over Easter and will be back on Tuesday. Have a safe and happy Easter.",
+      "timestamp": "2021-04-01T06:10:18+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1618362058/instagram/floriade_wellington_17871457463311770.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1618362058/instagram/floriade_wellington_17871457463311770.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "bdf86944760fd5010e4a0e0a0aab1f42",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "16c3ce3eb4b5005ed71cff7fbda2c557",
     "public_id": "instagram/floriade_wellington_17848750223542796",
     "folder": "instagram",
@@ -25,7 +93,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "5bbef19946dfaf279877e22cebe8e066",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -59,7 +126,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "51b74d0faf3044d39e46d562f8e284cc",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -93,7 +159,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "5a28a5b85b58a5dbca8e87ef22cdd1ef",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -160,7 +225,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "cf8077d3a99243b9edf1e26226d77caf",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -194,7 +258,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "120ba86eec23347c567dd63e1e64c7cd",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -228,7 +291,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "f4038c253c46ff676885545b2faf3203",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -262,7 +324,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "1a17dbdc413f32ac4f9ce097f11f6255",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -296,7 +357,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "471cd5d39788c4246598010f88d58871",
     "created_by": {
       "access_key": "389122341319441"
     },

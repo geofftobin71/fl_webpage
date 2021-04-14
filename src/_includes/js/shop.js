@@ -7,6 +7,9 @@ var shop_categories;
 var delivery_fees;
 var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 
+const cart_expiry_time = 1800.0;  // 30 minutes
+const cart_reset_time = 2100.0;   // 35 minutes
+
 async function displayProduct(product_id) {
 
   await fetchData();
@@ -297,11 +300,11 @@ async function displayCart() {
 	    cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
 	  }
 	
-    /*
+    {% if env.NODE_ENV == 'develop' %}
 	  if(cart_item["updated"]) {
-	    cart_items += '<br><span class="font-size--1">' + (DateTime::createFromFormat("U", floor(floatVal(cart_item["updated"]) + floatVal(cart_expiry_time)))->setTimeZone(new DateTimeZone("Pacific/Auckland"))->format(DateTimeInterface::W3C)) + '</span>';
+	    cart_items += '<br><span class="font-size--1">' + DateTime.fromMillis((cart_item["updated"] + cart_expiry_time) * 1000.0).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) + '</span>';
 	  }
-    */
+    {% endif %}
 	
 	  cart_items += '</p>';
 	
@@ -334,7 +337,7 @@ async function displayCart() {
 
   if(has_delivery) {
     cart_summary += '<h3 class="heading">Delivery To</h3>';
-    cart_summary += '<select id="delivery-suburb" name="delivery-suburb" class="select-css" onchange="updateDeliveryFee()">';
+    cart_summary += '<select id="delivery-suburb" name="delivery-suburb" class="select-css" style="width:auto;margin-right:auto" onchange="updateDeliveryFee()">';
     cart_summary += '<option default disabled selected hidden value="">please choose</option>';
     for(const suburb in delivery_fees) {
       cart_summary += '<option ' + (suburb === delivery_suburb ? 'selected ' : '') + 'value="' + suburb + '">' + titleCase(suburb) + '&nbsp;</option>';
@@ -358,7 +361,7 @@ async function displayCart() {
 function checkCartExpired() {
 
   let expired = false;
-  let timeout = microtime(true) - 1800.0;
+  let timeout = microtime(true) - cart_expiry_time;
 
   cart.forEach(cart_item => {
     if((cart_item.updated) && (cart_item.updated < timeout)) {
