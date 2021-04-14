@@ -1,4 +1,6 @@
 deprecate placeholders
+safety check checkout form fields
+
 fetch payment intent
 single product width on mobile - padding too big
 Button / Select / Radio css
