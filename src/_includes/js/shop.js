@@ -373,6 +373,8 @@ async function displayCheckout() {
 
   await fetchData();
 
+  document.getElementById("checkout-form").addEventListener("submit", placeOrder);
+
   let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
 
   if(!delivery_suburb) {
@@ -634,6 +636,14 @@ function checkout() {
   localStorage.setItem("floriade-delivery-suburb", suburb);
 
   window.location.href = "/checkout/";
+}
+
+function placeOrder(event) {
+  event.preventDefault();
+
+  document.getElementById("place-order-button").disabled = true;
+  document.getElementById("spinner-icon").style.display = "inline-block";
+  document.getElementById("cart-icon").style.display = "none";
 }
 
 function formatMoney(price) {
