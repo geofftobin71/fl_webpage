@@ -420,12 +420,12 @@ async function displayCheckout() {
 	  if(product["category"].toLowerCase() === "workshops") {
 	    cart_items += '<div>';
 	    cart_items += '<label for="ws-name-' + i + '"><h4 class="heading">Attendee Name</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="ws-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()">';
+	    cart_items += '<input class="input" style="width:100%" id="ws-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
 	    cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
 	    cart_items += '</div>';
 	    cart_items += '<div>';
 	    cart_items += '<label for="ws-email-' + i + '"><h4 class="heading">Attendee Email</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="ws-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()">';
+	    cart_items += '<input class="input" style="width:100%" id="ws-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
 	    cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
 	    cart_items += '</div>';
 	  }
@@ -495,6 +495,11 @@ async function displayCheckout() {
   document.getElementById("summary").innerHTML = cart_summary;
   document.getElementById("checkout-form").style.display = "block";
   document.getElementById("place-order-button").disabled = false;
+
+  const inputs = document.querySelectorAll("input,select");
+  for(let i = 0; i < inputs.length; i++) {
+    inputs[i].value = localStorage.getItem(inputs[i].id);
+  };
 }
 
 function checkCartExpired() {
@@ -689,6 +694,12 @@ function showViewCart() {
   if(cart.length > 0) {
     document.getElementById('view-cart').style.display = "flex";
   }
+}
+
+function cacheValue(e) {
+  console.log(e.id);
+  console.log(e.value);
+  localStorage.setItem(e.id, e.value);
 }
 
 function microtime(get_as_float) {  
