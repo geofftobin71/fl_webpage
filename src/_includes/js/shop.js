@@ -287,6 +287,7 @@ async function displayCart() {
   }
 
 	let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
+  if(delivery_suburb) { delivery_suburb = delivery_suburb.toLowerCase(); }
 	let cart_count = cart.length;
 	let cart_items = "";
 	let cart_summary = "";
@@ -388,6 +389,7 @@ async function displayCheckout() {
   }
 
   let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
+  if(delivery_suburb) { delivery_suburb = delivery_suburb.toLowerCase(); }
 
   if(!delivery_suburb) {
     window.location.href = "/cart/";
@@ -419,13 +421,13 @@ async function displayCheckout() {
 	
 	  if(product["category"].toLowerCase() === "workshops") {
 	    cart_items += '<div>';
-	    cart_items += '<label for="ws-name-' + i + '"><h4 class="heading">Attendee Name</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="ws-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
+	    cart_items += '<label for="workshop-name-' + i + '"><h4 class="heading">Attendee Name</h4></label>';
+	    cart_items += '<input class="input" style="width:100%" id="workshop-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
 	    cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
 	    cart_items += '</div>';
 	    cart_items += '<div>';
-	    cart_items += '<label for="ws-email-' + i + '"><h4 class="heading">Attendee Email</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="ws-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
+	    cart_items += '<label for="workshop-email-' + i + '"><h4 class="heading">Attendee Email</h4></label>';
+	    cart_items += '<input class="input" style="width:100%" id="workshop-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
 	    cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
 	    cart_items += '</div>';
 	  }
@@ -481,7 +483,7 @@ async function displayCheckout() {
   const now = DateTime.now();
   const ten_am = DateTime.fromObject({hour:10});
 
-  document.getElementById("delivery-suburb").value = titleCase(delivery_suburb);
+  // document.getElementById("delivery-suburb").value = titleCase(delivery_suburb);
 
   if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
     document.querySelectorAll(".delivery-address-group").forEach(element => {
@@ -498,7 +500,8 @@ async function displayCheckout() {
 
   const inputs = document.querySelectorAll("input,select");
   for(let i = 0; i < inputs.length; i++) {
-    inputs[i].value = localStorage.getItem(inputs[i].id);
+    let value = localStorage.getItem("floriade-" + inputs[i].id);
+    if(value) { inputs[i].value = value; }
   };
 }
 
@@ -624,7 +627,7 @@ function showSoldOut(product_price) {
 
 function updateDeliveryFee() {
   let delivery_suburb = document.getElementById("delivery-suburb").value;
-  localStorage.setItem("floriade-delivery-suburb", delivery_suburb);
+  localStorage.setItem("floriade-delivery-suburb", titleCase(delivery_suburb));
 
   let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
   document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
@@ -639,7 +642,7 @@ function checkout() {
     return;
   }
 
-  localStorage.setItem("floriade-delivery-suburb", suburb);
+  localStorage.setItem("floriade-delivery-suburb", titleCase(suburb));
 
   window.location.href = "/checkout/";
 }
@@ -697,9 +700,7 @@ function showViewCart() {
 }
 
 function cacheValue(e) {
-  console.log(e.id);
-  console.log(e.value);
-  localStorage.setItem(e.id, e.value);
+  localStorage.setItem("floriade-" + e.id, e.value);
 }
 
 function microtime(get_as_float) {  
@@ -731,8 +732,11 @@ function hideError() {
 }
 
 function clearCart() {
-  localStorage.removeItem("floriade-cart");
-  localStorage.removeItem("floriade-delivery-suburb");
+  // localStorage.removeItem("floriade-cart");
+  // localStorage.removeItem("floriade-delivery-suburb");
+
+  localStorage.clear();
+
   window.location.href = "/cart/";
 }
 
