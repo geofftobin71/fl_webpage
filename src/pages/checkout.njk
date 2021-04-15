@@ -84,31 +84,31 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <div class="delivery-group stack" style="--stack-space:1em;display:none">
         <div>
           <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
-          <input class="input" style="width:100%" id="delivery-name" name="delivery-name" type="text" autocomplete="name">
+          <input class="delivery-group input" style="display:none;width:100%" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()">
           <p class="caption text-left text-lowercase">Name of the person receiving the flowers</p>
         </div>
 
         <div>
           <label for="delivery-phone"><h4 class="heading">Recipient Phone</h4></label>
-          <input class="input" style="width:100%" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel">
+          <input class="delivery-group input" style="display:none;width:100%" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()">
           <p class="caption text-left text-lowercase">In case need to contact the recipient to make alternative delivery arrangements</p>
         </div>
 
         <div class="delivery-address-group" style="display:none">
           <label for="delivery-address"><h4 class="heading">Delivery Address</h4></label>
-          <input class="input" style="width:100%" id="delivery-address" name="delivery-address" type="text" autocomplete="address">
+          <input class="delivery-address-group input" style="display:none;width:100%" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError()">
           <p class="caption text-left text-lowercase">Street address for delivery</p>
         </div>
 
         <div class="delivery-address-group" style="display:none">
           <label for="delivery-suburb"><h4 class="heading">Delivery Suburb</h4></label>
-          <input class="input" style="width:100%" id="delivery-suburb" name="delivery-suburb" type="text" readonly>
+          <input class="delivery-address-group input" style="display:none;width:100%" id="delivery-suburb" name="delivery-suburb" type="text" readonly onfocus="hideError()">
         </div>
 
         <div>
           <label for="delivery-date"><h4 class="heading">Delivery Date</h4></label>
-				  <select class="select-css" id="delivery-date" name="delivery-date">
-				    <option default disabled selected hidden value="">Please choose...</option>
+				  <select class="delivery-group select-css" id="delivery-date" name="delivery-date" style="display:none" data-error="Delivery Date is required">
+				    <option default disabled selected hidden value="">please choose...</option>
 				    {% set today = now_nz %}
 				    {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
 				    {% for day in days -%}
@@ -128,19 +128,19 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <div class="stack" style="--stack-space:1em">
         <div>
           <label for="cardholder-name"><h4 class="heading">Cardholder Name</h4></label>
-          <input class="input" style="width:100%" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name">
+          <input class="input" style="width:100%" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Cardholder Name is required" onfocus="hideError()">
           <p class="caption text-left text-lowercase">Name as it appears on your credit card</p>
         </div>
 
         <div>
           <label for="cardholder-email"><h4 class="heading">Cardholder Email</h4></label>
-          <input class="input" style="width:100%" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email">
+          <input class="input" style="width:100%" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" data-error="Cardholder Email is required" onfocus="hideError()">
           <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
         </div>
 
         <div>
           <label for="card-input"><h4 class="heading">Credit Card</h4></label>
-          <div id="card-input" class="input"></div>
+          <div id="card-input" class="input" onfocus="hideError()"></div>
         </div>
 
         <p id="card-errors" class="error" role="alert" style="visibility:hidden">&nbsp;</p>

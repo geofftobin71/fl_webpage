@@ -8,7 +8,7 @@ var delivery_fees;
 var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 var cart_total = 0;
 
-const cart_expiry_time = 300.0; // 1800.0;  // 30 minutes
+const cart_expiry_time = 1800.0;  // 30 minutes
 const cart_reset_time = 2100.0;   // 35 minutes
 
 checkCartExpired();
@@ -348,7 +348,7 @@ async function displayCart() {
   if(has_delivery) {
     cart_summary += '<h3 class="heading">Delivery To</h3>';
     cart_summary += '<select id="delivery-suburb" name="delivery-suburb" class="select-css" style="width:auto;margin-right:auto" onchange="updateDeliveryFee()">';
-    cart_summary += '<option default disabled selected hidden value="">please choose</option>';
+    cart_summary += '<option default disabled selected hidden value="">please choose...</option>';
     for(const suburb in delivery_fees) {
       cart_summary += '<option ' + (suburb === delivery_suburb ? 'selected ' : '') + 'value="' + suburb + '">' + titleCase(suburb) + '&nbsp;</option>';
     }
@@ -375,12 +375,6 @@ async function displayCheckout() {
 
   document.getElementById("checkout-form").addEventListener("submit", placeOrder);
 
-  let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
-
-  if(!delivery_suburb) {
-    window.location.href = "/cart/";
-  }
-
   checkCartExpired();
 
   if(localStorage.getItem("floriade-cart-expired")) {
@@ -391,6 +385,12 @@ async function displayCheckout() {
   if(cart.length === 0) {
     document.getElementById("empty-cart").style.display = "flex";
     return;
+  }
+
+  let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
+
+  if(!delivery_suburb) {
+    window.location.href = "/cart/";
   }
 
 	let cart_count = cart.length;
@@ -417,14 +417,15 @@ async function displayCheckout() {
 	
 	  cart_items += '</p>';
 	
-	  if(product["category"] === "workshops") {
+	  if(product["category"].toLowerCase() === "workshops") {
 	    cart_items += '<div>';
-	    cart_items += '<label for="ws-name-' + i + '"><h4 class="heading">Name</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="ws-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" placeholder="Name of the person attending">';
+	    cart_items += '<label for="ws-name-' + i + '"><h4 class="heading">Attendee Name</h4></label>';
+	    cart_items += '<input class="input" style="width:100%" id="ws-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()">';
+	    cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
 	    cart_items += '</div>';
 	    cart_items += '<div>';
-	    cart_items += '<label for="ws-email-' + i + '"><h4 class="heading">Email</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="ws-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" placeholder="Email of the person attending">';
+	    cart_items += '<label for="ws-email-' + i + '"><h4 class="heading">Attendee Email</h4></label>';
+	    cart_items += '<input class="input" style="width:100%" id="ws-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()">';
 	    cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
 	    cart_items += '</div>';
 	  }
@@ -641,6 +642,29 @@ function checkout() {
 function placeOrder(event) {
   event.preventDefault();
 
+  disableCheckoutForm();
+
+  const inputs = document.querySelectorAll("input,select");
+  for(let i = 0; i < inputs.length; i++) {
+    if(window.getComputedStyle(inputs[i]).display !== "none") {
+      if(inputs[i].value.trim().length === 0) {
+        showError(inputs[i].dataset.error || "ERROR");
+        enableCheckoutForm();
+        return false;
+      }
+    }
+  };
+
+  console.log("SUBMIT FORM");
+}
+
+function enableCheckoutForm() {
+  document.getElementById("place-order-button").disabled = false;
+  document.getElementById("spinner-icon").style.display = "none";
+  document.getElementById("cart-icon").style.display = "inline-block";
+}
+
+function disableCheckoutForm() {
   document.getElementById("place-order-button").disabled = true;
   document.getElementById("spinner-icon").style.display = "inline-block";
   document.getElementById("cart-icon").style.display = "none";
