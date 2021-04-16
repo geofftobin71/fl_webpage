@@ -670,12 +670,14 @@ function enableCheckoutForm() {
   document.getElementById("place-order-button").disabled = false;
   document.getElementById("spinner-icon").style.display = "none";
   document.getElementById("cart-icon").style.display = "inline-block";
+  document.getElementById("submit-text").innerText = "Order Now";
 }
 
 function disableCheckoutForm() {
   document.getElementById("place-order-button").disabled = true;
   document.getElementById("spinner-icon").style.display = "inline-block";
   document.getElementById("cart-icon").style.display = "none";
+  document.getElementById("submit-text").innerText = "Submitting";
 }
 
 function formatMoney(price) {
