@@ -1,8 +1,7 @@
+confirmCardPayment with customer and metadata
 check floriade-facebook-image
 showShopPage showShopCategoriesPage
 revisit contact form handler
-console log payment-intent-id
-set payment-intent-id and cart form fields
 single product width on mobile - padding too big
 Button / Select / Radio css
 Product auto expiry date

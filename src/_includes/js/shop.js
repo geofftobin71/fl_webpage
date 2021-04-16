@@ -493,6 +493,7 @@ async function displayCheckout() {
 
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("summary").innerHTML = cart_summary;
+  document.getElementById("cart").value = JSON.stringify(cart);
   document.getElementById("checkout-form").style.display = "block";
 
   const inputs = document.querySelectorAll("input,select");
@@ -819,6 +820,8 @@ function setupElements(data) {
       card_errors.style.visibility = "hidden";
     }
   },false);
+
+  document.getElementById("payment-intent-id").value = data.paymentIntentId;
 
   return {
     stripe: stripe,

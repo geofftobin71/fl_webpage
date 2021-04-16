@@ -40,12 +40,13 @@ if(isset($_SESSION["payment-intent-id"])) {
     "payment_method_types" => ["card"],
   ]);
 
-  $_SESSION["payment-intent-id"] = $payment_intent.id;
+  $_SESSION["payment-intent-id"] = $payment_intent->id;
 }
 
 $output = [
   'publishableKey' => $stripe_keys['publishable_key'],
   'clientSecret' => $payment_intent->client_secret,
+  'paymentIntentId' => $payment_intent->id,
 ];
 
 echo json_encode($output);
