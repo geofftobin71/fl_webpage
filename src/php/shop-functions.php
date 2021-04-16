@@ -286,9 +286,9 @@ function cartCount() {
   return count($_SESSION["cart"]);
 }
 
-function cartTotal() {
+function cartTotal($cart) {
   $cart_total = 0;
-  foreach($_SESSION["cart"] as $cart_item) {
+  foreach($cart as $cart_item) {
     $product = getProduct($cart_item["product-id"]);
     if(isset($product)) {
       $price = getPrice($product, $cart_item["variant-id"]);

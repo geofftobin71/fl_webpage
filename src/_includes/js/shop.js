@@ -376,8 +376,6 @@ async function displayCheckout() {
 
   await fetchData();
 
-  document.getElementById("checkout-form").addEventListener("submit", placeOrder);
-
   checkCartExpired();
 
   if(localStorage.getItem("floriade-cart-expired")) {
@@ -391,58 +389,59 @@ async function displayCheckout() {
   }
 
   let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
-  if(delivery_suburb) { delivery_suburb = delivery_suburb.toLowerCase(); }
 
   if(!delivery_suburb) {
     window.location.href = "/cart/";
+  } else {
+    delivery_suburb = delivery_suburb.toLowerCase();
   }
 
-	let cart_count = cart.length;
-	let cart_items = "";
-	let cart_summary = "";
-	let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
+  let cart_count = cart.length;
+  let cart_items = "";
+  let cart_summary = "";
+  let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
 
-	cart_total = 0;
-	
-	cart.forEach(cart_item => {
-	  let product = getProduct(cart_item["product-id"]);
-	  let price = getPrice(product, cart_item["variant-id"]);
+  cart_total = 0;
 
-	  cart_total += price;
-	
-	  cart_items += '<div class="stack" style="--stack-space:1em">';
-	  cart_items += '<p>' + product["name"];
-	
-	  if(product["variants"].length) {
-	    variant = getVariant(product, cart_item["variant-id"]);
-	    cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
-	  }
-	
-	  cart_items += '</p>';
-	
-	  if(product["category"].toLowerCase() === "workshops") {
+  cart.forEach(cart_item => {
+    let product = getProduct(cart_item["product-id"]);
+    let price = getPrice(product, cart_item["variant-id"]);
+
+    cart_total += price;
+
+    cart_items += '<div class="stack" style="--stack-space:1em">';
+    cart_items += '<p>' + product["name"];
+
+    if(product["variants"].length) {
+      variant = getVariant(product, cart_item["variant-id"]);
+      cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
+    }
+
+    cart_items += '</p>';
+
+    if(product["category"].toLowerCase() === "workshops") {
       const cart_id = cart_item['cart-id'];
 
-	    cart_items += '<div>';
-	    cart_items += '<label for="workshop-name-' + cart_id + '"><h4 class="heading">Attendee Name</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="workshop-name-' + cart_id + '" name="workshop-attendee-name[' + cart_id + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
-	    cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
-	    cart_items += '</div>';
-	    cart_items += '<div>';
-	    cart_items += '<label for="workshop-email-' + cart_id + '"><h4 class="heading">Attendee Email</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="workshop-email-' + cart_id + '" name="workshop-attendee-email[' + cart_id + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
-	    cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
-	    cart_items += '</div>';
-	  }
-	
-	  cart_items += '</div>';
-	  cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
-	});
-	
-	cart_summary += '<h3 class="heading">Cart Total</h3>';
-	cart_summary += '<p class="color-shade3">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
-	cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
-	
+      cart_items += '<div>';
+      cart_items += '<label for="workshop-name-' + cart_id + '"><h4 class="heading">Attendee Name</h4></label>';
+      cart_items += '<input class="input" style="width:100%" id="workshop-name-' + cart_id + '" name="workshop-attendee-name[' + cart_id + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
+      cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
+      cart_items += '</div>';
+      cart_items += '<div>';
+      cart_items += '<label for="workshop-email-' + cart_id + '"><h4 class="heading">Attendee Email</h4></label>';
+      cart_items += '<input class="input" style="width:100%" id="workshop-email-' + cart_id + '" name="workshop-attendee-email[' + cart_id + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
+      cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
+      cart_items += '</div>';
+    }
+
+    cart_items += '</div>';
+    cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
+  });
+
+  cart_summary += '<h3 class="heading">Cart Total</h3>';
+  cart_summary += '<p class="color-shade3">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
+  cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
+
   let has_delivery = false;
 
   cart.forEach(cart_item => {
@@ -455,55 +454,96 @@ async function displayCheckout() {
     }
   });
 
-	if(has_delivery) {
-	  cart_summary += '<h3 class="heading">';
-	  if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
+  if(has_delivery) {
+    cart_summary += '<h3 class="heading">';
+    if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
       cart_summary += 'Delivery to</h3>';
-	    cart_summary += '<h3 class="heading"><span style="white-space:nowrap">' + titleCase(delivery_suburb) + '<span></h3>';
+      cart_summary += '<h3 class="heading"><span style="white-space:nowrap">' + titleCase(delivery_suburb) + '<span></h3>';
     }
-	  if(delivery_suburb === "pickup in store") {
-	    cart_summary += '<span style="white-space:nowrap">' + titleCase(delivery_suburb) + '<span></h3><p></p>';
+    if(delivery_suburb === "pickup in store") {
+      cart_summary += '<span style="white-space:nowrap">' + titleCase(delivery_suburb) + '<span></h3><p></p>';
     }
-	  cart_summary += '<p id="delivery-fee" class="text-right">';
-	  if(delivery_suburb !== "none") { cart_summary += formatMoney(delivery_fee); } else { cart_summary += "TBC"; } 
-	  cart_summary += '</p>';
-	} else {
+    cart_summary += '<p id="delivery-fee" class="text-right">';
+    if(delivery_suburb !== "none") { cart_summary += formatMoney(delivery_fee); } else { cart_summary += "TBC"; } 
+    cart_summary += '</p>';
+  } else {
     delivery_fee = 0;
   }
-	
-	cart_summary += '<h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>';
-	cart_summary += '<p class="top-border"></p>';
-	cart_summary += '<p id="total" class="top-border font-size-1 text-right">' + formatMoney(delivery_fee + cart_total) + '</p>';
+
+  cart_summary += '<h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>';
+  cart_summary += '<p class="top-border"></p>';
+  cart_summary += '<p id="total" class="top-border font-size-1 text-right">' + formatMoney(delivery_fee + cart_total) + '</p>';
 
   if(has_delivery) {
     document.querySelectorAll(".delivery-group").forEach(element => {
       element.style.display = "block";
     });
+
+    if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
+      document.querySelectorAll(".delivery-address-group").forEach(element => {
+        element.style.display = "block";
+      });
+    }
   }
 
   const now = DateTime.now();
   const ten_am = DateTime.fromObject({hour:10});
-
-  // document.getElementById("delivery-suburb").value = titleCase(delivery_suburb);
-
-  if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
-    document.querySelectorAll(".delivery-address-group").forEach(element => {
-      element.style.display = "block";
-    });
-  }
 
   document.getElementById("today").disabled = (now > ten_am);
 
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("summary").innerHTML = cart_summary;
   document.getElementById("checkout-form").style.display = "block";
-  document.getElementById("place-order-button").disabled = false;
 
   const inputs = document.querySelectorAll("input,select");
   for(let i = 0; i < inputs.length; i++) {
     let value = localStorage.getItem("floriade-" + inputs[i].id);
     if(value) { inputs[i].value = value; }
   };
+
+  fetch("/php/create-payment-intent.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "cart": cart,
+      "delivery-suburb": delivery_suburb
+    })
+  })
+    .then(response => {
+      if(!response.ok) {
+        showError(response.statusText);
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .then(json => {
+      return setupElements(json);
+    })
+    .then(({ stripe, card, clientSecret }) => {
+      enableCheckoutForm();
+
+      let form = document.getElementById("checkout-form");
+      form.addEventListener("submit", function(event) {
+        disableCheckoutForm();
+
+        const inputs = document.querySelectorAll("input,select");
+        for(let i = 0; i < inputs.length; i++) {
+          if(window.getComputedStyle(inputs[i]).display !== "none") {
+            if(inputs[i].value.trim().length === 0) {
+              showError(inputs[i].dataset.error || "ERROR");
+              enableCheckoutForm();
+              return false;
+            }
+          }
+        };
+
+        pay(stripe, card, clientSecret, form);
+      });
+    });
+
 }
 
 function checkCartExpired() {
@@ -646,25 +686,6 @@ function checkout() {
   localStorage.setItem("floriade-delivery-suburb", titleCase(suburb));
 
   window.location.href = "/checkout/";
-}
-
-function placeOrder(event) {
-  event.preventDefault();
-
-  disableCheckoutForm();
-
-  const inputs = document.querySelectorAll("input,select");
-  for(let i = 0; i < inputs.length; i++) {
-    if(window.getComputedStyle(inputs[i]).display !== "none") {
-      if(inputs[i].value.trim().length === 0) {
-        showError(inputs[i].dataset.error || "ERROR");
-        enableCheckoutForm();
-        return false;
-      }
-    }
-  };
-
-  console.log("SUBMIT FORM");
 }
 
 function enableCheckoutForm() {
