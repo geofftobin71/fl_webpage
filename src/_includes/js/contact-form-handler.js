@@ -8,15 +8,15 @@ var response_message = document.getElementById("response-message");
 
 name_input.addEventListener("focus", event => {
   response_message.textContent = " ";
-});
+},false);
 
 email_input.addEventListener("focus", event => {
   response_message.textContent = " ";
-});
+},false);
 
 message_input.addEventListener("focus", event => {
   response_message.textContent = " ";
-});
+},false);
 
 contact_form.addEventListener("submit", event => {
 
@@ -35,4 +35,4 @@ contact_form.addEventListener("submit", event => {
       contact_form.submit();
     });
   });
-});
+},false);

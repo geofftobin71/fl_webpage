@@ -135,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
       } else {
         card_errors.style.visibility = "hidden";
       }
-    });
+    },false);
 
     return {
       stripe: stripe,

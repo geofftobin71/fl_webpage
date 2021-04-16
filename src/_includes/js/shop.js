@@ -541,7 +541,7 @@ async function displayCheckout() {
         };
 
         pay(stripe, card, clientSecret, form);
-      });
+      },false);
     });
 
 }
@@ -818,7 +818,7 @@ function setupElements(data) {
     } else {
       card_errors.style.visibility = "hidden";
     }
-  });
+  },false);
 
   return {
     stripe: stripe,
