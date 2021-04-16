@@ -1,4 +1,5 @@
-showShopPage
+check floriade-facebook-image
+showShopPage showShopCategoriesPage
 revisit contact form handler
 console log payment-intent-id
 set payment-intent-id and cart form fields

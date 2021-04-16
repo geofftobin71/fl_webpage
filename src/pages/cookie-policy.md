@@ -70,7 +70,7 @@ In addition, you may opt-out of some third-party cookies through the [Network Ad
 In addition to cookies, we may use web beacons, pixel tags, and other tracking technologies on the Site to help customize the Site and improve your experience. A “web beacon” or “pixel tag” is tiny object or image embedded in a web page or email. They are used to track the number of users who have visited particular pages and viewed emails, and acquire other statistical data. They collect only a limited set of data, such as a cookie number, time and date of page or email view, and a description of the page or email on which they reside. Web beacons and pixel tags cannot be declined. However, you can limit their use by controlling the cookies that interact with them.
 
 ### PRIVACY POLICY
-For more information about how we use information collected by cookies and other tracking technologies, please refer to our [Privacy Policy](https://floriade.co.nz/privacy/) posted on the Site. This Cookie Policy is part of and is incorporated into our Privacy Policy. By using the Site, you agree to be bound by this Cookie Policy and our Privacy Policy.
+For more information about how we use information collected by cookies and other tracking technologies, please refer to our [Privacy Policy](/privacy/) posted on the Site. This Cookie Policy is part of and is incorporated into our Privacy Policy. By using the Site, you agree to be bound by this Cookie Policy and our Privacy Policy.
 
 ### CONTACT US
 If you have questions or comments about this Cookie Policy, please contact us at:
