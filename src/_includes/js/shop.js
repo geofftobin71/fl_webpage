@@ -2,6 +2,8 @@ luxon.Settings.defaultZoneName = "Pacific/Auckland";
 
 var DateTime = luxon.DateTime;
 
+var stripe;
+
 var shop_products;
 var shop_categories;
 var delivery_fees;
@@ -402,7 +404,6 @@ async function displayCheckout() {
 
 	cart_total = 0;
 	
-	let i = 0;
 	cart.forEach(cart_item => {
 	  let product = getProduct(cart_item["product-id"]);
 	  let price = getPrice(product, cart_item["variant-id"]);
@@ -420,22 +421,22 @@ async function displayCheckout() {
 	  cart_items += '</p>';
 	
 	  if(product["category"].toLowerCase() === "workshops") {
+      const cart_id = cart_item['cart-id'];
+
 	    cart_items += '<div>';
-	    cart_items += '<label for="workshop-name-' + i + '"><h4 class="heading">Attendee Name</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="workshop-name-' + i + '" name="workshop-attendee-name[' + cart_item['cart-id'] + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
+	    cart_items += '<label for="workshop-name-' + cart_id + '"><h4 class="heading">Attendee Name</h4></label>';
+	    cart_items += '<input class="input" style="width:100%" id="workshop-name-' + cart_id + '" name="workshop-attendee-name[' + cart_id + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
 	    cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
 	    cart_items += '</div>';
 	    cart_items += '<div>';
-	    cart_items += '<label for="workshop-email-' + i + '"><h4 class="heading">Attendee Email</h4></label>';
-	    cart_items += '<input class="input" style="width:100%" id="workshop-email-' + i + '" name="workshop-attendee-email[' + cart_item['cart-id'] + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
+	    cart_items += '<label for="workshop-email-' + cart_id + '"><h4 class="heading">Attendee Email</h4></label>';
+	    cart_items += '<input class="input" style="width:100%" id="workshop-email-' + cart_id + '" name="workshop-attendee-email[' + cart_id + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
 	    cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
 	    cart_items += '</div>';
 	  }
 	
 	  cart_items += '</div>';
 	  cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
-	
-	  i++;
 	});
 	
 	cart_summary += '<h3 class="heading">Cart Total</h3>';
@@ -740,5 +741,84 @@ function clearCart() {
   localStorage.clear();
 
   window.location.href = "/cart/";
+}
+
+function setupElements(data) {
+  stripe = Stripe(data.publishableKey);
+
+  var elements = stripe.elements({fonts:[
+    {
+      family: "Poppins",
+      weight: "normal",
+      src: "url(https://floriade.co.nz/fonts/poppins-light.woff)",
+      display: "swap"
+    },
+    {
+      family: "Kollektif",
+      weight: "normal",
+      src: "url(https://floriade.co.nz/fonts/kollektif.woff)",
+      display: "swap"
+    }
+  ]});
+
+  var card = elements.create("card", {
+    hidePostalCode: true,
+    style: {
+      base: {
+        fontFamily: "Poppins, sans-serif",
+        fontWeight: "normal",
+        fontSize: "16px",
+        lineHeight: "2em",
+        color: "#333333",
+        backgroundColor: "#CDDAD5",
+        ":focus": {
+          backgroundColor: "#CDDAD5",
+        },
+        ":-webkit-autofill": {
+          color: "#333333",
+          backgroundColor: "#CDDAD5",
+        },
+        "::placeholder": {
+          fontFamily: "Kollektif, sans-serif",
+          color: "#818D89",
+        },
+      },
+    }
+  });
+
+  card.mount("#card-input");
+
+  card.addEventListener("change", function(event) {
+    var card_errors = document.getElementById("card-errors");
+
+    if(event.error) {
+      card_errors.innerText = event.error.message;
+      card_errors.style.visibility = "visible";
+    } else {
+      card_errors.style.visibility = "hidden";
+    }
+  });
+
+  return {
+    stripe: stripe,
+    card: card,
+    clientSecret: data.clientSecret
+  };
+}
+
+function pay(stripe, card, clientSecret, form) {
+  disableCheckoutForm();
+
+  stripe.confirmCardPayment(clientSecret, { payment_method: { card: card } })
+    .then(function(result) {
+      enableCheckoutForm();
+      if (result.error) {
+        var card_errors = document.getElementById("card-errors");
+        card_errors.innerText = result.error.message;
+        card_errors.style.visibility = "visible";
+      } else {
+        form.submit();
+      }
+    });
 }
 
