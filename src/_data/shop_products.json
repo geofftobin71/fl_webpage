@@ -121,15 +121,15 @@
     "disabled": false,
     "variants": [
       {
-        "name": "$50",
-        "price": 50,
+        "name": "$60",
+        "price": 60,
         "disabled": false,
         "id": "eab5d4a5",
         "stock": null
       },
       {
-        "name": "$75",
-        "price": 75,
+        "name": "$80",
+        "price": 80,
         "disabled": false,
         "id": "1750182c",
         "stock": null
@@ -149,8 +149,8 @@
         "stock": null
       },
       {
-        "name": "$200",
-        "price": 200,
+        "name": "$195",
+        "price": 195,
         "disabled": false,
         "id": "52a1abfe",
         "stock": null
