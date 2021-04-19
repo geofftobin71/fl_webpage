@@ -1,5 +1,5 @@
 ---
-layout: layouts/shop-page.njk
+layout: layouts/shop-products.njk
 pagination:
   data: valid_shop_products
   size: 1
@@ -22,80 +22,6 @@ eleventyComputed:
 {% set image_id = (product.images | first | stripVersion) or (site.header_image | stripVersion) %}
 {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
 {% set lqip_data = lqip_path | imgLqip %}
-
-<style>
-.fader img {
-  opacity: 0;
-  animation-iteration-count: infinite;
-}
-.radio-label-wrapper {
-  display:flex;
-  flex-wrap:wrap;
-  flex-direction:row;
-  justify-content:center;
-  margin-left: -4px;
-  margin-right: -4px;
-  margin-bottom: -4px;
-}
-.radio-label {
-  font-family: var(--font-family-secondary);
-  background: var(--button-bg);
-  color: var(--button-fg);
-  padding: var(--step--2) var(--step--1);
-  border: 1px solid currentcolor;
-  margin: 4px;
-}
-.radio-label:focus {
-  outline-offset: -0.2rem;
-  outline: 1px solid;
-}
-.radio-label:hover {
-  background: var(--button-fg);
-  color: var(--button-hl);
-  border-color: var(--button-hl);
-}
-input[type="radio"]:checked + .radio-label {
-  color: var(--color-light);
-  background: var(--color-shade1);
-}
-input[type="radio"][disabled] + .radio-label {
-  background: var(--button-bg);
-  color: grey;
-  border-color: grey;
-  cursor: default;
-  pointer-events: none;
-  box-shadow: none;
-}
-.stepper-controls {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin-left:auto;
-  margin-right:auto;
-}
-.stepper-controls nav {
-  color: var(--color-shade3);
-  padding: 0;
-  margin: 0 0.5em;
-  border-radius: 50%;
-  width: var(--step-2);
-  height: var(--step-2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-}
-
-.stepper-controls nav span {
-  width: var(--step-1);
-}
-
-.stepper-controls nav svg {
-  filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
-}
-
-</style>
 
 {% set variant_heading = "" %}
 {% set number_heading = "" %}
@@ -206,4 +132,4 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
 {% include "partials/pagination.njk" %}
 
-<script>document.addEventListener("DOMContentLoaded",function(){displayProduct("{{product.id}}");},false);</script>
+<script>document.addEventListener("DOMContentLoaded",function(){displayShopProduct("{{product.id}}");},false);</script>

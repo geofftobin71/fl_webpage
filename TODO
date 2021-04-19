@@ -1,3 +1,5 @@
+check floriade-delivery-date has not passed in expireCart
+retire unused php functions
 confirmCardPayment with customer and metadata
 check floriade-facebook-image
 showShopPage showShopCategoriesPage

@@ -1,5 +1,5 @@
 ---
-layout: layouts/shop-page.njk
+layout: layouts/shop-base.njk
 eleventyNavigation:
   order: 10
   key: Shop
@@ -199,4 +199,4 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
   {% endfor %}
 </div>
 
-<script>document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".product-price").forEach(product_price=>{showSoldOut(product_price);});showViewCart();},false);</script>
+<script>document.addEventListener("DOMContentLoaded",function(){displayShop();},false);</script>

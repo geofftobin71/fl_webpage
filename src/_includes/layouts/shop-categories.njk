@@ -1,0 +1,25 @@
+{% extends "layouts/page.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  {% include "css/slider.css" %}
+  {% include "css/gallery.css" %}
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  {% include "js/slider.js" %}
+  {% include "js/shop-base.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}

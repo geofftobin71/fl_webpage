@@ -8,7 +8,7 @@
   {% endset %}
 
   <style>
-{{ css | cssmin | safe }}
+    {{ css | cssmin | safe }}
   </style>
 {% endblock %}
 
@@ -17,7 +17,7 @@
   {% set js %}
   {% include "js/slider.js" %}
   {% include "js/luxon.min.js" %}
-  {% include "js/shop.js" %}
+  {% include "js/shop-common.js" %}
   {% endset %}
 
   <script>

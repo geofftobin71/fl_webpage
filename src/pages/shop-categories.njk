@@ -1,5 +1,5 @@
 ---
-layout: layouts/shop-page.njk
+layout: layouts/shop-categories.njk
 pagination:
   data: valid_shop_categories
   size: 1
@@ -164,4 +164,4 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
 {% include "partials/pagination.njk" %}
 
-<script>document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".product-price").forEach(product_price=>{showSoldOut(product_price);});showViewCart();},false);</script>
+<script>document.addEventListener("DOMContentLoaded",function(){displayShopCategory();},false);</script>

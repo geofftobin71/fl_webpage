@@ -15,6 +15,13 @@ const cart_reset_time = 2100.0;   // 35 minutes
 
 checkCartExpired();
 
+function displayShop() {
+  document.querySelectorAll(".product-price").forEach(product_price => {
+    showSoldOut(product_price);
+  });
+  showViewCart();
+}
+
 async function displayProduct(product_id) {
 
   await fetchData();
