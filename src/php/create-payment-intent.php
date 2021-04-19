@@ -71,7 +71,6 @@ try {
 $output = [
   'publishableKey' => $stripe_keys['publishable_key'],
   'clientSecret' => $payment_intent->client_secret,
-  'paymentIntentId' => $payment_intent->id,
 ];
 
 echo json_encode($output);

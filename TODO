@@ -1,3 +1,4 @@
+move workshop name and email inputs to cart page
 check floriade-delivery-date has not passed in expireCart
 retire unused php functions
 confirmCardPayment with customer and metadata
