@@ -25,10 +25,10 @@
   },
   "homepage": "https://github.com/geofftobin71/fl_webpage#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy": "^0.12.1",
     "@11ty/eleventy-navigation": "^0.1.6",
     "@quasibit/eleventy-plugin-schema": "^1.0.0",
-    "@quasibit/eleventy-plugin-sitemap": "^2.0.4",
+    "@quasibit/eleventy-plugin-sitemap": "^2.1.0",
     "clean-css": "^4.2.3",
     "cloudinary": "^1.25.1",
     "dotenv": "^8.2.0",
@@ -39,7 +39,7 @@
     "jsonminify": "^0.4.1",
     "luxon": "^1.26.0",
     "node-fetch": "^2.6.1",
-    "stripe": "^8.139.0",
+    "stripe": "^8.144.0",
     "terser": "^5.6.1"
   },
   "dependencies": {}

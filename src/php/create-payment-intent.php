@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 $input = file_get_contents('php://input');
 $body = json_decode($input, true);
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' || json_last_error() !== JSON_ERROR_NONE) {
+if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NONE) {
   http_response_code(400);
   echo json_encode(['error' => 'Invalid request']);
   exit;
@@ -27,20 +27,45 @@ if(isset($delivery_suburb) && ($delivery_suburb != "none")) { $total += $deliver
 
 $total = $total * 100;
 
-if(isset($_SESSION["payment-intent-id"])) {
-  $payment_intent = $stripe->paymentIntents->update(
-    $_SESSION["payment-intent-id"],
-    [
-      "amount" => $total,
-    ]);
-} else {
-  $payment_intent = $stripe->paymentIntents->create([
-    "amount" => $total,
-    "currency" => "nzd",
-    "payment_method_types" => ["card"],
-  ]);
+$description = "";
+$descriptions = array();
 
-  $_SESSION["payment-intent-id"] = $payment_intent->id;
+foreach($cart as $cart_item) {
+  $name = "";
+  $product = getProduct($cart_item["product-id"]);
+  if(isset($product)) {
+    $name = $product["name"];
+    $variant = getVariant($product, $cart_item["variant-id"]);
+    if(isset($variant)) {
+      $name .= " " . $variant["name"];
+    }
+    $descriptions[] = $name;
+  }
+}
+
+$description = implode(", ", $descriptions);
+
+try {
+  if(isset($_SESSION["payment-intent-id"])) {
+    $payment_intent = $stripe->paymentIntents->update(
+      $_SESSION["payment-intent-id"],
+      [
+        "amount" => $total,
+        "description" => $description,
+      ]);
+  } else {
+    $payment_intent = $stripe->paymentIntents->create([
+      "amount" => $total,
+      "currency" => "nzd",
+      "payment_method_types" => ["card"],
+      "description" => $description,
+    ]);
+
+    $_SESSION["payment-intent-id"] = $payment_intent->id;
+  }
+} catch(Error $e) {
+  http_response_code(500);
+  echo json_encode(['error' => $e->getMessage()]);
 }
 
 $output = [

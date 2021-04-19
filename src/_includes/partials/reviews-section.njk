@@ -1,7 +1,7 @@
 <section id="reviews" class="bg-shade1 font-size-1">
   <ul class="slider center-both" style="padding:1em 0">
     {% for item in reviews | filterWeddingReviews(false) | removeLongReviews(300) | shuffle | head(5) -%}
-      <li id="item{{ loop.index }}" class="slider-item">
+      <li id="review{{ loop.index }}" class="slider-item">
         <div class="wrapper text-wrapper font-secondary">
           <div class="stack">
             <p class="font-size-1 text-center">{{ item.review }}</p>
