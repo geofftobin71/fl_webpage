@@ -1,0 +1,157 @@
+@font-face {
+  font-family: Poppins;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/poppins-light-webfont.woff2") format("woff2"),
+       url("/fonts/poppins-light-webfont.woff") format("woff"),
+       url("/fonts/poppins-light-webfont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Kollektif;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/kollektif-webfont.woff2") format("woff2"),
+       url("/fonts/kollektif-webfont.woff") format("woff"),
+       url("/fonts/kollektif-webfont.ttf") format("truetype");
+}
+
+:root {
+  --font-family-base: Poppins, sans-serif;
+  --font-family-secondary: Kollektif, sans-serif;
+
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-light: #FAFAFA;
+  --color-dark: #333333;
+  --color-light-grey: #C0C0C0;
+  --color-dark-grey: #202020;
+  --color-primary: #3D4844;
+  --color-shade1: #5E6A65;
+  --color-shade2: #818D89;
+  --color-shade3: #AAB6B0;
+  --color-shade4: #CDDAD5;
+}
+
+
+.bg-white { background: #FFFFFF }
+.bg-black { background: #000000 }
+.bg-light { background: #FAFAFA }
+.bg-dark { background: #333333 }
+.bg-light-grey { background: #C0C0C0 }
+.bg-dark-grey { background: #202020 }
+.bg-primary { background: #3D4844 }
+.bg-shade1 { background: #5E6A65 }
+.bg-shade2 { background: #818D89 }
+.bg-shade3 { background: #AAB6B0 }
+.bg-shade4 { background: #CDDAD5 }
+
+
+.color-white { color: #FFFFFF }
+.color-black { color: #000000 }
+.color-light { color: #FAFAFA }
+.color-dark { color: #333333 }
+.color-light-grey { color: #C0C0C0 }
+.color-dark-grey { color: #202020 }
+.color-primary { color: #3D4844 }
+.color-shade1 { color: #5E6A65 }
+.color-shade2 { color: #818D89 }
+.color-shade3 { color: #AAB6B0 }
+.color-shade4 { color: #CDDAD5 }
+
+
+.border-white { border: 1px solid #FFFFFF }
+.border-black { border: 1px solid #000000 }
+.border-light { border: 1px solid #FAFAFA }
+.border-dark { border: 1px solid #333333 }
+.border-light-grey { border: 1px solid #C0C0C0 }
+.border-dark-grey { border: 1px solid #202020 }
+.border-primary { border: 1px solid #3D4844 }
+.border-shade1 { border: 1px solid #5E6A65 }
+.border-shade2 { border: 1px solid #818D89 }
+.border-shade3 { border: 1px solid #AAB6B0 }
+.border-shade4 { border: 1px solid #CDDAD5 }
+.border-red { border: 1px solid #FF0000 }
+.border-green { border: 1px solid #00FF00 }
+.border-blue { border: 1px solid #0000FF }
+
+article a {
+  text-decoration: underline;
+}
+
+a:link { color: var(--color-shade3); }
+a:visited { color: var(--color-shade3); }
+a:hover { color: var(--color-shade4); }
+a:active { color: var(--color-shade4); }
+
+.link-light a:link { color: var(--color-shade4); }
+.link-light a:visited { color: var(--color-shade4); }
+.link-light a:hover { color: var(--color-light); }
+.link-light a:active { color: var(--color-light); }
+
+.link-dark a:link { color: var(--color-shade1); }
+.link-dark a:visited { color: var(--color-shade1); }
+.link-dark a:hover { color: var(--color-shade2); }
+.link-dark a:active { color: var(--color-shade2); }
+
+.link-lighter a:link { color: var(--color-light); }
+.link-lighter a:visited { color: var(--color-light); }
+.link-lighter a:hover { color: var(--color-shade3); }
+.link-lighter a:active { color: var(--color-shade3); }
+
+.link-darker a:link { color: var(--color-dark); }
+.link-darker a:visited { color: var(--color-dark); }
+.link-darker a:hover { color: var(--color-primary); }
+.link-darker a:active { color: var(--color-primary); }
+
+.font-base {
+  font-family: var(--font-family-base);
+}
+
+.font-secondary {
+  font-family: var(--font-family-secondary);
+}
+
+.font-size-5 { font-size: var(--step-5); }
+.font-size-4 { font-size: var(--step-4); }
+.font-size-3 { font-size: var(--step-3); }
+.font-size-2 { font-size: var(--step-2); }
+.font-size-1 { font-size: var(--step-1); }
+.font-size-0 { font-size: var(--step-0); }
+.font-size--1 { font-size: var(--step--1); }
+.font-size--2 { font-size: var(--step--2); }
+
+body {
+  color: var(--color-light);
+  background: var(--color-primary);
+  font-family: var(--font-family-base);
+  font-weight: normal;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-family-secondary);
+  font-weight: normal;
+}
+
+body { font-size: var(--step-0); }
+h1 { font-size:var(--step-3); }
+article h1 { font-size:var(--step-3); }
+aside h1 { font-size:var(--step-3); }
+nav h1 { font-size:var(--step-3); }
+section h1 { font-size:var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+h4 { font-size: var(--step-0); }
+
+.heading, article h1, article h2, article h3, article h4 {
+  text-transform: lowercase;
+  color: var(--color-shade3);
+}
+
+@media screen and (min-width: 750px) {
+  article h1, article h2, article h3, article h4 {
+    transform: translateX(-0.5em);
+  }
+}

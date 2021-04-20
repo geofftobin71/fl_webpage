@@ -193,19 +193,6 @@ blockquote {
   white-space: nowrap;
 }
 
-.width100 {
-  width: 100%;
-}
-
-.height100 {
-  height: 100%;
-}
-
-.height100vh {
-  height: 100vh;
-  height: -webkit-fill-available;
-}
-
 .text-left {
   text-align: left;
 }
@@ -360,79 +347,6 @@ background-size: .65em auto, 100%;
   margin-bottom: auto;
 }
 
-/* ----- Horizontal ----- */
-
-.horizontal {
-  display: flex;
-}
-
-.horizontal.wrap {
-  flex-wrap: wrap;
-}
-
-.horizontal.center {
-  justify-content: center;
-}
-
-.horizontal.left {
-  justify-content: flex-start;
-}
-
-.horizontal.right {
-  justify-content: flex-end;
-}
-
-.horizontal.space-between {
-  justify-content: space-between;
-}
-
-.horizontal.middle {
-  align-items: center;
-}
-
-.horizontal.top {
-  align-items: flex-start;
-}
-
-.horizontal.bottom {
-  align-items: flex-end;
-}
-
-/* ----- Vertical ----- */
-
-.vertical {
-  display: flex;
-  flex-direction: column;
-}
-
-.vertical.center {
-  align-items: center;
-}
-
-.vertical.left {
-  align-items: flex-start;
-}
-
-.vertical.right {
-  align-items: flex-end;
-}
-
-.vertical.space-between {
-  justify-content: space-between;
-}
-
-.vertical.middle {
-  justify-content: center;
-}
-
-.vertical.top {
-  justify-content: flex-start;
-}
-
-.vertical.bottom {
-  justify-content: flex-end;
-}
-
 /* ----- Center ----- */
 
 .center-both {
@@ -541,10 +455,6 @@ background-size: .65em auto, 100%;
 .banner-error a:active { color: var(--error-link-hover); }
 
 /* ----- Background Image ----- */
-
-.background-container {
-  position: relative;
-}
 
 .background {
   --brightness: 50%;

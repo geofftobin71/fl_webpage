@@ -1,0 +1,91 @@
+*, ::before, ::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  height: -webkit-fill-available;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+}
+
+body, h1, h2, h3, h4, p, ul[class], ol[class], figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 { line-height: 1.25; }
+caption, figcaption, label, legend { line-height: 1.375; }
+
+hr {
+  border-style: solid;
+  border-width: 1px 0 0;
+  color: inherit;
+  opacity: 0.5;
+  height: 0;
+  overflow: visible;
+  margin: 0;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+img, svg, video, canvas {
+  height: auto;
+}
+
+img { border-style: none; }
+
+svg {
+  overflow: hidden;
+  fill: currentColor;
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
+nav ul,
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+nav li:before,
+ul[class] li:before,
+ol[class] li:before {
+  content: "\200B";
+  position: absolute;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img:not([alt]) {
+  border: 4px solid red;
+}

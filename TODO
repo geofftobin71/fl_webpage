@@ -1,3 +1,7 @@
+Finalize landing page
+DEPRECATE:
+center_both => horizontal center middle
+stack => vertical flow
 move workshop name and email inputs to cart page
 check floriade-delivery-date has not passed in expireCart
 retire unused php functions
