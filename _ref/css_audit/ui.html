@@ -9,8 +9,25 @@
     <link rel="stylesheet" href="css/modular-scale.css">
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/layout.css">
+    <style>main > *{grid-area:hero}.item{padding:0.25em 0.5em}#top-menu ul{display:flex;justify-content:space-evenly;margin:0;padding:0}#top-menu li{white-space:nowrap}</style>
   </head>
   <body>
+    <main class="height100vh border-red" style="background:rgba(61,72,68,85%);display:grid;grid-template-areas:'hero';place-items:center">
+    <nav id="top-menu" class="width100 border-green wrapper page-wrapper" style="place-self:start">
+      <ul>
+        <li class="item">First</li>
+        <li class="item">Second</li>
+        <li class="item">Third</li>
+        <li class="item">Fourth</li>
+        <li class="item">Fifth</li>
+        <li class="item">Sixth</li>
+      </ul>
+    </nav>
+    <div class="border-blue" style="max-width:40ch;padding:3em">
+      Amet numquam qui doloremque corporis temporibus. Quam consectetur qui ad magnam velit cum Assumenda iste minus rem maxime sapiente. Architecto.
+    </div>
+    <img class="cover" src="https://res.cloudinary.com/floriade/w_2048,c_fill,ar_1,q_auto,f_auto,g_auto/site/floriade-dried-flower-room-00001" alt="" style="z-index:-1">
+    </main>
     <section class="border-red">
       <div class="wrapper flow border-blue">
         <h1 class="heading">Heading 1</h1>
@@ -21,60 +38,65 @@
       </div>
       <div class="wrapper flow border-blue">
         <div class="horizontal border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Horizontal</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Normal</p>
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Normal</p>
         </div>
         <div class="horizontal center border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Horizontal</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Center</p>
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Center</p>
         </div>
         <div class="horizontal left border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Horizontal</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Left</p>
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Left</p>
         </div>
         <div class="horizontal right border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Horizontal</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Right</p>
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Right</p>
         </div>
         <div class="horizontal space-between border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Horizontal</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Space</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Between</p>
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Space</p>
+          <p class="item border-red">Between</p>
+        </div>
+        <div class="horizontal space-around border-green">
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Space</p>
+          <p class="item border-red">Around</p>
+        </div>
+        <div class="horizontal space-evenly border-green">
+          <p class="item border-red">Horizontal</p>
+          <p class="item border-red">Space</p>
+          <p class="item border-red">Evenly</p>
         </div>
       </div>
       <div class="wrapper flow border-blue">
         <div class="vertical border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Vertical</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Normal</p>
-          <p class="border-red" style="padding:0.25em 0.5em">One</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Two</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Three</p>
+          <p class="item border-red">Vertical</p>
+          <p class="item border-red">Normal</p>
+          <p class="item border-red">One</p>
+          <p class="item border-red">Two</p>
+          <p class="item border-red">Three</p>
         </div>
         <div class="vertical center border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Vertical</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Center</p>
-          <p class="border-red" style="padding:0.25em 0.5em">One</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Two</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Three</p>
+          <p class="item border-red">Vertical</p>
+          <p class="item border-red">Center</p>
+          <p class="item border-red">One</p>
+          <p class="item border-red">Two</p>
+          <p class="item border-red">Three</p>
         </div>
         <div class="vertical left border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Vertical</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Left</p>
-          <p class="border-red" style="padding:0.25em 0.5em">One</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Two</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Three</p>
+          <p class="item border-red">Vertical</p>
+          <p class="item border-red">Left</p>
+          <p class="item border-red">One</p>
+          <p class="item border-red">Two</p>
+          <p class="item border-red">Three</p>
         </div>
         <div class="vertical right border-green">
-          <p class="border-red" style="padding:0.25em 0.5em">Vertical</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Right</p>
-          <p class="border-red" style="padding:0.25em 0.5em">One</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Two</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Three</p>
-        </div>
-        <div class="vertical space-between border-green" style="height:50vh">
-          <p class="border-red" style="padding:0.25em 0.5em">Vertical</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Space</p>
-          <p class="border-red" style="padding:0.25em 0.5em">Between</p>
+          <p class="item border-red">Vertical</p>
+          <p class="item border-red">Right</p>
+          <p class="item border-red">One</p>
+          <p class="item border-red">Two</p>
+          <p class="item border-red">Three</p>
         </div>
       </div>
       </div>
