@@ -1,8 +1,8 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <style>main{display:grid;grid-template-areas:'hero';place-items:center}main > *{grid-area:hero} #top-menu{place-self:start}.logo{width:20vmin;min-width:125px;margin:0 auto}article h1,article h2,article h3,article h4{text-transform:lowercase;color:var(--color-light);transform:translateX(0)}@media screen and (max-width:750px){ #top-menu{display:none}#content{margin-top:3em}}@media screen and (orientation:landscape) and (max-width:950px){ #top-menu{display:none}#content{margin-top:3em}}#top-menu ul{display:flex;justify-content:space-evenly;margin:0;padding:0}#top-menu li{text-align:center;white-space:nowrap;padding:0.25em 0.5em}</style>
-  <main class="height100vh" style="background:#00000080">
+  <style>#top-menu{place-self:start}.logo{width:20vmin;min-width:125px;margin:0 auto}article h1,article h2,article h3,article h4{text-transform:lowercase;color:var(--color-light);transform:translateX(0)}@media screen and (max-width:750px){ #top-menu{display:none}#content{margin-top:3em}}@media screen and (orientation:landscape) and (max-width:950px){ #top-menu{display:none}#content{margin-top:3em}}#top-menu ul{display:flex;justify-content:space-evenly;margin:0;padding:0}#top-menu li{text-align:center;white-space:nowrap;padding:0.25em 0.5em}</style>
+  <main class="canvas center height100vh" style="background:#00000080">
   {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
   {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
   {% set image_info = image_id | imgInfo %}

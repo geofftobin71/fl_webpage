@@ -586,6 +586,41 @@ a.button:active { color: var(--button-hl); }
   }
 }
 
+/* ----- Canvas ----- */
+
+.canvas {
+  display: grid;
+  grid-template-areas: 'canvas';
+}
+
+.canvas.center {
+  place-items: center;
+}
+
+.canvas > * {
+  grid-area: canvas;
+}
+
+/* ----- Aspect Ratio ----- */
+
+.aspect {
+  overflow: hidden;
+  height: 0;
+  line-height: 0;
+  padding-bottom: calc(var(--n) / var(--d) * 100%);
+}
+
+.aspect16x9 { --n: 9; --d: 16; }
+.aspect4x3 { --n: 3; --d: 4; }
+.aspect3x2 { --n: 2; --d: 3; }
+.aspect3x1 { --n: 1; --d: 3; }
+.aspect2x1 { --n: 1; --d: 2; }
+.aspect1x1 { --n: 1; --d: 1; }
+.aspect1x2 { --n: 2; --d: 1; }
+.aspect2x3 { --n: 3; --d: 2; }
+.aspect3x4 { --n: 4; --d: 3; }
+.aspect9x16 { --n: 16; --d: 9; }
+
 /* ----- The Frame ----- */
 
 .frame {
