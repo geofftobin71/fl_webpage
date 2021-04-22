@@ -362,6 +362,7 @@ blockquote {
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
 .bg {
@@ -382,8 +383,13 @@ section > * + * {
 
 /* ----- Flow ----- */
 
+article > *, .flow > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 article > * + * {
-  margin-top: 2em;
+  margin-top: 2em;  /* FIXME : Deprecate this for article .flow --flow-space */
 }
 
 .flow > * + * {
@@ -433,6 +439,7 @@ article > * + * {
 
 /* ----- Button ----- */
 
+/*
 button, .button {
   color: var(--button-fg);
   background: var(--button-bg);
@@ -487,6 +494,7 @@ a.button:active { color: var(--button-hl); }
   height:1em;
   margin-right:0.5em;
 }
+*/
 
 .buttons {
   display: flex;

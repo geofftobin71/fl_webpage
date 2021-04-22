@@ -488,6 +488,14 @@ module.exports = (eleventyConfig) => {
     }
   });
 
+  eleventyConfig.addFilter("iconTextButton", (svg) => {
+    return (svg) ? svg.replace('<svg ', '<svg class="button-icon" aria-hidden="true" focusable="false" ') : '';
+  });
+
+  eleventyConfig.addFilter("iconButton", (svg) => {
+    return (svg) ? svg.replace('<svg ', '<svg class="icon-button-icon" aria-hidden="true" focusable="false" ') : '';
+  });
+
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: (err, bs) => {
