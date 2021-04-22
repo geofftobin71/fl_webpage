@@ -157,11 +157,11 @@ button.button:focus {
 
 a.button[disabled], a.button[disabled]:hover, a.button[disabled]:focus, a.button[disabled]:active,
 button.button[disabled], button.button[disabled]:hover, button.button[disabled]:focus, button.button[disabled]:active {
+  cursor: not-allowed;
+  pointer-events: none;
   background: var(--disabled-bg);
   color: var(--disabled-fg);
   border-color: var(--disabled-fg);
-  cursor: default;
-  pointer-events: none;
   box-shadow: none;
 }
 
