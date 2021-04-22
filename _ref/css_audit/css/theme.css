@@ -33,8 +33,15 @@
   --color-shade2: #818D89;
   --color-shade3: #AAB6B0;
   --color-shade4: #CDDAD5;
-}
 
+  --button-bg: #00000020;
+  --button-fg: var(--color-shade4);
+  --button-hover-bg: #FFFFFF20;
+  --button-hover-fg: var(--color-light);
+
+  --disabled-bg: #606060;
+  --disabled-fg: #B4B4B4;
+}
 
 .bg-white { background: #FFFFFF }
 .bg-black { background: #000000 }
@@ -127,21 +134,16 @@ button.button {
   cursor: pointer;
 }
 
-@media screen and (-ms-high-contrast: active) {
-  button.button {
-    border: 2px solid currentcolor;
-  }
-}
-
 a.button,
 button.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-shade1);
-  color: #fff;
+  background-color: var(--button-bg);
+  color: var(--button-fg);
+  border: 1px solid var(--button-fg);
   border-radius: 0.5em;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   text-align: center;
   text-transform: lowercase;
   line-height: 1;
@@ -158,7 +160,14 @@ a.button:active,
 button.button:active,
 a.button:hover,
 button.button:hover {
-  background-color: var(--color-shade2);
+  --button-bg: var(--button-hover-bg);
+  --button-fg: var(--button-hover-fg);
+}
+
+a.button:active,
+button.button:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 a.button:focus,
@@ -166,7 +175,17 @@ button.button:focus {
   outline: none;
   outline-style: solid;
   outline-color: transparent;
-  box-shadow: 0 0 0 2px var(--color-shade4);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
+}
+
+a.button[disabled], a.button[disabled]:hover, a.button[disabled]:focus, a.button[disabled]:active,
+button.button[disabled], button.button[disabled]:hover, button.button[disabled]:focus, button.button[disabled]:active {
+  background: var(--disabled-bg);
+  color: var(--disabled-fg);
+  border-color: var(--disabled-fg);
+  cursor: default;
+  pointer-events: none;
+  box-shadow: none;
 }
 
 .button-icon {
