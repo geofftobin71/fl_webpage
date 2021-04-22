@@ -1,3 +1,4 @@
+Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup
 DEPRECATE:
 link_light/er link_dark/er => scoped overrides
 center_both => horizontal center middle

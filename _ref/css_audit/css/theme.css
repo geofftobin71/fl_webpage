@@ -22,8 +22,6 @@
   --font-family-base: Poppins, sans-serif;
   --font-family-secondary: Kollektif, sans-serif;
 
-  --color-white: #FFFFFF;
-  --color-black: #000000;
   --color-light: #FAFAFA;
   --color-dark: #333333;
   --color-light-grey: #C0C0C0;
@@ -34,14 +32,17 @@
   --color-shade2: #818D89;
   --color-shade3: #AAB6B0;
   --color-shade4: #CDDAD5;
+  --color-autofill: #AABBCC;
 
   --button-bg: #00000020;
   --button-fg: var(--color-shade4);
   --button-hover-bg: #FFFFFF20;
   --button-hover-fg: var(--color-light);
 
-  --disabled-bg: #606060;
-  --disabled-fg: #B4B4B4;
+  --radius: 0.5em;
+
+  --disabled-bg: #505050;
+  --disabled-fg: #A0A0A0;
 }
 
 .bg-white { background: #FFFFFF }
@@ -117,7 +118,7 @@ button.button {
   background-color: var(--button-bg);
   color: var(--button-fg);
   border: 1px solid var(--button-fg);
-  border-radius: 0.5em;
+  border-radius: var(--radius);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   text-align: center;
   text-transform: lowercase;
@@ -149,16 +150,14 @@ button.button:active {
 
 a.button:focus,
 button.button:focus {
-  outline: none;
-  outline-style: solid;
-  outline-color: transparent;
+  outline: 2px solid transparent;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
 }
 
 a.button[disabled], a.button[disabled]:hover, a.button[disabled]:focus, a.button[disabled]:active,
 button.button[disabled], button.button[disabled]:hover, button.button[disabled]:focus, button.button[disabled]:active {
   cursor: not-allowed;
-  pointer-events: none;
+  /* pointer-events: none; */
   background: var(--disabled-bg);
   color: var(--disabled-fg);
   border-color: var(--disabled-fg);
