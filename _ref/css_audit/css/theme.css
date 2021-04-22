@@ -27,6 +27,7 @@
   --color-light: #FAFAFA;
   --color-dark: #333333;
   --color-light-grey: #C0C0C0;
+  --color-grey: #808080;
   --color-dark-grey: #202020;
   --color-primary: #3D4844;
   --color-shade1: #5E6A65;
@@ -55,7 +56,6 @@
 .bg-shade3 { background: #AAB6B0 }
 .bg-shade4 { background: #CDDAD5 }
 
-
 .color-white { color: #FFFFFF }
 .color-black { color: #000000 }
 .color-light { color: #FAFAFA }
@@ -67,7 +67,6 @@
 .color-shade2 { color: #818D89 }
 .color-shade3 { color: #AAB6B0 }
 .color-shade4 { color: #CDDAD5 }
-
 
 .border-white { border: 1px solid #FFFFFF }
 .border-black { border: 1px solid #000000 }
@@ -86,36 +85,12 @@
 
 .border2 { border-width: 2px }
 
-article a {
-  text-decoration: underline;
-}
+article a { text-decoration: underline; }
 
-/*
 a:link { color: var(--color-shade3); }
 a:visited { color: var(--color-shade3); }
 a:hover { color: var(--color-shade4); }
 a:active { color: var(--color-shade4); }
-*/
-
-.link-light a:link { color: var(--color-shade4); }
-.link-light a:visited { color: var(--color-shade4); }
-.link-light a:hover { color: var(--color-light); }
-.link-light a:active { color: var(--color-light); }
-
-.link-dark a:link { color: var(--color-shade1); }
-.link-dark a:visited { color: var(--color-shade1); }
-.link-dark a:hover { color: var(--color-shade2); }
-.link-dark a:active { color: var(--color-shade2); }
-
-.link-lighter a:link { color: var(--color-light); }
-.link-lighter a:visited { color: var(--color-light); }
-.link-lighter a:hover { color: var(--color-shade3); }
-.link-lighter a:active { color: var(--color-shade3); }
-
-.link-darker a:link { color: var(--color-dark); }
-.link-darker a:visited { color: var(--color-dark); }
-.link-darker a:hover { color: var(--color-primary); }
-.link-darker a:active { color: var(--color-primary); }
 
 a.button {
   text-decoration: none;
@@ -156,12 +131,14 @@ button.button:not(.icon-button) {
   min-height: 44px;
 }
 
-a.button:active,
-button.button:active,
-a.button:hover,
-button.button:hover {
-  --button-bg: var(--button-hover-bg);
-  --button-fg: var(--button-hover-fg);
+@media (hover: hover) {
+  a.button:active,
+  button.button:active,
+  a.button:hover,
+  button.button:hover {
+    --button-bg: var(--button-hover-bg);
+    --button-fg: var(--button-hover-fg);
+  }
 }
 
 a.button:active,
@@ -208,13 +185,9 @@ button.icon-button {
   height: 100%;
 }
 
-.font-base {
-  font-family: var(--font-family-base);
-}
+.font-base { font-family: var(--font-family-base); }
 
-.font-secondary {
-  font-family: var(--font-family-secondary);
-}
+.font-secondary { font-family: var(--font-family-secondary); }
 
 .font-size-5 { font-size: var(--step-5); }
 .font-size-4 { font-size: var(--step-4); }

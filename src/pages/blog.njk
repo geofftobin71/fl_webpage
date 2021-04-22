@@ -15,17 +15,19 @@ eleventyNavigation:
     <ul class="stack" style="--stack-space:var(--step-5)">
       {% for post in collections.blog -%}
         <li class="blogpost">
-          <div style="position:relative;padding:10vh 3vw">
-            <figure class="border-shade2 round-box shadow background" style="--brightness:{{ post.data.header.brightness or '50' }}%">
-              {% set image_id = (post.data.header_image | stripVersion) or (site.header_image | stripVersion) %}
-              {% set image_info = image_id | imgInfo %}
-              {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
-              {% set lqip_data = lqip_path | imgLqip %}
-              <noscript><img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" /></noscript>
-              <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" />
-            </figure>
-            <h2 class="text-right text-lowercase text-shadow">{{ post.data.title | safe }}</h2>
-          </div>
+          <a href="{{ post.url | url }}">
+            <div style="position:relative;padding:10vh 3vw">
+              <figure class="border-shade2 round-box shadow background" style="--brightness:{{ post.data.header.brightness or '50' }}%">
+                {% set image_id = (post.data.header_image | stripVersion) or (site.header_image | stripVersion) %}
+                {% set image_info = image_id | imgInfo %}
+                {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
+                {% set lqip_data = lqip_path | imgLqip %}
+                <noscript><img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" /></noscript>
+                <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" />
+              </figure>
+              <h2 class="text-right text-lowercase text-shadow">{{ post.data.title | safe }}</h2>
+            </div>
+          </a>
           <p class="caption">{{ post.date.toISOString() | readableDate }}</p>
           <div class="wrapper text-wrapper flow" style="margin-top:1em">
             <p>{{ post.data.description | safe }}</p>

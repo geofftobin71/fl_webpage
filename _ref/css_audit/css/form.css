@@ -1,0 +1,56 @@
+input[type='checkbox'],
+input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.radio-label-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row;
+  justify-content:center;
+  margin-left: -4px;
+  margin-right: -4px;
+  margin-bottom: -4px;
+}
+
+.radio-label {
+  font-family: var(--font-family-secondary);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  padding: var(--step--2) var(--step--1);
+  border: 1px solid currentcolor;
+  margin: 4px;
+}
+
+.radio-label:focus {
+  outline-offset: -0.2rem;
+  outline: 1px solid;
+}
+
+@media (hover: hover) {
+  .radio-label:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-fg);
+  }
+}
+
+.radio-label-wrapper input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+input[type="radio"]:checked + .radio-label {
+  color: var(--color-light);
+  background: var(--color-shade1);
+}
+
+input[type="radio"][disabled] + .radio-label {
+  background: var(--button-bg);
+  color: grey;
+  border-color: grey;
+  cursor: default;
+  pointer-events: none;
+  box-shadow: none;
+}
