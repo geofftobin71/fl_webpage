@@ -1,5 +1,6 @@
-<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;}}</style>
-<footer class="bg-shade1 link-light font-size--1">
+<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;}}footer a:link{color:var(--color-shade4);}footer a:visited{color:var(--color-shade4);}footer a:hover{color:var(--color-light);}footer a:active{color:var(--color-light);}</style>
+
+<footer class="bg-shade1 font-size--1">
   <section class="wrapper page-wrapper">
     <div class="horizontal center middle" style="width:48px;margin:0 auto 2em auto"><a href="#top" title="Scroll to Top" aria-label="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'})})()" style="width:24px;border-radius:50%">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div>
     <div class="three-columns">
