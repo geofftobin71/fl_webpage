@@ -3,6 +3,9 @@
 {% block head %}
   {{ super() }}
   {% set css %}
+    #checkout-form > * + * {
+      margin-top: 2em;
+    }
     #items {
       display:grid;
       grid-template-columns:1fr auto;

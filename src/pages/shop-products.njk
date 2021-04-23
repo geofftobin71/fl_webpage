@@ -32,15 +32,9 @@ eleventyComputed:
   {% endif %}
 {% endfor %}
 
-<noscript>
-<aside class="banner-error">
-Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
-</aside>
-</noscript>
+{% include "partials/javascript-warning.njk" %}
 
 {% include "partials/view-cart-button.njk" %}
-
-<pre id="test"></pre>
 
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
@@ -65,7 +59,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
     </div>
     <div class="wrapper text-wrapper" style="width:100%;height:100%">
 
-      <div id="parents-in-cart" class="stack">
+      <div id="parents-in-cart" class="vertical flow">
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}
         <p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>
@@ -88,7 +82,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
         {% endif %}
 
         {% if number_heading %}
-          <div id="number-group" class="stack">
+          <div id="number-group" class="vertical flow">
             <h3 class="text-lowercase text-center">{{ number_heading }}</h3>
             <div class="stepper-controls">
               <nav class="req-js" onclick="document.getElementById('product-count').stepDown();hideError();">
@@ -108,14 +102,14 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
         <hr />
 
-        <div id="button-group" class="stack center">
+        <div id="button-group" class="vertical flow center">
           <button id="add-to-cart-button" disabled class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
           <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button>
           <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
         </div>
       </div>
 
-      <div id="no-parents-in-cart" class="stack" style="display:none">
+      <div id="no-parents-in-cart" class="vertical flow" style="display:none">
         <h2 class="heading text-center">{{ product.name }}</h2>
         {% if product.price %}<p class="font-size-2 font-family-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
         <hr />

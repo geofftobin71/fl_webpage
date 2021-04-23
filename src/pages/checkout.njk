@@ -10,11 +10,7 @@ sitemap:
   ignore: true
 ---
 
-<noscript>
-<aside class="banner-error">
-Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
-</aside>
-</noscript>
+{% include "partials/javascript-warning.njk" %}
 
 <section id="checkout" style="min-height:50vh">
   <div class="wrapper text-wrapper">
@@ -29,7 +25,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       </div>
     </div>
 
-    <form id="checkout-form" action="/php/place-order.php" method="post" class="flow" style="display:none;width:100%;--flow-space:2em">
+    <form id="checkout-form" action="/php/place-order.php" method="post" class="width100" style="display:none">
       <h2 class="heading text-center">Order Summary</h2>
       <hr />
       <div id="items" class="font-secondary"></div>
@@ -39,7 +35,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
 
       <h2 class="delivery-group heading text-center" style="display:none">Delivery</h2>
       <hr class="delivery-group" style="display:none" />
-      <div class="delivery-group stack" style="--stack-space:1em;display:none">
+      <div class="delivery-group flow" style="display:none">
         <div>
           <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
           <input class="delivery-group input" style="display:none;width:100%" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()" onblur="cacheValue(this)">
@@ -83,7 +79,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
       <h2 class="heading text-center">Payment</h2>
       <hr />
 
-      <div class="stack" style="--stack-space:1em">
+      <div class="flow">
         <div>
           <label for="cardholder-name"><h4 class="heading">Cardholder Name</h4></label>
           <input class="input" style="width:100%" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Cardholder Name is required" onfocus="hideError()" onblur="cacheValue(this)">
@@ -121,7 +117,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           <p id="submit-text">Order Now</p>
         </button>
       </div>
-      <div class="stack center">
+      <div class="horizontal center">
         <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
       </div>
 

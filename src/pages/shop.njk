@@ -124,11 +124,7 @@ permalink: "shop/index.html"
 }
 </style>
 
-<noscript>
-<aside class="banner-error">
-Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
-</aside>
-</noscript>
+{% include "partials/javascript-warning.njk" %}
 
 <div id="shop" class="wrapper page-wrapper">
   {% include "partials/view-cart-button.njk" %}
@@ -149,7 +145,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
               {% set one_second = 100.0 / anim_duration %}
               {% set product_delay = 0.1 * loop.index0 %}
               <a href="{{ ( '/shop/products/' + product.name | slug ) | url }}" style="line-height:0">
-                <li id="{{ product.name | slug }}-{{ loop.index }}" class="slider-item stack center text-center bg-shade1 round-box border-shade2 shadow">
+                <li id="{{ product.name | slug }}-{{ loop.index }}" class="slider-item vertical center text-center bg-shade1 round-box border-shade2 shadow">
                   {{ ( '<style>@keyframes ' + (product.name | slug) + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if product_images_count > 1 }}
                   {% set image_id = (product.images | first | stripVersion) or (site.header_image | stripVersion) %}
                   {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
@@ -168,8 +164,8 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
                     </figure>
                     <h3 class="color-light text-lowercase" style="margin-top:1em">{{ product.name }}</h3>
                   </div>
-                  <p class="font-size--1 color-shade4" style="line-height:1.5">{{ product.description | safe }}</p>
-                  <div id="{{ product.id }}" class="product-price button bigfonts">
+                  <p class="font-size--1 color-shade4" style="line-height:1.5;margin-top:1em">{{ product.description | safe }}</p>
+                  <div id="{{ product.id }}" class="product-price button bigfonts" style="margin-top:1em">
                     {% set valid_variants = product.variants | validProductVariants %}
                     {% if valid_variants | length %}
                       {% if ( valid_variants | first ).price != ( valid_variants | last ).price %}
@@ -185,10 +181,10 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
               </a>
             {% endfor %}
           </ul>
-          <nav class="prev req-js" onclick="scrollToPrevItem('#{{ category.name | slug }}');return false;">
+          <nav class="prev req-js" onclick="scrollToPrevItem('#{{ category.name | slug }}')">
             <span role="button" title="Previous" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
           </nav>
-          <nav class="next req-js" onclick="scrollToNextItem('#{{ category.name | slug }}');return false;">
+          <nav class="next req-js" onclick="scrollToNextItem('#{{ category.name | slug }}')">
             <span role="button" title="Next" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
           </nav>
         </div>

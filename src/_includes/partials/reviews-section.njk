@@ -1,21 +1,21 @@
 <section id="reviews" class="bg-shade1 font-size-1">
-  <ul class="slider horizontal center middle" style="padding:1em 0">
+  <ul class="slider" style="padding:1em 0">
     {% for item in reviews | filterWeddingReviews(false) | removeLongReviews(300) | shuffle | head(5) -%}
       <li id="review{{ loop.index }}" class="slider-item">
         <div class="wrapper text-wrapper font-secondary">
-          <div class="stack">
+          <div class="vertical">
             <p class="font-size-1 text-center">{{ item.review }}</p>
-            <p class="font-size-0 text-center">{{ item.name }}</p>
+            <p class="font-size-0 text-center color-shade4" style="margin-top:1em">{{ item.name }}</p>
           </div>
         </div>
       </li>
     {% endfor -%}
   </ul>
   <div class="wrapper page-wrapper slider-controls req-js" style="display:flex;justify-content:space-between">
-    <nav class="prev" onclick="scrollToPrevItem('#reviews');return false;">
+    <nav class="prev" onclick="scrollToPrevItem('#reviews')">
       <span role="button" style="width:var(--step-1)" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
     </nav>
-    <nav class="next" onclick="scrollToNextItem('#reviews');return false;">
+    <nav class="next" onclick="scrollToNextItem('#reviews')">
       <span role="button" style="width:var(--step-1)" aria-label="Next">{{ '/src/svg/chevron-right.svg' | svgContents | safe }}</span>
     </nav>
   </div>

@@ -11,8 +11,8 @@ eleventyNavigation:
 ---
 
 <section>
-  <div class="wrapper">
-    <ul class="stack" style="--stack-space:var(--step-5)">
+  <div id="blog" class="wrapper">
+    <ul class="vertical flow" style="--flow-space:var(--step-5)">
       {% for post in collections.blog -%}
         <li class="blogpost">
           <a href="{{ post.url | url }}">
@@ -25,13 +25,13 @@ eleventyNavigation:
                 <noscript><img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" /></noscript>
                 <img src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="lazy" decoding="async" />
               </figure>
-              <h2 class="text-right text-lowercase text-shadow">{{ post.data.title | safe }}</h2>
+              <h2 class="color-light text-right text-lowercase text-shadow">{{ post.data.title | safe }}</h2>
             </div>
           </a>
           <p class="caption">{{ post.date.toISOString() | readableDate }}</p>
-          <div class="wrapper text-wrapper flow" style="margin-top:1em">
+          <div class="wrapper text-wrapper" style="margin-top:1em">
             <p>{{ post.data.description | safe }}</p>
-            <p class="text-center"><a class="button" href="{{ post.url | url }}">read more</a></p>
+            <p class="horizontal center" style="margin-top:1em"><a class="button" href="{{ post.url | url }}">read more</a></p>
           </div>
         </li>
         {{ '<hr>' | safe if not loop.last }}

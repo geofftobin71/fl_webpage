@@ -37,7 +37,7 @@ async function displayCheckout() {
 
     cart_total += price;
 
-    cart_items += '<div class="stack" style="--stack-space:1em">';
+    cart_items += '<div class="vertical flow">';
     cart_items += '<p>' + product["name"];
 
     if(product["variants"].length) {

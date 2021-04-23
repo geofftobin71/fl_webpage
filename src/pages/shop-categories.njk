@@ -91,11 +91,7 @@ eleventyComputed:
 }
 </style>
 
-<noscript>
-<aside class="banner-error">
-Javascript is currently disabled in your web browser. The online shop cannot function properly unless Javascript is enabled. Learn how to <a target="_blank" title="Opens in a new page" href="http://www.enable-javascript.com/" style="text-decoration:underline">enable Javascript</a> in your web browser.
-</aside>
-</noscript>
+{% include "partials/javascript-warning.njk" %}
 
 <section class="text-section bg-shade1">
   <article class="wrapper text-wrapper text-center">
@@ -118,7 +114,7 @@ Javascript is currently disabled in your web browser. The online shop cannot fun
           {% set one_second = 100.0 / anim_duration %}
           {% set product_delay = 0.1 * loop.index0 %}
           <a href="{{ ( '/shop/products/' + product.name | slug ) | url }}" style="margin:var(--step--2)">
-            <li class="slider-item stack center text-center bg-shade1 round-box border-shade2 shadow">
+            <li class="slider-item vertical center flow text-center bg-shade1 round-box border-shade2 shadow">
               {{ ( '<style>@keyframes ' + (product.name | slug) + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if product_images_count > 1 }}
               {% set image_id = (product.images | first | stripVersion) or (site.header_image | stripVersion) %}
               {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}

@@ -48,7 +48,8 @@ blockquote {
   }
 }
 
-.info, .error, .stack .info, .stack .error {
+.info,
+.error {
   font-family: var(--font-family-secondary);
   text-align: center;
   text-transform: lowercase;
@@ -58,12 +59,12 @@ blockquote {
   padding: 0.25em 0.5em;
 }
 
-.info, .stack .info {
+.info {
   color: var(--info-color);
   background: var(--info-background);
 }
 
-.error, .stack .error {
+.error {
   color: var(--error-color);
   background: var(--error-background);
 }
@@ -419,64 +420,7 @@ article > * + * {
   }
 }
 
-/* ----- Button ----- */
-
-/*
-button, .button {
-  color: var(--button-fg);
-  background: var(--button-bg);
-  display: inline-block;
-  line-height: 1;
-  text-decoration: none;
-  border: 1px solid var(--button-fg);
-  border-radius: var(--button-radius, 0.5rem);
-  padding: 0.6rem 1.5rem;
-  position: relative;
-  font-family: var(--font-family-secondary);
-  text-transform: lowercase;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-button:focus, .button:focus {
-  outline-offset: -0.2rem;
-  outline: 1px solid;
-}
-button:hover, .button:hover {
-  background: var(--button-fg);
-  color: var(--button-hl);
-  border-color: var(--button-hl);
-}
-button:active, .button:active {
-  transform: scale(0.95);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-button[disabled], button[disabled]:hover, button[disabled]:focus, button[disabled]:active,
-.button[disabled], .button[disabled]:hover, .button[disabled]:focus, .button[disabled]:active {
-  background: var(--disabled-bg);
-  color: var(--disabled-fg);
-  border-color: var(--disabled-fg);
-  cursor: default;
-  pointer-events: none;
-  box-shadow: none;
-}
-
-a.button:link { color: var(--button-fg); }
-a.button:visited { color: var(--button-fg); }
-a.button:hover { color: var(--button-hl); }
-a.button:active { color: var(--button-hl); }
-
-.icon-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.icon-button span {
-  width:1em;
-  height:1em;
-  margin-right:0.5em;
-}
-*/
+/* ----- Buttons ----- */
 
 .buttons {
   display: flex;
@@ -501,28 +445,6 @@ a.button:active { color: var(--button-hl); }
     margin-top: 0;
     margin-bottom: 1.5em;
   }
-}
-
-/* ----- The Stack ----- */
-
-.stack {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  --stack-space: 1em;
-}
-
-.stack.center {
-  align-items: center;
-}
-
-.stack > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.stack > * + * {
-  margin-top: var(--stack-space);
 }
 
 /* ----- Two Columns ----- */
@@ -557,30 +479,10 @@ a.button:active { color: var(--button-hl); }
 /* ----- Auto Grid ----- */
 
 .auto-grid {
-  max-width: 25rem;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.auto-grid > * + * {
-  margin-top: 1rem;
-}
-
-@supports (display: grid) {
-  .auto-grid {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(var(--auto-grid-min-size, 16rem), 1fr));
-    grid-gap: var(--auto-grid-gap, 1rem);
-    grid-auto-flow: dense;
-  }
-
-  .auto-grid {
-    max-width: unset;
-  }
-
-  .auto-grid, .auto-grid > * + * {
-    margin: unset;
-  }
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(var(--auto-grid-min-size, 16rem), 1fr));
+  grid-gap: var(--auto-grid-gap, 1rem);
+  grid-auto-flow: dense;
 }
 
 /* ----- Canvas ----- */

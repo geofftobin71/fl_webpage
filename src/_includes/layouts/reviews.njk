@@ -3,6 +3,9 @@
 {% block head %}
   {{ super() }}
   {% set css %}
+  #reviews ul > * + * {
+    margin-top: var(--step-4);
+  }
   .review {
     transform: translateY(0px);
     opacity: 1;

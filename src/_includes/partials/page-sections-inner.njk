@@ -127,25 +127,23 @@
 
 {% if section.template == "contact-details-section" %}
   <section class="contact-details-section">
-    <div class="stack center">
+    <div class="vertical center flow" style="--flow-space:2em">
       <h2 class="heading text-center">Contact Us</h2>
-      <div class="stack center" style="--stack-space:2rem">
-        <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
-          <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
-        </a>
-        <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
-        <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
-        <h3 class="heading text-center">Follow Us</h3>
-        <div class="color-light" style="width:200px;height:2rem;display:flex;justify-content:space-between">
-          <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:12px" title="Follow us on Facebook" aria-label="Follow us on Facebook">
-            {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
-          <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:20px" title="Follow us on Instagram" aria-label="Follow us on Instagram">
-            {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
-          <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:20px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest">
-            {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
-          <a href="{{ site.google_review }}" target="_blank" rel="noopener" style="width:20px" title="Leave a Google review" aria-label="Leave a Google review">
-            {{ '/src/svg/google.svg' | svgContents | safe }}</a>
-        </div>
+      <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
+        <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
+      </a>
+      <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
+      <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
+      <h3 class="heading text-center">Follow Us</h3>
+      <div class="color-light" style="width:200px;height:2rem;display:flex;justify-content:space-between">
+        <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:12px" title="Follow us on Facebook" aria-label="Follow us on Facebook">
+          {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:20px" title="Follow us on Instagram" aria-label="Follow us on Instagram">
+          {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
+        <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:20px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest">
+          {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
+        <a href="{{ site.google_review }}" target="_blank" rel="noopener" style="width:20px" title="Leave a Google review" aria-label="Leave a Google review">
+          {{ '/src/svg/google.svg' | svgContents | safe }}</a>
       </div>
     </div>
   </section>
@@ -153,7 +151,7 @@
 
 {% if section.template == "shop-hours-section" %}
   <section class="shop-hours-section">
-    <div class="stack center">
+    <div class="vertical flow center">
       <h2 class="heading text-center">Shop Hours</h2>
       {% include "partials/shop-hours.njk" %}
     </div>
