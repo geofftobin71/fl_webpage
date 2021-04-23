@@ -392,6 +392,14 @@ background-size: .65em auto, 100%;
   justify-content: space-between;
 }
 
+.horizontal.space-around {
+  justify-content: space-around;
+}
+
+.horizontal.space-evenly {
+  justify-content: space-evenly;
+}
+
 .horizontal.middle {
   align-items: center;
 }
@@ -421,10 +429,6 @@ background-size: .65em auto, 100%;
 
 .vertical.right {
   align-items: flex-end;
-}
-
-.vertical.space-between {
-  justify-content: space-between;
 }
 
 .vertical.middle {

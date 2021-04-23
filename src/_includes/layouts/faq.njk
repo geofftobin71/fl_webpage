@@ -46,6 +46,13 @@
     margin-top: -8px;
   }
 
+  .faq input[type="checkbox"] {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+  }
+
   .faq input[type="checkbox"]:checked ~ h3 label::before {
     border-left: 8px solid transparent;
     border-top: 8px solid currentColor;

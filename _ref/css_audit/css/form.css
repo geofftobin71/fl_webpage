@@ -112,6 +112,7 @@ input[type='checkbox'],
 input[type='radio'] {
   box-sizing: border-box;
   padding: 0;
+  margin: 0;
 }
 
 .radio-label-wrapper {
@@ -141,10 +142,11 @@ input[type='radio'] {
   }
 }
 
-.radio-label-wrapper input {
+.radio-label-wrapper input[type="radio"] {
   width: 0;
   height: 0;
   opacity: 0;
+  position: absolute;
 }
 
 input[type="radio"]:focus + .radio-label {

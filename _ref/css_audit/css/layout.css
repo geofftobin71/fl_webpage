@@ -78,18 +78,6 @@ blockquote {
 
 .grecaptcha-badge {display: none;}
 
-.visually-hidden {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  width: 1px;
-  height: auto;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  clip: rect(0 0 0 0);
-}
-
 .width100 {
   width: 100%;
 }
@@ -145,8 +133,7 @@ blockquote {
 }
 
 .round-box {
-  --box-padding: var(--step-0);
-  padding: var(--box-padding);
+  padding: var(--box-padding, var(--step-0));
   border-radius: var(--box-border-radius, 0.5rem);
   border-width: var(--box-border-width, 2px);
 }
@@ -228,24 +215,18 @@ blockquote {
   justify-content: flex-end;
 }
 
-/* ----- Center ----- */
-
-.center-both {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* ----- Site Menu ----- */
 
 .site-menu ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
-  margin:0;
-  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
 }
 
 .site-menu li {
+  padding: 0.25em 0.5em;
   text-align: center;
   white-space: nowrap;
 }
@@ -383,7 +364,8 @@ section > * + * {
 
 /* ----- Flow ----- */
 
-article > *, .flow > * {
+article > *, 
+.flow > * {
   margin-top: 0;
   margin-bottom: 0;
 }

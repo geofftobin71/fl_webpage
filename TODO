@@ -1,8 +1,7 @@
 Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup
 DEPRECATE:
 link_light/er link_dark/er => scoped overrides
-center_both => horizontal center middle
-stack => vertical flow
+stack => vertical flow : stack info / stack error
 
 move workshop name and email inputs to cart page
 check floriade-delivery-date has not passed in expireCart

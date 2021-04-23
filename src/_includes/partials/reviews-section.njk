@@ -1,5 +1,5 @@
 <section id="reviews" class="bg-shade1 font-size-1">
-  <ul class="slider center-both" style="padding:1em 0">
+  <ul class="slider horizontal center middle" style="padding:1em 0">
     {% for item in reviews | filterWeddingReviews(false) | removeLongReviews(300) | shuffle | head(5) -%}
       <li id="review{{ loop.index }}" class="slider-item">
         <div class="wrapper text-wrapper font-secondary">

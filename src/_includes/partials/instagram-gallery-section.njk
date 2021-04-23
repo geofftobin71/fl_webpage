@@ -27,7 +27,7 @@
   <ul class="slider">
     {% for item in instagram_images -%}
       <li id="item{{ loop.index }}" class="slider-item">
-        <figure class="center-both">
+        <figure class="horizontal center middle">
           {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto,e_blur:100/" + (item.public_id | stripVersion) %}
           {% set lqip_data = lqip_path | imgLqip %}
           {% set image_path = site.cloudinary_url + "/c_fill,w_900,h_900,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
