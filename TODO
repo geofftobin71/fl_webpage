@@ -1,11 +1,10 @@
-button / icon-button
-contact page form style
-.img-cover vs .background img => .canvas img
-Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup
+check theme.njk again
+contact page / contact form padding
+theme colors : check /var/www/html vs tokens
+Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup -> js not 11ty
 DEPRECATE:
-link_light/er link_dark/er => scoped overrides
-stack => vertical flow : stack info / stack error
 frame => aspect
+.img-cover vs .background img => .canvas img
 
 move workshop name and email inputs to cart page
 check floriade-delivery-date has not passed in expireCart
@@ -13,7 +12,7 @@ retire unused php functions
 confirmCardPayment with customer and metadata
 check floriade-facebook-image
 showShopPage showShopCategoriesPage
-revisit contact form handler
+revisit contact form handler - check response message - js error handlers
 single product width on mobile - padding too big
 Button / Select / Radio css
 Product auto expiry date

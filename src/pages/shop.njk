@@ -165,7 +165,7 @@ permalink: "shop/index.html"
                     <h3 class="color-light text-lowercase" style="margin-top:1em">{{ product.name }}</h3>
                   </div>
                   <p class="font-size--1 color-shade4" style="line-height:1.5;margin-top:1em">{{ product.description | safe }}</p>
-                  <div id="{{ product.id }}" class="product-price button bigfonts" style="margin-top:1em">
+                  <button type="button" id="{{ product.id }}" class="product-price button bigfonts" style="margin-top:1em">
                     {% set valid_variants = product.variants | validProductVariants %}
                     {% if valid_variants | length %}
                       {% if ( valid_variants | first ).price != ( valid_variants | last ).price %}
@@ -176,7 +176,7 @@ permalink: "shop/index.html"
                     {% else %}
                       <p>{{ product.price | formatMoney }}</p>
                     {% endif %}
-                  </div>
+                  </button>
                 </li>
               </a>
             {% endfor %}

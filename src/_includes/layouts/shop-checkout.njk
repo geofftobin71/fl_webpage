@@ -3,6 +3,7 @@
 {% block head %}
   {{ super() }}
   {% set css %}
+    {% include "css/form.css" %}
     #checkout-form > * + * {
       margin-top: 2em;
     }

@@ -55,10 +55,8 @@ async function displayCart() {
 	
 	  cart_items += '</p>';
 	
-	  cart_items += '<div class="horizontal left font-base font-size--1">';
-	  cart_items += '<div class="icon-button color-shade3" onclick="removeFromCart(' + i + ')">';
-	  cart_items += '<span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 736v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm256 0v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm256 0v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm128 724v-948h-896v948q0 22 7 40.5t14.5 27 10.5 8.5h832q3 0 10.5-8.5t14.5-27 7-40.5zm-672-1076h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z"/></svg></span><p class="text-lowercase">Remove</p>';
-	  cart_items += '</div>';
+	  cart_items += '<div class="horizontal left font-base font-size--1 color-shade3" onclick="removeFromCart(' + i + ')">';
+	  cart_items += '<svg class="button-icon" aria-hidden="true" focusable="false" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M704 736v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm256 0v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm256 0v576q0 14-9 23t-23 9h-64q-14 0-23-9t-9-23v-576q0-14 9-23t23-9h64q14 0 23 9t9 23zm128 724v-948h-896v948q0 22 7 40.5t14.5 27 10.5 8.5h832q3 0 10.5-8.5t14.5-27 7-40.5zm-672-1076h448l-48-117q-7-9-17-11h-317q-10 2-17 11zm928 32v64q0 14-9 23t-23 9h-96v948q0 83-47 143.5t-113 60.5h-832q-66 0-113-58.5t-47-141.5v-952h-96q-14 0-23-9t-9-23v-64q0-14 9-23t23-9h309l70-167q15-37 54-63t79-26h320q40 0 79 26t54 63l70 167h309q14 0 23 9t9 23z"/></svg><p class="text-lowercase">Remove</p>';
 	  cart_items += '</div>';
 	  cart_items += '</div>';
 	  cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
@@ -84,12 +82,12 @@ async function displayCart() {
 
   if(has_delivery) {
     cart_summary += '<h3 class="heading">Delivery To</h3>';
-    cart_summary += '<select id="delivery-suburb" name="delivery-suburb" class="select-css" style="width:auto;margin-right:auto" onchange="updateDeliveryFee()">';
+    cart_summary += '<div class="select"><select id="delivery-suburb" name="delivery-suburb" style="width:auto;margin-right:auto" onchange="updateDeliveryFee()">';
     cart_summary += '<option default disabled selected hidden value="">please choose...</option>';
     for(const suburb in delivery_fees) {
       cart_summary += '<option ' + (suburb === delivery_suburb ? 'selected ' : '') + 'value="' + suburb + '">' + titleCase(suburb) + '&nbsp;</option>';
     }
-    cart_summary += '</select>';
+    cart_summary += '</select><span class="focus"></span></div>';
     cart_summary += '<p id="delivery-fee" class="text-right">' + ((delivery_suburb && delivery_suburb !== "none") ? formatMoney(delivery_fee) : 'TBC') + '</p>';
   } else {
     cart_summary += '<input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none"><p style="display:none"></p><p style="display:none"></p>';

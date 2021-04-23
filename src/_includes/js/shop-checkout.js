@@ -52,12 +52,12 @@ async function displayCheckout() {
 
       cart_items += '<div>';
       cart_items += '<label for="workshop-name-' + cart_id + '"><h4 class="heading">Attendee Name</h4></label>';
-      cart_items += '<input class="input workshop-name" style="width:100%" id="workshop-name-' + cart_id + '" name="workshop-attendee-name[' + cart_id + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
+      cart_items += '<input class="input workshop-name" id="workshop-name-' + cart_id + '" name="workshop-attendee-name[' + cart_id + ']" type="text" autocomplete="name" data-error="Attendee Name is required" onfocus="hideError()" onblur="cacheValue(this)">';
       cart_items += '<p class="caption text-left text-lowercase">Name of the person attending the workshop</p>';
       cart_items += '</div>';
       cart_items += '<div>';
       cart_items += '<label for="workshop-email-' + cart_id + '"><h4 class="heading">Attendee Email</h4></label>';
-      cart_items += '<input class="input workshop-email" style="width:100%" id="workshop-email-' + cart_id + '" name="workshop-attendee-email[' + cart_id + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
+      cart_items += '<input class="input workshop-email" id="workshop-email-' + cart_id + '" name="workshop-attendee-email[' + cart_id + ']" type="email" autocomplete="email" inputmode="email" data-error="Attendee Email is required" onfocus="hideError()" onblur="cacheValue(this)">';
       cart_items += '<p class="caption text-left text-lowercase">We will send a sign-up confirmation email to this address</p>';
       cart_items += '</div>';
     }

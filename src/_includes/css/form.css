@@ -1,38 +1,260 @@
-:placeholder-shown {
-  border-color: var(--color-primary);
+@supports(appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='password'],
+  textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: gray;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: gray;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-  color: gray;
-}
-
-form {
-  display: grid;
-  grid-gap: 1em;
-  align-items: start;
-}
-
-label {
-  display: inline-block;
+.input {
   width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+  font-family: var(--font-family-base);
+  padding: 0.25em 0.5em 0.15em;
+  background: var(--color-shade4);
+  color: var(--color-dark);
+  border: 2px solid var(--color-shade2);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.input:not(textarea) {
+  line-height: 1;
+  min-height: 2.25rem;
+}
+
+.input[readonly] {
+  border-style: dotted;
+  cursor: not-allowed;
+  color: #777;
+}
+
+.input[disabled] {
+  cursor: not-allowed;
+  /* pointer-events: none; */
+  background: var(--disabled-bg);
+  color: var(--disabled-fg);
+  border-color: var(--disabled-fg);
+  box-shadow: none;
+}
+
+.input:focus {
+  background: var(--color-light);
+  outline: 2px solid transparent;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #777;
+  opacity: 1;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  color: #777;
+  opacity: 1;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  color: #777;
+  opacity: 1;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: #777;
+  opacity: 1;
+}
+
+::placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+  font-family: var(--font-family-base);
+  padding: 0.25em 0.5em 0.15em;
+  background: var(--color-autofill);
+  color: var(--color-dark);
+  border: 2px solid var(--color-shade1);
+  border-radius: var(--radius);
+  -webkit-text-fill-color: var(--color-dark);
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0px 1000px var(--color-autofill) inset;
+}
+
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill:focus {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg), 0 0 0px 1000px var(--color-autofill) inset;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.radio-label-wrapper {
+  display:flex;
+  flex-wrap:wrap;
+  flex-direction:row;
+  justify-content:center;
+  margin-left: -4px;
+  margin-right: -4px;
+  margin-bottom: -4px;
+}
+
+.radio-label {
+  font-family: var(--font-family-secondary);
+  background: var(--button-bg);
+  color: var(--button-fg);
+  padding: var(--step--2) var(--step--1);
+  border: 1px solid currentcolor;
+  margin: 4px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+@media (hover: hover) {
+  .radio-label:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-fg);
+  }
+}
+
+.radio-label-wrapper input[type="radio"] {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+}
+
+input[type="radio"]:focus + .radio-label {
+  outline: 2px solid transparent;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
+}
+
+input[type="radio"]:checked + .radio-label {
+  color: var(--color-light);
+  background: var(--color-shade1);
+}
+
+input[type="radio"][disabled] + .radio-label {
+  cursor: not-allowed;
+  /* pointer-events: none; */
+  background: var(--disabled-bg);
+  color: var(--disabled-fg);
+  border-color: var(--disabled-fg);
+  box-shadow: none;
+}
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  font-family: var(--font-family-secondary);
+  background-color: var(--button-bg);
+  color: var(--button-fg);
+  width: 100%;
+  max-width: 100%; /* useful when width is set to anything other than 100% */
+  border: 1px solid currentcolor;
+  border-radius: var(--radius);
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  margin: 0;
+  font-size: var(--step-0);
+  cursor: pointer;
+  line-height: 1.3;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  position: relative;
+}
+
+.select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: currentcolor;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   justify-self: end;
 }
 
-input, textarea {
-  font-size: var(--step--1);
-  width: 100%;
-  padding: 0.5em;
-  border: 2px solid #C0C0C0;
-  border-radius: 0;
-  line-height: 1;
+select,
+.select:after {
+  grid-area: select;
 }
 
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 3px solid currentcolor;
+  border-radius: inherit;
+}
+
+.select-disabled {
+  cursor: not-allowed;
+  /* pointer-events: none; */
+  background: var(--disabled-bg);
+  color: var(--disabled-fg);
+  border-color: var(--disabled-fg);
+  box-shadow: none;
+}
+
+option {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+option:nth-child(2n) {
+  background-color: white;
+}
+
+option[disabled] {
+  cursor: not-allowed;
+}
+
+option[default] {
+  display: none;
+}

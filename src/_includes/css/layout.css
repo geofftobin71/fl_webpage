@@ -5,22 +5,20 @@
   --measure: 65ch;
   --padding: var(--step-0);
   --section-padding: 7.5vh;
-  --button-fg: var(--color-shade3);
-  --button-bg: transparent;
-  --button-hl: var(--color-primary);
-  --disabled-bg: #606060;
-  --disabled-fg: #B4B4B4;
   --error-color: #CC0000;
   --error-background: #FFDDDD;
   --error-link: #FF0000;
   --error-link-hover: #DD0000;
   --info-color: #008800;
   --info-background: #CCEECC;
-  --input-color: var(--color-dark);
-  --input-background: var(--color-shade4);
-  --input-border: var(--color-shade2);
-  --input-focus: var(--color-shade3);
-  --input-placeholder: var(--color-shade2);
+  --radius: 0.5em;
+  --button-bg: #00000020;
+  --button-fg: var(--color-shade4);
+  --button-hover-bg: #FFFFFF20;
+  --button-hover-fg: var(--color-light);
+  --radius: 0.5em;
+  --disabled-bg: #505050;
+  --disabled-fg: #A0A0A0;
 }
 
 @media screen and (min-width: 1200px) {
@@ -29,6 +27,7 @@
   }
 }
 
+/*
 @supports(appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
   input[type='text'], input[type='number'], input[type='email'], textarea {
     -webkit-appearance: none;
@@ -39,7 +38,6 @@
 
 .input {
   font-size: 16px;
-  /* font-size: max(16px, 1em); */
   font-family: var(--font-family-base);
   padding: 0.15em 0.3em;
   color: var(--input-color);
@@ -91,22 +89,22 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+::-webkit-input-placeholder
   font-family: var(--font-family-secondary);
   color: var(--input-placeholder);
   opacity: 1;
 }
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
   font-family: var(--font-family-secondary);
   color: var(--input-placeholder);
   opacity: 1;
 }
-:-ms-input-placeholder { /* IE 10+ */
+:-ms-input-placeholder {
   font-family: var(--font-family-secondary);
   color: var(--input-placeholder);
   opacity: 1;
 }
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
   font-family: var(--font-family-secondary);
   color: var(--input-placeholder);
   opacity: 1;
@@ -116,6 +114,7 @@ select:-webkit-autofill:focus {
   color: var(--input-placeholder);
   opacity: 1;
 }
+*/
 
 .info, .error, .stack .info, .stack .error {
   font-family: var(--font-family-secondary);
@@ -261,6 +260,7 @@ blockquote {
 
 /* ----- Select ----- */
 
+/*
 .select-css {
   display: block;
   font-size: 16px;
@@ -269,61 +269,44 @@ blockquote {
   line-height: 1.3;
   padding: .6em 1.4em .5em .8em;
   width: 100%;
-  max-width: 100%; /* useful when width is set to anything other than 100% */
+  max-width: 100%; 
   box-sizing: border-box;
   margin: 0;
   border: 1px solid currentcolor;
-  /* box-shadow: 0 1px 0 1px rgba(0,0,0,.04); */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   border-radius: .5em;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
   background-color: var(--button-bg);
-  /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
-  for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon
-  or an external image reference */
 background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23A6B3AE%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
 linear-gradient(to bottom, var(--button-bg) 0%, var(--button-bg) 100%);
 background-repeat: no-repeat, repeat;
-/* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
 background-position: right .7em top 50%, 0 0;
-/* icon size, then gradient */
 background-size: .65em auto, 100%;
 }
-/* Hide arrow icon in IE browsers */
 .select-css::-ms-expand {
   display: none;
 }
-/* Hover style */
 .select-css:hover {
   background: var(--button-fg);
   color: var(--button-hl);
   border-color: var(--button-hl);
 }
-/* Focus style */
 .select-css:focus {
   outline-offset: -0.2rem;
   outline: 1px solid;
-  /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
-  /*
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
-  outline: none;
-   */
 }
 
 .select-css option {
   font-family: var(--font-family-base);
 }
 
-/* Support for rtl text, explicit support for Arabic and Hebrew */
 *[dir="rtl"] .select-css, :root:lang(ar) .select-css, :root:lang(iw) .select-css {
   background-position: left .7em top 50%, 0 0;
   padding: .6em .8em .5em 1.4em;
 }
 
-/* Disabled styles */
 .select-css:disabled, .select-css[aria-disabled=true] {
   color: graytext;
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
@@ -333,6 +316,7 @@ background-size: .65em auto, 100%;
 .select-css:disabled:hover, .select-css[aria-disabled=true] {
   border-color: #aaa;
 }
+*/
 
 /* ----- The Cover ----- */
 
@@ -662,6 +646,7 @@ article > * + * {
 
 /* ----- Button ----- */
 
+/*
 button, .button {
   color: var(--button-fg);
   background: var(--button-bg);
@@ -716,6 +701,7 @@ a.button:active { color: var(--button-hl); }
   height:1em;
   margin-right:0.5em;
 }
+*/
 
 .buttons {
   display: flex;

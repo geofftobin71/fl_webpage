@@ -67,19 +67,19 @@
   <section class="contact-form-section">
     <div class="wrapper text-wrapper flow{{ ' round-box shadow border-shade2 bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" style="padding:var(--padding)">
       <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
-      <form id="contact-form" class="req-js" action="/php/contact-form-handler.php" method="post">
-        <label for="name">
-          Name
-          <input class="round" id="name" name="name" type="text" placeholder="Your Name">
-        </label>
-        <label for="email">
-          Email
-          <input class="round" id="email" name="email" type="email" placeholder="Your Email">
-        </label>
-        <label for="message">
-          Message
-          <textarea class="round" id="message" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
-        </label>
+      <form id="contact-form" class="flow req-js" action="/php/contact-form-handler.php" method="post">
+        <div>
+        <label for="name"><h4 class="heading">Name</h4></label>
+        <input class="input" id="name" name="name" type="text" placeholder="Your Name">
+        </div>
+        <div>
+        <label for="email"><h4 class="heading">Email</h4></label>
+        <input class="input" id="email" name="email" type="email" placeholder="Your Email">
+        </div>
+        <div>
+        <label for="message"><h4 class="heading">Message</h4></label>
+        <textarea class="input" id="message" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
+        </div>
         {% set image_id = (section.email_banner | stripVersion) or 'icons/floriade-icon-round-512' %}
         {% set image_info = image_id | imgInfo %}
         <input id="subject" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
@@ -90,7 +90,7 @@
         <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
 
         <p class="text-center font-secondary" style="color:red;min-height:1.5em" id="response-message">&nbsp;</p>
-        <div class="text-center"><button type="submit">{{ section.button or 'Send Message' }}</button></div>
+        <div class="text-center"><button class="button" type="submit">{{ section.button or 'Send Message' }}</button></div>
         <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
       </form>
       <noscript>
@@ -114,7 +114,7 @@
     <div class="wrapper">
       <div class="frame frame1x1 round shadow">
         {% if env.NODE_ENV == 'deploy' %}
-          <iframe class="req-js" frameborder="0" style="width:100%;height:100%;border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
+          <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
         {% endif %}
         {{ '<noscript>' | safe if env.NODE_ENV == 'deploy' }}
           <a target="_blank" rel="noopener" title="Open in Google Maps" aria-label="Open in Google Maps" href="{{ site.google_maps }}"><img class="img-cover" src="{{ '/images/floriade-map.jpg' | url }}" width="1024" height="1024" alt="Map of the location of Floriade at {{ site.address }}, {{ site.address_locality }}, {{ site.address_region }}"></a>
@@ -127,7 +127,7 @@
 
 {% if section.template == "contact-details-section" %}
   <section class="contact-details-section">
-    <div class="vertical center flow" style="--flow-space:2em">
+    <div class="vertical center flow">
       <h2 class="heading text-center">Contact Us</h2>
       <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
         <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>

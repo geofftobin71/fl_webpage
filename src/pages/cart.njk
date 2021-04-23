@@ -22,13 +22,13 @@ sitemap:
       <h2 class="heading">Your Cart is Empty</h2>
       <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
       <div class="text-center">
-        <a class="button icon-button" href="/shop/">
-          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
+        <a class="button" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
         </a>
       </div>
     </div>
 
-    <div id="cart-form" class="flow" style="display:none;width:100%;--flow-space:2em">
+    <div id="cart-form" class="flow width100" style="display:none;--flow-space:2em">
       <hr />
       <div id="items" class="font-secondary"></div>
       <hr />
@@ -36,11 +36,11 @@ sitemap:
       <hr />
 
       <div class="buttons swap">
-        <a class="button icon-button" href="/shop/">
-          <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
+        <a class="button" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
         </a>
-        <button id="checkout-button" disabled class="icon-button cursor-pointer bigfonts" onclick="checkout()">
-          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | safe }}</span><p>Checkout</p>
+        <button id="checkout-button" disabled class="button cursor-pointer bigfonts" onclick="checkout()">
+          <span>{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span><p>Checkout</p>
         </button>
       </div>
       <div class="horizontal center">

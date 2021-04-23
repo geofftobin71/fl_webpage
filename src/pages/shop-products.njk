@@ -38,8 +38,8 @@ eleventyComputed:
 
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
-    <div class="wrapper image-wrapper flow" style="width:100%">
-      <figure class="frame frame1x1 round shadow {{ 'fader' if product_images_count > 1 }}" style="width:100%;background-image:url({{ lqip_data }})">
+    <div class="wrapper image-wrapper flow width100">
+      <figure class="frame frame1x1 round shadow width100 {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
         {% for product_image in product.images %}
           {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
           {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
@@ -57,7 +57,7 @@ eleventyComputed:
       </figure>
       <p class="font-size--1">{{ product.page_description }}</p>
     </div>
-    <div class="wrapper text-wrapper" style="width:100%;height:100%">
+    <div class="wrapper text-wrapper width100 height100">
 
       <div id="parents-in-cart" class="vertical flow">
         <h2 class="heading text-center">{{ product.name }}</h2>
@@ -103,8 +103,8 @@ eleventyComputed:
         <hr />
 
         <div id="button-group" class="vertical flow center">
-          <button id="add-to-cart-button" disabled class="cursor-pointer" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
-          <button class="cursor-pointer" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button>
+          <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
+          <button class="button" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button>
           <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
         </div>
       </div>
@@ -115,8 +115,8 @@ eleventyComputed:
         <hr />
         <p class="text-center" style="margin-left:auto;margin-right:auto;max-width:45ch">This product can only be purchased as an add&#8209;on to {{ product | listParents }}.</p>
         <div class="horizontal center middle">
-          <a class="button icon-button" style="margin-left:auto;margin-right:auto" href="/shop/">
-            <span>{{ '/src/svg/arrow-left.svg' | svgContents | safe }}</span><p>Continue Shopping</p>
+          <a class="button" style="margin-left:auto;margin-right:auto" href="/shop/">
+            <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
           </a>
         </div>
       </div>

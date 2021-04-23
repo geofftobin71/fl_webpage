@@ -8,13 +8,13 @@
     {% endif %}
     {% set two_columns = true %}
     <div class="wrapper page-wrapper two-columns{{ ' swap' if outer_section.swap }}" style="--section-padding:0;--align:{{ outer_section.align | lower or 'center' }}">
-      <div class="flow" style="--flow-space:2em">
+      <div class="flow">
         {% asyncEach inner_section in outer_section.left_sections %}
         {% set section = inner_section %}
         {% include "partials/page-sections-inner.njk" %}
         {% endeach %}
       </div>
-      <div class="flow" style="--flow-space:2em">
+      <div class="flow">
         {% asyncEach inner_section in outer_section.right_sections %}
         {% set section = inner_section %}
         {% include "partials/page-sections-inner.njk" %}
