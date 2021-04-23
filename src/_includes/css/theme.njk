@@ -22,17 +22,9 @@
   --font-family-base: Poppins, sans-serif;
   --font-family-secondary: Kollektif, sans-serif;
 
-  --color-light: #FAFAFA;
-  --color-dark: #333333;
-  --color-light-grey: #C0C0C0;
-  --color-grey: #808080;
-  --color-dark-grey: #202020;
-  --color-primary: #3D4844;
-  --color-shade1: #5E6A65;
-  --color-shade2: #818D89;
-  --color-shade3: #AAB6B0;
-  --color-shade4: #CDDAD5;
-  --color-autofill: #AABBCC;
+{% for token, value in tokens.colors %}
+  --{{ token | hyphenate }}: {{ value }};
+{%- endfor %}
 
   --button-bg: #00000020;
   --button-fg: var(--color-shade4);
@@ -45,41 +37,17 @@
   --disabled-fg: #A0A0A0;
 }
 
-.bg-white { background: #FFFFFF }
-.bg-black { background: #000000 }
-.bg-light { background: #FAFAFA }
-.bg-dark { background: #333333 }
-.bg-light-grey { background: #C0C0C0 }
-.bg-dark-grey { background: #202020 }
-.bg-primary { background: #3D4844 }
-.bg-shade1 { background: #5E6A65 }
-.bg-shade2 { background: #818D89 }
-.bg-shade3 { background: #AAB6B0 }
-.bg-shade4 { background: #CDDAD5 }
+{% for token, value in tokens.colors %}
+.{{ token | hyphenate | replace("color-", "bg-") }} { background: {{ value }} }
+{%- endfor %}
 
-.color-white { color: #FFFFFF }
-.color-black { color: #000000 }
-.color-light { color: #FAFAFA }
-.color-dark { color: #333333 }
-.color-light-grey { color: #C0C0C0 }
-.color-dark-grey { color: #202020 }
-.color-primary { color: #3D4844 }
-.color-shade1 { color: #5E6A65 }
-.color-shade2 { color: #818D89 }
-.color-shade3 { color: #AAB6B0 }
-.color-shade4 { color: #CDDAD5 }
+{% for token, value in tokens.colors %}
+.{{ token | hyphenate }} { color: {{ value }} }
+{%- endfor %}
 
-.border-white { border: 1px solid #FFFFFF }
-.border-black { border: 1px solid #000000 }
-.border-light { border: 1px solid #FAFAFA }
-.border-dark { border: 1px solid #333333 }
-.border-light-grey { border: 1px solid #C0C0C0 }
-.border-dark-grey { border: 1px solid #202020 }
-.border-primary { border: 1px solid #3D4844 }
-.border-shade1 { border: 1px solid #5E6A65 }
-.border-shade2 { border: 1px solid #818D89 }
-.border-shade3 { border: 1px solid #AAB6B0 }
-.border-shade4 { border: 1px solid #CDDAD5 }
+{% for token, value in tokens.colors %}
+.{{ token | hyphenate | replace("color-", "border-") }} { border: 1px solid {{ value }} }
+{%- endfor %}
 .border-red { border: 1px solid #FF0000 }
 .border-green { border: 1px solid #00FF00 }
 .border-blue { border: 1px solid #0000FF }

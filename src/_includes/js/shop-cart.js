@@ -82,7 +82,7 @@ async function displayCart() {
 
   if(has_delivery) {
     cart_summary += '<h3 class="heading">Delivery To</h3>';
-    cart_summary += '<div class="select"><select id="delivery-suburb" name="delivery-suburb" style="width:auto;margin-right:auto" onchange="updateDeliveryFee()">';
+    cart_summary += '<div class="select" style="width:auto;margin-right:auto"><select id="delivery-suburb" name="delivery-suburb" onchange="updateDeliveryFee()">';
     cart_summary += '<option default disabled selected hidden value="">please choose...</option>';
     for(const suburb in delivery_fees) {
       cart_summary += '<option ' + (suburb === delivery_suburb ? 'selected ' : '') + 'value="' + suburb + '">' + titleCase(suburb) + '&nbsp;</option>';
