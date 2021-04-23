@@ -1,7 +1,7 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <style>#top-menu{place-self:start}.logo{width:20vmin;min-width:125px;margin:0 auto}article h1,article h2,article h3,article h4{text-transform:lowercase;color:var(--color-light);transform:translateX(0)}@media screen and (max-width:750px){ #top-menu{display:none}#content{margin-top:3em}}@media screen and (orientation:landscape) and (max-width:950px){ #top-menu{display:none}#content{margin-top:3em}}#top-menu ul{display:flex;justify-content:space-evenly;margin:0;padding:0}#top-menu li{text-align:center;white-space:nowrap;padding:0.25em 0.5em}</style>
+  <style>.site-menu{place-self:start}.logo{width:20vmin;min-width:125px;margin:0 auto}article h1,article h2,article h3,article h4{text-transform:lowercase;color:var(--color-light);transform:translateX(0)}@media screen and (max-width:750px){ #content{margin-top:3em}}@media screen and (orientation:landscape) and (max-width:950px){ #content{margin-top:3em}}</style>
   <main class="canvas center height100vh" style="background:#00000080">
   {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
   {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
@@ -14,7 +14,7 @@
   {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
   {%- endfor -%}
   " sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
-  <nav id="top-menu" class="width100 wrapper page-wrapper text-lowercase text-shadow font-secondary link-lighter">
+  <nav class="site-menu width100 wrapper page-wrapper text-shadow" style="place-self:start">
     {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
     {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
   </nav>

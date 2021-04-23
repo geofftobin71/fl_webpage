@@ -224,6 +224,8 @@ blockquote {
   justify-content: space-evenly;
   margin: 0;
   padding: 0;
+  text-transform: lowercase;
+  font-family: var(--font-family-secondary);
 }
 
 .site-menu li {
@@ -231,6 +233,11 @@ blockquote {
   text-align: center;
   white-space: nowrap;
 }
+
+.site-menu a:link { color: var(--color-light); }
+.site-menu a:visited { color: var(--color-light); }
+.site-menu a:hover { color: var(--color-shade3); }
+.site-menu a:active { color: var(--color-shade3); }
 
 @media screen and (max-width: 750px) {
   .site-menu {
