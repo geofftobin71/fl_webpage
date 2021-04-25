@@ -74,7 +74,7 @@ eleventyComputed:
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
               <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
-              <label class="radio-label text-center round cursor-pointer" for="{{ variant.id }}">{{ variant.name }}
+              <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}
                 <br><span id="{{ variant.id }}-stock-count" style="display:none"></span>
               </label>
             {% endfor %}

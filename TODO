@@ -1,5 +1,4 @@
 contact page / contact form padding
-theme colors : check /var/www/html vs tokens
 Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup -> js not 11ty
 DEPRECATE:
 frame => aspect
