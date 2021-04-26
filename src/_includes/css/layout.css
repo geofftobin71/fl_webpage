@@ -34,7 +34,7 @@ strong {
 
 blockquote {
   font-family: var(--font-family-secondary);
-  background: var(--color-shade1);
+  background-color: var(--color-shade1);
   --box-padding: var(--step-0);
   padding: var(--box-padding);
   border: 2px solid var(--color-shade2);
@@ -62,12 +62,12 @@ blockquote {
 
 .info {
   color: var(--info-color);
-  background: var(--info-background);
+  background-color: var(--info-background);
 }
 
 .error {
   color: var(--error-color);
-  background: var(--error-background);
+  background-color: var(--error-background);
 }
 
 .caption {
@@ -303,7 +303,7 @@ blockquote {
   text-align: center;
   font-family: var(--font-family-secondary);
   color: var(--color-dark);
-  background: var(--color-shade3);
+  background-color: var(--color-shade3);
   padding: 0.5rem 1rem;
 }
 
@@ -316,7 +316,7 @@ blockquote {
   text-align: center;
   font-family: var(--font-family-secondary);
   color: var(--error-color);
-  background: var(--error-background);
+  background-color: var(--error-background);
   padding: 0.5rem 1rem;
 }
 

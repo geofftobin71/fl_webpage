@@ -17,7 +17,7 @@
   font-size: 16px;
   font-family: var(--font-family-base);
   padding: 0.25em 0.5em 0.15em;
-  background: var(--color-shade4);
+  background-color: var(--color-shade4);
   color: var(--color-dark);
   border: 2px solid var(--color-shade2);
   border-radius: var(--radius);
@@ -38,14 +38,14 @@
 .input[disabled] {
   cursor: not-allowed;
   /* pointer-events: none; */
-  background: var(--disabled-bg);
+  background-color: var(--disabled-bg);
   color: var(--disabled-fg);
   border-color: var(--disabled-fg);
   box-shadow: none;
 }
 
 .input:focus {
-  background: var(--color-light);
+  background-color: var(--color-light);
   outline: 2px solid transparent;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg);
 }
@@ -93,7 +93,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   font-family: var(--font-family-base);
   padding: 0.25em 0.5em 0.15em;
-  background: var(--color-autofill);
+  background-color: var(--color-autofill);
   color: var(--color-dark);
   border: 2px solid var(--color-shade1);
   border-radius: var(--radius);
@@ -127,7 +127,7 @@ input[type='radio'] {
 
 .radio-label {
   font-family: var(--font-family-secondary);
-  background: var(--button-bg);
+  background-color: var(--button-bg);
   color: var(--button-fg);
   padding: var(--step--2) var(--step--1);
   border: 1px solid currentcolor;
@@ -137,7 +137,7 @@ input[type='radio'] {
 
 @media (hover: hover) {
   .radio-label:hover {
-    background: var(--button-hover-bg);
+    background-color: var(--button-hover-bg);
     color: var(--button-hover-fg);
   }
 }
@@ -156,13 +156,13 @@ input[type="radio"]:focus + .radio-label {
 
 input[type="radio"]:checked + .radio-label {
   color: var(--color-light);
-  background: var(--color-shade1);
+  background-color: var(--color-shade1);
 }
 
 input[type="radio"][disabled] + .radio-label {
   cursor: not-allowed;
   /* pointer-events: none; */
-  background: var(--disabled-bg);
+  background-color: var(--disabled-bg);
   color: var(--disabled-fg);
   border-color: var(--disabled-fg);
   box-shadow: none;
@@ -237,7 +237,7 @@ select:focus + .focus {
 .select-disabled {
   cursor: not-allowed;
   /* pointer-events: none; */
-  background: var(--disabled-bg);
+  background-color: var(--disabled-bg);
   color: var(--disabled-fg);
   border-color: var(--disabled-fg);
   box-shadow: none;

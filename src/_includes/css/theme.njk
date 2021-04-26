@@ -38,7 +38,7 @@
 }
 
 {% for token, value in tokens.colors %}
-.{{ token | hyphenate | replace("color-", "bg-") }} { background: {{ value }} }
+.{{ token | hyphenate | replace("color-", "bg-") }} { background-color: {{ value }} }
 {%- endfor %}
 
 {% for token, value in tokens.colors %}
@@ -126,7 +126,7 @@ a.button[disabled], a.button[disabled]:hover, a.button[disabled]:focus, a.button
 button.button[disabled], button.button[disabled]:hover, button.button[disabled]:focus, button.button[disabled]:active {
   cursor: not-allowed;
   /* pointer-events: none; */
-  background: var(--disabled-bg);
+  background-color: var(--disabled-bg);
   color: var(--disabled-fg);
   border-color: var(--disabled-fg);
   box-shadow: none;
@@ -167,7 +167,7 @@ button.icon-button {
 
 body {
   color: var(--color-light);
-  background: var(--color-primary);
+  background-color: var(--color-primary);
   font-family: var(--font-family-base);
   font-weight: normal;
 }

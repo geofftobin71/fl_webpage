@@ -1,8 +1,5 @@
 contact page / contact form padding
 Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup -> js not 11ty
-DEPRECATE:
-frame => aspect
-.img-cover vs .background img => .canvas img
 
 move workshop name and email inputs to cart page
 check floriade-delivery-date has not passed in expireCart
