@@ -24,7 +24,7 @@
           {% set width = "320" %}
           {% set height = "480" %}
         {% endif %}
-        <li class="frame frame{{ aspect }} round shadow">
+        <li class="canvas round shadow aspect{{ aspect }}">
           {% if image.aspect_ratio > 1 %}
             {% set lqip_path = site.cloudinary_url + "/c_scale,w_32,h_" + (32 / image.aspect_ratio) | round(0, 'ceil') + ",q_auto,f_jpg,e_blur:100/" + (image.public_id | stripVersion) %}
           {% else %}

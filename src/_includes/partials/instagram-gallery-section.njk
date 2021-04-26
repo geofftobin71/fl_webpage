@@ -5,7 +5,7 @@
 <section class="wrapper">
   <ul class="auto-grid" style="--auto-grid-min-size:220px">
     {% for item in instagram_images -%}
-      <li class="frame frame1x1 round shadow">
+      <li class="canvas round shadow">
         <figure>
           {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto,e_blur:100/" + (item.public_id | stripVersion) %}
           {% set lqip_data = lqip_path | imgLqip %}

@@ -39,7 +39,7 @@ eleventyComputed:
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
     <div class="wrapper image-wrapper flow width100">
-      <figure class="frame frame1x1 round shadow width100 {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
+      <figure class="canvas round shadow width100 {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
         {% for product_image in product.images %}
           {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
           {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
@@ -73,7 +73,7 @@ eleventyComputed:
 
           <div class="radio-label-wrapper">
             {% for variant in valid_variants %}
-              <input id="{{ variant.id }}" class="visually-hidden" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
+              <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
               <label class="radio-label text-center round" for="{{ variant.id }}">{{ variant.name }}
                 <br><span id="{{ variant.id }}-stock-count" style="display:none"></span>
               </label>
@@ -89,7 +89,7 @@ eleventyComputed:
                 <span role="button" title="Less" aria-label="Less">{{ '/src/svg/minus-circle.svg' | svgContents | safe }}</span>
               </nav>
 
-              <input id="product-count" name="product-count" type="number" min="1" oninput="hideError()" value="1" class="text-center round" style="width:3em">
+              <input id="product-count" name="product-count" type="number" min="1" oninput="hideError()" value="1" class="input text-center round" style="width:3em">
 
               <nav class="req-js" onclick="document.getElementById('product-count').stepUp();hideError();">
                 <span role="button" title="More" aria-label="More">{{ '/src/svg/plus-circle.svg' | svgContents | safe }}</span>

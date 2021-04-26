@@ -529,59 +529,6 @@ article > * + * {
 .aspect3x4 { --n: 4; --d: 3; }
 .aspect9x16 { --n: 16; --d: 9; }
 
-/* ----- The Frame ----- */
-
-.frame {
-  overflow: hidden;
-  height: 0;
-  line-height: 0;
-  padding-bottom: calc(var(--n) / var(--d) * 100%);
-  position: relative;
-}
-
-.frame16x9 { --n: 9; --d: 16; }
-.frame4x3 { --n: 3; --d: 4; }
-.frame3x2 { --n: 2; --d: 3; }
-.frame3x1 { --n: 1; --d: 3; }
-.frame2x1 { --n: 1; --d: 2; }
-.frame1x1 { --n: 1; --d: 1; }
-.frame1x2 { --n: 2; --d: 1; }
-.frame2x3 { --n: 3; --d: 2; }
-.frame3x4 { --n: 4; --d: 3; }
-.frame9x16 { --n: 16; --d: 9; }
-
-.frame.round {
-  border: 0;
-  border-radius: var(--frame-radius, 0.5rem);
-  -webkit-background-clip: padding;
-  background-clip: padding-box;
-}
-
-.frame.shadow {
-  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
-}
-
-.frame > * {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.frame img,
-.frame video,
-.img-cover {
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-
 /* ----- Modal ----- */
 
 html[data-modal-active="true"] {

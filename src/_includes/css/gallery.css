@@ -10,37 +10,37 @@
   margin: calc(var(--step--2) / 2);
 }
 
-.gallery .frame4x3 {
+.gallery .aspect4x3 {
   grid-column-end: span 4;
   grid-row-end: span 3;
 }
 
-.gallery .frame3x2 {
+.gallery .aspect3x2 {
   grid-column-end: span 3;
   grid-row-end: span 2;
 }
 
-.gallery .frame2x1 {
+.gallery .aspect2x1 {
   grid-column-end: span 4;
   grid-row-end: span 2;
 }
 
-.gallery .frame1x1 {
+.gallery .aspect1x1 {
   grid-column-end: span 2;
   grid-row-end: span 2;
 }
 
-.gallery .frame1x2 {
+.gallery .aspect1x2 {
   grid-column-end: span 2;
   grid-row-end: span 4;
 }
 
-.gallery .frame2x3 {
+.gallery .aspect2x3 {
   grid-column-end: span 2;
   grid-row-end: span 3;
 }
 
-.gallery .frame3x4 {
+.gallery .aspect3x4 {
   grid-column-end: span 3;
   grid-row-end: span 4;
 }
@@ -50,37 +50,37 @@
     --auto-grid-min-size: 180px;
   }
 
-  .gallery .frame4x3 {
+  .gallery .aspect4x3 {
     grid-column-end: span 2;
     grid-row-end: span 1;
   }
 
-  .gallery .frame3x2 {
+  .gallery .aspect3x2 {
     grid-column-end: span 2;
     grid-row-end: span 1;
   }
 
-  .gallery .frame2x1 {
+  .gallery .aspect2x1 {
     grid-column-end: span 2;
     grid-row-end: span 1;
   }
 
-  .gallery .frame1x1 {
+  .gallery .aspect1x1 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame1x2 {
-    grid-column-end: span 1;
-    grid-row-end: span 2;
-  }
-
-  .gallery .frame2x3 {
+  .gallery .aspect1x2 {
     grid-column-end: span 1;
     grid-row-end: span 2;
   }
 
-  .gallery .frame3x4 {
+  .gallery .aspect2x3 {
+    grid-column-end: span 1;
+    grid-row-end: span 2;
+  }
+
+  .gallery .aspect3x4 {
     grid-column-end: span 1;
     grid-row-end: span 2;
   }
@@ -92,37 +92,37 @@
     grid-template-columns: 100%;
   }
 
-  .gallery .frame4x3 {
+  .gallery .aspect4x3 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame3x2 {
+  .gallery .aspect3x2 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame2x1 {
+  .gallery .aspect2x1 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame1x1 {
+  .gallery .aspect1x1 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame1x2 {
+  .gallery .aspect1x2 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame2x3 {
+  .gallery .aspect2x3 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }
 
-  .gallery .frame3x4 {
+  .gallery .aspect3x4 {
     grid-column-end: span 1;
     grid-row-end: span 1;
   }

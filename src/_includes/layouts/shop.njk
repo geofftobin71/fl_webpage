@@ -4,74 +4,115 @@
   {{ super() }}
   {% set css %}
   {% include "css/slider.css" %}
-  {% include "css/gallery.css" %}
   #shop .slider {
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     max-width: 100%;
   }
-  
+
+  #shop .slider-controls {
+    position: relative;
+  }
+
+  #shop .slider-controls nav {
+    z-index: 999;
+    position: absolute;
+    display: none;
+    border-radius: 50%;
+  }
+
+  #shop .slider-controls .prev {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  #shop .slider-controls .next {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   #shop .slider-item figure {
     width: 100%;
-    transition: transform 250ms ease;
+    transition: transform 250 ms ease;
   }
-  
+
   #shop .slider-item:hover figure {
     transform: scale(1.025);
   }
-  
+
   #shop .slider-item {
     width: 230px;
     flex: 0 0 230px;
-    padding: var(--step--1);
-    padding-bottom: var(--step-1);
+    margin: 0 var(--step--2);
+    padding: var( --step--1);
+    padding-bottom: var( --step-1);
   }
-  
+
+  #shop .slider-controls.gt1 nav {
+    display: flex;
+  }
+
   @media screen and (min-width:350px) {
     #shop .slider-item {
       width: 270px;
       flex: 0 0 270px;
     }
   }
-  
+
   @media screen and (min-width:400px) {
     #shop .slider-item {
       width: 300px;
       flex: 0 0 300px;
     }
   }
-  
+
   @media screen and (min-width:450px) {
     #shop .slider-item {
       width: 330px;
       flex: 0 0 330px;
     }
   }
-  
+
+  @media screen and (min-width:700px) {
+    #shop .slider-controls.gt1 nav {
+      display: none;
+    }
+    #shop .slider-controls.gt2 nav {
+      display: flex;
+    }
+  }
+
   @media screen and (min-width:1000px) {
     #shop .slider-item {
       width: 300px;
       flex: 0 0 300px;
     }
+    #shop .slider-controls.gt2 nav {
+      display: none;
+    }
+    #shop .slider-controls.gt3 nav {
+      display: flex;
+    }
   }
-  
+
   @media screen and (min-width:1200px) {
     #shop .slider-item {
       width: 375px;
       flex: 0 0 375px;
     }
   }
-  
-  @media screen and (min-width:1500px) {
+
+  @media screen and (min-width:1 500px) {
     #shop .slider-item {
       width: 425px;
       flex: 0 0 425px;
     }
   }
-  
+
   #shop .fader img {
     opacity: 0;
     animation-iteration-count: infinite;
