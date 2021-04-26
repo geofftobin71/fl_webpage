@@ -19,7 +19,7 @@
   padding: 0.25em 0.5em 0.15em;
   background-color: var(--color-shade4);
   color: var(--color-dark);
-  border: 2px solid var(--color-shade2);
+  border: 2px solid var(--button-border);
   border-radius: var(--radius);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
@@ -95,7 +95,7 @@ select:-webkit-autofill:focus {
   padding: 0.25em 0.5em 0.15em;
   background-color: var(--color-autofill);
   color: var(--color-dark);
-  border: 2px solid var(--color-shade1);
+  border: 2px solid var(--button-border);
   border-radius: var(--radius);
   -webkit-text-fill-color: var(--color-dark);
   transition: background-color 5000s ease-in-out 0s;
@@ -130,7 +130,7 @@ input[type='radio'] {
   background-color: var(--button-bg);
   color: var(--button-fg);
   padding: var(--step--2) var(--step--1);
-  border: 1px solid currentcolor;
+  border: 1.5px solid var(--button-border);
   margin: 4px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
@@ -198,7 +198,7 @@ select::-ms-expand {
   color: var(--button-fg);
   width: 100%;
   max-width: 100%; /* useful when width is set to anything other than 100% */
-  border: 1px solid currentcolor;
+  border: 1.5px solid var(--button-border);
   border-radius: var(--radius);
   padding: 0.6em 1.4em 0.5em 0.8em;
   margin: 0;
