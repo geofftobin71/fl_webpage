@@ -1,7 +1,7 @@
+Fake payment success -> orders DB
 contact page / contact form padding
 Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup -> js not 11ty
-
-move workshop name and email inputs to cart page
+Remove ClearCart button
 check floriade-delivery-date has not passed in expireCart
 retire unused php functions
 confirmCardPayment with customer and metadata

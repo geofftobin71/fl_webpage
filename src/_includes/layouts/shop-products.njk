@@ -8,44 +8,6 @@
       opacity: 0;
       animation-iteration-count: infinite;
     }
-    .radio-label-wrapper {
-      display:flex;
-      flex-wrap:wrap;
-      flex-direction:row;
-      justify-content:center;
-      margin-left: -4px;
-      margin-right: -4px;
-      margin-bottom: -4px;
-    }
-    .radio-label {
-      font-family: var(--font-family-secondary);
-      background: var(--button-bg);
-      color: var(--button-fg);
-      padding: var(--step--2) var(--step--1);
-      border: 1px solid currentcolor;
-      margin: 4px;
-    }
-    .radio-label:focus {
-      outline-offset: -0.2rem;
-      outline: 1px solid;
-    }
-    .radio-label:hover {
-      background: var(--button-fg);
-      color: var(--button-hl);
-      border-color: var(--button-hl);
-    }
-    input[type="radio"]:checked + .radio-label {
-      color: var(--color-light);
-      background: var(--color-shade1);
-    }
-    input[type="radio"][disabled] + .radio-label {
-      background: var(--button-bg);
-      color: grey;
-      border-color: grey;
-      cursor: default;
-      pointer-events: none;
-      box-shadow: none;
-    }
     .stepper-controls {
       display:flex;
       justify-content:center;
