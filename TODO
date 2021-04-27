@@ -1,24 +1,19 @@
+-- FIX --
+ENABLE contact form handler
 Fake payment success -> orders DB
 contact page / contact form padding
 Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup -> js not 11ty
-Remove ClearCart button
+REMOVE ClearCart button
 check floriade-delivery-date has not passed in expireCart
-retire unused php functions
 confirmCardPayment with customer and metadata
-check floriade-facebook-image
-showShopPage showShopCategoriesPage
-revisit contact form handler - check response message - js error handlers
 single product width on mobile - padding too big
-Button / Select / Radio css
-Product auto expiry date
-inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 single column gallery spacing
+inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
+
+-- FUTURE --
+retire unused php functions
+Product auto expiry date
 image(s) section
-:placeholder-shown / form styling
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler
-keyboard navigation / aria roles
-aria-label vs title
-aria-hidden on icons
 TEST social sharing buttons
-TEST Contact Form ALT text from image_info
