@@ -10,7 +10,7 @@
 
 {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
 {% set brightness = 100 - (header.brightness or 50) %}
-{% set metaImage = site.cloudinary_url + "/c_fill,g_auto,h_630,q_auto,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + image_id %}
+{% set metaImage = site.cloudinary_url + "/c_fill,g_auto,h_630,q_auto,f_jpg,w_1200,e_brightness_hsb:-" + brightness + "/co_black,e_shadow,h_615,l_icons:floriade-logo-white/" + image_id %}
 
 <title>{{ metaTitle | safe }}</title>
 <meta name="description" content="{{ metaDesc | safe }}" />

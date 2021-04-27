@@ -17,10 +17,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $message = clean($_POST["message"]);
   $email_heading = clean($_POST["heading"]);
   $email_banner = clean($_POST["banner"]);
+  $brightness = clean($_POST["brightness"]);
   $alt_text = clean($_POST["alt"]);
-
-  echo $name;
-  exit;
 
   $mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-thankyou.html");
   $self_mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-message.html");
@@ -30,6 +28,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     "%message%",
     "%email_heading%",
     "%email_banner%",
+    "%brightness%",
     "%alt%",
   ];
 
@@ -38,6 +37,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $message,
     $email_heading,
     $email_banner,
+    $brightness,
     $alt_text,
   ];
 
