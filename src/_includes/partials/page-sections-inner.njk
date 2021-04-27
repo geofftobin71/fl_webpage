@@ -70,15 +70,15 @@
       <form id="contact-form" class="flow req-js" action="/php/contact-form-handler.php" method="post">
         <div>
         <label for="name"><h4 class="heading">Name</h4></label>
-        <input class="input" id="name" name="name" type="text" placeholder="Your Name">
+        <input class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name" onfocus="hideError()">
         </div>
         <div>
         <label for="email"><h4 class="heading">Email</h4></label>
-        <input class="input" id="email" name="email" type="email" placeholder="Your Email">
+        <input class="input" id="email" name="email" type="email" autocomplete="email" data-error="Email is required" placeholder="Your Email" onfocus="hideError()">
         </div>
         <div>
         <label for="message"><h4 class="heading">Message</h4></label>
-        <textarea class="input" id="message" name="message" placeholder="{{ section.message or 'How can we help you?' }}" rows="10"></textarea>
+        <textarea class="input" id="message" name="message" data-error="Message is required" placeholder="{{ section.message or 'How can we help you?' }}" rows="10" onfocus="hideError()"></textarea>
         </div>
         {% set image_id = (section.email_banner | stripVersion) or 'icons/floriade-icon-round-512' %}
         {% set image_info = image_id | imgInfo %}
@@ -89,8 +89,10 @@
         <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ env.RECAPTCHA_SITE_KEY }}">
         <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
 
-        <p class="text-center font-secondary" style="color:red;min-height:1.5em" id="response-message">&nbsp;</p>
-        <div class="text-center"><button class="button" type="submit">{{ section.button or 'Send Message' }}</button></div>
+      <div class="vertical center flow">
+        <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
+        <button disabled id="submit-button" class="button" type="submit">{{ section.button or 'Send Message' }}</button>
+      </div>
         <p class="font-size--2 text-center">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
       </form>
       <noscript>

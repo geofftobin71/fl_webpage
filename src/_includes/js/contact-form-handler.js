@@ -1,38 +1,53 @@
-const contact_form = document.getElementById("contact-form");
-const name_input = document.getElementById("name-input");
-const email_input = document.getElementById("email-input");
-const message_input = document.getElementById("message-input");
-const recaptcha_site_key = document.getElementById("recaptcha-site-key");
+document.addEventListener("DOMContentLoaded",function(){contactFormHandler();},false);
 
-var response_message = document.getElementById("response-message");
+function contactFormHandler() {
 
-name_input.addEventListener("focus", event => {
-  response_message.textContent = " ";
-},false);
+  const contact_form = document.getElementById("contact-form");
+  const email_input = contact_form.querySelector("#email");
+  const recaptcha_site_key = document.getElementById("recaptcha-site-key");
 
-email_input.addEventListener("focus", event => {
-  response_message.textContent = " ";
-},false);
+  contact_form.addEventListener("submit", event => {
 
-message_input.addEventListener("focus", event => {
-  response_message.textContent = " ";
-},false);
+    event.preventDefault();
 
-contact_form.addEventListener("submit", event => {
+    document.getElementById("submit-button").disabled = true;
 
-  event.preventDefault();
+    const inputs = contact_form.querySelectorAll("input,textarea");
+    for(let i = 0; i < inputs.length; i++) {
+      if(window.getComputedStyle(inputs[i]).display !== "none") {
+        if(inputs[i].value.trim().length === 0) {
+          showError(inputs[i].dataset.error || "Error");
+          document.getElementById("submit-button").disabled = false;
+          return false;
+        }
+      }
+    };
 
-  if(name_input.value == "") { response_message.textContent = "Please enter your Name"; return; }
-  if(email_input.value == "") { response_message.textContent = "Please enter your Email Address"; return; }
-  if(!(/\S+@\S+\.\S+/.test(email_input.value))) { response_message.textContent = "Please enter a valid Email Address"; return; }
-  if(message_input.value == "") { response_message.textContent = "Please enter a Message"; return; }
-
-  response_message.textContent = " ";
-
-  grecaptcha.ready(function() {
-    grecaptcha.execute(recaptcha_site_key.value, {action: "contactform"}).then(function(token) {
-      document.getElementById("gRecaptchaResponse").value = token;
-      contact_form.submit();
+    grecaptcha.ready(function() {
+      grecaptcha.execute(recaptcha_site_key.value, {action: "contactform"}).then(function(token) {
+        document.getElementById("gRecaptchaResponse").value = token;
+        contact_form.submit();
+      });
     });
-  });
-},false);
+  },false);
+
+  document.getElementById("submit-button").disabled = false;
+}
+
+function showError(message) {
+  const error_msg = document.getElementById('error-msg');
+  if(error_msg) {
+    error_msg.innerText = message;
+    error_msg.style.visibility = "visible";
+  }
+
+  const info = document.getElementById("info");
+  if(info) { info.style.display = "none"; }
+}
+
+function hideError() {
+  const error_msg = document.getElementById('error-msg');
+  if(error_msg) {
+    error_msg.style.visibility = "hidden";
+  }
+}

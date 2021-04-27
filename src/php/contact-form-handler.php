@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/../php/mail-config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/../php/recaptcha-config-v3.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/mail-config.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/recaptcha-config-v3.php";
 
 function clean($data) {
   $data = trim($data);
@@ -9,25 +9,28 @@ function clean($data) {
   return $data;
 }
 
-if ($_POST) {
+if($_SERVER["REQUEST_METHOD"] === "POST") {
 
-  $name = clean($_POST['name']);
-  $email_address = clean($_POST['email']);
-  $subject = clean($_POST['subject']);
-  $message = clean($_POST['message']);
-  $email_heading = clean($_POST['heading']);
-  $email_banner = clean($_POST['banner']);
-  $alt_text = clean($_POST['alt']);
+  $name = clean($_POST["name"]);
+  $email_address = clean($_POST["email"]);
+  $subject = clean($_POST["subject"]);
+  $message = clean($_POST["message"]);
+  $email_heading = clean($_POST["heading"]);
+  $email_banner = clean($_POST["banner"]);
+  $alt_text = clean($_POST["alt"]);
 
-  $mail_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/email/contact-thankyou.html');
-  $self_mail_template = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/email/contact-message.html');
+  echo $name;
+  exit;
+
+  $mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-thankyou.html");
+  $self_mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-message.html");
 
   $placeholders = [
-    '%name%',
-    '%message%',
-    '%email_heading%',
-    '%email_banner%',
-    '%alt%',
+    "%name%",
+    "%message%",
+    "%email_heading%",
+    "%email_banner%",
+    "%alt%",
   ];
 
   $values = [
@@ -41,8 +44,12 @@ if ($_POST) {
   $mail_body = str_replace($placeholders, $values, $mail_template);
   $self_mail_body = str_replace($placeholders, $values, $self_mail_template);
 
+  echo $mail_body;
+  exit;
+
   // ========== reCaptcha ==========
 
+  /*
   $g_recaptcha_response = $_POST["g-recaptcha-response"];
   $remote_ip = $_SERVER["REMOTE_ADDR"];
   $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($recaptcha_secret) . '&response=' . urlencode($g_recaptcha_response) . '&remoteip=' . urlencode($remote_ip);
@@ -68,7 +75,7 @@ if ($_POST) {
         header('Location:/sorry-contact-form-error/');
         // http_response_code(500);
         // echo '<span style="color:red">A: There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
-        return;
+        exit;
       }
 
       // ========== Confirmation Email ==========
@@ -86,7 +93,7 @@ if ($_POST) {
         header('Location:/sorry-contact-form-error/');
         // http_response_code(500);
         // echo '<span style="color:red">B: There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
-        return;
+        exit;
       }
 
       header('Location:/thankyou-for-contacting-floriade/');
@@ -96,14 +103,15 @@ if ($_POST) {
       header('Location:/sorry-contact-form-error/');
       // http_response_code(500);
       // echo '<span style="color:red">C: There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
-      return;
+      exit;
     }
   } elseif($responseKeys["error-codes"]) {
     header('Location:/sorry-contact-form-error/');
     // http_response_code(500);
     // echo '<span style="color:red">D: There was a problem sending your message.<br>' . json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT) . '</span>';
-    return;
+    exit;
   }
+   */
 }
 
 ?>
