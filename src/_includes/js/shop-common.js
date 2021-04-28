@@ -80,3 +80,13 @@ function titleCase(str) {
     return word.replace(word[0], word[0].toUpperCase());
   }).join(' ');
 }
+
+function uniqueId(len = 8) {
+  const hex = '0123456789abcdef';
+  let output = '';
+  for (let i = 0; i < len; ++i) {
+    output += hex.charAt(Math.floor(Math.random() * hex.length));
+  }
+  return output;
+}
+

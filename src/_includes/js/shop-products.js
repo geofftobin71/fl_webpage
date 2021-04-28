@@ -187,15 +187,6 @@ function addToCart(product_id, is_finite, has_variants, variant_error) {
   }
 }
 
-function uniqueId(len = 8) {
-  const hex = '0123456789abcdef';
-  let output = '';
-  for (let i = 0; i < len; ++i) {
-    output += hex.charAt(Math.floor(Math.random() * hex.length));
-  }
-  return output;
-}
-
 function selectVariant(variant_id) {
   // Set variant max
   hideError();

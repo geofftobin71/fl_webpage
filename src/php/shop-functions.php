@@ -16,6 +16,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/stripe-test-config.php";
 use SleekDB\Store;
 $stockStore = new Store("stock", $sleekDir, $sleekConfig);
 $orderStore = new Store("orders", $sleekDir, $sleekConfig);
+$workshopStore = new Store("workshops", $sleekDir, $sleekConfig);
 
 date_default_timezone_set("Pacific/Auckland");
 

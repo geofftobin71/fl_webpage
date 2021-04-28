@@ -45,6 +45,7 @@ foreach($cart as $cart_item) {
 
 $description = implode(", ", $descriptions);
 
+/* FIXME
 try {
   if(isset($_SESSION["payment-intent-id"])) {
     $payment_intent = $stripe->paymentIntents->update(
@@ -67,10 +68,11 @@ try {
   http_response_code(500);
   echo json_encode(['error' => $e->getMessage()]);
 }
+ */
 
 $output = [
   'publishableKey' => $stripe_keys['publishable_key'],
-  'clientSecret' => $payment_intent->client_secret,
+  'clientSecret' => 'pi_1Il2WdLjelSQaoWrC9vtnVSv_secret_YNdFdbKvnXg1sV3xdPzluUreq' // FIXME $payment_intent->client_secret,
 ];
 
 echo json_encode($output);

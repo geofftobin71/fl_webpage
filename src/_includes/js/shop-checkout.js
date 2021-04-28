@@ -242,7 +242,7 @@ function setupElements(data) {
     }
   });
 
-  card.mount("#card-input");
+  // FIXME card.mount("#card-input");
 
   card.addEventListener("change", function(event) {
     if(event.error) {
@@ -262,6 +262,13 @@ function setupElements(data) {
 function pay(stripe, card, clientSecret, form) {
   disableCheckoutForm();
 
+  // FIXME
+  document.getElementById("payment-intent-id").value = 'pi_' + uniqueId(24);
+  localStorage.clear();
+  form.submit();
+  // FIXME
+
+  /* FIXME
   stripe.confirmCardPayment(
     clientSecret, 
     { 
@@ -293,5 +300,6 @@ function pay(stripe, card, clientSecret, form) {
         form.submit();
       }
     });
+    */
 }
 

@@ -1,4 +1,6 @@
 -- FIX --
+Mark stocked items SOLD in place_order
+Check contact form recaptcha error handling
 ENABLE contact form handler
 Fake payment success -> orders DB
 contact page / contact form padding
