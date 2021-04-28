@@ -33,36 +33,36 @@ sitemap:
       <div id="summary" class="font-secondary"></div>
       <hr />
 
-      <h2 class="delivery-group heading text-center" style="display:none">Delivery</h2>
-      <hr class="delivery-group" style="display:none" />
-      <div class="delivery-group flow" style="display:none">
+      <h2 class="delivery-group heading text-center">Delivery</h2>
+      <hr class="delivery-group" />
+      <div class="delivery-group flow">
         <div>
           <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
-          <input class="delivery-group input" style="display:none" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <input class="delivery-group input" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()" onblur="cacheValue(this)">
           <p class="caption text-left text-lowercase">Name of the person receiving the flowers</p>
         </div>
 
         <div>
           <label for="delivery-phone"><h4 class="heading">Recipient Phone</h4></label>
-          <input class="delivery-group input" style="display:none" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <input class="delivery-group input" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
           <p class="caption text-left text-lowercase">In case need to contact the recipient to make alternative delivery arrangements</p>
         </div>
 
-        <div class="delivery-address-group" style="display:none">
+        <div class="delivery-address-group">
           <label for="delivery-address"><h4 class="heading">Delivery Address</h4></label>
-          <input class="delivery-address-group input" style="display:none" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <input class="delivery-address-group input" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError()" onblur="cacheValue(this)">
           <p class="caption text-left text-lowercase">Street address for delivery</p>
         </div>
 
-        <div class="delivery-address-group" style="display:none">
+        <div class="delivery-address-group">
           <label for="delivery-suburb"><h4 class="heading">Delivery Suburb</h4></label>
-          <input class="delivery-address-group input" style="display:none" id="delivery-suburb" name="delivery-suburb" type="text" readonly onfocus="hideError()">
+          <input class="delivery-address-group input" id="delivery-suburb" name="delivery-suburb" type="text" readonly onfocus="hideError()">
         </div>
 
-        <div class="delivery-group" style="display:none">
-          <label for="delivery-date-select"><h4 class="heading">Delivery Date</h4></label>
+        <div>
+          <label for="delivery-date-select"><h4 id="delivery-date-label" class="heading">Delivery Date</h4></label>
           <div class="select" id="delivery-date-select">
-            <select id="delivery-date" name="delivery-date" data-error="Delivery Date is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery / Pickup Date is required" onfocus="hideError()" onblur="cacheValue(this)">
               <option default disabled selected hidden value="">please choose...</option>
               {% set today = now_nz %}
               {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
@@ -76,8 +76,26 @@ sitemap:
           <p class="caption text-left text-lowercase">Orders must be made by 10am for same day delivery</p>
         </div>
       </div>
-      <p class="delivery-group font-size-1" style="display:none"></p>
-      <hr class="delivery-group" style="display:none" />
+      <p class="delivery-group font-size-1"></p>
+      <hr class="delivery-group" />
+
+      <h2 class="delivery-group heading text-center">Gift tag Message</h2>
+      <hr class="delivery-group" />
+      <div class="delivery-group">
+        <label for="gift-tag-message"><h4 class="heading">Gift tag Message</h4></label>
+        <textarea class="delivery-group input" id="gift-tag-message" name="gift-tag-message" placeholder="If you would like to send the recipient a message along with the flowers, please enter it here." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+      </div>
+      <p class="delivery-group font-size-1"></p>
+      <hr class="delivery-group" />
+
+      <h2 class="delivery-group heading text-center">Special Requests</h2>
+      <hr class="delivery-group" />
+      <div class="delivery-group">
+        <label for="special-requests"><h4 class="heading">Special Requests</h4></label>
+        <textarea class="delivery-group input" id="special-requests" name="special-requests" placeholder="If you would like to request a specific variety or colour, please give at least 48 hours notice. Please note we cannot guarantee all floral varieties due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+      </div>
+      <p class="delivery-group font-size-1"></p>
+      <hr class="delivery-group" />
 
       <h2 class="heading text-center">Payment</h2>
       <hr />

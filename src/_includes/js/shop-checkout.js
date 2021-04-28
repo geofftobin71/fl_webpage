@@ -112,6 +112,10 @@ async function displayCheckout() {
         element.style.display = "block";
       });
     }
+
+    if(delivery_suburb === "pickup in store") {
+      document.getElementById("delivery-date-label").innerText = "Pickup Date";
+    }
   }
 
   const now = DateTime.now();
@@ -124,7 +128,7 @@ async function displayCheckout() {
   document.getElementById("cart").value = JSON.stringify(cart);
   document.getElementById("checkout-form").style.display = "block";
 
-  const inputs = document.querySelectorAll("input,select");
+  const inputs = document.querySelectorAll("input,select,textarea");
   for(let i = 0; i < inputs.length; i++) {
     let value = localStorage.getItem("floriade-" + inputs[i].id);
     if(value) { inputs[i].value = value; }
