@@ -67,7 +67,7 @@ sitemap:
               {% set today = now_nz %}
               {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
               {% for day in days -%}
-                {% set invalid = (day | readableDate in non_delivery_dates) or (day.weekday == 1) or (day.weekday == 7) %}
+                {% set invalid = ((day | readableDate in non_delivery_dates) or (day.weekday == 1) or (day.weekday == 7)) and (day | readableDate not in special_delivery_dates) %}
                 <option {{ 'id="today"' | safe if day == today }} {{ ' disabled' if invalid }} value="{{ day.weekdayLong }} {{ day | readableDate }}">{{ day.weekdayLong }} {{ day | readableDate }}{{ ' (today)' if day == today }}</option>
                 {%- endfor %}
             </select>
