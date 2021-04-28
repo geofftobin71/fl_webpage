@@ -1,11 +1,11 @@
-<section id="reviews" class="bg-shade1 font-size-1">
-  <ul class="slider" style="padding:1em 0">
+<section id="reviews" class="bg-shade1 font-size-1" style="--section-space:0">
+  <ul class="slider" style="padding:1em 0;align-items:center">
     {% for item in reviews | filterWeddingReviews(false) | removeLongReviews(300) | shuffle | head(5) -%}
       <li id="review{{ loop.index }}" class="slider-item">
         <div class="wrapper text-wrapper font-secondary">
-          <div class="vertical">
+          <div class="vertical center flow">
             <p class="font-size-1 text-center">{{ item.review }}</p>
-            <p class="font-size-0 text-center color-shade4" style="margin-top:1em">{{ item.name }}</p>
+            <p class="font-size-0 text-center color-shade4">{{ item.name }}</p>
           </div>
         </div>
       </li>
@@ -20,5 +20,5 @@
     </nav>
   </div>
   <br>
-  <div class="text-center font-size-0"><a href="/reviews" class="button" role="button">Read More Reviews</a></div>
+  <div class="horizontal center font-size-0"><a href="/reviews" class="button" role="button">Read More Reviews</a></div>
 </section>
