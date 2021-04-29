@@ -45,7 +45,7 @@ sitemap:
         <div>
           <label for="delivery-phone"><h4 class="heading">Recipient Phone</h4></label>
           <input class="delivery-group input" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
-          <p class="caption text-left text-lowercase">In case need to contact the recipient to make alternative delivery arrangements</p>
+          <p class="caption text-left text-lowercase">In case we need to contact the recipient to make alternative delivery arrangements</p>
         </div>
 
         <div class="delivery-address-group">
@@ -132,7 +132,7 @@ sitemap:
         </a>
         <button id="place-order-button" disabled class="button bigfonts" type="submit">
           <span id="cart-icon">{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span>
-          <span id="spinner-icon" style="display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
+          <span id="spinner-icon" style="margin-right:0.5em;display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
           <p id="submit-text">Order Now</p>
         </button>
       </div>

@@ -156,7 +156,6 @@ async function displayCheckout() {
       return setupElements(json);
     })
     .then(({ stripe, card, clientSecret }) => {
-      enableCheckoutForm();
 
       let form = document.getElementById("checkout-form");
       form.addEventListener("submit", function(event) {
@@ -177,6 +176,8 @@ async function displayCheckout() {
 
         pay(stripe, card, clientSecret, form);
       },false);
+
+      enableCheckoutForm();
     });
 
 }
@@ -264,7 +265,7 @@ function pay(stripe, card, clientSecret, form) {
 
   // FIXME
   document.getElementById("payment-intent-id").value = 'pi_' + uniqueId(24);
-  localStorage.clear();
+  // localStorage.clear();
   form.submit();
   // FIXME
 

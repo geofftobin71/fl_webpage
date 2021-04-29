@@ -318,9 +318,10 @@ function cartHasDelivery($cart) {
 if(isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
   unset($_SESSION["cart"]);
 }
- */
-$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
 if(!isset($_SESSION["cart"])) { $_SESSION["cart"] = array(); }
+ */
+
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
 ?>
