@@ -27,6 +27,14 @@ sitemap:
       <h2 class="delivery-group heading text-center">Delivery</h2>
       <hr class="delivery-group" />
       <div class="delivery-group flow">
+
+        <div class="radio-label-wrapper">
+          <input checked id="delivery-option" name="delivery-option" type="radio" value="delivery" onclick="selectDeliveryOption(true)">
+          <label class="radio-label text-center round" for="delivery-option" style="min-width:10em" x-apple-data-detectors="false">Delivery</label>
+          <input id="pickup-option" name="delivery-option" type="radio" value="pickup" onclick="selectDeliveryOption(false)">
+          <label class="radio-label text-center round" for="pickup-option" style="min-width:10em" x-apple-data-detectors="false">Pickup in Store</label>
+        </div>
+
         <div>
           <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
           <input class="delivery-group input" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()" onblur="cacheValue(this)">
@@ -47,7 +55,7 @@ sitemap:
 
         <div class="delivery-address-group">
           <label for="delivery-suburb-select"><h4 class="heading">Delivery Suburb</h4></label>
-          <div class="delivery-address-group select" id="delivery-suburb-select">
+          <div class="select" id="delivery-suburb-select">
             <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateDeliveryFee()">
               <option default disabled selected hidden value="">please choose...</option>
               {% for suburb, fee in delivery_fees -%}
@@ -91,7 +99,7 @@ sitemap:
       <hr class="delivery-group" />
       <div class="delivery-group">
         <label for="special-requests"><h4 class="heading">Special Requests</h4></label>
-        <textarea class="delivery-group input" id="special-requests" name="special-requests" placeholder="If you would like to request a specific variety or colour, please give at least 48 hours notice. Please note we cannot guarantee all floral varieties due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+        <textarea class="delivery-group input" id="special-requests" name="special-requests" placeholder="Please enter any special delivery instructions. If you would like to request a specific variety or colour of flowers, please give at least 48 hours notice. We cannot guarantee all floral varieties or colours due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
       </div>
       <p class="delivery-group font-size-1"></p>
       <hr class="delivery-group" />

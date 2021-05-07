@@ -25,7 +25,7 @@ async function displayCheckout() {
     delivery_suburb = delivery_suburb.toLowerCase();
   }
   */
-  let delivery_suburb = "miramar";
+  let delivery_suburb = "pickup in store";
 
   let cart_count = cart.length;
   let cart_items = "";
@@ -70,7 +70,7 @@ async function displayCheckout() {
   });
 
   cart_summary += '<h3 class="heading">Cart Total</h3>';
-  cart_summary += '<p class="color-shade3">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
+  cart_summary += '<p class="color-shade3" style="padding-left:2em">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
   cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
 
   let has_delivery = false;
