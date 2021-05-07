@@ -1,10 +1,12 @@
 -- FIX --
 Mark stocked items SOLD in place_order
+Query CC last four digits from stripe payment -> orders / bookings
 Check contact form recaptcha error handling
 ENABLE contact form handler
 Fake payment success -> orders DB
 contact page / contact form padding
 Date Input : non_delivery_dates for delivery / shop_closed_dates for pickup -> js not 11ty
++ special open dates
 REMOVE ClearCart button
 check floriade-delivery-date has not passed in expireCart
 confirmCardPayment with customer and metadata
