@@ -18,21 +18,12 @@ sitemap:
     <div id="empty-cart" class="vertical center middle flow" style="display:none;--flow-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>
       <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
-      <div class="text-center">
-        <a class="button" href="/shop/">
-          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
-        </a>
-      </div>
+      <a class="button" href="/shop/">
+        <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+      </a>
     </div>
 
     <form id="checkout-form" action="/php/place-order.php" method="post" class="width100" style="display:none">
-      <h2 class="heading text-center">Order Summary</h2>
-      <hr />
-      <div id="items" class="font-secondary"></div>
-      <hr />
-      <div id="summary" class="font-secondary"></div>
-      <hr />
-
       <h2 class="delivery-group heading text-center">Delivery</h2>
       <hr class="delivery-group" />
       <div class="delivery-group flow">
@@ -55,14 +46,22 @@ sitemap:
         </div>
 
         <div class="delivery-address-group">
-          <label for="delivery-suburb"><h4 class="heading">Delivery Suburb</h4></label>
-          <input class="delivery-address-group input" id="delivery-suburb" name="delivery-suburb" type="text" readonly onfocus="hideError()">
+          <label for="delivery-suburb-select"><h4 class="heading">Delivery Suburb</h4></label>
+          <div class="delivery-address-group select" id="delivery-suburb-select">
+            <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateDeliveryFee()">
+              <option default disabled selected hidden value="">please choose...</option>
+              {% for suburb, fee in delivery_fees -%}
+                <option value="{{ suburb }}">{{ suburb | title }}&nbsp;</option>
+                {%- endfor %}
+            </select>
+            <span class="focus"></span>
+          </div>
         </div>
 
         <div>
           <label for="delivery-date-select"><h4 id="delivery-date-label" class="heading">Delivery Date</h4></label>
           <div class="select" id="delivery-date-select">
-            <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery / Pickup Date is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery / Pickup Date is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateDeliveryFee()">
               <option default disabled selected hidden value="">please choose...</option>
               {% set today = now_nz %}
               {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
@@ -73,7 +72,7 @@ sitemap:
             </select>
             <span class="focus"></span>
           </div>
-          <p class="caption text-left text-lowercase">Orders must be made by 10am for same day delivery</p>
+          <p class="caption text-left text-lowercase">Orders must be received by 10am for same day delivery</p>
         </div>
       </div>
       <p class="delivery-group font-size-1"></p>
@@ -96,6 +95,13 @@ sitemap:
       </div>
       <p class="delivery-group font-size-1"></p>
       <hr class="delivery-group" />
+
+      <h2 class="heading text-center">Order Summary</h2>
+      <hr />
+      <div id="items" class="font-secondary"></div>
+      <hr />
+      <div id="summary" class="font-secondary"></div>
+      <hr />
 
       <h2 class="heading text-center">Payment</h2>
       <hr />

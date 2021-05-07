@@ -21,9 +21,11 @@ sitemap:
     <div id="empty-cart" class="vertical center middle flow" style="display:none;--flow-space:2em">
       <h2 class="heading">Your Cart is Empty</h2>
       <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
-      <a class="button" href="/shop/">
-        <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
-      </a>
+      <div class="text-center">
+        <a class="button" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+        </a>
+      </div>
     </div>
 
     <div id="cart-form" class="flow width100" style="display:none;--flow-space:2em">
@@ -37,15 +39,15 @@ sitemap:
         <a class="button" href="/shop/">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
         </a>
-        <a id="checkout-button" class="button bigfonts" href="/checkout/">
+        <button id="checkout-button" disabled class="button bigfonts" onclick="checkout()">
           <span>{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span><p>Checkout</p>
-        </a>
+        </button>
       </div>
       <div class="horizontal center">
         <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
       </div>
     </div>
-  </div>
+    </div>
 </section>
 
 <script>var cart_total=0;document.addEventListener("DOMContentLoaded",function(){displayCart();},false);</script>

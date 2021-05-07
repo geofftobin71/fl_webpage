@@ -1,5 +1,5 @@
 -- FIX --
-Mark stocked items SOLD in place_order
+Cart expiry check at Checkout
 Query CC last four digits from stripe payment -> orders / bookings
 Check contact form recaptcha error handling
 ENABLE contact form handler

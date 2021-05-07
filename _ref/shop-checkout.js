@@ -16,7 +16,6 @@ async function displayCheckout() {
     return;
   }
 
-  /*
   let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
 
   if(!delivery_suburb) {
@@ -24,8 +23,6 @@ async function displayCheckout() {
   } else {
     delivery_suburb = delivery_suburb.toLowerCase();
   }
-  */
-  let delivery_suburb = "miramar";
 
   let cart_count = cart.length;
   let cart_items = "";

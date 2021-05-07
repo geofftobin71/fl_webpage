@@ -1,201 +1,156 @@
-{% extends "layouts/page.njk" %}
+---
+layout: layouts/shop-checkout.njk
+title: Checkout
+description: Floriade Checkout
+header_image: "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
+header:
+  title: Floriade Checkout
+permalink: "checkout/index.html"
+sitemap:
+  ignore: true
+---
 
-{% block pre %}
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php'; ?>
+{% include "partials/javascript-warning.njk" %}
 
-<?php
+<section id="checkout" style="min-height:50vh">
+  <div class="wrapper text-wrapper">
 
-$delivery_suburb = "";
-$return_url = "";
+    <div id="empty-cart" class="vertical center middle flow" style="display:none;--flow-space:2em">
+      <h2 class="heading">Your Cart is Empty</h2>
+      <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
+      <div class="text-center">
+        <a class="button" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+        </a>
+      </div>
+    </div>
 
-$page = "Checkout";
+    <form id="checkout-form" action="/php/place-order.php" method="post" class="width100" style="display:none">
+      <h2 class="heading text-center">Order Summary</h2>
+      <hr />
+      <div id="items" class="font-secondary"></div>
+      <hr />
+      <div id="summary" class="font-secondary"></div>
+      <hr />
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+      <h2 class="delivery-group heading text-center">Delivery</h2>
+      <hr class="delivery-group" />
+      <div class="delivery-group flow">
+        <div>
+          <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
+          <input class="delivery-group input" id="delivery-name" name="delivery-name" type="text" autocomplete="name" data-error="Recipient Name is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <p class="caption text-left text-lowercase">Name of the person receiving the flowers</p>
+        </div>
 
-  if(isset($_POST["return-url"])) { $return_url = clean($_POST["return-url"]); }
-  if(empty($return_url)) { criticalError($page, "No Return URL"); }
+        <div>
+          <label for="delivery-phone"><h4 class="heading">Recipient Phone</h4></label>
+          <input class="delivery-group input" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <p class="caption text-left text-lowercase">In case we need to contact the recipient to make alternative delivery arrangements</p>
+        </div>
 
-  if(isset($_POST["delivery-suburb"])) { $delivery_suburb = clean($_POST["delivery-suburb"]); }
+        <div class="delivery-address-group">
+          <label for="delivery-address"><h4 class="heading">Delivery Address</h4></label>
+          <input class="delivery-address-group input" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <p class="caption text-left text-lowercase">Street address for delivery</p>
+        </div>
 
-  if(empty($delivery_suburb)) {
-    $_SESSION["error"] = "Please choose a delivery option";
-    header("Location:" . $return_url);
-    exit;
-  }
+        <div class="delivery-address-group">
+          <label for="delivery-suburb"><h4 class="heading">Delivery Suburb</h4></label>
+          <input class="delivery-address-group input" id="delivery-suburb" name="delivery-suburb" type="text" readonly onfocus="hideError()">
+        </div>
 
-  $timeout = microtime(true) - $cart_expiry_time;
+        <div>
+          <label for="delivery-date-select"><h4 id="delivery-date-label" class="heading">Delivery Date</h4></label>
+          <div class="select" id="delivery-date-select">
+            <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery / Pickup Date is required" onfocus="hideError()" onblur="cacheValue(this)">
+              <option default disabled selected hidden value="">please choose...</option>
+              {% set today = now_nz %}
+              {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
+              {% for day in days -%}
+                {% set invalid = ((day | readableDate in non_delivery_dates) or (day.weekday == 1) or (day.weekday == 7)) and (day | readableDate not in special_delivery_dates) %}
+                <option {{ 'id="today"' | safe if day == today }} {{ ' disabled' if invalid }} value="{{ day.weekdayLong }} {{ day | readableDate }}">{{ day.weekdayLong }} {{ day | readableDate }}{{ ' (today)' if day == today }}</option>
+                {%- endfor %}
+            </select>
+            <span class="focus"></span>
+          </div>
+          <p class="caption text-left text-lowercase">Orders must be made by 10am for same day delivery</p>
+        </div>
+      </div>
+      <p class="delivery-group font-size-1"></p>
+      <hr class="delivery-group" />
 
-  $cart_expired = false;
+      <h2 class="delivery-group heading text-center">Gift tag Message</h2>
+      <hr class="delivery-group" />
+      <div class="delivery-group">
+        <label for="gift-tag-message"><h4 class="heading">Gift tag Message</h4></label>
+        <textarea class="delivery-group input" id="gift-tag-message" name="gift-tag-message" placeholder="If you would like to send the recipient a message along with the flowers, please enter it here." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+      </div>
+      <p class="delivery-group font-size-1"></p>
+      <hr class="delivery-group" />
 
-  foreach($_SESSION["cart"] as $cart_item) {
-    if(isset($cart_item["stock-id"])) {
-      $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-      if(($cart_item["updated"] < $timeout) || ($cart_item["updated"] < $stock_item["updated"])) {
-        $cart_expired = true;
-      }
-    }
-  }
+      <h2 class="delivery-group heading text-center">Special Requests</h2>
+      <hr class="delivery-group" />
+      <div class="delivery-group">
+        <label for="special-requests"><h4 class="heading">Special Requests</h4></label>
+        <textarea class="delivery-group input" id="special-requests" name="special-requests" placeholder="If you would like to request a specific variety or colour, please give at least 48 hours notice. Please note we cannot guarantee all floral varieties due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
+      </div>
+      <p class="delivery-group font-size-1"></p>
+      <hr class="delivery-group" />
 
-  if($cart_expired) {
-    foreach($_SESSION["cart"] as $cart_item) {
-      if(isset($cart_item["stock-id"])) {
-        $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-        if($cart_item["updated"] == $stock_item["updated"]) {
-          $stock_item["updated"] = microtime(true) - $cart_reset_time;
-          $stockStore->update($stock_item);
-        }
-      }
-    }
+      <h2 class="heading text-center">Payment</h2>
+      <hr />
 
-    unset($_SESSION["cart"]);
-    unset($_SESSION["payment-intent-id"]);
-    $_SESSION["cart"] = array();
-    $_SESSION["error"] = "Your session has timed out";
-    header("Location:" . $return_url);
-    exit;
-  }
+      <div class="flow">
+        <div>
+          <label for="cardholder-name"><h4 class="heading">Cardholder Name</h4></label>
+          <input class="input" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Cardholder Name is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <p class="caption text-left text-lowercase">Name as it appears on your credit card</p>
+        </div>
 
-  $_SESSION["delivery-suburb"] = $delivery_suburb;
-}
+        <div>
+          <label for="cardholder-email"><h4 class="heading">Cardholder Email</h4></label>
+          <input class="input" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" data-error="Cardholder Email is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
+        </div>
 
-?>
-{% endblock %}
+        <div>
+          <label for="card-input"><h4 class="heading">Credit Card</h4></label>
+          <div id="card-input" class="input" onfocus="hideError()"></div>
+        </div>
+      </div>
 
-{% block foot %}
-  {{ super() }}
+      <hr />
 
-  {% set js %}
-  var stripe;
+      <div class="text-center font-secondary">
+        <p>All prices are in New Zealand dollars <span style="white-space:nowrap">and include GST.</span></p>
+        <p>By using this form you agree to our <a href="/terms-and-conditions/" target="_blank" title="Opens in a new page"><span style="white-space:nowrap">Terms and Conditions</span></a>.</p>
+      </div>
 
-  var changeLoadingState = function(isLoading) {
-    if (isLoading) {
-      document.querySelector("button").disabled = true;
-      document.querySelector("#spinner-icon").style.display = "block";
-      document.querySelector("#cart-icon").style.display = "none";
-      document.querySelector("#submit-text").innerText = "Submitting";
-    } else {
-      document.querySelector("button").disabled = false;
-      document.querySelector("#spinner-icon").style.display = "none";
-      document.querySelector("#cart-icon").style.display = "block";
-      document.querySelector("#submit-text").innerText = "Order Now";
-    }
-  };
+      <div class="buttons swap">
+        <a class="button" href="/cart/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Return to Cart</p>
+        </a>
+        <button id="place-order-button" disabled class="button bigfonts" type="submit">
+          <span id="cart-icon">{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span>
+          <span id="spinner-icon" style="margin-right:0.5em;display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
+          <p id="submit-text">Order Now</p>
+        </button>
+      </div>
+      <div class="horizontal center">
+        <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
+      </div>
 
-  var setupElements = function(data) {
-    stripe = Stripe(data.publishableKey);
-  
-    var elements = stripe.elements({fonts:[
-      {
-        family: "Poppins",
-        weight: "normal",
-        src: "url(https://floriade.co.nz/fonts/poppins-light.woff)",
-        display: "swap"
-      },
-      {
-        family: "Kollektif",
-        weight: "normal",
-        src: "url(https://floriade.co.nz/fonts/kollektif.woff)",
-        display: "swap"
-      }
-    ]});
-  
-    var card = elements.create("card", {
-      hidePostalCode: true,
-      style: {
-        base: {
-          fontFamily: "Poppins, sans-serif",
-          fontWeight: "normal",
-          fontSize: "16px",
-          lineHeight: "2em",
-          color: "#333333",
-          backgroundColor: "#CDDAD5",
-          ":focus": {
-            backgroundColor: "#CDDAD5",
-          },
-          ":-webkit-autofill": {
-            color: "#333333",
-            backgroundColor: "#CDDAD5",
-          },
-          "::placeholder": {
-            fontFamily: "Kollektif, sans-serif",
-            color: "#818D89",
-          },
-        },
-      }
-    });
-  
-    card.mount("#card-input");
-  
-    card.addEventListener("change", function(event) {
-      var card_errors = document.getElementById("card-errors");
-  
-      if(event.error) {
-        card_errors.innerText = event.error.message;
-        card_errors.style.visibility = "visible";
-      } else {
-        card_errors.style.visibility = "hidden";
-      }
-    },false);
+      <div class="text-center font-size--1 font-secondary">
+        <p>Floriade does not store your credit card details.</p>
+        <p>All credit card transactions are secured by <a href="https://stripe.com" target="_blank" title="Opens in a new page">Stripe</a>.</p>
+        <p>See their <a href="https://stripe.com/docs/security/stripe" target="_blank" title="Opens in a new page">security</a> and <a href="https://stripe.com/nz/privacy/" target="_blank" title="Opens in a new page">privacy</a> policies for details.</p>
+      </div>
 
-    return {
-      stripe: stripe,
-      card: card,
-      clientSecret: data.clientSecret
-    };
-  };
+      <input id="payment-intent-id" name="payment-intent-id" type="hidden">
+      <input id="cart" name="cart" type="hidden">
+    </form>
 
-  var pay = function(stripe, card, clientSecret, form) {
-    changeLoadingState(true);
+  </div>
+</section>
 
-    stripe.confirmCardPayment(clientSecret, { payment_method: { card: card } })
-    .then(function(result) {
-      changeLoadingState(false);
-      if (result.error) {
-        var card_errors = document.getElementById("card-errors");
-        card_errors.innerText = result.error.message;
-        card_errors.style.visibility = "visible";
-      } else {
-        form.submit();
-      }
-    });
-  };
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    document.querySelector("button").disabled = true;
-
-    /*
-    fetch("/php/create-payment-intent.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(orderData)
-    })
-    */
-
-    fetch("/php/create-payment-intent.php", { method: "POST" })
-    .then(function(result) {
-      return result.json();
-    })
-    .then(function(data) {
-      return setupElements(data);
-    })
-    .then(function({ stripe, card, clientSecret }) {
-      document.querySelector("button").disabled = false;
-
-      var form = document.getElementById("checkout-form");
-      form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        pay(stripe, card, clientSecret, form);
-      });
-    });
-
-  }, false);
-
-  {% endset %}
-
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
-{% endblock %}
+<script>document.addEventListener("DOMContentLoaded",function(){displayCheckout();},false);</script>

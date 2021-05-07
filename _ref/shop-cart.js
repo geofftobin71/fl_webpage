@@ -22,12 +22,12 @@ async function displayCart() {
     return;
   }
 
-	// let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
-  // if(delivery_suburb) { delivery_suburb = delivery_suburb.toLowerCase(); }
+	let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
+  if(delivery_suburb) { delivery_suburb = delivery_suburb.toLowerCase(); }
 	let cart_count = cart.length;
 	let cart_items = "";
 	let cart_summary = "";
-	// let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
+	let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
 
 	cart_total = 0;
 	
@@ -68,7 +68,6 @@ async function displayCart() {
 	cart_summary += '<p class="color-shade3">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
 	cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
 	
-  /*
   let has_delivery = false;
 
   cart.forEach(cart_item => {
@@ -98,11 +97,11 @@ async function displayCart() {
   cart_summary += '<h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>';
   cart_summary += '<p class="top-border"></p>';
   cart_summary += '<p id="total" class="top-border font-size-1 text-right">' + formatMoney(delivery_fee + cart_total) + '</p>';
-  */
 
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("summary").innerHTML = cart_summary;
   document.getElementById("cart-form").style.display = "block";
+  document.getElementById("checkout-button").disabled = false;
 }
 
 function removeFromCart(index) {
@@ -133,18 +132,15 @@ function removeFromCart(index) {
         if(json.cart) {
           localStorage.setItem("floriade-cart", JSON.stringify(json.cart));
           localStorage.setItem("floriade-cart-info", json.count + (parseInt(json.count) === 1 ? " item was" : " items were") + " removed from your cart");
-          /*
           if(json.cart.length === 0) {
             localStorage.removeItem("floriade-delivery-suburb");
           }
-          */
           window.location.href = "/cart/";
         }
       }
     });
 }
 
-/*
 function updateDeliveryFee() {
   hideError();
 
@@ -168,4 +164,3 @@ function checkout() {
 
   window.location.href = "/checkout/";
 }
-*/
