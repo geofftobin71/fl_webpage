@@ -24,14 +24,15 @@ sitemap:
     </div>
 
     <form id="checkout-form" action="/php/place-order.php" method="post" class="width100" style="display:none">
+
       <h2 class="delivery-group heading text-center">Delivery</h2>
       <hr class="delivery-group" />
       <div class="delivery-group flow">
 
         <div class="radio-label-wrapper">
-          <input checked id="delivery-option" name="delivery-option" type="radio" value="delivery" onclick="selectDeliveryOption(true)">
+          <input checked id="delivery-option" name="delivery-option" type="radio" value="delivery" onclick="selectDeliveryOption(false)">
           <label class="radio-label text-center round" for="delivery-option" style="min-width:10em" x-apple-data-detectors="false">Delivery</label>
-          <input id="pickup-option" name="delivery-option" type="radio" value="pickup" onclick="selectDeliveryOption(false)">
+          <input id="pickup-option" name="delivery-option" type="radio" value="pickup" onclick="selectDeliveryOption(true)">
           <label class="radio-label text-center round" for="pickup-option" style="min-width:10em" x-apple-data-detectors="false">Pickup in Store</label>
         </div>
 
@@ -59,8 +60,10 @@ sitemap:
             <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateDeliveryFee()">
               <option default disabled selected hidden value="">please choose...</option>
               {% for suburb, fee in delivery_fees -%}
-                <option value="{{ suburb }}">{{ suburb | title }}&nbsp;</option>
-                {%- endfor %}
+                {% if suburb != "pickup in store" %}
+                  <option value="{{ suburb }}">{{ suburb | title }}&nbsp;</option>
+                {% endif %}
+              {%- endfor %}
             </select>
             <span class="focus"></span>
           </div>

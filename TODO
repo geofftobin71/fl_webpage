@@ -1,4 +1,6 @@
 -- FIX --
+Convert delivery_suburb localStorage from Cart to delivery_option on Checkout
+updateDeliveryFee / selectDeliveryOption
 Cart expiry check at Checkout
 Query CC last four digits from stripe payment -> orders / bookings
 Check contact form recaptcha error handling

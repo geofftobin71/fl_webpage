@@ -16,16 +16,14 @@ async function displayCheckout() {
     return;
   }
 
-  /*
-  let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
+  let pickup_in_store = localStorage.getItem("floriade-pickup-in-store");
+  let delivery_suburb = localStorage.getItem("floriade-delivery-suburb") || "none";
 
-  if(!delivery_suburb) {
-    window.location.href = "/cart/";
+  if(pickup_in_store === "true") {
+    document.getElementById("pickup-option").checked = true;
   } else {
-    delivery_suburb = delivery_suburb.toLowerCase();
+    document.getElementById("delivery-option").checked = true;
   }
-  */
-  let delivery_suburb = "pickup in store";
 
   let cart_count = cart.length;
   let cart_items = "";
@@ -183,6 +181,14 @@ async function displayCheckout() {
       enableCheckoutForm();
     });
 
+}
+
+function selectDeliveryOption(pickup) {
+  localStorage.setItem("floriade-pickup-in-store", pickup);
+
+  if(pickup) {
+  } else {
+  }
 }
 
 function enableCheckoutForm() {
