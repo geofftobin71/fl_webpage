@@ -5,6 +5,7 @@ var DateTime = luxon.DateTime;
 var shop_products;
 var shop_categories;
 var delivery_fees;
+var flat_rate_delivery_fees;
 
 async function fetchData() {
   let response;
@@ -16,6 +17,9 @@ async function fetchData() {
 
   response = await fetch('/php/delivery_fees.json');
   delivery_fees = await response.json();
+
+  response = await fetch('/php/flat_rate_delivery_fees.json');
+  flat_rate_delivery_fees = await response.json();
 }
 
 function getProduct(product_id) {

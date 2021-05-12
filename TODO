@@ -1,7 +1,7 @@
 -- FIX --
-Convert delivery_suburb localStorage from Cart to delivery_option on Checkout
-updateDeliveryFee / selectDeliveryOption
-Cart expiry check at Checkout
+Move fetch create-payment-intent to Submit function and fix setupElements
+Check ALL dates data for two digits in .eleventy.js
+Cart expiry check at Checkout submit
 Query CC last four digits from stripe payment -> orders / bookings
 Check contact form recaptcha error handling
 ENABLE contact form handler

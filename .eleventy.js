@@ -119,6 +119,7 @@ module.exports = (eleventyConfig) => {
     minifyCopy("./src/_data/shop_categories.json", "./dist/php/shop_categories.json");
     minifyCopy("./src/_data/shop_products.json", "./dist/php/shop_products.json");
     minifyCopy("./src/_data/delivery_fees.json", "./dist/php/delivery_fees.json");
+    minifyCopy("./src/_data/flat_rate_delivery_fees.json", "./dist/php/flat_rate_delivery_fees.json");
 
     glob('./src/php/*', (err, files) => {
       if(err) {

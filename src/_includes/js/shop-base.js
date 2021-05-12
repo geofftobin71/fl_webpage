@@ -17,6 +17,18 @@ function displayShopCategory() {
   displayShop();
 }
 
+function computeCartTotal() {
+
+  cart_total = 0;
+
+  cart.forEach(cart_item => {
+    let product = getProduct(cart_item["product-id"]);
+    let price = getPrice(product, cart_item["variant-id"]);
+
+    cart_total += price;
+  });
+}
+
 function checkCartExpired() {
 
   let expired = false;

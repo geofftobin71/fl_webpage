@@ -16,27 +16,21 @@ async function displayCheckout() {
     return;
   }
 
-  let pickup_in_store = localStorage.getItem("floriade-pickup-in-store");
-  let delivery_suburb = localStorage.getItem("floriade-delivery-suburb") || "none";
+  let delivery_option = localStorage.getItem("floriade-delivery-option") || "none";
 
-  if(pickup_in_store === "true") {
-    document.getElementById("pickup-option").checked = true;
-  } else {
-    document.getElementById("delivery-option").checked = true;
+  if(delivery_option !== "none") {
+    document.getElementById("delivery-option-" + delivery_option).checked = true;
+    selectDeliveryOption(delivery_option);
   }
 
   let cart_count = cart.length;
   let cart_items = "";
-  let cart_summary = "";
-  let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
 
-  cart_total = 0;
+  computeCartTotal();
 
   cart.forEach(cart_item => {
     let product = getProduct(cart_item["product-id"]);
     let price = getPrice(product, cart_item["variant-id"]);
-
-    cart_total += price;
 
     cart_items += '<div class="vertical flow">';
     cart_items += '<p>' + product["name"];
@@ -67,9 +61,8 @@ async function displayCheckout() {
     cart_items += '<p class="text-right">' + formatMoney(price) + '</p>';
   });
 
-  cart_summary += '<h3 class="heading">Cart Total</h3>';
-  cart_summary += '<p class="color-shade3" style="padding-left:2em">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
-  cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
+  document.getElementById("cart-count").innerText = cart_count + (cart_count === 1 ? ' item' : ' items');
+  document.getElementById("cart-total").innerText = formatMoney(cart_total);
 
   let has_delivery = false;
 
@@ -84,38 +77,13 @@ async function displayCheckout() {
   });
 
   if(has_delivery) {
-    cart_summary += '<h3 class="heading">';
-    if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
-      cart_summary += 'Delivery to</h3>';
-      cart_summary += '<h3 class="heading"><span style="white-space:nowrap">' + titleCase(delivery_suburb) + '<span></h3>';
-    }
-    if(delivery_suburb === "pickup in store") {
-      cart_summary += '<span style="white-space:nowrap">' + titleCase(delivery_suburb) + '<span></h3><p></p>';
-    }
-    cart_summary += '<p id="delivery-fee" class="text-right">';
-    if(delivery_suburb !== "none") { cart_summary += formatMoney(delivery_fee); } else { cart_summary += "TBC"; } 
-    cart_summary += '</p>';
-  } else {
-    delivery_fee = 0;
-  }
-
-  cart_summary += '<h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>';
-  cart_summary += '<p class="top-border"></p>';
-  cart_summary += '<p id="total" class="top-border font-size-1 text-right">' + formatMoney(delivery_fee + cart_total) + '</p>';
-
-  if(has_delivery) {
     document.querySelectorAll(".delivery-group").forEach(element => {
       element.style.display = "block";
     });
 
-    if((delivery_suburb !== "none") && (delivery_suburb !== "pickup in store")) {
-      document.querySelectorAll(".delivery-address-group").forEach(element => {
-        element.style.display = "block";
-      });
-    }
-
-    if(delivery_suburb === "pickup in store") {
-      document.getElementById("delivery-date-label").innerText = "Pickup Date";
+    if(delivery_option !== "pickup") {
+      document.getElementById("delivery-option-delivery").checked = true;
+      selectDeliveryOption("delivery");
     }
   }
 
@@ -125,7 +93,6 @@ async function displayCheckout() {
   document.getElementById("today").disabled = (now > ten_am);
 
   document.getElementById("items").innerHTML = cart_items;
-  document.getElementById("summary").innerHTML = cart_summary;
   document.getElementById("cart").value = JSON.stringify(cart);
   document.getElementById("checkout-form").style.display = "block";
 
@@ -134,6 +101,10 @@ async function displayCheckout() {
     let value = localStorage.getItem("floriade-" + inputs[i].id);
     if(value) { inputs[i].value = value; }
   };
+
+  updateTotal();
+
+  enableCheckoutForm();
 
   fetch("/php/create-payment-intent.php", {
     method: "POST",
@@ -183,11 +154,71 @@ async function displayCheckout() {
 
 }
 
-function selectDeliveryOption(pickup) {
-  localStorage.setItem("floriade-pickup-in-store", pickup);
+function selectDeliveryOption(delivery_option) {
+  localStorage.setItem("floriade-delivery-option", delivery_option);
 
-  if(pickup) {
+  if(delivery_option === "pickup") {
+    document.getElementById("delivery-date-label").innerText = "Pickup Date";
+    document.getElementById("delivery-phone-label").innerText = "Your Phone";
+    document.getElementById("delivery-phone-caption").innerText = "In case we need to contact you regarding pickup";
+    document.querySelectorAll(".delivery-address-group").forEach(element => {
+      element.style.display = "none";
+    });
+  }
+
+  if(delivery_option === "delivery") {
+    document.getElementById("delivery-date-label").innerText = "Delivery Date";
+    document.getElementById("delivery-phone-label").innerText = "Recipient Phone";
+    document.getElementById("delivery-phone-caption").innerText = "In case we need to contact the recipient to make alternative delivery arrangements";
+    document.querySelectorAll(".delivery-address-group").forEach(element => {
+      element.style.display = "block";
+    });
+  }
+
+  updateTotal();
+}
+
+function updateTotal() {
+  const delivery_suburb = document.getElementById("delivery-suburb").value;
+  const delivery_date = document.getElementById("delivery-date").value;
+  const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
+
+  if(delivery_option === "none") {
+    document.getElementById("total").innerText = formatMoney(cart_total);
+  } else if(delivery_option === "pickup") {
+    document.getElementById("delivery-heading").innerText = "Pickup in Store";
+    document.getElementById("delivery-suburb-name").innerText = "";
+    document.getElementById("delivery-total").innerText = "free";
+    document.getElementById("total").innerText = formatMoney(cart_total);
   } else {
+    if(delivery_suburb && delivery_date) {
+      let delivery_fee = delivery_fees[delivery_suburb];
+
+      if(delivery_date.startsWith("Saturday")) {
+        delivery_fee = (delivery_fee < 20) ? 20 : delivery_fee;
+      }
+
+      for(var date in flat_rate_delivery_fees) {
+        if(delivery_date.endsWith(date)) {
+          var fee = parseInt(flat_rate_delivery_fees[date]);
+          if(fee === 0) {
+            delivery_fee = fee;
+          } else {
+            delivery_fee = (delivery_fee < fee) ? fee : delivery_fee;
+          }
+        }
+      }
+
+      document.getElementById("delivery-heading").innerText = "Delivery to";
+      document.getElementById("delivery-suburb-name").innerText = delivery_suburb;
+      document.getElementById("delivery-total").innerText = formatMoney(delivery_fee);
+      document.getElementById("total").innerText = formatMoney(cart_total + delivery_fee);
+    } else {
+      document.getElementById("delivery-heading").innerText = "Delivery";
+      document.getElementById("delivery-suburb-name").innerText = "";
+      document.getElementById("delivery-total").innerText = "TBC";
+      document.getElementById("total").innerText = "TBC"
+    }
   }
 }
 

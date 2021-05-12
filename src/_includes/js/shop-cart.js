@@ -29,7 +29,7 @@ async function displayCart() {
 	let cart_summary = "";
 	// let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
 
-	cart_total = 0;
+  computeCartTotal();
 	
 	let i = 0;
 	cart.forEach(cart_item => {
@@ -37,8 +37,6 @@ async function displayCart() {
 	  let product = getProduct(cart_item["product-id"]);
 	  let price = getPrice(product, cart_item["variant-id"]);
 
-	  cart_total += price;
-	
 	  cart_items += '<div class="vertical flow">';
 	  cart_items += '<p>' + product["name"];
 	

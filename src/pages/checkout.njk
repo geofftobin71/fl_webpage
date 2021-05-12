@@ -30,10 +30,11 @@ sitemap:
       <div class="delivery-group flow">
 
         <div class="radio-label-wrapper">
-          <input checked id="delivery-option" name="delivery-option" type="radio" value="delivery" onclick="selectDeliveryOption(false)">
-          <label class="radio-label text-center round" for="delivery-option" style="min-width:10em" x-apple-data-detectors="false">Delivery</label>
-          <input id="pickup-option" name="delivery-option" type="radio" value="pickup" onclick="selectDeliveryOption(true)">
-          <label class="radio-label text-center round" for="pickup-option" style="min-width:10em" x-apple-data-detectors="false">Pickup in Store</label>
+          <input checked id="delivery-option-none" name="delivery-option" type="radio" value="none" style="display:none">
+          <input class="delivery-group" id="delivery-option-delivery" name="delivery-option" type="radio" value="delivery" onclick="selectDeliveryOption('delivery')">
+          <label class="radio-label text-center round" for="delivery-option-delivery" style="min-width:10em" x-apple-data-detectors="false">Delivery</label>
+          <input class="delivery-group" id="delivery-option-pickup" name="delivery-option" type="radio" value="pickup" onclick="selectDeliveryOption('pickup')">
+          <label class="radio-label text-center round" for="delivery-option-pickup" style="min-width:10em" x-apple-data-detectors="false">Pickup in Store</label>
         </div>
 
         <div>
@@ -43,9 +44,9 @@ sitemap:
         </div>
 
         <div>
-          <label for="delivery-phone"><h4 class="heading">Recipient Phone</h4></label>
+          <label for="delivery-phone"><h4 id="delivery-phone-label" class="heading">Recipient Phone</h4></label>
           <input class="delivery-group input" id="delivery-phone" name="delivery-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Recipient Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
-          <p class="caption text-left text-lowercase">In case we need to contact the recipient to make alternative delivery arrangements</p>
+          <p id="delivery-phone-caption" class="caption text-left text-lowercase">In case we need to contact the recipient to make alternative delivery arrangements</p>
         </div>
 
         <div class="delivery-address-group">
@@ -57,7 +58,7 @@ sitemap:
         <div class="delivery-address-group">
           <label for="delivery-suburb-select"><h4 class="heading">Delivery Suburb</h4></label>
           <div class="select" id="delivery-suburb-select">
-            <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateDeliveryFee()">
+            <select id="delivery-suburb" class="delivery-address-group" name="delivery-suburb" data-error="Delivery Suburb is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateTotal()">
               <option default disabled selected hidden value="">please choose...</option>
               {% for suburb, fee in delivery_fees -%}
                 {% if suburb != "pickup in store" %}
@@ -72,7 +73,7 @@ sitemap:
         <div>
           <label for="delivery-date-select"><h4 id="delivery-date-label" class="heading">Delivery Date</h4></label>
           <div class="select" id="delivery-date-select">
-            <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery / Pickup Date is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateDeliveryFee()">
+            <select id="delivery-date" class="delivery-group" name="delivery-date" data-error="Delivery / Pickup Date is required" onfocus="hideError()" onblur="cacheValue(this)" onchange="updateTotal()">
               <option default disabled selected hidden value="">please choose...</option>
               {% set today = now_nz %}
               {% set days = [ today, today.plus({days:1}), today.plus({days:2}), today.plus({days:3}), today.plus({days:4}), today.plus({days:5}), today.plus({days:6}), today.plus({days:7}), today.plus({days:8}), today.plus({days:9}), today.plus({days:10}), today.plus({days:11}), today.plus({days:12}), today.plus({days:13}) ] %}
@@ -92,7 +93,7 @@ sitemap:
       <h2 class="delivery-group heading text-center">Gift tag Message</h2>
       <hr class="delivery-group" />
       <div class="delivery-group">
-        <label for="gift-tag-message"><h4 class="heading">Gift tag Message</h4></label>
+        {# <label for="gift-tag-message"><h4 class="heading">Gift tag Message</h4></label> #}
         <textarea class="delivery-group input" id="gift-tag-message" name="gift-tag-message" placeholder="If you would like to send the recipient a message along with the flowers, please enter it here." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
       </div>
       <p class="delivery-group font-size-1"></p>
@@ -101,7 +102,7 @@ sitemap:
       <h2 class="delivery-group heading text-center">Special Requests</h2>
       <hr class="delivery-group" />
       <div class="delivery-group">
-        <label for="special-requests"><h4 class="heading">Special Requests</h4></label>
+        {# <label for="special-requests"><h4 class="heading">Special Requests</h4></label> #}
         <textarea class="delivery-group input" id="special-requests" name="special-requests" placeholder="Please enter any special delivery instructions. If you would like to request a specific variety or colour of flowers, please give at least 48 hours notice. We cannot guarantee all floral varieties or colours due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="10" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
       </div>
       <p class="delivery-group font-size-1"></p>
@@ -111,7 +112,19 @@ sitemap:
       <hr />
       <div id="items" class="font-secondary"></div>
       <hr />
-      <div id="summary" class="font-secondary"></div>
+      <div id="summary" class="font-secondary">
+        <h3 class="heading">Cart Total</h3>
+        <p id="cart-count" class="color-shade3" style="padding-left:2em"></p>
+        <p id="cart-total" class="text-right"></p>
+
+        <h3 id="delivery-heading" class="delivery-group heading">Delivery</h3>
+        <h3 id="delivery-suburb-name" class="delivery-group heading"></h3>
+        <p id="delivery-total" class="delivery-group text-right">TBC</p>
+
+        <h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>
+        <p class="top-border"></p>
+        <p id="total" class="top-border font-size-1 text-right">TBC</p>
+      </div>
       <hr />
 
       <h2 class="heading text-center">Payment</h2>
