@@ -23,6 +23,7 @@ date_default_timezone_set("Pacific/Auckland");
 $shop_products = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_products.json"), true);
 $shop_categories = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_categories.json"), true);
 $delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_fees.json"), true);
+$flat_rate_delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/flat_rate_delivery_fees.json"), true);
 
 $cart_expiry_time = 1800.0;  // 30 minutes
 $cart_reset_time = 2100.0;   // 35 minutes

@@ -13,8 +13,6 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NON
 }
 
 $cart = $body["cart"];
-$delivery_suburb = strtolower($body["delivery-suburb"]);
-
 $total = cartTotal($cart);
 
 if($total < 1) {
@@ -23,7 +21,69 @@ if($total < 1) {
   exit;
 }
 
-if(isset($delivery_suburb) && ($delivery_suburb != "none")) { $total += $delivery_fees[$delivery_suburb]; }
+$delivery_option = strtolower($body["delivery-option"]);
+$delivery_suburb = strtolower($body["delivery-suburb"]);
+$delivery_date = $body["delivery-date"];
+
+if(!isset($delivery_option)) {
+  http_response_code(400);
+  echo json_encode(['error' => 'Invalid Delivery Option']);
+  exit;
+} else {
+  if(empty($delivery_option)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid Delivery Option']);
+    exit;
+  }
+}
+
+if(!isset($delivery_suburb)) {
+  http_response_code(400);
+  echo json_encode(['error' => 'Invalid Delivery Suburb']);
+  exit;
+}
+
+if(!isset($delivery_date)) {
+  http_response_code(400);
+  echo json_encode(['error' => 'Invalid Delivery Date']);
+  exit;
+}
+
+// if(isset($delivery_suburb) && ($delivery_suburb != "none")) { $total += $delivery_fees[$delivery_suburb]; }
+
+if($delivery_option === "delivery") {
+
+  if(empty($delivery_suburb)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid Delivery Suburb']);
+    exit;
+  }
+
+  if(empty($delivery_date)) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Invalid Delivery Date']);
+    exit;
+  }
+
+  $delivery_fee = $delivery_fees[$delivery_suburb];
+
+  if(str_starts_with($delivery_date, "Saturday")) {
+    $delivery_fee = ($delivery_fee < 20) ? 20 : $delivery_fee;
+  }
+
+  foreach ($flat_rate_delivery_fees as $date => $value) {
+    if(str_ends_with($delivery_date, $date)) {
+      $fee = intVal($value);
+      if($fee === 0) {
+        $delivery_fee = $fee;
+      } else {
+        $delivery_fee = ($delivery_fee < $fee) ? $fee : $delivery_fee;
+      }
+    }
+  }
+
+  $total = $total + $delivery_fee;
+}
 
 $total = $total * 100;
 
@@ -44,6 +104,8 @@ foreach($cart as $cart_item) {
 }
 
 $description = implode(", ", $descriptions);
+
+// FIXME Possibly truncate the description with elipses
 
 /* FIXME
 try {
@@ -71,7 +133,6 @@ try {
  */
 
 $output = [
-  'publishableKey' => $stripe_keys['publishable_key'],
   'clientSecret' => 'pi_1Il2WdLjelSQaoWrC9vtnVSv_secret_YNdFdbKvnXg1sV3xdPzluUreq' // FIXME $payment_intent->client_secret,
 ];
 

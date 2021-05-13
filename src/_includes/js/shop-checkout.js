@@ -1,5 +1,3 @@
-var stripe;
-
 async function displayCheckout() {
 
   await fetchData();
@@ -104,8 +102,108 @@ async function displayCheckout() {
 
   updateTotal();
 
+  var stripe = Stripe("pk_test_O4912F34mcFHrGimRhPaLlP0");  // FIXME test -> live
+
+  var elements = stripe.elements({fonts:[
+    {
+      family: "Poppins",
+      weight: "normal",
+      src: "url(https://floriade.co.nz/fonts/poppins-light-webfont.woff)",
+      display: "swap"
+    },
+    {
+      family: "Kollektif",
+      weight: "normal",
+      src: "url(https://floriade.co.nz/fonts/kollektif-webfont.woff)",
+      display: "swap"
+    }
+  ]});
+
+  var card = elements.create("card", {
+    hidePostalCode: true,
+    style: {
+      base: {
+        fontFamily: "Poppins, sans-serif",
+        fontWeight: "normal",
+        fontSize: "16px",
+        lineHeight: "2em",
+        color: "#333333",
+        backgroundColor: "#CDDAD5",
+        ":focus": {
+          backgroundColor: "#CDDAD5",
+        },
+        ":-webkit-autofill": {
+          color: "#333333",
+          backgroundColor: "#CDDAD5",
+        },
+        "::placeholder": {
+          fontFamily: "Kollektif, sans-serif",
+          color: "#818D89",
+        },
+      },
+    }
+  });
+
+  // FIXME card.mount("#card-input");
+
+  card.addEventListener("change", function(event) {
+    if(event.error) {
+      showError(event.error.message);
+    } else {
+      hideError();
+    }
+  },false);
+
+  var form = document.getElementById("checkout-form");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    disableCheckoutForm();
+
+    const inputs = document.querySelectorAll("input,select");
+    for(let i = 0; i < inputs.length; i++) {
+      if(window.getComputedStyle(inputs[i]).display !== "none") {
+        if(inputs[i].value.trim().length === 0) {
+          showError(inputs[i].dataset.error || "Credit Card Number is required");
+          enableCheckoutForm();
+          return false;
+        }
+      }
+    };
+
+    var delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
+    var delivery_suburb = document.getElementById("delivery-suburb").value;
+    var delivery_date = document.getElementById("delivery-date").value;
+
+    fetch("/php/create-payment-intent.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "cart": cart,
+        "delivery-option": delivery_option,
+        "delivery-suburb": delivery_suburb,
+        "delivery-date": delivery_date        // More Metadata here
+      })
+    })
+      .then(response => {
+        if(!response.ok) {
+          showError(response.statusText);
+          throw Error(response.statusText);
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => {
+        pay(stripe, card, json.clientSecret, form);
+      });
+  },false);
+
   enableCheckoutForm();
 
+  /*
   fetch("/php/create-payment-intent.php", {
     method: "POST",
     headers: {
@@ -151,6 +249,7 @@ async function displayCheckout() {
 
       enableCheckoutForm();
     });
+    */
 
 }
 
@@ -240,8 +339,8 @@ function cacheValue(e) {
   localStorage.setItem("floriade-" + e.id, e.value);
 }
 
-function setupElements(data) {
-  stripe = Stripe(data.publishableKey);
+function setupElements() {
+  stripe = Stripe("pk_test_O4912F34mcFHrGimRhPaLlP0");  // FIXME test -> live
 
   var elements = stripe.elements({fonts:[
     {
@@ -295,8 +394,7 @@ function setupElements(data) {
 
   return {
     stripe: stripe,
-    card: card,
-    clientSecret: data.clientSecret
+    card: card
   };
 }
 

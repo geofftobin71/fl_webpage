@@ -9,6 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   echo '<br>';
 
   if(isset($_POST["payment-intent-id"])) { $payment_intent_id = clean($_POST["payment-intent-id"]); }
+  if(isset($_POST["delivery-option"])) { $delivery_option = clean($_POST["delivery-option"]); }
   if(isset($_POST["delivery-name"])) { $delivery_name = clean($_POST["delivery-name"]); }
   if(isset($_POST["delivery-phone"])) { $delivery_phone = clean($_POST["delivery-phone"]); }
   if(isset($_POST["delivery-address"])) { $delivery_address = clean($_POST["delivery-address"]); }
