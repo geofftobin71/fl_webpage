@@ -8,8 +8,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(isset($_POST["delivery-name"])) { $delivery_name = clean($_POST["delivery-name"]); }
   if(isset($_POST["delivery-phone"])) { $delivery_phone = clean($_POST["delivery-phone"]); }
   if(isset($_POST["delivery-address"])) { $delivery_address = clean($_POST["delivery-address"]); }
-  if(isset($_POST["delivery-suburb"])) { $delivery_suburb = clean($_POST["delivery-suburb"]); }
-  if(isset($_POST["delivery-date"])) { $delivery_date = clean($_POST["delivery-date"]); }
+  if(isset($_POST["delivery-suburb"])) { $delivery_suburb = clean($_POST["delivery-suburb"]); } else { $delivery_suburb = ""; }
+  if(isset($_POST["delivery-date"])) { $delivery_date = clean($_POST["delivery-date"]); } else { $delivery_date = ""; }
   if(isset($_POST["gift-tag-message"])) { $gift_tag_message = clean($_POST["gift-tag-message"]); }
   if(isset($_POST["special-requests"])) { $special_requests = clean($_POST["special-requests"]); }
   if(isset($_POST["cardholder-name"])) { $cardholder_name = clean($_POST["cardholder-name"]); }
@@ -17,20 +17,18 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(isset($_POST["workshop-attendee-name"])) { $workshop_attendee_name = $_POST["workshop-attendee-name"]; }
   if(isset($_POST["workshop-attendee-email"])) { $workshop_attendee_email = $_POST["workshop-attendee-email"]; }
   if(isset($_POST["cart"])) { $cart = json_decode($_POST["cart"], true); }
-  if(isset($_POST["cart-total-check"])) { $cart_total_check = intVal(clean($_POST["cart-total-check"])); }
-  if(isset($_POST["delivery-total-check"])) { $delivery_total_check = intVal(clean($_POST["delivery-total-check"])); }
+  if(isset($_POST["cart-total-check"])) { $cart_total = intVal(clean($_POST["cart-total-check"])); }
+  if(isset($_POST["delivery-total-check"])) { $delivery_fee = intVal(clean($_POST["delivery-total-check"])); }
 
   $order_date = new DateTime;
   $last_four = strval(rand(1111,9999));   // FIXME
-  $delivery_fee = 0;
-  if(isset($delivery_suburb) && (strtolower($delivery_suburb) !== "none")) { $delivery_fee = $delivery_fees[strtolower($delivery_suburb)]; }
 
+  /*
   if($delivery_fee !== $delivery_total_check) {
-    header('Content-Type: application/json');
-    http_response_code(400);
-    echo json_encode(['error' => 'Delivery total error']);
+    header('Location:/error.html?h=' . urlencode("Delivery Fee error") . '&p=' . urlencode("There was an internal error calculating the delivery fee.<br><br>Please call us to place your order."));
     exit;
   }
+   */
 
   echo '<pre>';
   echo '<br>POST<br>';
@@ -72,7 +70,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $bookings = array();
   $order_items = array();
   $order_tickets = array();
-  $total = $delivery_fee;
 
   foreach($cart as $cart_item) {
     $product = getProduct($cart_item["product-id"]);
@@ -80,7 +77,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     if(isset($product)) {
       $category = getCategory($product["category"]);
       $price = getPrice($product, $cart_item["variant-id"]);
-      $total += $price;
       if(isset($category)) {
         if(strtolower($category["name"]) === "workshops") {
           $bookings[] = array(
@@ -118,9 +114,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     "delivery-name" => $delivery_name,
     "delivery-phone" => $delivery_phone,
     "delivery-address" => $delivery_address,
-    "delivery-suburb" => $delivery_suburb,
+    "delivery-suburb" => ucwords($delivery_suburb),
     "delivery-date" => $delivery_date,
-    "delivery-fee" => $delivery_fee,
     "gift-tag-message" => $gift_tag_message,
     "special-requests" => $special_requests,
     "timestamp" => $order_date->format('Y-m-d H:i:s'),
@@ -130,7 +125,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     "cardholder-email" => $cardholder_email,
     "items" => $order_items,
     "tickets" => $order_tickets,
-    "total" => $total,
+    "cart-total" => $cart_total,
+    "delivery-fee" => $delivery_fee,
+    "total" => $cart_total + $delivery_fee,
   );
 
   echo '<br>BOOKINGS<br>';

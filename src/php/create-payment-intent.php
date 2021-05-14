@@ -7,7 +7,6 @@ $input = file_get_contents('php://input');
 $body = json_decode($input, true);
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NONE) {
-  http_response_code(400);
   echo json_encode(['error' => 'Invalid request']);
   exit;
 }
@@ -15,16 +14,14 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NON
 $cart = $body["cart"];
 $cart_total_check = intVal($body["cart-total-check"]);
 $delivery_total_check = intVal($body["delivery-total-check"]);
-$total = cartTotal($cart) + 1;
+$total = cartTotal($cart);
 
 if($total < 1) {
-  http_response_code(400);
   echo json_encode(['error' => 'Your cart is empty']);
   exit;
 }
 
 if($total !== $cart_total_check) {
-  http_response_code(400);
   echo json_encode(['error' => 'Cart total error']);
   exit;
 }
@@ -34,25 +31,21 @@ $delivery_suburb = strtolower($body["delivery-suburb"]);
 $delivery_date = $body["delivery-date"];
 
 if(!isset($delivery_option)) {
-  http_response_code(400);
   echo json_encode(['error' => 'Invalid Delivery Option']);
   exit;
 } else {
   if(empty($delivery_option)) {
-    http_response_code(400);
     echo json_encode(['error' => 'Invalid Delivery Option']);
     exit;
   }
 }
 
 if(!isset($delivery_suburb)) {
-  http_response_code(400);
   echo json_encode(['error' => 'Invalid Delivery Suburb']);
   exit;
 }
 
 if(!isset($delivery_date)) {
-  http_response_code(400);
   echo json_encode(['error' => 'Invalid Delivery Date']);
   exit;
 }
@@ -60,13 +53,11 @@ if(!isset($delivery_date)) {
 if($delivery_option === "delivery") {
 
   if(empty($delivery_suburb)) {
-    http_response_code(400);
     echo json_encode(['error' => 'Invalid Delivery Suburb']);
     exit;
   }
 
   if(empty($delivery_date)) {
-    http_response_code(400);
     echo json_encode(['error' => 'Invalid Delivery Date']);
     exit;
   }
@@ -89,7 +80,6 @@ if($delivery_option === "delivery") {
   }
 
   if($delivery_fee !== $delivery_total_check) {
-    http_response_code(400);
     echo json_encode(['error' => 'Delivery total error']);
     exit;
   }
@@ -139,7 +129,6 @@ try {
     $_SESSION["payment-intent-id"] = $payment_intent->id;
   }
 } catch(Error $e) {
-  http_response_code(500);
   echo json_encode(['error' => $e->getMessage()]);
 }
  */

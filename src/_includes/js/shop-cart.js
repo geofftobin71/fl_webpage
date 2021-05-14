@@ -45,11 +45,11 @@ async function displayCart() {
 	    cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
 	  }
 	
-    {% if env.NODE_ENV == 'develop' %}
+    /*
 	  if(cart_item["updated"]) {
 	    cart_items += '<br><span class="font-size--1">' + DateTime.fromMillis((cart_item["updated"] + cart_expiry_time) * 1000.0).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) + '</span>';
 	  }
-    {% endif %}
+    */
 	
 	  cart_items += '</p>';
 	

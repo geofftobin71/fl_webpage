@@ -202,7 +202,12 @@ async function displayCheckout() {
         }
       })
       .then(json => {
-        pay(stripe, card, json.clientSecret, form);
+        if(json.error) {
+          showError(json.error);
+          throw Error(json.error);
+        } else {
+          pay(stripe, card, json.clientSecret, form);
+        }
       });
   },false);
 
