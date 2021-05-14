@@ -1,6 +1,5 @@
 <?php
 session_start();
-/*
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
@@ -8,7 +7,6 @@ ini_set("log_errors", 1);
 ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
-*/
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/sleekdb-config.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/stripe-test-config.php";
@@ -322,6 +320,24 @@ if(isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1
 
 if(!isset($_SESSION["cart"])) { $_SESSION["cart"] = array(); }
  */
+
+if(!function_exists('str_starts_with')) {
+  function str_starts_with($haystack, $needle) {
+    return (string)$needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
+  }
+}
+
+if(!function_exists('str_ends_with')) {
+  function str_ends_with($haystack, $needle) {
+    return $needle !== '' && substr($haystack, -strlen($needle)) === (string)$needle;
+  }
+}
+
+if(!function_exists('str_contains')) {
+  function str_contains($haystack, $needle) {
+    return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+  }
+}
 
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 

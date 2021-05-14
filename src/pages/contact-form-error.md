@@ -1,5 +1,5 @@
 ---
-title: Sorry - Contact Form Error
+title: Contact Form Error
 layout: layouts/landing-page.njk
 header_image: "/site/floriade-dried-flower-room-00001.jpg"
 header:

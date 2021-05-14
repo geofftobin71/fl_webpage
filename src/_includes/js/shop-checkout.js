@@ -61,6 +61,7 @@ async function displayCheckout() {
 
   document.getElementById("cart-count").innerText = cart_count + (cart_count === 1 ? ' item' : ' items');
   document.getElementById("cart-total").innerText = formatMoney(cart_total);
+  document.getElementById("cart-total-check").value = cart_total;
 
   let has_delivery = false;
 
@@ -175,6 +176,8 @@ async function displayCheckout() {
     var delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
     var delivery_suburb = document.getElementById("delivery-suburb").value;
     var delivery_date = document.getElementById("delivery-date").value;
+    var cart_total_check = document.getElementById("cart-total-check").value;
+    var delivery_total_check = document.getElementById("delivery-total-check").value;
 
     fetch("/php/create-payment-intent.php", {
       method: "POST",
@@ -183,6 +186,8 @@ async function displayCheckout() {
       },
       body: JSON.stringify({
         "cart": cart,
+        "cart-total-check": cart_total_check,
+        "delivery-total-check": delivery_total_check,
         "delivery-option": delivery_option,
         "delivery-suburb": delivery_suburb,
         "delivery-date": delivery_date        // More Metadata here
@@ -282,6 +287,8 @@ function updateTotal() {
   const delivery_date = document.getElementById("delivery-date").value;
   const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
 
+  document.getElementById("delivery-total-check").value = 0;
+
   if(delivery_option === "none") {
     document.getElementById("total").innerText = formatMoney(cart_total);
   } else if(delivery_option === "pickup") {
@@ -312,6 +319,8 @@ function updateTotal() {
       document.getElementById("delivery-suburb-name").innerText = delivery_suburb;
       document.getElementById("delivery-total").innerText = formatMoney(delivery_fee);
       document.getElementById("total").innerText = formatMoney(cart_total + delivery_fee);
+
+      document.getElementById("delivery-total-check").value = delivery_fee;
     } else {
       document.getElementById("delivery-heading").innerText = "Delivery";
       document.getElementById("delivery-suburb-name").innerText = "";

@@ -129,13 +129,11 @@ function removeFromCart(index) {
         return;
       } else {
         if(json.cart) {
+          if(json.cart.length === 0) {
+            localStorage.clear();
+          }
           localStorage.setItem("floriade-cart", JSON.stringify(json.cart));
           localStorage.setItem("floriade-cart-info", json.count + (parseInt(json.count) === 1 ? " item was" : " items were") + " removed from your cart");
-          /*
-          if(json.cart.length === 0) {
-            localStorage.removeItem("floriade-delivery-suburb");
-          }
-          */
           window.location.href = "/cart/";
         }
       }

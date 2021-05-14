@@ -60,9 +60,8 @@ function checkCartExpired() {
         }
       })
       .then(json => {
+        localStorage.clear();
         localStorage.setItem("floriade-cart-expired", true);
-        localStorage.removeItem("floriade-cart");
-        localStorage.removeItem("floriade-delivery-suburb");
         cart = [];
       });
   }

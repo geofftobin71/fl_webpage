@@ -193,9 +193,6 @@ function selectVariant(variant_id) {
 }
 
 function clearCart() {
-  // localStorage.removeItem("floriade-cart");
-  // localStorage.removeItem("floriade-delivery-suburb");
-
   localStorage.clear();
 
   window.location.href = "/cart/";

@@ -1,12 +1,7 @@
 <?php
 include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  echo '<pre>';
-  echo '<br>POST<br>';
-  print_r($_POST);
-  echo '<br>';
+if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if(isset($_POST["payment-intent-id"])) { $payment_intent_id = clean($_POST["payment-intent-id"]); }
   if(isset($_POST["delivery-option"])) { $delivery_option = clean($_POST["delivery-option"]); }
@@ -22,11 +17,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST["workshop-attendee-name"])) { $workshop_attendee_name = $_POST["workshop-attendee-name"]; }
   if(isset($_POST["workshop-attendee-email"])) { $workshop_attendee_email = $_POST["workshop-attendee-email"]; }
   if(isset($_POST["cart"])) { $cart = json_decode($_POST["cart"], true); }
+  if(isset($_POST["cart-total-check"])) { $cart_total_check = intVal(clean($_POST["cart-total-check"])); }
+  if(isset($_POST["delivery-total-check"])) { $delivery_total_check = intVal(clean($_POST["delivery-total-check"])); }
 
   $order_date = new DateTime;
   $last_four = strval(rand(1111,9999));   // FIXME
   $delivery_fee = 0;
   if(isset($delivery_suburb) && (strtolower($delivery_suburb) !== "none")) { $delivery_fee = $delivery_fees[strtolower($delivery_suburb)]; }
+
+  if($delivery_fee !== $delivery_total_check) {
+    header('Content-Type: application/json');
+    http_response_code(400);
+    echo json_encode(['error' => 'Delivery total error']);
+    exit;
+  }
+
+  echo '<pre>';
+  echo '<br>POST<br>';
+  print_r($_POST);
+  echo '<br>';
 
   echo '<br>ORDER DATE<br>';
   print_r($order_date);

@@ -13,11 +13,19 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NON
 }
 
 $cart = $body["cart"];
-$total = cartTotal($cart);
+$cart_total_check = intVal($body["cart-total-check"]);
+$delivery_total_check = intVal($body["delivery-total-check"]);
+$total = cartTotal($cart) + 1;
 
 if($total < 1) {
   http_response_code(400);
   echo json_encode(['error' => 'Your cart is empty']);
+  exit;
+}
+
+if($total !== $cart_total_check) {
+  http_response_code(400);
+  echo json_encode(['error' => 'Cart total error']);
   exit;
 }
 
@@ -49,8 +57,6 @@ if(!isset($delivery_date)) {
   exit;
 }
 
-// if(isset($delivery_suburb) && ($delivery_suburb != "none")) { $total += $delivery_fees[$delivery_suburb]; }
-
 if($delivery_option === "delivery") {
 
   if(empty($delivery_suburb)) {
@@ -80,6 +86,12 @@ if($delivery_option === "delivery") {
         $delivery_fee = ($delivery_fee < $fee) ? $fee : $delivery_fee;
       }
     }
+  }
+
+  if($delivery_fee !== $delivery_total_check) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Delivery total error']);
+    exit;
   }
 
   $total = $total + $delivery_fee;
