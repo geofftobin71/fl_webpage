@@ -103,7 +103,11 @@ async function displayCheckout() {
 
   updateTotal();
 
-  var stripe = Stripe("pk_test_O4912F34mcFHrGimRhPaLlP0");  // FIXME test -> live
+{% if env.NODE_ENV == 'develop' %}
+  var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
+{% else %}
+  var stripe = Stripe("{{ env.STRIPE_LIVE_PUBLIC_KEY }}");
+{% endif %}
 
   var elements = stripe.elements({fonts:[
     {
@@ -173,11 +177,20 @@ async function displayCheckout() {
       }
     };
 
-    var delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
-    var delivery_suburb = document.getElementById("delivery-suburb").value;
-    var delivery_date = document.getElementById("delivery-date").value;
-    var cart_total_check = document.getElementById("cart-total-check").value;
-    var delivery_total_check = document.getElementById("delivery-total-check").value;
+    const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
+    const delivery_name = document.getElementById("delivery-name").value;
+    const delivery_phone = document.getElementById("delivery-phone").value;
+    const delivery_address = document.getElementById("delivery-address").value;
+    const delivery_suburb = document.getElementById("delivery-suburb").value;
+    const delivery_date = document.getElementById("delivery-date").value;
+    const cart_total_check = document.getElementById("cart-total-check").value;
+    const delivery_total_check = document.getElementById("delivery-total-check").value;
+    const gift_tag_message = document.getElementById("gift-tag-message").value;
+    const special_requests = document.getElementById("special-requests").value;
+    const cardholder_name = document.getElementById("cardholder-name").value;
+    const cardholder_email = document.getElementById("cardholder-email").value;
+    const workshop_attendee_name = [...document.querySelectorAll(".workshop-name")].map(s => s.value);
+    const workshop_attendee_email = [...document.querySelectorAll(".workshop-email")].map(s => s.value);
 
     fetch("/php/create-payment-intent.php", {
       method: "POST",
@@ -189,8 +202,17 @@ async function displayCheckout() {
         "cart-total-check": cart_total_check,
         "delivery-total-check": delivery_total_check,
         "delivery-option": delivery_option,
+        "delivery-name": delivery_name,
+        "delivery-phone": delivery_phone,
+        "delivery-address": delivery_address,
         "delivery-suburb": delivery_suburb,
-        "delivery-date": delivery_date        // More Metadata here
+        "delivery-date": delivery_date,
+        "gift-tag-message": gift_tag_message,
+        "special-requests": special_requests,
+        "cardholder-name": cardholder_name,
+        "cardholder-email": cardholder_email,
+        "workshop-attendee-name": workshop_attendee_name,
+        "workshop-attendee-email": workshop_attendee_email
       })
     })
       .then(response => {
@@ -212,55 +234,6 @@ async function displayCheckout() {
   },false);
 
   enableCheckoutForm();
-
-  /*
-  fetch("/php/create-payment-intent.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "cart": cart,
-      "delivery-suburb": delivery_suburb
-    })
-  })
-    .then(response => {
-      if(!response.ok) {
-        showError(response.statusText);
-        throw Error(response.statusText);
-      } else {
-        return response.json();
-      }
-    })
-    .then(json => {
-      return setupElements(json);
-    })
-    .then(({ stripe, card, clientSecret }) => {
-
-      let form = document.getElementById("checkout-form");
-      form.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        disableCheckoutForm();
-
-        const inputs = document.querySelectorAll("input,select");
-        for(let i = 0; i < inputs.length; i++) {
-          if(window.getComputedStyle(inputs[i]).display !== "none") {
-            if(inputs[i].value.trim().length === 0) {
-              showError(inputs[i].dataset.error || "Credit Card Number is required");
-              enableCheckoutForm();
-              return false;
-            }
-          }
-        };
-
-        pay(stripe, card, clientSecret, form);
-      },false);
-
-      enableCheckoutForm();
-    });
-    */
-
 }
 
 function selectDeliveryOption(delivery_option) {
@@ -309,9 +282,9 @@ function updateTotal() {
         delivery_fee = (delivery_fee < 20) ? 20 : delivery_fee;
       }
 
-      for(var date in flat_rate_delivery_fees) {
+      for(let date in flat_rate_delivery_fees) {
         if(delivery_date.endsWith(date)) {
-          var fee = parseInt(flat_rate_delivery_fees[date]);
+          let fee = parseInt(flat_rate_delivery_fees[date]);
           if(fee === 0) {
             delivery_fee = fee;
           } else {
@@ -351,65 +324,6 @@ function disableCheckoutForm() {
 
 function cacheValue(e) {
   localStorage.setItem("floriade-" + e.id, e.value);
-}
-
-function setupElements() {
-  stripe = Stripe("pk_test_O4912F34mcFHrGimRhPaLlP0");  // FIXME test -> live
-
-  var elements = stripe.elements({fonts:[
-    {
-      family: "Poppins",
-      weight: "normal",
-      src: "url(https://floriade.co.nz/fonts/poppins-light-webfont.woff)",
-      display: "swap"
-    },
-    {
-      family: "Kollektif",
-      weight: "normal",
-      src: "url(https://floriade.co.nz/fonts/kollektif-webfont.woff)",
-      display: "swap"
-    }
-  ]});
-
-  var card = elements.create("card", {
-    hidePostalCode: true,
-    style: {
-      base: {
-        fontFamily: "Poppins, sans-serif",
-        fontWeight: "normal",
-        fontSize: "16px",
-        lineHeight: "2em",
-        color: "#333333",
-        backgroundColor: "#CDDAD5",
-        ":focus": {
-          backgroundColor: "#CDDAD5",
-        },
-        ":-webkit-autofill": {
-          color: "#333333",
-          backgroundColor: "#CDDAD5",
-        },
-        "::placeholder": {
-          fontFamily: "Kollektif, sans-serif",
-          color: "#818D89",
-        },
-      },
-    }
-  });
-
-  // FIXME card.mount("#card-input");
-
-  card.addEventListener("change", function(event) {
-    if(event.error) {
-      showError(event.error.message);
-    } else {
-      hideError();
-    }
-  },false);
-
-  return {
-    stripe: stripe,
-    card: card
-  };
 }
 
 function pay(stripe, card, clientSecret, form) {

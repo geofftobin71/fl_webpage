@@ -121,7 +121,7 @@ module.exports = (eleventyConfig) => {
     minifyCopy("./src/_data/delivery_fees.json", "./dist/php/delivery_fees.json");
     minifyCopy("./src/_data/flat_rate_delivery_fees.json", "./dist/php/flat_rate_delivery_fees.json");
 
-    glob('./src/php/*', (err, files) => {
+    glob('./src/php/*.php', (err, files) => {
       if(err) {
         console.log(err);
       } else {

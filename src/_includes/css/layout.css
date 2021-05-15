@@ -381,7 +381,7 @@ article > *,
 }
 
 article > * + * {
-  margin-top: 2em;  /* FIXME : Deprecate this for article .flow --flow-space */
+  margin-top: var(--flow-space, 2em);
 }
 
 .flow > * + * {

@@ -22,12 +22,9 @@ async function displayCart() {
     return;
   }
 
-	// let delivery_suburb = localStorage.getItem("floriade-delivery-suburb");
-  // if(delivery_suburb) { delivery_suburb = delivery_suburb.toLowerCase(); }
 	let cart_count = cart.length;
 	let cart_items = "";
 	let cart_summary = "";
-	// let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
 
   computeCartTotal();
 	
@@ -66,38 +63,6 @@ async function displayCart() {
 	cart_summary += '<p class="color-shade3" style="padding-left:2em">' + cart_count + (cart_count === 1 ? ' item' : ' items') + '</p>';
 	cart_summary += '<p class="text-right">' + formatMoney(cart_total) + '</p>';
 	
-  /*
-  let has_delivery = false;
-
-  cart.forEach(cart_item => {
-    const cart_product = getProduct(cart_item["product-id"]);
-    if(cart_product) {
-      const cart_category = getCategory(cart_product["category"]);
-      if(cart_category) {
-        if(cart_category["delivery"]) { has_delivery = true }
-      }
-    }
-  });
-
-  if(has_delivery) {
-    cart_summary += '<h3 class="heading">Delivery To</h3>';
-    cart_summary += '<div class="select" style="width:auto;margin-right:auto"><select id="delivery-suburb" name="delivery-suburb" onchange="updateDeliveryFee()">';
-    cart_summary += '<option default disabled selected hidden value="">please choose...</option>';
-    for(const suburb in delivery_fees) {
-      cart_summary += '<option ' + (suburb === delivery_suburb ? 'selected ' : '') + 'value="' + suburb + '">' + titleCase(suburb) + '&nbsp;</option>';
-    }
-    cart_summary += '</select><span class="focus"></span></div>';
-    cart_summary += '<p id="delivery-fee" class="text-right">' + ((delivery_suburb && delivery_suburb !== "none") ? formatMoney(delivery_fee) : 'TBC') + '</p>';
-  } else {
-    cart_summary += '<input id="delivery-suburb" name="delivery-suburb" type="hidden" value="none"><p style="display:none"></p><p style="display:none"></p>';
-    delivery_fee = 0;
-  }
-
-  cart_summary += '<h3 class="top-border font-size-1 text-lowercase">TOTAL</h3>';
-  cart_summary += '<p class="top-border"></p>';
-  cart_summary += '<p id="total" class="top-border font-size-1 text-right">' + formatMoney(delivery_fee + cart_total) + '</p>';
-  */
-
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("summary").innerHTML = cart_summary;
   document.getElementById("cart-form").style.display = "block";
@@ -140,28 +105,3 @@ function removeFromCart(index) {
     });
 }
 
-/*
-function updateDeliveryFee() {
-  hideError();
-
-  let delivery_suburb = document.getElementById("delivery-suburb").value;
-  localStorage.setItem("floriade-delivery-suburb", titleCase(delivery_suburb));
-
-  let delivery_fee = (delivery_suburb && delivery_suburb !== "none") ? delivery_fees[delivery_suburb] : 0;
-  document.getElementById("delivery-fee").innerHTML = formatMoney(delivery_fee);
-  document.getElementById("total").innerHTML = formatMoney(delivery_fee + cart_total);
-}
-
-function checkout() {
-  const suburb = document.getElementById("delivery-suburb").value || "";
-
-  if(suburb === "") {
-    showError("Please choose a delivery option");
-    return;
-  }
-
-  localStorage.setItem("floriade-delivery-suburb", titleCase(suburb));
-
-  window.location.href = "/checkout/";
-}
-*/

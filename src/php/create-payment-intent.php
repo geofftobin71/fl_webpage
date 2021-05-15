@@ -1,7 +1,7 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
   
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 $input = file_get_contents('php://input');
 $body = json_decode($input, true);
@@ -14,7 +14,27 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NON
 $cart = $body["cart"];
 $cart_total_check = intVal($body["cart-total-check"]);
 $delivery_total_check = intVal($body["delivery-total-check"]);
+$delivery_option = clean($body["delivery-option"]);
+$delivery_name = clean($body["delivery-name"]);
+$delivery_phone = clean($body["delivery-phone"]);
+$delivery_address = clean($body["delivery-address"]);
+$delivery_suburb = clean($body["delivery-suburb"]);
+$delivery_date = clean($body["delivery-date"]);
+$gift_tag_message = clean($body["gift-tag-message"]);
+$special_requests = clean($body["special-requests"]);
+$cardholder_name = clean($body["cardholder-name"]);
+$cardholder_email = clean($body["cardholder-email"]);
+$workshop_attendee_name = $body["workshop-attendee-name"];
+$workshop_attendee_email = $body["workshop-attendee-email"];
+
 $total = cartTotal($cart);
+
+print_r($cardholder_name);
+print_r($cardholder_email);
+print_r($workshop_attendee_name);
+print_r($workshop_attendee_email);
+
+exit;
 
 if($total < 1) {
   echo json_encode(['error' => 'Your cart is empty']);
