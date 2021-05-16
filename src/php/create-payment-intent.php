@@ -29,13 +29,6 @@ $workshop_attendee_email = $body["workshop-attendee-email"];
 
 $total = cartTotal($cart);
 
-print_r($cardholder_name);
-print_r($cardholder_email);
-print_r($workshop_attendee_name);
-print_r($workshop_attendee_email);
-
-exit;
-
 if($total < 1) {
   echo json_encode(['error' => 'Your cart is empty']);
   exit;
@@ -45,10 +38,6 @@ if($total !== $cart_total_check) {
   echo json_encode(['error' => 'Cart total error']);
   exit;
 }
-
-$delivery_option = strtolower($body["delivery-option"]);
-$delivery_suburb = strtolower($body["delivery-suburb"]);
-$delivery_date = $body["delivery-date"];
 
 if(!isset($delivery_option)) {
   echo json_encode(['error' => 'Invalid Delivery Option']);
@@ -70,7 +59,7 @@ if(!isset($delivery_date)) {
   exit;
 }
 
-if($delivery_option === "delivery") {
+if(strtolower($delivery_option) === "delivery") {
 
   if(empty($delivery_suburb)) {
     echo json_encode(['error' => 'Invalid Delivery Suburb']);
@@ -82,13 +71,13 @@ if($delivery_option === "delivery") {
     exit;
   }
 
-  $delivery_fee = $delivery_fees[$delivery_suburb];
+  $delivery_fee = $delivery_fees[strtolower($delivery_suburb)];
 
   if(str_starts_with($delivery_date, "Saturday")) {
     $delivery_fee = ($delivery_fee < 20) ? 20 : $delivery_fee;
   }
 
-  foreach ($flat_rate_delivery_fees as $date => $value) {
+  foreach($flat_rate_delivery_fees as $date => $value) {
     if(str_ends_with($delivery_date, $date)) {
       $fee = intVal($value);
       if($fee === 0) {
@@ -125,9 +114,40 @@ foreach($cart as $cart_item) {
   }
 }
 
-$description = implode(", ", $descriptions);
+$description = implode(",", $descriptions);
 
-// FIXME Possibly truncate the description with elipses
+$shipping = [
+  "name" => $delivery_name,
+  "phone" => $delivery_phone,
+  "address" => [
+    "line1" => $delivery_address,
+    "line2" => $delivery_suburb,
+    "city" => "Wellington",
+    "country" => "NZ"
+  ]
+];
+
+$metadata = [
+  "delivery-option" => $delivery_option,
+  "delivery-name" => $delivery_name,
+  "delivery-phone" => $delivery_phone,
+  "delivery-address" => $delivery_address,
+  "delivery-suburb" => $delivery_suburb,
+  "delivery-date" => $delivery_date,
+  "gift-tag-message" => $gift_tag_message,
+  "special-requests" => $special_requests,
+  "cardholder-name" => $cardholder_name,
+  "cardholder-email" => $cardholder_email,
+  "workshop-attendee-name" => implode(",", $workshop_attendee_name),
+  "workshop-attendee-email" => implode(",", $workshop_attendee_email),
+];
+
+echo "<pre>";
+print_r($shipping);
+print_r($metadata);
+echo "/<pre>";
+
+exit;
 
 /* FIXME
 try {
@@ -144,19 +164,18 @@ try {
       "currency" => "nzd",
       "payment_method_types" => ["card"],
       "description" => $description,
+      "receipt_email" => $cardholder_email,
+      "shipping" => $shipping,
     ]);
 
     $_SESSION["payment-intent-id"] = $payment_intent->id;
   }
 } catch(Error $e) {
   echo json_encode(['error' => $e->getMessage()]);
+  exit;
 }
  */
 
-$output = [
-  'clientSecret' => 'pi_1Il2WdLjelSQaoWrC9vtnVSv_secret_YNdFdbKvnXg1sV3xdPzluUreq' // FIXME $payment_intent->client_secret,
-];
-
-echo json_encode($output);
+echo json_encode(['clientSecret' => 'pi_1Il2WdLjelSQaoWrC9vtnVSv_secret_YNdFdbKvnXg1sV3xdPzluUreq']); // FIXME $payment_intent->client_secret]);
 
 ?>
