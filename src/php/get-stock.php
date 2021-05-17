@@ -8,7 +8,6 @@ $body = json_decode($input, true);
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NONE) {
   http_response_code(400);
-  echo json_encode(['error' => 'Invalid request']);
   exit;
 }
 
@@ -19,13 +18,11 @@ $product_count = intval($body["product-count"]);
 $stock_count = stockCount($product_id, $variant_id);
 
 if(($stock_count > 0) && ($product_count > $stock_count)) {
-  http_response_code(400);
   echo json_encode(['error' => 'Number must be ' . $stock_count . ' or less']);
   exit;
 }
 
 if($stock_count == 0) {
-  http_response_code(400);
   echo json_encode(['error' => 'This product has sold out']);
   exit;
 }
@@ -45,7 +42,6 @@ if($items) {
     );
   }
 } else {
-  http_response_code(400);
   echo json_encode(['error' => 'Not enough stock available']);
   exit;
 }

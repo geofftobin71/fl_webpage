@@ -111,6 +111,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
   $order = array(
+    "delivery-option" => ucwords($delivery_option),
     "delivery-name" => $delivery_name,
     "delivery-phone" => $delivery_phone,
     "delivery-address" => $delivery_address,

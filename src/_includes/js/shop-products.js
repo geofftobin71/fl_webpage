@@ -66,55 +66,55 @@ function showProductStock(product_id) {
   })
     .then(response => {
       if(!response.ok) {
-        showError(response.statusText);
         throw Error(response.statusText);
-      } else {
-        return response.json();
       }
+      return response.json();
     })
     .then(json => {
       if(json.error) {
-        showError(json.error);
-        return;
-      } else {
-        if(json["stock-count"]) {
-          let stock_count = json["stock-count"];
+        throw Error(json.error);
+      }
 
-          for(const key in stock_count) {
-            if(key === "total") {
-              let total_stock_count = parseInt(stock_count["total"]);
-              if(total_stock_count === 0) {
-                document.getElementById("number-group").style.display = "none";
-                document.getElementById("button-group").style.display = "none";
-                document.getElementById("product-stock-count").innerText = "( SOLD OUT )";
-                document.getElementById("product-stock-count").style.display = "block";
-              }
-            } else if(key === "none") { 
-              let key_id = "product-stock-count";
-              let value = stock_count[key];
+      if(json["stock-count"]) {
+        let stock_count = json["stock-count"];
 
-              if(parseInt(value) > 0) {
-                document.getElementById(key_id).innerText = "( " + value + " available )";
-                document.getElementById(key_id).style.display = "block";
-              }
+        for(const key in stock_count) {
+          if(key === "total") {
+            let total_stock_count = parseInt(stock_count["total"]);
+            if(total_stock_count === 0) {
+              document.getElementById("number-group").style.display = "none";
+              document.getElementById("button-group").style.display = "none";
+              document.getElementById("product-stock-count").innerText = "( SOLD OUT )";
+              document.getElementById("product-stock-count").style.display = "block";
+            }
+          } else if(key === "none") { 
+            let key_id = "product-stock-count";
+            let value = stock_count[key];
+
+            if(parseInt(value) > 0) {
+              document.getElementById(key_id).innerText = "( " + value + " available )";
+              document.getElementById(key_id).style.display = "block";
+            }
+          } else {
+            let key_id = key + "-stock-count";
+            let value = stock_count[key];
+
+            if(parseInt(value) > 0) {
+              document.getElementById(key_id).innerText = "( " + value + " available )";
+              document.getElementById(key_id).style.display = "inline";
+              document.getElementById(key_id).classList.add = "font-size--1";
+              document.getElementById(key).disabled = false;
             } else {
-              let key_id = key + "-stock-count";
-              let value = stock_count[key];
-
-              if(parseInt(value) > 0) {
-                document.getElementById(key_id).innerText = "( " + value + " available )";
-                document.getElementById(key_id).style.display = "inline";
-                document.getElementById(key_id).classList.add = "font-size--1";
-                document.getElementById(key).disabled = false;
-              } else {
-                document.getElementById(key_id).innerText = "( SOLD OUT )";
-                document.getElementById(key_id).style.display = "inline";
-                document.getElementById(key).disabled = true;
-              }
+              document.getElementById(key_id).innerText = "( SOLD OUT )";
+              document.getElementById(key_id).style.display = "inline";
+              document.getElementById(key).disabled = true;
             }
           }
         }
       }
+    })
+    .catch(error => {
+      showError(error.message);
     });
 }
 
@@ -153,24 +153,24 @@ function addToCart(product_id, is_finite, has_variants, variant_error) {
     })
       .then(response => {
         if(!response.ok) {
-          showError(response.statusText);
           throw Error(response.statusText);
-        } else {
-          return response.json();
         }
+        return response.json();
       })
       .then(json => {
         if(json.error) {
-          showError(json.error);
-          return;
-        } else {
-          if(json.cart) {
-            cart = cart.concat(json.cart);
-            localStorage.setItem("floriade-cart", JSON.stringify(cart));
-            localStorage.setItem("floriade-cart-info", product_count + (product_count === 1 ? " item was" : " items were") + " added to your cart");
-            window.location.href = "/cart/";
-          }
+          throw Error(json.error);
         }
+
+        if(json.cart) {
+          cart = cart.concat(json.cart);
+          localStorage.setItem("floriade-cart", JSON.stringify(cart));
+          localStorage.setItem("floriade-cart-info", product_count + (product_count === 1 ? " item was" : " items were") + " added to your cart");
+          window.location.href = "/cart/";
+        }
+      })
+      .catch(error => {
+        showError(error.message);
       });
   } else {
     for(let i = 0; i < product_count; ++i) {

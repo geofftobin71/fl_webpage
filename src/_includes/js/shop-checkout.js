@@ -217,19 +217,18 @@ async function displayCheckout() {
     })
       .then(response => {
         if(!response.ok) {
-          showError(response.statusText);
           throw Error(response.statusText);
-        } else {
-          return response.json();
         }
+        return response.json();
       })
       .then(json => {
         if(json.error) {
-          showError(json.error);
           throw Error(json.error);
-        } else {
-          pay(stripe, card, json.clientSecret, form);
         }
+        pay(stripe, card, json.clientSecret, form);
+      })
+      .catch(error => {
+        showError(error.message);
       });
   },false);
 

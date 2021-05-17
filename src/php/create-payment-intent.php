@@ -7,7 +7,7 @@ $input = file_get_contents('php://input');
 $body = json_decode($input, true);
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NONE) {
-  echo json_encode(['error' => 'Invalid request']);
+  http_response_code(400);
   exit;
 }
 
@@ -177,6 +177,7 @@ if(!empty($workshop_attendee_email)) {
   $metadata['workshop-attendee-email'] = truncateEllipses(implode(', ', $workshop_attendee_email), 500);
 }
 
+/*
 try {
   if(isset($_SESSION['payment-intent-id'])) {
     $payment_intent = $stripe->paymentIntents->update(
@@ -204,5 +205,8 @@ try {
 }
 
 echo json_encode(['clientSecret' => $payment_intent->client_secret]);
+*/
+
+echo json_encode(['clientSecret' => 'pi_1DoS0r2eZvKYlo2CUH72Ymma_secret_kXDZAZ5yGaJNChaM9Ej7OAr5I']);
 
 ?>
