@@ -243,6 +243,7 @@ function selectDeliveryOption(delivery_option) {
     document.getElementById("delivery-date-label").innerText = "Pickup Date";
     document.getElementById("delivery-phone-label").innerText = "Your Phone";
     document.getElementById("delivery-phone-caption").innerText = "In case we need to contact you regarding pickup";
+    document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day pickup";
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "none";
     });
@@ -252,6 +253,7 @@ function selectDeliveryOption(delivery_option) {
     document.getElementById("delivery-date-label").innerText = "Delivery Date";
     document.getElementById("delivery-phone-label").innerText = "Recipient Phone";
     document.getElementById("delivery-phone-caption").innerText = "In case we need to contact the recipient to make alternative delivery arrangements";
+    document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day delivery";
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "block";
     });

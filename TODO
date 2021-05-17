@@ -1,4 +1,6 @@
 -- FIX --
+ucwords delivery_option delivery_suburb
+optional attendee metadata / shipping?
 Move fetch create-payment-intent to Submit function and fix setupElements
 Check ALL dates data for two digits in .eleventy.js
 Cart expiry check at Checkout submit
