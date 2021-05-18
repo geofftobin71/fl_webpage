@@ -241,12 +241,12 @@ function disableInvalidDates(delivery_option) {
         }
       });
 
-      if(element.value.startsWith("Sunday")) {
-        element.disabled = true;
-      }
-
-      if(element.value.startsWith("Monday")) {
-        element.disabled = true;
+      for(let day in shop_hours) {
+        if(shop_hours[day].toLowerCase().startsWith("closed")) {
+          if(element.value.toLowerCase().startsWith(day.toLowerCase())) {
+            element.disabled = true;
+          }
+        }
       }
 
       special_delivery_dates.forEach(date => {
@@ -263,12 +263,12 @@ function disableInvalidDates(delivery_option) {
         }
       });
 
-      if(element.value.startsWith("Sunday")) {
-        element.disabled = true;
-      }
-
-      if(element.value.startsWith("Monday")) {
-        element.disabled = true;
+      for(let day in shop_hours) {
+        if(shop_hours[day].toLowerCase().startsWith("closed")) {
+          if(element.value.toLowerCase().startsWith(day.toLowerCase())) {
+            element.disabled = true;
+          }
+        }
       }
 
       special_shop_open_dates.forEach(date => {
