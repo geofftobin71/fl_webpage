@@ -185,6 +185,7 @@ async function displayCheckout() {
     const special_requests = document.getElementById("special-requests").value;
     const cardholder_name = document.getElementById("cardholder-name").value;
     const cardholder_email = document.getElementById("cardholder-email").value;
+    const cardholder_phone = document.getElementById("cardholder-phone").value;
     const workshop_attendee_name = [...document.querySelectorAll(".workshop-name")].map(s => s.value);
     const workshop_attendee_email = [...document.querySelectorAll(".workshop-email")].map(s => s.value);
 
@@ -207,6 +208,7 @@ async function displayCheckout() {
         "special-requests": special_requests,
         "cardholder-name": cardholder_name,
         "cardholder-email": cardholder_email,
+        "cardholder-phone": cardholder_phone,
         "workshop-attendee-name": workshop_attendee_name,
         "workshop-attendee-email": workshop_attendee_email
       })
@@ -402,16 +404,8 @@ function pay(stripe, card, clientSecret, form) {
         card: card,
         billing_details: {
           name: document.getElementById("cardholder-name").value,
-          email: document.getElementById("cardholder-email").value
-        }
-      },
-      receipt_email: document.getElementById("cardholder-email").value,
-      shipping: {
-        name: document.getElementById("delivery-name").value,
-        phone: document.getElementById("delivery-phone").value,
-        address: {
-          line1: document.getElementById("delivery-address").value,
-          line2: document.getElementById("delivery-suburb").value
+          email: document.getElementById("cardholder-email").value,
+          phone: document.getElementById("cardholder-phone").value
         }
       }
     })
@@ -422,6 +416,10 @@ function pay(stripe, card, clientSecret, form) {
       } else {
         hideError();
         document.getElementById("payment-intent-id").value = result.paymentIntent.id;
+        document.getElementById("card-brand").value = result.paymentIntent.charges.data[0].payment_method_details.card.brand;
+        document.getElementById("card-month").value = result.paymentIntent.charges.data[0].payment_method_details.card.exp_month;
+        document.getElementById("card-year").value = result.paymentIntent.charges.data[0].payment_method_details.card.exp_year;
+        document.getElementById("card-last4").value = result.paymentIntent.charges.data[0].payment_method_details.card.last4;
         localStorage.clear();
         form.submit();
       }

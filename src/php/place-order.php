@@ -4,6 +4,10 @@ include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if(isset($_POST["payment-intent-id"])) { $payment_intent_id = clean($_POST["payment-intent-id"]); }
+  if(isset($_POST["card-brand"])) { $card_brand = clean($_POST["card-brand"]); }
+  if(isset($_POST["card-month"])) { $card_month = clean($_POST["card-month"]); }
+  if(isset($_POST["card-year"])) { $card_year = clean($_POST["card-year"]); }
+  if(isset($_POST["card-last4"])) { $card_last4 = clean($_POST["card-last4"]); }
   if(isset($_POST["delivery-option"])) { $delivery_option = clean($_POST["delivery-option"]); }
   if(isset($_POST["delivery-name"])) { $delivery_name = clean($_POST["delivery-name"]); }
   if(isset($_POST["delivery-phone"])) { $delivery_phone = clean($_POST["delivery-phone"]); }
@@ -14,6 +18,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(isset($_POST["special-requests"])) { $special_requests = clean($_POST["special-requests"]); }
   if(isset($_POST["cardholder-name"])) { $cardholder_name = clean($_POST["cardholder-name"]); }
   if(isset($_POST["cardholder-email"])) { $cardholder_email = clean($_POST["cardholder-email"]); }
+  if(isset($_POST["cardholder-phone"])) { $cardholder_phone = clean($_POST["cardholder-phone"]); }
   if(isset($_POST["workshop-attendee-name"])) { $workshop_attendee_name = $_POST["workshop-attendee-name"]; }
   if(isset($_POST["workshop-attendee-email"])) { $workshop_attendee_email = $_POST["workshop-attendee-email"]; }
   if(isset($_POST["cart"])) { $cart = json_decode($_POST["cart"], true); }
@@ -21,14 +26,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(isset($_POST["delivery-total-check"])) { $delivery_fee = intVal(clean($_POST["delivery-total-check"])); }
 
   $order_date = new DateTime;
-  $last_four = strval(rand(1111,9999));   // FIXME
-
-  /*
-  if($delivery_fee !== $delivery_total_check) {
-    header('Location:/error.html?h=' . urlencode("Delivery Fee error") . '&p=' . urlencode("There was an internal error calculating the delivery fee.<br><br>Please call us to place your order."));
-    exit;
-  }
-   */
 
   echo '<pre>';
   echo '<br>POST<br>';
@@ -87,9 +84,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
             "timestamp" => $order_date->format('Y-m-d H:i:s'),
             "price" => $price,
             "payment-id" => $payment_intent_id,
-            "last-four" => $last_four,
+            "card-brand" => $card_brand,
+            "card-month" => $card_month,
+            "card-year" => $card_year,
+            "card-last4" => $card_last4,
             "cardholder-name" => $cardholder_name,
             "cardholder-email" => $cardholder_email,
+            "cardholder-phone" => $cardholder_phone,
           );
 
           $order_tickets[] = array(
@@ -121,9 +122,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     "special-requests" => $special_requests,
     "timestamp" => $order_date->format('Y-m-d H:i:s'),
     "payment-id" => $payment_intent_id,
-    "last-four" => $last_four,
+    "card-brand" => $card_brand,
+    "card-month" => $card_month,
+    "card-year" => $card_year,
+    "card-last4" => $card_last4,
     "cardholder-name" => $cardholder_name,
     "cardholder-email" => $cardholder_email,
+    "cardholder-phone" => $cardholder_phone,
     "items" => $order_items,
     "tickets" => $order_tickets,
     "cart-total" => $cart_total,

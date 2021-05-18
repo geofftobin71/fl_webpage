@@ -144,6 +144,12 @@ sitemap:
         </div>
 
         <div>
+          <label for="cardholder-phone"><h4 class="heading">Cardholder Phone</h4></label>
+          <input class="input" id="cardholder-phone" name="cardholder-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Cardholder Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+          <p class="caption text-left text-lowercase">In case we need to contact you regarding your order</p>
+        </div>
+
+        <div>
           <label for="card-input"><h4 class="heading">Credit Card</h4></label>
           <div id="card-input" class="input" onfocus="hideError()"></div>
         </div>
@@ -177,6 +183,10 @@ sitemap:
       </div>
 
       <input id="payment-intent-id" name="payment-intent-id" type="hidden">
+      <input id="card-brand" name="card-brand" type="hidden">
+      <input id="card-month" name="card-month" type="hidden">
+      <input id="card-year" name="card-year" type="hidden">
+      <input id="card-last4" name="card-last4" type="hidden">
       <input id="cart-total-check" name="cart-total-check" type="hidden">
       <input id="delivery-total-check" name="delivery-total-check" type="hidden">
       <input id="cart" name="cart" type="hidden">

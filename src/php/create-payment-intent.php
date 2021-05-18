@@ -24,6 +24,7 @@ $gift_tag_message = clean($body['gift-tag-message']);
 $special_requests = clean($body['special-requests']);
 $cardholder_name = clean($body['cardholder-name']);
 $cardholder_email = clean($body['cardholder-email']);
+$cardholder_phone = clean($body['cardholder-phone']);
 $workshop_attendee_name = $body['workshop-attendee-name'];
 $workshop_attendee_email = $body['workshop-attendee-email'];
 
@@ -167,6 +168,7 @@ $metadata = [
   'special-requests' => truncateEllipses($special_requests, 500),
   'cardholder-name' => $cardholder_name,
   'cardholder-email' => $cardholder_email,
+  'cardholder-phone' => $cardholder_phone,
 ];
 
 if(!empty($workshop_attendee_name)) {
