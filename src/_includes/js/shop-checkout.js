@@ -303,6 +303,10 @@ function selectDeliveryOption(delivery_option) {
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "none";
     });
+    document.getElementById("delivery-address").value = "";
+    document.getElementById("delivery-suburb").options[0].selected = true;
+    localStorage.removeItem("floriade-delivery-address");
+    localStorage.removeItem("floriade-delivery-suburb");
   }
 
   if(delivery_option === "delivery") {
