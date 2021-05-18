@@ -13,6 +13,20 @@ var special_shop_open_dates;
 var shop_hours;
 
 async function fetchData() {
+  let response = await fetch('/php/shop-data.php');
+  const shop_data = await response.json();
+
+  shop_products = shop_data["shop-products"];
+  shop_categories = shop_data["shop-categories"];
+  delivery_fees = shop_data["delivery-fees"];
+  flat_rate_delivery_fees = shop_data["flat-rate-delivery-fees"];
+  non_delivery_dates = shop_data["non-delivery-dates"];
+  shop_closed_dates = shop_data["shop-closed-dates"];
+  special_delivery_dates = shop_data["special-delivery-dates"];
+  special_shop_open_dates = shop_data["special-shop-open-dates"];
+  shop_hours = shop_data["shop-hours"];
+
+  /*
   let response;
   response = await fetch('/php/shop-products.php');
   shop_products = await response.json();
@@ -40,6 +54,7 @@ async function fetchData() {
 
   response = await fetch('/php/shop-hours.php');
   shop_hours = await response.json();
+  */
 }
 
 function getProduct(product_id) {
