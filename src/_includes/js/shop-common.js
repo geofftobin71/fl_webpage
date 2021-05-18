@@ -14,31 +14,31 @@ var shop_hours;
 
 async function fetchData() {
   let response;
-  response = await fetch('/php/shop_products.json');
+  response = await fetch('/php/shop-products.php');
   shop_products = await response.json();
 
-  response = await fetch('/php/shop_categories.json');
+  response = await fetch('/php/shop-categories.php');
   shop_categories = await response.json();
 
-  response = await fetch('/php/delivery_fees.json');
+  response = await fetch('/php/delivery-fees.php');
   delivery_fees = await response.json();
 
-  response = await fetch('/php/flat_rate_delivery_fees.json');
+  response = await fetch('/php/flat-rate-delivery-fees.php');
   flat_rate_delivery_fees = await response.json();
 
-  response = await fetch('/php/non_delivery_dates.json');
+  response = await fetch('/php/non-delivery-dates.php');
   non_delivery_dates = await response.json();
 
-  response = await fetch('/php/shop_closed_dates.json');
+  response = await fetch('/php/shop-closed-dates.php');
   shop_closed_dates = await response.json();
 
-  response = await fetch('/php/special_delivery_dates.json');
+  response = await fetch('/php/special-delivery-dates.php');
   special_delivery_dates = await response.json();
 
-  response = await fetch('/php/special_shop_open_dates.json');
+  response = await fetch('/php/special-shop-open-dates.php');
   special_shop_open_dates = await response.json();
 
-  response = await fetch('/php/shop_hours.json');
+  response = await fetch('/php/shop-hours.php');
   shop_hours = await response.json();
 }
 
