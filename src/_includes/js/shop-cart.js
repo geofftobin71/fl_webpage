@@ -82,26 +82,25 @@ function removeFromCart(index) {
   })
     .then(response => {
       if(!response.ok) {
-        showError(response.statusText);
         throw Error(response.statusText);
-      } else {
-        return response.json();
       }
+      return response.json();
     })
     .then(json => {
       if(json.error) {
-        showError(json.error);
-        return;
-      } else {
-        if(json.cart) {
-          if(json.cart.length === 0) {
-            localStorage.clear();
-          }
-          localStorage.setItem("floriade-cart", JSON.stringify(json.cart));
-          localStorage.setItem("floriade-cart-info", json.count + (parseInt(json.count) === 1 ? " item was" : " items were") + " removed from your cart");
-          window.location.href = "/cart/";
-        }
+        throw Error(json.error);
       }
+      if(json.cart) {
+        if(json.cart.length === 0) {
+          localStorage.clear();
+        }
+        localStorage.setItem("floriade-cart", JSON.stringify(json.cart));
+        localStorage.setItem("floriade-cart-info", json.count + (parseInt(json.count) === 1 ? " item was" : " items were") + " removed from your cart");
+        window.location.href = "/cart/";
+      }
+    })
+    .catch(error => {
+      showError(error.message);
     });
 }
 

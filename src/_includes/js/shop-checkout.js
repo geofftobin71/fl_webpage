@@ -86,11 +86,6 @@ async function displayCheckout() {
     }
   }
 
-  const now = DateTime.now();
-  const ten_am = DateTime.fromObject({hour:10});
-
-  document.getElementById("today").disabled = (now > ten_am);
-
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("cart").value = JSON.stringify(cart);
   document.getElementById("checkout-form").style.display = "block";
@@ -101,13 +96,14 @@ async function displayCheckout() {
     if(value) { inputs[i].value = value; }
   };
 
+  disableInvalidDates(delivery_option);
   updateTotal();
 
-{% if env.NODE_ENV == 'develop' %}
+  {% if env.NODE_ENV == 'develop' %}
   var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
-{% else %}
+  {% else %}
   var stripe = Stripe("{{ env.STRIPE_LIVE_PUBLIC_KEY }}");
-{% endif %}
+  {% endif %}
 
   var elements = stripe.elements({fonts:[
     {
@@ -235,6 +231,67 @@ async function displayCheckout() {
   enableCheckoutForm();
 }
 
+function disableInvalidDates(delivery_option) {
+  document.querySelectorAll(".delivery-date-option").forEach(element => {
+    element.disabled = false;
+    if(delivery_option === "delivery") {
+      non_delivery_dates.forEach(date => {
+        if(element.value.endsWith(date)) {
+          element.disabled = true;
+        }
+      });
+
+      if(element.value.startsWith("Sunday")) {
+        element.disabled = true;
+      }
+
+      if(element.value.startsWith("Monday")) {
+        element.disabled = true;
+      }
+
+      special_delivery_dates.forEach(date => {
+        if(element.value.endsWith(date)) {
+          element.disabled = false;
+        }
+      });
+    }
+
+    if(delivery_option === "pickup") {
+      shop_closed_dates.forEach(date => {
+        if(element.value.endsWith(date)) {
+          element.disabled = true;
+        }
+      });
+
+      if(element.value.startsWith("Sunday")) {
+        element.disabled = true;
+      }
+
+      if(element.value.startsWith("Monday")) {
+        element.disabled = true;
+      }
+
+      special_shop_open_dates.forEach(date => {
+        if(element.value.endsWith(date)) {
+          element.disabled = false;
+        }
+      });
+    }
+  });
+
+  const now = DateTime.now();
+  const ten_am = DateTime.fromObject({hour:10});
+
+  document.getElementById("today").disabled = (now > ten_am);
+
+  var delivery_date = document.getElementById("delivery-date");
+  var opt = delivery_date.options[delivery_date.selectedIndex];
+  if(opt.disabled) {
+    opt.selected = false;
+    delivery_date.options[0].selected = true;
+  }
+}
+
 function selectDeliveryOption(delivery_option) {
   localStorage.setItem("floriade-delivery-option", delivery_option);
 
@@ -258,6 +315,7 @@ function selectDeliveryOption(delivery_option) {
     });
   }
 
+  disableInvalidDates(delivery_option);
   updateTotal();
 }
 

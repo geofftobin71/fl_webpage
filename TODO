@@ -1,6 +1,6 @@
 -- FIX --
-fetch -> http response codes / error handling
-Check ALL dates data for two digits in .eleventy.js
+Product page image 907-949px
+fetch php proxy instead of json files
 Cart expiry check at Checkout submit
 Query CC last four digits from stripe payment -> orders / bookings
 Check contact form recaptcha error handling

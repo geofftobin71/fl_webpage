@@ -53,16 +53,17 @@ function checkCartExpired() {
     })
       .then(response => {
         if(!response.ok) {
-          showError(response.statusText);
           throw Error(response.statusText);
-        } else {
-          return response.json();
         }
+        return response.json();
       })
       .then(json => {
         localStorage.clear();
         localStorage.setItem("floriade-cart-expired", true);
         cart = [];
+      })
+      .catch(error => {
+        showError(error.message);
       });
   }
 }
@@ -80,29 +81,28 @@ function showSoldOut(product_price) {
   })
     .then(response => {
       if(!response.ok) {
-        // showError(response.statusText);
         throw Error(response.statusText);
-      } else {
-        return response.json();
       }
+      return response.json();
     })
     .then(json => {
       if(json.error) {
-        // showError(json.error);
-        return;
-      } else {
-        if(json["stock-count"]) {
-          let stock_count = json["stock-count"];
+        throw Error(json.error);
+      }
+      if(json["stock-count"]) {
+        let stock_count = json["stock-count"];
 
-          for(const key in stock_count) {
-            if(key === "total") {
-              if(parseInt(stock_count["total"]) === 0) {
-                product_price.innerHTML = "<p>SOLD OUT</p>";
-              }
+        for(const key in stock_count) {
+          if(key === "total") {
+            if(parseInt(stock_count["total"]) === 0) {
+              product_price.innerHTML = "<p>SOLD OUT</p>";
             }
           }
         }
       }
+    })
+    .catch(error => {
+      showError(error.message);
     });
 }
 

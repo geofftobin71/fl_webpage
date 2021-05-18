@@ -6,6 +6,11 @@ var shop_products;
 var shop_categories;
 var delivery_fees;
 var flat_rate_delivery_fees;
+var non_delivery_dates;
+var shop_closed_dates;
+var special_delivery_dates;
+var special_shop_open_dates;
+var shop_hours;
 
 async function fetchData() {
   let response;
@@ -20,6 +25,21 @@ async function fetchData() {
 
   response = await fetch('/php/flat_rate_delivery_fees.json');
   flat_rate_delivery_fees = await response.json();
+
+  response = await fetch('/php/non_delivery_dates.json');
+  non_delivery_dates = await response.json();
+
+  response = await fetch('/php/shop_closed_dates.json');
+  shop_closed_dates = await response.json();
+
+  response = await fetch('/php/special_delivery_dates.json');
+  special_delivery_dates = await response.json();
+
+  response = await fetch('/php/special_shop_open_dates.json');
+  special_shop_open_dates = await response.json();
+
+  response = await fetch('/php/shop_hours.json');
+  shop_hours = await response.json();
 }
 
 function getProduct(product_id) {

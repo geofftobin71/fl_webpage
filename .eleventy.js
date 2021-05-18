@@ -92,6 +92,27 @@ module.exports = (eleventyConfig) => {
     });
     fs.writeFileSync('src/_data/non_delivery_dates.json', JSON.stringify(non_delivery_dates, null, 2));
 
+    let special_shop_open_dates = JSON.parse(fs.readFileSync('src/_data/special_shop_open_dates.json'));
+    special_shop_open_dates.forEach((date, i, dates) => {
+      if(!isNaN(parseInt(date[0])) && isNaN(parseInt(date[1]))) { dates[i] = '0' + date; }
+    });
+    fs.writeFileSync('src/_data/special_shop_open_dates.json', JSON.stringify(special_shop_open_dates, null, 2));
+
+    let special_delivery_dates = JSON.parse(fs.readFileSync('src/_data/special_delivery_dates.json'));
+    special_delivery_dates.forEach((date, i, dates) => {
+      if(!isNaN(parseInt(date[0])) && isNaN(parseInt(date[1]))) { dates[i] = '0' + date; }
+    });
+    fs.writeFileSync('src/_data/special_delivery_dates.json', JSON.stringify(special_delivery_dates, null, 2));
+
+    let flat_rate_delivery_fees = JSON.parse(fs.readFileSync('src/_data/flat_rate_delivery_fees.json'));
+    for(var date in flat_rate_delivery_fees) {
+      if(!isNaN(parseInt(date[0])) && isNaN(parseInt(date[1]))) {
+        flat_rate_delivery_fees['0' + date] = flat_rate_delivery_fees[date];
+        delete flat_rate_delivery_fees[date];
+      }
+    }
+    fs.writeFileSync('src/_data/flat_rate_delivery_fees.json', JSON.stringify(flat_rate_delivery_fees, null, 2));
+
     // Add unique IDs to products
     shop_products.forEach(product => {
       if(!product.id) {
@@ -120,6 +141,11 @@ module.exports = (eleventyConfig) => {
     minifyCopy("./src/_data/shop_products.json", "./dist/php/shop_products.json");
     minifyCopy("./src/_data/delivery_fees.json", "./dist/php/delivery_fees.json");
     minifyCopy("./src/_data/flat_rate_delivery_fees.json", "./dist/php/flat_rate_delivery_fees.json");
+    minifyCopy("./src/_data/non_delivery_dates.json", "./dist/php/non_delivery_dates.json");
+    minifyCopy("./src/_data/shop_closed_dates.json", "./dist/php/shop_closed_dates.json");
+    minifyCopy("./src/_data/special_delivery_dates.json", "./dist/php/special_delivery_dates.json");
+    minifyCopy("./src/_data/special_shop_open_dates.json", "./dist/php/special_shop_open_dates.json");
+    minifyCopy("./src/_data/shop_hours.json", "./dist/php/shop_hours.json");
 
     glob('./src/php/*.php', (err, files) => {
       if(err) {
@@ -465,7 +491,7 @@ module.exports = (eleventyConfig) => {
       first = false;
     });
 
-		return result;
+    return result;
   });
 
   // Convert uppercase to hyphen-lowercase : fooBar => foo-bar
