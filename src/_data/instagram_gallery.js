@@ -43,7 +43,7 @@ module.exports = function() {
             .max_results(500)
             .execute()
             .then(result => {
-              console.log(JSON.stringify(result.resources, null, 2));
+              // console.log(JSON.stringify(result.resources, null, 2));
               if(result && result.resources && result.resources.length) {
                 if(process.env.NODE_ENV == 'build') {
                   console.log('Updating instagram-gallery');

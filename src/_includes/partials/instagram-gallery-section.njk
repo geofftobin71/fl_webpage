@@ -11,8 +11,8 @@
           {% set lqip_data = lqip_path | imgLqip %}
           {% set thumbnail_path = site.cloudinary_url + "/c_fill,w_350,h_350,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
           {% set image_path = site.cloudinary_url + "/c_fill,w_1440,h_1440,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
-          <noscript><a href="{{ image_path }}" height="100%"><img src="{{ thumbnail_path }}" width="350" height="350" alt="{{ item.context.caption }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
-          <img data-src="{{ thumbnail_path }}" src="{{ site.transgif }}" width="350" height="350" alt="{{ item.context.caption }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
+          <noscript><a href="{{ image_path }}" height="100%"><img src="{{ thumbnail_path }}" width="350" height="350" alt="{{ item.context.caption | urldecode }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
+          <img data-src="{{ thumbnail_path }}" src="{{ site.transgif }}" width="350" height="350" alt="{{ item.context.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
         </figure>
       </li>
     {% endfor %}
@@ -35,10 +35,10 @@
           {%- for size in instagram_image_sizes -%}
           {{ site.cloudinary_url }}/w_{{ size }},c_fill,ar_1,q_auto,f_auto,g_auto/{{ item.public_id | stripVersion }} {{ size }}w{{ ',' if not loop.last }}
           {%- endfor -%}
-          " sizes="100vmin" data-src="{{ image_path }}" src="{{ site.transgif }}" style="background-image:url({{ lqip_data }});background-size:contain" width="1400" height="1400" alt="{{ item.context.caption }}" loading="lazy" decoding="async" />
+          " sizes="100vmin" data-src="{{ image_path }}" src="{{ site.transgif }}" style="background-image:url({{ lqip_data }});background-size:contain" width="1400" height="1400" alt="{{ item.context.caption | urldecode }}" loading="lazy" decoding="async" />
           <figcaption class="wrapper text-wrapper">
             <div class="text-center text-shadow flow">
-              <h4>{{ item.context.caption }}</h4>
+              <h4>{{ item.context.caption | urldecode }}</h4>
             </div>
           </figcaption>
         </figure>

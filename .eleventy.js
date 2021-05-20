@@ -333,6 +333,10 @@ module.exports = (eleventyConfig) => {
     return content;
   });
 
+  eleventyConfig.addFilter("urldecode", (string) => {
+    return decodeURIComponent(string);
+  });
+
   eleventyConfig.addFilter("cssmin", (code) => {
     if(process.env.NODE_ENV != 'develop') {
       return new CleanCSS({}).minify(code).styles;
