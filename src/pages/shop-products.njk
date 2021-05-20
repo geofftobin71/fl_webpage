@@ -46,8 +46,8 @@ eleventyComputed:
           {% set image_info = image_id | imgInfo %}
           {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
           {% set src = site.cloudinary_url + "/w_750," + transforms + image_id %}
-          <noscript><img class="round" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
-          <div><img class="round" data-srcset="
+          <noscript><img class="round width100" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+          <div><img class="round width100" data-srcset="
           {%- for size in image_sizes -%}
           {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
           {%- endfor -%}

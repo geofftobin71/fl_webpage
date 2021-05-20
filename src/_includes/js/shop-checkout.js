@@ -392,6 +392,10 @@ function pay(stripe, card, clientSecret, form) {
 
   // FIXME
   document.getElementById("payment-intent-id").value = 'pi_' + uniqueId(24);
+  document.getElementById("card-brand").value = 'Visa';
+  document.getElementById("card-month").value = '09';
+  document.getElementById("card-year").value = '2022';
+  document.getElementById("card-last4").value = '4242';
   // localStorage.clear();
   form.submit();
   // FIXME

@@ -1,6 +1,4 @@
 -- FIX --
-url decode cloudinary captions
-Product page image 907-949px
 Cart expiry check at Checkout submit
 Check contact form recaptcha error handling
 ENABLE contact form handler
