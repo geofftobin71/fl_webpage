@@ -1,8 +1,8 @@
 var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 var cart_total = 0;
 
-const cart_expiry_time = 1800.0;  // 30 minutes
-const cart_reset_time = 2100.0;   // 35 minutes
+const cart_expiry_time = 180.0;  // 30 minutes
+const cart_reset_time = 210.0;   // 35 minutes
 
 checkCartExpired();
 
@@ -17,6 +17,22 @@ function displayShopCategory() {
   displayShop();
 }
 
+function cartHasDelivery() {
+  let has_delivery = false;
+
+  cart.forEach(cart_item => {
+    const cart_product = getProduct(cart_item["product-id"]);
+    if(cart_product) {
+      const cart_category = getCategory(cart_product["category"]);
+      if(cart_category) {
+        if(cart_category["delivery"]) { has_delivery = true }
+      }
+    }
+  });
+
+  return has_delivery;
+}
+
 function computeCartTotal() {
 
   cart_total = 0;
@@ -29,6 +45,38 @@ function computeCartTotal() {
   });
 }
 
+async function checkCartExpired() {
+
+  let expired = false;
+  let timeout = microtime(true) - cart_expiry_time;
+
+  cart.forEach(cart_item => {
+    if((cart_item.updated) && (cart_item.updated < timeout)) {
+      expired = true;
+    }
+  });
+
+  if(expired) {
+
+    let response = await fetch("/php/expire-cart.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "cart": cart
+      })
+    });
+
+    const json = await response.json();
+
+    localStorage.clear();
+    localStorage.setItem("floriade-cart-expired", true);
+    cart = [];
+  }
+}
+
+/*
 function checkCartExpired() {
 
   let expired = false;
@@ -67,6 +115,7 @@ function checkCartExpired() {
       });
   }
 }
+*/
 
 function showSoldOut(product_price) {
 

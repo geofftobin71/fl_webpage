@@ -38,6 +38,12 @@ async function displayCheckout() {
       cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
     }
 
+    /* */
+	  if(cart_item["updated"]) {
+	    cart_items += '<br><span class="font-size--1">' + DateTime.fromMillis((cart_item["updated"] + cart_expiry_time) * 1000.0).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) + '</span>';
+	  }
+    /* */
+	
     cart_items += '</p>';
 
     if(product["category"].toLowerCase() === "workshops") {
@@ -63,19 +69,7 @@ async function displayCheckout() {
   document.getElementById("cart-total").innerText = formatMoney(cart_total);
   document.getElementById("cart-total-check").value = cart_total;
 
-  let has_delivery = false;
-
-  cart.forEach(cart_item => {
-    const cart_product = getProduct(cart_item["product-id"]);
-    if(cart_product) {
-      const cart_category = getCategory(cart_product["category"]);
-      if(cart_category) {
-        if(cart_category["delivery"]) { has_delivery = true }
-      }
-    }
-  });
-
-  if(has_delivery) {
+  if(cartHasDelivery()) {
     document.querySelectorAll(".delivery-group").forEach(element => {
       element.style.display = "block";
     });
@@ -157,7 +151,7 @@ async function displayCheckout() {
 
   var form = document.getElementById("checkout-form");
 
-  form.addEventListener("submit", function(event) {
+  form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
     disableCheckoutForm();
@@ -172,6 +166,19 @@ async function displayCheckout() {
         }
       }
     };
+
+    await checkCartExpired();
+
+    if(localStorage.getItem("floriade-cart-expired")) {
+      document.getElementById("cart-expired").style.display = "block";
+      localStorage.removeItem("floriade-cart-expired");
+    }
+
+    if(cart.length === 0) {
+      document.getElementById("empty-cart").style.display = "flex";
+      document.getElementById("checkout-form").style.display = "none";
+      return false;
+    }
 
     const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
     const delivery_name = document.getElementById("delivery-name").value;
@@ -396,7 +403,7 @@ function pay(stripe, card, clientSecret, form) {
   document.getElementById("card-month").value = '09';
   document.getElementById("card-year").value = '2022';
   document.getElementById("card-last4").value = '4242';
-  // localStorage.clear();
+  localStorage.clear();
   form.submit();
   // FIXME
 

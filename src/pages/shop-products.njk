@@ -39,7 +39,7 @@ eleventyComputed:
 <section id="shop" class="two-column-section">
   <div class="wrapper page-wrapper two-columns" style="--align:start">
     <div class="wrapper image-wrapper flow width100">
-      <figure class="canvas round shadow width100 {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
+      <figure class="canvas aspect aspect1x1 round shadow width100 {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
         {% for product_image in product.images %}
           {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
           {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}

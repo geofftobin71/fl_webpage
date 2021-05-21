@@ -42,11 +42,11 @@ async function displayCart() {
 	    cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
 	  }
 	
-    /*
+    /* */
 	  if(cart_item["updated"]) {
 	    cart_items += '<br><span class="font-size--1">' + DateTime.fromMillis((cart_item["updated"] + cart_expiry_time) * 1000.0).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) + '</span>';
 	  }
-    */
+    /* */
 	
 	  cart_items += '</p>';
 	
@@ -66,6 +66,10 @@ async function displayCart() {
   document.getElementById("items").innerHTML = cart_items;
   document.getElementById("summary").innerHTML = cart_summary;
   document.getElementById("cart-form").style.display = "block";
+
+  if(!cartHasDelivery()) {
+    document.getElementById("delivery-message").style.display = "none";
+  }
 }
 
 function removeFromCart(index) {

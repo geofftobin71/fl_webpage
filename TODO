@@ -1,9 +1,11 @@
 -- FIX --
-Cart expiry check at Checkout submit
+Order emails (simplify contact email)
+Gallery layout
 Check contact form recaptcha error handling
 ENABLE contact form handler
 contact page / contact form padding
 REMOVE ClearCart button
+REMOVE Product expiry time debug
 check floriade-delivery-date has not passed in expireCart
 single product width on mobile - padding too big
 single column gallery spacing

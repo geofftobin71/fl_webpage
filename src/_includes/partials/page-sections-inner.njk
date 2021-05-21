@@ -19,13 +19,13 @@
 {% if section.template == "image-section" %}
   <section class="image-section">
     <div class="wrapper{{ ' text-wrapper' if section.width == 'Paragraph' }}{{ ' page-wrapper' if section.width == 'Extra Wide' }}{{ ' no-wrapper' if section.width == 'Full' }}">
-      <figure class="canvas round shadow">
         {% set image_id = section.image | stripVersion %}
         {% set image_info = image_id | imgInfo %}
         {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
         {% set lqip_data = lqip_path | imgLqip %}
         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+      <figure class="canvas aspect aspect1x1 round shadow" style="background-image:url({{ lqip_data }})">
         <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
         <div><img data-srcset="
         {%- for size in image_sizes -%}
@@ -115,7 +115,7 @@
 {% if section.template == "google-maps-section" %}
   <section class="google-maps-section">
     <div class="wrapper">
-      <div class="canvas round shadow">
+      <div class="canvas aspect aspect1x1 round shadow">
         {% if env.NODE_ENV == 'deploy' %}
           <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
         {% endif %}
