@@ -1,5 +1,38 @@
 [
   {
+    "asset_id": "479a3cb63fe5b1300224fdee85d1ff35",
+    "public_id": "instagram/floriade_wellington_17908087552777551",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17908087552777551",
+    "format": "jpg",
+    "version": 1621555603,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-05-21T00:06:43+00:00",
+    "uploaded_at": "2021-05-21T00:06:43+00:00",
+    "bytes": 451343,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "A%20little%20something%20I%E2%80%99m%20working%20on%20for%20a%20very%20special%20couple%E2%80%99s%20wedding%20this%20weekend.%20This%20talented%20bride%20and%20groom-to-be%20work%20in%20the%20wedding%20industry%20themselves%20but%20now%20it%E2%80%99s%20time%20for%20them%20to%20be%20the%20centre%20of%20attention!%20All%20will%20be%20revealed%20after%20their%20wedding!",
+      "timestamp": "2021-05-20T18:20:35+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1621555603/instagram/floriade_wellington_17908087552777551.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1621555603/instagram/floriade_wellington_17908087552777551.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "2fed6ad291c074d72fcc24898e4ceb47",
     "public_id": "instagram/floriade_wellington_17877714179346652",
     "folder": "instagram",
@@ -25,7 +58,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "de2e6279f2fcdacfa05310b99eab7536",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -59,7 +91,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "d40195df37099ebc19a7cef7852b4480",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -93,7 +124,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "24a74bdc523335942422c61a7ce91e0d",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -127,7 +157,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "ff3594e0781981fc0abf40ae5d6665dd",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -161,7 +190,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "5f76cb8601193a065d9d251c45d84ca2",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -195,7 +223,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "ac01fa7f08f6c0829df92fe3cef29e39",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -229,7 +256,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "c42b4c2e5bea322003698e38d2cbbfe4",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -263,7 +289,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "731d79ebbdc77700cfc909682aee6f51",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -297,7 +322,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "f60c342ac16c3f969b200f5c495c4665",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -331,7 +355,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "63b59a714bc0e52c3fefcbbc09de5074",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -398,7 +421,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "2ba62d400d46c49d87cd6906b92cfdc0",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -432,7 +454,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "76c072070ba446141f0fd185740833aa",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -466,7 +487,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "89e41eef25b525e19a8bb59e89b947f0",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -500,7 +520,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "e44d7871d297dc96ed49d97f13f835b8",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -600,7 +619,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "e126baed97bd716d89a613c3e3337277",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -634,7 +652,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "56870ce01a6e228fcd64a29e2dd40f52",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -701,7 +718,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "8f1362a2860ac5543510a27e90744c5a",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -735,7 +751,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "36583458dbf03893757dc33f46d3f3ad",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -769,7 +784,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "3b7e579f9c56328a6e1b6915a52f83dc",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -803,7 +817,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "1dddfcb087500c62b7ef0c7a7495d4c1",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -837,7 +850,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "e5ab3cd2ff1fc69051d27f0793322649",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -938,7 +950,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "3bc7107128c4651c4a000672e29dae1f",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -972,7 +983,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "e3c2c28cad272e9f96e2614e92d489f5",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -1072,7 +1082,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "59b4066ff2f6d96ebd1fcd7084f1dbac",
     "created_by": {
       "access_key": "389122341319441"
     },

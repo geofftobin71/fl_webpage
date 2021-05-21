@@ -27,20 +27,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $order_date = new DateTime;
 
-  echo '<pre>';
-  echo '<br>POST<br>';
-  print_r($_POST);
-  echo '<br>';
-
-  echo '<br>ORDER DATE<br>';
-  print_r($order_date);
-  echo $order_date->date;
-  echo '<br>';
-
-  echo '<br>CART<br>';
-  print_r($cart);
-  echo '<br>';
-
   $product_names = array();
   $variant_names = array();
 
@@ -56,14 +42,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   }
 
-  echo '<br>PRODUCT NAMES<br>';
-  print_r($product_names);
-  echo '<br>';
-
-  echo '<br>VARIANT NAMES<br>';
-  print_r($variant_names);
-  echo '<br>';
-
   $bookings = array();
   $order_items = array();
   $order_tickets = array();
@@ -77,20 +55,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       if(isset($category)) {
         if(strtolower($category["name"]) === "workshops") {
           $bookings[] = array(
+            "payment-id" => $payment_intent_id,
+            "timestamp" => $order_date->format('Y-m-d H:i:s'),
             "workshop" => $product_names[$cart_id],
             "session" => $variant_names[$cart_id],
             "name" => $workshop_attendee_name[$cart_id],
             "email" => $workshop_attendee_email[$cart_id],
-            "timestamp" => $order_date->format('Y-m-d H:i:s'),
             "price" => $price,
-            "payment-id" => $payment_intent_id,
+            "cardholder-name" => $cardholder_name,
+            "cardholder-email" => $cardholder_email,
+            "cardholder-phone" => $cardholder_phone,
             "card-brand" => $card_brand,
             "card-month" => $card_month,
             "card-year" => $card_year,
             "card-last4" => $card_last4,
-            "cardholder-name" => $cardholder_name,
-            "cardholder-email" => $cardholder_email,
-            "cardholder-phone" => $cardholder_phone,
           );
 
           $order_tickets[] = array(
@@ -112,6 +90,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
   $order = array(
+    "payment-id" => $payment_intent_id,
+    "timestamp" => $order_date->format('Y-m-d H:i:s'),
     "delivery-option" => ucwords($delivery_option),
     "delivery-name" => $delivery_name,
     "delivery-phone" => $delivery_phone,
@@ -120,21 +100,59 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     "delivery-date" => $delivery_date,
     "gift-tag-message" => $gift_tag_message,
     "special-requests" => $special_requests,
-    "timestamp" => $order_date->format('Y-m-d H:i:s'),
-    "payment-id" => $payment_intent_id,
+    "cardholder-name" => $cardholder_name,
+    "cardholder-email" => $cardholder_email,
+    "cardholder-phone" => $cardholder_phone,
     "card-brand" => $card_brand,
     "card-month" => $card_month,
     "card-year" => $card_year,
     "card-last4" => $card_last4,
-    "cardholder-name" => $cardholder_name,
-    "cardholder-email" => $cardholder_email,
-    "cardholder-phone" => $cardholder_phone,
     "items" => $order_items,
     "tickets" => $order_tickets,
     "cart-total" => $cart_total,
     "delivery-fee" => $delivery_fee,
     "total" => $cart_total + $delivery_fee,
   );
+
+  foreach($cart as $cart_item) {
+    if(isset($cart_item["stock-id"])) {
+      $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
+      if($cart_item["updated"] == $stock_item["updated"]) {
+        $stock_item["sold"] = true;
+        $stockStore->update($stock_item);
+      }
+    }
+  }
+
+  $orderStore->insert($order);
+
+  foreach($bookings as $booking) {
+    $workshopStore->insert($booking);
+  }
+
+  /* DEBUG
+
+  echo '<pre>';
+  echo '<br>POST<br>';
+  print_r($_POST);
+  echo '<br>';
+
+  echo '<br>ORDER DATE<br>';
+  print_r($order_date);
+  echo $order_date->date;
+  echo '<br>';
+
+  echo '<br>CART<br>';
+  print_r($cart);
+  echo '<br>';
+
+  echo '<br>PRODUCT NAMES<br>';
+  print_r($product_names);
+  echo '<br>';
+
+  echo '<br>VARIANT NAMES<br>';
+  print_r($variant_names);
+  echo '<br>';
 
   echo '<br>BOOKINGS<br>';
   print_r($bookings);
@@ -144,36 +162,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   print_r($order);
   echo '<br>';
 
-  /*
-  foreach($cart as $cart_item) {
-    $product = getProduct($cart_item["product-id"]);
-    if(isset($product)) {
-      $category = getCategory($product["category"]);
-
-      if(isset($category) && isset($category["delivery"]) && $category["delivery"]) { return true; }
-    }
-  }
-
-  foreach($cart as $cart_item) {
-    if(isset($cart_item["stock-id"])) {
-      $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
-      if($cart_item["updated"] == $stock_item["updated"]) {
-        $stock_item["updated"] = microtime(true) - $cart_reset_time;
-        $stockStore->update($stock_item);
-      }
-    }
-  }
-   */
-
-/*
-$orderStore->insert([
-  "payment-id" => uniqueId(),
-  "product-id" => $product["id"],
-  "variant-id" => $variant["id"],
-  "updated" => microtime(true) - $cart_reset_time,
-  "sold" => false
-]);
- */
+  */
 
 }
 
