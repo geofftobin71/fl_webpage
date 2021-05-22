@@ -1,8 +1,8 @@
 var cart = JSON.parse(localStorage.getItem("floriade-cart")) || [];
 var cart_total = 0;
 
-const cart_expiry_time = 180.0;  // 30 minutes
-const cart_reset_time = 210.0;   // 35 minutes
+const cart_expiry_time = 1800.0;  // 30 minutes
+const cart_reset_time = 2100.0;   // 35 minutes
 
 checkCartExpired();
 

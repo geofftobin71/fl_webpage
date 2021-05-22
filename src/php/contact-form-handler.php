@@ -44,12 +44,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $mail_body = str_replace($placeholders, $values, $mail_template);
   $self_mail_body = str_replace($placeholders, $values, $self_mail_template);
 
+  /* DEBUG
   echo $mail_body;
   exit;
+   */
 
   // ========== reCaptcha ==========
 
-  /*
   $g_recaptcha_response = $_POST["g-recaptcha-response"];
   $remote_ip = $_SERVER["REMOTE_ADDR"];
   $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($recaptcha_secret) . '&response=' . urlencode($g_recaptcha_response) . '&remoteip=' . urlencode($remote_ip);
@@ -62,6 +63,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
       // ========== Contact Form Email ==========
 
+      /* FIXME
       try {
         $selfmail->setFrom($email_address, $name);
         $selfmail->addAddress('flowers@floriade.co.nz', 'Floriade');
@@ -72,11 +74,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $selfmail->send();
 
       } catch (Exception $e) {
-        header('Location:/contact-form-error/');
-        // http_response_code(500);
-        // echo '<span style="color:red">A: There was a problem sending your message.<br>' . $selfmail->ErrorInfo . '</span>';
+        header('Location:/contact-form-error/?p=' . urlencode($mail->ErrorInfo));
         exit;
       }
+      FIXME */
 
       // ========== Confirmation Email ==========
 
@@ -90,9 +91,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->send();
 
       } catch (Exception $e) {
-        header('Location:/contact-form-error/');
-        // http_response_code(500);
-        // echo '<span style="color:red">B: There was a problem sending your message.<br>' . $mail->ErrorInfo . '</span>';
+        header('Location:/contact-form-error/?p=' . urlencode($mail->ErrorInfo));
         exit;
       }
 
@@ -100,18 +99,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       exit();
 
     } else {
-      header('Location:/contact-form-error/');
-      // http_response_code(500);
-      // echo '<span style="color:red">C: There was a problem sending your message.<br>reCaptcha failed to verify your response.</span>';
+      header('Location:/contact-form-error/?p=' . urlencode('reCaptcha failed to verify your response'));
       exit;
     }
   } elseif($responseKeys["error-codes"]) {
-    header('Location:/contact-form-error/');
-    // http_response_code(500);
-    // echo '<span style="color:red">D: There was a problem sending your message.<br>' . json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT) . '</span>';
+    header('Location:/contact-form-error/?p=' . urlencode(json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT)));
     exit;
   }
-   */
 }
 
 ?>

@@ -1,0 +1,38 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  <style>.logo{width:20vmin;min-width:125px;margin:2em auto 2em auto}article h1,article h2,article h3,article h4{text-transform:lowercase;color:var(--color-light);transform:translateX(0)}@media screen and (max-width:750px){ #xcontent{margin-top:3em}}@media screen and (orientation:landscape) and (max-width:950px){ #xcontent{margin-top:3em}}</style>
+  <main class="canvas center top" style="position:relative;min-height:100vh">
+  {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+  {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
+  {% set image_info = image_id | imgInfo %}
+  {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+  {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto,e_blur:100/" + image_id %}
+  {% set lqip_data = lqip_path | imgLqip %}
+  <figure class="background" style="--brightness:{{ header.brightness or '50' }}%">
+    <img class="bg" srcset="
+    {%- for size in image_sizes -%}
+    {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+    {%- endfor -%}
+    " sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
+  </figure>
+  <div id="content">
+    <nav class="site-menu wrapper page-wrapper text-shadow" style="width:100vw">
+      {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
+      {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
+    </nav>
+    <figure class="logo">
+      <a href="/">
+        <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
+      </a>
+    </figure>
+    <article class="wrapper text-wrapper flow bigfonts font-secondary text-center text-shadow" style="--measure:60ch;margin-bottom:2em">
+      <h1>{{ (header.title or title) | lower }}</h1>
+      <h3>{{ subheading | lower }}</h3>
+      <p id="p"></p>
+      {{ content | safe }}
+    </article>
+  </div>
+  </main>
+  <script>document.addEventListener("DOMContentLoaded",function(){var query=window.location.search.substring(1);if(query){var vars=query.split("&");for(var i=0;i<vars.length;i++){var pair=vars[i].split("=");document.getElementById(pair[0]).innerHTML=decodeURIComponent(pair[1].replace(/\+/g,' '));}}},false);</script>
+{% endblock %}

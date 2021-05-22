@@ -506,6 +506,10 @@ article > * + * {
   place-items: center;
 }
 
+.canvas.center.top {
+  place-items: start center;
+}
+
 .canvas > * {
   grid-area: canvas;
 }
