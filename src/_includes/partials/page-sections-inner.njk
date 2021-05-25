@@ -67,7 +67,7 @@
   <section class="contact-form-section">
     <div class="wrapper text-wrapper flow{{ ' round-box shadow border-shade2 bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" style="padding:var(--padding)">
       <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
-      <form id="contact-form" class="flow req-js" action="/php/contact-form-handler.php" method="post">
+      <form id="contact-form" class="flow req-js" action="{{ '/php/contact-form-handler.php' | url }}" method="post">
         <div>
         <label for="name"><h4 class="heading">Name</h4></label>
         <input class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name" onfocus="hideError()">

@@ -1,11 +1,11 @@
 ---
-title: Contact Form Error
+title: Shop Error
 layout: layouts/feedback-page.njk
 header_image: "/site/floriade-dried-flower-room-00001.jpg"
 header:
   title: Sorry :(
   brightness: 40
-subheading: Something seems to have gone wrong with our contact form
+subheading: Something seems to have gone wrong with our online shop
 sitemap:
   ignore: true
 ---

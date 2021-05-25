@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/mail-config.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 
 if($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -24,6 +25,18 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(isset($_POST["cart"])) { $cart = json_decode($_POST["cart"], true); }
   if(isset($_POST["cart-total-check"])) { $cart_total = intVal(clean($_POST["cart-total-check"])); }
   if(isset($_POST["delivery-total-check"])) { $delivery_fee = intVal(clean($_POST["delivery-total-check"])); }
+
+  if(empty($payment_intent_id)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing payment_intent_id')); exit; }
+  if(empty($card_brand)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_brand')); exit; }
+  if(empty($card_month)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_month')); exit; }
+  if(empty($card_year)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_year')); exit; }
+  if(empty($card_last4)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_last4')); exit; }
+  if(empty($delivery_option)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing delivery_option')); exit; }
+  if(empty($cardholder_name)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cardholder_name')); exit; }
+  if(empty($cardholder_email)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cardholder_email')); exit; }
+  if(empty($cardholder_phone)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cardholder_phone')); exit; }
+  if(empty($cart)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cart')); exit; }
+  if($cart_total < 1) { header('Location:/shop-error/?p=' . urlencode('Error: Zero cart total')); exit; }
 
   $order_date = new DateTime;
 
@@ -56,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strtolower($category["name"]) === "workshops") {
           $bookings[] = array(
             "payment-id" => $payment_intent_id,
-            "timestamp" => $order_date->format('Y-m-d H:i:s'),
+            "timestamp" => $order_date->format('g:ia D, j M, Y'),
             "workshop" => $product_names[$cart_id],
             "session" => $variant_names[$cart_id],
             "name" => $workshop_attendee_name[$cart_id],
@@ -91,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $order = array(
     "payment-id" => $payment_intent_id,
-    "timestamp" => $order_date->format('Y-m-d H:i:s'),
+    "timestamp" => $order_date->format('g:ia D, j M, Y'),
     "delivery-option" => ucwords($delivery_option),
     "delivery-name" => $delivery_name,
     "delivery-phone" => $delivery_phone,
@@ -114,6 +127,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     "total" => $cart_total + $delivery_fee,
   );
 
+  /* FIXME
   foreach($cart as $cart_item) {
     if(isset($cart_item["stock-id"])) {
       $stock_item = $stockStore->findOneBy(["stock-id", "=", $cart_item["stock-id"]]);
@@ -129,6 +143,81 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   foreach($bookings as $booking) {
     $workshopStore->insert($booking);
   }
+  FIXME */
+ 
+  $mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/shop-receipt.html");
+
+  $email_banner = 'site/floriade-dried-flower-room-00001';
+  $alt_text = "Floriade";
+
+  $product = getProduct($cart[0]["product-id"]);
+
+  if(isset($product)) {
+    $email_banner = $product["images"][0];
+  }
+
+  // Order Summary
+
+  $content = '';
+  $content .= '<tr><td colspan="2"><h2 style="text-align:center">Tax Receipt</h2></td></tr>';
+  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $content .= '<tr><td>Order#</td><td style="text-align:right;vertical-align:top">' . $order["payment-id"] . '</td></tr>';
+  $content .= '<tr><td>Order Date</td><td style="text-align:right;vertical-align:top">' . $order["timestamp"] . '</td></tr>';
+  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $content .= '<tr><td colspan="2"><h3 style="text-align:center">Order Summary</h3></td></tr>';
+
+  foreach($order["items"] as $item) {
+    $content .= '<tr><td>' . $item["product"] . ' ' . strtolower($item["variant"]) === "none" ? '' : $item["variant"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($item["price"]) . '</td></tr>';
+  }
+
+  foreach($order["tickets"] as $ticket) {
+    $content .= '<tr><td>' . $ticket["workshop"] . '<br>' . $ticket["session"] . '<br><small>' . $ticket["name"] . ' - ' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top">' . formatMoney($ticket["price"]) . '</td></tr>';
+  }
+
+  if(strtolower($delivery_option === "pickup")) {
+    $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+    $content .= '<tr><td>Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
+    $content .= '<tr><td>Pickup in Store</td><td style="text-align:right;vertical-align:top">free</td></tr>';
+  }
+
+  if(strtolower($delivery_option === "delivery")) {
+    $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+    $content .= '<tr><td>Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
+    $content .= '<tr><td>Delivery to ' . $order["delivery-suburb"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["delivery-fee"]) . '</td></tr>';
+  }
+
+  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $content .= '<tr><td>TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["total"]) . '</td></tr>';
+
+  // Payment
+
+  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $content .= '<tr><td colspan="2"><h3 style="text-align:center">Payment Details</h3></td></tr>';
+  $content .= '<tr><td>Name</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-name"] . '</td></tr>';
+  $content .= '<tr><td>Email</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-email"] . '</td></tr>';
+  $content .= '<tr><td>Phone</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-phone"] . '</td></tr>';
+  $content .= '<tr><td>Card</td><td style="text-align:right;vertical-align:top">' . $order["card-brand"] . ' #### #### #### ' . $order["card-last4"] . ' ' . $order["card-month"] . '/' . substr($order["card-year"],2) . '</td></tr>';
+
+  $placeholders = [
+    "%email_heading%",
+    "%email_banner%",
+    "%brightness%",
+    "%alt%",
+    "%content%",
+  ];
+
+  $values = [
+    "Thankyou for your order",
+    $email_banner,
+    33,
+    $alt_text,
+    $content,
+  ];
+
+  $mail_body = str_replace($placeholders, $values, $mail_template);
+
+  echo $mail_body;
+  exit;
 
   /* DEBUG
 
@@ -162,7 +251,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   print_r($order);
   echo '<br>';
 
-  */
+  DEBUG */
 
 }
 
