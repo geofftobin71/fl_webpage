@@ -156,47 +156,112 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $email_banner = $product["images"][0];
   }
 
-  // Order Summary
+  // Order Confirmation Email
+
+  $divider = '<tr><td colspan="2"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $spacer = '<tr><td><br></td><td><br></td></tr>';
 
   $content = '';
+  $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
   $content .= '<tr><td colspan="2"><h2 style="text-align:center">Tax Receipt</h2></td></tr>';
-  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
-  $content .= '<tr><td>Order#</td><td style="text-align:right;vertical-align:top">' . $order["payment-id"] . '</td></tr>';
-  $content .= '<tr><td>Order Date</td><td style="text-align:right;vertical-align:top">' . $order["timestamp"] . '</td></tr>';
-  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $content .= $divider;
+  $content .= '<tr><td style="vertical-align:top">Order ID</td><td style="text-align:right;vertical-align:top"><small>' . $order["payment-id"] . '</small></td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Order Date</td><td style="text-align:right;vertical-align:top">' . $order["timestamp"] . '</td></tr>';
+  $content .= $divider;
+  $content .= '</table>';
+
+  // Pickup
+
+  if(strtolower($delivery_option) === "pickup") {
+    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Pickup Details</h3></td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top"><a href="https://goo.gl/maps/jGdMssVmNamjZXA4A" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">18 Cambridge Terrace<br>Te Aro<br>Wellington</a></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
+    $content .= $divider;
+    $content .= '</table>';
+  }
+
+  // Delivery
+
+  if(strtolower($delivery_option) === "delivery") {
+    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Delivery Details</h3></td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Phone</td><td style="text-align:right;vertical-align:top">' . $order["delivery-phone"] . '</td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Delivery Address</td><td style="text-align:right;vertical-align:top">' . $order["delivery-address"] . '<br>' . $order["delivery-suburb"] . '</td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Delivery Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
+    $content .= $divider;
+    $content .= '</table>';
+  }
+
+  // Gift tag Message
+
+  if(!empty($gift_tag_message)) {
+    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Gift tag Message</h3></td></tr>';
+    $content .= '<tr><td colspan="2"><p>' . $gift_tag_message . '</p></td></tr>';
+    $content .= $divider;
+    $content .= '</table>';
+  }
+
+  // Special Requests
+
+  if(!empty($special_requests)) {
+    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Special Requests</h3></td></tr>';
+    $content .= '<tr><td colspan="2"><p>' . $special_requests . '</p></td></tr>';
+    $content .= $divider;
+    $content .= '</table>';
+  }
+
+  // Order Summary
+
+  $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
   $content .= '<tr><td colspan="2"><h3 style="text-align:center">Order Summary</h3></td></tr>';
 
   foreach($order["items"] as $item) {
-    $content .= '<tr><td>' . $item["product"] . ' ' . strtolower($item["variant"]) === "none" ? '' : $item["variant"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($item["price"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">' . $item["product"];
+    if(strtolower($item["variant"]) !== "none") { $content .= ' (' . $item["variant"] . ')'; }
+    $content .= '</td><td style="text-align:right;vertical-align:top">' . formatMoney($item["price"]) . '</td></tr>';
   }
 
   foreach($order["tickets"] as $ticket) {
-    $content .= '<tr><td>' . $ticket["workshop"] . '<br>' . $ticket["session"] . '<br><small>' . $ticket["name"] . ' - ' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top">' . formatMoney($ticket["price"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">' . $ticket["workshop"] . '<br>' . $ticket["session"] . '<br><small>' . $ticket["name"] . ' - ' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top">' . formatMoney($ticket["price"]) . '</td></tr>';
   }
 
-  if(strtolower($delivery_option === "pickup")) {
-    $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
-    $content .= '<tr><td>Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
-    $content .= '<tr><td>Pickup in Store</td><td style="text-align:right;vertical-align:top">free</td></tr>';
+  if(strtolower($delivery_option) === "pickup") {
+    $content .= $divider;
+    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top">free</td></tr>';
   }
 
-  if(strtolower($delivery_option === "delivery")) {
-    $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
-    $content .= '<tr><td>Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
-    $content .= '<tr><td>Delivery to ' . $order["delivery-suburb"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["delivery-fee"]) . '</td></tr>';
+  if(strtolower($delivery_option) === "delivery") {
+    $content .= $divider;
+    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Delivery to ' . $order["delivery-suburb"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["delivery-fee"]) . '</td></tr>';
   }
 
-  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
-  $content .= '<tr><td>TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["total"]) . '</td></tr>';
+  $content .= $divider;
+  $content .= '<tr><td style="vertical-align:top">TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["total"]) . '</td></tr>';
+  $content .= '</table>';
 
   // Payment
 
-  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:26px;height:26px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+  $content .= $divider;
   $content .= '<tr><td colspan="2"><h3 style="text-align:center">Payment Details</h3></td></tr>';
-  $content .= '<tr><td>Name</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-name"] . '</td></tr>';
-  $content .= '<tr><td>Email</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-email"] . '</td></tr>';
-  $content .= '<tr><td>Phone</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-phone"] . '</td></tr>';
-  $content .= '<tr><td>Card</td><td style="text-align:right;vertical-align:top">' . $order["card-brand"] . ' #### #### #### ' . $order["card-last4"] . ' ' . $order["card-month"] . '/' . substr($order["card-year"],2) . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Name</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-name"] . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Email</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-email"] . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Phone</td><td style="text-align:right;vertical-align:top">' . $order["cardholder-phone"] . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Card</td><td style="text-align:right;vertical-align:top">' . $order["card-brand"] . ' #### #### #### ' . $order["card-last4"] . ' ' . $order["card-month"] . '/' . substr($order["card-year"],2) . '</td></tr>';
+  $content .= '<tr><td colspan="2"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div><hr></td></tr>';
+  $content .= '<tr><td colspan="2"><p style="text-align:center"><small>All prices are in New Zealand dollars and include GST</small></p></td></tr>';
+  $content .= '</table>';
 
   $placeholders = [
     "%email_heading%",
