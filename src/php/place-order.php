@@ -51,6 +51,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       $variant = getVariant($product, $cart_item["variant-id"]);
       if(isset($variant)) {
         $variant_names[$cart_id] = $variant["name"];
+      } else {
+        $variant_names[$cart_id] = "";
       }
     }
   }
@@ -153,17 +155,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $product = getProduct($cart[0]["product-id"]);
 
   if(isset($product)) {
-    $email_banner = $product["images"][0];
+    $email_banner = $product["images"][array_rand($product["images"],1)];
   }
-
-  // Order Confirmation Email
 
   $divider = '<tr><td colspan="2"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
   $spacer = '<tr><td><br></td><td><br></td></tr>';
 
+  // Order Confirmation Email
+
   $content = '';
   $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
-  $content .= '<tr><td colspan="2"><h2 style="text-align:center">Tax Receipt</h2></td></tr>';
   $content .= $divider;
   $content .= '<tr><td style="vertical-align:top">Order ID</td><td style="text-align:right;vertical-align:top"><small>' . $order["payment-id"] . '</small></td></tr>';
   $content .= '<tr><td style="vertical-align:top">Order Date</td><td style="text-align:right;vertical-align:top">' . $order["timestamp"] . '</td></tr>';
@@ -226,7 +227,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   foreach($order["items"] as $item) {
     $content .= '<tr><td style="vertical-align:top">' . $item["product"];
-    if(strtolower($item["variant"]) !== "none") { $content .= ' (' . $item["variant"] . ')'; }
+    if(!empty($item["variant"])) { $content .= ' (' . $item["variant"] . ')'; }
     $content .= '</td><td style="text-align:right;vertical-align:top">' . formatMoney($item["price"]) . '</td></tr>';
   }
 
@@ -281,42 +282,29 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
+  /* DEBUG
   echo $mail_body;
   exit;
-
-  /* DEBUG
-
-  echo '<pre>';
-  echo '<br>POST<br>';
-  print_r($_POST);
-  echo '<br>';
-
-  echo '<br>ORDER DATE<br>';
-  print_r($order_date);
-  echo $order_date->date;
-  echo '<br>';
-
-  echo '<br>CART<br>';
-  print_r($cart);
-  echo '<br>';
-
-  echo '<br>PRODUCT NAMES<br>';
-  print_r($product_names);
-  echo '<br>';
-
-  echo '<br>VARIANT NAMES<br>';
-  print_r($variant_names);
-  echo '<br>';
-
-  echo '<br>BOOKINGS<br>';
-  print_r($bookings);
-  echo '<br>';
-
-  echo '<br>ORDER<br>';
-  print_r($order);
-  echo '<br>';
-
   DEBUG */
+
+  // Confirmation Email
+
+  try {
+    $mail->addAddress($cardholder_email, $cardholder_name);
+    $mail->setFrom('flowers@floriade.co.nz', 'Floriade');
+    $mail->Subject = 'Floriade Receipt (Order ' . $payment_intent_id . ')';
+
+    $mail->Body = $mail_body;
+
+    // FIXME $mail->send();
+
+  } catch (Exception $e) {
+    header('Location:/thankyou-for-your-order/?p=' . urlencode($cardholder_email . '<br><br>But something went wrong sending the email :<br>' . $mail->ErrorInfo));
+    exit;
+  }
+
+  header('Location:/thankyou-for-your-order/?p=' . urlencode($cardholder_email));
+  exit();
 
 }
 
