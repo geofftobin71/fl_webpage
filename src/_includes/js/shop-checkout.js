@@ -14,6 +14,23 @@ async function displayCheckout() {
     return;
   }
 
+  let delivery_date_select = document.getElementById("delivery-date");
+
+  let day = DateTime.now();
+  for(let i = 0; i < 14; ++i) {
+    let text = day.toFormat("EEE dd MMM yyyy");
+    let value = day.toFormat("EEEE dd MMMM yyyy");
+    let option = new Option(text, value);
+    option.className = "delivery-date-option";
+    if(i == 0) {
+      option.id = "today";
+      option.text += " (today)";
+    }
+    delivery_date_select.options[delivery_date_select.options.length] = option;
+
+    day = day.plus({days:1});
+  }
+
   let delivery_option = localStorage.getItem("floriade-delivery-option") || "none";
 
   if(delivery_option !== "none") {
@@ -38,11 +55,11 @@ async function displayCheckout() {
       cart_items += '<span class="font-size--1" style="white-space:nowrap"> ( ' + variant["name"] + ' )</span>';
     }
 
-    /* */
+    /*
 	  if(cart_item["updated"]) {
 	    cart_items += '<br><span class="font-size--1">' + DateTime.fromMillis((cart_item["updated"] + cart_expiry_time) * 1000.0).toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) + '</span>';
 	  }
-    /* */
+    */
 	
     cart_items += '</p>';
 
@@ -73,7 +90,7 @@ async function displayCheckout() {
     document.querySelectorAll(".delivery-group").forEach(element => {
       element.style.display = "block";
     });
-
+  
     if(delivery_option !== "pickup") {
       document.getElementById("delivery-option-delivery").checked = true;
       selectDeliveryOption("delivery");
@@ -250,9 +267,9 @@ function disableInvalidDates(delivery_option) {
         }
       });
 
-      for(let day in shop_hours) {
-        if(shop_hours[day].toLowerCase().startsWith("closed")) {
-          if(element.value.toLowerCase().startsWith(day.toLowerCase())) {
+      for(let dayName in shop_hours) {
+        if(shop_hours[dayName].toLowerCase().startsWith("closed")) {
+          if(element.value.toLowerCase().startsWith(dayName.substr(0,3).toLowerCase())) {
             element.disabled = true;
           }
         }
@@ -272,9 +289,9 @@ function disableInvalidDates(delivery_option) {
         }
       });
 
-      for(let day in shop_hours) {
-        if(shop_hours[day].toLowerCase().startsWith("closed")) {
-          if(element.value.toLowerCase().startsWith(day.toLowerCase())) {
+      for(let dayName in shop_hours) {
+        if(shop_hours[dayName].toLowerCase().startsWith("closed")) {
+          if(element.value.toLowerCase().startsWith(dayName.substr(0,3).toLowerCase())) {
             element.disabled = true;
           }
         }
@@ -291,7 +308,10 @@ function disableInvalidDates(delivery_option) {
   const now = DateTime.now();
   const ten_am = DateTime.fromObject({hour:10});
 
-  document.getElementById("today").disabled = (now > ten_am);
+  let today = document.getElementById("today");
+  if(today) {
+    today.disabled = (now > ten_am);
+  }
 
   var delivery_date = document.getElementById("delivery-date");
   var opt = delivery_date.options[delivery_date.selectedIndex];
@@ -307,6 +327,7 @@ function selectDeliveryOption(delivery_option) {
   if(delivery_option === "pickup") {
     document.getElementById("delivery-date-label").innerText = "Pickup Date";
     document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day pickup";
+    document.getElementById("delivery-date").setAttribute("data-error","Pickup Date is required");
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "none";
     });
@@ -319,6 +340,7 @@ function selectDeliveryOption(delivery_option) {
   if(delivery_option === "delivery") {
     document.getElementById("delivery-date-label").innerText = "Delivery Date";
     document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day delivery";
+    document.getElementById("delivery-date").setAttribute("data-error","Delivery Date is required");
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "block";
     });
@@ -346,7 +368,7 @@ function updateTotal() {
     if(delivery_suburb && delivery_date) {
       let delivery_fee = delivery_fees[delivery_suburb];
 
-      if(delivery_date.startsWith("Saturday")) {
+      if(delivery_date.startsWith("Sat")) {
         delivery_fee = (delivery_fee < 20) ? 20 : delivery_fee;
       }
 

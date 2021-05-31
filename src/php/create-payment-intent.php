@@ -72,12 +72,15 @@ if(strtolower($delivery_option) === 'delivery') {
     exit;
   }
 
+  // Default delivery fee by Suburb
   $delivery_fee = $delivery_fees[strtolower($delivery_suburb)];
 
-  if(str_starts_with($delivery_date, 'Saturday')) {
+  // Flat rate $20 on Saturday
+  if(str_starts_with($delivery_date, 'Sat')) {
     $delivery_fee = ($delivery_fee < 20) ? 20 : $delivery_fee;
   }
 
+  // Flat rate delivery fee on special dates
   foreach($flat_rate_delivery_fees as $date => $value) {
     if(str_ends_with($delivery_date, $date)) {
       $fee = intVal($value);
