@@ -365,14 +365,14 @@
     ],
     "variants": [
       {
-        "name": "10:30am Sat 22 Dec 2021",
+        "name": "10:30am Saturday 22 December 2021",
         "price": null,
         "disabled": false,
         "id": "2662158d",
         "stock": 12
       },
       {
-        "name": "2:00pm Sun 23 Dec 2021",
+        "name": "2:00pm Sunday 23 December 2021",
         "price": null,
         "disabled": false,
         "id": "1e16c9bc",

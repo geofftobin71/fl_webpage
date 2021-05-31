@@ -1,3 +1,7 @@
+const date_format = "dd MMM yyyy";
+const delivery_date_text_format = "EEE dd MMM yyyy";
+const delivery_date_value_format = "EEEE d MMMM yyyy";
+
 async function displayCheckout() {
 
   await fetchData();
@@ -18,8 +22,8 @@ async function displayCheckout() {
 
   let day = DateTime.now();
   for(let i = 0; i < 14; ++i) {
-    let text = day.toFormat("EEE dd MMM yyyy");
-    let value = day.toFormat("EEEE dd MMMM yyyy");
+    let text = day.toFormat(delivery_date_text_format);
+    let value = day.toFormat(delivery_date_value_format);
     let option = new Option(text, value);
     option.className = "delivery-date-option";
     if(i == 0) {
@@ -259,10 +263,14 @@ async function displayCheckout() {
 
 function disableInvalidDates(delivery_option) {
   document.querySelectorAll(".delivery-date-option").forEach(element => {
+
     element.disabled = false;
+
     if(delivery_option === "delivery") {
       non_delivery_dates.forEach(date => {
-        if(element.value.endsWith(date)) {
+        let non_delivery_date = DateTime.fromFormat(date, date_format);
+        let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
+        if(element_date.equals(non_delivery_date)) {
           element.disabled = true;
         }
       });
@@ -276,7 +284,9 @@ function disableInvalidDates(delivery_option) {
       }
 
       special_delivery_dates.forEach(date => {
-        if(element.value.endsWith(date)) {
+        let special_date = DateTime.fromFormat(date, date_format);
+        let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
+        if(element_date.equals(special_date)) {
           element.disabled = false;
         }
       });
@@ -284,7 +294,9 @@ function disableInvalidDates(delivery_option) {
 
     if(delivery_option === "pickup") {
       shop_closed_dates.forEach(date => {
-        if(element.value.endsWith(date)) {
+        let closed_date = DateTime.fromFormat(date, date_format);
+        let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
+        if(element_date.equals(closed_date)) {
           element.disabled = true;
         }
       });
@@ -298,7 +310,9 @@ function disableInvalidDates(delivery_option) {
       }
 
       special_shop_open_dates.forEach(date => {
-        if(element.value.endsWith(date)) {
+        let special_date = DateTime.fromFormat(date, date_format);
+        let element_date = DateTime.fromFormat(element.value, delivery_date_value_format);
+        if(element_date.equals(special_date)) {
           element.disabled = false;
         }
       });
@@ -366,14 +380,19 @@ function updateTotal() {
     document.getElementById("total").innerText = formatMoney(cart_total);
   } else {
     if(delivery_suburb && delivery_date) {
+      // Default delivery fee bu Suburb
       let delivery_fee = delivery_fees[delivery_suburb];
 
-      if(delivery_date.startsWith("Sat")) {
+      // Flat $20 on Saturday
+      if(delivery_date.toLowerCase().startsWith("sat")) {
         delivery_fee = (delivery_fee < 20) ? 20 : delivery_fee;
       }
 
+      // Flat Rate delivery fee on Special days
       for(let date in flat_rate_delivery_fees) {
-        if(delivery_date.endsWith(date)) {
+        let flat_rate_date = DateTime.fromFormat(date, date_format);
+        let element_date = DateTime.fromFormat(delivery_date, delivery_date_value_format);
+        if(element_date.equals(flat_rate_date)) {
           let fee = parseInt(flat_rate_delivery_fees[date]);
           if(fee === 0) {
             delivery_fee = fee;

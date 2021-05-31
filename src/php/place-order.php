@@ -2,6 +2,8 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/mail-config.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 
+const order_date_format = "g:ia l, j F, Y";
+
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if(isset($_POST["payment-intent-id"])) { $payment_intent_id = clean($_POST["payment-intent-id"]); }
@@ -71,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strtolower($category["name"]) === "workshops") {
           $bookings[] = array(
             "payment-id" => $payment_intent_id,
-            "timestamp" => $order_date->format('g:ia D, j M, Y'),
+            "timestamp" => $order_date->format(order_date_format);
             "email-banner" => $product["images"][array_rand($product["images"],1)],
             "workshop" => $product_names[$cart_id],
             "session" => $variant_names[$cart_id],
@@ -108,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $order = array(
     "payment-id" => $payment_intent_id,
-    "timestamp" => $order_date->format('g:ia D, j M, Y'),
+    "timestamp" => $order_date->format(order_date_format);
     "delivery-option" => ucwords($delivery_option),
     "delivery-name" => $delivery_name,
     "delivery-phone" => $delivery_phone,
