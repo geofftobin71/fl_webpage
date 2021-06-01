@@ -2,7 +2,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/mail-config.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 
-const order_date_format = "g:ia l, j F, Y";
+const date_format = "g:ia l j F Y";
 
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         if(strtolower($category["name"]) === "workshops") {
           $bookings[] = array(
             "payment-id" => $payment_intent_id,
-            "timestamp" => $order_date->format(order_date_format);
+            "timestamp" => $order_date->format(date_format),
             "email-banner" => $product["images"][array_rand($product["images"],1)],
             "workshop" => $product_names[$cart_id],
             "session" => $variant_names[$cart_id],
@@ -110,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $order = array(
     "payment-id" => $payment_intent_id,
-    "timestamp" => $order_date->format(order_date_format);
+    "timestamp" => $order_date->format(date_format),
     "delivery-option" => ucwords($delivery_option),
     "delivery-name" => $delivery_name,
     "delivery-phone" => $delivery_phone,
@@ -276,10 +276,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   // Send Order Email
 
   try {
+    $mail->clearAddresses();
     $mail->addAddress('flowers@floriade.co.nz', 'Floriade');
     $mail->setFrom('flowers@floriade.co.nz', 'Floriade Order');
     $mail->Subject = 'Floriade Order ( ' . $payment_intent_id . ' )';
-
     $mail->Body = $mail_body;
 
     // FIXME $mail->send();
@@ -318,7 +318,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top"><a href="https://goo.gl/maps/jGdMssVmNamjZXA4A" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">Floriade<br>18 Cambridge Terrace<br>Te Aro<br>Wellington</a></td></tr>';
     $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
-    $content .= '<tr><td colspan="2"><p style="text-align:center"><a href="http://168.138.10.72/php/download-ics.php">Add to Calendar</a></p></td></tr>';
+    $content .= '<tr><td colspan="2"><p style="text-align:center"><a href="http://168.138.10.72/php/pickup-ics.php?d=' . urlencode($order["delivery-date"]) . '">Add to Calendar</a></p></td></tr>';
     $content .= '</table>';
   }
 
@@ -425,21 +425,21 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
-  /* DEBUG
+  /* DEBUG */
   echo $mail_body;
   exit;
-  DEBUG */
+  /* DEBUG */
 
   // Send Order Confirmation Email
 
   try {
+    $mail->clearAddresses();
     $mail->addAddress($cardholder_email, $cardholder_name);
     $mail->setFrom('flowers@floriade.co.nz', 'Floriade');
     $mail->Subject = 'Floriade Receipt ( Order ' . $payment_intent_id . ' )';
-
     $mail->Body = $mail_body;
 
-    $mail->send();
+    // FIXME $mail->send();
 
   } catch (Exception $e) {
     header('Location:/thankyou-for-your-order/?p=' . urlencode($cardholder_email . '<br><br>But something went wrong sending the email :<br>' . $mail->ErrorInfo));
@@ -509,10 +509,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     // Send Booking Confirmation Email
 
     try {
+      $mail->clearAddresses();
       $mail->addAddress($cardholder_email, $cardholder_name);
       $mail->setFrom('flowers@floriade.co.nz', 'Floriade');
       $mail->Subject = 'Floriade Workshop Booking';
-
       $mail->Body = $mail_body;
 
       // FIXME $mail->send();

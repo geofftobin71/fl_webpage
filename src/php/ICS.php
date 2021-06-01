@@ -67,7 +67,7 @@
  */
 
 class ICS {
-  const DT_FORMAT = 'Ymd\THis\Z';
+  const DT_FORMAT = 'Ymd\THis';
 
   protected $properties = array();
   private $available_properties = array(
@@ -119,6 +119,12 @@ class ICS {
     // Set some default values
     $props['DTSTAMP'] = $this->format_timestamp('now');
     $props['UID'] = uniqid();
+
+    if($props['DTSTART'] === $props['DTEND']) {
+      $dt = new DateTime($props['DTSTART']);
+      $props['DTSTART'] = $dt->format('Ymd');
+      unset($props['DTEND']);
+    }
 
     // Append properties
     foreach ($props as $k => $v) {
