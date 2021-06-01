@@ -425,10 +425,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
-  /* DEBUG */
+  /* DEBUG
   echo $mail_body;
   exit;
-  /* DEBUG */
+  DEBUG */
 
   // Send Order Confirmation Email
 
@@ -461,14 +461,15 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $content = '';
     $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
     $content .= '<tr><td style="text-align:center">Hi ' . $booking["name"] . ',<br><br></td></tr>';
-    $content .= '<tr><td style="text-align:center">You are booked to in attend our<br><br><strong>' . $booking["workshop"] . '</strong><br>at<br><strong>' . $booking["session"] . '.</strong><br><br></td></tr>';
+    $content .= '<tr><td style="text-align:center">You are booked to in attend our<br><br><strong>' . $booking["workshop"] . '</strong><br><br><strong>' . $booking["session"] . '</strong><br><br></td></tr>';
     $content .= '</table>';
 
     $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
     $content .= '<tr><td style="text-align:center">';
     $content .= 'The workshop will be held at:<br><br>';
     $content .= '<a href="https://goo.gl/maps/jGdMssVmNamjZXA4A" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">Floriade<br>18 Cambridge Terrace<br>Te Aro<br>Wellington</a><br><br>';
-    $content .= 'We look forward to seeing you there.';
+    $content .= 'We look forward to seeing you there.<br><br>';
+    $content .= '<a href="http://168.138.10.72/php/workshop-ics.php?w=' . urlencode($booking["workshop"]) . '&s=' . urlencode($booking["session"]) . '">Add to Calendar</a>';
     $content .= '</td></tr>';
     $content .= '</table>';
 
