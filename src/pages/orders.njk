@@ -1,0 +1,221 @@
+---
+permalink: orders/index.php
+---
+<?php
+session_start();
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
+
+$user = ((isset($_POST["user"])) ? $_POST["user"] : ((isset($_COOKIE["user"])) ? $_COOKIE["user"] : ""));
+$pass = ((isset($_POST["pass"])) ? $_POST["pass"] : ((isset($_COOKIE["pass"])) ? $_COOKIE["pass"] : ""));
+
+if((password_verify($user, '$2y$10$yP50Af4xOLKcHloJXko9Se8ZLCIgd5KN80YhXqE8cQIoZnMJyzzPG')) &&
+   (password_verify($pass, '$2y$10$tszRk3dKe1xOhJLHSsNZAOCzBMsvEeuNtpNPGmUzdh5munGx5q5Aq'))) {
+
+  setcookie ("user", $user, time()+(86400 * 30));
+  setcookie ("pass", $pass, time()+(86400 * 30));
+
+  include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
+
+  $delivery_orders = $orderStore->findBy(["delivery-option", "=", "Delivery"], ["timestamp" => "desc"]);
+  $pickup_orders = $orderStore->findBy(["delivery-option", "=", "Pickup"], ["timestamp" => "desc"]);
+  $workshop_orders = $orderStore->findBy(["delivery-option", "=", "None"], ["timestamp" => "desc"]);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+  <title>Floriade Orders</title>
+  <style>
+    *, ::before, ::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      height: -webkit-fill-available;
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      text-rendering: optimizeSpeed;
+      overflow-x: hidden;
+    }
+
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    }
+
+    table {
+      font-size: 0.8rem;
+      display: grid;
+      border-collapse: collapse;
+      border-bottom: 1px solid #3d4844;
+      min-width: 100%;
+      grid-template-columns: 
+        minmax(100px, 0.5fr)
+        minmax(150px, 1fr)
+        minmax(150px, 2.5fr)
+        minmax(50px, 0.25fr)
+        minmax(75px, 0.25fr)
+        minmax(150px, 1.25fr)
+        minmax(150px, 1.5fr)
+        minmax(150px, 0.75fr);
+    }
+
+    thead,
+    tbody,
+    tr {
+      display: contents;
+    }
+
+    th,
+    td {
+      padding: 1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      background: #3d4844;
+      text-align: left;
+      font-weight: normal;
+      color: white;
+      border-right: 1px solid grey;
+    }
+
+    th:last-child,
+    td:last-child {
+      border: 0;
+    }
+
+    td {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #404040;
+      border-right: 1px solid lightgrey;
+    }
+
+    tr:nth-child(even) td {
+      background: #e6eee8;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center">Floriade Orders</h1>
+
+  <h2 style="text-align:center">Deliveries</h2>
+  <pre> <?php echo json_encode($delivery_orders, JSON_PRETTY_PRINT); ?> </pre>
+
+  <hr>
+  <h2 style="text-align:center">Pickups</h2>
+  <pre> <?php echo json_encode($pickup_orders, JSON_PRETTY_PRINT); ?> </pre>
+
+  <hr>
+  <h2 style="text-align:center">Workshops</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Workshop</th>
+        <th style="text-align:center">Tix</th>
+        <th style="text-align:right">Total</th>
+        <th>Cardholder Name</th>
+        <th>Cardholder Email</th>
+        <th>Cardholder Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($workshop_orders as $order) { ?>
+      <tr>
+        <td title="<?php echo $order['payment-id']; ?>"><?php echo $order["payment-id"]; ?></td>
+        <td><?php $dt = new DateTime($order["timestamp"]); echo $dt->format("g:ia d M Y"); ?></td>
+        <?php
+        $tickets = "";
+        $first = true;
+        foreach($order["tickets"] as $ticket) {
+          if(!$first) { $tickets .= ', '; }
+          $tickets .= $ticket["workshop"] . ' ' . $ticket["session"];
+          $first = false;
+        }
+        ?>
+        <td><?php echo $tickets; ?></td>
+        <td style="text-align:center"><?php echo count($order["tickets"]); ?></td>
+        <td style="text-align:right"><?php echo formatMoney($order["total"]); ?></td>
+        <td><?php echo $order["cardholder-name"]; ?></td>
+        <td><?php echo $order["cardholder-email"]; ?></td>
+        <td><?php echo $order["cardholder-phone"]; ?></td>
+      </tr>
+      <?php } ?>
+    </tbody>
+  </table>
+  <pre> <?php echo json_encode($workshop_orders, JSON_PRETTY_PRINT); ?> </pre>
+</body>
+</html>
+<?php
+} else { 
+?>  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+    <title>Floriade Orders</title>
+    <style>
+    {% include "css/reset.css" %}
+    {% include "css/modular-scale.css" %}
+    {% include "css/theme.njk" %}
+    {% include "css/layout.css" %}
+    {% include "css/form.css" %}
+    fieldset {
+      width: 100%;
+      max-width: 400px;
+      margin: 1em;
+      margin-top:100px;
+    }
+    @media all and (max-width:950px) and (orientation:landscape) {
+      fieldset { margin: auto 1em; }
+    }
+    legend {
+      padding-left:8px;
+      padding-right:8px;
+      font-size:20px;
+      font-weight:bold;
+      text-align:center;
+    }
+    </style>
+  </head>
+  <body>
+    <div style="width:100vw;height:100vh;display:flex;justify-content:center;align-items:flex-start">
+      <fieldset>
+        <legend>Floriade Orders</legend>
+        <form class="flow" method="POST" action="/orders/">
+          <div><label for="user"><h4 class="heading">Username</h4></label><input id="user" class="input" type="text" name="user" value="<?php if(isset($_COOKIE['user'])) { echo $_COOKIE['user']; } ?>"></input></div>
+          <div><label for="pass"><h4 class="heading">Password</h4></label><input id="pass" class="input" type="password" name="pass" value="<?php if(isset($_COOKIE['pass'])) { echo $_COOKIE['pass']; } ?>"></input></div>
+          <div style="text-align:center"><button class="button" type="submit">Login</button></div>
+        </form>
+      </fieldset>
+    </div> 
+  </body>
+</html>
+<?php 
+} 
+?>
