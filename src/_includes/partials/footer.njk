@@ -2,19 +2,21 @@
 
 <footer class="bg-shade1 font-size--1">
   <section class="wrapper page-wrapper">
-    <div class="horizontal center middle" style="width:48px;margin:0 auto 2em auto"><a href="#top" title="Scroll to Top" aria-label="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'})})()" style="width:24px;border-radius:50%">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div>
+    {# <div class="horizontal center middle" style="width:48px;margin:0 auto 2em auto"><a href="#top" title="Scroll to Top" aria-label="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'})})()" style="width:24px;border-radius:50%">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div> #}
     <div class="three-columns">
-      <div class="vertical center flow" style="padding-bottom:var(--section-padding)">
+      <div class="vertical center flow">
         <h4 class="text-lowercase">Location</h4>
         <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
           <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
         </a>
+        <br><br>
       </div>
-      <div class="vertical center flow" style="padding-bottom:var(--section-padding)">
-        <h4 class="text-lowercase">Contact</h4>
+      <div class="vertical center flow">
+        <h4 class="text-lowercase">Contact us</h4>
         <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
         <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
-        <h4 class="text-lowercase">Follow</h4>
+        <br>
+        <h4 class="text-lowercase">Follow us</h4>
         <div class="horizontal space-between color-light" style="width:150px;margin-top:1.5em;height:2rem">
           <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:12px" title="Follow us on Facebook" aria-label="Follow us on Facebook">
             {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
@@ -25,10 +27,24 @@
           <a href="{{ site.google_review }}" target="_blank" rel="noopener" style="width:20px" title="Leave a Google review" aria-label="Leave a Google review">
             {{ '/src/svg/google.svg' | svgContents | safe }}</a>
         </div>
+        <br><br>
       </div>
-      <div class="vertical center flow" style="padding-bottom:var(--section-padding)">
+      <div class="vertical center flow">
         <h4 class="text-lowercase">Hours</h4>
         {% include "partials/shop-hours.njk" %}
+        <br>
+        <h4 class="text-lowercase">Subscribe to our Mailing List</h4>
+        <div id="mc_embed_signup" class="width100">
+          <form action="https://floriade.us16.list-manage.com/subscribe/post?u=86cd330db9cb5b7a033dae205&amp;id=d73ce91674" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll" class="vertical center flow">
+              <input type="email" autocomplete="email" inputmode="email" value="" name="EMAIL" class="input email" id="mce-EMAIL" placeholder="Your Email address" required>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_86cd330db9cb5b7a033dae205_d73ce91674" tabindex="-1" value=""></div>
+              <div class="clear"><button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">Subscribe</button></div>
+            </div>
+          </form>
+        </div>
+        <br><br>
       </div>
     </div>
     <div class="text-center">

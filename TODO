@@ -1,10 +1,7 @@
 -- FIX --
-Mailchimp signup form section
 Gallery layout
 ENABLE contact form handler
 contact page / contact form padding
-REMOVE ClearCart button
-REMOVE Product expiry time debug
 check floriade-delivery-date has not passed in expireCart
 single product width on mobile - padding too big
 single column gallery spacing
@@ -17,3 +14,4 @@ image(s) section
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler
 TEST social sharing buttons
+TEST mailchimp autoreply emails
