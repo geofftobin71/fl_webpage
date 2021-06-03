@@ -4,43 +4,99 @@ header_image: fresh-flowers/fresh-flowers-by-floriade-00029
 layout: layouts/page.njk
 ---
 
-<div style="width:100vw;max-width:1500px;margin-left:auto;margin-right:auto;display:flex">
-  <div style="width:50%;height:50vw;max-height:750px">
+<style>
+.checkerboard {
+  width:100vw;
+  max-width:1500px;
+  margin-left:auto;
+  margin-right:auto;
+  display:flex;
+  flex-direction:column;
+}
+.checkerboard > * {
+  width:100%;
+  height:100vw;
+  max-height:1500px;
+}
+.checkerboard .content {
+  height:auto;
+  min-height:50vw;
+  max-width:var(--measure);
+  margin-left:auto;
+  margin-right:auto;
+  display:flex;
+  overflow-y:auto;
+}
+.checkerboard .content p {
+  padding:2em;
+  margin:auto 0;
+}
+@media screen and (max-width: 750px) {
+  .checkerboard .content p {
+    padding:2em 1em;
+  }
+}
+
+@media screen and (orientation: landscape) and (max-width: 950px) {
+  .checkerboard .content p {
+    padding:1em;
+  }
+}
+
+@media screen and (orientation:landscape) {
+  .checkerboard {
+    flex-direction:row;
+  }
+  .checkerboard:nth-child(even) {
+    flex-direction:row-reverse;
+  }
+  .checkerboard > *,
+  .checkerboard .content {
+    width:50%;
+    height:50vw;
+    min-height:0;
+    max-height:750px;
+  }
+}
+</style>
+
+<div class="checkerboard shadow">
+  <div>
     <img class="cover" src="https://floriade.co.nz/images/Annwyn_Tobin_with_flowers_900.jpg" alt="">
   </div>
-  <div class="horizontal" style="overflow-y:auto;width:50%;height:50vw;max-height:750px">
-    <p style="padding:2em;margin:auto 0">
+  <div class="content">
+    <p>
     Amet pariatur facilis dolor officiis quisquam nesciunt Dolore rerum quos quis nostrum beatae deleniti In ut perferendis ullam id asperiores. Aspernatur nisi amet repudiandae explicabo dolorem? Porro labore dolor quo officiis voluptatum Sint exercitationem eius hic quos nostrum delectus Numquam tempore dignissimos fugiat eius eveniet. Amet cum ipsam hic illo eum In ad illum odit iusto ipsa dolor porro Dolorum reprehenderit provident placeat nesciunt quos Illo quis eaque cupiditate labore beatae Dolorem doloribus delectus quaerat doloribus omnis laudantium Nihil vel asperiores perferendis corporis quia? Enim soluta iure molestias earum iste! Eum eligendi quidem fugiat labore minima. Asperiores accusantium quia officia!
     </p>
   </div>
 </div>
-<div style="width:100vw;max-width:1500px;margin-left:auto;margin-right:auto;display:flex">
-  <div class="horizontal" style="overflow-y:auto;width:50%;height:50vw;max-height:750px">
-    <p style="padding:2em;margin:auto 0">
+<div class="checkerboard shadow">
+  <div>
+    <img class="cover" src="https://floriade.co.nz/images/floriade_shop_interior_1200.jpg" alt="">
+  </div>
+  <div class="content">
+    <p>
     Consectetur incidunt nam minima corrupti lorem repellendus. Perspiciatis tenetur deserunt aspernatur voluptas id in Nam nulla esse nobis molestiae error. Esse ipsa nihil at vel assumenda. Natus soluta voluptas nobis similique laborum Autem sapiente voluptate consequatur sapiente inventore? Quas perferendis in soluta culpa dignissimos architecto Sint perspiciatis modi recusandae in tempora, adipisci Autem unde reiciendis obcaecati ut repellendus Ut perferendis ipsa aspernatur veritatis similique. Illum quas modi quas enim maxime? Temporibus non mollitia totam repellendus doloremque Earum natus corrupti adipisci quos iure Maiores odio saepe in est omnis quaerat Eos odio blanditiis earum laboriosam earum repudiandae Id doloremque possimus in!
     </p>
   </div>
-  <div style="width:50%;height:50vw;max-height:750px">
-    <img class="cover" src="https://floriade.co.nz/images/floriade_shop_interior_1200.jpg" alt="">
-  </div>
 </div>
-<div style="width:100vw;max-width:1500px;margin-left:auto;margin-right:auto;display:flex">
-  <div style="width:50%;height:50vw;max-height:750px">
+<div class="checkerboard shadow">
+  <div>
     <img class="cover" src="https://floriade.co.nz/images/Floriade_dried_flower_room_Rosa_Woods.jpg" alt="">
   </div>
-  <div class="horizontal" style="overflow-y:auto;width:50%;height:50vw;max-height:750px">
-    <p style="padding:2em;margin:auto 0">
+  <div class="content">
+    <p>
     Consectetur eveniet eius tempora qui corrupti Iste saepe est harum cupiditate nemo? At natus voluptatum molestiae molestiae perferendis? Doloribus perspiciatis excepturi iste quod eaque, animi quia debitis? Adipisci eum officiis eum impedit repudiandae porro! Accusantium animi omnis recusandae voluptatem consectetur Qui aliquam deserunt soluta error tenetur dolorem voluptatem Assumenda reiciendis ipsam alias voluptatibus dicta? Distinctio adipisci fuga id officiis libero! Voluptatem provident sint ab explicabo laboriosam nam Odit eos amet possimus adipisci optio labore porro? Magni blanditiis nihil corrupti animi officia Quos architecto nam labore quidem perspiciatis! Animi doloribus blanditiis tenetur hic ullam? Consequuntur optio perferendis quos tempore repellat Repellat?
     </p>
   </div>
 </div>
-<div style="width:100vw;max-width:1500px;margin-left:auto;margin-right:auto;display:flex">
-  <div class="horizontal" style="overflow-y:auto;width:50%;height:50vw;max-height:750px">
-    <p style="padding:2em;margin:auto 0">
-    Dolor ab laborum obcaecati distinctio quod. Voluptates mollitia accusantium facilis recusandae commodi! Facere unde harum voluptate deserunt doloremque deleniti? Magnam sequi adipisci soluta illum fuga Dignissimos reprehenderit necessitatibus id praesentium cumque. Perspiciatis illo laudantium esse autem quaerat Impedit impedit mollitia iure tempore ea! Quod alias dolorem aperiam ratione sapiente, aspernatur! Beatae quos expedita qui eveniet minus? Fugiat architecto fugit culpa distinctio vitae ab. Voluptas harum animi consequuntur architecto maiores! Doloremque impedit ducimus aspernatur nihil rerum odit. Veritatis molestias tenetur aliquam voluptate enim Natus sint nobis excepturi eaque molestiae! Sed aspernatur enim sed error iure Sit nulla error autem eveniet accusantium
-    </p>
-  </div>
-  <div style="width:50%;height:50vw;max-height:750px">
+<div class="checkerboard shadow">
+  <div>
     <img class="cover" src="https://floriade.co.nz/images/wreath_workshop_00001_1280.jpg" alt="">
+  </div>
+  <div class="content">
+    <p>
+    Dolor ab laborum obcaecati distinctio quod. Voluptates mollitia accusantium facilis recusandae commodi! Facere unde harum voluptate deserunt doloremque deleniti? Magnam sequi adipisci soluta illum fuga Dignissimos reprehenderit necessitatibus id praesentium cumque.
+    </p>
   </div>
 </div>
