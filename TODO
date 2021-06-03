@@ -1,4 +1,7 @@
 -- FIX --
+checkerboard class
+Move 404 to feedback-page layout
+Deprecate (feedback-page) canvas
 Gallery layout
 ENABLE contact form handler
 contact page / contact form padding
