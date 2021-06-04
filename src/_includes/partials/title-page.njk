@@ -33,7 +33,7 @@
   width: 1px;
 }
 </style>
-<video playsinline autoplay muted loop poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(/images/pexels-pavel-danilyuk-6764454.svg)">
+<video playsinline autoplay muted loop poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)">
   <source src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.mp4" type="video/mp4">
 </video>
 <div id="title-page" class="canvas center">
@@ -45,3 +45,8 @@
     <h3 style="margin-top:1em">{{ site.tagline_html | safe }}</h3>
   </div>
 </div>
+{% if banner_message.message %}
+  <aside class="banner-message">
+    {% markdown banner_message.message %}
+  </aside>
+{% endif %}

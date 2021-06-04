@@ -1,6 +1,8 @@
 -- FIX --
 Move 404 to feedback-page layout
-Deprecate (feedback-page) canvas
+Deprecate noscript image fallbacks (bloat) ??
+Double check responsive image sizes
+Deprecate (feedback-page) canvas - canvas = FG / not img cover
 Gallery layout
 ENABLE contact form handler
 contact page / contact form padding
