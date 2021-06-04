@@ -17,7 +17,7 @@
   }
 }
 
-img, figure {
+img, figure, video {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

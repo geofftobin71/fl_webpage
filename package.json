@@ -40,6 +40,12 @@
     "jsonminify": "^0.4.1",
     "luxon": "^1.27.0",
     "node-fetch": "^2.6.1",
+    "sqip": "^1.0.0-alpha.32",
+    "sqip-cli": "^1.0.0-alpha.36",
+    "sqip-plugin-blur": "^1.0.0-alpha.33",
+    "sqip-plugin-data-uri": "^1.0.0-alpha.33",
+    "sqip-plugin-primitive": "^1.0.0-alpha.34",
+    "sqip-plugin-svgo": "^1.0.0-alpha.33",
     "stripe": "^8.149.0",
     "terser": "^5.7.0"
   },

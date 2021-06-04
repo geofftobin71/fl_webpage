@@ -1,0 +1,47 @@
+<style>
+#bg-video {
+  object-fit:cover;
+  object-position:center center;
+  width:100vw;
+  height:100vh;
+  z-index:-1;
+}
+#title-page {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background-color: rgba(0,0,0,0.33);
+}
+#title-logo {
+  width:66vmin;
+  max-width:500px;
+}
+@supports (background: -webkit-named-image(i)) {
+  #bg-video, #title-page {
+    height: -webkit-fill-available;
+  }
+}
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+</style>
+<video playsinline autoplay muted loop poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(/images/pexels-pavel-danilyuk-6764454.svg)">
+  <source src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.mp4" type="video/mp4">
+</video>
+<div id="title-page" class="canvas center">
+  <div class="vertical center">
+    <figure id="title-logo">
+      <img src="{{ '/images/floriade-logo-white.svg' | url }}" alt="Floriade logo" loading="eager" decoding="async" />
+    </figure>
+    <h1 class="visually-hidden">{{ site.name | safe }}</h1>
+    <h3 style="margin-top:1em">{{ site.tagline_html | safe }}</h3>
+  </div>
+</div>
