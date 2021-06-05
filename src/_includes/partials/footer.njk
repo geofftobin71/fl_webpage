@@ -1,8 +1,11 @@
 <style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;}}footer a:link{color:var(--color-shade4);}footer a:visited{color:var(--color-shade4);}footer a:hover{color:var(--color-light);}footer a:active{color:var(--color-light);}</style>
 
-<footer class="bg-shade1 font-size--1">
+<footer class="bg-shade1 font-size--1" style="--section-padding:2em">
   <section class="wrapper page-wrapper">
-    {# <div class="horizontal center middle" style="width:48px;margin:0 auto 2em auto"><a href="#top" title="Scroll to Top" aria-label="Scroll to Top" onClick="(function(){window.scroll({top:0,left:0,behavior:'smooth'})})()" style="width:24px;border-radius:50%">{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</a></div> #}
+    <div class="horizontal center middle" style="width:48px;margin:0 auto">
+      <span title="Scroll to Top" aria-label="Scroll to Top" class="req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#top').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</span>
+      <noscript><a href="#top" title="Scroll to Top" aria-label="Scroll to Top" style="width:24px"><img src="/images/chevron-up.png" alt=""></a></noscript>
+    </div>
     <div class="three-columns">
       <div class="vertical center flow">
         <h4 class="text-lowercase">Location</h4>

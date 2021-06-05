@@ -1,7 +1,9 @@
-<style>#bg-video{object-fit:cover;object-position:center center;width:100vw;height:100vh;z-index:-1;}#title-page{position:absolute;top:0;left:0;width:100vw;height:100vh;background-color:rgba(0,0,0,0.33);}#title-logo{width:66vmin;max-width:500px;}@supports(background:-webkit-named-image(i)){ #bg-video,#title-page{height:-webkit-fill-available;} }.visually-hidden{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;}.link-light a:link{color:var(--color-shade4);}.link-light a:visited{color:var(--color-shade4);}.link-light a:hover{color:var(--color-light);}.link-light a:active{color:var(--color-light);}</style>
-<video playsinline autoplay muted loop poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)">
+<style>#bg-video{object-fit:cover;object-position:center center;width:100vw;height:100vh;z-index:-1;}#title-page{position:absolute;top:0;left:0;width:100vw;height:100vh;background-color:rgba(0,0,0,0.33);}#title-logo{width:66vmin;max-width:500px;}@supports(background:-webkit-named-image(i)){ #bg-video,#title-page{height:-webkit-fill-available;} }.visually-hidden{clip:rect(0 0 0 0);clip-path:inset(50%);height:1px;overflow:hidden;position:absolute;white-space:nowrap;width:1px;}.link-light a:link{color:var(--color-shade4);}.link-light a:visited{color:var(--color-shade4);}.link-light a:hover{color:var(--color-light);}.link-light a:active{color:var(--color-light);}#more{width:48px;margin:0 auto 1em auto;place-self:end}@media screen and (orientation:landscape) and (max-width:950px){ #more{margin-bottom:0.5em} }</style>
+<video playsinline preload="none" muted loop class="req-js" poster="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" id="bg-video" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)">
   <source src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.mp4" type="video/mp4">
+  <img class="cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" alt="">
 </video>
+<noscript><div class="height100vh"><img class="bg cover" src="https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454.jpg" style="background-image:url(https://floriade.co.nz/videos/pexels-pavel-danilyuk-6764454-lqip.jpg)" alt=""></div></noscript>
 <div id="title-page" class="canvas center text-center">
   <div class="vertical center">
     <figure id="title-logo">
@@ -10,7 +12,10 @@
     <h1 class="visually-hidden">{{ site.name | safe }}</h1>
     <h3 style="margin-top:1em">{{ site.tagline_html | safe }}</h3>
   </div>
-  <div class="horizontal center middle link-light" style="width:48px;margin:0 auto 0.5em auto;place-self:end"><a href="#main" title="Scroll to Content" aria-label="Scroll to Content" style="width:24px">{{ '/src/svg/chevron-down.svg' | svgContents | safe }}</a></div>
+  <div id="more" class="horizontal center middle link-light">
+    <span title="Scroll to Content" aria-label="Scroll to Content" class="req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#main').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-down.svg' | svgContents | safe }}</span>
+    <noscript><a href="#main" title="Scroll to Content" aria-label="Scroll to Content" style="width:24px"><img src="/images/chevron-down.png" alt=""></a></noscript>
+  </div>
 </div>
 <div id="main"></div>
 {% if banner_message.message %}

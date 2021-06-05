@@ -1,6 +1,6 @@
 {% block pre %}{% endblock %}
 <!DOCTYPE html>
-<html lang="en" id="top">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -35,6 +35,7 @@
   </head>
 
   <body tabindex="1">
+    <div id="top"></div>
     {% block content %}
       {{ content | safe }}
     {% endblock %}
@@ -43,6 +44,7 @@
       {% include "partials/hamburger-menu.njk" %}
       {% set js %}
       {% include "js/lazy-images.js" %}
+      {% include "js/smoothscroll.min.js" %}
 		    window.cookieconsent.initialise({
 		        "palette": {
 		              "popup": {
