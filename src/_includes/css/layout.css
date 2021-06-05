@@ -412,6 +412,10 @@ article > * + * {
   --wrapper-width: 100vmin;
 }
 
+.button-wrapper {
+  --wrapper-width: 50ch;
+}
+
 .no-wrapper {
   --padding: 0;
   max-width: none;
@@ -439,6 +443,7 @@ article > * + * {
 @media screen and (max-width:450px) {
   .buttons {
     flex-direction: column;
+    align-items: center;
   }
 
   .buttons > * + * {

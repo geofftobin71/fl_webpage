@@ -12,6 +12,7 @@ eleventyNavigation:
 {% set divider_sizes = [ 430, 294, 186, 179, 288 ] %}
 
 <section>
+  <div class="horizontal center"><a href="{{ site.google_review }}" class="button" role="button" target="_blank" rel="noopener">Leave a Review</a></div>
   <div id="reviews" class="wrapper">
     <ul class="vertical center">
       {% for item in reviews | shuffle -%}

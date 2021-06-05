@@ -1,4 +1,5 @@
-<section id="reviews" class="bg-shade1 font-size-1" style="--section-space:0">
+<section id="reviews" class="bg-shade1" style="--section-space:0">
+  <h2 class="heading text-center">Reviews</h2>
   <ul class="slider" style="padding:1em 0;align-items:center">
     {% for item in reviews | filterWeddingReviews(false) | removeLongReviews(300) | shuffle | head(5) -%}
       <li id="review{{ loop.index }}" class="slider-item">
@@ -11,6 +12,7 @@
       </li>
     {% endfor -%}
   </ul>
+  <noscript><div class="text-center"><span class="font-size--1">{{ '<< scroll for more >>' }}</span></div></noscript>
   <div class="horizontal space-between wrapper page-wrapper slider-controls req-js">
     <nav class="prev" onclick="scrollToPrevItem('#reviews')">
       <span role="button" style="width:var(--step-1)" aria-label="Previous">{{ '/src/svg/chevron-left.svg' | svgContents | safe }}</span>
@@ -20,5 +22,8 @@
     </nav>
   </div>
   <br>
-  <div class="horizontal center font-size-0"><a href="/reviews" class="button" role="button">Read More Reviews</a></div>
+  <div class="wrapper button-wrapper buttons">
+    <a href="{{ site.google_review }}" class="button" role="button" target="_blank" rel="noopener">Leave a Review</a>
+    <a href="/reviews" class="button" role="button">Read More Reviews</a>
+  </div>
 </section>
