@@ -325,14 +325,49 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $content = '';
 
+  // Order Summary
+
+  $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+  $content .= $divider;
+  $content .= '<tr><td colspan="2"><h3 style="text-align:center">Order Summary</h3></td></tr>';
+
+  if(!empty($order["delivery-name"])) {
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
+    $content .= $spacer;
+  }
+
+  foreach($order["items"] as $item) {
+    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $item["product"];
+    if(!empty($item["variant"])) { $content .= ' (' . $item["variant"] . ')'; }
+    $content .= '</td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($item["price"]) . '</td></tr>';
+  }
+
+  foreach($order["tickets"] as $ticket) {
+    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $ticket["workshop"] . '<br>' . $ticket["session"] . '<br><small>' . $ticket["name"] . ' - ' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($ticket["price"]) . '</td></tr>';
+  }
+
+  if(strtolower($delivery_option) === "pickup") {
+    $content .= $divider;
+    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top">free</td></tr>';
+  }
+
+  if(strtolower($delivery_option) === "delivery") {
+    $content .= $divider;
+    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Delivery to ' . $order["delivery-suburb"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["delivery-fee"]) . '</td></tr>';
+  }
+
+  $content .= $divider;
+  $content .= '<tr><td style="vertical-align:top">TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["total"]) . '</td></tr>';
+  $content .= '</table>';
+
   // Pickup
 
   if(strtolower($delivery_option) === "pickup") {
     $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
     $content .= $divider;
     $content .= '<tr><td colspan="2"><h3 style="text-align:center">Pickup Details</h3></td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
-    $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top"><a href="https://goo.gl/maps/jGdMssVmNamjZXA4A" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">Floriade<br>18 Cambridge Terrace<br>Te Aro<br>Wellington</a></td></tr>';
     $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
@@ -347,6 +382,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $content .= $divider;
     $content .= '<tr><td colspan="2"><h3 style="text-align:center">Delivery Details</h3></td></tr>';
     $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
+    $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Recipient Phone</td><td style="text-align:right;vertical-align:top">' . $order["delivery-phone"] . '</td></tr>';
     $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Delivery Address</td><td style="text-align:right;vertical-align:top">' . $order["delivery-address"] . '<br>' . $order["delivery-suburb"] . '</td></tr>';
@@ -374,38 +410,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $content .= '<tr><td colspan="2"><p>' . $special_requests . '</p></td></tr>';
     $content .= '</table>';
   }
-
-  // Order Summary
-
-  $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
-  $content .= $divider;
-  $content .= '<tr><td colspan="2"><h3 style="text-align:center">Order Summary</h3></td></tr>';
-
-  foreach($order["items"] as $item) {
-    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $item["product"];
-    if(!empty($item["variant"])) { $content .= ' (' . $item["variant"] . ')'; }
-    $content .= '</td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($item["price"]) . '</td></tr>';
-  }
-
-  foreach($order["tickets"] as $ticket) {
-    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $ticket["workshop"] . '<br>' . $ticket["session"] . '<br><small>' . $ticket["name"] . ' - ' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($ticket["price"]) . '</td></tr>';
-  }
-
-  if(strtolower($delivery_option) === "pickup") {
-    $content .= $divider;
-    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top">free</td></tr>';
-  }
-
-  if(strtolower($delivery_option) === "delivery") {
-    $content .= $divider;
-    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["cart-total"]) . '</td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Delivery to ' . $order["delivery-suburb"] . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["delivery-fee"]) . '</td></tr>';
-  }
-
-  $content .= $divider;
-  $content .= '<tr><td style="vertical-align:top">TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["total"]) . '</td></tr>';
-  $content .= '</table>';
 
   // Payment
 
@@ -443,10 +447,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
-  /* DEBUG */
+  /* DEBUG
   echo $mail_body;
   exit;
-  /* DEBUG */
+  DEBUG */
 
   // Send Order Confirmation Email
 
@@ -520,10 +524,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $mail_body = str_replace($placeholders, $values, $mail_template);
 
-    /* DEBUG
+    /* DEBUG */
     echo $mail_body;
     exit;
-    DEBUG */
+    /* DEBUG */
 
     // Send Booking Confirmation Email
 
