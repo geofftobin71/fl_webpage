@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $alt_text = clean($_POST["alt"]);
 
   $mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-thankyou.html");
-  $self_mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-message.html");
+  $self_mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/contact-message-plain.txt");
 
   $placeholders = [
     "%name%",
@@ -51,7 +51,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   // ========== reCaptcha ==========
 
-  /* FIXME */
   $g_recaptcha_response = $_POST["g-recaptcha-response"];
   $remote_ip = $_SERVER["REMOTE_ADDR"];
   $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($recaptcha_secret) . '&response=' . urlencode($g_recaptcha_response) . '&remoteip=' . urlencode($remote_ip);
@@ -61,13 +60,14 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if($responseKeys["success"] && $responseKeys["action"] == 'contactform') {
     if($responseKeys["score"] >= 0.5) {
-      /* FIXME */
 
       // ========== Contact Form Email ==========
 
-      /* FIXME */
       try {
+        $selfmail->ContentType = 'text/plain';
+        $selfmail->isHTML(false);
         $selfmail->setFrom($email_address, $name);
+        $selfmail->clearAddresses();
         $selfmail->addAddress('flowers@floriade.co.nz', 'Floriade');
         $selfmail->Subject = $subject;
 
@@ -79,11 +79,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         header('Location:/contact-form-error/?p=' . urlencode($mail->ErrorInfo));
         exit;
       }
-      /* FIXME */
 
       // ========== Confirmation Email ==========
 
       try {
+        $mail->clearAddresses();
         $mail->addAddress($email_address, $name);
         $mail->setFrom('flowers@floriade.co.nz', 'Floriade');
         $mail->Subject = $subject . ' (auto-reply)';
@@ -100,7 +100,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       header('Location:/thankyou-for-contacting-floriade/');
       exit();
 
-      /* FIXME */
     } else {
       header('Location:/contact-form-error/?p=' . urlencode('reCaptcha failed to verify your response'));
       exit;
@@ -109,7 +108,6 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     header('Location:/contact-form-error/?p=' . urlencode(json_encode($responseKeys["error-codes"], JSON_PRETTY_PRINT)));
     exit;
   }
-  /* FIXME */
 }
 
 ?>

@@ -10,14 +10,14 @@ function contactFormHandler() {
 
     event.preventDefault();
 
-    document.getElementById("submit-button").disabled = true;
+    disableContactForm();
 
     const inputs = contact_form.querySelectorAll("input,textarea");
     for(let i = 0; i < inputs.length; i++) {
       if(window.getComputedStyle(inputs[i]).display !== "none") {
         if(inputs[i].value.trim().length === 0) {
           showError(inputs[i].dataset.error || "Error");
-          document.getElementById("submit-button").disabled = false;
+          enableContactForm();
           return false;
         }
       }
@@ -31,7 +31,7 @@ function contactFormHandler() {
     });
   },false);
 
-  document.getElementById("submit-button").disabled = false;
+  enableContactForm();
 }
 
 function showError(message) {
@@ -51,3 +51,18 @@ function hideError() {
     error_msg.style.visibility = "hidden";
   }
 }
+
+function enableContactForm() {
+  document.getElementById("submit-button").disabled = false;
+  document.getElementById("spinner-icon").style.display = "none";
+  document.getElementById("email-icon").style.display = "inline-block";
+  document.getElementById("submit-text").innerText = "Send";
+}
+
+function disableContactForm() {
+  document.getElementById("submit-button").disabled = true;
+  document.getElementById("spinner-icon").style.display = "inline-block";
+  document.getElementById("email-icon").style.display = "none";
+  document.getElementById("submit-text").innerText = "Sending";
+}
+

@@ -526,6 +526,7 @@ article > * + * {
   height: 0;
   line-height: 0;
   padding-bottom: calc(var(--n) / var(--d) * 100%);
+  position: relative;
 }
 
 .aspect16x9 { --n: 9; --d: 16; }
@@ -538,6 +539,36 @@ article > * + * {
 .aspect2x3 { --n: 3; --d: 2; }
 .aspect3x4 { --n: 4; --d: 3; }
 .aspect9x16 { --n: 16; --d: 9; }
+
+.aspect > figure {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.aspect img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ----- Spinner ----- */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#spinner-icon {
+  animation: spin 1.5s linear infinite;
+}
+#spinner-icon svg {
+  margin: 0;
+}
 
 /* ----- Modal ----- */
 
