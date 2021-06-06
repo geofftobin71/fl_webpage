@@ -328,8 +328,8 @@ function disableInvalidDates(delivery_option) {
   const ten_am = DateTime.fromObject({hour:10});
 
   let today = document.getElementById("today");
-  if(today) {
-    today.disabled = (now > ten_am);
+  if((today) && (now > ten_am)) {
+    today.disabled = true;
   }
 
   var delivery_date = document.getElementById("delivery-date");

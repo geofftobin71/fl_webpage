@@ -156,54 +156,40 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $mail_template = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/email/shop-order.html");
 
   $divider = '<tr><td colspan="2"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $half_divider = '<tr><td colspan="2"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div><hr style="width:22%"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
   $spacer = '<tr><td><br></td><td><br></td></tr>';
 
   $content = '';
 
-  // Pickup
-
-  if(strtolower($delivery_option) === "pickup") {
-    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
-    $content .= $divider;
-    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Pickup Details</h3></td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-name"] . '</b></td></tr>';
-    $content .= $spacer;
-    $content .= '<tr><td style="vertical-align:top">Pickup Phone</td><td style="text-align:right;vertical-align:top"><a href="tel:' . $order["cardholder-phone"] . '">' . $order["cardholder-phone"] . '</a></td></tr>';
-    $content .= $spacer;
-    $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
-    $content .= '</table>';
-  }
-
-  // Delivery
-
-  if(strtolower($delivery_option) === "delivery") {
-    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
-    $content .= $divider;
-    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Delivery Details</h3></td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-name"] . '</b></td></tr>';
-    $content .= $spacer;
-    $content .= '<tr><td style="vertical-align:top">Recipient Phone</td><td style="text-align:right;vertical-align:top"><a href="tel:' . $order["delivery-phone"] . '">' . $order["delivery-phone"] . '</a></td></tr>';
-    $content .= $spacer;
-    $content .= '<tr><td style="vertical-align:top">Delivery Address</td><td style="text-align:right;vertical-align:top"><a href="http://maps.google.com/?q=' . urlencode($order["delivery-address"] . ',' . $order["delivery-suburb"] . ',Wellington,New Zealand') . '" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">' . $order["delivery-address"] . '<br>' . $order["delivery-suburb"] . '</a></td></tr>';
-    $content .= $spacer;
-    $content .= '<tr><td style="vertical-align:top">Delivery Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
-    $content .= '</table>';
-  }
-
   // Order Summary
 
   $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+
+  if(strtolower($delivery_option) === "pickup") {
+    $content .= '<tr><td colspan="2"><h1 style="text-align:center">' . formatMoney($order["total"]) . ' order from ' . $order["cardholder-name"] . '</h1></td></tr>';
+    $content .= '<tr><td colspan="2"><h2 style="text-align:center">Pickup on ' . $order["delivery-date"] . '</h2></td></tr>';
+  }
+
+  if(strtolower($delivery_option) === "delivery") {
+    $content .= '<tr><td colspan="2"><h1 style="text-align:center">' . formatMoney($order["total"]) . ' order from ' . $order["cardholder-name"] . '</h1></td></tr>';
+    $content .= '<tr><td colspan="2"><h2 style="text-align:center">Delivery to ' . $order["delivery-suburb"] . ' on ' . $order["delivery-date"] . '</h2></td></tr>';
+  }
+
   $content .= $divider;
   $content .= '<tr><td colspan="2"><h3 style="text-align:center">Order Summary</h3></td></tr>';
+  if(!empty($order["delivery-name"])) {
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-name"] . '</b></td></tr>';
+    $content .= $spacer;
+  }
 
   foreach($order["items"] as $item) {
-    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $item["product"];
+    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em"><b>' . $item["product"];
     if(!empty($item["variant"])) { $content .= ' (' . $item["variant"] . ')'; }
-    $content .= '</td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($item["price"]) . '</td></tr>';
+    $content .= '</b></td><td style="text-align:right;vertical-align:top;padding-bottom:1em"><b>' . formatMoney($item["price"]) . '</b></td></tr>';
   }
 
   foreach($order["tickets"] as $ticket) {
-    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $ticket["workshop"] . '<br>' . $ticket["session"] . '<br><small>' . $ticket["name"] . ' - <a href="mailto:' . $ticket["email"] . '">' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($ticket["price"]) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top;padding-bottom:1em">' . $ticket["workshop"] . '<br><small>' . $ticket["session"] . '</small><br><small>' . $ticket["name"] . ' - <a href="mailto:' . $ticket["email"] . '">' . $ticket["email"] . '</small></td><td style="text-align:right;vertical-align:top;padding-bottom:1em">' . formatMoney($ticket["price"]) . '</td></tr>';
   }
 
   if(strtolower($delivery_option) === "pickup") {
@@ -219,8 +205,38 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
   $content .= $divider;
-  $content .= '<tr><td style="vertical-align:top">TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($order["total"]) . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top"><b>TOTAL</b></td><td style="text-align:right;vertical-align:top"><b>' . formatMoney($order["total"]) . '</b></td></tr>';
   $content .= '</table>';
+
+  // Pickup
+
+  if(strtolower($delivery_option) === "pickup") {
+    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+    $content .= $divider;
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Pickup Details</h3></td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Pickup Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["cardholder-name"] . '</b></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Pickup Phone</td><td style="text-align:right;vertical-align:top"><a href="tel:' . $order["cardholder-phone"] . '"><b>' . $order["cardholder-phone"] . '</b></a></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-date"] . '</b></td></tr>';
+    $content .= '</table>';
+  }
+
+  // Delivery
+
+  if(strtolower($delivery_option) === "delivery") {
+    $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
+    $content .= $divider;
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Delivery Details</h3></td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-name"] . '</b></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Recipient Phone</td><td style="text-align:right;vertical-align:top"><a href="tel:' . $order["delivery-phone"] . '"><b>' . $order["delivery-phone"] . '</b></a></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Delivery Address</td><td style="text-align:right;vertical-align:top"><a href="http://maps.google.com/?q=' . urlencode($order["delivery-address"] . ',' . $order["delivery-suburb"] . ',Wellington,New Zealand') . '" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener"><b>' . $order["delivery-address"] . '<br>' . $order["delivery-suburb"] . '</b></a></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Delivery Date</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-date"] . '</b></td></tr>';
+    $content .= '</table>';
+  }
 
   // Gift tag Message
 
@@ -270,10 +286,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
-  /* DEBUG */
+  /* DEBUG
   echo $mail_body;
   exit;
-  /* DEBUG */
+  DEBUG */
 
   // Send Order Email
 
@@ -427,10 +443,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
-  /* DEBUG
+  /* DEBUG */
   echo $mail_body;
   exit;
-  DEBUG */
+  /* DEBUG */
 
   // Send Order Confirmation Email
 
