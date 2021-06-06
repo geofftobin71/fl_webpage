@@ -1,11 +1,10 @@
 -- FIX --
+TABINDEX for non buttons
+Deprecate contact form button text in forestry
 Smaller video on mobile => Cloudinary
 Move 404 to feedback-page layout
-Deprecate noscript image fallbacks (bloat) ??
 Double check responsive image sizes
 Deprecate (feedback-page) canvas - canvas = FG / not img cover
-Gallery layout
-ENABLE contact form handler
 contact page / contact form padding
 check floriade-delivery-date has not passed in expireCart
 single product width on mobile - padding too big

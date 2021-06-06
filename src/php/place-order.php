@@ -166,7 +166,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
     $content .= $divider;
     $content .= '<tr><td colspan="2"><h3 style="text-align:center">Pickup Details</h3></td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-name"] . '</b></td></tr>';
+    $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Pickup Phone</td><td style="text-align:right;vertical-align:top"><a href="tel:' . $order["cardholder-phone"] . '">' . $order["cardholder-phone"] . '</a></td></tr>';
     $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top">' . $order["delivery-date"] . '</td></tr>';
@@ -179,7 +180,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $content .= '<table role="presentation" width="100%" style="font-family:Arial,sans-serif">';
     $content .= $divider;
     $content .= '<tr><td colspan="2"><h3 style="text-align:center">Delivery Details</h3></td></tr>';
-    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $order["delivery-name"] . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top"><b>' . $order["delivery-name"] . '</b></td></tr>';
+    $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Recipient Phone</td><td style="text-align:right;vertical-align:top"><a href="tel:' . $order["delivery-phone"] . '">' . $order["delivery-phone"] . '</a></td></tr>';
     $content .= $spacer;
     $content .= '<tr><td style="vertical-align:top">Delivery Address</td><td style="text-align:right;vertical-align:top"><a href="http://maps.google.com/?q=' . urlencode($order["delivery-address"] . ',' . $order["delivery-suburb"] . ',Wellington,New Zealand') . '" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">' . $order["delivery-address"] . '<br>' . $order["delivery-suburb"] . '</a></td></tr>';
@@ -268,10 +270,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $mail_body = str_replace($placeholders, $values, $mail_template);
 
-  /* DEBUG
+  /* DEBUG */
   echo $mail_body;
   exit;
-  DEBUG */
+  /* DEBUG */
 
   // Send Order Email
 

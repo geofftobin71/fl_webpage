@@ -135,6 +135,8 @@ async function displayCheckout() {
     }
   ]});
 
+  var card = null;
+  /* FIXME
   var card = elements.create("card", {
     hidePostalCode: true,
     style: {
@@ -159,9 +161,11 @@ async function displayCheckout() {
       },
     }
   });
+  FIXME */
 
   // FIXME card.mount("#card-input");
 
+  /* FIXME
   card.addEventListener("change", function(event) {
     if(event.error) {
       showError(event.error.message);
@@ -169,6 +173,7 @@ async function displayCheckout() {
       hideError();
     }
   },false);
+  FIXME */
 
   var form = document.getElementById("checkout-form");
 
@@ -177,7 +182,7 @@ async function displayCheckout() {
 
     disableCheckoutForm();
 
-    const inputs = document.querySelectorAll("input,select");
+    const inputs = form.querySelectorAll("input,select");
     for(let i = 0; i < inputs.length; i++) {
       if(window.getComputedStyle(inputs[i]).display !== "none") {
         if(inputs[i].value.trim().length === 0) {
