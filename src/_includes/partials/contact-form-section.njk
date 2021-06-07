@@ -1,0 +1,47 @@
+<h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
+<form id="contact-form" class="width100 flow req-js" action="{{ '/php/contact-form-handler.php' | url }}" method="post">
+  <div>
+    <label for="name"><h4 class="heading">Name</h4></label>
+    <input class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name" onfocus="hideError()">
+  </div>
+  <div>
+    <label for="email"><h4 class="heading">Email</h4></label>
+    <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" data-error="Email is required" placeholder="Your Email address" onfocus="hideError()">
+  </div>
+  <div>
+    <label for="message"><h4 class="heading">Message</h4></label>
+    <textarea class="input" id="message" name="message" data-error="Message is required" placeholder="{{ section.message or 'How can we help you?' }}" rows="6" onfocus="hideError()"></textarea>
+  </div>
+  {% set image_id = (section.email_banner | stripVersion) or 'site/floriade-dried-flower-room-00001' %}
+  {% set image_info = image_id | imgInfo %}
+  <input id="subject" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
+  <input id="heading" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
+  <input id="banner" name="banner" type="hidden" value="{{ image_id }}">
+  <input id="brightness" name="brightness" type="hidden" value="{{ 100 - (section.brightness or 75) }}">
+  <input id="alt" name="alt" type="hidden" value="{{ image_info.context.alt or 'Floriade Logo' }}">
+  <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ env.RECAPTCHA_SITE_KEY }}">
+  <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
+
+  <div class="vertical center flow">
+    <button disabled id="submit-button" class="button" type="submit">
+      <span id="email-icon">{{ '/src/svg/envelope-o.svg' | svgContents | iconTextButton | safe }}</span>
+      <span id="spinner-icon" style="margin-right:0.5em;display:inline-block">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
+      <p id="submit-text">Send</p>
+    </button>
+    <p class="font-size--2 text-center" style="margin-top:1.5rem">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
+    <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
+  </div>
+</form>
+<noscript>
+  <div class="text-center flow" style="margin-top:1em">
+    <p><a href="{{ site.mailto_obf | safe }}?subject={{ section.email_subject or 'Flowers Enquiry' }}" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
+    <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
+  </div>
+</noscript>
+<script src="https://www.google.com/recaptcha/api.js?render={{ env.RECAPTCHA_SITE_KEY }}" async defer></script>
+{% set js %}
+{% include "js/contact-form-handler.js" %}
+{% endset %}
+<script>
+  {{ js | jsmin | safe }}
+</script>

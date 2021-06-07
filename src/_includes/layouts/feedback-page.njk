@@ -1,8 +1,8 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <style>.logo{width:20vmin;min-width:125px;margin:2em auto 2em auto}article h1,article h2,article h3,article h4{text-transform:lowercase;color:var(--color-light);transform:translateX(0)}@media screen and (max-width:750px){ #xcontent{margin-top:3em}}@media screen and (orientation:landscape) and (max-width:950px){ #xcontent{margin-top:3em}}</style>
-  <main class="canvas center top" style="position:relative;min-height:100vh">
+  <main class="canvas center" style="position:relative;min-height:100vh">
+  {#
   {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
   {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
   {% set image_info = image_id | imgInfo %}
@@ -16,22 +16,26 @@
     {%- endfor -%}
     " sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
   </figure>
+  #}
   <div id="content">
+    {#
     <nav class="site-menu wrapper page-wrapper text-shadow" style="width:100vw">
       {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
       {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
     </nav>
-    <figure class="logo">
-      <a href="/">
-        <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
+    #}
+    <div class="vertical center round bg-shade1 shadow wrapper text-wrapper flow bigfonts font-secondary text-center" style="--measure:60ch;padding:var(--step-2);margin:var(--step--1)">
+      <a href="/" tabindex="-1">
+        <figure class="logo">
+          <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
+        </figure>
       </a>
-    </figure>
-    <article class="wrapper text-wrapper flow bigfonts font-secondary text-center text-shadow" style="--measure:60ch;margin-bottom:2em">
       <h1>{{ (header.title or title) | lower }}</h1>
       <h3>{{ subheading | lower }}</h3>
       <p id="p" class="text-center"></p>
       {{ content | safe }}
-    </article>
+      <a class="button" href="/">Return to Homepage</a>
+    </div>
   </div>
   </main>
   <script>document.addEventListener("DOMContentLoaded",function(){var query=window.location.search.substring(1);if(query){var vars=query.split("&");for(var i=0;i<vars.length;i++){var pair=vars[i].split("=");document.getElementById(pair[0]).innerHTML=decodeURIComponent(pair[1].replace(/\+/g,' '));}}},false);</script>

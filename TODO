@@ -1,6 +1,5 @@
 -- FIX --
-TABINDEX for non buttons
-Deprecate contact form button text in forestry
+Enable and TEST shop code
 Smaller video on mobile => Cloudinary
 Move 404 to feedback-page layout
 Double check responsive image sizes

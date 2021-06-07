@@ -64,56 +64,7 @@
 {% endif %}
 
 {% if section.template == "contact-form-section" %}
-  <section class="contact-form-section">
-    <div class="wrapper text-wrapper flow{{ ' round-box shadow border-shade2 bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}" style="padding:var(--padding)">
-      <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
-      <form id="contact-form" class="flow req-js" action="{{ '/php/contact-form-handler.php' | url }}" method="post">
-        <div>
-        <label for="name"><h4 class="heading">Name</h4></label>
-        <input class="input" id="name" name="name" type="text" autocomplete="name" data-error="Name is required" placeholder="Your Name" onfocus="hideError()">
-        </div>
-        <div>
-        <label for="email"><h4 class="heading">Email</h4></label>
-        <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" data-error="Email is required" placeholder="Your Email address" onfocus="hideError()">
-        </div>
-        <div>
-        <label for="message"><h4 class="heading">Message</h4></label>
-        <textarea class="input" id="message" name="message" data-error="Message is required" placeholder="{{ section.message or 'How can we help you?' }}" rows="10" onfocus="hideError()"></textarea>
-        </div>
-        {% set image_id = (section.email_banner | stripVersion) or 'site/floriade-dried-flower-room-00001' %}
-        {% set image_info = image_id | imgInfo %}
-        <input id="subject" name="subject" type="hidden" value="{{ section.email_subject or 'Flowers Enquiry' }}">
-        <input id="heading" name="heading" type="hidden" value="{{ section.email_heading or 'Thankyou for contacting Floriade.' }}">
-        <input id="banner" name="banner" type="hidden" value="{{ image_id }}">
-        <input id="brightness" name="brightness" type="hidden" value="{{ 100 - (section.brightness or 75) }}">
-        <input id="alt" name="alt" type="hidden" value="{{ image_info.context.alt or 'Floriade Logo' }}">
-        <input id="recaptcha-site-key" name="recaptcha-site-key" type="hidden" value="{{ env.RECAPTCHA_SITE_KEY }}">
-        <input id="gRecaptchaResponse" name="g-recaptcha-response" type="hidden">
-
-      <div class="vertical center flow">
-        <button disabled id="submit-button" class="button" type="submit">
-          <span id="email-icon">{{ '/src/svg/envelope-o.svg' | svgContents | iconTextButton | safe }}</span>
-          <span id="spinner-icon" style="margin-right:0.5em;display:inline-block">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
-          <p id="submit-text">Send</p>
-        </button>
-        <p class="font-size--2 text-center" style="margin-top:1.5rem">Protected by reCAPTCHA &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a> &nbsp;&nbsp;&nbsp;<a href="https://www.google.com/intl/en/policies/terms/">Terms</a></p>
-        <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
-      </div>
-      </form>
-      <noscript>
-        <div class="text-center flow" style="margin-top:1em">
-          <p><a href="{{ site.mailto_obf | safe }}?subject={{ section.email_subject or 'Flowers Enquiry' }}" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
-          <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
-        </div>
-      </noscript>
-    </div>
-  </section>
-  {% set js %}
-  {% include "js/contact-form-handler.js" %}
-  {% endset %}
-  <script>
-    {{ js | jsmin | safe }}
-  </script>
+  {% include "partials/contact-form-section.njk" %}
 {% endif %}
 
 {% if section.template == "google-maps-section" %}
@@ -143,14 +94,10 @@
       <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
       <h3 class="heading text-center">Follow Us</h3>
       <div class="horizontal space-between color-light" style="width:200px;height:2rem">
-        <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:12px" title="Follow us on Facebook" aria-label="Follow us on Facebook">
-          {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
-        <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:20px" title="Follow us on Instagram" aria-label="Follow us on Instagram">
-          {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
-        <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:20px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest">
-          {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
-        <a href="{{ site.google_page }}" target="_blank" rel="noopener" style="width:20px" title="Find us on Google" aria-label="Find us on Google">
-          {{ '/src/svg/google.svg' | svgContents | safe }}</a>
+        <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:16px" title="Follow us on Facebook" aria-label="Follow us on Facebook"> {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:24px" title="Follow us on Instagram" aria-label="Follow us on Instagram"> {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
+        <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:24px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest"> {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
+        <a href="{{ site.google_page }}" target="_blank" rel="noopener" style="width:24px" title="Find us on Google" aria-label="Find us on Google"> {{ '/src/svg/google.svg' | svgContents | safe }}</a>
       </div>
     </div>
   </section>

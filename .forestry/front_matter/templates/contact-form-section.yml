@@ -14,12 +14,6 @@ fields:
     required: false
   label: Message Placeholder
   description: 'Message field placeholder text.<br><em>default: How can we help you?</em>'
-- name: button
-  type: text
-  config:
-    required: false
-  label: Button Label
-  description: 'Send Button Label<br><em>default: Send Message</em>'
 - name: email_subject
   type: text
   config:
