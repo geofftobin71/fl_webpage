@@ -54,10 +54,10 @@ header:
   </div>
   <div class="width100 wrapper vertical center flow" style="--wrapper-width:600px">
     <h2 class="heading text-center">Visit Us</h2>
-    <div class="width100 aspect aspect1x1 round shadow" style="margin-top:var(--step-2)">
+    <div class="width100 aspect aspect1x1 shadow" style="margin-top:var(--step-2)">
       <figure>
         {% if env.NODE_ENV == 'deploy' %}
-          <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
+          <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=18" allowfullscreen></iframe>
         {% endif %}
         {{ '<noscript>' | safe if env.NODE_ENV == 'deploy' }}
           <a class="width100 height100" target="_blank" rel="noopener" title="Open in Google Maps" aria-label="Open in Google Maps" href="{{ site.google_maps }}">
