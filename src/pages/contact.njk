@@ -48,14 +48,13 @@ header:
     {% include "partials/shop-hours.njk" %}
     <br><br>
   </div>
-  <div class="width100 wrapper vertical center flow" style="--wrapper-width:500px">
+  <div class="width100 wrapper vertical center flow" style="--wrapper-width:600px">
     {% set section = { heading: "Send us a Message" } %}
     {% include "partials/contact-form-section.njk" %}
-    <br><br>
   </div>
-  <div class="width100 wrapper vertical center flow" style="--wrapper-width:500px">
+  <div class="width100 wrapper vertical center flow" style="--wrapper-width:600px">
     <h2 class="heading text-center">Visit Us</h2>
-    <div class="width100 aspect aspect1x1 round shadow" style="margin-top:var(--step-0)">
+    <div class="width100 aspect aspect1x1 round shadow" style="margin-top:var(--step-2)">
       <figure>
         {% if env.NODE_ENV == 'deploy' %}
           <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=17" allowfullscreen></iframe>
@@ -68,6 +67,5 @@ header:
       </figure>
     </div>
     <noscript><p class="text-center font-size--1">Click to open in Google Maps</p></noscript>
-    <br><br>
   </div>
 </section>
