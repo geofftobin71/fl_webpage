@@ -1,0 +1,13 @@
+---
+label: Checkerboard Section
+hide_body: true
+fields:
+- name: content
+  type: blocks
+  label: Content
+  template_types:
+  - text-section
+  - contact-form-section
+  config:
+    min: 1
+    max: 1
