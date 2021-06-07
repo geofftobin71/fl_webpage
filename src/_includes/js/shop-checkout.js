@@ -267,6 +267,7 @@ async function displayCheckout() {
 }
 
 function disableInvalidDates(delivery_option) {
+  if(delivery_option === "none") { return; }
   document.querySelectorAll(".delivery-date-option").forEach(element => {
 
     element.disabled = false;
