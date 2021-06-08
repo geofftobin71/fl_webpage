@@ -6,9 +6,11 @@
     {% set lqip_data = lqip_path | imgLqip %}
     <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
   </figure>
-  <nav class="site-menu wrapper page-wrapper text-shadow" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
-    {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
-  </nav>
+  <div class="site-menu" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+    <nav class="wrapper page-wrapper">
+      {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
+    </nav>
+  </div>
   <div class="content">
     <figure class="logo">
       <a href="{{ '/' | url }}" tabindex="-1">
@@ -17,9 +19,11 @@
     </figure>
     <h1>{{ (header.title or title) | lower | safe }}</h1>
   </div>
-  <nav class="site-menu wrapper page-wrapper text-shadow" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
-    {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
-  </nav>
+  <div class="site-menu" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+    <nav class="wrapper page-wrapper">
+      {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
+    </nav>
+  </div>
   {% if banner_message.message %}
     <aside class="banner-message">
       {% markdown banner_message.message %}

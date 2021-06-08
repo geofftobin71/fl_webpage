@@ -30,7 +30,7 @@ Settings.defaultZoneName = "Pacific/Auckland";
 
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
   const srcfilename = tokens[idx].attrs[0][1];
-  const title_txt = tokens[idx].attrs[2][1];
+  const title_txt = tokens[idx].attrs[1][1];
   const public_id = srcfilename.replace('https://res.cloudinary.com/floriade/image/upload', '').replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
 
   let caption = '';
@@ -180,10 +180,10 @@ module.exports = (eleventyConfig) => {
       return (post_date <= today) && (!p.data.draft);
     }
 
-    const coll = collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
+    let coll = collection.getFilteredByGlob("./src/blog/*.md").filter(livePosts).reverse();
 
     for(let i = 0; i < coll.length ; i++) {
-      const prevPost = coll[i-1];
+      const prevPost = coll[i - 1];
       const nextPost = coll[i + 1];
 
       coll[i].data["prevPost"] = prevPost;

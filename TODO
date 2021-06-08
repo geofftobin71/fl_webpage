@@ -1,14 +1,13 @@
 -- FIX --
+Deprecate unneeded partial component attributes
 Enable and TEST shop code
 Smaller video on mobile => Cloudinary
 Move 404 to feedback-page layout
-Double check responsive image sizes
-Deprecate (feedback-page) canvas - canvas = FG / not img cover
-contact page / contact form padding
 check floriade-delivery-date has not passed in expireCart
 single product width on mobile - padding too big
 single column gallery spacing
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
+Circle backgrounds on slider controls
 
 -- FUTURE --
 retire unused php functions
