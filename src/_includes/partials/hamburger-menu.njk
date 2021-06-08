@@ -1,5 +1,5 @@
 <div id="menu">
-  <input class="toggle" type="checkbox">
+  <input class="toggle" type="checkbox" onclick="modal()">
   <nav class="burger">
     <span role="button" style="width:var(--step-1)" title="Menu" aria-label="Menu">{{ '/src/svg/bars.svg' | svgContents | safe }}</span>
   </nav>
@@ -17,3 +17,4 @@
   </div>
   <div class="backdrop"></div>
 </div>
+<script>function modal(){document.documentElement.setAttribute('data-modal-active',document.querySelector(".toggle").checked);}</script>
