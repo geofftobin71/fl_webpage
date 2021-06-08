@@ -465,9 +465,6 @@ article > * + * {
 
 .checkerboard {
   width:100vw;
-  max-width:1500px;
-  margin-left:auto;
-  margin-right:auto;
   display:flex;
   flex-direction:column;
 }
@@ -475,7 +472,6 @@ article > * + * {
 .checkerboard > * {
   width:100%;
   height:100vw;
-  max-height:1500px;
 }
 
 .checkerboard .content {
@@ -520,6 +516,18 @@ article > * + * {
     height:50vw;
     min-height:0;
     max-height:750px;
+  }
+}
+
+@media screen and (orientation:landscape) and (min-width: 1500px) {
+  .checkerboard > * {
+    width:750px;
+    min-width:750px;
+    height:750px;
+  }
+
+  .checkerboard .content {
+    width:100%;
   }
 }
 
