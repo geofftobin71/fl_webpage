@@ -7,10 +7,10 @@
     <span role="button" style="width:var(--step-1)" title="Close" aria-label="Close">{{ '/src/svg/close.svg' | svgContents | safe }}</span>
   </nav>
   <div class="content vertical center">
-    <figure class="logo">
-      <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" style="margin:0 auto" loading="eager" decoding="async" />
-    </figure>
-    <nav>
+    <nav class="bg-shade1" style="padding:1.5em">
+      <figure class="logo">
+        <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" style="margin:0 auto" loading="eager" decoding="async" />
+      </figure>
       {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
       {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
     </nav>
