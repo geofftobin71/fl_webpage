@@ -30,12 +30,12 @@ Settings.defaultZoneName = "Pacific/Auckland";
 
 markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
   const srcfilename = tokens[idx].attrs[0][1];
-  const title_txt = tokens[idx].attrs[1][1];
+  const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
   const public_id = srcfilename.replace('https://res.cloudinary.com/floriade/image/upload', '').replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
 
   let caption = '';
   if(title_txt) {
-    caption = '<figcaption class="caption">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+    caption = '<figcaption class="caption text-center"><br>' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
   let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';

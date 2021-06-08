@@ -57,7 +57,9 @@
         {{ super() }}
       </article>
     </div>
-    <p class="text-center font-size--1" style="padding-top:var(--section-padding);opacity:0.5">share this post</p>
+  </section>
+  <section style="--section-padding:2em;--section-space:1em;background:rgba(0,0,0,0.2)">
+    <h4 class="heading text-center">Share this Post</h4>
     <div class="horizontal center wrapper link-light font-size--1">
       <!-- Sharingbutton Facebook -->
       <a class="resp-sharing-button-link" href="https://facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" title="Share on Facebook" aria-label="Share on Facebook">
@@ -111,7 +113,6 @@
     </div>
   </section>
   <style>.page-links{padding:1em 0;display:grid;grid-gap:3em;grid-template-columns:1fr 1fr;}.page-links a{border-radius:50%;display:flex;align-items:center;}.page-links .prev{width:var(--step-0);margin-right:0.5em;flex-shrink:0;}.page-links .next{width:var(--step-0);margin-left:0.5em;flex-shrink:0;}</style>
-  <hr>
   <div class="wrapper page-wrapper">
     <nav class="page-links font-secondary">
       {% if prevPost.url %}
