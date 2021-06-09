@@ -14,4 +14,4 @@ fields:
   template: menu
   label: Menu
 pages:
-- src/pages/blog.njk
+- src/pages/blog.md
