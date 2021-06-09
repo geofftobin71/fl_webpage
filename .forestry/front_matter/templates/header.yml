@@ -16,9 +16,9 @@ fields:
     type: number
     label: Brightness
     description: Brightness of the header image. Allow the header text and menu to
-      be more visible.<br>10 - 100
-    default: 100
+      be more visible.
+    default: 66
     config:
-      min: 10
+      min: 0
       max: 100
   label: Header

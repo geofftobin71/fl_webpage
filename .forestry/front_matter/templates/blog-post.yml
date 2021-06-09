@@ -29,8 +29,3 @@ fields:
   type: boolean
   label: Draft
   description: Draft blog posts don't appear on the web page.
-- name: header
-  type: include
-  config: {}
-  template: header
-  label: Header

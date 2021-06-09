@@ -6,7 +6,7 @@ fields:
   name: title
   label: Title
   description: The Title of the Blog Post. Appears in the header and on the browser
-    tab.
+    tab. (No full-stop at the end)
 - type: text
   name: description
   label: Description
@@ -19,3 +19,12 @@ fields:
   label: Header Image
   description: The background image for the page header. Also used when sharing this
     Blog Post on social media.
+- name: header_brightness
+  type: number
+  label: Header Image Brightness (%)
+  description: Brightness of the header image. Allow the header text and menu to
+    be more visible. Defaults to 66%
+  default: 66
+  config:
+    min: 0
+    max: 100
