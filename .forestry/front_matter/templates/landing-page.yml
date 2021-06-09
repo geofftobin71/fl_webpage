@@ -29,6 +29,3 @@ fields:
   config:
     min: 
     max: 
-pages:
-- src/pages/404.md
-- src/pages/thankyou-for-contacting-floriade.md
