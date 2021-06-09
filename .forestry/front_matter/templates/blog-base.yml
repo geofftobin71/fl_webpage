@@ -6,7 +6,7 @@ fields:
   name: title
   label: Title
   description: The Title of the Blog Post. Appears in the header and on the browser
-    tab eg. /blog/title-of-the-blog-post <br>( No full-stop at the end )
+    tab eg.<em> /blog/title-of-the-blog-post</em> <br>( No full-stop at the end )
 - type: text
   name: description
   label: Description
