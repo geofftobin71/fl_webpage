@@ -1,4 +1,6 @@
 -- FIX --
+Checkerboard Image Slideshow
+Section background colors
 Deprecate unneeded partial component attributes
 Enable and TEST shop code
 Smaller video on mobile => Cloudinary

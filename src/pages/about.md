@@ -18,18 +18,8 @@ page_sections:
   bigfonts: false
   background:
     color: Shade1
-    image: ''
-    brightness: 
-  button:
-    text: ''
-    link: ''
-    new_page: false
 - template: checkerboard-section
   align: Center
-  background:
-    color: Transparent
-    brightness: '100'
-    image: ''
   images:
   - "/v1616098373/instagram/floriade_wellington_17868690353315828.jpg"
   - "/v1613195720/workshops/wreath-workshop-1.jpg"
@@ -47,10 +37,6 @@ page_sections:
     new_page: false
 - template: checkerboard-section
   align: Center
-  background:
-    color: Transparent
-    brightness: '100'
-    image: ''
   images:
   - "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
   text: |-

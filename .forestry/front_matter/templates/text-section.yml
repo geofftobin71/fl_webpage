@@ -35,7 +35,7 @@ fields:
 - name: background
   type: include
   config: {}
-  template: background-image
+  template: background-color
   label: Background
 - name: button
   type: field_group

@@ -22,6 +22,11 @@
 {% block content %}
   {% include "partials/header.njk" %}
   <main>
+  <section class="bg-shade1">
+    <article class="wrapper text-wrapper text-center">
+      <p>{{ description | safe }}</p>
+    </article>
+  </section>
   <section>
     <div id="blog" class="wrapper">
       <ul class="vertical flow" style="--flow-space:var(--step-5)">

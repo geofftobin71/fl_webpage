@@ -1,3 +1,4 @@
+<div class="wrapper" style="--wrapper-width:600px">
 <h2 class="heading text-center">{{ section.heading or 'Contact Us' }}</h2>
 <form id="contact-form" class="width100 flow req-js" action="{{ '/php/contact-form-handler.php' | url }}" method="post">
   <div>
@@ -45,3 +46,4 @@
 <script>
   {{ js | jsmin | safe }}
 </script>
+</div>
