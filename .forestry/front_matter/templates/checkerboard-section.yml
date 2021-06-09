@@ -1,6 +1,7 @@
 ---
 label: Checkerboard Section
 hide_body: true
+display_field: text
 fields:
 - name: images
   type: image_gallery
