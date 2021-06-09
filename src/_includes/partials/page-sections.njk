@@ -1,6 +1,10 @@
+{% set section_delay = 0 %}
 {% asyncEach outer_section in page_sections %}
 {% set section = outer_section %}
 {% include "partials/page-sections-inner.njk" %}
+{% if outer_section.template == "checkerboard-section" %}
+  {% set section_delay = section_delay + 0.25 %}
+{% endif %}
 {% if outer_section.template == "two-column-section" %}
   <section class="two-column-section{{ ' bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}"{{ ' style="margin:var(--section-padding) 0"' | safe if section.background.image }}>
     {% ifAsync section.background.image %}

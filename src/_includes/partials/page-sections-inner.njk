@@ -69,14 +69,13 @@
 
 {% if section.template == "checkerboard-section" %}
   <div class="checkerboard">
-    {% set section_delay = 0 %}
     {% set section_images_count = section.images | length %}
-    {% set anim_fade_time = 1 %}
-    {% set anim_show_time = 4 %}
+    {% set anim_fade_time = 1.5 %}
+    {% set anim_show_time = 5 %}
     {% set anim_duration = (anim_fade_time + anim_show_time) * section_images_count %}
     {% set one_second = 100.0 / anim_duration %}
-    {% set section_name = 'iss' + 8 | uniqueId %}
-    {{ ( '<style>@keyframes ' + section_name + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if section_images_count > 1 }}
+    {% set section_name = 'fade-' + 8 | uniqueId %}
+    {{ ( '<style>@keyframes ' + section_name + '{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if section_images_count > 1 }}
     {% set image_id = (section.images | first | stripVersion) or (site.header_image | stripVersion) %}
     {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
     {% set lqip_data = lqip_path | imgLqip %}
@@ -87,8 +86,8 @@
         {% set image_info = image_id | imgInfo %}
         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-        <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + '-fade;animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
-        <img class="cover" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + '-fade;animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
+        <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+        <img class="cover" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
       {% endfor %}
     </figure>
     <div class="content">
@@ -99,6 +98,5 @@
         {% endif %}
       </article>
     </div>
-    {% set section_delay = section_delay + 0.1 %}
   </div>
 {% endif %}

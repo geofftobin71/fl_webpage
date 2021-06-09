@@ -360,6 +360,11 @@ blockquote {
   z-index: -1;
 }
 
+.fader img {
+  opacity: 0;
+  animation-iteration-count: infinite;
+}
+
 /* ----- Section ----- */
 
 section {
