@@ -5,8 +5,8 @@ fields:
 - type: text
   name: title
   label: Title
-  description: The Title of the page. Appears in the header and on the browser tab
-    eg. <em>title-of-the-page</em><br>( No full-stop at the end )
+  description: The Title of the page. Appears in the header and on the browser
+    tab eg. <em>title-of-the-page</em><br>( No full-stop at the end )
 - type: text
   name: description
   label: Description

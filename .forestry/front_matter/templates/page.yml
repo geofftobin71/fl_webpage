@@ -30,3 +30,6 @@ fields:
   config:
     min: 
     max: 
+pages:
+- src/pages/about.md
+- src/pages/cake-flowers.md
