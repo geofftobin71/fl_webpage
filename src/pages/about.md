@@ -18,6 +18,10 @@ page_sections:
   bigfonts: false
   background:
     color: Shade1
+  button:
+    text: ''
+    link: ''
+    new_page: false
 - template: checkerboard-section
   align: Center
   images:
@@ -35,9 +39,12 @@ page_sections:
     text: ''
     link: ''
     new_page: false
+  background:
+    color: ''
 - template: checkerboard-section
   align: Center
   images:
+  - "/v1621047234/instagram/floriade_wellington_18067351729281978.jpg"
   - "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
   text: |-
     **Annwyn Tobin** - owner and lead designer at Floriade is a former landscape architect and photographer. Her passion for designing with flowers and foliage was the inspiration to open Floriade, Wellington’s very own local boutique floral design store.
@@ -46,6 +53,12 @@ page_sections:
 
     She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.
   bigfonts: false
+  background:
+    color: ''
+  button:
+    text: ''
+    link: ''
+    new_page: false
 description: ''
 
 ---
