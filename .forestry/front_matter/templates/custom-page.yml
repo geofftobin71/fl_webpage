@@ -13,3 +13,5 @@ fields:
   config: {}
   template: menu
   label: Menu
+pages:
+- src/pages/blog.njk
