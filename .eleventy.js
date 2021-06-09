@@ -75,6 +75,11 @@ function minifyCopy(input, output) {
   }
 }
 
+function uniqueId(length) {
+  const buf = crypto.randomBytes(length/2);
+  return buf.toString('hex');
+}
+
 module.exports = (eleventyConfig) => {
 
   eleventyConfig.on('beforeBuild', () => {
@@ -116,13 +121,15 @@ module.exports = (eleventyConfig) => {
     // Add unique IDs to products
     shop_products.forEach(product => {
       if(!product.id) {
-        const buf = crypto.randomBytes(4);
-        product.id = buf.toString('hex');
+        // const buf = crypto.randomBytes(4);
+        // product.id = buf.toString('hex');
+        product.id = uniqueId(8);
       }
       product.variants.forEach(variant => {
         if(!variant.id) {
-          const buf = crypto.randomBytes(4);
-          variant.id = buf.toString('hex');
+          // const buf = crypto.randomBytes(4);
+          // variant.id = buf.toString('hex');
+          variant.id = uniqueId(8);
         }
       });
     });
@@ -331,6 +338,10 @@ module.exports = (eleventyConfig) => {
     }
 
     return content;
+  });
+
+  eleventyConfig.addFilter("uniqueId", (length) => {
+    return uniqueId(length);
   });
 
   eleventyConfig.addFilter("urldecode", (string) => {
