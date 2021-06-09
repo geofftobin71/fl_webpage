@@ -25,9 +25,9 @@ page_sections:
 - template: checkerboard-section
   align: Center
   images:
+  - "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
   - "/v1616098373/instagram/floriade_wellington_17868690353315828.jpg"
   - "/v1613195720/workshops/wreath-workshop-1.jpg"
-  - "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
   text: |-
     Floriade is Wellington’s **dried flowers** specialist. We create large dried floral sculptures for corporate events, weddings and commercial installations.
 
@@ -44,8 +44,8 @@ page_sections:
 - template: checkerboard-section
   align: Center
   images:
-  - "/v1621047234/instagram/floriade_wellington_18067351729281978.jpg"
   - "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
+  - "/v1621047234/instagram/floriade_wellington_18067351729281978.jpg"
   text: |-
     **Annwyn Tobin** - owner and lead designer at Floriade is a former landscape architect and photographer. Her passion for designing with flowers and foliage was the inspiration to open Floriade, Wellington’s very own local boutique floral design store.
 
