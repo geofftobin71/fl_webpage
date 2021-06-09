@@ -46,6 +46,7 @@ sections:
   - gallery-page
   - landing-page
   - simple-page
+  - custom-page
 - type: heading
   label: Shop
 - type: document
