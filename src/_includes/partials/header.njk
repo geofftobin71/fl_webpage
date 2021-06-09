@@ -1,5 +1,5 @@
 <header id="header" class="header shadow">
-  <figure class="background" style="--brightness:{{ header_brightness or header.brightness or '66' }}%">
+  <figure class="background" style="--brightness:{{ header_brightness or '66' }}%">
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     {% set image_info = image_id | imgInfo %}
     {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
@@ -17,7 +17,7 @@
         <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
       </a>
     </figure>
-    <h1>{{ (header.title or title) | lower | safe }}</h1>
+    <h1>{{ (header_title or title) | lower | safe }}</h1>
   </div>
   <div class="site-menu" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
     <nav class="wrapper page-wrapper">

@@ -13,11 +13,6 @@ fields:
   config: {}
   template: page-base
   label: Base
-- name: header
-  type: include
-  config: {}
-  template: header
-  label: Header
 - name: menu
   type: include
   config: {}

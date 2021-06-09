@@ -25,7 +25,7 @@
       </a>
     </figure>
     <div class="wrapper text-wrapper flow bigfonts font-secondary text-center text-shadow" style="--measure:60ch">
-      <h1>{{ (header.title or title) | lower }}</h1>
+      <h1>{{ (header_title or title) | lower }}</h1>
       {% for section in page_sections %}
         {% if section.template == "text-section" %}
           <section>

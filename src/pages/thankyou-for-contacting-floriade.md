@@ -2,8 +2,7 @@
 title: Thankyou for contacting Floriade
 layout: layouts/feedback-page.njk
 header_image: "/site/floriade-dried-flower-room-00001.jpg"
-header:
-  brightness: 40
+header_brightness: 40
 sitemap:
   ignore: true
 ---

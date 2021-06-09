@@ -9,8 +9,7 @@ eleventyComputed:
   title: "{{ product.name }}"
   description: "{{ product.description }}"
   header_image: "{{ product.images[0] }}"
-  header:
-    brightness: "{{ product.brightness }}"
+  header_brightness: "{{ product.brightness }}"
 ---
 
 {% set product_images_count = product.images | length %}

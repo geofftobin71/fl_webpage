@@ -1,9 +1,8 @@
 ---
 title: About
 header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00037.jpg"
-header:
-  title: About Floriade
-  brightness: 70
+header_brightness: 70
+header_title: About Floriade
 layout: layouts/page-builder.njk
 eleventyNavigation:
   key: About

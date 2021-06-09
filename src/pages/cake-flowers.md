@@ -2,8 +2,7 @@
 title: Cake Flowers
 description: Cake Flowers by Floriade are awesome
 header_image: "/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg"
-header:
-  brightness: 50
+header_brightness: 50
 layout: layouts/page-builder.njk
 eleventyNavigation:
   key: Cake Flowers

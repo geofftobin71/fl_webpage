@@ -30,7 +30,7 @@
           <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />
         </figure>
       </a>
-      <h1>{{ (header.title or title) | lower }}</h1>
+      <h1>{{ (header_title or title) | lower }}</h1>
       <h3>{{ subheading | lower }}</h3>
       <p id="p" class="text-center"></p>
       {{ content | safe }}

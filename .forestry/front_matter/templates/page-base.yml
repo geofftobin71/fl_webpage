@@ -5,7 +5,8 @@ fields:
 - type: text
   name: title
   label: Title
-  description: The Title of the page. Appears in the header and on the browser tab.
+  description: The Title of the page. Appears in the header and on the browser
+    tab eg. <em>title-of-the-page</em><br>( No full-stop at the end )
 - type: text
   name: description
   label: Description
@@ -16,3 +17,18 @@ fields:
     maxSize: 64
   label: Header Image
   description: The background image for the page header.
+- name: header_brightness
+  type: number
+  label: Header Image Brightness
+  description: Brightness of the header image. Allow the header text and menu to be
+    more visible. Defaults to 66%
+  default: 66
+  config:
+    min: 0
+    max: 100
+- name: header_title
+  type: text
+  config:
+    required: false
+  label: Page Header Title
+  description: Override the page title on the header.
