@@ -4,6 +4,7 @@ description: Elit expedita numquam amet consequatur in Quos cupiditate natus eli
   officia facere? Itaque eos magnam blanditiis cum consequuntur quas!
 header_image: "/v1621047235/instagram/floriade_wellington_17917875124646997.jpg"
 date: 2019-08-24
+header_brightness: 33
 
 ---
 The flower of the week is the humble Chrysanthemum. The reason I'm calling them humble is because they are readily available and have such a relaxed feel about them.
