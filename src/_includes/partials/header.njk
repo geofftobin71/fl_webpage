@@ -4,7 +4,11 @@
     {% set image_info = image_id | imgInfo %}
     {% set lqip_path = site.cloudinary_url + "/w_192,h_30,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
     {% set lqip_data = lqip_path | imgLqip %}
-    <img src="{{ site.cloudinary_url }}/w_2048,h_320,c_fill,q_auto,f_auto,g_auto/{{ image_id }}" width="2048" height="320" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
+    {% set transforms = "c_limit,q_auto,f_auto,g_auto/" %}
+    <picture style="background-image:url({{ lqip_data }})">
+    <source media="(max-width:950px) and (orientation:portrait)" srcset="{{ site.cloudinary_url }}/w_640,c_fill,ar_2,q_auto,f_auto,g_auto:subject/{{ image_id }} 640w,{{ site.cloudinary_url }}/w_750,c_fill,ar_2,q_auto,f_auto,g_auto:subject/{{ image_id }} 750w,{{ site.cloudinary_url }}/w_900,c_fill,ar_2,q_auto,f_auto,g_auto:subject/{{ image_id }} 900w">
+      <img src="{{ site.cloudinary_url }}/c_fill,ar_2,q_auto,f_auto,g_auto:subject/{{ image_id }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
+    </picture>
   </figure>
   <div class="site-menu" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
     <nav class="wrapper page-wrapper">
