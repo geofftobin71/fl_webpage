@@ -1,7 +1,7 @@
 -- FIX --
-Checkerboard Image Slideshow
 Section background colors
 Deprecate unneeded partial component attributes
+Deprecate two-column section
 Enable and TEST shop code
 Smaller video on mobile => Cloudinary
 Move 404 to feedback-page layout
