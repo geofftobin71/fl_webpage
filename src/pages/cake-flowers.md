@@ -41,6 +41,5 @@ page_sections:
   background:
     color: Shade1
   brightness: 
-header_title: ''
-
+  header_title: ''
 ---

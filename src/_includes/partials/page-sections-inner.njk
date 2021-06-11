@@ -23,7 +23,7 @@
         {% set image_info = image_id | imgInfo %}
         {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
         {% set lqip_data = lqip_path | imgLqip %}
-        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject:custom_no_override/" %}
+        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
       <figure class="canvas aspect aspect1x1 round shadow" style="background-image:url({{ lqip_data }})">
         <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
@@ -64,7 +64,9 @@
 {% endif %}
 
 {% if section.template == "contact-form-section" %}
+  <section class="bg-shade1">
   {% include "partials/contact-form-section.njk" %}
+  </section>
 {% endif %}
 
 {% if section.template == "checkerboard-section" %}
@@ -84,7 +86,7 @@
         {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
         {% set image_id = (section_image | stripVersion) or (site.header_image | stripVersion) %}
         {% set image_info = image_id | imgInfo %}
-        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject:custom_no_override/" %}
+        {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
         {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
         <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
         <img class="cover" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
