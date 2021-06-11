@@ -1,7 +1,6 @@
 ---
 title: About
 header_image: "/v1596539313/fresh-flowers/fresh-flowers-by-floriade-00037.jpg"
-header_brightness: 
 header_title: About Floriade
 layout: layouts/page-builder.njk
 eleventyNavigation:
@@ -14,16 +13,8 @@ page_sections:
     **Floriade** is a boutique Wellington florist specialising in unique fresh and dried floral arrangements. We believe that flowers delight the senses and bring an emotional response through colour, fragrance, texture and composition.
 
     We offer fresh and dried flowers that stand out from the everyday because we like to use unusual flowers and foliage as well as traditional favourites in our designs. Every floral arrangement we create is bespoke and individual.
-  align: ''
   bigfonts: false
-  background:
-    color: Shade1
-  button:
-    text: ''
-    link: ''
-    new_page: false
 - template: checkerboard-section
-  align: Center
   images:
   - "/v1606787440/site/floriade-dried-flower-room-00001.jpg"
   - "/v1616098373/instagram/floriade_wellington_17868690353315828.jpg"
@@ -34,15 +25,7 @@ page_sections:
     A large part of our business ethos is to be as sustainable as possible by preventing wastage. We intentionally source our flowers with the intention of drying whatever we can.
 
     Drying flowers is a great way to prolong the life of flowers and create something sculptural, textural and beautiful. We have a custom-built flower drying machine that allows us to provide the highest quality dried flowers.
-  bigfonts: false
-  button:
-    text: ''
-    link: ''
-    new_page: false
-  background:
-    color: ''
 - template: checkerboard-section
-  align: Center
   images:
   - "/v1606858158/site/annwyn-tobin-holding-flowers-00001.jpg"
   - "/v1621047234/instagram/floriade_wellington_18067351729281978.jpg"
@@ -52,13 +35,6 @@ page_sections:
     Annwyn has extensive experience in floral design including many weddings and events for more than 20 years.
 
     She is married to Geoff and they have three daughters and three doggies. They love living in Miramar and bringing the floral joy to Wellington.
-  bigfonts: false
-  background:
-    color: ''
-  button:
-    text: ''
-    link: ''
-    new_page: false
 description: ''
 
 ---

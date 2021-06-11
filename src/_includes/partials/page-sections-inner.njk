@@ -3,11 +3,8 @@
 {% endif %}
 
 {% if section.template == "text-section" %}
-  <section class="text-section{{ ' bg-' + section.background.color | lower if (section.background.color) and (section.background.color != 'Transparent') }}"{{ ' style="margin:var(--section-padding) 0"' | safe if section.background.image }}>
-    {% ifAsync section.background.image %}
-      {% include "partials/section-background.njk" %}
-    {% endif %}
-    <article class="wrapper text-wrapper text-{{ section.align or 'left' }}{{ ' text-shadow' if section.background.image }}{{ ' bigfonts font-secondary' if section.bigfonts }}">
+  <section class="text-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
+    <article class="wrapper text-wrapper text-{{ (section.align | lower) or 'left' }}{{ ' bigfonts font-secondary' if section.bigfonts }}">
       {% markdown section.text %}
       {% if section.button.text %}
         <div class="text-center font-size-0"><a class="button" role="button" href="{{ section.button.link }}"{{ ' target="_blank" rel="noopener"' | safe if section.button.new_page }}>{{ section.button.text }}</a></div>
@@ -17,7 +14,7 @@
 {% endif %}
 
 {% if section.template == "image-section" %}
-  <section class="image-section">
+  <section class="image-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
     <div class="wrapper{{ ' text-wrapper' if section.width == 'Paragraph' }}{{ ' page-wrapper' if section.width == 'Extra Wide' }}{{ ' no-wrapper' if section.width == 'Full' }}">
         {% set image_id = section.image | stripVersion %}
         {% set image_info = image_id | imgInfo %}
@@ -64,13 +61,13 @@
 {% endif %}
 
 {% if section.template == "contact-form-section" %}
-  <section class="bg-shade1">
+  <section class="contact-form-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
   {% include "partials/contact-form-section.njk" %}
   </section>
 {% endif %}
 
 {% if section.template == "checkerboard-section" %}
-  <div class="checkerboard">
+  <div class="checkerboard{{ ' bg-shade1' if (section.alternate_background_color) }}">
     {% set section_images_count = section.images | length %}
     {% set anim_fade_time = 1.5 %}
     {% set anim_show_time = 5 %}
@@ -93,7 +90,7 @@
       {% endfor %}
     </figure>
     <div class="content">
-      <article>
+      <article class="text-{{ (section.align | lower) or 'left' }}{{ ' bigfonts font-secondary' if section.bigfonts }}">
         {% markdown section.text %}
         {% if section.button.text %}
           <div class="text-center font-size-0"><a class="button" role="button" href="{{ section.button.link }}"{{ ' target="_blank" rel="noopener"' | safe if section.button.new_page }}>{{ section.button.text }}</a></div>
