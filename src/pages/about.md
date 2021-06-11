@@ -19,7 +19,7 @@ page_sections:
     text: ''
     link: ''
     new_page: false
-  alternate_background_color: false
+  alternate_background_color: true
 - template: checkerboard-section
   images:
   - "/v1606787440/site/floriade-dried-flower-room-00001.jpg"

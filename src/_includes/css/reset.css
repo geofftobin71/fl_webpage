@@ -27,8 +27,8 @@ caption, figcaption, label, legend { line-height: 1.375; }
 hr {
   border-style: solid;
   border-width: 1px 0 0;
-  color: inherit;
-  opacity: 0.5;
+  color: #818D89;
+  /* opacity: 0.5; */
   height: 0;
   overflow: visible;
   margin: 0;

@@ -270,7 +270,7 @@ blockquote {
 }
 
 .header .logo {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   z-index: 2;
 }
 
@@ -288,9 +288,6 @@ blockquote {
 }
 
 @media screen and (orientation: portrait) and (max-width: 750px) {
-  .header {
-    margin-bottom:1em;
-  }
   .header .content {
     padding: 0 1rem 1rem 1rem;
   }

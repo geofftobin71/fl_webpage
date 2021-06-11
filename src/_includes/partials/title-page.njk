@@ -17,6 +17,7 @@
     <noscript><a href="#main" title="Scroll to Content" aria-label="Scroll to Content" style="width:24px"><img src="/images/chevron-down.png" alt=""></a></noscript>
   </div>
 </div>
+<hr>
 <div id="main"></div>
 {% if banner_message.message %}
   <aside class="banner-message">
@@ -28,3 +29,4 @@
   <div style="margin-top:0.5em"></div>
   {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
 </nav>
+<hr>
