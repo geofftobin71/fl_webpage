@@ -40,8 +40,6 @@ fields:
   config:
     min: 10
     max: 100
-- name: background
-  type: include
-  config: {}
-  template: background-color
-  label: Background Color
+- name: alternate_background_color
+  type: boolean
+  label: Alternate Background Color
