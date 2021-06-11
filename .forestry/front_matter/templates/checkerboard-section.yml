@@ -12,3 +12,6 @@ fields:
   config: {}
   template: text-section
   label: Text
+- name: alternate_background_color
+  type: boolean
+  label: Alternate Background Color
