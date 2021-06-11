@@ -14,7 +14,7 @@ fields:
   label: Text
 - name: align
   type: select
-  default: Left
+  default: Center
   config:
     required: false
     options:
@@ -32,11 +32,6 @@ fields:
   type: boolean
   label: Big Fonts
   description: Make the fonts bigger
-- name: background
-  type: include
-  config: {}
-  template: background-color
-  label: Background
 - name: button
   type: field_group
   label: Button
@@ -52,3 +47,6 @@ fields:
     type: boolean
     label: New Page
     description: Open the link in a new browser tab / window
+- name: alternate_background_color
+  type: boolean
+  label: Alternate Background Color
