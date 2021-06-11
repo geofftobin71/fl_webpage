@@ -1,15 +1,17 @@
 -- FIX --
-Section background colors
-Deprecate unneeded partial component attributes
+Revisit Image section
+Check Checkerboard image Sizes
+Edit shop pages -> njk => md .cf gallery-page
 Deprecate two-column section
+NEW checkerboard Shop layout
 Enable and TEST shop code
 Smaller video on mobile => Cloudinary
 Move 404 to feedback-page layout
 check floriade-delivery-date has not passed in expireCart
 single product width on mobile - padding too big
-single column gallery spacing
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 Circle backgrounds on slider controls
+TEST browser support
 
 -- FUTURE --
 retire unused php functions

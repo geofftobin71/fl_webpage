@@ -34,10 +34,10 @@ sitemap:
       <p id="delivery-message" class="text-center text-lowercase font-secondary color-shade3">Delivery will be calculated at Checkout</p>
 
       <div class="buttons swap">
-        <a class="button" href="/shop/">
+        <a class="button" role="button" href="/shop/" style="min-width:13rem">
           <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
         </a>
-        <a id="checkout-button" class="button bigfonts" href="/checkout/">
+        <a id="checkout-button" class="button bigfonts" role="button" href="/checkout/" style="min-width:13rem">
           <span>{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span><p>Checkout</p>
         </a>
       </div>
