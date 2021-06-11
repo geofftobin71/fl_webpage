@@ -261,7 +261,7 @@ blockquote {
 }
 
 .header .content {
-  padding: 5vh 3vw;
+  padding: 5vmin 3vmin;
   height: 100%;
   display:flex;
   align-items:center;
