@@ -1,4 +1,4 @@
-{% extends "layouts/page.njk" %}
+{% extends "layouts/base.njk" %}
 
 {% block head %}
   {{ super() }}
@@ -43,6 +43,52 @@
   <style>
     {{ css | cssmin | safe }}
   </style>
+{% endblock %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  {% include "partials/javascript-warning.njk" %}
+  <main>
+  <div id="info" class="horizontal center" style="display:none;margin-top:calc(var(--section-padding)/2)">
+    <p id="info-msg" class="info"></p>
+  </div>
+
+  <section id="cart" style="min-height:50vh">
+    <div class="wrapper text-wrapper">
+      <div id="empty-cart" class="vertical center middle flow" style="display:none;--flow-space:2em">
+        <h2 class="heading">Your Cart is Empty</h2>
+        <p id="cart-expired" class="font-secondary" style="display:none">Your session has timed out</p>
+        <a class="button" href="/shop/">
+          <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+        </a>
+      </div>
+
+      <div id="cart-form" class="flow width100" style="display:none;--flow-space:2em">
+        <hr />
+        <div id="items" class="font-secondary"></div>
+        <hr />
+        <div id="summary" class="font-secondary"></div>
+        <hr />
+        <p id="delivery-message" class="text-center text-lowercase font-secondary color-shade3">Delivery will be calculated at Checkout</p>
+
+        <div class="buttons swap">
+          <a class="button" role="button" href="/shop/" style="min-width:13rem">
+            <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Continue Shopping</p>
+          </a>
+          <a id="checkout-button" class="button bigfonts" role="button" href="/checkout/" style="min-width:13rem">
+            <span>{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span><p>Checkout</p>
+          </a>
+        </div>
+        <div class="horizontal center">
+          <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>document.addEventListener("DOMContentLoaded",function(){displayCart();},false);</script>
+  </main>
+  {% include "partials/footer.njk" %}
 {% endblock %}
 
 {% block foot %}

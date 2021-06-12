@@ -1,5 +1,5 @@
 ---
-label: Custom Page
+label: Cart Page
 hide_body: true
 display_field: title
 fields:
@@ -8,10 +8,6 @@ fields:
   config: {}
   template: page-base
   label: Base
-- name: menu
-  type: include
-  config: {}
-  template: menu
-  label: Menu
 pages:
-- src/pages/blog.md
+- src/pages/cart.md
+- src/pages/checkout.md
