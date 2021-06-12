@@ -23,6 +23,6 @@ page_sections:
     text: ''
     link: ''
     new_page: false
-  alternate_background_color: false
+  alternate_background_color: true
 
 ---
