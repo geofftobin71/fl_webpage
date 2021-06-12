@@ -20,7 +20,7 @@ eleventyComputed:
 
 <section class="text-section bg-shade1">
   <article class="wrapper text-wrapper text-center">
-    <p>{{ category.page_description | safe }}</p>
+    {% markdown category.page_description %}
   </article>
 </section>
 
