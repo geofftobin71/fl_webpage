@@ -16,4 +16,4 @@ fields:
 pages:
 - src/pages/blog.md
 - src/pages/contact.md
-- src/pages/faq.njk
+- src/pages/faq.md

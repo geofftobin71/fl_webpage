@@ -40,7 +40,7 @@ sections:
   path: src/pages
   label: Pages
   create: documents
-  match: "**/*.{md,njk}"
+  match: "**/*.md"
   templates:
   - page
   - gallery-page
