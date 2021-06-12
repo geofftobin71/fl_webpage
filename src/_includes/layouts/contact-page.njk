@@ -1,0 +1,53 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  <style>.split{display:grid;align-items:start;grid-template-columns:1fr 1fr;}@media screen and (max-width:500px){.split{grid-template-columns:1fr;}}.contact-form-section{width:100%;}</style>
+  <main>
+  <section class="split" style="--section-space:0">
+    <div class="width100 vertical center flow">
+      <h2 class="heading text-center">Contact Us</h2>
+      <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
+        <p>{{ site.address }}<br>{{ site.address_locality }}, {{ site.address_region }}, {{ site.address_postcode }}<br>New Zealand</p>
+      </a>
+      <p><a href="{{ site.mailto_obf | safe }}?subject=Flowers Enquiry" title="Send us a message" aria-label="Send us a message">{{ site.email_obf | safe }}</a></p>
+      <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
+      <br>
+      <h2 class="heading text-center">Follow Us</h2>
+      <div class="horizontal space-between color-light" style="width:200px;height:2rem">
+        <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:16px" title="Follow us on Facebook" aria-label="Follow us on Facebook"> {{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:24px" title="Follow us on Instagram" aria-label="Follow us on Instagram"> {{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
+        <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:24px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest"> {{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>
+        <a href="{{ site.google_page }}" target="_blank" rel="noopener" style="width:24px" title="Find us on Google" aria-label="Find us on Google"> {{ '/src/svg/google.svg' | svgContents | safe }}</a>
+      </div>
+      <br><br>
+    </div>
+    <div class="width100 vertical center flow">
+      <h2 class="heading text-center">Shop Hours</h2>
+      {% include "partials/shop-hours.njk" %}
+      <br><br>
+    </div>
+    <div class="width100">
+      {% set section = { heading: "Send us a Message" } %}
+      {% include "partials/contact-form-section.njk" %}
+    </div>
+    <div class="width100 wrapper vertical center flow" style="--wrapper-width:600px">
+      <h2 class="heading text-center">Visit Us</h2>
+      <div class="width100 aspect aspect1x1 shadow" style="margin-top:var(--step-2)">
+        <figure>
+          {% if env.NODE_ENV == 'deploy' %}
+            <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=18" allowfullscreen></iframe>
+          {% endif %}
+          {{ '<noscript>' | safe if env.NODE_ENV == 'deploy' }}
+            <a class="width100 height100" target="_blank" rel="noopener" title="Open in Google Maps" aria-label="Open in Google Maps" href="{{ site.google_maps }}">
+              <img src="{{ '/images/floriade-map.jpg' | url }}" width="1024" height="1024" alt="Map of the location of Floriade at {{ site.address }}, {{ site.address_locality }}, {{ site.address_region }}">
+            </a>
+            {{ '</noscript>' | safe if env.NODE_ENV == 'deploy' }}
+        </figure>
+      </div>
+      <noscript><p class="text-center font-size--1">Click to open in Google Maps</p></noscript>
+    </div>
+  </section>
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}

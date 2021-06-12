@@ -56,7 +56,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
   });
   srcset += '"';
 
-  let sizes = ' sizes="(min-width: 900px) 900px, 100vw"';
+  let sizes = ' sizes="(min-width:1200px) 75ch, (min-width:65ch) 65ch, 100vw"';
 
   let lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto:subject,e_blur:200/" + public_id;
 
