@@ -20,6 +20,10 @@ fields:
     name: page_description
     label: Category Description
     description: Appears at the top of the Category page.
+    config:
+      wysiwyg: true
+      schema:
+        format: markdown
   - name: image
     type: file
     config:
