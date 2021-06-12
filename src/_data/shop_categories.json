@@ -2,7 +2,7 @@
   {
     "name": "Fresh Flowers",
     "description": "Fresh Flowers description.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
-    "page_description": "Fresh Flowers description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
+    "page_description": "**Fresh Flowers** description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
     "eleventyNavigation": {
@@ -23,7 +23,7 @@
   {
     "name": "Dried Flowers",
     "description": "Dried Flowers description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
-    "page_description": "Dried Flowers description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
+    "page_description": "**Dried Flowers** description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
     "eleventyNavigation": {
@@ -44,7 +44,7 @@
   {
     "name": "Chocolate",
     "description": "Wellington Chocolate Factory chocolate. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
-    "page_description": "Chocolate description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
+    "page_description": "**Chocolate** description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": true,
     "parents": [
@@ -66,7 +66,7 @@
   {
     "name": "Workshops",
     "description": "Workshops description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum leo non fermentum vestibulum.",
-    "page_description": "Workshops description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
+    "page_description": "**Workshops** description. Sit quaerat dolor at dolore earum? Esse sequi deserunt sed quidem aperiam sunt Nulla assumenda officia voluptas doloribus unde Voluptate quisquam id ad iste quam Perferendis non pariatur vel voluptatem quod atque Molestiae ullam sint temporibus ad vitae? Iusto tempore molestias vel similique dolores Aperiam voluptatem architecto vitae quisquam fugiat Fugiat recusandae dolorum facere deserunt eligendi. Quos nihil consequatur debitis rem qui laudantium",
     "disabled": false,
     "delivery": false,
     "parents": [
