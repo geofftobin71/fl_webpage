@@ -23,6 +23,10 @@ fields:
     name: page_description
     label: Product Description
     description: Appears on the Product page.
+    config:
+      wysiwyg: true
+      schema:
+        format: markdown
   - name: price
     type: number
     label: Price
