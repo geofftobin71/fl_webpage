@@ -15,3 +15,4 @@ fields:
   label: Menu
 pages:
 - src/pages/blog.md
+- src/pages/checkout.md
