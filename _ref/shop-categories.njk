@@ -1,0 +1,174 @@
+{% extends "layouts/base.njk" %}
+
+{% block head %}
+  {{ super() }}
+  {% set css %}
+  {% include "css/slider.css" %}
+  {% include "css/gallery.css" %}
+  #shop .slider {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    max-width: 100%;
+  }
+  
+  #shop .slider-item figure {
+    width: 100%;
+    transition: transform 250ms ease;
+  }
+  
+  #shop .slider-item:hover figure {
+    transform: scale(1.025);
+  }
+  
+  #shop .slider-item {
+    width: 100%;
+    flex: 0 0 100%;
+    padding: var(--step--1);
+    padding-bottom: var(--step-1);
+  }
+  
+  @media screen and (min-width:350px) {
+    #shop .slider-item {
+      width: 270px;
+      flex: 0 0 270px;
+    }
+  }
+  
+  @media screen and (min-width:400px) {
+    #shop .slider-item {
+      width: 300px;
+      flex: 0 0 300px;
+    }
+  }
+  
+  @media screen and (min-width:450px) {
+    #shop .slider-item {
+      width: 330px;
+      flex: 0 0 330px;
+    }
+  }
+  
+  @media screen and (min-width:1000px) {
+    #shop .slider-item {
+      width: 300px;
+      flex: 0 0 300px;
+    }
+  }
+  
+  @media screen and (min-width:1200px) {
+    #shop .slider-item {
+      width: 375px;
+      flex: 0 0 375px;
+    }
+  }
+  
+  @media screen and (min-width:1500px) {
+    #shop .slider-item {
+      width: 425px;
+      flex: 0 0 425px;
+    }
+  }
+  
+  #shop .fader img {
+    opacity: 0;
+    animation-iteration-count: infinite;
+  }
+  {% endset %}
+
+  <style>
+    {{ css | cssmin | safe }}
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% include "partials/header.njk" %}
+  {% include "partials/javascript-warning.njk" %}
+  <main>
+  <section class="text-section bg-shade1">
+    <article class="wrapper text-wrapper text-center">
+      {% markdown category.page_description %}
+    </article>
+  </section>
+  <hr>
+
+  {% include "partials/view-cart-button.njk" %}
+
+  <div class="wrapper page-wrapper">
+    <section id="shop">
+      <div>
+        {% set product_list = valid_shop_products | filterByCategory(category.name) %}
+        {% set product_count = product_list | length %}
+        <ul class="slider" style="margin:0 auto">
+          {% for product in product_list %}
+            {% set product_images_count = product.images | length %}
+            {% set anim_fade_time = 1 %}
+            {% set anim_show_time = 4 %}
+            {% set anim_duration = (anim_fade_time + anim_show_time) * product_images_count %}
+            {% set one_second = 100.0 / anim_duration %}
+            {% set product_delay = 0.1 * loop.index0 %}
+            <a href="{{ ( '/shop/products/' + product.name | slug ) | url }}" style="margin:var(--step--2)">
+              <li class="slider-item vertical center flow text-center bg-shade1 round-box border-shade2 shadow">
+                {{ ( '<style>@keyframes ' + (product.name | slug) + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if product_images_count > 1 }}
+                {% set image_id = (product.images | first | stripVersion) or (site.header_image | stripVersion) %}
+                {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+                {% set lqip_data = lqip_path | imgLqip %}
+                <div style="width:100%;flex:999 0 auto;margin:0">
+                  <figure class="canvas aspect aspect1x1 round shadow {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
+                    {% for product_image in product.images %}
+                      {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+                      {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
+                      {% set image_info = image_id | imgInfo %}
+                      {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
+                      {% set src = site.cloudinary_url + "/w_640," + transforms + image_id %}
+                      <noscript><img class="round" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+                      <div><img class="round" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
+                    {% endfor %}
+                  </figure>
+                  <h3 class="color-light text-lowercase" style="margin-top:1em">{{ product.name }}</h3>
+                </div>
+                <p class="font-size--1 color-shade4" style="line-height:1.5">{{ product.description | safe }}</p>
+                <button type="button" id="{{ product.id }}" class="product-price button bigfonts">
+                  {% set valid_variants = product.variants | validProductVariants %}
+                  {% if valid_variants | length %}
+                    {% if ( valid_variants | first ).price != ( valid_variants | last ).price %}
+                      <p>{{ 'from ' + valid_variants[0].price | formatMoney }}</p>
+                    {% else %}
+                      <p>{{ product.price | formatMoney }}</p>
+                    {% endif %}
+                  {% else %}
+                    <p>{{ product.price | formatMoney }}</p>
+                  {% endif %}
+                </button>
+              </li>
+            </a>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  {% set gallery_name = category.name %}
+  {% set gallery_folder = category.gallery_folder %}
+  {% include "partials/gallery-section.njk" %}
+
+  {% include "partials/pagination.njk" %}
+
+  <script>document.addEventListener("DOMContentLoaded",function(){displayShopCategory();},false);</script>
+  </main>
+  {% include "partials/footer.njk" %}
+{% endblock %}
+
+{% block foot %}
+  {{ super() }}
+  {% set js %}
+  {% include "js/slider.js" %}
+  {% include "js/shop-base.js" %}
+  {% endset %}
+
+  <script>
+    {{ js | jsmin | safe }}
+  </script>
+{% endblock %}
