@@ -1,15 +1,11 @@
 -- FIX --
 Revisit Image section
-Edit shop pages -> njk => md .cf gallery-page
 Deprecate two-column section
-NEW checkerboard Shop layout
 Enable and TEST shop code
 Smaller video on mobile => Cloudinary
 Move 404 to feedback-page layout
-check floriade-delivery-date has not passed in expireCart
 single product width on mobile - padding too big
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
-Circle backgrounds on slider controls
 TEST browser support
 
 -- FUTURE --
@@ -19,4 +15,4 @@ image(s) section
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler
 TEST social sharing buttons
-TEST mailchimp autoreply emails
+UPDATE and TEST mailchimp autoreply emails
