@@ -214,9 +214,10 @@ module.exports = (eleventyConfig) => {
   // eleventyConfig.addPassthroughCopy({"./src/_data/shop_products.json" : "/php/shop_products.json"});
   // eleventyConfig.addPassthroughCopy({"./src/_data/delivery_fees.json" : "/php/delivery_fees.json"});
 
-  eleventyConfig.addShortcode("markdown",
-    content => `${markdown.render(content)}`
-  );
+  eleventyConfig.addAsyncShortcode("markdown", async (content) => {
+    const md = await markdown.render(content);
+    return md;
+  });
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
     try {

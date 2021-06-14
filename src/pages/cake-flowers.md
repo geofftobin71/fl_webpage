@@ -19,14 +19,7 @@ page_sections:
   - "/v1608242592/cake-flowers/cake-flowers-by-floriade-00002.jpg"
   - "/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg"
   - "/v1608242593/cake-flowers/cake-flowers-by-floriade-00003.jpg"
-  text: |-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus porta, commodo leo eget, finibus lacus. Suspendisse accumsan ante eget tincidunt hendrerit.
-
-    Nulla non turpis id nunc hendrerit malesuada. Nam vitae accumsan nisl, commodo hendrerit urna. Duis sed eros nec arcu fringilla scelerisque vel nec nisl.
-
-    Sed viverra ut urna ut vehicula. Morbi placerat felis sed mauris vehicula dignissim. Donec sit amet vehicula lorem. Integer faucibus aliquam sollicitudin.
-
-    Phasellus a facilisis nisi. Praesent interdum finibus magna, vitae consequat sapien rutrum ac. Donec eu lectus sit amet purus scelerisque euismod.
+  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus porta, commodo leo eget, finibus lacus. Suspendisse accumsan ante eget tincidunt hendrerit."
   bigfonts: false
   button:
     text: ''
@@ -42,5 +35,4 @@ page_sections:
     color: Shade1
   brightness: 
   alternate_background_color: true
-header_title: ''
 ---

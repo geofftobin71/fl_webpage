@@ -67,6 +67,7 @@
 {% endif %}
 
 {% if section.template == "checkerboard-section" %}
+  {# include "partials/checkerboard-section.njk" #}
   <div class="checkerboard{{ ' bg-shade1' if (section.alternate_background_color) }}">
     {% set section_images_count = section.images | length %}
     {% set anim_fade_time = 1.5 %}
@@ -87,9 +88,9 @@
         {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
         <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
         {%- set srcset -%}
-          {%- for size in image_sizes -%}
-            {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
-          {%- endfor -%}
+        {%- for size in image_sizes -%}
+        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+        {%- endfor -%}
         {%- endset -%}
         <img class="cover" data-srcset="{{ srcset }}" sizes="(min-width: 1500px) and (orientation: landscape) 750px, (orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
       {% endfor %}
