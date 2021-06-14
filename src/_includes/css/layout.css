@@ -472,35 +472,38 @@ article > * + * {
   flex-direction:column;
 }
 
-.checkerboard > * {
+.checkerboard figure {
   width:100%;
   height:100vw;
 }
 
-.checkerboard .content {
+.checkerboard > * {
+  width:100%;
   height:auto;
   min-height:50vw;
+}
+
+.checkerboard .content {
   max-width:var(--measure);
   margin-left:auto;
   margin-right:auto;
   display:flex;
-  overflow-y:auto;
 }
 
 .checkerboard .content article {
-  padding:2em;
+  padding:2.5em 2em;
   margin:auto 0;
 }
 
 @media screen and (max-width: 750px) {
   .checkerboard .content article {
-    padding:2em 1em;
+    padding:1.5em 1em;
   }
 }
 
 @media screen and (orientation: landscape) and (max-width: 950px) {
   .checkerboard .content article {
-    padding:1em;
+    padding:1.5em 1em;
   }
 }
 
@@ -516,9 +519,15 @@ article > * + * {
   .checkerboard > *,
   .checkerboard .content {
     width:50%;
-    height:50vw;
     min-height:0;
+  }
+
+  .checkerboard figure {
+    height:50vw;
     max-height:750px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
 }
 
@@ -526,7 +535,6 @@ article > * + * {
   .checkerboard > * {
     width:750px;
     min-width:750px;
-    height:750px;
   }
 
   .checkerboard .content {
