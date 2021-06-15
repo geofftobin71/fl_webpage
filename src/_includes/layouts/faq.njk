@@ -30,20 +30,22 @@
     cursor: pointer;
     position: relative;
     display: block;
-    padding-left: 30px;
+    padding-right: 30px;
   }
 
-  .faq label::before {
+  .faq label::after {
     content: "";
     position: absolute;
     width: 0;
     height: 0;
     top: 50%;
-    left: 10px;
-    border-left: 8px solid currentColor;
-    border-top: 8px solid transparent;
+    right: 10px;
+    border-left: 8px solid transparent;
+    border-top: 8px solid currentColor;
+    border-right: 8px solid transparent;
     border-bottom: 8px solid transparent;
-    margin-top: -8px;
+    margin-right: -4px;
+    margin-top: -4px;
   }
 
   .faq input[type="checkbox"] {
@@ -53,12 +55,13 @@
     position: absolute;
   }
 
-  .faq input[type="checkbox"]:checked ~ h3 label::before {
+  .faq input[type="checkbox"]:checked ~ h3 label::after {
     border-left: 8px solid transparent;
-    border-top: 8px solid currentColor;
+    border-bottom: 8px solid currentColor;
     border-right: 8px solid transparent;
-    margin-left: -4px;
-    margin-top: -4px;
+    border-top: 8px solid transparent;
+    margin-right: -4px;
+    margin-top: -12px;
   }
 
   .faq p {

@@ -38,7 +38,7 @@ blockquote {
   --box-padding: var(--step-0);
   padding: var(--box-padding);
   border: 2px solid var(--color-shade2);
-  border-radius: var(--box-border-radius, 0.5rem);
+  border-radius: var(--box-border-radius, 0.4rem);
   border-width: var(--box-border-width, 2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -55,7 +55,7 @@ blockquote {
   text-align: center;
   text-transform: lowercase;
   border: 1px solid currentcolor;
-  border-radius: var(--radius);
+  border-radius: var(--radius, 0.4rem);
   margin-left: auto;
   margin-right: auto;
   padding: 0.25em 0.5em;
@@ -132,12 +132,12 @@ blockquote {
 }
 
 .round {
-  border-radius: var(--radius, 0.5rem);
+  border-radius: var(--radius, 0.4rem);
 }
 
 .round-box {
   padding: var(--box-padding, var(--step-0));
-  border-radius: var(--box-border-radius, 0.5rem);
+  border-radius: var(--box-border-radius, 0.4rem);
   border-width: var(--box-border-width, 2px);
 }
 
@@ -532,6 +532,10 @@ article > * + * {
 }
 
 @media screen and (orientation:landscape) and (min-width: 1500px) {
+  .checkerboard + .checkerboard {
+    border-top: 1px solid var(--color-shade2);
+  }
+
   .checkerboard > * {
     width:750px;
     min-width:750px;
