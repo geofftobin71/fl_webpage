@@ -163,16 +163,14 @@ select:focus + .focus {
 }
 
 option {
-  background-color: var(--color-light);
-  color: var(--color-dark);
-}
-
-option:nth-child(2n) {
   background-color: white;
+  color: black;
+  vertical-align: middle;
 }
 
 option[disabled] {
   cursor: not-allowed;
+  color: lightgrey;
 }
 
 option[default] {
