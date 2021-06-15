@@ -74,29 +74,28 @@
 
   {% include "partials/view-cart-button.njk" %}
 
-  <section id="shop" class="two-column-section">
-    <div class="wrapper page-wrapper two-columns" style="--align:start">
-      <div class="wrapper image-wrapper flow width100">
-        <figure class="canvas aspect aspect1x1 round shadow width100 {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
-          {% for product_image in product.images %}
-            {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
-            {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
-            {% set image_info = image_id | imgInfo %}
-            {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
-            {% set src = site.cloudinary_url + "/w_750," + transforms + image_id %}
-            <noscript><img class="round width100" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
-            <div><img class="round width100" data-srcset="
-            {%- for size in image_sizes -%}
-            {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
-            {%- endfor -%}
-            {%- set sizes = '(min-width: 1500px) and (orientation: landscape) 750px, (min-width: 950px) and (orientation: landscape) 50vw, (min-width: 750px) 750px, 100vw' -%}
-            " sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
-          {% endfor %}
-        </figure>
-        {# <p class="font-size--1">{{ product.page_description }}</p> #}
-      </div>
-      <div class="wrapper text-wrapper width100 height100">
-
+  <div id="shop" class="checkerboard">
+    <div>
+      <figure class="canvas {{ 'fader' if product_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
+        {% for product_image in product.images %}
+          {% set anim_delay = (anim_fade_time + anim_show_time) * loop.index0 %}
+          {% set image_id = (product_image | stripVersion) or (site.header_image | stripVersion) %}
+          {% set image_info = image_id | imgInfo %}
+          {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+          {% set src = site.cloudinary_url + "/w_750," + transforms + image_id %}
+          <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+          {%- set srcset -%}
+          {%- for size in image_sizes -%}
+          {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+          {%- endfor -%}
+          {%- endset -%}
+          <img class="cover" data-srcset="{{ srcset }}" sizes="(min-width: 1500px) and (orientation: landscape) 750px, (orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" />
+        {% endfor %}
+      </figure>
+      {# <p class="font-size--1">{{ product.page_description }}</p> #}
+    </div>
+    <div class="content">
+      <article style="padding:1em;margin:auto">
         <div id="parents-in-cart" class="vertical flow">
           <h2 class="heading text-center">{{ product.name }}</h2>
           {% if product.price %}
@@ -158,9 +157,9 @@
             </a>
           </div>
         </div>
-      </div>
+      </article>
     </div>
-  </section>
+  </div>
 
   {% include "partials/pagination.njk" %}
 
