@@ -512,7 +512,7 @@ article > * + * {
     flex-direction:row;
   }
 
-  .checkerboard:nth-of-type(odd) {
+  div.checkerboard:nth-of-type(odd) {
     flex-direction:row-reverse;
   }
 
