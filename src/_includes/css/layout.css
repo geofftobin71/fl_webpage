@@ -76,11 +76,15 @@ blockquote p::after {
   top: 0.5em;
 }
 
-cite {
+blockquote cite {
   display: block;
   font-family: var(--font-family-secondary);
   color: var(--color-shade3);
   text-align: right;
+}
+
+blockquote cite:before {
+  content: "\2014 \2009";
 }
 
 .info,
