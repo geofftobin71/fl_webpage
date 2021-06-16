@@ -6,71 +6,64 @@ layout: layouts/page.njk
 <div class="checkerboard">
   <div>
     <figure>
-      <img class="cover" src="https://floriade.co.nz/images/Annwyn_Tobin_with_flowers_900.jpg" alt="">
+      {% set image_id = "site/annwyn-tobin-holding-flowers-00001" %}
+      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+      {% set lqip_data = lqip_path | imgLqip %}
+      <img class="cover" src="{{ lqip_data }}" alt="">
     </figure>
   </div>
-  <div class="content">
-    <article>
-      <p>
-      Amet pariatur facilis dolor officiis quisquam nesciunt Dolore rerum quos quis nostrum beatae deleniti In ut perferendis ullam id asperiores. Aspernatur nisi amet repudiandae explicabo dolorem? Porro labore dolor quo officiis voluptatum Sint exercitationem eius hic quos nostrum delectus Numquam tempore dignissimos fugiat eius eveniet. Amet cum ipsam hic illo eum In ad illum odit iusto ipsa dolor porro Dolorum reprehenderit provident placeat nesciunt quos Illo quis eaque cupiditate labore beatae Dolorem doloribus delectus quaerat doloribus omnis laudantium Nihil vel asperiores perferendis corporis quia? Enim soluta iure molestias earum iste! Eum eligendi quidem fugiat labore minima. Asperiores accusantium quia officia!
-      </p>
-      <p>
-      Amet pariatur facilis dolor officiis quisquam nesciunt Dolore rerum quos quis nostrum beatae deleniti In ut perferendis ullam id asperiores. Aspernatur nisi amet repudiandae explicabo dolorem? Porro labore dolor quo officiis voluptatum Sint exercitationem eius hic quos nostrum delectus Numquam tempore dignissimos fugiat eius eveniet. Amet cum ipsam hic illo eum In ad illum odit iusto ipsa dolor porro Dolorum reprehenderit provident placeat nesciunt quos Illo quis eaque cupiditate labore beatae Dolorem doloribus delectus quaerat doloribus omnis laudantium Nihil vel asperiores perferendis corporis quia? Enim soluta iure molestias earum iste! Eum eligendi quidem fugiat labore minima. Asperiores accusantium quia officia!
-      </p>
-      <p>
-      Amet pariatur facilis dolor officiis quisquam nesciunt Dolore rerum quos quis nostrum beatae deleniti In ut perferendis ullam id asperiores. Aspernatur nisi amet repudiandae explicabo dolorem? Porro labore dolor quo officiis voluptatum Sint exercitationem eius hic quos nostrum delectus Numquam tempore dignissimos fugiat eius eveniet. Amet cum ipsam hic illo eum In ad illum odit iusto ipsa dolor porro Dolorum reprehenderit provident placeat nesciunt quos Illo quis eaque cupiditate labore beatae Dolorem doloribus delectus quaerat doloribus omnis laudantium Nihil vel asperiores perferendis corporis quia? Enim soluta iure molestias earum iste! Eum eligendi quidem fugiat labore minima. Asperiores accusantium quia officia!
-      </p>
-    </article>
+  <div>
+    <figure>
+      <img class="cover" src="/images/at.svg" alt="">
+    </figure>
   </div>
 </div>
 
 <div class="checkerboard">
   <div>
     <figure>
-      <img class="cover" src="https://floriade.co.nz/images/floriade_shop_interior_1200.jpg" alt="">
+      {% set image_id = "site/floriade-dried-flower-room-00001" %}
+      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+      {% set lqip_data = lqip_path | imgLqip %}
+      <img class="cover" src="{{ lqip_data }}" alt="">
     </figure>
   </div>
-  <div class="content">
-    <article>
-      <p>
-      Consectetur incidunt nam minima corrupti lorem repellendus. Perspiciatis tenetur deserunt aspernatur voluptas id in Nam nulla esse nobis molestiae error. Esse ipsa nihil at vel assumenda. Natus soluta voluptas nobis similique laborum Autem sapiente voluptate consequatur sapiente inventore? Quas perferendis in soluta culpa dignissimos architecto Sint perspiciatis modi recusandae in tempora, adipisci Autem unde reiciendis obcaecati ut repellendus Ut perferendis ipsa aspernatur veritatis similique. Illum quas modi quas enim maxime? Temporibus non mollitia totam repellendus doloremque Earum natus corrupti adipisci quos iure Maiores odio saepe in est omnis quaerat Eos odio blanditiis earum laboriosam earum repudiandae Id doloremque possimus in!
-      </p>
-      <p>
-      Consectetur incidunt nam minima corrupti lorem repellendus. Perspiciatis tenetur deserunt aspernatur voluptas id in Nam nulla esse nobis molestiae error. Esse ipsa nihil at vel assumenda. Natus soluta voluptas nobis similique laborum Autem sapiente voluptate consequatur sapiente inventore? Quas perferendis in soluta culpa dignissimos architecto Sint perspiciatis modi recusandae in tempora, adipisci Autem unde reiciendis obcaecati ut repellendus Ut perferendis ipsa aspernatur veritatis similique. Illum quas modi quas enim maxime? Temporibus non mollitia totam repellendus doloremque Earum natus corrupti adipisci quos iure Maiores odio saepe in est omnis quaerat Eos odio blanditiis earum laboriosam earum repudiandae Id doloremque possimus in!
-      </p>
-      <p>
-      Consectetur incidunt nam minima corrupti lorem repellendus. Perspiciatis tenetur deserunt aspernatur voluptas id in Nam nulla esse nobis molestiae error. Esse ipsa nihil at vel assumenda. Natus soluta voluptas nobis similique laborum Autem sapiente voluptate consequatur sapiente inventore? Quas perferendis in soluta culpa dignissimos architecto Sint perspiciatis modi recusandae in tempora, adipisci Autem unde reiciendis obcaecati ut repellendus Ut perferendis ipsa aspernatur veritatis similique. Illum quas modi quas enim maxime? Temporibus non mollitia totam repellendus doloremque Earum natus corrupti adipisci quos iure Maiores odio saepe in est omnis quaerat Eos odio blanditiis earum laboriosam earum repudiandae Id doloremque possimus in!
-      </p>
-    </article>
+  <div>
+    <figure>
+      <img class="cover" src="/images/df.svg" alt="">
+    </figure>
   </div>
 </div>
 
 <div class="checkerboard">
   <div>
     <figure>
-      <img class="cover" src="https://floriade.co.nz/images/Floriade_dried_flower_room_Rosa_Woods.jpg" alt="">
+      {% set image_id = "instagram/floriade_wellington_18089395303252283" %}
+      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+      {% set lqip_data = lqip_path | imgLqip %}
+      <img class="cover" src="{{ lqip_data }}" alt="">
     </figure>
   </div>
-  <div class="content">
-    <article>
-      <p>
-      Consectetur eveniet eius tempora qui corrupti Iste saepe est harum cupiditate nemo? At natus voluptatum molestiae molestiae perferendis? Doloribus perspiciatis excepturi iste quod eaque, animi quia debitis? Adipisci eum officiis eum impedit repudiandae porro! Accusantium animi omnis recusandae voluptatem consectetur Qui aliquam deserunt soluta error tenetur dolorem voluptatem Assumenda reiciendis ipsam alias voluptatibus dicta? Distinctio adipisci fuga id officiis libero! Voluptatem provident sint ab explicabo laboriosam nam Odit eos amet possimus adipisci optio labore porro? Magni blanditiis nihil corrupti animi officia Quos architecto nam labore quidem perspiciatis! Animi doloribus blanditiis tenetur hic ullam? Consequuntur optio perferendis quos tempore repellat Repellat?
-      </p>
-    </article>
+  <div>
+    <figure>
+      <img class="cover" src="/images/ig.svg" alt="">
+    </figure>
   </div>
 </div>
 
 <div class="checkerboard">
   <div>
     <figure>
-      <img class="cover" src="https://floriade.co.nz/images/wreath_workshop_00001_1280.jpg" alt="">
+      {% set image_id = "wedding-flowers/wedding-flowers-by-floriade-00038" %}
+      {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
+      {% set lqip_data = lqip_path | imgLqip %}
+      <img class="cover" src="{{ lqip_data }}" alt="">
     </figure>
   </div>
-  <div class="content">
-    <article>
-      <p>
-      Dolor ab laborum obcaecati distinctio quod. Voluptates mollitia accusantium facilis recusandae commodi! Facere unde harum voluptate deserunt doloremque deleniti? Magnam sequi adipisci soluta illum fuga Dignissimos reprehenderit necessitatibus id praesentium cumque.
-      </p>
-    </article>
+  <div>
+    <figure>
+      <img class="cover" src="/images/wf.svg" alt="">
+    </figure>
   </div>
 </div>
+
