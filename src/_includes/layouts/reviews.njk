@@ -15,33 +15,6 @@
     transform: translateY(100px);
     opacity: 0;
   }
-  .review-text::before {
-    font-size: 4em;
-    color: var(--color-shade3);
-    content: open-quote;
-    display: inline;
-    height: 0;
-    line-height: 0;
-    left: -0.05em;
-    position: relative;
-    top: 0.5em;
-  }
-  .review-text::after {
-    font-size: 4em;
-    color: var(--color-shade3);
-    content: close-quote;
-    display: inline;
-    height: 0;
-    line-height: 0;
-    left: 0.05em;
-    position: relative;
-    top: 0.5em;
-  }
-  @media screen and (min-width: 450px) {
-    .review.round-box {
-      --box-padding: var(--step-3);
-    }
-  }
   {% endset %}
 
   <style>
@@ -58,11 +31,11 @@
     <div id="reviews" class="wrapper">
       <ul class="vertical center">
         {% for item in reviews | shuffle -%}
-          <li class="review color-light bg-shade1 text-center round-box border-shade2 shadow">
-            <div class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
-              <p class="review-text">{{ item.review }}</p>
-              <p class="font-secondary color-shade3 text-right">{{ item.name }}</p>
-            </div>
+          <li class="review">
+            <blockquote class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
+              <p>{{ item.review }}</p>
+              <cite>{{ item.name }}</cite>
+            </blockquote>
           </li>
           <figure style="width:100%;max-width:{{ divider_sizes[loop.index0 % 5] }}px;opacity:0.25">
             <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament" loading="eager" />
