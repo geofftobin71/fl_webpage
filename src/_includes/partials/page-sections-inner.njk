@@ -66,6 +66,11 @@
   </section>
 {% endif %}
 
+{% if section.template == "reviews-section" %}
+  {% set reviews_config = { wedding: section.wedding, count: section.count, limit: section.limit } %}
+  {% include "partials/reviews-section.njk" %}
+{% endif %}
+
 {% if section.template == "checkerboard-section" %}
   {# include "partials/checkerboard-section.njk" #}
   <div class="checkerboard{{ ' bg-shade1' if (section.alternate_background_color) }}">
