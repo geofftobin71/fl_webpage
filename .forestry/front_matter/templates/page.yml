@@ -20,7 +20,6 @@ fields:
   - text-section
   - image-section
   - contact-form-section
-  - two-column-section
   - checkerboard-section
   config:
     min: 

@@ -1,0 +1,16 @@
+---
+label: Reviews Section
+hide_body: true
+fields:
+- name: wedding
+  type: boolean
+  label: Wedding Reviews
+  description: Select only Wedding Reviews (or not)
+- type: number
+  name: count
+  label: Count
+  description: How many reviews to include in this section
+- type: number
+  name: limit
+  label: Character Limit
+  description: Filter out reviews longer than <em>limit</em> characters

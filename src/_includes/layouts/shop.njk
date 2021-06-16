@@ -24,7 +24,6 @@
       {% set image_id = (section.images | first | stripVersion) or (site.header_image | stripVersion) %}
       {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
       {% set lqip_data = lqip_path | imgLqip %}
-      {% set section_delay = 0 * loop.index0 %}
       <div>
         <figure class="canvas {{ 'fader' if section_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
           {% for section_image in section.images %}
@@ -33,13 +32,13 @@
             {% set image_info = image_id | imgInfo %}
             {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
             {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
-            <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+            <noscript><img class="cover" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
             {%- set srcset -%}
             {%- for size in image_sizes -%}
             {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
             {%- endfor -%}
             {%- endset -%}
-            <img class="cover" data-srcset="{{ srcset }}" sizes="(min-width: 1500px) and (orientation: landscape) 750px, (orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (section_delay + anim_delay) + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
+            <img class="cover" data-srcset="{{ srcset }}" sizes="(min-width: 1500px) and (orientation: landscape) 750px, (orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
           {% endfor %}
         </figure>
       </div>

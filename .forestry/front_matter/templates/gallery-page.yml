@@ -28,7 +28,7 @@ fields:
   - text-section
   - image-section
   - contact-form-section
-  - two-column-section
+  - reviews-section
   config:
     min: 
     max: 

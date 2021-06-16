@@ -150,7 +150,6 @@
               {% set anim_show_time = 4 %}
               {% set anim_duration = (anim_fade_time + anim_show_time) * product_images_count %}
               {% set one_second = 100.0 / anim_duration %}
-              {% set product_delay = 0.1 * loop.index0 %}
               <a href="{{ ( '/shop/products/' + product.name | slug ) | url }}" style="margin:var(--step--2)">
                 <li class="slider-item vertical center flow text-center bg-shade1 round-box border-shade2 shadow">
                   {{ ( '<style>@keyframes ' + (product.name | slug) + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if product_images_count > 1 }}
@@ -165,8 +164,8 @@
                         {% set image_info = image_id | imgInfo %}
                         {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
                         {% set src = site.cloudinary_url + "/w_640," + transforms + image_id %}
-                        <noscript><img class="round" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
-                        <div><img class="round" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + (product_delay + anim_delay) + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
+                        <noscript><img class="round" src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></noscript>
+                        <div><img class="round" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + (product.name | slug) + '-fade;animation-duration:' + anim_duration + 's') | safe if product_images_count > 1 }}" loading="lazy" decoding="async" /></div>
                       {% endfor %}
                     </figure>
                     <h3 class="color-light text-lowercase" style="margin-top:1em">{{ product.name }}</h3>
