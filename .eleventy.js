@@ -1,6 +1,8 @@
 if(process.env.NODE_ENV != 'deploy') {
       require("dotenv").config();
 }
+
+const image_info = require("./src/_data/image_info.js");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
@@ -21,7 +23,6 @@ const cloudinary = require('cloudinary').v2;
 const crypto = require('crypto');
 
 var image_info_exists = false;
-var image_info_written = false;
 
 var shop_products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
 var shop_categories = JSON.parse(fs.readFileSync('src/_data/shop_categories.json'));
@@ -58,7 +59,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let sizes = ' sizes="(min-width:1200px) 75ch, (min-width:65ch) 65ch, 100vw"';
 
-  let lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto:subject,e_blur:200/" + public_id;
+  let lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto:subject,e_blur:200/" + public_id;
 
   return '<figure><noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" /></noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + site.transgif + '"' + srcset + sizes + 'data-src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" />'
     + caption + '</figure>';
@@ -244,43 +245,24 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
+    let resources = [];
+
     if(process.env.NODE_ENV != 'develop') {
+      resources = await image_info;
+
       if(!image_info_exists) {
         image_info_exists = true;
-
-        let resources = [];
-
-        let result = await cloudinary.search
-          .with_field('context')
-          .max_results(500)
-          .execute();
-
-        resources = resources.concat(result.resources);
-
-        while(result.next_cursor) {
-          result = await cloudinary.search
-            .next_cursor(result.next_cursor)
-            .with_field('context')
-            .max_results(500)
-            .execute();
-
-          resources = resources.concat(result.resources);
-        }
-
         console.log('Updating image-info');
         fs.writeFileSync('_cache/image-info.json', JSON.stringify(resources, null, 2));
-        image_info_written = true;
       }
-
-      while(!image_info_written) {}
     } else {
+      resources = JSON.parse(fs.readFileSync('_cache/image-info.json'));
+
       if(!image_info_exists) {
         image_info_exists = true;
         console.log('Using image-info cache');
       }
     }
-
-    let resources = JSON.parse(fs.readFileSync('_cache/image-info.json'));
 
     resources.forEach(resource => {
       if(resource.public_id === id) {
