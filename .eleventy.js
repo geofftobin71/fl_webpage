@@ -2,7 +2,10 @@ if(process.env.NODE_ENV != 'deploy') {
       require("dotenv").config();
 }
 
-const image_info = require("./src/_data/image_info.js");
+if(process.env.NODE_ENV != 'develop') {
+  const image_info = require("./src/_data/image_info.js");
+}
+
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
@@ -21,8 +24,6 @@ const site = require('./src/_data/site.json');
 const image_sizes = require('./src/_data/image_sizes.json');
 const cloudinary = require('cloudinary').v2;
 const crypto = require('crypto');
-
-var image_info_exists = false;
 
 var shop_products = JSON.parse(fs.readFileSync('src/_data/shop_products.json'));
 var shop_categories = JSON.parse(fs.readFileSync('src/_data/shop_categories.json'));
@@ -244,22 +245,24 @@ module.exports = (eleventyConfig) => {
     callback(null, preview);
   });
 
+  var image_info_once = true;
+
   eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
     let resources = [];
 
     if(process.env.NODE_ENV != 'develop') {
       resources = await image_info;
 
-      if(!image_info_exists) {
-        image_info_exists = true;
+      if(image_info_once) {
+        image_info_once = false;
         console.log('Updating image-info');
         fs.writeFileSync('_cache/image-info.json', JSON.stringify(resources, null, 2));
       }
     } else {
       resources = JSON.parse(fs.readFileSync('_cache/image-info.json'));
 
-      if(!image_info_exists) {
-        image_info_exists = true;
+      if(image_info_once) {
+        image_info_once = false;
         console.log('Using image-info cache');
       }
     }
