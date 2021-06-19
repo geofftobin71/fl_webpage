@@ -1,6 +1,13 @@
 const cloudinary = require('cloudinary').v2;
+const fs = require("fs");
 
 module.exports = (async function() {
+
+  if(process.env.NODE_ENV == 'develop') {
+    console.log('Using image-info cache');
+    const cache = require('../../_cache/image-info.json');
+    return cache;
+  }
 
   var resources = [];
 
@@ -13,6 +20,9 @@ module.exports = (async function() {
     // result = await cloudinary.api.resources({context:true,max_results:500,next_cursor:result.next_cursor});
     resources = resources.concat(result.resources);
   }
+
+  console.log('Updating image-info');
+  fs.writeFileSync('_cache/image-info.json', JSON.stringify(resources, null, 2));
 
   return resources;
 

@@ -537,7 +537,19 @@ article > * + * {
   margin:auto 0;
 }
 
+.checkerboard .content article h1,
+.checkerboard .content article h2,
+.checkerboard .content article h3,
+.checkerboard .content article h4 {
+  transform:translateX(0);
+  text-align:center;
+}
+
 @media screen and (max-width: 750px) {
+  .checkerboard + .checkerboard {
+    border-top:1px solid var(--color-shade2);
+    padding-top:var(--step-2);
+  }
   .checkerboard .content article {
     padding:1.5em 1em;
   }
