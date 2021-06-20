@@ -28,17 +28,17 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(isset($_POST["cart-total-check"])) { $cart_total = intVal(clean($_POST["cart-total-check"])); }
   if(isset($_POST["delivery-total-check"])) { $delivery_fee = intVal(clean($_POST["delivery-total-check"])); }
 
-  if(empty($payment_intent_id)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing payment_intent_id')); exit; }
-  if(empty($card_brand)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_brand')); exit; }
-  if(empty($card_month)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_month')); exit; }
-  if(empty($card_year)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_year')); exit; }
-  if(empty($card_last4)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing card_last4')); exit; }
-  if(empty($delivery_option)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing delivery_option')); exit; }
-  if(empty($cardholder_name)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cardholder_name')); exit; }
-  if(empty($cardholder_email)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cardholder_email')); exit; }
-  if(empty($cardholder_phone)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cardholder_phone')); exit; }
-  if(empty($cart)) { header('Location:/shop-error/?p=' . urlencode('Error: Missing cart')); exit; }
-  if($cart_total < 1) { header('Location:/shop-error/?p=' . urlencode('Error: Zero cart total')); exit; }
+  if(empty($payment_intent_id)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing payment_intent_id')); exit; }
+  if(empty($card_brand)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing card_brand')); exit; }
+  if(empty($card_month)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing card_month')); exit; }
+  if(empty($card_year)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing card_year')); exit; }
+  if(empty($card_last4)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing card_last4')); exit; }
+  if(empty($delivery_option)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing delivery_option')); exit; }
+  if(empty($cardholder_name)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder_name')); exit; }
+  if(empty($cardholder_email)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder_email')); exit; }
+  if(empty($cardholder_phone)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder_phone')); exit; }
+  if(empty($cart)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cart')); exit; }
+  if($cart_total < 1) { header('Location:/shop-error/?p=' . obfencode('Error: Zero cart total')); exit; }
 
   $order_date = new DateTime;
 
@@ -464,7 +464,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     // FIXME $mail->send();
 
   } catch (Exception $e) {
-    header('Location:/thankyou-for-your-order/?p=' . urlencode($cardholder_email . '<br><br>But something went wrong sending the email :<br>' . $mail->ErrorInfo));
+    header('Location:/thankyou-for-your-order/?p=' . obfencode($cardholder_email . '<br><br>But something went wrong sending the email :<br>' . $mail->ErrorInfo));
     exit;
   }
 
@@ -524,10 +524,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $mail_body = str_replace($placeholders, $values, $mail_template);
 
-    /* DEBUG */
+    /* DEBUG
     echo $mail_body;
     exit;
-    /* DEBUG */
+    DEBUG */
 
     // Send Booking Confirmation Email
 
@@ -541,7 +541,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       // FIXME $mail->send();
 
     } catch (Exception $e) {
-      header('Location:/thankyou-for-your-order/?p=' . urlencode($cardholder_email . '<br><br>But something went wrong sending the email :<br>' . $mail->ErrorInfo));
+      header('Location:/thankyou-for-your-order/?p=' . obfencode($cardholder_email . '<br><br>But something went wrong sending the email :<br>' . $mail->ErrorInfo));
       exit;
     }
 
@@ -549,7 +549,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   // Redirect 
 
-  header('Location:/thankyou-for-your-order/?p=' . urlencode($cardholder_email));
+  header('Location:/thankyou-for-your-order/?p=' . obfencode($cardholder_email));
   exit();
 
 }

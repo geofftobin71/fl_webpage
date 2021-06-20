@@ -49,6 +49,14 @@ function clean($data) {
   return $data;
 }
 
+function obfencode($string) {
+  $result = "";
+  for($i=0; $i < strlen($string); $i++) {
+    $result .= '%' . bin2hex(utf8_decode($string[$i]));
+  }
+  return $result;
+}
+
 function criticalError($page, $message) {
   echo "<body style=\"text-align:center;font-family:sans-serif\"><h1>Critical Error</h1><h2>" . $page . "</h2><p>" . $message . "</p>";
   // echo "<pre>"; print_r($_POST); echo "</pre>";

@@ -8,12 +8,10 @@ landing-page -> feedback-page forestry template
 single product width on mobile - padding too big
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 TEST browser support
+UPDATE and TEST mailchimp autoreply emails
+TEST social sharing buttons
 
 -- FUTURE --
-retire unused php functions
 Product auto expiry date
-image(s) section
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler
-TEST social sharing buttons
-UPDATE and TEST mailchimp autoreply emails
