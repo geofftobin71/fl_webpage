@@ -9,7 +9,7 @@ fields:
   label: Image
 - name: aspect
   type: select
-  default: []
+  default: none
   config:
     required: false
     options:
@@ -23,6 +23,7 @@ fields:
     - 2x3
     - 3x4
     - 9x16
+    - none
     source:
       type: simple
       section: 
