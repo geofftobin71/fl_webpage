@@ -1,0 +1,8 @@
+<section class="text-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
+  <article class="wrapper text-wrapper text-{{ (section.align | lower) or 'left' }}{{ ' bigfonts font-secondary' if section.bigfonts }}">
+    {% markdown section.text %}
+    {% if section.button.text %}
+      <div class="text-center font-size-0"><a class="button" role="button" href="{{ section.button.link }}"{{ ' target="_blank" rel="noopener"' | safe if section.button.new_page }}>{{ section.button.text }}</a></div>
+    {% endif %}
+  </article>
+</section>
