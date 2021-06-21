@@ -58,7 +58,7 @@ page_sections:
 - template: image-section
   width: Paragraph
   image: "/v1615193076/slideshow/weddings_00189.jpg"
-  aspect: 4x3
+  aspect: 3x1
 description: ''
 header_brightness: 
 
