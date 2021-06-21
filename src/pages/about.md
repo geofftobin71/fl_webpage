@@ -56,15 +56,15 @@ page_sections:
     new_page: false
   alternate_background_color: false
 - template: image-section
-  width: Paragraph
+  width: Full
   image: "/v1615193076/slideshow/weddings_00189.jpg"
   aspect: 3x1
-  alternate_background_color: false
+  no_padding: true
 - template: image-section
   aspect: none
   width: Paragraph
   image: "/v1615193076/slideshow/weddings_00189.jpg"
-  alternate_background_color: true
+  alternate_background_color: false
 description: ''
 header_brightness: 
 

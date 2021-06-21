@@ -51,3 +51,6 @@ fields:
 - name: alternate_background_color
   type: boolean
   label: Alternate Background Color
+- name: no_padding
+  type: boolean
+  label: No Padding

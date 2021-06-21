@@ -1,17 +1,25 @@
-<section class="image-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
+<section class="image-section{{ (' bg-shade1' | safe) if section.alternate_background_color }}" {{ (' style="padding:0"' | safe) if section.no_padding }}>
   <div class="wrapper{{ ' text-wrapper' if section.width == 'Paragraph' }}{{ ' page-wrapper' if section.width == 'Extra Wide' }}{{ ' no-wrapper' if section.width == 'Full' }}">
     {% set image_id = section.image | stripVersion %}
     {% set image_info = image_id | imgInfo %}
     {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
     {% set lqip_data = lqip_path | imgLqip %}
-    {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto:subject/" %}
+    {% set transforms = "" %}
+    {% set aspect = "" %}
+    {% set native_aspect = ";padding-bottom:calc(1.0/" + image_info.aspect_ratio + "*100%)" %}
+    {% if section.aspect != "none" %}
+      {% set transforms = "ar_" + (section.aspect | replace("x",":")) + "," %}
+      {% set aspect = "aspect" + section.aspect %}
+      {% set native_aspect = "" %}
+    {% endif %}
+    {% set transforms = transforms + "c_lfill,q_auto,f_auto,g_auto:subject/" %}
     {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
     {% set srcset %}
       {%- for size in image_sizes -%}
       {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
       {%- endfor -%}
     {% endset %}
-    <figure class="aspect aspect{{ section.aspect or '1x1' }} round shadow" style="background-image:url({{ lqip_data }})">
+    <figure class="aspect {{ aspect | safe }} shadow" style="background-image:url({{ lqip_data }}){{ native_aspect | safe }}">
       <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
       {%- set sizes = '100vw' -%}
       {%- if section.width == 'Full' -%}

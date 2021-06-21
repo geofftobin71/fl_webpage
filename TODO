@@ -1,13 +1,12 @@
 -- FIX --
-Revisit Image section
 Enable and TEST shop code
-Smaller video on mobile => Cloudinary
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 TEST browser support
 UPDATE and TEST mailchimp autoreply emails
 TEST social sharing buttons
 
 -- FUTURE --
+Smaller video on mobile => Cloudinary
 Landing page template
 Product auto expiry date
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops

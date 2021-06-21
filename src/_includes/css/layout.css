@@ -420,9 +420,11 @@ section > * + * {
   margin-top: var(--section-space, var(--section-padding, 1em));
 }
 
+/*
 section + section {
   border-top: 1px solid var(--color-shade2);
 }
+*/
 
 /* ----- Flow ----- */
 
@@ -452,29 +454,29 @@ article > * + * {
   padding-right: var(--padding);
 }
 
-.page-wrapper {
+.wrapper.page-wrapper {
   --wrapper-width: 1500px;
 }
 
-.text-wrapper {
+.wrapper.text-wrapper {
   --wrapper-width: var(--measure);
 }
 
-.image-wrapper {
+.wrapper.image-wrapper {
   --wrapper-width: 100vmin;
 }
 
-.button-wrapper {
+.wrapper.button-wrapper {
   --wrapper-width: 50ch;
 }
 
-.no-wrapper {
+.wrapper.no-wrapper {
   --padding: 0;
   max-width: none;
 }
 
 @media screen and (min-width: 750px) and (orientation: portrait) {
-  .image-wrapper {
+  .wrapper.image-wrapper {
     --wrapper-width: 70vmin;
   }
 }
