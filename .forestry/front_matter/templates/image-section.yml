@@ -48,3 +48,6 @@ fields:
       path: 
   label: Width
   description: Max Image width
+- name: alternate_background_color
+  type: boolean
+  label: Alternate Background Color
