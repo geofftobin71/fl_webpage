@@ -1,17 +1,14 @@
 -- FIX --
-Random (or better) image on shop category / product page
 Revisit Image section
 Enable and TEST shop code
 Smaller video on mobile => Cloudinary
-Move 404 to feedback-page layout
-landing-page -> feedback-page forestry template
-single product width on mobile - padding too big
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 TEST browser support
 UPDATE and TEST mailchimp autoreply emails
 TEST social sharing buttons
 
 -- FUTURE --
+Landing page template
 Product auto expiry date
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler

@@ -1,0 +1,21 @@
+---
+label: Feedback Page
+hide_body: false
+display_field: title
+fields:
+- type: text
+  name: layout
+  label: Layout
+  hidden: true
+  default: layouts/feedback-page.njk
+- name: base
+  type: include
+  config: {}
+  template: page-base
+  label: Base
+pages:
+- src/pages/contact-form-error.md
+- src/pages/shop-error.md
+- src/pages/thankyou-for-your-order.md
+- src/pages/thankyou-for-contacting-floriade.md
+- src/pages/404.md
