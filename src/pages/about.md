@@ -55,6 +55,10 @@ page_sections:
     link: ''
     new_page: false
   alternate_background_color: false
+- template: image-section
+  width: Paragraph
+  image: "/v1615193076/slideshow/weddings_00189.jpg"
+  aspect: 4x3
 description: ''
 header_brightness: 
 

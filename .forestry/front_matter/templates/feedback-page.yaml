@@ -14,8 +14,8 @@ fields:
   template: page-base
   label: Base
 pages:
+- src/pages/404.md
 - src/pages/contact-form-error.md
 - src/pages/shop-error.md
-- src/pages/thankyou-for-your-order.md
 - src/pages/thankyou-for-contacting-floriade.md
-- src/pages/404.md
+- src/pages/thankyou-for-your-order.md
