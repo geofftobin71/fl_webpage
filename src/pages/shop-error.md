@@ -2,7 +2,7 @@
 title: Shop Error
 layout: layouts/feedback-page.njk
 header_image: "/site/floriade-dried-flower-room-00001.jpg"
-header_brightness: 40
+header_brightness:
 header_title: Sorry :(
 subheading: Something seems to have gone wrong with our online shop
 sitemap:

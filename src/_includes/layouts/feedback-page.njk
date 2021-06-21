@@ -1,9 +1,23 @@
 {% extends "layouts/base.njk" %}
 
 {% block content %}
-  <main class="canvas center height100vh">
+  <main class="canvas center min-height100vh" style="position:relative">
+  <div class="background">
+    {% set transforms = "c_lfill,ar_1,q_auto,f_auto,g_auto/" %}
+    {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
+    {% set image_info = image_id | imgInfo %}
+    {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}
+    {% set lqip_path = site.cloudinary_url + "/c_fill,w_64,h_64,q_auto,f_jpg,g_auto,e_blur:100/" + image_id %}
+    {% set lqip_data = lqip_path | imgLqip %}
+    {% set srcset %}
+    {%- for size in image_sizes -%}
+    {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
+    {%- endfor -%}
+    {% endset %}
+    <img srcset="{{ srcset }}" sizes="100vw" src="{{ src }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
+  </div>
   <div id="content">
-    <div class="vertical center round bg-shade1 shadow wrapper text-wrapper flow bigfonts font-secondary text-center" style="--measure:60ch;padding:var(--step-2);margin:var(--step--1)">
+    <div class="vertical center round shadow wrapper text-wrapper flow bigfonts font-secondary text-center" style="--measure:60ch;padding:var(--step-2);margin:var(--step--1);background:rgba(61,72,68,0.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
       <a href="/" tabindex="-1">
         <figure class="logo">
           <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" loading="eager" decoding="async" />

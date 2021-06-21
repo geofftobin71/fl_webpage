@@ -131,9 +131,16 @@ blockquote cite:before {
   height: 100vh;
 }
 
+.min-height100vh {
+  min-height: 100vh;
+}
+
 @supports (background: -webkit-named-image(i)) {
   .height100vh {
     height: -webkit-fill-available;
+  }
+  .min-height100vh {
+    min-height: -webkit-fill-available;
   }
 }
 
@@ -364,7 +371,7 @@ blockquote cite:before {
 /* ----- Background Image ----- */
 
 .background {
-  --brightness: 50%;
+  --brightness: 66%;
   overflow: hidden;
   position: absolute;
   top: 0;
