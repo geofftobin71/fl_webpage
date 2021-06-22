@@ -1,4 +1,4 @@
-name: Deploy Test
+name: Deploy
 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '14.9.0'
 
       - name: Cache dependencies
         uses: actions/cache@v2

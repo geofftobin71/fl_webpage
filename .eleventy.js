@@ -140,6 +140,7 @@ module.exports = (eleventyConfig) => {
     }
 
     // Minify Copy PHP files
+    if(!fs.existsSync("./dist/")) { fs.mkdirSync("./dist/", true); }
     if(!fs.existsSync("./dist/php/")) { fs.mkdirSync("./dist/php/", true); }
     minifyCopy("./src/_data/shop_categories.json", "./dist/php/shop_categories.json");
     minifyCopy("./src/_data/shop_products.json", "./dist/php/shop_products.json");
