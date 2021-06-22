@@ -67,6 +67,12 @@ page_sections:
   image: "/v1623993789/IMG_8636.heic"
   alternate_background_color: true
   no_padding: false
+- template: youtube-section
+  width: Paragraph
+  videoId: rBxcF-r9Ibs
+  videoTitle: 'Jumanji : The Next Level trailer'
+  alternate_background_color: false
+  no_padding: false
 description: ''
 header_brightness: 
 
