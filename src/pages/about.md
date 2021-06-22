@@ -64,7 +64,7 @@ page_sections:
 - template: image-section
   aspect: none
   width: Paragraph
-  image: "/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
+  image: "/v1623993789/IMG_8636.heic"
   alternate_background_color: true
   no_padding: false
 description: ''
