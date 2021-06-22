@@ -1,5 +1,39 @@
 [
   {
+    "asset_id": "6f50a1987ce01b3280d0a473b3521dc3",
+    "public_id": "instagram/floriade_wellington_17875742708345052",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17875742708345052",
+    "format": "jpg",
+    "version": 1624403462,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-22T23:11:02+00:00",
+    "uploaded_at": "2021-06-22T23:11:02+00:00",
+    "bytes": 314885,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "Check%20out%20those%20cotton%20balls%20hiding%20amongst%20the%20colourful%20dried%20flowers.%20We%20love%20to%20add%20little%20surprises%20into%20our%20arrangements.",
+      "timestamp": "2021-06-22T20:25:43+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1624403462/instagram/floriade_wellington_17875742708345052.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1624403462/instagram/floriade_wellington_17875742708345052.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "54ce3809bc210710db5db2c3bde0efe7",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "0685cc112eb0dc077b86e6dcfb4d696f",
     "public_id": "instagram/floriade_wellington_17937175339507384",
     "folder": "instagram",
