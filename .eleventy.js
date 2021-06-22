@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-const image_info = require("./src/_data/image_info.js");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const svgContents = require("eleventy-plugin-svg-contents");
 const sitemap = require("@quasibit/eleventy-plugin-sitemap");
@@ -242,7 +241,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
-    let resources = await image_info;
+    const resources = await require("./src/_data/image_info.js");
 
     resources.forEach(resource => {
       if(resource.public_id === id) {
