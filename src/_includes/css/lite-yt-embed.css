@@ -7,7 +7,8 @@ lite-youtube {
     background-size: cover;
     cursor: pointer;
     max-width: 720px;
-    margin:0 auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 /* gradient */
