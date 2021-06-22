@@ -1,6 +1,4 @@
-if(process.env.NODE_ENV != 'deploy') {
-  require("dotenv").config();
-}
+require("dotenv").config();
 
 const image_info = require("./src/_data/image_info.js");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");

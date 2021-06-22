@@ -1,9 +1,12 @@
 -- FIX --
+Home Page
+Image section -> images slideshow
 Enable and TEST shop code
 inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
 TEST browser support
 UPDATE and TEST mailchimp autoreply emails
 TEST social sharing buttons
+GITHUB actions
 
 -- FUTURE --
 Smaller video on mobile => Cloudinary
