@@ -1,0 +1,35 @@
+---
+label: Youtube Section
+hide_body: true
+fields:
+- type: text
+  name: videoId
+  label: Video Id
+  description: The last part of the youtube url. eg. rBxcF-r9Ibs
+- type: text
+  name: videoTitle
+  label: Video Title
+  description: The Title of the Video
+- name: width
+  type: select
+  default: Paragraph
+  config:
+    required: false
+    options:
+    - Paragraph
+    - Wide
+    - Extra Wide
+    - Full
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Width
+  description: Max Video width
+- name: alternate_background_color
+  type: boolean
+  label: Alternate Background Color
+- name: no_padding
+  type: boolean
+  label: No Padding

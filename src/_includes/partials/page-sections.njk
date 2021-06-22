@@ -12,6 +12,10 @@
   {% include "partials/image-section.njk" %}
 {% endif %}
 
+{% ifAsync section.template == "youtube-section" %}
+  {% include "partials/youtube-section.njk" %}
+{% endif %}
+
 {% ifAsync section.template == "contact-form-section" %}
   <section class="contact-form-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
     {% include "partials/contact-form-section.njk" %}

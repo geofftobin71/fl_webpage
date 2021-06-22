@@ -1,0 +1,17 @@
+{% set css %}
+{% include "css/lite-yt-embed.css" %}
+{% endset %}
+<style>
+{{ css | cssmin | safe }}
+</style>
+{% set js %}
+{% include "js/lite-yt-embed.js" %}
+{% endset %}
+<script>
+{{ js | jsmin | safe }}
+</script>
+<lite-youtube videoid="{{ section.videoId }}" style="background-image: url('https://i.ytimg.com/vi/{{ section.videoId }}/hqdefault.jpg');" {% if section.params %} params="{{ section.params }}"{% endif %}>
+  <button type="button" class="lty-playbtn">
+    <span class="lyt-visually-hidden">Play Video: {{ section.videoTitle }}</span>
+  </button>
+</lite-youtube>

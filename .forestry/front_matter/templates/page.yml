@@ -19,6 +19,7 @@ fields:
   template_types:
   - text-section
   - image-section
+  - youtube-section
   - contact-form-section
   - checkerboard-section
   config:
