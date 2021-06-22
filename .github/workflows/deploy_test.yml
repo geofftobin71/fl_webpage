@@ -44,7 +44,7 @@ jobs:
           echo GOOGLE_MAPS_KEY=${{ secrets.GOOGLE_MAPS_KEY }} >> .env
 
       - name: Eleventy
-        if: ${{ false }}
+        if: ${{ true }}
         run: npm run deploy
         
       - name: FTP Deploy
