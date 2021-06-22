@@ -47,6 +47,14 @@ jobs:
         if: ${{ true }}
         run: npm run deploy
         
+      - name: Commit Updates
+        run: |
+          git config --global user.name 'Geoff Tobin'
+          git config --global user.email 'geofftobin71@users.noreply.github.com'
+          git add _cache
+          git commit -m "Commit Updates"
+          git push origin master
+          
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         if: ${{ false }}
