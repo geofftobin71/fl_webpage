@@ -31,7 +31,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let caption = '';
   if(title_txt) {
-    caption = '<figcaption class="caption text-center"><br>' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
+    caption = '<figcaption class="caption text-center" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
   }
 
   let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
