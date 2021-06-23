@@ -1,4 +1,5 @@
 -- FIX --
+Lightbox lqip size mismatch
 Home Page
 Image section -> images slideshow
 Enable and TEST shop code
@@ -7,6 +8,7 @@ TEST browser support
 UPDATE and TEST mailchimp autoreply emails
 TEST social sharing buttons
 GITHUB actions
+More descriptive aria-labels for buttons (Read More -> Continue Reading ARTICLE NAME)
 
 -- FUTURE --
 Smaller video on mobile => Cloudinary

@@ -1,13 +1,22 @@
+function handleLightboxKeys(event) {
+    if(event.key === 'Escape') {
+      closeLightbox();
+    }
+
+    if(event.keyCode === 37) {
+      scrollToPrevItem('#lightbox');
+    }
+
+    if(event.keyCode === 39) {
+      scrollToNextItem('#lightbox');
+    }
+}
+
 function openLightbox(id) {
   document.documentElement.setAttribute('data-modal-active', true);
   document.querySelector('#lightbox').style.visibility = 'visible';
-  // document.querySelector('menu').style.display = 'none';
-
   document.querySelector(id).scrollIntoView({behavior: 'auto', inline: 'center', block: 'center'});
-
-  // let n = parseInt(id.slice(5));
-  // let itemWidth = document.querySelector('#lightbox .slider-item').clientWidth;
-  // document.querySelector('#lightbox .slider').scrollTo({left: (n - 1) * itemWidth, top: 0, behavior:'auto'});
+  window.addEventListener('keydown', handleLightboxKeys);
 }
 
 function scrollTo(id) {
@@ -18,6 +27,7 @@ function scrollTo(id) {
 function closeLightbox() {
   document.documentElement.setAttribute('data-modal-active', false);
   document.querySelector('#lightbox').style.visibility = 'hidden';
+  window.removeEventListener('keydown', handleLightboxKeys);
 }
 
 function scrollToNextItem(id) {
