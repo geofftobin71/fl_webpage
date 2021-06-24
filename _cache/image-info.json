@@ -25,7 +25,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "d7e8fafec3caebe3ae099fc058010505",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -59,7 +58,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "b44f59f1fab7d55be48ec62d2356e64c",
     "created_by": {
       "access_key": "389122341319441"
     },
