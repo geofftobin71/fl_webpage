@@ -1,5 +1,39 @@
 [
   {
+    "asset_id": "884ef9bf6c4669fca88b8a8833a30db6",
+    "public_id": "instagram/floriade_wellington_17937030406514870",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17937030406514870",
+    "format": "jpg",
+    "version": 1624424320,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-23T04:58:40+00:00",
+    "uploaded_at": "2021-06-23T04:58:40+00:00",
+    "bytes": 450276,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "Drying%20rose%20petals%20for%20weddings.%20Minimising%20waste%20every%20step%20of%20the%20way%E2%80%A6.",
+      "timestamp": "2021-06-23T04:44:17+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1624424320/instagram/floriade_wellington_17937030406514870.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1624424320/instagram/floriade_wellington_17937030406514870.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "6190ef1cc61b7bacbdda2eddd6bbccff",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "6f50a1987ce01b3280d0a473b3521dc3",
     "public_id": "instagram/floriade_wellington_17875742708345052",
     "folder": "instagram",
