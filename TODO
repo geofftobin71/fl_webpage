@@ -1,6 +1,8 @@
 -- FIX --
+Fixed colors in shop-checkout.js, landing-page, base.njk, reset.njk, theme.njk
 max-height only in landscape ??
 Lightbox lqip size mismatch
+check --measure with new font
 Home Page
 Image section -> images slideshow
 Enable and TEST shop code
