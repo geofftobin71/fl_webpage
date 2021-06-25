@@ -13,13 +13,13 @@
 {% endif %}
 
 {% ifAsync section.template == "youtube-section" %}
-  <section class="youtube-section{{ ' bg-shade1' if (section.alternate_background_color) }}" style="--section-space:0">
+  <section class="youtube-section{{ ' bg-alt' if (section.alternate_background_color) }}" style="--section-space:0">
     {% include "partials/youtube-section.njk" %}
   </section>
 {% endif %}
 
 {% ifAsync section.template == "contact-form-section" %}
-  <section class="contact-form-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
+  <section class="contact-form-section{{ ' bg-alt' if (section.alternate_background_color) }}">
     {% include "partials/contact-form-section.njk" %}
   </section>
 {% endif %}

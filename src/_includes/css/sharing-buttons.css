@@ -16,7 +16,7 @@ div.resp-sharing-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-family-secondary);
+  font-family: var(--font-family-alt);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 

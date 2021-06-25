@@ -122,9 +122,9 @@ async function displayCheckout() {
 
   var elements = stripe.elements({fonts:[
     {
-      family: "Poppins",
+      family: "Quicksand",
       weight: "normal",
-      src: "url(https://floriade.co.nz/fonts/poppins-light-webfont.woff)",
+      src: "url(https://floriade.co.nz/fonts/quicksand-medium-webfont.woff)",
       display: "swap"
     },
     {
@@ -141,7 +141,7 @@ async function displayCheckout() {
     hidePostalCode: true,
     style: {
       base: {
-        fontFamily: "Poppins, sans-serif",
+        fontFamily: "Quicksand, sans-serif",
         fontWeight: "normal",
         fontSize: "16px",
         lineHeight: "2em",

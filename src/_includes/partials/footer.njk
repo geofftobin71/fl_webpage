@@ -1,11 +1,11 @@
-<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;}}footer a:link{color:var(--color-shade4);}footer a:visited{color:var(--color-shade4);}footer a:hover{color:var(--color-light);}footer a:active{color:var(--color-light);}</style>
+<style>.three-columns{display:grid;grid-template-columns:1fr;}@media screen and (min-width: 750px){.three-columns{grid-template-columns:1fr 1fr 1fr;}.three-columns > div:nth-child(3){order:2;}.three-columns > div:nth-child(2){order:3;} }</style>
 
-<footer class="bg-shade1 font-size--1" style="--section-padding:2em">
+<footer class="bg-alt font-size--1" style="--section-padding:2em">
   <hr>
   <section class="wrapper page-wrapper">
     <div class="horizontal center middle" style="width:48px;margin:0 auto">
-      <button title="Scroll to Top" aria-label="Scroll to Top" class="color-light req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#top').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</button>
-      <noscript><a href="#top" role="button" tabindex="0" title="Scroll to Top" aria-label="Scroll to Top" style="width:24px"><img src="/images/chevron-up.png" alt=""></a></noscript>
+      <button title="Scroll to Top" aria-label="Scroll to Top" class="color-primary req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#top').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-up.svg' | svgContents | safe }}</button>
+      <noscript><a href="#top" class="nofocus" role="button" tabindex="0" title="Scroll to Top" aria-label="Scroll to Top" style="width:24px"><img src="/images/chevron-up.png" alt=""></a></noscript>
     </div>
     <div class="three-columns">
       <div class="vertical center flow">
@@ -21,7 +21,7 @@
         <p><a href="tel:{{ site.phone_intl }}" title="Call now" aria-label="Call now">{{ site.phone }}</a></p>
         <br>
         <h4 class="text-lowercase">Follow us</h4>
-        <div class="horizontal space-between color-light" style="width:150px;margin-top:1.5em;height:2rem">
+        <div class="horizontal space-between color-dark" style="width:150px;margin-top:1.5em;height:2rem">
           <a href="{{ site.facebook }}" target="_blank" rel="noopener" style="width:16px" title="Follow us on Facebook" aria-label="Follow us on Facebook">{{ '/src/svg/facebook-f.svg' | svgContents | safe }}</a>
           <a href="{{ site.instagram }}" target="_blank" rel="noopener" style="width:24px" title="Follow us on Instagram" aria-label="Follow us on Instagram">{{ '/src/svg/instagram.svg' | svgContents | safe }}</a>
           <a href="{{ site.pinterest }}" target="_blank" rel="noopener" style="width:24px" title="Pin us on Pinterest" aria-label="Pin us on Pinterest">{{ '/src/svg/pinterest.svg' | svgContents | safe }}</a>

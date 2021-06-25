@@ -1,4 +1,4 @@
-<section class="text-section{{ ' bg-shade1' if (section.alternate_background_color) }}">
+<section class="text-section{{ ' bg-alt' if (section.alternate_background_color) }}">
   <article class="wrapper text-wrapper text-{{ (section.align | lower) or 'left' }}{{ ' bigfonts font-secondary' if section.bigfonts }}">
     {% markdown section.text %}
     {% if section.button.text %}

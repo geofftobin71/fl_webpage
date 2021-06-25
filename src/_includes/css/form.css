@@ -46,7 +46,7 @@ input[type='radio'] {
 }
 
 .radio-label {
-  font-family: var(--font-family-secondary);
+  font-family: var(--font-family-alt);
   background-color: var(--button-bg);
   color: var(--button-fg);
   padding: var(--step--2) var(--step--1);
@@ -113,7 +113,7 @@ select::-ms-expand {
 .select {
   display: grid;
   grid-template-areas: "select";
-  font-family: var(--font-family-secondary);
+  font-family: var(--font-family-alt);
   background-color: var(--button-bg);
   color: var(--button-fg);
   width: 100%;
@@ -164,8 +164,8 @@ select:focus + .focus {
 }
 
 option {
-  background-color: white;
-  color: black;
+  background-color: var(--color-light);
+  color: var(--color-dark);
   vertical-align: middle;
 }
 

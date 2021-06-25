@@ -12,9 +12,9 @@
     <h1 class="visually-hidden">{{ site.name | safe }}</h1>
     <p class="color-light font-secondary font-size-1" style="margin-top:1em">{{ site.tagline_html | safe }}</p>
   </div>
-  <div id="more" class="horizontal center middle link-light">
+  <div id="more" class="horizontal center middle color-light">
     <span title="Scroll to Content" aria-label="Scroll to Content" class="req-js" style="cursor:pointer;width:24px" onclick="(function(){document.querySelector('#main').scrollIntoView({behavior:'smooth'});})();return false;" >{{ '/src/svg/chevron-down.svg' | svgContents | safe }}</span>
-    <noscript><a href="#main" title="Scroll to Content" aria-label="Scroll to Content" style="width:24px"><img src="/images/chevron-down.png" alt=""></a></noscript>
+    <noscript><a href="#main" class="nofocus" title="Scroll to Content" aria-label="Scroll to Content" style="width:24px"><img src="/images/chevron-down.png" alt=""></a></noscript>
   </div>
 </div>
 <hr>
@@ -24,7 +24,7 @@
     {% markdown banner_message.message %}
   </aside>
 {% endif %}
-<nav class="site-menu wrapper page-wrapper text-shadow" style="width:100vw;padding-top:1em;padding-bottom:1em">
+<nav class="site-menu wrapper page-wrapper color-dark" style="width:100vw;padding-top:1em;padding-bottom:1em">
   {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
   <div style="margin-top:0.5em"></div>
   {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}

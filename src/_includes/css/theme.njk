@@ -1,235 +1,232 @@
 @font-face {
-  font-family: Poppins;
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/poppins-light-webfont.woff2") format("woff2"),
-       url("/fonts/poppins-light-webfont.woff") format("woff"),
-       url("/fonts/poppins-light-webfont.ttf") format("truetype");
+  font-family:Quicksand;
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+  src:url("/fonts/quicksand-medium-webfont.woff2") format("woff2"),
+       url("/fonts/quicksand-medium-webfont.woff") format("woff"),
+       url("/fonts/quicksand-medium-webfont.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: Kollektif;
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/kollektif-webfont.woff2") format("woff2"),
+  font-family:Kollektif;
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+  src:url("/fonts/kollektif-webfont.woff2") format("woff2"),
        url("/fonts/kollektif-webfont.woff") format("woff"),
        url("/fonts/kollektif-webfont.ttf") format("truetype");
 }
 
 :root {
-  --font-family-base: Poppins, sans-serif;
-  --font-family-secondary: Kollektif, sans-serif;
+  --font-family-base:Quicksand, sans-serif;
+  --font-family-alt:Kollektif, sans-serif;
 
 {% for token, value in tokens.colors %}
-  --{{ token | hyphenate }}: {{ value }};
+  --{{ token | hyphenate }}:{{ value }};
 {%- endfor %}
 
-  --button-bg: #00000020;
-  --button-fg: var(--color-shade4);
-  --button-border: var(--color-shade2);
-  --button-hover-bg: #FFFFFF20;
-  --button-hover-fg: var(--color-light);
+  --button-bg:#00000020;
+  --button-fg:var(--color-shade4);
+  --button-border:var(--color-shade2);
+  --button-hover-bg:#FFFFFF20;
+  --button-hover-fg:var(--color-light);
 
-  --radius: 0.4rem;
-  --button-radius: 0.5rem;
+  --radius:0.4rem;
+  --button-radius:0.5rem;
 
-  /*
-  --disabled-bg: #505050;
-  --disabled-fg: #A0A0A0;
-  */
-  --disabled-bg: transparent;
-  --disabled-fg: grey;
+  --disabled-bg:transparent;
+  --disabled-fg:grey;
 }
 
 {% for token, value in tokens.colors %}
-.{{ token | hyphenate | replace("color-", "bg-") }} { background-color: {{ value }} }
+.{{ token | hyphenate | replace("color-", "bg-") }} { background-color:{{ value }} }
+{%- endfor %}
+.bg-alt { color:var(--color-primary); }
+
+{% for token, value in tokens.colors %}
+.{{ token | hyphenate }} { color:{{ value }} }
 {%- endfor %}
 
 {% for token, value in tokens.colors %}
-.{{ token | hyphenate }} { color: {{ value }} }
+.{{ token | hyphenate | replace("color-", "border-") }} { border:1px solid {{ value }} }
 {%- endfor %}
+.border-red { border:1px solid #FF0000 }
+.border-green { border:1px solid #00FF00 }
+.border-blue { border:1px solid #0000FF }
 
-{% for token, value in tokens.colors %}
-.{{ token | hyphenate | replace("color-", "border-") }} { border: 1px solid {{ value }} }
-{%- endfor %}
-.border-red { border: 1px solid #FF0000 }
-.border-green { border: 1px solid #00FF00 }
-.border-blue { border: 1px solid #0000FF }
+.border2 { border-width:2px }
 
-.border2 { border-width: 2px }
+article a { text-decoration:underline; }
 
-article a { text-decoration: underline; }
-
-a:link { color: var(--color-shade3); }
-a:visited { color: var(--color-shade3); }
-a:hover { color: var(--color-shade4); }
-a:active { color: var(--color-shade4); }
+a:link { color:var(--color-shade2); }
+a:visited { color:var(--color-shade2); }
+a:hover { color:var(--color-shade3); }
+a:active { color:var(--color-shade3); }
 
 a.button {
-  text-decoration: none;
+  text-decoration:none;
 }
 
 button {
-  margin: 0;
-  border: none;
-  background-color: transparent;
-  font-family: inherit;
-  font-size: var(--step-0);
-  padding: 0;
-  cursor: pointer;
+  margin:0;
+  border:none;
+  background-color:transparent;
+  font-family:inherit;
+  font-size:var(--step-0);
+  padding:0;
+  cursor:pointer;
 }
 
 a.button,
 button.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--button-bg);
-  color: var(--button-fg);
-  border: 1.5px solid var(--button-border);
-  border-radius: var(--button-radius);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  text-transform: lowercase;
-  line-height: 1;
-  font-family: var(--font-family-secondary);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background-color:var(--button-bg);
+  color:var(--button-fg);
+  border:1.5px solid var(--button-border);
+  border-radius:var(--button-radius);
+  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align:center;
+  text-transform:lowercase;
+  line-height:1;
+  font-family:var(--font-family-alt);
 }
 
 a.button:not(.icon-button),
 button.button:not(.icon-button) {
-  padding: 0.6em 1.5em;
-  min-height: 44px;
+  padding:0.6em 1.5em;
+  min-height:44px;
 }
 
-@media (hover: hover) {
+@media (hover:hover) {
   a.button:active,
   button.button:active,
   a.button:hover,
   button.button:hover {
-    --button-bg: var(--button-hover-bg);
-    --button-fg: var(--button-hover-fg);
+    --button-bg:var(--button-hover-bg);
+    --button-fg:var(--button-hover-fg);
   }
 }
 
 a.button:active,
 button.button:active {
-  transform: scale(0.95);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform:scale(0.95);
+  box-shadow:0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 a {
-  border: 2px solid transparent;
+  border:2px solid transparent;
 }
 
 a:focus,
 button:focus {
-  outline: 2px solid transparent;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
-  border-radius: 4px;
+  outline:2px solid transparent;
+  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
+  border-radius:4px;
 }
 
+a.nofocus:focus,
 .logo a:focus {
-  box-shadow: none;
-  border-radius: 0;
+  box-shadow:none;
+  border-radius:0;
 }
 
 a.button:focus,
 button.button:focus {
-  outline: 2px solid transparent;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
+  outline:2px solid transparent;
+  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
 }
 
 a.button[disabled], a.button[disabled]:hover, a.button[disabled]:focus, a.button[disabled]:active,
 button.button[disabled], button.button[disabled]:hover, button.button[disabled]:focus, button.button[disabled]:active {
-  cursor: not-allowed;
-  /* pointer-events: none; */
-  background-color: var(--disabled-bg);
-  color: var(--disabled-fg);
-  border-color: var(--disabled-fg);
-  box-shadow: none;
+  cursor:not-allowed;
+  /* pointer-events:none; */
+  background-color:var(--disabled-bg);
+  color:var(--disabled-fg);
+  border-color:var(--disabled-fg);
+  box-shadow:none;
 }
 
 .button-icon {
-  line-height: 1;
-  width: 1em;
-  height: 1em;
+  line-height:1;
+  width:1em;
+  height:1em;
   margin-right:0.5em;
 }
 
 a.icon-button,
 button.icon-button {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  padding: 0.45em;
+  width:2.5rem;
+  height:2.5rem;
+  border-radius:50%;
+  padding:0.45em;
 }
 
 .icon-button-icon {
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
 }
 
-.font-base { font-family: var(--font-family-base); }
+.font-base { font-family:var(--font-family-base); }
 
-.font-secondary { font-family: var(--font-family-secondary); }
+.font-secondary { font-family:var(--font-family-alt); }
 
-.font-size-5 { font-size: var(--step-5); }
-.font-size-4 { font-size: var(--step-4); }
-.font-size-3 { font-size: var(--step-3); }
-.font-size-2 { font-size: var(--step-2); }
-.font-size-1 { font-size: var(--step-1); }
-.font-size-0 { font-size: var(--step-0); }
-.font-size--1 { font-size: var(--step--1); }
-.font-size--2 { font-size: var(--step--2); }
+.font-size-4 { font-size:var(--step-4); }
+.font-size-3 { font-size:var(--step-3); }
+.font-size-2 { font-size:var(--step-2); }
+.font-size-1 { font-size:var(--step-1); }
+.font-size-0 { font-size:var(--step-0); }
+.font-size--1 { font-size:var(--step--1); }
+.font-size--2 { font-size:var(--step--2); }
 
 body {
-  color: var(--color-light);
-  background-color: var(--color-primary);
-  font-family: var(--font-family-base);
-  font-weight: normal;
+  color:var(--color-dark);
+  background-color:var(--color-light);
+  font-family:var(--font-family-base);
+  font-weight:normal;
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-family-secondary);
-  font-weight: normal;
+  font-family:var(--font-family-alt);
+  font-weight:normal;
 }
 
-body { font-size: var(--step-0); }
-h1 { font-size:var(--step-3); }
+body { font-size:var(--step-0); }
 article h1 { font-size:var(--step-3); }
 aside h1 { font-size:var(--step-3); }
 nav h1 { font-size:var(--step-3); }
 section h1 { font-size:var(--step-3); }
-h2 { font-size: var(--step-2); }
-h3 { font-size: var(--step-1); }
-h4 { font-size: var(--step-0); }
+h1 { font-size:var(--step-3); }
+h2 { font-size:var(--step-2); }
+h3 { font-size:var(--step-1); }
+h4 { font-size:var(--step-0); }
 
 .heading, article h1, article h2, article h3, article h4 {
-  text-transform: lowercase;
-  color: var(--color-shade3);
+  text-transform:lowercase;
+  color:var(--color-shade2);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width:750px) {
   article h1, article h2, article h3, article h4 {
-    transform: translateX(-0.5em);
+    transform:translateX(-0.5em);
   }
 }
 
-.bigfonts p { font-size: var(--step-1); }
-.bigfonts span { font-size: var(--step-1); }
-.bigfonts a { font-size: var(--step-1); }
-.bigfonts button { font-size: var(--step-1); }
+.bigfonts p { font-size:var(--step-1); }
+.bigfonts span { font-size:var(--step-1); }
+.bigfonts a { font-size:var(--step-1); }
+.bigfonts button { font-size:var(--step-1); }
 .bigfonts h1 { font-size:var(--step-4); }
 .bigfonts article h1 { font-size:var(--step-4); }
 .bigfonts aside h1 { font-size:var(--step-4); }
 .bigfonts nav h1 { font-size:var(--step-4); }
 .bigfonts section h1 { font-size:var(--step-4); }
-.bigfonts h2 { font-size: var(--step-3); }
-.bigfonts h3 { font-size: var(--step-2); }
-.bigfonts h4 { font-size: var(--step-1); }
+.bigfonts h2 { font-size:var(--step-3); }
+.bigfonts h3 { font-size:var(--step-2); }
+.bigfonts h4 { font-size:var(--step-1); }
 
 ::selection {
-  background:rgba(255,255,255,0.2);
+  background:rgba(0,0,0,0.2);
 }

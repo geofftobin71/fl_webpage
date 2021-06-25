@@ -1,4 +1,4 @@
-<section id="reviews" class="bg-shade1" style="--section-space:0">
+<section id="reviews" class="bg-alt" style="--section-space:0">
   <h2 class="heading text-center">Reviews</h2>
   <ul class="slider" style="align-items:center">
     {% for item in reviews | filterWeddingReviews(reviews_config.wedding or false) | removeLongReviews(reviews_config.limit or 300) | shuffle | head(reviews_config.count or 5) -%}
