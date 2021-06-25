@@ -15,6 +15,9 @@
     transform: translateY(100px);
     opacity: 0;
   }
+  #reviews img {
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.3)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+  }
   {% endset %}
 
   <style>
@@ -37,14 +40,14 @@
               <cite>{{ item.name }}</cite>
             </blockquote>
           </li>
-          <figure style="width:100%;max-width:{{ divider_sizes[loop.index0 % 5] }}px;opacity:0.25">
+          <figure class="width100" style="max-width:{{ divider_sizes[loop.index0 % 5] }}px">
             <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament" loading="eager" />
           </figure>
         {% endfor -%}
       </ul>
     </div>
   </section>
-  <p class="font-size--1 text-center" style="margin-bottom:2rem;opacity:0.5"><a href='https://www.freepik.com/vectors/flower'>Flower vectors created by freepik - www.freepik.com</a></p>
+  <p class="caption text-center" style="margin-bottom:2rem"><a href='https://www.freepik.com/vectors/flower'>Flower vectors created by freepik - www.freepik.com</a></p>
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}

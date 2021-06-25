@@ -283,8 +283,8 @@ blockquote cite:before {
 
 .site-menu a:link { color:var(--color-light); }
 .site-menu a:visited { color:var(--color-light); }
-.site-menu a:hover { color:var(--color-shade3); }
-.site-menu a:active { color:var(--color-shade3); }
+.site-menu a:hover { color:var(--color-alt); }
+.site-menu a:active { color:var(--color-alt); }
 
 @media screen and (max-width:750px) {
   .site-menu {
@@ -420,11 +420,9 @@ section > * + * {
   margin-top:var(--section-space, var(--section-padding, 1em));
 }
 
-/*
 section + section {
-  border-top:1px solid var(--color-shade2);
+  border-top:1px solid var(--color-shade3);
 }
-*/
 
 /* ----- Flow ----- */
 
@@ -518,7 +516,7 @@ article > * + * {
 /* ----- Checkerboard ------ */
 
 .checkerboard {
-  width:100vw;
+  width:100%;
   display:flex;
   flex-direction:column;
 }
@@ -554,9 +552,17 @@ article > * + * {
   text-align:center;
 }
 
+.checkerboard + section {
+  border-top:1px solid var(--color-shade3);
+}
+
+section + .checkerboard {
+  border-top:1px solid var(--color-shade3);
+}
+
 @media screen and (max-width:750px) {
   .checkerboard + .checkerboard {
-    border-top:1px solid var(--color-shade2);
+    border-top:1px solid var(--color-shade3);
     padding-top:var(--step-2);
   }
   .checkerboard .content article {
@@ -596,26 +602,26 @@ article > * + * {
 }
 
 @media screen and (orientation:landscape) and (min-width:1500px) {
+  /*
   .checkerboard {
     max-width:1500px;
     margin-left:auto;
     margin-right:auto;
   }
+  */
 
-  /*
   .checkerboard + .checkerboard {
-  border-top:1px solid var(--color-shade2);
+    border-top:1px solid var(--color-shade3);
   }
 
   .checkerboard > * {
-  width:750px;
-  min-width:750px;
+    width:750px;
+    min-width:750px;
   }
 
   .checkerboard .content {
-  width:100%;
+    width:100%;
   }
-   */
 }
 
 /* ----- Two Columns ----- */

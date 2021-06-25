@@ -4,7 +4,7 @@
   {% include "partials/header.njk" %}
   <style>.split{display:grid;align-items:start;grid-template-columns:1fr 1fr;}@media screen and (max-width:500px){.split{grid-template-columns:1fr;}}.contact-form-section{width:100%;}</style>
   <main>
-  <section class="split" style="--section-space:0">
+  <section class="split wrapper page-wrapper" style="--section-space:0">
     <div class="width100 vertical center flow">
       <h2 class="heading text-center">Contact Us</h2>
       <a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">
@@ -34,7 +34,7 @@
     <div class="width100 wrapper vertical center flow" style="--wrapper-width:600px">
       <h2 class="heading text-center">Visit Us</h2>
       <div class="width100 aspect aspect1x1 shadow" style="margin-top:var(--step-2)">
-        <figure>
+        <figure class="round border-shade3">
           {% if env.NODE_ENV == 'deploy' %}
             <iframe class="width100 height100 req-js" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ env.GOOGLE_PLACE_ID }}&key={{ env.GOOGLE_MAPS_KEY }}&zoom=18" allowfullscreen></iframe>
           {% endif %}

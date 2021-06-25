@@ -17,7 +17,7 @@
   font-size:16px;
   font-family:var(--font-family-base);
   padding:0.25em 0.5em 0.15em;
-  background-color:var(--color-light);
+  background-color:#F0F0F0;
   color:var(--color-dark);
   border:2px solid var(--button-border);
   border-radius:var(--radius);
@@ -45,7 +45,7 @@
 }
 
 .input:focus {
-  background-color:#F0F0F0;
+  background-color:var(--color-light);
   outline:2px solid transparent;
   box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg);
 }

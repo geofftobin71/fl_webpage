@@ -1,4 +1,4 @@
-<section class="image-section{{ (' bg-alt' | safe) if section.alternate_background_color }}" {{ (' style="padding:0"' | safe) if section.no_padding }}>
+<section class="image-section{{ (' bg-alt' | safe) if section.alternate_background_color }}" {{ (' style="--section-padding:0"' | safe) if section.no_padding }}>
   <div class="wrapper{{ ' text-wrapper' if section.width == 'Paragraph' }}{{ ' page-wrapper' if section.width == 'Extra Wide' }}{{ ' no-wrapper' if section.width == 'Full' }}">
     {% set image_id = section.image | stripVersion %}
     {% set image_info = image_id | imgInfo %}
