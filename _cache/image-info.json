@@ -1,5 +1,35 @@
 [
   {
+    "asset_id": "a3788d79906f388cb280d8b8ffb3acb3",
+    "public_id": "IMG_8646",
+    "folder": "",
+    "filename": "IMG_8646",
+    "format": "heic",
+    "version": 1624565959,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-24T20:19:19+00:00",
+    "uploaded_at": "2021-06-24T20:19:19+00:00",
+    "bytes": 446515,
+    "backup_bytes": 0,
+    "width": 2500,
+    "height": 3333,
+    "aspect_ratio": 0.75008,
+    "pixels": 8332500,
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1624565959/IMG_8646.heic",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1624565959/IMG_8646.heic",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "b0ea84966a04c975a276d72d65b54257",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "01bfadeead019395f8d63f0553f8fc79",
     "public_id": "instagram/floriade_wellington_18118558684222752",
     "folder": "instagram",
