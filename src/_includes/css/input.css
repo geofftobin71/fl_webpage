@@ -11,17 +11,21 @@
   }
 }
 
+:root {
+  --input-bg:#F0F0F0;
+}
+
 .input {
   width:100%;
   max-width:100%;
   font-size:16px;
   font-family:var(--font-family-base);
   padding:0.25em 0.5em 0.15em;
-  background-color:#F0F0F0;
+  background-color:var(--input-bg);
   color:var(--color-dark);
-  border:2px solid var(--button-border);
+  border:1px solid var(--color-shade2);
   border-radius:var(--radius);
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15);
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15); */
 }
 
 .input:not(textarea) {
@@ -47,7 +51,8 @@
 .input:focus {
   background-color:var(--color-light);
   outline:2px solid transparent;
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg);
+  box-shadow:0 0 0 2px var(--button-fg);
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg); */
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -85,13 +90,15 @@ input:-webkit-autofill:focus {
   padding:0.25em 0.5em 0.15em;
   background-color:var(--color-autofill);
   color:var(--color-dark);
-  border:2px solid var(--button-border);
+  border:1px solid var(--color-shade2);
   border-radius:var(--radius);
   -webkit-text-fill-color:var(--color-dark);
   transition:background-color 5000s ease-in-out 0s;
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0px 1000px var(--color-autofill) inset;
+  box-shadow:0 0 0px 1000px var(--color-autofill) inset;
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0px 1000px var(--color-autofill) inset; */
 }
 
 input:-webkit-autofill:focus {
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg), 0 0 0px 1000px var(--color-autofill) inset;
+  box-shadow:0 0 0 2px var(--button-fg), 0 0 0px 1000px var(--color-autofill) inset;
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg), 0 0 0px 1000px var(--color-autofill) inset; */
 }

@@ -26,11 +26,11 @@
   --{{ token | hyphenate }}:{{ value }};
 {%- endfor %}
 
-  --button-bg:#00000020;
-  --button-fg:var(--color-shade4);
+  --button-bg:rgba(255,255,255,0.5);
+  --button-fg:var(--color-primary);
   --button-border:var(--color-shade2);
-  --button-hover-bg:#FFFFFF20;
-  --button-hover-fg:var(--color-light);
+  --button-hover-bg:var(--color-shade3);
+  --button-hover-fg:var(--color-alt);
 
   --radius:0.4rem;
   --button-radius:0.5rem;
@@ -87,7 +87,7 @@ button.button {
   color:var(--button-fg);
   border:1.5px solid var(--button-border);
   border-radius:var(--button-radius);
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15);
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15); */
   text-align:center;
   text-transform:lowercase;
   line-height:1;
@@ -113,7 +113,7 @@ button.button:not(.icon-button) {
 a.button:active,
 button.button:active {
   transform:scale(0.95);
-  box-shadow:0 4px 8px rgba(0, 0, 0, 0.3);
+  /* box-shadow:0 4px 8px rgba(0, 0, 0, 0.3); */
 }
 
 a {
@@ -123,7 +123,8 @@ a {
 a:focus,
 button:focus {
   outline:2px solid transparent;
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
+  box-shadow:0 0 0 2px currentcolor;
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor; */
   border-radius:4px;
 }
 
@@ -136,7 +137,8 @@ a.nofocus:focus,
 a.button:focus,
 button.button:focus {
   outline:2px solid transparent;
-  box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor;
+  box-shadow:0 0 0 2px currentcolor;
+  /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor; */
 }
 
 a.button[disabled], a.button[disabled]:hover, a.button[disabled]:focus, a.button[disabled]:active,

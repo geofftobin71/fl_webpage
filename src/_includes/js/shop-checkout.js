@@ -146,17 +146,15 @@ async function displayCheckout() {
         fontSize: "16px",
         lineHeight: "2em",
         color: "#333333",
-        backgroundColor: "#CDDAD5",
+        backgroundColor: "#F0F0F0",
         ":focus": {
-          backgroundColor: "#CDDAD5",
+          backgroundColor: "#FAFAFA",
         },
         ":-webkit-autofill": {
-          color: "#333333",
           backgroundColor: "#CDDAD5",
         },
         "::placeholder": {
-          fontFamily: "Kollektif, sans-serif",
-          color: "#818D89",
+          color: "#777",
         },
       },
     }
