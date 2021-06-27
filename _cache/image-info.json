@@ -1,5 +1,39 @@
 [
   {
+    "asset_id": "dd7258de30141c4af181dceb903c9d77",
+    "public_id": "instagram/floriade_wellington_18118696942229909",
+    "folder": "instagram",
+    "filename": "floriade_wellington_18118696942229909",
+    "format": "jpg",
+    "version": 1624752482,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-27T00:08:02+00:00",
+    "uploaded_at": "2021-06-27T00:08:02+00:00",
+    "bytes": 369022,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "Another%20gorgeous%20delivery%20today.",
+      "timestamp": "2021-06-26T02:29:26+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1624752482/instagram/floriade_wellington_18118696942229909.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1624752482/instagram/floriade_wellington_18118696942229909.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "d5a76516dc357b8eb91d610e5b6a014f",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "a3788d79906f388cb280d8b8ffb3acb3",
     "public_id": "IMG_8646",
     "folder": "",
