@@ -33,14 +33,6 @@ img, picture, figure, video {
   }
 }
 
-strong {
-  color:var(--color-shade2);
-  font-family:var(--font-family-alt);
-  font-size:133%;
-  display:inline;
-  line-height:1;
-}
-
 blockquote {
   font-family:var(--font-family-base);
   background-color:var(--color-alt);
@@ -705,6 +697,7 @@ section + .checkerboard {
 .aspect16x9 { --n:9; --d:16; }
 .aspect4x3 { --n:3; --d:4; }
 .aspect3x2 { --n:2; --d:3; }
+.aspect4x1 { --n:1; --d:4; }
 .aspect3x1 { --n:1; --d:3; }
 .aspect2x1 { --n:1; --d:2; }
 .aspect1x1 { --n:1; --d:1; }

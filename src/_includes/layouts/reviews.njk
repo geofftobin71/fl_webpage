@@ -15,9 +15,6 @@
     transform: translateY(100px);
     opacity: 0;
   }
-  #reviews img {
-    filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.3)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
-  }
   {% endset %}
 
   <style>
@@ -31,23 +28,25 @@
   {% set divider_sizes = [ 430, 294, 186, 179, 288 ] %}
   <section>
     <div class="horizontal center"><a href="{{ site.google_review }}" class="button" role="button" target="_blank" rel="noopener">Leave a Review</a></div>
-    <div id="reviews" class="wrapper">
+    <div id="reviews" style="--section-padding:2em">
       <ul class="vertical center">
+        {% set ic = 0 %}
         {% for item in reviews | shuffle -%}
-          <li class="review">
+          <li class="review width100">
             <blockquote class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
               <p>{{ item.review }}</p>
               <cite>{{ item.name }}</cite>
             </blockquote>
           </li>
-          <figure class="width100" style="max-width:{{ divider_sizes[loop.index0 % 5] }}px">
-            <img src="/images/floral-ornament-0{{ loop.index0 % 5 + 1 }}.svg" alt="floral ornament" loading="eager" />
-          </figure>
+          {% ifAsync loop.index % 5 == 0 %}
+            {% set section = { image:images[ic], width:'Full', aspect:'4x1', no_padding:true } %}
+            {% include "partials/image-section.njk" %}
+            {% set ic = (ic + 1) % (images | length) %}
+          {% endif %}
         {% endfor -%}
       </ul>
     </div>
   </section>
-  <p class="caption text-center" style="margin-bottom:2rem"><a href='https://www.freepik.com/vectors/flower'>Flower vectors created by freepik - www.freepik.com</a></p>
   </main>
   {% include "partials/footer.njk" %}
 {% endblock %}
