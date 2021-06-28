@@ -1,25 +1,27 @@
 {# ----- Instagram Thumbnails ----- #}
 
 {% set instagram_images = instagram_gallery | sortISO8601 | reverse | head(12) %}
-
-<section class="wrapper" style="--section-space:2em">
-  <h2 class="heading text-center">Instagram</h2>
-  <div class="horizontal center"><a href="{{ site.instagram }}" class="button" role="button" target="_blank" rel="noopener">Follow us</a></div>
-  <div>
-    <ul class="auto-grid" style="--auto-grid-min-size:220px">
-      {% for item in instagram_images -%}
-        <li class="aspect aspect1x1 round shadow">
-          <figure>
-            {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto,e_blur:100/" + (item.public_id | stripVersion) %}
-            {% set lqip_data = lqip_path | imgLqip %}
-            {% set thumbnail_path = site.cloudinary_url + "/c_fill,w_450,h_450,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
-            {% set image_path = site.cloudinary_url + "/c_fill,w_1440,h_1440,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
-            <noscript><a href="{{ image_path }}" height="100%"><img src="{{ thumbnail_path }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
-            <img data-src="{{ thumbnail_path }}" src="{{ site.transgif }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
-          </figure>
-        </li>
-      {% endfor %}
-    </ul>
+<style>#instagram-grid{--auto-grid-min-size:210px;}@media screen and (min-width:750px){ #instagram-grid{grid-template-columns:1fr 1fr 1fr;} }@media screen and (min-width:950px) and (orientation:landscape){ #instagram-grid{grid-template-columns:1fr 1fr 1fr 1fr;} }@media screen and (min-width:1400px){ #instagram-grid{grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;} }</style>
+<section>
+  <div class="wrapper page-wrapper flow" style="--flow-space:2em">
+    <h2 class="heading text-center">Instagram</h2>
+    <div class="horizontal center"><a href="{{ site.instagram }}" class="button" role="button" target="_blank" rel="noopener">Follow us</a></div>
+    <div>
+      <ul id="instagram-grid" class="auto-grid">
+        {% for item in instagram_images -%}
+          <li class="aspect aspect1x1 round shadow">
+            <figure>
+              {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto,e_blur:100/" + (item.public_id | stripVersion) %}
+              {% set lqip_data = lqip_path | imgLqip %}
+              {% set thumbnail_path = site.cloudinary_url + "/c_fill,w_450,h_450,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
+              {% set image_path = site.cloudinary_url + "/c_fill,w_1440,h_1440,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
+              <noscript><a href="{{ image_path }}" height="100%"><img src="{{ thumbnail_path }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
+              <img data-src="{{ thumbnail_path }}" src="{{ site.transgif }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
+            </figure>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </section>
 

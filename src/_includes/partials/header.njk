@@ -1,4 +1,4 @@
-<header id="header" class="header shadow">
+<header id="header" class="header">
   <figure class="background" style="--brightness:{{ header_brightness or '66' }}%">
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     {% set image_info = image_id | imgInfo %}

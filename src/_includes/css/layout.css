@@ -40,7 +40,7 @@ blockquote {
   border:2px solid var(--color-shade3);
   border-radius:var(--box-border-radius, 0.4rem);
   border-width:var(--box-border-width, 1px);
-  box-shadow:0 10px 20px rgba(0, 0, 0, 0.15);
+  /* box-shadow:0 10px 20px rgba(0, 0, 0, 0.15); */
   text-align:center;
 }
 
@@ -165,7 +165,7 @@ blockquote cite:before {
 }
 
 .shadow {
-  box-shadow:0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow:0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .text-shadow {

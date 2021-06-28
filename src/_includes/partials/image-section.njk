@@ -19,7 +19,7 @@
       {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
       {%- endfor -%}
     {% endset %}
-    <figure class="aspect {{ aspect | safe }} shadow" style="background-image:url({{ lqip_data }}){{ native_aspect | safe }}">
+    <figure class="aspect {{ aspect | safe }}" style="background-image:url({{ lqip_data }}){{ native_aspect | safe }}">
       <noscript><img src="{{ src }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></noscript>
       {%- set sizes = '100vw' -%}
       {%- if section.width == 'Full' -%}

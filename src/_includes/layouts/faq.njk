@@ -95,7 +95,7 @@
     <div class="wrapper">
       <ul class="faq vertical flow center" style="--flow-space:var(--step-2)">
         {% for item in faq -%}
-          <li class="round-box border-shade3 bg-alt text-center wrapper text-wrapper shadow">
+          <li class="round-box border-shade3 bg-alt text-center wrapper text-wrapper">
             <input id="faq_{{ loop.index }}" type="checkbox">
             <h3 class="heading"><label for="faq_{{ loop.index }}">{{ item.question }}</label></h3>
             <p>{{ item.answer }}</p>
