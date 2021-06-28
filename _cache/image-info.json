@@ -1,5 +1,39 @@
 [
   {
+    "asset_id": "7d8d3b5e2e27ea0abe985365dee2716a",
+    "public_id": "instagram/floriade_wellington_17846930678612798",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17846930678612798",
+    "format": "jpg",
+    "version": 1624835866,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-27T23:17:46+00:00",
+    "uploaded_at": "2021-06-27T23:17:46+00:00",
+    "bytes": 354973,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1440,
+    "aspect_ratio": 1,
+    "pixels": 2073600,
+    "context": {
+      "caption": "The%20ceremony%20florals%20had%20to%20be%20relocated%20inside%20yesterday%20for%20Emma%20and%20Andy%E2%80%99s%20wedding%20at%20Boomrock.%20The%20weather%20was%20terrible%20but%20it%20was%20still%20cosy%20undercover%20with%20the%20fire%20lit%2C%20heaters%20going%20and%20the%20roar%20of%20the%20ocean.%20Nick%20and%20Chloe%20battened%20down%20the%20hatches%20and%20mopped%20and%20dried%20the%20floors%20splendidly.%20Team%20efforts%20come%20together%20whatever%20the%20weather!%20And%20this%20is%20Wellington%20so%20we%20know%20that%20the%20weather%20likes%20to%20keep%20us%20guessing.%20%0A%40boomrocklodge",
+      "timestamp": "2021-06-27T01:18:37+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1624835866/instagram/floriade_wellington_17846930678612798.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1624835866/instagram/floriade_wellington_17846930678612798.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "95677832d09d8f0cb349c236269a2814",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "dd7258de30141c4af181dceb903c9d77",
     "public_id": "instagram/floriade_wellington_18118696942229909",
     "folder": "instagram",
@@ -25,7 +59,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "d5a76516dc357b8eb91d610e5b6a014f",
     "created_by": {
       "access_key": "389122341319441"
     },
