@@ -26,11 +26,12 @@
   --{{ token | hyphenate }}:{{ value }};
 {%- endfor %}
 
-  --button-bg:var(--color-shade1);
-  --button-fg:var(--color-light);
-  --button-border:var(--color-primary);
+  --button-bg:var(--color-button);
+  --button-fg:white;
+  --button-border:var(--color-shade1);
   --button-hover-bg:var(--color-shade2);
-  --button-hover-fg:var(--color-alt);
+  --button-hover-fg:var(--color-light);
+  --button-hover-border:var(--color-shade2);
 
   --radius:0.4rem;
   --button-radius:0.5rem;
@@ -85,7 +86,7 @@ button.button {
   justify-content:center;
   background-color:var(--button-bg);
   color:var(--button-fg);
-  border:1.5px solid var(--button-border);
+  border:2px solid var(--button-border);
   border-radius:var(--button-radius);
   /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15); */
   text-align:center;
@@ -107,6 +108,7 @@ button.button:not(.icon-button) {
   button.button:hover {
     --button-bg:var(--button-hover-bg);
     --button-fg:var(--button-hover-fg);
+    --button-border:var(--button-hover-border);
   }
 }
 

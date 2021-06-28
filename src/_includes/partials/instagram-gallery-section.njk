@@ -2,6 +2,7 @@
 
 {% set instagram_images = instagram_gallery | sortISO8601 | reverse | head(12) %}
 <style>#instagram-grid{--auto-grid-min-size:210px;}@media screen and (min-width:750px){ #instagram-grid{grid-template-columns:1fr 1fr 1fr;} }@media screen and (min-width:950px) and (orientation:landscape){ #instagram-grid{grid-template-columns:1fr 1fr 1fr 1fr;} }@media screen and (min-width:1400px){ #instagram-grid{grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;} }</style>
+<hr>
 <section>
   <div class="wrapper page-wrapper flow" style="--flow-space:2em">
     <h2 class="heading text-center">Instagram</h2>

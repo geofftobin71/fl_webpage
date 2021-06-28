@@ -29,10 +29,35 @@
       cursor: pointer;
     }
     .stepper-controls nav span {
-      width: var(--step-1);
+      width: var(--step-2);
     }
-    .stepper-controls nav svg {
-      filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+    #shop-product-panel {
+      margin:0 auto;
+    }
+    @media screen and (min-width:750px) and (orientation:portrait) {
+      #shop-product-panel {
+        border:1px solid var(--color-shade3);
+        border-radius:var(--radius);
+        margin:2em auto;
+      }
+      .stepper-controls nav span {
+        width: var(--step-1);
+      }
+    }
+    @media screen and (min-width:950px) {
+      #shop-product-panel {
+        border:1px solid var(--color-shade3);
+        border-radius:var(--radius);
+        margin:2em auto;
+      }
+      .stepper-controls nav span {
+        width: var(--step-1);
+      }
+    }
+    @media screen and (max-width:350px) {
+      .radio-label {
+        padding: 0.4em;
+      }
     }
   {% endset %}
 
@@ -95,7 +120,7 @@
       {# <p class="font-size--1">{{ product.page_description }}</p> #}
     </div>
     <div class="content">
-      <article style="padding:1em;margin:auto">
+      <article id="shop-product-panel">
         <div id="parents-in-cart" class="vertical flow">
           <h2 class="heading text-center">{{ product.name }}</h2>
           {% if product.price %}
