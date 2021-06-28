@@ -4,7 +4,7 @@
   {% include "partials/header.njk" %}
 <style>.split{display:grid;align-items:start;grid-template-columns:1fr 1fr;}#contact-panel{background:var(--color-light);}#shop-hours-panel{background:var(--color-alt);}@media screen and (max-width:500px){.split{grid-template-columns:1fr;}#contact-panel{background:var(--color-alt);}#shop-hours-panel{background:var(--color-light);}}.contact-form-section{width:100%;}</style>
 <main>
-<div class="split" style="--padding:var(--step-2)">
+<div class="split" style="--padding:var(--step-3)">
   <div id="contact-panel" class="width100">
     <div class="width100 vertical center flow" style="padding:var(--padding);max-width:750px;margin-left:auto">
       <h2 class="heading text-center">Contact Us</h2>
@@ -24,14 +24,13 @@
     </div>
   </div>
   <div id="shop-hours-panel" class="width100 height100">
-    <div class="width100 height100 vertical center flow" style="padding:var(--padding);max-width:750px;margin-right:auto">
-      <h2 class="heading text-center">Shop Hours</h2>
+    <div class="width100 height100 vertical center flow color-primary" style="padding:var(--padding);max-width:750px;margin-right:auto">
+      <h2 class="text-lowercase text-center color-shade1">Shop Hours</h2>
       {% include "partials/shop-hours.njk" %}
-      <br><br>
     </div>
   </div>
 </div>
-<div class="split" style="--padding:var(--step-2)">
+<div class="split" style="--padding:var(--step-3)">
   <div id="contact-form-panel" class="bg-alt width100 height100">
   <div class="bg-alt width100 height100" style="padding:var(--padding);max-width:750px;margin-left:auto">
     {% set section = { heading: "Send us a Message" } %}

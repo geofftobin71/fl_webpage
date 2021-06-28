@@ -1,8 +1,4 @@
 -- FIX --
-Fixed colors in shop-checkout.js, landing-page, base.njk, reset.njk, theme.njk
-max-height only in landscape ??
-Lightbox lqip size mismatch
-check --measure with new font
 Home Page
 Image section -> images slideshow
 Enable and TEST shop code
@@ -14,6 +10,7 @@ GITHUB actions
 More descriptive aria-labels for buttons (Read More -> Continue Reading ARTICLE NAME)
 
 -- FUTURE --
+Lightbox lqip size mismatch
 Smaller video on mobile => Cloudinary
 Landing page template
 Product auto expiry date
