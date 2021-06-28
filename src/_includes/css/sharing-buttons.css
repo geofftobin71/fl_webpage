@@ -1,8 +1,3 @@
-.link-light a:link { color: var(--color-shade4); }
-.link-light a:visited { color: var(--color-shade4); }
-.link-light a:hover { color: var(--color-light); }
-.link-light a:active { color: var(--color-light); }
-
 a.resp-sharing-button-link {
   text-decoration: none;
   color: #fff;

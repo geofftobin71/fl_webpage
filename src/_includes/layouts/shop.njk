@@ -4,14 +4,16 @@
   {% include "partials/header.njk" %}
   {% include "partials/javascript-warning.njk" %}
   <main>
+  <div class="bg-alt">
   {% include "partials/view-cart-button.njk" %}
+  </div>
   {% asyncEach category in valid_shop_categories %}
     {% set product_list = valid_shop_products | filterByCategory(category.name) %}
     {% set category_images = [] %}
     {% for product in product_list %}
       {% set category_images = category_images.concat(product.images) %}
     {% endfor %}
-    {% set section = { images: (category_images | shuffle), text: '## ' + category.name + '\n' + category.description, button: { text: 'Shop ' + (category.name | lower), link: ('/shop/categories/' + (category.name) | slug) | url, new_page: false } } %}
+    {% set section = { alternate_background_color: (loop.index0 % 2) == 1, images: (category_images | shuffle), text: '## ' + category.name + '\n' + category.description, button: { text: 'Shop ' + (category.name | lower), link: ('/shop/categories/' + (category.name) | slug) | url, new_page: false } } %}
     {% include "partials/checkerboard-section.njk" %}
   {% endeach %}
   <script>document.addEventListener("DOMContentLoaded",function(){displayShop();},false);</script>

@@ -46,7 +46,7 @@
   <main>
   {% set product_images_count = product.images | length %}
   {% set anim_fade_time = 1 %}
-  {% set anim_show_time = 4 %}
+  {% set anim_show_time = 3 %}
   {% set anim_duration = (anim_fade_time + anim_show_time) * product_images_count %}
   {% set one_second = 100.0 / anim_duration %}
   {{ ( '<style>@keyframes ' + (product.name | slug) + '-fade{0%{opacity:0;}' + (anim_fade_time * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time) * one_second) + '%{opacity:1;}' + ((anim_fade_time + anim_show_time + anim_fade_time) * one_second) + '%{opacity:0;}100%{opacity:0;}}</style>' ) | safe if product_images_count > 1 }}
@@ -65,14 +65,14 @@
 
   {% include "partials/javascript-warning.njk" %}
 
+  {% include "partials/view-cart-button.njk" %}
+
   <section class="text-section bg-alt">
     <article class="wrapper text-wrapper text-center">
       {% markdown product.page_description %}
     </article>
   </section>
   <hr>
-
-  {% include "partials/view-cart-button.njk" %}
 
   <div id="shop" class="checkerboard">
     <div>
@@ -161,7 +161,10 @@
     </div>
   </div>
 
+  <div class="bg-alt">
   {% include "partials/pagination.njk" %}
+  </div>
+  <hr><br><br>
 
   <script>document.addEventListener("DOMContentLoaded",function(){displayShopProduct("{{product.id}}");},false);</script>
   </main>

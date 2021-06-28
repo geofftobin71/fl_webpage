@@ -1,7 +1,7 @@
 <div class="checkerboard{{ ' bg-alt' if (section.alternate_background_color) }}">
   {% set section_images_count = section.images | length %}
-  {% set anim_fade_time = 1.5 %}
-  {% set anim_show_time = 5 %}
+  {% set anim_fade_time = 1 %}
+  {% set anim_show_time = 3 %}
   {% set anim_duration = (anim_fade_time + anim_show_time) * section_images_count %}
   {% set one_second = 100.0 / anim_duration %}
   {% set section_name = 'fade-' + 8 | uniqueId %}

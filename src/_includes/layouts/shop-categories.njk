@@ -16,13 +16,13 @@
   {% include "partials/header.njk" %}
   {% include "partials/javascript-warning.njk" %}
   <main>
+  {% include "partials/view-cart-button.njk" %}
   <section class="text-section bg-alt">
     <article class="wrapper text-wrapper text-center">
       {% markdown category.page_description %}
     </article>
   </section>
   <hr>
-  {% include "partials/view-cart-button.njk" %}
   {% set product_list = valid_shop_products | filterByCategory(category.name) %}
   {% asyncEach product in product_list %}
   {% set valid_variants = product.variants | validProductVariants %}
@@ -36,7 +36,7 @@
     {% set price = product.price | formatMoney %}
   {% endif %}
   {% set button_text = 'Buy Now' %}
-  {% set section = { images: (product.images | shuffle), text: '<h2>' + product.name + '</h2><h2 id="' + product.id + '" class="color-shade4 product-price" style="margin-top:0.3em">' + price + '</h2><p>' + product.description + '</p>', button: { text: (button_text | lower), link: ('/shop/products/' + (product.name) | slug) | url, new_page: false } } %}
+  {% set section = { alternate_background_color: (loop.index0 % 2) == 1, images: (product.images | shuffle), text: '<h2>' + product.name + '</h2><h2 id="' + product.id + '" class="color-shade1 product-price" style="margin-top:0.3em">' + price + '</h2><p>' + product.description + '</p>', button: { text: (button_text | lower), link: ('/shop/products/' + (product.name) | slug) | url, new_page: false } } %}
   {% include "partials/checkerboard-section.njk" %}
   {% endeach %}
 
@@ -44,7 +44,10 @@
   {% set gallery_folder = category.gallery_folder %}
   {% include "partials/gallery-section.njk" %}
 
+  <div class="bg-alt">
   {% include "partials/pagination.njk" %}
+  </div>
+  <hr><br>
 
   <script>document.addEventListener("DOMContentLoaded",function(){displayShopCategory();},false);</script>
   </main>
