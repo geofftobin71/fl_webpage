@@ -9,14 +9,14 @@
     <div>
       <ul id="instagram-grid" class="auto-grid">
         {% for item in instagram_images -%}
-          <li class="aspect aspect1x1 round shadow">
+          <li class="aspect aspect1x1 hover-scale">
             <figure>
               {% set lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto,e_blur:100/" + (item.public_id | stripVersion) %}
               {% set lqip_data = lqip_path | imgLqip %}
               {% set thumbnail_path = site.cloudinary_url + "/c_fill,w_450,h_450,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
               {% set image_path = site.cloudinary_url + "/c_fill,w_1440,h_1440,q_auto,f_auto,g_auto/" + (item.public_id | stripVersion) %}
-              <noscript><a href="{{ image_path }}" height="100%"><img src="{{ thumbnail_path }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
-              <img data-src="{{ thumbnail_path }}" src="{{ site.transgif }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
+              <noscript><a href="{{ image_path }}" height="100%"><img class="round border-alt border2" src="{{ thumbnail_path }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a></noscript>
+              <img class="round border-alt border2" data-src="{{ thumbnail_path }}" src="{{ site.transgif }}" width="450" height="450" alt="{{ item.context.caption | urldecode }}" onclick="openLightbox('#item{{ loop.index }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
             </figure>
           </li>
         {% endfor %}
