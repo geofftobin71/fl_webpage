@@ -94,6 +94,10 @@ fields:
     name: disabled
     label: Disabled
     description: Disabled Products won’t appear on the Shop page.
+  - type: boolean
+    name: columns
+    label: Columns
+    description: Stack the variant choices in columns
   config:
     labelField: name
 pages:

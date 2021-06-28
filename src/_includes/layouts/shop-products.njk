@@ -133,7 +133,7 @@
           {% if valid_variants | length %}
             <h3 class="text-lowercase text-center">{{ variant_heading }}</h3>
 
-            <div class="radio-label-wrapper">
+            <div class="radio-label-wrapper" {{ ' style="flex-direction:column"' | safe if product.columns }}>
               {% for variant in valid_variants %}
                 <input id="{{ variant.id }}" name="variant-id" type="radio" value="{{ variant.id }}" onclick="selectVariant('{{ variant.id }}')">
                 <label class="radio-label text-center round" for="{{ variant.id }}" x-apple-data-detectors="false">{{ variant.name }}

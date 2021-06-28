@@ -380,6 +380,7 @@
       }
     ],
     "disabled": false,
+    "columns": true,
     "id": "af2dcf05",
     "stock": null
   }
