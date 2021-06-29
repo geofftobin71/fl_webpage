@@ -43,7 +43,12 @@
     }
     @media screen and (max-width:350px) {
       .radio-label {
-        padding: 0.4em;
+        padding: 0.35em;
+      }
+    }
+    @media screen and (min-width:351px) and (max-width:400px) {
+      .radio-label {
+        padding: 0.45em;
       }
     }
   {% endset %}
@@ -107,7 +112,7 @@
       {# <p class="font-size--1">{{ product.page_description }}</p> #}
     </div>
     <div class="content">
-      <article>
+      <article style="margin:0 auto">
         <div id="parents-in-cart" class="vertical flow">
           <h2 class="heading text-center">{{ product.name }}</h2>
           {% if product.price %}
