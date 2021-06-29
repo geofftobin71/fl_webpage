@@ -166,7 +166,7 @@
 
         <div id="no-parents-in-cart" class="vertical flow" style="display:none">
           <h2 class="heading text-center">{{ product.name }}</h2>
-          {% if product.price %}<p class="font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
+          {% if product.price %}<p class="color-shade1 font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
           <hr />
           <p class="text-center" style="margin-left:auto;margin-right:auto;max-width:45ch">This product can only be purchased as an add&#8209;on to {{ product | listParents }}.</p>
           <div class="horizontal center middle">
