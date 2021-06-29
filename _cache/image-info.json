@@ -1,5 +1,39 @@
 [
   {
+    "asset_id": "f6d8bce437324af2ec616dd41772f7e9",
+    "public_id": "instagram/floriade_wellington_17874327596398720",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17874327596398720",
+    "format": "jpg",
+    "version": 1624935239,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-29T02:53:59+00:00",
+    "uploaded_at": "2021-06-29T02:53:59+00:00",
+    "bytes": 317363,
+    "backup_bytes": 0,
+    "width": 1440,
+    "height": 1439,
+    "aspect_ratio": 1.00069,
+    "pixels": 2072160,
+    "context": {
+      "caption": "Wedding%20bouquet%20for%20Emma%20that%20incorporates%20NZ%20heritage%20with%20M%C4%81nuka%20and%20Scots%20heritage%20with%20thistle.%20This%20bouquet%20shows%20that%20you%20can%20combine%20fresh%20and%20dried%20varieties%20for%20texture%2C%20form%20and%20fragrance.%20We%20design%20and%20create%20our%20wedding%20bouquets%20individually%20every%20single%20time.%20No%20carbon%20copies%20available!",
+      "timestamp": "2021-06-29T00:52:54+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1624935239/instagram/floriade_wellington_17874327596398720.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1624935239/instagram/floriade_wellington_17874327596398720.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "f805ee1f34b64b667f1e6939371b5aac",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "66d18510674b86ccc24f83a7894b5001",
     "public_id": "instagram/floriade_wellington_17915949025799851",
     "folder": "instagram",
