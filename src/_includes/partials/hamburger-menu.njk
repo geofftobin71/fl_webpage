@@ -8,8 +8,8 @@
   </nav>
   <div class="content vertical center">
     <div class="bg-alt vertical center width100" style="padding:1.5em">
-      <figure class="logo">
-        <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" style="margin:0 auto" loading="eager" decoding="async" />
+      <figure class="bg-shade2" style="border-radius:50%;width:150px;height:150px;display:grid;padding:0.25rem">
+        <img src="{{ '/images/floriade-logo.png' | url }}" width="320" height="269" alt="Floriade logo" style="margin:auto" loading="eager" decoding="async" />
       </figure>
       <div>
       {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}

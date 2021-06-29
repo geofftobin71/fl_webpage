@@ -103,7 +103,7 @@
 #menu .content li {
   list-style: inside disc;
   line-height: 2;
-  color: rgba(255,255,255,0.1);
+  color: var(--color-shade3);
 }
 
 /*
