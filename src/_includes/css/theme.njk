@@ -32,6 +32,7 @@
   --button-hover-bg:var(--color-shade2);
   --button-hover-fg:var(--color-light);
   --button-hover-border:var(--color-shade2);
+  --button-focus:var(--color-primary);
 
   --radius:0.4rem;
   --button-radius:0.5rem;
@@ -130,6 +131,10 @@ button:focus {
   border-radius:4px;
 }
 
+button:focus {
+  box-shadow:0 0 0 2px var(--button-focus);
+}
+
 a.nofocus:focus,
 .logo a:focus {
   box-shadow:none;
@@ -139,7 +144,7 @@ a.nofocus:focus,
 a.button:focus,
 button.button:focus {
   outline:2px solid transparent;
-  box-shadow:0 0 0 2px currentcolor;
+  box-shadow:0 0 0 2px var(--button-focus);
   /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px currentcolor; */
 }
 

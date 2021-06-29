@@ -51,7 +51,7 @@
 .input:focus {
   background-color:var(--color-light);
   outline:2px solid transparent;
-  box-shadow:0 0 0 2px var(--button-fg);
+  box-shadow:0 0 0 2px var(--button-focus);
   /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg); */
 }
 
@@ -99,6 +99,6 @@ input:-webkit-autofill:focus {
 }
 
 input:-webkit-autofill:focus {
-  box-shadow:0 0 0 2px var(--button-fg), 0 0 0px 1000px var(--color-autofill) inset;
+  box-shadow:0 0 0 2px var(--button-focus), 0 0 0px 1000px var(--color-autofill) inset;
   /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15), 0 0 0 2px var(--button-fg), 0 0 0px 1000px var(--color-autofill) inset; */
 }
