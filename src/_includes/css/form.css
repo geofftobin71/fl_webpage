@@ -80,7 +80,7 @@ input[type="radio"]:focus + .radio-label {
 
 input[type="radio"]:checked + .radio-label {
   color:white;
-  background-color:var(--color-shade3);
+  background-color:var(--color-primary);
   text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
 }
 
@@ -181,4 +181,12 @@ option[disabled] {
 
 option[default] {
   display:none;
+}
+
+.shop-panel {
+  color:var(--color-primary);
+  background:var(--color-alt);
+  padding:1em;
+  border:1px solid var(--color-shade3);
+  border-radius:var(--button-radius);
 }

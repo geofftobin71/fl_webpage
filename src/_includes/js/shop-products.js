@@ -84,6 +84,7 @@ function showProductStock(product_id) {
             if(total_stock_count === 0) {
               document.getElementById("number-group").style.display = "none";
               document.getElementById("button-group").style.display = "none";
+              document.getElementById("product-panel").style.display = "none";
               document.getElementById("product-stock-count").innerText = "( SOLD OUT )";
               document.getElementById("product-stock-count").style.display = "block";
             }

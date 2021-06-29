@@ -18,7 +18,7 @@
       padding-right:0;
     }
     #items > * + *, .top-border {
-      border-top:1px solid rgba(255, 255, 255, 0.1);
+      border-top:1px solid lightgrey;
     }
     #items > *:nth-child(2) {
       border-top:none;
@@ -64,12 +64,13 @@
       </div>
 
       <div id="cart-form" class="flow width100" style="display:none;--flow-space:2em">
-        <hr />
-        <div id="items" class="font-secondary"></div>
-        <hr />
-        <div id="summary" class="font-secondary"></div>
-        <hr />
-        <p id="delivery-message" class="text-center text-lowercase font-secondary color-shade3">Delivery will be calculated at Checkout</p>
+        <h2 class="heading text-center">Your Cart</h2>
+        <div class="shop-panel" style="margin-top:1em">
+          <div id="items" class="font-secondary"></div>
+          <hr />
+          <div id="summary" class="font-secondary"></div>
+        </div>
+        <p id="delivery-message" class="text-center text-lowercase font-secondary color-shade2">Delivery will be calculated at Checkout</p>
 
         <div class="buttons swap">
           <a class="button" role="button" href="/shop/" style="min-width:13rem">

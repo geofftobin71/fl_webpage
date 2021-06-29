@@ -31,25 +31,12 @@
     .stepper-controls nav span {
       width: var(--step-2);
     }
-    #shop-product-panel {
-      margin:0 auto;
-    }
     @media screen and (min-width:750px) and (orientation:portrait) {
-      #shop-product-panel {
-        border:1px solid var(--color-shade3);
-        border-radius:var(--radius);
-        margin:2em auto;
-      }
       .stepper-controls nav span {
         width: var(--step-1);
       }
     }
     @media screen and (min-width:950px) {
-      #shop-product-panel {
-        border:1px solid var(--color-shade3);
-        border-radius:var(--radius);
-        margin:2em auto;
-      }
       .stepper-controls nav span {
         width: var(--step-1);
       }
@@ -120,14 +107,15 @@
       {# <p class="font-size--1">{{ product.page_description }}</p> #}
     </div>
     <div class="content">
-      <article id="shop-product-panel">
+      <article>
         <div id="parents-in-cart" class="vertical flow">
           <h2 class="heading text-center">{{ product.name }}</h2>
           {% if product.price %}
-            <p class="font-size-2 font-family-alt text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>
+            <p class="color-shade1 font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>
           {% endif %}
-          <hr />
-          <p id="product-stock-count" class="color-shade3 text-center font-secondary" style="display:none"></p>
+          <p id="product-stock-count" class="color-shade1 text-center font-secondary" style="display:none"></p>
+
+          <div id="product-panel" class="shop-panel flow">
 
           {% set valid_variants = product.variants | validProductVariants %}
           {% if valid_variants | length %}
@@ -162,7 +150,7 @@
             <input id="product-count" name="product-count" type="hidden" value="1">
           {% endif %}
 
-          <hr />
+          </div>
 
           <div id="button-group" class="vertical flow center">
             <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
@@ -173,7 +161,7 @@
 
         <div id="no-parents-in-cart" class="vertical flow" style="display:none">
           <h2 class="heading text-center">{{ product.name }}</h2>
-          {% if product.price %}<p class="font-size-2 font-family-alt text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
+          {% if product.price %}<p class="font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>{% endif %}
           <hr />
           <p class="text-center" style="margin-left:auto;margin-right:auto;max-width:45ch">This product can only be purchased as an add&#8209;on to {{ product | listParents }}.</p>
           <div class="horizontal center middle">
