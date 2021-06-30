@@ -13,7 +13,7 @@
     "parents": [
 
     ],
-    "button": "Order Fresh Flowers",
+    "button": "Buy Now",
     "gallery_folder": "fresh-flowers",
     "variant_heading": "Bouquet Size",
     "image": "/v1596539312/fresh-flowers/fresh-flowers-by-floriade-00054.jpg",
@@ -34,7 +34,7 @@
     "parents": [
 
     ],
-    "button": "Order Dried Flowers",
+    "button": "Buy Now",
     "gallery_folder": "dried-flowers",
     "variant_heading": "Bouquet Size",
     "image": "/v1613593484/shop/vintage-dried-bouquet-2.jpg",
@@ -51,7 +51,7 @@
       "Fresh Flowers",
       "Dried Flowers"
     ],
-    "button": "Add Chocolate",
+    "button": "Buy Now",
     "gallery_folder": "",
     "variant_heading": "",
     "image": "/v1613194575/chocolate/chocolate-2.jpg",
@@ -72,7 +72,7 @@
     "parents": [
 
     ],
-    "button": "Book Workshop",
+    "button": "Book Now",
     "gallery_folder": "workshops",
     "variant_heading": "Date & Time",
     "image": "/v1613195720/workshops/wreath-workshop-1.jpg",

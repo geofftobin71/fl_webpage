@@ -24,20 +24,28 @@ var shop_categories = JSON.parse(fs.readFileSync('src/_data/shop_categories.json
 
 Settings.defaultZoneName = "Pacific/Auckland";
 
-markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
-  const srcfilename = tokens[idx].attrs[0][1];
-  const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
-  const public_id = srcfilename.replace('https://res.cloudinary.com/floriade/image/upload', '').replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
+function formatImage(srcfilename, title_txt, public_id, alt) {
+  let credit_name = '';
+  let credit_link = '';
+  let credit = '';
+
+  /*
+  const resources = await require("./src/_data/image_info.js");
+
+  resources.forEach(resource => {
+    if(resource.public_id === public_id) {
+      if(resource.context && resource.context["Credit Name"]) {
+        credit_name = resource.context["Credit Name"];
+      }
+    }
+  });
+  */
+
+  credit = '<footer class="color-light text-shadow font-size--1" style="position:absolute;bottom:2em;right:1em">Photo Credit ' + credit_name + '</footer>';
 
   let caption = '';
   if(title_txt) {
     caption = '<figcaption class="caption text-center" style="margin-top:0.3em">' + markdown.utils.escapeHtml(title_txt) + '</figcaption>';
-  }
-
-  let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
-
-  if(alt == ' alt=""') {
-    alt = ' alt="Flowers by Floriade"';
   }
 
   let transforms = ",c_fill,ar_1,q_auto,f_auto,g_auto:subject/";
@@ -56,8 +64,23 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 
   let lqip_path = site.cloudinary_url + "/c_fill,w_32,h_32,q_auto,f_jpg,g_auto:subject,e_blur:200/" + public_id;
 
-  return '<figure><noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" /></noscript><img class="round shadow" width="1200" height="1200"' + alt + ' src="' + site.transgif + '"' + srcset + sizes + 'data-src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" />'
-    + caption + '</figure>';
+  let result = '<figure style="position:relative"><noscript><img class="round" width="1200" height="1200"' + alt + ' src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" /></noscript><img class="round" width="1200" height="1200"' + alt + ' src="' + site.transgif + '"' + srcset + sizes + 'data-src="' + src + '" style="background-image:url(' + lqip_path + ')" loading="lazy" decoding="async" />' + caption + credit + '</figure>';
+
+  return result;
+}
+
+markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
+  const srcfilename = tokens[idx].attrs[0][1];
+  const title_txt = (tokens[idx].attrs[2]) ? tokens[idx].attrs[2][1] : null;
+  const public_id = srcfilename.replace('https://res.cloudinary.com/floriade/image/upload', '').replace(/\/v[0-9]+/, '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/^\//,'');
+
+  let alt = ' alt="' + self.renderInlineAsText(tokens, options, env) + '"';
+
+  if(alt == ' alt=""') {
+    alt = ' alt="Flowers by Floriade"';
+  }
+
+  return formatImage(srcfilename, title_txt, public_id, alt);
 }
 
 function minifyCopy(input, output) {
@@ -240,11 +263,11 @@ module.exports = (eleventyConfig) => {
     callback(null, preview);
   });
 
-  eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (id, callback) => {
+  eleventyConfig.addNunjucksAsyncFilter("imgInfo", async (public_id, callback) => {
     const resources = await require("./src/_data/image_info.js");
 
     resources.forEach(resource => {
-      if(resource.public_id === id) {
+      if(resource.public_id === public_id) {
         callback(null, resource);
       }
     });

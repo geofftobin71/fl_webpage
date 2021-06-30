@@ -78,14 +78,14 @@ blockquote p::after {
   top:0.4em;
 }
 
-blockquote cite {
+blockquote footer {
   display:block;
   font-family:var(--font-family-alt);
   color:var(--color-shade2);
   text-align:right;
 }
 
-blockquote cite:before {
+blockquote footer:before {
   content:"\2014 \2009";
 }
 

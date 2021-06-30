@@ -8492,6 +8492,8 @@
     "aspect_ratio": 1.4997,
     "pixels": 4167500,
     "context": {
+      "Credit Link": "https://floriade.co.nz",
+      "Credit Name": "Floriade",
       "alt": "Cake Flowers by Floriade"
     },
     "url": "http://res.cloudinary.com/floriade/image/upload/v1608242593/cake-flowers/cake-flowers-by-floriade-00003.jpg",
@@ -8529,6 +8531,7 @@
     "aspect_ratio": 0.66667,
     "pixels": 3375000,
     "context": {
+      "Credit Name": "Floriade",
       "alt": "Cake Flowers by Floriade"
     },
     "url": "http://res.cloudinary.com/floriade/image/upload/v1608242592/cake-flowers/cake-flowers-by-floriade-00002.jpg",

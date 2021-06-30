@@ -2,17 +2,13 @@
 Home Page
 Image section -> images slideshow
 Enable and TEST shop code
-inline onclick on Edge === scrollTo / scrollBy doesn't work on Edge => scrollIntoView
-TEST browser support
 UPDATE and TEST mailchimp autoreply emails
 TEST social sharing buttons
 GITHUB actions
-More descriptive aria-labels for buttons (Read More -> Continue Reading ARTICLE NAME)
 
 -- FUTURE --
 Lightbox lqip size mismatch
 Smaller video on mobile => Cloudinary
-Landing page template
 Product auto expiry date
 flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
 Email Floriade about this image -> php mail handler

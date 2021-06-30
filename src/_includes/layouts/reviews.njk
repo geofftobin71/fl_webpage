@@ -35,7 +35,7 @@
           <li class="review width100">
             <blockquote class="wrapper text-wrapper flow" style="--flow-space:var(--step-2)">
               <p>{{ item.review }}</p>
-              <cite>{{ item.name }}</cite>
+              <footer>{{ item.name }}</footer>
             </blockquote>
           </li>
           {% ifAsync loop.index % 5 == 0 %}

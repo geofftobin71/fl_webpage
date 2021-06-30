@@ -5,7 +5,7 @@
       <li id="review{{ loop.index }}" class="slider-item">
         <blockquote class="wrapper text-wrapper flow" style="--flow-space:var(--step-2);border:none;box-shadow:none;padding:var(--step-0)">
           <p>{{ item.review }}</p>
-          <cite>{{ item.name }}</cite>
+          <footer>{{ item.name }}</footer>
         </blockquote>
       </li>
     {% endfor -%}
