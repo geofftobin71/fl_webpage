@@ -1,7 +1,5 @@
 {% if gallery_folder %}
 <hr>
-<style>.link-light a:link{color:var(--color-alt);}.link-light a:visited{color:var(--color-alt);}.link-light a:hover{color:var(--color-light);}.link-light a:active{color:var(--color-light);}</style>
-
 <section>
   <div class="wrapper page-wrapper">
     <h2 class="heading text-right" style="margin-bottom:1em">{{ gallery_name | lower + ' gallery' }}</h2>
@@ -33,9 +31,9 @@
           {% set lqip_data = lqip_path | imgLqip %}
           <figure>
             <noscript>
-              <a href="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" class="height100"><img class="round border-alt border2" src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a>
+              <a href="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" class="height100"><img class="round border-alt border2" src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context['Credit Name'] %} - Photo credit {{ image.context['Credit Name'] }}{% endif %}" width="{{ width }}" height="{{ height }}" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" /></a>
             </noscript>
-            <img class="round border-alt border2" src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index0 }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
+            <img class="round border-alt border2" src="{{ site.transgif }}" data-src="{{ site.cloudinary_url }}/c_fill,w_{{ width }},h_{{ height }},q_auto,f_auto,g_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context['Credit Name'] %} - Photo credit {{ image.context['Credit Name'] }}{% endif %}" width="{{ width }}" height="{{ height }}" onclick="openLightbox('#item{{ loop.index0 }}')" style="background-image:url({{ lqip_data }});cursor:pointer" loading="lazy" decoding="async" />
           </figure>
         </li>
         {%- endfor %}
@@ -60,17 +58,17 @@
           {{ site.cloudinary_url }}/c_limit,w_{{ size }},h_{{ size }},q_auto,f_auto/{{ image.public_id }} {{ size }}w{{ ',' if not loop.last }}
           {%- endfor -%}
           {%- endset -%}
-          <img src="{{ site.transgif }}" style="background-image:url({{ lqip_data }});background-size:contain" data-srcset="{{ srcset }}" sizes="{{ "100vh" if image.aspect_ratio < 1 else "100vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context["Credit Name"] %} - Photo credit {{ image.context["Credit Name"] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy" decoding="async" />
+          <img src="{{ site.transgif }}" style="background-image:url({{ lqip_data }});background-size:contain" data-srcset="{{ srcset }}" sizes="{{ "100vh" if image.aspect_ratio < 1 else "100vw" }}" data-src="{{ site.cloudinary_url }}/c_limit,w_900,h_900,q_auto,f_auto/{{ image.public_id }}" alt="{{ image.context.alt or site.alt }}" title="{{ image.context.alt or site.alt }}{% if image.context['Credit Name'] %} - Photo credit {{ image.context['Credit Name'] }}{% endif %}" width="{{ image.width }}" height="{{ image.height }}" loading="lazy" decoding="async" />
           <figcaption class="wrapper text-wrapper">
             <div class="text-center text-shadow">
               <h4>{{ image.context.alt or site.alt }}</h4>
               <p class="link-light"><a href="{{ site.mailto_obf | safe }}?subject=Gallery%20Enquiry&amp;body=Hi%20Annwyn%0D%0A%0D%0A{{ image.context.alt or site.alt }}%0D%0A{{ site.cloudinary_url }}/c_limit,w_1200,h_1200,q_auto,f_auto/{{ image.public_id }}">Email Floriade about this image</a></p>
               <p class="link-light">
-              {% if image.context["Credit Name"] %}
-                {% if image.context["Credit Link"] %}
-                  Photo credit <a href="{{ image.context["Credit Link"] | safe }}" target="_blank" rel="noopener">{{ image.context["Credit Name"] }}</a>
+              {% if image.context['Credit Name'] %}
+                {% if image.context['Credit Link'] %}
+                  Photo credit <a href="{{ image.context['Credit Link'] | safe }}" target="_blank" rel="noopener">{{ image.context['Credit Name'] }}</a>
                 {% else %}
-                  Photo credit {{ image.context["Credit Name"] }}
+                  Photo credit {{ image.context['Credit Name'] }}
                 {% endif %}
               {% else %}
                 &nbsp;

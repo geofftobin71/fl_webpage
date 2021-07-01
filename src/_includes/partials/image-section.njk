@@ -1,6 +1,6 @@
 <section class="image-section{{ (' bg-alt' | safe) if section.alternate_background_color }}" {{ (' style="--section-padding:0"' | safe) if section.no_padding }}>
   <div class="wrapper{{ ' text-wrapper' if section.width == 'Paragraph' }}{{ ' page-wrapper' if section.width == 'Extra Wide' }}{{ ' no-wrapper' if section.width == 'Full' }}">
-    {% set image_id = section.image | stripVersion %}
+    {% set image_id = section.images[0] | stripVersion %}
     {% set image_info = image_id | imgInfo %}
     {% set lqip_path = site.cloudinary_url + "/c_limit,w_32,h_32,q_auto,f_jpg,e_blur:100/" + image_id %}
     {% set lqip_data = lqip_path | imgLqip %}
@@ -33,8 +33,8 @@
         {%- set sizes = '(min-width: 1200px) 1200px, 100vw' -%}
         {%- endif -%}
         <div><img data-srcset="{{ srcset }}" sizes="{{ sizes }}" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }})" loading="lazy" decoding="async" /></div>
-        {% if image_info.context["Credit Name"] %}
-          <footer style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">Photo Credit {{ image_info.context["Credit Name"] }}</footer>
+        {% if image_info.context['Credit Name'] %}
+          <footer class="link-light" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">Photo Credit {{ ('<a href="' + image_info.context['Credit Link'] + '" target="_blank" rel="noopener">') | safe if image_info.context['Credit Link'] }}{{ image_info.context['Credit Name'] }}{{ '</a>' | safe if image_info.context['Credit Link'] }}</footer>
         {% endif %}
       </figure>
     </div>

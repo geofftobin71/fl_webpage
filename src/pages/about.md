@@ -58,13 +58,15 @@ page_sections:
 - template: image-section
   aspect: 3x1
   width: Full
-  image: "/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
+  images:
+  - "/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
   no_padding: true
   alternate_background_color: false
 - template: image-section
   aspect: none
   width: Paragraph
-  image: "/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
+  images:
+  - "/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
   alternate_background_color: true
   no_padding: false
 - template: youtube-section
