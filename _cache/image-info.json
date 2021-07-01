@@ -25,6 +25,10 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
+<<<<<<< HEAD
+=======
+    "etag": "fa3e8bd38d93acefc846940b1bee7912",
+>>>>>>> f7d3e226efe5e6febed2906ff6eef641a12011c7
     "created_by": {
       "access_key": "389122341319441"
     },
