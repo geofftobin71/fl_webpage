@@ -1,6 +1,6 @@
 {
   "total_count": 56,
-  "time": 51,
+  "time": 40,
   "resources": [
     {
       "asset_id": "36e8776c6739fd7ab8ba32187cff2378",
@@ -1574,6 +1574,8 @@
       "aspect_ratio": 1.4997,
       "pixels": 4167500,
       "context": {
+        "Credit Link": "https://www.macona.co.nz/",
+        "Credit Name": "Macona Images",
         "alt": "Wedding Flowers by Floriade"
       },
       "url": "http://res.cloudinary.com/floriade/image/upload/v1596539396/wedding-flowers/wedding-flowers-by-floriade-00038.jpg",
@@ -2080,6 +2082,6 @@
     }
   ],
   "rate_limit_allowed": 500,
-  "rate_limit_reset_at": "2021-06-30T00:00:00.000Z",
-  "rate_limit_remaining": 497
+  "rate_limit_reset_at": "2021-07-01T03:00:00.000Z",
+  "rate_limit_remaining": 485
 }

@@ -19,7 +19,8 @@ page_sections:
   - "/v1608242592/cake-flowers/cake-flowers-by-floriade-00002.jpg"
   - "/v1608242593/cake-flowers/cake-flowers-by-floriade-00004.jpg"
   - "/v1608242593/cake-flowers/cake-flowers-by-floriade-00003.jpg"
-  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet tellus porta, commodo leo eget, finibus lacus. Suspendisse accumsan ante eget tincidunt hendrerit."
+  text: |-
+    Amet ipsum perferendis provident cumque fugiat illum Tenetur perferendis cum sapiente eius tempora Cumque quisquam excepturi obcaecati a ducimus quo? Nobis temporibus nam mollitia dignissimos harum atque Quam tenetur facere ea voluptatem aspernatur. Voluptatum reiciendis accusamus nisi repellendus eos, molestiae Laboriosam exercitationem dolor laudantium doloribus at debitis. Corrupti nesciunt reprehenderit recusandae eaque accusamus Laudantium odit quidem ullam ratione ea tempore perferendis Iure quo quidem atque sapiente exercitationem culpa? Id nam officia aliquid deserunt asperiores Minima amet minima veritatis fugit quaerat labore? Vel aliquam cupiditate provident iusto laboriosam. Ex illo aperiam dicta dolor odit, iusto Harum dicta facilis minima sunt sed?
   bigfonts: false
   button:
     text: ''
