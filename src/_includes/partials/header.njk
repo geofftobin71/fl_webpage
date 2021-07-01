@@ -65,7 +65,7 @@
       <img src="{{ site.cloudinary_url }}/c_fill,ar_2,q_auto,f_auto,g_auto:subject/{{ image_id }}" style="background-image:url({{ lqip_data }})" alt="{{ image_info.context.alt or site.alt }}" loading="eager" decoding="async" />
     </picture>
   </figure>
-  <div class="site-menu text-shadow" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+  <div class="site-menu text-shadow" style="background:rgba(0,0,0,0.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
     <nav class="wrapper page-wrapper">
       {{ collections.all | eleventyNavigation | removeEmpty | eleventyNavigationToHtml | safe }}
     </nav>
@@ -78,7 +78,7 @@
     </figure>
     <h1>{{ (header_title or title) | lower | safe }}</h1>
   </div>
-  <div class="site-menu text-shadow" style="background:rgba(255,255,255,0.1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
+  <div class="site-menu text-shadow" style="background:rgba(0,0,0,0.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
     <nav class="wrapper page-wrapper">
       {{ collections.all | eleventyNavigation("Flowers") | removeEmpty | eleventyNavigationToHtml | safe }}
     </nav>

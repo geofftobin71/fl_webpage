@@ -317,13 +317,15 @@ blockquote footer:before {
 }
 
 .header .logo {
-  /* flex-grow:1; */
   z-index:2;
 }
 
 .logo img {
   width:20vmin;
   min-width:125px;
+}
+
+.header .logo img {
   filter:drop-shadow(0px 0px 2px rgba(0,0,0,0.5)) drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
 }
 
@@ -405,9 +407,24 @@ blockquote footer:before {
   z-index:-1;
 }
 
-.fader img {
+.fader img,
+.fader footer {
   opacity:0;
   animation-iteration-count:infinite;
+}
+
+.fader footer {
+  color:var(--color-light);
+  font:var(--font-family-alt);
+  font-size:var(--step--1);
+  text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
+  background:rgba(0,0,0,0.2);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding:0 0.5em;
+  position:absolute;
+  bottom:0;
+  right:0;
 }
 
 /* ----- Section ----- */
