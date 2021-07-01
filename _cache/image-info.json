@@ -1,5 +1,39 @@
 [
   {
+    "asset_id": "1ca1d0dfd2beaa92cd0f802411c65dc4",
+    "public_id": "instagram/floriade_wellington_17899232606090459",
+    "folder": "instagram",
+    "filename": "floriade_wellington_17899232606090459",
+    "format": "jpg",
+    "version": 1625028906,
+    "resource_type": "image",
+    "type": "upload",
+    "created_at": "2021-06-30T04:55:06+00:00",
+    "uploaded_at": "2021-06-30T04:55:06+00:00",
+    "bytes": 112464,
+    "backup_bytes": 0,
+    "width": 720,
+    "height": 720,
+    "aspect_ratio": 1,
+    "pixels": 518400,
+    "context": {
+      "caption": "Some%20of%20today%E2%80%99s%20dried%20%E2%80%9Cready%20mades%E2%80%9D%20available%20in%20a%20wide%20range%20of%20colours.%20These%20are%20super%20popular%20for%20customers%20on%20the%20go.",
+      "timestamp": "2021-06-30T03:25:50+0000"
+    },
+    "url": "http://res.cloudinary.com/floriade/image/upload/v1625028906/instagram/floriade_wellington_17899232606090459.jpg",
+    "secure_url": "https://res.cloudinary.com/floriade/image/upload/v1625028906/instagram/floriade_wellington_17899232606090459.jpg",
+    "status": "active",
+    "access_mode": "public",
+    "access_control": null,
+    "etag": "fa3e8bd38d93acefc846940b1bee7912",
+    "created_by": {
+      "access_key": "389122341319441"
+    },
+    "uploaded_by": {
+      "access_key": "389122341319441"
+    }
+  },
+  {
     "asset_id": "f6d8bce437324af2ec616dd41772f7e9",
     "public_id": "instagram/floriade_wellington_17874327596398720",
     "folder": "instagram",
