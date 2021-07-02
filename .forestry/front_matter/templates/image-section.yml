@@ -2,14 +2,13 @@
 label: Image Section
 hide_body: true
 fields:
-- name: image
-  type: file
-  config:
-    maxSize: 64
-  label: Image
+- name: images
+  type: image_gallery
+  config: {}
+  label: Images
 - name: aspect
   type: select
-  default: none
+  default: 1x1
   config:
     required: false
     options:
@@ -23,7 +22,6 @@ fields:
     - 2x3
     - 3x4
     - 9x16
-    - none
     source:
       type: simple
       section: 

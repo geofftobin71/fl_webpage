@@ -75,6 +75,17 @@ page_sections:
   - "/wedding-flowers/wedding-flowers-by-floriade-00033.jpg"
   - "/wedding-flowers/wedding-flowers-by-floriade-00034.jpg"
   - "/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
+  alternate_background_color: false
+  no_padding: false
+- template: image-section
+  aspect: 4x3
+  width: Paragraph
+  images:
+  - "/wedding-flowers/wedding-flowers-by-floriade-00030.jpg"
+  - "/wedding-flowers/wedding-flowers-by-floriade-00031.jpg"
+  - "/wedding-flowers/wedding-flowers-by-floriade-00033.jpg"
+  - "/wedding-flowers/wedding-flowers-by-floriade-00034.jpg"
+  - "/wedding-flowers/wedding-flowers-by-floriade-00038.jpg"
   alternate_background_color: true
   no_padding: false
 - template: youtube-section

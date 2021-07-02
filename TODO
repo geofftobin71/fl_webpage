@@ -1,14 +1,12 @@
 -- FIX --
 Home Page
-Image section -> images slideshow
 Enable and TEST shop code
 UPDATE and TEST mailchimp autoreply emails
 TEST social sharing buttons
 GITHUB actions
 
 -- FUTURE --
-Lightbox lqip size mismatch
 Smaller video on mobile => Cloudinary
 Product auto expiry date
-flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers, workshops
+flower-delivery-wellington, valentines-day-flowers, mothers-day-flowers
 Email Floriade about this image -> php mail handler
