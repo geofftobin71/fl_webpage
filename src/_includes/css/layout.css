@@ -349,22 +349,28 @@ blockquote footer:before {
 .banner-message {
   text-align:center;
   font-family:var(--font-family-alt);
-  color:var(--color-dark);
-  background-color:var(--color-shade3);
-  padding:0.5rem 1rem;
+  color:var(--color-light);
+  background-color:var(--color-shade1);
+  border:3px solid var(--color-shade3);
+  padding:1.5rem 1rem;
+  position:relative;
+  z-index:2;
+  box-shadow:0 0 15px 5px rgba(0, 0, 0, 0.4);
 }
 
-.banner-message a:link { color:var(--color-shade1); }
-.banner-message a:visited { color:var(--color-shade1); }
-.banner-message a:hover { color:var(--color-shade2); }
-.banner-message a:active { color:var(--color-shade2); }
+.banner-message a:link { color:var(--color-alt); }
+.banner-message a:visited { color:var(--color-alt); }
+.banner-message a:hover { color:var(--color-light); }
+.banner-message a:active { color:var(--color-light); }
 
 .banner-error {
   text-align:center;
   font-family:var(--font-family-alt);
   color:var(--error-color);
   background-color:var(--error-background);
-  padding:0.5rem 1rem;
+  border:3px solid var(--error-color);
+  padding:1.5rem 1rem;
+  box-shadow:0 0 15px 5px rgba(0, 0, 0, 0.4);
 }
 
 .banner-error a:link { color:var(--error-link); }

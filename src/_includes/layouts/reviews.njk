@@ -39,7 +39,8 @@
             </blockquote>
           </li>
           {% ifAsync loop.index % 5 == 0 %}
-            {% set section = { image:images[ic], width:'Full', aspect:'4x1', no_padding:true } %}
+            {% set section_images = [ images[ic] ] %}
+            {% set section = { images:section_images, width:'Full', aspect:'4x1', no_padding:true } %}
             {% include "partials/image-section.njk" %}
             {% set ic = (ic + 1) % (images | length) %}
           {% endif %}
