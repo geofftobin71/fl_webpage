@@ -414,18 +414,18 @@ blockquote footer:before {
 }
 
 figure footer {
-  border-radius:0.4em;
+  border-top-left-radius:0.4em;
   color:var(--color-light);
   font:var(--font-family-alt);
-  font-size:var(--step--1);
+  font-size:var(--step--2);
   text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
-  background:rgba(0,0,0,0.2);
+  background:rgba(0,0,0,0.3);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   padding:0 0.5em;
   position:absolute;
-  bottom:1px;
-  right:1px;
+  bottom:0;
+  right:0;
 }
 
 /* ----- Section ----- */

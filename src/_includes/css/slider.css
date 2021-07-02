@@ -34,7 +34,7 @@
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
-  background:rgba(0,0,0,0.2);
+  background:rgba(0,0,0,0.3);
 }
 
 .slider-controls nav span {
@@ -114,9 +114,26 @@
 
 #lightbox figcaption > div {
   display: inline-block;
-  margin-bottom: 1.5rem;
-  background-color: rgba(0,0,0,0.4);
-  box-shadow: 0 0 3rem 3rem rgba(0,0,0,0.4);
+  border-radius:0.4em;
+  color:var(--color-light);
+  font:var(--font-family-alt);
+  text-shadow:0 0 2px rgba(0,0,0,0.5), 0 0 8px rgba(0,0,0,0.2);
+  background:rgba(0,0,0,0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding:0.5em;
+}
+
+@media screen and (min-width:750px) and (orientation:portrait) {
+  #lightbox figcaption > div {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width:950px) {
+  #lightbox figcaption > div {
+    margin-bottom: 1rem;
+  }
 }
 
 #lightbox figcaption h4,

@@ -24,8 +24,8 @@
         {%- endfor -%}
         {%- endset -%}
         <img class="cover" data-srcset="{{ srcset }}" sizes="(min-width: 1500px) and (orientation: landscape) 750px, (orientation: landscape) 50vw, 100vw" data-src="{{ src }}" src="{{ site.transgif }}" alt="{{ image_info.context.alt or site.alt }}" style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}" loading="lazy" decoding="async" />
-        {% if image_info.context["Credit Name"] %}
-          <footer style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">Photo Credit {{ image_info.context["Credit Name"] }}</footer>
+        {% if image_info.context['Credit Name'] %}
+          <footer style="{{ ('animation-delay:' + anim_delay + 's;animation-name:' + section_name + ';animation-duration:' + anim_duration + 's') | safe if section_images_count > 1 }}">Photo Credit {{ image_info.context['Credit Name'] }}</footer>
         {% endif %}
       {% endfor %}
     </figure>
