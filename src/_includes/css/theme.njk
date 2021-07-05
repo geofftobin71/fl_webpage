@@ -27,11 +27,11 @@
 {%- endfor %}
 
   --button-bg:var(--color-button);
-  --button-fg:white;
-  --button-border:var(--color-shade1);
-  --button-hover-bg:var(--color-shade2);
-  --button-hover-fg:var(--color-light);
-  --button-hover-border:var(--color-shade2);
+  --button-fg:var(--color-alt);
+  --button-border:var(--color-button);
+  --button-hover-bg:var(--color-alt);
+  --button-hover-fg:var(--color-button);
+  --button-hover-border:var(--color-button);
   --button-focus:var(--color-primary);
 
   --radius:0.4rem;
@@ -44,7 +44,12 @@
 {% for token, value in tokens.colors %}
 .{{ token | hyphenate | replace("color-", "bg-") }} { background-color:{{ value }} }
 {%- endfor %}
-.bg-alt { color:var(--color-primary); }
+
+.bg-alt {
+  --button-fg:var(--color-light);
+  --button-hover-bg:var(--color-light);
+  color:var(--color-primary);
+}
 
 {% for token, value in tokens.colors %}
 .{{ token | hyphenate }} { color:{{ value }} }
@@ -92,7 +97,7 @@ button.button {
   justify-content:center;
   background-color:var(--button-bg);
   color:var(--button-fg);
-  /* border:2px solid var(--button-border); */
+  border:3px solid var(--button-border);
   border-radius:var(--button-radius);
   /* box-shadow:0 8px 16px rgba(0, 0, 0, 0.15); */
   text-align:center;

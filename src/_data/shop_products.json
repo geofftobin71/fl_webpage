@@ -7,36 +7,36 @@
     "disabled": false,
     "variants": [
       {
-        "name": "$60",
-        "price": 60,
+        "name": "$70",
+        "price": 70,
         "disabled": false,
         "id": "3f32f5b3",
-        "stock": null
-      },
-      {
-        "name": "$80",
-        "price": 80,
-        "disabled": false,
-        "id": "7ccc48a2",
         "stock": null
       },
       {
         "name": "$100",
         "price": 100,
         "disabled": false,
-        "id": "52660263",
+        "id": "7ccc48a2",
         "stock": null
       },
       {
         "name": "$150",
         "price": 150,
         "disabled": false,
+        "id": "52660263",
+        "stock": null
+      },
+      {
+        "name": "$200",
+        "price": 200,
+        "disabled": false,
         "id": "c66b9160",
         "stock": null
       },
       {
-        "name": "$195",
-        "price": 195,
+        "name": "$250",
+        "price": 250,
         "disabled": false,
         "id": "8195d5f6",
         "stock": null
@@ -64,36 +64,36 @@
     "disabled": false,
     "variants": [
       {
-        "name": "$60",
-        "price": 60,
+        "name": "$70",
+        "price": 70,
         "disabled": false,
         "id": "90dffffa",
-        "stock": null
-      },
-      {
-        "name": "$80",
-        "price": 80,
-        "disabled": false,
-        "id": "4a3e62b5",
         "stock": null
       },
       {
         "name": "$100",
         "price": 100,
         "disabled": false,
-        "id": "e3d4f22c",
+        "id": "4a3e62b5",
         "stock": null
       },
       {
         "name": "$150",
         "price": 150,
         "disabled": false,
+        "id": "e3d4f22c",
+        "stock": null
+      },
+      {
+        "name": "$200",
+        "price": 200,
+        "disabled": false,
         "id": "e0c69319",
         "stock": null
       },
       {
-        "name": "$195",
-        "price": 195,
+        "name": "$250",
+        "price": 250,
         "disabled": false,
         "id": "49d1bea7",
         "stock": null
@@ -121,36 +121,36 @@
     "disabled": false,
     "variants": [
       {
-        "name": "$60",
-        "price": 60,
+        "name": "$70",
+        "price": 70,
         "disabled": false,
         "id": "eab5d4a5",
-        "stock": null
-      },
-      {
-        "name": "$80",
-        "price": 80,
-        "disabled": false,
-        "id": "1750182c",
         "stock": null
       },
       {
         "name": "$100",
         "price": 100,
         "disabled": false,
-        "id": "61e0b964",
+        "id": "1750182c",
         "stock": null
       },
       {
         "name": "$150",
         "price": 150,
         "disabled": false,
+        "id": "61e0b964",
+        "stock": null
+      },
+      {
+        "name": "$200",
+        "price": 200,
+        "disabled": false,
         "id": "3607dabf",
         "stock": null
       },
       {
-        "name": "$195",
-        "price": 195,
+        "name": "$250",
+        "price": 250,
         "disabled": false,
         "id": "52a1abfe",
         "stock": null
@@ -178,36 +178,36 @@
     "disabled": false,
     "variants": [
       {
-        "name": "$60",
-        "price": 60,
+        "name": "$70",
+        "price": 70,
         "disabled": false,
         "id": "e62143fa",
-        "stock": null
-      },
-      {
-        "name": "$80",
-        "price": 80,
-        "disabled": false,
-        "id": "76f1d73b",
         "stock": null
       },
       {
         "name": "$100",
         "price": 100,
         "disabled": false,
-        "id": "8147d18d",
+        "id": "76f1d73b",
         "stock": null
       },
       {
         "name": "$150",
         "price": 150,
         "disabled": false,
+        "id": "8147d18d",
+        "stock": null
+      },
+      {
+        "name": "$200",
+        "price": 200,
+        "disabled": false,
         "id": "e398d403",
         "stock": null
       },
       {
-        "name": "$195",
-        "price": 195,
+        "name": "$250",
+        "price": 250,
         "disabled": false,
         "id": "f03806bc",
         "stock": null
@@ -235,36 +235,36 @@
     "disabled": false,
     "variants": [
       {
-        "name": "$60",
-        "price": 60,
+        "name": "$70",
+        "price": 70,
         "disabled": false,
         "id": "4a282702",
-        "stock": null
-      },
-      {
-        "name": "$80",
-        "price": 80,
-        "disabled": false,
-        "id": "0399d01e",
         "stock": null
       },
       {
         "name": "$100",
         "price": 100,
         "disabled": false,
-        "id": "0b0712ce",
+        "id": "0399d01e",
         "stock": null
       },
       {
         "name": "$150",
         "price": 150,
         "disabled": false,
+        "id": "0b0712ce",
+        "stock": null
+      },
+      {
+        "name": "$200",
+        "price": 200,
+        "disabled": false,
         "id": "de2939c1",
         "stock": null
       },
       {
-        "name": "$195",
-        "price": 195,
+        "name": "$250",
+        "price": 250,
         "disabled": false,
         "id": "ab85846d",
         "stock": null
