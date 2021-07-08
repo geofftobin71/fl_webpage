@@ -4,15 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "dev": "NODE_ENV=develop eleventy && cp -r dist/* /var/www/html/",
-    "dev2": "NODE_ENV=develop eleventy --pathprefix=eleventy && cp -r dist/* /var/www/html/",
-    "build": "NODE_ENV=build eleventy && cp -r dist/* /var/www/html/",
-    "deploy": "NODE_ENV=deploy eleventy",
-    "serve": "NODE_ENV=develop eleventy --serve",
-    "debug": "DEBUG=Eleventy* NODE_ENV=develop eleventy",
-    "debugb": "DEBUG=Eleventy* NODE_ENV=build eleventy",
-    "start": "eleventy --serve"
+    "clean": "rm -rf dist/* /var/www/html/*",
+    "dev": "PROD=false IMAGES=false eleventy && cp -r dist/* /var/www/html/",
+    "devimages": "PROD=false IMAGES=true eleventy && cp -r dist/* /var/www/html/",
+    "deploy": "PROD=true IMAGES=false eleventy",
+    "deployimages": "PROD=true IMAGES=true eleventy",
+    "upload": "cp -r dist/* /var/www/html/",
+    "serve": "PROD=false IMAGES=false eleventy --serve",
+    "debug": "DEBUG=Eleventy* PROD=false IMAGES=false eleventy",
+    "debugb": "DEBUG=Eleventy* PROD=false IMAGES=true eleventy",
+    "start": "PROD=false IMAGES=false eleventy --serve"
   },
   "repository": {
     "type": "git",

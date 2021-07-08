@@ -8,7 +8,7 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 header("Expires: 0");
 
-{% if env.NODE_ENV == 'develop' %}
+{% if env.PROD != 'true' %}
 ini_set("log_errors", 1);
 ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);

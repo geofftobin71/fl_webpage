@@ -3,7 +3,7 @@ const fs = require("fs");
 
 module.exports = (async function() {
 
-  if(process.env.NODE_ENV == 'develop') {
+  if(process.env.IMAGES != 'true') {
     console.log('Using image-info cache');
     const cache = require('../../_cache/image-info.json');
     return cache;

@@ -114,7 +114,7 @@ async function displayCheckout() {
   disableInvalidDates(delivery_option);
   updateTotal();
 
-  {% if env.NODE_ENV == 'develop' %}
+  {% if env.PROD != 'true' %}
   var stripe = Stripe("{{ env.STRIPE_TEST_PUBLIC_KEY }}");
   {% else %}
   var stripe = Stripe("{{ env.STRIPE_LIVE_PUBLIC_KEY }}");

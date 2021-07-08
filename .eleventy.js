@@ -63,7 +63,7 @@ markdown.renderer.rules.image = function (tokens, idx, options, env, self) {
 function minifyCopy(input, output) {
   let data = fs.readFileSync(input, 'utf8');
 
-  if(process.env.NODE_ENV != 'develop') {
+  if(process.env.PROD == 'true') {
     let minified = data.replace(/\s+\/\/.*?\n/g, '').replace(/\/\*[^]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '').replace(/\n/g, ' ').replace(/\s*\;\s*/g, ';').replace(/\s*\:\s*/g, ':').replace(/\s*\{\s*/g, '{').replace(/\s*\}\s*/g, '}').replace(/\s*\[\s*/g, '[').replace(/\s*\]\s*/g, ']');
     fs.writeFileSync(output, minified);
   } else {
@@ -132,7 +132,7 @@ module.exports = (eleventyConfig) => {
     fs.writeFileSync('src/_data/shop_products.json', JSON.stringify(shop_products, null, 2));
 
     // Upate Stock
-    if(process.env.NODE_ENV != 'deploy') {
+    if(process.env.PROD != 'true') {
       fetch('http://168.138.10.72/php/update-stock.php');
     } else {
       fetch('https://floriade.co.nz/php/update-stock.php');
@@ -218,7 +218,7 @@ module.exports = (eleventyConfig) => {
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", async (code, callback) => {
     try {
-      if(process.env.NODE_ENV != 'develop') {
+      if(process.env.PROD == 'true') {
         const minified = await minify(code);
         callback(null, minified.code);
       } else {
@@ -253,7 +253,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addNunjucksAsyncFilter("imgGallery", async (folder, callback) => {
     let gallery = {}
 
-    if(process.env.NODE_ENV == 'develop') {
+    if(process.env.IMAGES != 'true') {
       console.log('Using ' + folder + '-gallery cache');
 
       gallery = JSON.parse(fs.readFileSync('_cache/' + folder + '-gallery.json'));
@@ -266,7 +266,7 @@ module.exports = (eleventyConfig) => {
         .execute();
 
       if(gallery && gallery.resources && gallery.resources.length) {
-        if(process.env.NODE_ENV == 'build') {
+        if(true) { // process.env.IMAGES == 'true') {
           // console.log(gallery.rate_limit_remaining + ' / ' + gallery.rate_limit_allowed);
           console.log('Updating ' + folder + '-gallery');
 
@@ -282,7 +282,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
-    if( (process.env.NODE_ENV != 'develop') && outputPath.endsWith(".html") ) {
+    if( (process.env.PROD == 'true') && outputPath.endsWith(".html") ) {
       let minified = htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
@@ -295,7 +295,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addTransform("minifyphp", (content, outputPath) => {
-    if( (process.env.NODE_ENV != 'develop') && outputPath.endsWith(".php") ) {
+    if( (process.env.PROD == 'true') && outputPath.endsWith(".php") ) {
       return content.replace(/\s+\/\/.*?\n/g, '').replace(/\/\*[^]*?\*\//g, '').replace(/[ \f\r\t\v\u00A0\u2028\u2029]+/g, ' ').replace(/\s*\n+/g, '\n').replace(/^\s+/gm, '').replace(/\s*$/gm, '').replace(/\n/g, ' ');
     }
 
@@ -311,7 +311,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("cssmin", (code) => {
-    if(process.env.NODE_ENV != 'develop') {
+    if(process.env.PROD == 'true') {
       return new CleanCSS({}).minify(code).styles;
     } else {
       return code;
@@ -319,7 +319,7 @@ module.exports = (eleventyConfig) => {
   });
 
   eleventyConfig.addFilter("jsonmin", (code) => {
-    if(process.env.NODE_ENV != 'develop') {
+    if(process.env.PROD == 'true') {
       return jsonminify(code);
     } else {
       return code;

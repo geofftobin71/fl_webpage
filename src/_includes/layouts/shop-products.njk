@@ -52,6 +52,8 @@
   <style>
     {{ css | cssmin | safe }}
   </style>
+
+  <script src="https://js.afterpay.com/afterpay-1.x.js" data-analytics-enabled async ></script>
 {% endblock %}
 
 {% block content %}
@@ -113,6 +115,7 @@
           <h2 class="heading text-center">{{ product.name }}</h2>
           {% if product.price %}
             <p class="color-shade1 font-size-2 font-secondary text-center" style="margin-top:0.5rem">{{ product.price | formatMoney }}</p>
+            <afterpay-placement style="text-align:center;margin:0 auto" data-locale="en_NZ" data-currency="NZD" data-amount="{{ product.price | formatMoney }}" data-modal-theme="white" data-size="sm" ></afterpay-placement>
           {% endif %}
           <p id="product-stock-count" class="color-shade1 text-center font-secondary" style="display:none"></p>
 

@@ -22,7 +22,7 @@ async function getImages(json_data) {
 
 module.exports = function() {
 
-  if(process.env.NODE_ENV == 'develop') {
+  if(process.env.IMAGES != 'true') {
     console.log('Using instagram-gallery cache');
     const cache = require('../../_cache/instagram-gallery.json');
     return cache;
@@ -45,7 +45,7 @@ module.exports = function() {
             .then(result => {
               // console.log(JSON.stringify(result.resources, null, 2));
               if(result && result.resources && result.resources.length) {
-                if(process.env.NODE_ENV == 'build') {
+                if(true) { // process.env.IMAGES == 'true') {
                   console.log('Updating instagram-gallery');
 
                   fs.writeFileSync('_cache/instagram-gallery.json', JSON.stringify(result.resources, null, 2));
