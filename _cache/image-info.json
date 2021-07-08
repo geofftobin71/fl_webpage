@@ -25,7 +25,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "96458f0500fb16dcf3bf88ab27a38dac",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -59,7 +58,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "6fbec462a25b9e08a350d6fa33dfee3d",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -93,7 +91,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "56ec19d3aa2551fbfd24f2ab032c40df",
     "created_by": {
       "access_key": "389122341319441"
     },
@@ -127,7 +124,6 @@
     "status": "active",
     "access_mode": "public",
     "access_control": null,
-    "etag": "4bce6c2e33c734165b46fe619335c942",
     "created_by": {
       "access_key": "389122341319441"
     },
