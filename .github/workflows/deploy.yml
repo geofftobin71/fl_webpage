@@ -48,8 +48,12 @@ jobs:
           echo GOOGLE_MAPS_KEY=${{ secrets.GOOGLE_MAPS_KEY }} >> .env
 
       - name: Eleventy
-        if: ${{ true }}
+        if: ${{ github.event_name == 'push' }}
         run: npm run deploy
+
+      - name: Eleventy with Images
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch' || github.event_name == 'schedule' }}
+        run: npm run deployimages
 
       - name: Commit Updates
         run: |
