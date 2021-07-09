@@ -204,6 +204,7 @@ async function displayCheckout() {
       return false;
     }
 
+    /*
     const delivery_option = document.querySelector('input[name="delivery-option"]:checked').value;
     const delivery_name = document.getElementById("delivery-name").value;
     const delivery_phone = document.getElementById("delivery-phone").value;
@@ -259,6 +260,10 @@ async function displayCheckout() {
       .catch(error => {
         showError(error.message);
       });
+  */
+
+        form.submit();
+
   },false);
 
   enableCheckoutForm();
@@ -384,12 +389,12 @@ function updateTotal() {
     document.getElementById("total").innerText = formatMoney(cart_total);
   } else {
     if(delivery_suburb && delivery_date) {
-      // Default delivery fee bu Suburb
-      let delivery_fee = delivery_fees[delivery_suburb];
+      // Default delivery fee by Suburb
+      let delivery_fee = parseFloat(delivery_fees[delivery_suburb]);
 
       // Flat $20 on Saturday
       if(delivery_date.toLowerCase().startsWith("sat")) {
-        delivery_fee = (delivery_fee < 20) ? 20 : delivery_fee;
+        delivery_fee = (delivery_fee < 20.0) ? 20.0 : delivery_fee;
       }
 
       // Flat Rate delivery fee on Special days
@@ -397,8 +402,8 @@ function updateTotal() {
         let flat_rate_date = DateTime.fromFormat(date, date_format);
         let element_date = DateTime.fromFormat(delivery_date, delivery_date_value_format);
         if(element_date.equals(flat_rate_date)) {
-          let fee = parseInt(flat_rate_delivery_fees[date]);
-          if(fee === 0) {
+          let fee = parseFloat(flat_rate_delivery_fees[date]);
+          if(fee === 0.0) {
             delivery_fee = fee;
           } else {
             delivery_fee = (delivery_fee < fee) ? fee : delivery_fee;
@@ -425,7 +430,7 @@ function enableCheckoutForm() {
   document.getElementById("place-order-button").disabled = false;
   document.getElementById("spinner-icon").style.display = "none";
   document.getElementById("cart-icon").style.display = "inline-block";
-  document.getElementById("submit-text").innerText = "Order Now";
+  document.getElementById("submit-text").innerText = "Payment";
 }
 
 function disableCheckoutForm() {

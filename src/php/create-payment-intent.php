@@ -12,8 +12,8 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST' || json_last_error() !== JSON_ERROR_NON
 }
 
 $cart = $body['cart'];
-$cart_total_check = intVal($body['cart-total-check']);
-$delivery_total_check = intVal($body['delivery-total-check']);
+$cart_total_check = floatVal($body['cart-total-check']);
+$delivery_total_check = floatVal($body['delivery-total-check']);
 $delivery_option = clean($body['delivery-option']);
 $delivery_name = clean($body['delivery-name']);
 $delivery_phone = clean($body['delivery-phone']);
@@ -83,7 +83,7 @@ if(strtolower($delivery_option) === 'delivery') {
   // Flat rate delivery fee on special dates
   foreach($flat_rate_delivery_fees as $date => $value) {
     if(str_ends_with($delivery_date, $date)) {
-      $fee = intVal($value);
+      $fee = floatVal($value);
       if($fee === 0) {
         $delivery_fee = $fee;
       } else {
@@ -100,7 +100,7 @@ if(strtolower($delivery_option) === 'delivery') {
   $total = $total + $delivery_fee;
 }
 
-$total = $total * 100;
+$total = intVal($total * 100);
 
 $description = '';
 $descriptions = array();

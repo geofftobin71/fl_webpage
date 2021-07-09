@@ -70,7 +70,7 @@
         </a>
       </div>
 
-      <form id="checkout-form" action="/php/place-order.php" method="post" class="width100" style="display:none">
+      <form id="checkout-form" action="/php/create-checkout-session.php" method="post" class="width100" style="display:none">
 
         <h2 class="delivery-group heading text-center">Delivery</h2>
         <div class="delivery-group flow shop-panel">
@@ -183,10 +183,12 @@
             <p class="caption text-left text-lowercase">In case we need to contact you regarding your order</p>
           </div>
 
+          {#
           <div>
             <label for="card-input"><h4 class="heading">Credit Card</h4></label>
             <div id="card-input" class="input" onfocus="hideError()"></div>
           </div>
+          #}
         </div>
 
         <br>
@@ -204,7 +206,7 @@
           <button id="place-order-button" disabled class="button bigfonts" type="submit" tabindex="0">
             <span id="cart-icon">{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span>
             <span id="spinner-icon" style="margin-right:0.5em;display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
-            <p id="submit-text">Order Now</p>
+            <p id="submit-text">Payment</p>
           </button>
         </div>
         <div class="horizontal center">

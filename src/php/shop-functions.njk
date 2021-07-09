@@ -14,13 +14,12 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/sleekdb-test-config.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/stripe-test-config.php";
 {% else %}
-require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/sleekdb-live-config.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/stripe-live-config.php";
 {% endif %}
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/../php/sleekdb-config.php";
 use SleekDB\Store;
 
 $stockStore = new Store("stock", $sleekDir, $sleekConfig);

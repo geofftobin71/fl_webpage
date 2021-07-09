@@ -65,14 +65,14 @@ function getPrice(product, variant_id) {
   if(product["variants"].length) {
     product["variants"].forEach(variant => {
       if(variant["id"] === variant_id) {
-        result = parseInt(variant["price"]) ? variant["price"] : product["price"];
+        result = parseFloat(variant["price"]) ? variant["price"] : product["price"];
       }
     });
   } else {
     result = product["price"];
   }
 
-  return parseInt(result);
+  return parseFloat(result);
 }
 
 function formatMoney(price) {
