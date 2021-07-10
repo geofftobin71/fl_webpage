@@ -82,6 +82,7 @@
             <input class="delivery-group" id="delivery-option-pickup" name="delivery-option" type="radio" value="pickup" onclick="selectDeliveryOption('pickup')">
             <label class="radio-label text-center round" for="delivery-option-pickup" style="min-width:10em" x-apple-data-detectors="false">Pickup in Store</label>
           </div>
+            <p class="caption text-center text-lowercase" style="margin-top:0">Please choose Delivery or Pickup in Store</p>
 
           <div>
             <label for="delivery-name"><h4 class="heading">Recipient Name</h4></label>
@@ -98,7 +99,7 @@
           <div class="delivery-address-group">
             <label for="delivery-address"><h4 class="heading">Delivery Address</h4></label>
             <input class="delivery-address-group input" id="delivery-address" name="delivery-address" type="text" autocomplete="address-line1" data-error="Delivery Address is required" onfocus="hideError()" onblur="cacheValue(this)">
-            <p class="caption text-left text-lowercase">Street address for delivery</p>
+            <p class="caption text-left text-lowercase">Street address for delivery - Please include appartment number, office level etc</p>
           </div>
 
           <div class="delivery-address-group">
@@ -114,6 +115,7 @@
               </select>
               <span class="focus"></span>
             </div>
+            <p class="caption text-left text-lowercase">Please choose delivery suburb to calculate delivery fee</p>
           </div>
 
           <div>
@@ -130,6 +132,7 @@
         <p class="delivery-group font-size-1"></p>
 
         <h2 class="delivery-group heading text-center">Gift tag Message</h2>
+        <p class="caption text-center text-lowercase" style="margin-top:0">(optional)</p>
         <div class="delivery-group shop-panel">
           <textarea maxlength="500" class="delivery-group input" id="gift-tag-message" name="gift-tag-message" placeholder="If you would like to send the recipient a message along with the flowers, please enter it here." rows="6" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
           <p class="caption text-lowercase">Max 500 chars</p>
@@ -137,6 +140,7 @@
         <p class="delivery-group font-size-1"></p>
 
         <h2 class="delivery-group heading text-center">Special Requests</h2>
+        <p class="caption text-center text-lowercase" style="margin-top:0">(optional)</p>
         <div class="delivery-group shop-panel">
           <textarea maxlength="500" class="delivery-group input" id="special-requests" name="special-requests" placeholder="Please enter any special delivery instructions. If you would like to request a specific variety or colour of flowers, please give at least 48 hours notice. We cannot guarantee all floral varieties or colours due to seasonal availability and demand. We will let you know if we are unable to supply your request." rows="6" onfocus="hideError()" onblur="cacheValue(this)"></textarea>
           <p class="caption text-lowercase">Max 500 chars</p>
@@ -162,25 +166,25 @@
           </div>
         </div>
 
-        <h2 class="heading text-center">Payment</h2>
+        <h2 class="heading text-center">Your Details</h2>
 
         <div class="flow shop-panel">
           <div>
-            <label for="cardholder-name"><h4 class="heading">Cardholder Name</h4></label>
-            <input class="input" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Cardholder Name is required" onfocus="hideError()" onblur="cacheValue(this)">
-            <p class="caption text-left text-lowercase">Name as it appears on your credit card</p>
-          </div>
-
-          <div>
-            <label for="cardholder-email"><h4 class="heading">Cardholder Email</h4></label>
-            <input class="input" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" data-error="Cardholder Email is required" onfocus="hideError()" onblur="cacheValue(this)">
-            <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
-          </div>
-
-          <div>
-            <label for="cardholder-phone"><h4 class="heading">Cardholder Phone</h4></label>
-            <input class="input" id="cardholder-phone" name="cardholder-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Cardholder Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <label for="cardholder-name"><h4 class="heading">Your Name</h4></label>
+            <input class="input" id="cardholder-name" name="cardholder-name" type="text" autocomplete="name" data-error="Your Name is required" onfocus="hideError()" onblur="cacheValue(this)">
             <p class="caption text-left text-lowercase">In case we need to contact you regarding your order</p>
+          </div>
+
+          <div>
+            <label for="cardholder-phone"><h4 class="heading">Your Phone</h4></label>
+            <input class="input" id="cardholder-phone" name="cardholder-phone" type="tel" autocomplete="tel" inputmode="tel" data-error="Your Phone is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <p class="caption text-left text-lowercase">In case we need to contact you regarding your order</p>
+          </div>
+
+          <div>
+            <label for="cardholder-email"><h4 class="heading">Your Email</h4></label>
+            <input class="input" id="cardholder-email" name="cardholder-email" type="email" autocomplete="email" inputmode="email" data-error="Your Email is required" onfocus="hideError()" onblur="cacheValue(this)">
+            <p class="caption text-left text-lowercase">We will send your receipt to this address</p>
           </div>
 
           {#
@@ -204,7 +208,7 @@
             <span>{{ '/src/svg/arrow-left.svg' | svgContents | iconTextButton | safe }}</span><p>Return to Cart</p>
           </a>
           <button id="place-order-button" disabled class="button bigfonts" type="submit" tabindex="0">
-            <span id="cart-icon">{{ '/src/svg/shopping-cart.svg' | svgContents | iconTextButton | safe }}</span>
+            <span id="cart-icon">{{ '/src/svg/credit-card.svg' | svgContents | iconTextButton | safe }}</span>
             <span id="spinner-icon" style="margin-right:0.5em;display:none">{{ '/src/svg/spinner.svg' | svgContents | iconTextButton | safe }}</span>
             <p id="submit-text">Payment</p>
           </button>
@@ -219,11 +223,6 @@
           <p>See their <a href="https://stripe.com/docs/security/stripe" target="_blank" title="Opens in a new page">security</a> and <a href="https://stripe.com/nz/privacy/" target="_blank" title="Opens in a new page">privacy</a> policies for details.</p>
         </div>
 
-        <input id="payment-intent-id" name="payment-intent-id" type="hidden">
-        <input id="card-brand" name="card-brand" type="hidden">
-        <input id="card-month" name="card-month" type="hidden">
-        <input id="card-year" name="card-year" type="hidden">
-        <input id="card-last4" name="card-last4" type="hidden">
         <input id="cart-total-check" name="cart-total-check" type="hidden">
         <input id="delivery-total-check" name="delivery-total-check" type="hidden">
         <input id="cart" name="cart" type="hidden">

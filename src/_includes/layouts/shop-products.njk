@@ -157,7 +157,7 @@
           </div>
 
           <div id="button-group" class="vertical flow center">
-            <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')">{{ 'Add to Cart' | lower }}</button>
+            <button id="add-to-cart-button" disabled class="button" onclick="addToCart('{{ product.id }}', {{ product | hasStock }}, {{ product | hasVariants }}, 'Please choose a {{ variant_heading | safe }}')"><span>{{ '/src/svg/cart-plus.svg' | svgContents | iconTextButton | safe }}</span>{{ 'Add to Cart' | lower }}</button>
             {# <button class="button" onclick="clearCart()">{{ 'Clear Cart' | lower }}</button> #}
             <span id="error-msg" class="error" role="alert" style="visibility:hidden">&nbsp;</span>
           </div>
