@@ -4,7 +4,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
 if($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $delivery_option = clean($_POST["delivery-option"] ?? "none");
-  $delivery_name = clean($_POST["delivery-name"] ?? "");
+  $delivery_name = clean($_POST["delivery-name"] ?? $_POST["cardholder-name"] ?? "Floriade");
   $delivery_phone = clean($_POST["delivery-phone"] ?? "");
   $delivery_address = clean($_POST["delivery-address"] ?? "18 Cambridge Terrace");
   $delivery_suburb = clean($_POST["delivery-suburb"] ?? "Te Aro");
@@ -20,10 +20,9 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $cart_total = floatVal(clean($_POST["cart-total-check"] ?? "0"));
   $delivery_fee = floatVal(clean($_POST["delivery-total-check"] ?? "0"));
 
-  if(empty($delivery_option)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing delivery_option')); exit; }
-  if(empty($cardholder_name)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder_name')); exit; }
-  if(empty($cardholder_phone)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder_phone')); exit; }
-  if(empty($cardholder_email)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder_email')); exit; }
+  if(empty($cardholder_name)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder name')); exit; }
+  if(empty($cardholder_phone)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder phone')); exit; }
+  if(empty($cardholder_email)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder email')); exit; }
   if(empty($cart)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cart')); exit; }
   if($cart_total < 1) { header('Location:/shop-error/?p=' . obfencode('Error: Zero cart total')); exit; }
 
@@ -46,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   }
 
-  $order_items = array();
+  $line_items = array();
 
   foreach($cart as $cart_item) {
     $product = getProduct($cart_item["product-id"]);
@@ -55,13 +54,35 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       $category = getCategory($product["category"]);
       $price = getPrice($product, $cart_item["variant-id"]);
       if(isset($category)) {
-        $order_items[] = array(
-          "product" => $product_names[$cart_id],
-          "variant" => $variant_names[$cart_id],
-          "price" => $price,
-        );
+        $item_name = $product_names[$cart_id];
+        if(!empty($variant_names[$cart_id]) && ($variant_names[$cart_id] != "none")) {
+          $item_name .= "\n(" . $variant_names[$cart_id] . ")";
+        }
+        $line_items[] = [
+          "price_data" => [
+            "product_data" => [
+              "name" => $item_name,
+            ],
+            "unit_amount" => intVal($price * 100.0),
+            "currency" => "nzd",
+          ],
+          "quantity" => 1,
+        ];
       }
     }
+  }
+
+  if($delivery_option === "delivery") {
+    $line_items[] = [
+      "price_data" => [
+        "product_data" => [
+          "name" => "Delivery to " . ucwords($delivery_suburb),
+        ],
+        "unit_amount" => intVal($delivery_fee * 100.0),
+        "currency" => "nzd",
+      ],
+      "quantity" => 1,
+    ];
   }
 
   header('Content-Type: application/json');
@@ -69,32 +90,23 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   $YOUR_DOMAIN = 'http://168.138.10.72';
 
   $checkout_session = $stripe->checkout->sessions->create([
-    'success_url' => $YOUR_DOMAIN . '/checkout-success/',
-    'cancel_url' => $YOUR_DOMAIN . '/checkout/',
+    'success_url' => $YOUR_DOMAIN . "/checkout-success?session_id={CHECKOUT_SESSION_ID}",
+    'cancel_url' => $YOUR_DOMAIN . "/checkout/",
     'mode' => 'payment',
     'payment_method_types' => ['card'],
     'customer_email' => $cardholder_email,
-    'line_items' => [[
-      'price_data' => [
-        'currency' => 'nzd',
-        'unit_amount' => 2000,
-        'product_data' => [
-          'name' => 'Stubborn Attachments',
-          'images' => ["https://i.imgur.com/EHyR2nP.png"],
-        ],
-      ],
-      'quantity' => 1,
-    ]],
+    'line_items' => $line_items,
     'payment_intent_data' => [
+      /* 'description' => "", */
       'receipt_email' => $cardholder_email,
       'shipping' => [
         'name' => $delivery_name,
+        'phone' => $delivery_phone,
         'address' => [
-          'line1' => '1234 Main Street',
+          'line1' => $delivery_address,
+          'line2' => $delivery_suburb,
           'city' => 'Wellington',
-          'state' => 'CA',
-          'country' => 'US',
-          'postal_code' => '94111',
+          'country' => 'NZ',
         ],
       ],
     ],
