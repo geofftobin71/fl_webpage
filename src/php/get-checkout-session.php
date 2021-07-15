@@ -1,9 +1,8 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
 
-require_once 'shared.php';
-
-// Fetch the Checkout Session to display the JSON result on the success page
-$id = $_GET['sessionId'];
-$checkout_session = \Stripe\Checkout\Session::retrieve($id);
+$id = $_GET['session_id'];
+$checkout_session = $stripe->checkout->sessions->retrieve($id);
 
 echo json_encode($checkout_session);
+?>
