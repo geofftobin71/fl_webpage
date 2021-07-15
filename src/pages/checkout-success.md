@@ -7,7 +7,6 @@ sitemap:
 ---
 <pre id="session"></pre>
 <pre id="items"></pre>
-<pre id="payment"></pre>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
     var urlParams = new URLSearchParams(window.location.search);
@@ -20,22 +19,8 @@ document.addEventListener("DOMContentLoaded",function(){
         return result.json();
         })
     .then(function (session) {
-        payment_intent_id = session['payment_intent'];
         var sessionJSON = JSON.stringify(session, null, 2);
         document.querySelector('#session').textContent = sessionJSON;
-        if(payment_intent_id) {
-        fetch('/php/get-payment-intent.php?payment_intent_id=' + payment_intent_id)
-        .then(function (result) {
-            return result.json();
-            })
-        .then(function (session) {
-            var sessionJSON = JSON.stringify(session, null, 2);
-            document.querySelector('#payment').textContent = sessionJSON;
-            })
-        .catch(function (err) {
-            console.log('Error when fetching Payment Intent', err);
-            });
-        };
         })
     .catch(function (err) {
         console.log('Error when fetching Checkout session', err);
@@ -43,17 +28,17 @@ document.addEventListener("DOMContentLoaded",function(){
     };
 
     if(session_id) {
-      fetch('/php/get-checkout-items.php?session_id=' + session_id)
-        .then(function (result) {
-            return result.json();
-            })
-      .then(function (session) {
-          var sessionJSON = JSON.stringify(session, null, 2);
-          document.querySelector('#items').textContent = sessionJSON;
+    fetch('/php/get-checkout-items.php?session_id=' + session_id)
+      .then(function (result) {
+          return result.json();
           })
-      .catch(function (err) {
-          console.log('Error when fetching Checkout session', err);
-          });
+    .then(function (session) {
+        var sessionJSON = JSON.stringify(session, null, 2);
+        document.querySelector('#items').textContent = sessionJSON;
+        })
+    .catch(function (err) {
+        console.log('Error when fetching Checkout session', err);
+        });
     };
 
 });
