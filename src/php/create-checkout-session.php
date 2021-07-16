@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
+include $_SERVER["DOCUMENT_ROOT"] . "/php/shop-functions.php";
 
 const date_format = "g:ia l j F Y";
 
@@ -39,11 +39,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
   if(!empty($_POST["cart-total-check"])) { $cart_total = floatVal(clean($_POST["cart-total-check"])); }
   if(!empty($_POST["delivery-total-check"])) { $delivery_fee = floatVal(clean($_POST["delivery-total-check"])); }
 
-  if(empty($cardholder_name)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder name')); exit; }
-  if(empty($cardholder_phone)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder phone')); exit; }
-  if(empty($cardholder_email)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cardholder email')); exit; }
-  if(empty($cart)) { header('Location:/shop-error/?p=' . obfencode('Error: Missing cart')); exit; }
-  if($cart_total < 1) { header('Location:/shop-error/?p=' . obfencode('Error: Zero cart total')); exit; }
+  if(empty($cardholder_name)) { header("Location:/shop-error/?p=" . obfencode("Error: Missing cardholder name")); exit; }
+  if(empty($cardholder_phone)) { header("Location:/shop-error/?p=" . obfencode("Error: Missing cardholder phone")); exit; }
+  if(empty($cardholder_email)) { header("Location:/shop-error/?p=" . obfencode("Error: Missing cardholder email")); exit; }
+  if(empty($cart)) { header("Location:/shop-error/?p=" . obfencode("Error: Missing cart")); exit; }
+  if($cart_total < 1) { header("Location:/shop-error/?p=" . obfencode("Error: Zero cart total")); exit; }
 
   $order_date = new DateTime;
 
@@ -74,17 +74,17 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
       $price = getPrice($product, $cart_item["variant-id"]);
       if(isset($category)) {
         $item_metadata = array();
+        $item_metadata["category"] = $category["name"];
         if(isset($workshop_attendee_name[$cart_id])) {
-          $item_metadata['workshop_attendee_name'] = $workshop_attendee_name[$cart_id];
+          $item_metadata["workshop_attendee_name"] = $workshop_attendee_name[$cart_id];
         }
         if(isset($workshop_attendee_email[$cart_id])) {
-          $item_metadata['workshop_attendee_email'] = $workshop_attendee_email[$cart_id];
+          $item_metadata["workshop_attendee_email"] = $workshop_attendee_email[$cart_id];
         }
-        $line_items[] = [
+        $line_item = [
           "price_data" => [
             "product_data" => [
               "name" => $product_names[$cart_id],
-              "description" => $variant_names[$cart_id],
               "metadata" => $item_metadata,
             ],
             "unit_amount" => intVal($price * 100.0),
@@ -92,76 +92,94 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
           ],
           "quantity" => 1,
         ];
+
+        if(!empty($variant_names[$cart_id])) {
+          $line_item["price_data"]["product_data"]["description"] = $variant_names[$cart_id];
+        }
+
+        $line_items[] = $line_item;
       }
     }
   }
 
+  $shipping_rates = array();
+
+  if($delivery_option === "pickup") {
+    $shipping_rates[0] = $delivery_ids["pickup in store"];
+  }
+
   if($delivery_option === "delivery") {
-    $line_items[] = [
-      "price_data" => [
-        "product_data" => [
-          "name" => "Delivery to " . ucwords($delivery_suburb),
-        ],
-        "unit_amount" => intVal($delivery_fee * 100.0),
-        "currency" => "nzd",
-      ],
-      "quantity" => 1,
-    ];
+    $shipping_rates[0] = $delivery_ids[strtolower($delivery_suburb)];
+
+    // Flat rate $20 on Saturday
+    if(str_starts_with($delivery_date, 'Sat')) {
+      if($delivery_fee < 20) {
+        $shipping_rates[0] = "shr_1JDNodLjelSQaoWrU2Oej6rd";
+      }
+    }
+
+    // Flat rate delivery fee on special dates
+    foreach($flat_rate_delivery_ids as $date => $value) {
+      if(str_ends_with($delivery_date, $date)) {
+        $shipping_rates[0] = $value;
+      }
+    }
   }
 
   $shipping = [
-    'name' => $delivery_name,
-    'phone' => $delivery_phone,
-    'address' => [
-      'line1' => $delivery_address,
-      'line2' => ucwords($delivery_suburb),
-      'city' => 'Wellington',
-      'country' => 'NZ'
+    "name" => $delivery_name,
+    "phone" => $delivery_phone,
+    "address" => [
+      "line1" => $delivery_address,
+      "line2" => ucwords($delivery_suburb),
+      "city" => "Wellington",
+      "country" => "NZ"
     ]
   ];
 
   $metadata = [
-    'timestamp' => $order_date->format(date_format),
-    'delivery-option' => $delivery_option,
-    'delivery-name' => $delivery_name,
-    'delivery-phone' => $delivery_phone,
-    'delivery-address' => $delivery_address,
-    'delivery-suburb' => ucwords($delivery_suburb),
-    'delivery-date' => $delivery_date,
-    'gift-tag-message' => truncateEllipses($gift_tag_message, 500),
-    'special-requests' => truncateEllipses($special_requests, 500),
-    'cardholder-name' => $cardholder_name,
-    'cardholder-email' => $cardholder_email,
-    'cardholder-phone' => $cardholder_phone,
+    "timestamp" => $order_date->format(date_format),
+    "delivery-option" => $delivery_option,
+    "delivery-name" => $delivery_name,
+    "delivery-phone" => $delivery_phone,
+    "delivery-address" => $delivery_address,
+    "delivery-suburb" => ucwords($delivery_suburb),
+    "delivery-date" => $delivery_date,
+    "gift-tag-message" => truncateEllipses($gift_tag_message, 500),
+    "special-requests" => truncateEllipses($special_requests, 500),
+    "cardholder-name" => $cardholder_name,
+    "cardholder-email" => $cardholder_email,
+    "cardholder-phone" => $cardholder_phone,
   ];
 
   $index = 1;
   foreach($workshop_attendee_name as $name) {
-    $metadata['workshop-attendee-name-' . $index] = $name;
+    $metadata["workshop-attendee-name-" . $index] = $name;
     $index++;
   }
 
   $index = 1;
   foreach($workshop_attendee_email as $email) {
-    $metadata['workshop-attendee-email-' . $index] = $email;
+    $metadata["workshop-attendee-email-" . $index] = $email;
     $index++;
   }
 
-  header('Content-Type: application/json');
+  header("Content-Type: application/json");
 
-  $YOUR_DOMAIN = 'http://168.138.10.72';
+  $YOUR_DOMAIN = "http://168.138.10.72";
 
   $checkout_session = $stripe->checkout->sessions->create([
-    'success_url' => $YOUR_DOMAIN . "/checkout-success?session_id={CHECKOUT_SESSION_ID}",
-    'cancel_url' => $YOUR_DOMAIN . "/checkout/",
-    'mode' => 'payment',
-    'payment_method_types' => ['card'],
-    'customer_email' => $cardholder_email,
-    'line_items' => $line_items,
-    'metadata' => $metadata,
-    'payment_intent_data' => [
-      'receipt_email' => $cardholder_email,
-      'shipping' => $shipping,
+    "success_url" => $YOUR_DOMAIN . "/checkout-success?session_id={CHECKOUT_SESSION_ID}",
+    "cancel_url" => $YOUR_DOMAIN . "/checkout/",
+    "mode" => "payment",
+    "payment_method_types" => ["card"],
+    "customer_email" => $cardholder_email,
+    "line_items" => $line_items,
+    "shipping_rates" => $shipping_rates,
+    "metadata" => $metadata,
+    "payment_intent_data" => [
+      "receipt_email" => $cardholder_email,
+      "shipping" => $shipping,
     ],
   ]);
 
