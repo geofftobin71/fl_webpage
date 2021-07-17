@@ -112,18 +112,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     $shipping_rates[0] = $delivery_ids[strtolower($delivery_suburb)];
 
     // Flat rate $20 on Saturday
-    if(str_starts_with($delivery_date, 'Sat')) {
-      if($delivery_fee < 20) {
+    if(str_starts_with($delivery_date, "Sat")) {
+      if(floatVal($delivery_fees[strtolower($delivery_suburb)]) < 20.0) {
         $shipping_rates[0] = "shr_1JDNodLjelSQaoWrU2Oej6rd";
       }
     }
 
     // Flat rate delivery fee on special dates
+    /*
     foreach($flat_rate_delivery_ids as $date => $value) {
       if(str_ends_with($delivery_date, $date)) {
         $shipping_rates[0] = $value;
       }
     }
+    */
   }
 
   $shipping = [

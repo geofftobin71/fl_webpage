@@ -1,0 +1,357 @@
+{
+  "id": "cs_test_b1f3wCyPwU3ZPNlRyjWcCiPZwfIyIdtqTXpaLy35aJshjLPgSBFjXOWMjb",
+  "object": "checkout.session",
+  "allow_promotion_codes": null,
+  "amount_subtotal": 36000,
+  "amount_total": 36000,
+  "automatic_tax": {
+    "enabled": false,
+    "status": null
+  },
+  "billing_address_collection": null,
+  "cancel_url": "http://168.138.10.72/checkout/",
+  "client_reference_id": null,
+  "currency": "nzd",
+  "customer": "cus_JrmDI12zMAgv8i",
+  "customer_details": {
+    "email": "geofftobin71@gmail.com",
+    "tax_exempt": "none",
+    "tax_ids": []
+  },
+  "customer_email": "geofftobin71@gmail.com",
+  "livemode": false,
+  "locale": null,
+  "metadata": {
+    "timestamp": "1:48pm Saturday 17 July 2021",
+    "delivery-option": "none",
+    "delivery-name": "Floriade",
+    "delivery-phone": "",
+    "delivery-address": "18 Cambridge Terrace",
+    "delivery-suburb": "Te Aro",
+    "delivery-date": "",
+    "gift-tag-message": "",
+    "special-requests": "",
+    "cardholder-name": "Geoff Tobin",
+    "cardholder-email": "geofftobin71@gmail.com",
+    "cardholder-phone": "+64 21 127 2182",
+    "workshop-attendee-name-1": "Wilma Flintstone",
+    "workshop-attendee-name-2": "Betty Rubble",
+    "workshop-attendee-email-1": "wilma@flintstone.com",
+    "workshop-attendee-email-2": "betty@rubble.com"
+  },
+  "mode": "payment",
+  "payment_intent": {
+    "id": "pi_1JE2eFLjelSQaoWrgh6sR3Tn",
+    "object": "payment_intent",
+    "allowed_source_types": [
+      "card"
+                                                                                                                                                                ],
+                                                                                                                                                                "amount": 36000,
+                                                                                                                                                                "amount_capturable": 0,
+                                                                                                                                                                "amount_received": 36000,
+                                                                                                                                                                "application": null,
+                                                                                                                                                                "application_fee_amount": null,
+                                                                                                                                                                "canceled_at": null,
+                                                                                                                                                                "cancellation_reason": null,
+                                                                                                                                                                "capture_method": "automatic",
+                                                                                                                                                                "charges": {
+                                                                                                                                                                  "object": "list",
+                                                                                                                                                                  "data": [
+                                                                                                                                                                    {
+                                                                                                                                                                      "id": "ch_1JE2ejLjelSQaoWr6zVyAdNi",
+                                                                                                                                                                      "object": "charge",
+                                                                                                                                                                      "amount": 36000,
+                                                                                                                                                                      "amount_captured": 36000,
+                                                                                                                                                                      "amount_refunded": 0,
+                                                                                                                                                                      "application": null,
+                                                                                                                                                                      "application_fee": null,
+                                                                                                                                                                      "application_fee_amount": null,
+                                                                                                                                                                      "balance_transaction": "txn_1JE2ejLjelSQaoWrkfO4Ov1b",
+                                                                                                                                                                      "billing_details": {
+                                                                                                                                                                        "address": {
+                                                                                                                                                                          "city": null,
+                                                                                                                                                                          "country": "NZ",
+                                                                                                                                                                          "line1": null,
+                                                                                                                                                                          "line2": null,
+                                                                                                                                                                          "postal_code": null,
+                                                                                                                                                                          "state": null
+                                                                                                                                                                        },
+                                                                                                                                                                        "email": "geofftobin71@gmail.com",
+                                                                                                                                                                        "name": "Fred Flintstone",
+                                                                                                                                                                        "phone": null
+                                                                                                                                                                      },
+                                                                                                                                                                      "calculated_statement_descriptor": "FLORIADE",
+                                                                                                                                                                      "captured": true,
+                                                                                                                                                                      "created": 1626486569,
+                                                                                                                                                                      "currency": "nzd",
+                                                                                                                                                                      "customer": "cus_JrmDI12zMAgv8i",
+                                                                                                                                                                      "description": null,
+                                                                                                                                                                      "destination": null,
+                                                                                                                                                                      "dispute": null,
+                                                                                                                                                                      "disputed": false,
+                                                                                                                                                                      "failure_code": null,
+                                                                                                                                                                      "failure_message": null,
+                                                                                                                                                                      "fraud_details": [],
+                                                                                                                                                                      "invoice": null,
+                                                                                                                                                                      "livemode": false,
+                                                                                                                                                                      "metadata": [],
+                                                                                                                                                                      "on_behalf_of": null,
+                                                                                                                                                                      "order": null,
+                                                                                                                                                                      "outcome": {
+                                                                                                                                                                        "network_status": "approved_by_network",
+                                                                                                                                                                        "reason": null,
+                                                                                                                                                                        "risk_level": "normal",
+                                                                                                                                                                        "risk_score": 43,
+                                                                                                                                                                        "seller_message": "Payment complete.",
+                                                                                                                                                                        "type": "authorized"
+                                                                                                                                                                      },
+                                                                                                                                                                      "paid": true,
+                                                                                                                                                                      "payment_intent": "pi_1JE2eFLjelSQaoWrgh6sR3Tn",
+                                                                                                                                                                      "payment_method": "pm_1JE2eiLjelSQaoWrbXLkq3ky",
+                                                                                                                                                                      "payment_method_details": {
+                                                                                                                                                                        "card": {
+                                                                                                                                                                          "brand": "visa",
+                                                                                                                                                                          "checks": {
+                                                                                                                                                                            "address_line1_check": null,
+                                                                                                                                                                            "address_postal_code_check": null,
+                                                                                                                                                                            "cvc_check": "pass"
+                                                                                                                                                                          },
+                                                                                                                                                                          "country": "US",
+                                                                                                                                                                          "exp_month": 2,
+                                                                                                                                                                          "exp_year": 2022,
+                                                                                                                                                                          "fingerprint": "LIyX9c2O04JyrnO2",
+                                                                                                                                                                          "funding": "credit",
+                                                                                                                                                                          "installments": null,
+                                                                                                                                                                          "last4": "4242",
+                                                                                                                                                                          "network": "visa",
+                                                                                                                                                                          "three_d_secure": null,
+                                                                                                                                                                          "wallet": null
+                                                                                                                                                                        },
+                                                                                                                                                                        "type": "card"
+                                                                                                                                                                      },
+                                                                                                                                                                      "receipt_email": "geofftobin71@gmail.com",
+                                                                                                                                                                      "receipt_number": null,
+                                                                                                                                                                      "receipt_url": "https://pay.stripe.com/receipts/acct_1ARq9aLjelSQaoWr/ch_1JE2ejLjelSQaoWr6zVyAdNi/rcpt_JrmDXraEZomcrw8eiP2lHHTVrdtDDS0",
+                                                                                                                                                                      "refunded": false,
+                                                                                                                                                                      "refunds": {
+                                                                                                                                                                        "object": "list",
+                                                                                                                                                                        "data": [],
+                                                                                                                                                                        "has_more": false,
+                                                                                                                                                                        "total_count": 0,
+                                                                                                                                                                        "url": "/v1/charges/ch_1JE2ejLjelSQaoWr6zVyAdNi/refunds"
+                                                                                                                                                                      },
+                                                                                                                                                                      "review": null,
+                                                                                                                                                                      "shipping": {
+                                                                                                                                                                        "address": {
+                                                                                                                                                                          "city": "Wellington",
+                                                                                                                                                                          "country": "NZ",
+                                                                                                                                                                          "line1": "18 Cambridge Terrace",
+                                                                                                                                                                          "line2": "Te Aro",
+                                                                                                                                                                          "postal_code": null,
+                                                                                                                                                                          "state": null
+                                                                                                                                                                        },
+                                                                                                                                                                        "carrier": null,
+                                                                                                                                                                        "name": "Floriade",
+                                                                                                                                                                        "phone": "",
+                                                                                                                                                                        "tracking_number": null
+                                                                                                                                                                      },
+                                                                                                                                                                      "source": null,
+                                                                                                                                                                      "source_transfer": null,
+                                                                                                                                                                      "statement_descriptor": null,
+                                                                                                                                                                      "statement_descriptor_suffix": null,
+                                                                                                                                                                      "status": "succeeded",
+                                                                                                                                                                      "transfer_data": null,
+                                                                                                                                                                      "transfer_group": null
+                                                                                                                                                                    }
+                                                                                                                                                                  ],
+                                                                                                                                                                  "has_more": false,
+                                                                                                                                                                  "total_count": 1,
+                                                                                                                                                                  "url": "/v1/charges?payment_intent=pi_1JE2eFLjelSQaoWrgh6sR3Tn"
+                                                                                                                                                                },
+                                                                                                                                                                "client_secret": "pi_1JE2eFLjelSQaoWrgh6sR3Tn_secret_lR4h0cWphWDBXPXnMhpOIizXu",
+                                                                                                                                                                "confirmation_method": "automatic",
+                                                                                                                                                                "created": 1626486539,
+                                                                                                                                                                "currency": "nzd",
+                                                                                                                                                                "customer": "cus_JrmDI12zMAgv8i",
+                                                                                                                                                                "description": null,
+                                                                                                                                                                "invoice": null,
+                                                                                                                                                                "last_payment_error": null,
+                                                                                                                                                                "livemode": false,
+                                                                                                                                                                "metadata": [],
+                                                                                                                                                                "next_action": null,
+                                                                                                                                                                "next_source_action": null,
+                                                                                                                                                                "on_behalf_of": null,
+                                                                                                                                                                "payment_method": "pm_1JE2eiLjelSQaoWrbXLkq3ky",
+                                                                                                                                                                "payment_method_options": {
+                                                                                                                                                                  "card": {
+                                                                                                                                                                    "installments": null,
+                                                                                                                                                                    "network": null,
+                                                                                                                                                                    "request_three_d_secure": "automatic"
+                                                                                                                                                                  }
+                                                                                                                                                                },
+                                                                                                                                                                "payment_method_types": [
+                                                                                                                                                                  "card"
+                                                                                                                                                                ],
+                                                                                                                                                                "receipt_email": "geofftobin71@gmail.com",
+                                                                                                                                                                "review": null,
+                                                                                                                                                                "setup_future_usage": null,
+                                                                                                                                                                "shipping": {
+                                                                                                                                                                  "address": {
+                                                                                                                                                                    "city": "Wellington",
+                                                                                                                                                                    "country": "NZ",
+                                                                                                                                                                    "line1": "18 Cambridge Terrace",
+                                                                                                                                                                    "line2": "Te Aro",
+                                                                                                                                                                    "postal_code": null,
+                                                                                                                                                                    "state": null
+                                                                                                                                                                  },
+                                                                                                                                                                  "carrier": null,
+                                                                                                                                                                  "name": "Floriade",
+                                                                                                                                                                  "phone": "",
+                                                                                                                                                                  "tracking_number": null
+                                                                                                                                                                },
+                                                                                                                                                                "source": null,
+                                                                                                                                                                "statement_descriptor": null,
+                                                                                                                                                                "statement_descriptor_suffix": null,
+                                                                                                                                                                "status": "succeeded",
+                                                                                                                                                                "transfer_data": null,
+                                                                                                                                                                "transfer_group": null
+  },
+  "payment_method_options": [],
+  "payment_method_types": [
+    "card"
+  ],
+  "payment_status": "paid",
+  "setup_intent": null,
+  "shipping": null,
+  "shipping_address_collection": null,
+  "submit_type": null,
+  "subscription": null,
+  "success_url": "http://168.138.10.72/checkout-success?session_id={CHECKOUT_SESSION_ID}",
+  "total_details": {
+    "amount_discount": 0,
+    "amount_shipping": 0,
+    "amount_tax": 0
+  },
+  "url": null
+}
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "li_1JE2eFLjelSQaoWrcjrLOUlB",
+      "object": "item",
+      "amount_subtotal": 18000,
+      "amount_total": 18000,
+      "currency": "nzd",
+      "description": "Christmas Wreath Workshop",
+      "price": {
+        "id": "price_1JE2eFLjelSQaoWrY1Q2zdUH",
+        "object": "price",
+        "active": false,
+        "billing_scheme": "per_unit",
+        "created": 1626486539,
+        "currency": "nzd",
+        "livemode": false,
+        "lookup_key": null,
+        "metadata": [],
+        "nickname": null,
+        "product": {
+          "id": "prod_JrmCNVOwFZ64sp",
+          "object": "product",
+          "active": false,
+          "attributes": [],
+          "created": 1626486539,
+          "description": "10:30am Tuesday 21 December 2021",
+          "images": [],
+          "livemode": false,
+          "metadata": {
+            "category": "Workshops",
+            "workshop_attendee_name": "Wilma Flintstone",
+            "workshop_attendee_email": "wilma@flintstone.com"
+          },
+          "name": "Christmas Wreath Workshop",
+          "package_dimensions": null,
+          "shippable": null,
+          "skus": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/skus?product=prod_JrmCNVOwFZ64sp&active=true"
+          },
+          "statement_descriptor": null,
+          "type": "service",
+          "unit_label": null,
+          "updated": 1626486539,
+          "url": null
+        },
+        "recurring": null,
+        "tiers_mode": null,
+        "transform_quantity": null,
+        "type": "one_time",
+        "unit_amount": 18000,
+        "unit_amount_decimal": "18000"
+      },
+      "quantity": 1
+    },
+    {
+      "id": "li_1JE2eFLjelSQaoWrmqa34ItA",
+      "object": "item",
+      "amount_subtotal": 18000,
+      "amount_total": 18000,
+      "currency": "nzd",
+      "description": "Christmas Wreath Workshop",
+      "price": {
+        "id": "price_1JE2eFLjelSQaoWrg4Fq6b8E",
+        "object": "price",
+        "active": false,
+        "billing_scheme": "per_unit",
+        "created": 1626486539,
+        "currency": "nzd",
+        "livemode": false,
+        "lookup_key": null,
+        "metadata": [],
+        "nickname": null,
+        "product": {
+          "id": "prod_JrmCCNz3BaUNMg",
+          "object": "product",
+          "active": false,
+          "attributes": [],
+          "created": 1626486539,
+          "description": "10:30am Tuesday 21 December 2021",
+          "images": [],
+          "livemode": false,
+          "metadata": {
+            "category": "Workshops",
+            "workshop_attendee_name": "Betty Rubble",
+            "workshop_attendee_email": "betty@rubble.com"
+          },
+          "name": "Christmas Wreath Workshop",
+          "package_dimensions": null,
+          "shippable": null,
+          "skus": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/skus?product=prod_JrmCCNz3BaUNMg&active=true"
+          },
+          "statement_descriptor": null,
+          "type": "service",
+          "unit_label": null,
+          "updated": 1626486539,
+          "url": null
+        },
+        "recurring": null,
+        "tiers_mode": null,
+        "transform_quantity": null,
+        "type": "one_time",
+        "unit_amount": 18000,
+        "unit_amount_decimal": "18000"
+      },
+      "quantity": 1
+    }
+  ],
+  "has_more": false,
+  "url": "/v1/checkout/sessions/cs_test_b1f3wCyPwU3ZPNlRyjWcCiPZwfIyIdtqTXpaLy35aJshjLPgSBFjXOWMjb/line_items"
+}

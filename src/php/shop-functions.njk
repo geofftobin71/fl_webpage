@@ -33,6 +33,7 @@ $shop_categories = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/p
 $delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_fees.json"), true);
 $delivery_ids = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/delivery_ids.json"), true);
 $flat_rate_delivery_fees = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/flat_rate_delivery_fees.json"), true);
+$flat_rate_delivery_ids = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/flat_rate_delivery_ids.json"), true);
 $non_delivery_dates = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/non_delivery_dates.json"), true);
 $shop_closed_dates = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/shop_closed_dates.json"), true);
 $special_delivery_dates = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/php/special_delivery_dates.json"), true);

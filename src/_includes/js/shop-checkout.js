@@ -398,6 +398,7 @@ function updateTotal() {
       }
 
       // Flat Rate delivery fee on Special days
+      /*
       for(let date in flat_rate_delivery_fees) {
         let flat_rate_date = DateTime.fromFormat(date, date_format);
         let element_date = DateTime.fromFormat(delivery_date, delivery_date_value_format);
@@ -410,6 +411,7 @@ function updateTotal() {
           }
         }
       }
+      */
 
       document.getElementById("delivery-heading").innerText = "Delivery to";
       document.getElementById("delivery-suburb-name").innerText = delivery_suburb;
