@@ -6,7 +6,7 @@
     {% set lqip_data = lqip_path | imgLqip %}
     <picture style="background-image:url({{ lqip_data }})">
 
-	    {% set transforms = 'c_lfill,ar_2,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_2,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in image_sizes | select("lessthan", 1000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -14,7 +14,7 @@
 	    {% endset %}
       <source media="(max-width:750px) and (orientation:portrait)" srcset="{{ srcset }}">
 
-	    {% set transforms = 'c_lfill,ar_2.5,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_2.5,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in image_sizes | reject("lessthan", 1000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -22,7 +22,7 @@
 	    {% endset %}
       <source media="(min-width:751px) and (orientation:portrait)" srcset="{{ srcset }}">
 
-	    {% set transforms = 'c_lfill,ar_4.5,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_4.5,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in (image_sizes | reject("lessthan", 1000)) | reject("greaterthan", 2000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -30,7 +30,7 @@
 	    {% endset %}
       <source media="(max-width:950px) and (orientation:landscape) and (min-aspect-ratio:2/1)" srcset="{{ srcset }}">
 
-	    {% set transforms = 'c_lfill,ar_3.5,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_3.5,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in (image_sizes | reject("lessthan", 1000)) | reject("greaterthan", 2000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -38,7 +38,7 @@
 	    {% endset %}
       <source media="(max-width:950px) and (orientation:landscape) and (min-aspect-ratio:46/27)" srcset="{{ srcset }}">
 
-	    {% set transforms = 'c_lfill,ar_2.5,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_2.5,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in (image_sizes | reject("lessthan", 1000)) | reject("greaterthan", 2000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -46,7 +46,7 @@
 	    {% endset %}
       <source media="(max-width:950px) and (orientation:landscape)" srcset="{{ srcset }}">
 
-	    {% set transforms = 'c_lfill,ar_3.3,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_3.3,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in image_sizes | reject("lessthan", 1000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}
@@ -54,7 +54,7 @@
 	    {% endset %}
       <source media="(max-width:1500px) and (orientation:landscape)" srcset="{{ srcset }}">
 
-	    {% set transforms = 'c_lfill,ar_4.5,q_auto,f_auto,g_auto:subject/' %}
+	    {% set transforms = 'c_fill,ar_4.5,q_auto,f_auto,g_auto:subject/' %}
 	    {% set srcset %}
 	      {%- for size in image_sizes | reject("lessthan", 1000) -%}
 	        {{ site.cloudinary_url }}/w_{{ size }},{{ transforms }}{{ image_id }} {{ size }}w{{ ',' if not loop.last }}

@@ -20,7 +20,7 @@
       {% set aspect = "aspect" + section.aspect %}
       {% set native_aspect = "" %}
     {% endif %}
-    {% set transforms = transforms + "c_lfill,q_auto,f_auto,g_auto:subject/" %}
+    {% set transforms = transforms + "c_fill,q_auto,f_auto,g_auto:subject/" %}
     <div class="aspect {{ aspect | safe }}" style="{{ native_aspect | safe }}">
       <figure class="canvas{{ ' fader' if section_images_count > 1 }}" style="background-image:url({{ lqip_data }})">
         {% for section_image in section.images %}

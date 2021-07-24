@@ -3,7 +3,7 @@
 {% block content %}
   <main class="canvas center min-height100vh" style="position:relative">
   <div class="background">
-    {% set transforms = "c_lfill,ar_1,q_auto,f_auto,g_auto/" %}
+    {% set transforms = "c_fill,ar_1,q_auto,f_auto,g_auto/" %}
     {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
     {% set image_info = image_id | imgInfo %}
     {% set src = site.cloudinary_url + "/w_900," + transforms + image_id %}

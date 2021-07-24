@@ -1,0 +1,82 @@
+{% extends "layouts/base.njk" %}
+
+{% block pre %}
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
+
+include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
+
+if(isset($_GET['session_id'])) {
+  $id = $_GET['session_id'];
+  $checkout_session = $stripe->checkout->sessions->retrieve($id, ['expand' => ['payment_intent']]);
+  $checkout_items = $stripe->checkout->sessions->allLineItems($id,['limit' => 100,'expand' => ['data.price.product']]);
+}
+?>
+{% endblock %}
+
+{% set brightness = 100 - (header.brightness or 66) %}
+{% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
+{% set image_info = image_id | imgInfo %}
+{% set lqip_path = site.cloudinary_url + "/w_128,h_64,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
+{% set lqip_data = lqip_path | imgLqip %}
+
+{% block content %}
+  <style>table{border-collapse:collapse;border-spacing:0;margin:0}td{padding:0}</style>
+
+  <section>
+    <section class="bg-alt round wrapper text-wrapper vertical center flow">
+
+      <h1>{{ (header_title or title) | lower }}</h1>
+      <img src="{{ site.cloudinary_url }}/c_fill,g_auto,h_630,q_auto,f_jpg,w_1200,e_brightness_hsb:-{{ brightness }}/co_black,e_shadow,h_615,l_icons:floriade-logo-white/{{ image_id }}" width="640" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }};width:100%;height:auto;" />
+
+      <pre><?php echo json_encode($checkout_session); ?></pre>
+      <pre><?php echo json_encode($checkout_items); ?></pre>
+
+      <hr>
+
+      <a class="button" href="/">Return to Homepage</a>
+
+    </section>
+  </section>
+
+  {#
+  <script>
+    document.addEventListener("DOMContentLoaded",function(){
+      var urlParams = new URLSearchParams(window.location.search);
+      var session_id = urlParams.get('session_id');
+
+      if(session_id) {
+        fetch('/php/get-checkout-session.php?session_id=' + session_id)
+          .then(function (result) {
+            return result.json();
+          })
+          .then(function (session) {
+            var sessionJSON = JSON.stringify(session, null, 2);
+            document.querySelector('#session').textContent = sessionJSON;
+          })
+          .catch(function (err) {
+            console.log('Error when fetching Checkout session', err);
+          });
+      };
+
+      if(session_id) {
+        fetch('/php/get-checkout-items.php?session_id=' + session_id)
+          .then(function (result) {
+            return result.json();
+          })
+          .then(function (items) {
+            var itemsJSON = JSON.stringify(items, null, 2);
+            document.querySelector('#items').textContent = itemsJSON;
+          })
+          .catch(function (err) {
+            console.log('Error when fetching Checkout items', err);
+          });
+      };
+
+    });
+  </script>
+  #}
+{% endblock %}
