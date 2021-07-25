@@ -349,7 +349,7 @@ function selectDeliveryOption(delivery_option) {
 
   if(delivery_option === "pickup") {
     document.getElementById("delivery-date-label").innerText = "Pickup Date";
-    document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day pickup";
+    document.getElementById("delivery-date-caption").innerText = "Minimum $20 delivery fee on Saturdays - Orders must be received by 10am for same day pickup";
     document.getElementById("delivery-date").setAttribute("data-error","Pickup Date is required");
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "none";
@@ -362,7 +362,7 @@ function selectDeliveryOption(delivery_option) {
 
   if(delivery_option === "delivery") {
     document.getElementById("delivery-date-label").innerText = "Delivery Date";
-    document.getElementById("delivery-date-caption").innerText = "Orders must be received by 10am for same day delivery";
+    document.getElementById("delivery-date-caption").innerText = "Minimum $20 delivery fee on Saturdays - Orders must be received by 10am for same day delivery";
     document.getElementById("delivery-date").setAttribute("data-error","Delivery Date is required");
     document.querySelectorAll(".delivery-address-group").forEach(element => {
       element.style.display = "block";

@@ -1,18 +1,155 @@
-{% extends "layouts/base.njk" %}
+{% extends 'layouts/base.njk' %}
 
 {% block pre %}
 <?php
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-header("Expires: 0");
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
+header('Expires: 0');
 
 include $_SERVER['DOCUMENT_ROOT'] . '/php/shop-functions.php';
 
 if(isset($_GET['session_id'])) {
   $id = $_GET['session_id'];
+
   $checkout_session = $stripe->checkout->sessions->retrieve($id, ['expand' => ['payment_intent']]);
   $checkout_items = $stripe->checkout->sessions->allLineItems($id,['limit' => 100,'expand' => ['data.price.product']]);
+
+  $payment_intent_id = $checkout_session['payment_intent']['id'];
+  $card_brand = $checkout_session['payment_intent']['charges']['data'][0]['payment_method_details']['card']['brand'];
+  $card_month = $checkout_session['payment_intent']['charges']['data'][0]['payment_method_details']['card']['exp_month'];
+  $card_year = $checkout_session['payment_intent']['charges']['data'][0]['payment_method_details']['card']['exp_year'];
+  $card_last4 = $checkout_session['payment_intent']['charges']['data'][0]['payment_method_details']['card']['last4'];
+  $order_date = $checkout_session['metadata']['timestamp'];
+  $delivery_option = $checkout_session['metadata']['delivery-option'];
+  $delivery_name = $checkout_session['metadata']['delivery-name'];
+  $delivery_phone = $checkout_session['metadata']['delivery-phone'];
+  $delivery_address = $checkout_session['metadata']['delivery-address'];
+  $delivery_suburb = $checkout_session['metadata']['delivery-suburb'];
+  $delivery_date = $checkout_session['metadata']['delivery-date'];
+  $gift_tag_message = $checkout_session['metadata']['gift-tag-message'];
+  $special_requests = $checkout_session['metadata']['special-requests'];
+  $cardholder_name = $checkout_session['metadata']['cardholder-name'];
+  $cardholder_email = $checkout_session['metadata']['cardholder-email'];
+  $cardholder_phone = $checkout_session['metadata']['cardholder-phone'];
+
+  $cart_total = floatVal($checkout_session['amount_subtotal']) / 100.0;
+  $total = floatVal($checkout_session['amount_total']) / 100.0;
+  $delivery_fee = floatVal($checkout_session['total_details']['amount_shipping']) / 100.0;
+
+  $divider = '<tr><td colspan="2"><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div><hr><div class="spacer" style="line-height:13px;height:13px;mso-line-height-rule:exactly;">&nbsp;</div></td></tr>';
+  $spacer = '<tr><td><br></td><td><br></td></tr>';
+
+  $email_banner = 'site/floriade-dried-flower-room-00001';
+  $alt_text = 'Floriade';
+
+  $content = '';
+
+  // Order Summary
+
+  $content .= '<table role="presentation" width="100%">';
+  $content .= $divider;
+  $content .= '<tr><td colspan="2"><h3 style="text-align:center">Order Summary</h3><br></td></tr>';
+
+  if(!empty($delivery_name)) {
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $delivery_name . '</td></tr>';
+  }
+
+  foreach($checkout_items['data'] as $item) {
+    if(strtolower($item['price']['product']['metadata']['category']) !== 'workshops') {
+      $content .= '<tr><td style="vertical-align:top">' . $item['price']['product']['name'];
+      if(!empty($item['price']['product']['description'])) { $content .= ' (' . $item['price']['product']['description'] . ')'; }
+      $content .= '</td><td style="text-align:right;vertical-align:top">' . formatMoney(floatVal($item['amount_total']) / 100.0) . '</td></tr>';
+    }
+  }
+
+  foreach($checkout_items['data'] as $item) {
+    if(strtolower($item['price']['product']['metadata']['category']) === 'workshops') {
+      $content .= '<tr><td style="vertical-align:top">' . $item['price']['product']['name'] . '<br>' . $item['price']['product']['description'] . '<br><small>' . $item['price']['product']['metadata']['workshop_attendee_name'] . ' - ' . $item['price']['product']['metadata']['workshop_attendee_email'] . '</small></td><td style="text-align:right;vertical-align:top">' . formatMoney(floatVal($item['amount_total']) / 100.0) . '</td></tr>';
+    }
+  }
+
+  if(strtolower($delivery_option) === 'pickup') {
+    $content .= $divider;
+    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($cart_total) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top">free</td></tr>';
+  }
+
+  if(strtolower($delivery_option) === 'delivery') {
+    $content .= $divider;
+    $content .= '<tr><td style="vertical-align:top">Cart Total</td><td style="text-align:right;vertical-align:top">' . formatMoney($cart_total) . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Delivery to ' . $delivery_suburb . '</td><td style="text-align:right;vertical-align:top">' . formatMoney($delivery_fee) . '</td></tr>';
+  }
+
+  $content .= $divider;
+  $content .= '<tr><td style="vertical-align:top">TOTAL</td><td style="text-align:right;vertical-align:top">' . formatMoney($total) . '</td></tr>';
+  $content .= '</table>';
+
+  // Pickup
+
+  if(strtolower($delivery_option) === 'pickup') {
+    $content .= '<table role="presentation" width="100%">';
+    $content .= $divider;
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Pickup Details</h3><br></td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Pickup in Store</td><td style="text-align:right;vertical-align:top"><a href="{{ site.google_maps }}" title="Open in Google Maps" aria-label="Open in Google Maps" target="_blank" rel="noopener">{{ site.name }}<br>{{ site.address }}<br>{{ site.address_locality }}<br>{{ site.address_region }}</a></td></tr>';
+    $content .= $spacer;
+    $content .= '<tr><td style="vertical-align:top">Pickup Date</td><td style="text-align:right;vertical-align:top">' . $delivery_date . '</td></tr>';
+    $content .= '<tr><td colspan="2"><p style="text-align:center"><a href="/php/pickup-ics.php?d=' . urlencode($delivery_date) . '">Add to Calendar</a></p></td></tr>';
+    $content .= '</table>';
+  }
+
+  // Delivery
+
+  if(strtolower($delivery_option) === 'delivery') {
+    $content .= '<table role="presentation" width="100%">';
+    $content .= $divider;
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Delivery Details</h3><br></td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Name</td><td style="text-align:right;vertical-align:top">' . $delivery_name . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Recipient Phone</td><td style="text-align:right;vertical-align:top">' . $delivery_phone . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Delivery Address</td><td style="text-align:right;vertical-align:top">' . $delivery_address . '<br>' . $delivery_suburb . '</td></tr>';
+    $content .= '<tr><td style="vertical-align:top">Delivery Date</td><td style="text-align:right;vertical-align:top">' . $delivery_date . '</td></tr>';
+    $content .= '</table>';
+  }
+
+  // Gift tag Message
+
+  if(!empty($gift_tag_message)) {
+    $content .= '<table role="presentation" width="100%">';
+    $content .= $divider;
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Gift tag Message</h3><br></td></tr>';
+    $content .= '<tr><td colspan="2"><p>' . $gift_tag_message . '</p></td></tr>';
+    $content .= '</table>';
+  }
+
+  // Special Requests
+
+  if(!empty($special_requests)) {
+    $content .= '<table role="presentation" width="100%">';
+    $content .= $divider;
+    $content .= '<tr><td colspan="2"><h3 style="text-align:center">Special Requests</h3><br></td></tr>';
+    $content .= '<tr><td colspan="2"><p>' . $special_requests . '</p></td></tr>';
+    $content .= '</table>';
+  }
+
+  // Payment
+
+  $content .= '<table role="presentation" width="100%">';
+  $content .= $divider;
+  $content .= '<tr><td colspan="2"><h3 style="text-align:center">Payment Details</h3><br></td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Name</td><td style="text-align:right;vertical-align:top">' . $cardholder_name . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Email</td><td style="text-align:right;vertical-align:top">' . $cardholder_email . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Phone</td><td style="text-align:right;vertical-align:top">' . $cardholder_phone . '</td></tr>';
+  $content .= '<tr><td style="vertical-align:top">Card</td><td style="text-align:right;vertical-align:top">' . $card_brand . ' **** **** **** ' . $card_last4 . ' ' . $card_month . '/' . substr($card_year,2) . '</td></tr>';
+  $content .= $spacer;
+  $content .= '<tr><td colspan="2"><p style="text-align:center"><small>All prices are in New Zealand dollars and include GST</small></p></td></tr>';
+  $content .= '</table>';
+
+  $content .= '<table role="presentation" width="100%">';
+  $content .= $divider;
+  $content .= '<tr><td style="vertical-align:top"><small>Order ID</small></td><td style="text-align:right;vertical-align:top"><small>' . $payment_intent_id . '</small></td></tr>';
+  $content .= '<tr><td style="vertical-align:top"><small>Order Date</small></td><td style="text-align:right;vertical-align:top"><small>' . $order_date . '</small></td></tr>';
+  $content .= '</table>';
+
 }
 ?>
 {% endblock %}
@@ -20,20 +157,27 @@ if(isset($_GET['session_id'])) {
 {% set brightness = 100 - (header.brightness or 66) %}
 {% set image_id = (header_image | stripVersion) or (site.header_image | stripVersion) %}
 {% set image_info = image_id | imgInfo %}
-{% set lqip_path = site.cloudinary_url + "/w_128,h_64,c_fill,q_auto,f_jpg,g_auto,e_blur:200/" + image_id %}
+{% set lqip_path = site.cloudinary_url + '/w_128,h_64,c_fill,q_auto,f_jpg,g_auto,e_blur:200/' + image_id %}
 {% set lqip_data = lqip_path | imgLqip %}
 
 {% block content %}
-  <style>table{border-collapse:collapse;border-spacing:0;margin:0}td{padding:0}</style>
+  <style>table{border-collapse:collapse;border-spacing:0;margin:0}td{padding:0}
+@media screen and (max-width:65ch) {
+#outer {
+  padding-top:0;
+  padding-bottom:0;
+}
+}
+  </style>
 
-  <section>
-    <section class="bg-alt round wrapper text-wrapper vertical center flow">
+  <main>
+  <section id="outer">
+    <section id="inner" class="bg-alt round wrapper text-wrapper vertical center flow">
 
-      <h1>{{ (header_title or title) | lower }}</h1>
+      <h1 class="text-center">{{ (header_title or title) | lower }}</h1>
       <img src="{{ site.cloudinary_url }}/c_fill,g_auto,h_630,q_auto,f_jpg,w_1200,e_brightness_hsb:-{{ brightness }}/co_black,e_shadow,h_615,l_icons:floriade-logo-white/{{ image_id }}" width="640" alt="{{ image_info.context.alt or site.alt }}" style="background-image:url({{ lqip_data }};width:100%;height:auto;" />
 
-      <pre><?php echo json_encode($checkout_session); ?></pre>
-      <pre><?php echo json_encode($checkout_items); ?></pre>
+      <?php echo $content; ?>
 
       <hr>
 
@@ -41,42 +185,5 @@ if(isset($_GET['session_id'])) {
 
     </section>
   </section>
-
-  {#
-  <script>
-    document.addEventListener("DOMContentLoaded",function(){
-      var urlParams = new URLSearchParams(window.location.search);
-      var session_id = urlParams.get('session_id');
-
-      if(session_id) {
-        fetch('/php/get-checkout-session.php?session_id=' + session_id)
-          .then(function (result) {
-            return result.json();
-          })
-          .then(function (session) {
-            var sessionJSON = JSON.stringify(session, null, 2);
-            document.querySelector('#session').textContent = sessionJSON;
-          })
-          .catch(function (err) {
-            console.log('Error when fetching Checkout session', err);
-          });
-      };
-
-      if(session_id) {
-        fetch('/php/get-checkout-items.php?session_id=' + session_id)
-          .then(function (result) {
-            return result.json();
-          })
-          .then(function (items) {
-            var itemsJSON = JSON.stringify(items, null, 2);
-            document.querySelector('#items').textContent = itemsJSON;
-          })
-          .catch(function (err) {
-            console.log('Error when fetching Checkout items', err);
-          });
-      };
-
-    });
-  </script>
-  #}
+  </main>
 {% endblock %}
