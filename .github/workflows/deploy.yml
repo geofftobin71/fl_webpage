@@ -56,6 +56,7 @@ jobs:
         run: npm run deployimages
 
       - name: Commit Updates
+        if: ${{ false }}
         run: |
           git config --global user.name 'Geoff Tobin'
           git config --global user.email 'geofftobin71@users.noreply.github.com'
