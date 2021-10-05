@@ -1,12 +1,13 @@
 {
   "total_count": 9,
-  "time": 83,
+  "time": 117,
   "resources": [
     {
       "asset_id": "c352c0e0765d05888b8a6926dce6e858",
       "public_id": "workshops/wreath-workshop-9",
       "folder": "workshops",
       "filename": "wreath-workshop-9",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195742,
       "resource_type": "image",
@@ -44,6 +45,7 @@
       "public_id": "workshops/wreath-workshop-8",
       "folder": "workshops",
       "filename": "wreath-workshop-8",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195739,
       "resource_type": "image",
@@ -81,6 +83,7 @@
       "public_id": "workshops/wreath-workshop-7",
       "folder": "workshops",
       "filename": "wreath-workshop-7",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195738,
       "resource_type": "image",
@@ -118,6 +121,7 @@
       "public_id": "workshops/wreath-workshop-6",
       "folder": "workshops",
       "filename": "wreath-workshop-6",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195734,
       "resource_type": "image",
@@ -155,6 +159,7 @@
       "public_id": "workshops/wreath-workshop-5",
       "folder": "workshops",
       "filename": "wreath-workshop-5",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195734,
       "resource_type": "image",
@@ -192,6 +197,7 @@
       "public_id": "workshops/wreath-workshop-4",
       "folder": "workshops",
       "filename": "wreath-workshop-4",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195728,
       "resource_type": "image",
@@ -229,6 +235,7 @@
       "public_id": "workshops/wreath-workshop-3",
       "folder": "workshops",
       "filename": "wreath-workshop-3",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195725,
       "resource_type": "image",
@@ -266,6 +273,7 @@
       "public_id": "workshops/wreath-workshop-2",
       "folder": "workshops",
       "filename": "wreath-workshop-2",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195722,
       "resource_type": "image",
@@ -303,6 +311,7 @@
       "public_id": "workshops/wreath-workshop-1",
       "folder": "workshops",
       "filename": "wreath-workshop-1",
+      "display_name": null,
       "format": "jpg",
       "version": 1613195720,
       "resource_type": "image",
@@ -337,6 +346,6 @@
     }
   ],
   "rate_limit_allowed": 500,
-  "rate_limit_reset_at": "2021-07-09T01:00:00.000Z",
-  "rate_limit_remaining": 496
+  "rate_limit_reset_at": "2021-10-06T00:00:00.000Z",
+  "rate_limit_remaining": 492
 }
