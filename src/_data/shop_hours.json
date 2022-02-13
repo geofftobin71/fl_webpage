@@ -1,9 +1,9 @@
 {
-  "monday": "Closed",
-  "tuesday": "Closed",
-  "wednesday": "Closed",
-  "thursday": "Closed",
-  "friday": "Closed",
-  "saturday": "Closed",
+  "monday": "Online orders only",
+  "tuesday": "Online orders only",
+  "wednesday": "Online orders only",
+  "thursday": "Online orders only",
+  "friday": "Online orders only",
+  "saturday": "Online orders only",
   "sunday": "Closed"
 }
