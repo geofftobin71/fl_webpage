@@ -1,9 +1,9 @@
 {
-  "monday": "Online orders only",
-  "tuesday": "Online orders only",
-  "wednesday": "Online orders only",
-  "thursday": "Online orders only",
-  "friday": "Online orders only",
-  "saturday": "Online orders only",
+  "monday": "10:00am-2:00pm",
+  "tuesday": "10:00am-2:00pm",
+  "wednesday": "10:00am-2:00pm",
+  "thursday": "10:00am-2:00pm",
+  "friday": "10:00am-2:00pm",
+  "saturday": "10:00am-2:00pm",
   "sunday": "Closed"
 }
