@@ -29,3 +29,5 @@ fields:
     label: year
   config:
     labelField: couple
+pages:
+- src/_data/wedding_couples.json
