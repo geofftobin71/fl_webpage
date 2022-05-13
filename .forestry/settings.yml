@@ -59,6 +59,10 @@ sections:
   path: src/_data/photographers.json
   label: Photographers
 - type: document
+  path: src/_data/photo.json
+  label: Photo
+  match: "**/*"
+- type: document
   path: src/_data/wedding_couples.json
   label: Wedding Couples
 - type: document
