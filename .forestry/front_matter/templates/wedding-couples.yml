@@ -9,18 +9,6 @@ fields:
   - type: text
     name: couple
     label: couple
-  - name: photographer
-    type: select
-    default: []
-    config:
-      required: false
-      options: []
-      source:
-        type: pages
-        section: photo
-        file: 
-        path: 
-    label: Photographer
   - type: text
     name: venue
     label: venue
