@@ -17,7 +17,7 @@ fields:
       options: []
       source:
         type: pages
-        section: photographers
+        section: photo
         file: 
         path: 
     label: Photographer
