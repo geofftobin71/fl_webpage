@@ -7,7 +7,6 @@ sections:
 - type: document
   path: src/_data/photo.yml
   label: Photo
-  match: "**/*"
 - type: heading
   label: Website Data
 - type: document
