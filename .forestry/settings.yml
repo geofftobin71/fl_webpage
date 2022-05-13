@@ -61,7 +61,6 @@ sections:
 - type: document
   path: src/_data/wedding_couples.json
   label: Wedding Couples
-  match: "**/*"
 - type: document
   path: src/_data/shop_category_names.json
   label: Category Names

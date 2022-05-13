@@ -1,0 +1,17 @@
+---
+label: Wedding Couples
+hide_body: true
+fields:
+- type: field_group_list
+  name: Wedding couples
+  label: Wedding couples
+  fields:
+  - type: text
+    name: couple
+    label: couple
+  - type: text
+    name: venue
+    label: venue
+  - type: text
+    name: year
+    label: year
