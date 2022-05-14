@@ -15,6 +15,18 @@ fields:
   - type: text
     name: year
     label: Year
+  - name: photographer
+    type: select
+    default: []
+    config:
+      required: false
+      options: []
+      source:
+        type: pages
+        section: photographers-477490bd-4e25-45a1-ae5e-e381431fb051
+        file: 
+        path: 
+    label: Photographer
   config:
     labelField: couple
 pages:
