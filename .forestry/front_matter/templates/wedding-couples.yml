@@ -9,6 +9,7 @@ fields:
   - type: text
     name: couple
     label: Couple
+    description: Use <strong>and</strong> not <strong>&amp;</strong>
   - type: text
     name: venue
     label: Venue
