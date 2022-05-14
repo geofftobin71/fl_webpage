@@ -4,6 +4,12 @@ auto_deploy: false
 admin_path: admin
 webhook_url: 
 sections:
+- type: directory
+  path: src/_data/photographers
+  label: Photographers
+  create: documents
+  match: "**/*.json"
+  new_doc_ext: ".json"
 - type: heading
   label: Website Data
 - type: document
