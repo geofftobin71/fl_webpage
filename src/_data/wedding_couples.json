@@ -9,12 +9,12 @@
     "couple": "Marina and Andrew",
     "venue": "Ohariu Farm",
     "year": "2019",
-    "photographer": "Bradley Garner Creative"
+    "photographer": "src/_data/photographers/bradley-garner-creative.json"
   },
   {
     "couple": "Phoebe and Tom",
     "venue": "Rose & Smith",
     "year": "2020",
-    "photographer": "Katie Kidman"
+    "photographer": "src/_data/photographers/katie-kidman.json"
   }
 ]
