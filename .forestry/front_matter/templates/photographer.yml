@@ -13,3 +13,5 @@ fields:
   config:
     required: false
   label: Web Page
+pages:
+- src/_data/photographers/sink-or-surface.json
