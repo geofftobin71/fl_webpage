@@ -1,4 +1,15 @@
 ---
 label: Photographer
 hide_body: true
-fields: []
+display_field: title
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Name
+- name: webpage
+  type: text
+  config:
+    required: false
+  label: Web Page
