@@ -14,4 +14,5 @@ fields:
     required: false
   label: Web Page
 pages:
+- src/_data/photographers/macona-images.json
 - src/_data/photographers/sink-or-surface.json
