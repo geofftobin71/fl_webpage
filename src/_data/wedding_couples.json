@@ -1,5 +1,17 @@
 [
   {
+    "couple": "Cat and Paul",
+    "venue": "Tarureka",
+    "year": "2020",
+    "photographer": "src/_data/photographers/sb-photography.json"
+  },
+  {
+    "couple": "Beatrice and Brett",
+    "venue": "Staglands",
+    "year": "2021",
+    "photographer": "src/_data/photographers/jaymee-photography.json"
+  },
+  {
     "couple": "Charlotte and Szabi",
     "venue": "Ohariu Farm",
     "year": "2019",
