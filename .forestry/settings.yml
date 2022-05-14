@@ -31,7 +31,7 @@ sections:
   path: src/_data/photographers
   label: Photographers
   create: documents
-  match: "**/*.json"
+  match: "*.json"
   new_doc_ext: json
   templates:
   - photographer
@@ -63,9 +63,6 @@ sections:
   label: Products
 - type: heading
   label: Misc
-- type: document
-  path: src/_data/photographers.json
-  label: Photographers
 - type: document
   path: src/_data/wedding_couples.json
   label: Wedding Couples

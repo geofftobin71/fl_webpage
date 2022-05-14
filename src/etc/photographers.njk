@@ -1,0 +1,15 @@
+---
+sitemap:
+  ignore: true
+layout: null
+pagination:
+  data: photographers
+  size: 1
+  alias: photographer
+permalink: "src/_data/photographers/{{ photographer.name | slug }}.json"
+permalinkBypassOutputDir: true
+---
+{
+  "title": "{{ photographer.name }}",
+  "webpage": "{{ photographer.webpage }}"
+}
