@@ -35,6 +35,9 @@ sections:
   new_doc_ext: json
   templates:
   - photographer
+- type: document
+  path: src/_data/wedding_couples.json
+  label: Wedding Couples
 - type: heading
   label: Pages
 - type: directory
@@ -63,9 +66,6 @@ sections:
   label: Products
 - type: heading
   label: Misc
-- type: document
-  path: src/_data/wedding_couples.json
-  label: Wedding Couples
 - type: document
   path: src/_data/shop_category_names.json
   label: Category Names
