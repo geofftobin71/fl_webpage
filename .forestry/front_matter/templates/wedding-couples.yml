@@ -15,18 +15,6 @@ fields:
   - type: text
     name: year
     label: Year
-  - name: photographer
-    type: select
-    default: []
-    config:
-      required: false
-      options: []
-      source:
-        type: documents
-        section: photo
-        file: src/_data/photo.yml
-        path: photographers
-    label: Photographer
   config:
     labelField: couple
 pages:
