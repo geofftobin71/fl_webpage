@@ -1,5 +1,12 @@
 [
   {
+    "couple": "Sarah and Scott",
+    "venue": "Boomrock",
+    "year": "2018",
+    "photographer": "src/_data/photographers/nisha-ravji.json",
+    "hero_image": "/v1646554519/weddings/Sarah%20and%20Scott%20-%20Nisha%20Ravji/axtmismbp1uxwvq76hht.jpg"
+  },
+  {
     "couple": "Eileen and Liam",
     "venue": "Tarureka",
     "year": "2022",
