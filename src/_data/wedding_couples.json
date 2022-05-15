@@ -7,25 +7,11 @@
     "hero_image": "/v1646553950/weddings/Delia%20and%20Tom%20-%20The%20Gribbons/m3xxdygv0m9t3blcrehj.jpg"
   },
   {
-    "couple": "Charlotte and Szabi",
-    "venue": "Ohariu Farm",
-    "year": "2019",
-    "photographer": "src/_data/photographers/golden-light-nz.json",
-    "hero_image": "/v1646553960/weddings/Charlotte%20and%20Szabi%20-%20Golden%20Light%20NZ/aknfo0qiwekbsaui9urb.jpg"
-  },
-  {
-    "couple": "Marina and Andrew",
-    "venue": "Ohariu Farm",
-    "year": "2019",
-    "photographer": "src/_data/photographers/bradley-garner-creative.json",
-    "hero_image": "/v1646635878/weddings/Marina%20and%20Andrew%20-%20Bradley%20Garner%20Creative/exidmizjqfmaquibelsd.jpg"
-  },
-  {
-    "couple": "Phoebe and Tom",
-    "venue": "Rose & Smith",
+    "couple": "Cat and Paul",
+    "venue": "Tarureka",
     "year": "2020",
-    "photographer": "src/_data/photographers/katie-kidman.json",
-    "hero_image": "/v1646555157/weddings/Phoebe%20and%20Tom%20-%20Katie%20Kidman/mm4tjiuuniyaz1ax6mho.jpg"
+    "photographer": "src/_data/photographers/sb-photography.json",
+    "hero_image": "/v1646636244/weddings/Cat%20and%20Paul%20-%20SB%20Photography/mlj39fewcgt2nidqxref.jpg"
   },
   {
     "couple": "Beatrice and Brett",
@@ -35,10 +21,24 @@
     "hero_image": "/v1646553939/weddings/Beatrice%20and%20Brett%20-%20Jaymee%20Photography/f5z87ydadmdfafhg7p4m.jpg"
   },
   {
-    "couple": "Cat and Paul",
-    "venue": "Tarureka",
+    "couple": "Phoebe and Tom",
+    "venue": "Rose & Smith",
     "year": "2020",
-    "photographer": "src/_data/photographers/sb-photography.json",
-    "hero_image": "/v1646636244/weddings/Cat%20and%20Paul%20-%20SB%20Photography/mlj39fewcgt2nidqxref.jpg"
+    "photographer": "src/_data/photographers/katie-kidman.json",
+    "hero_image": "/v1646555157/weddings/Phoebe%20and%20Tom%20-%20Katie%20Kidman/mm4tjiuuniyaz1ax6mho.jpg"
+  },
+  {
+    "couple": "Marina and Andrew",
+    "venue": "Ohariu Farm",
+    "year": "2019",
+    "photographer": "src/_data/photographers/bradley-garner-creative.json",
+    "hero_image": "/v1646635878/weddings/Marina%20and%20Andrew%20-%20Bradley%20Garner%20Creative/exidmizjqfmaquibelsd.jpg"
+  },
+  {
+    "couple": "Charlotte and Szabi",
+    "venue": "Ohariu Farm",
+    "year": "2019",
+    "photographer": "src/_data/photographers/golden-light-nz.json",
+    "hero_image": "/v1646553960/weddings/Charlotte%20and%20Szabi%20-%20Golden%20Light%20NZ/aknfo0qiwekbsaui9urb.jpg"
   }
 ]
