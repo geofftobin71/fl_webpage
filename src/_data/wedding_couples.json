@@ -10,9 +10,7 @@
     "couple": "Bex and Cam",
     "venue": "Orau Beach House",
     "year": "2020",
-    "photographer": [
-
-    ],
+    "photographer": "src/_data/photographers/j-photo-and-co.json",
     "hero_image": "/v1646639662/weddings/Bex%20and%20Cam%20-%20J.Photo%20and%20co/cuhjib3i8kh8ynz3vlbb.jpg"
   },
   {
