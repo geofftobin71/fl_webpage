@@ -14,6 +14,7 @@ fields:
     required: false
   label: Web Page
 pages:
+- src/_data/photographers/emma-monaghan-photography.json
 - src/_data/photographers/golden-light-nz.json
 - src/_data/photographers/j-photo-and-co.json
 - src/_data/photographers/macona-images.json
