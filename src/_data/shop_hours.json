@@ -1,9 +1,9 @@
 {
-  "monday": "Closed",
-  "tuesday": "10:00am-4:00pm",
-  "wednesday": "10:00am-4:00pm",
-  "thursday": "10:00am-4:00pm",
-  "friday": "10:00am-4:00pm",
-  "saturday": "10:00am-2:00pm",
+  "monday": "Order online or call",
+  "tuesday": "Order online or call",
+  "wednesday": "Order online or call",
+  "thursday": "Order online or call",
+  "friday": "Order online or call",
+  "saturday": "Closed",
   "sunday": "Closed"
 }
