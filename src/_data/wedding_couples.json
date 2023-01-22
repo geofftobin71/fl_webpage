@@ -42,20 +42,6 @@
     "hero_image": "/v1653184659/weddings/Priyanka%20and%20Bernard%20-%20Tim%20and%20Nadine/koulapqymejtlqyc7tkp.jpg"
   },
   {
-    "couple": "Stacey and Fraser",
-    "venue": "Poppies",
-    "year": "2019",
-    "photographer": "src/_data/photographers/yvonne-liew.json",
-    "hero_image": "/v1646554510/weddings/Stacey%20and%20Fraser%20-%20Yvonne%20Liew/nzdpz6tlozhv8gofq5fc.jpg"
-  },
-  {
-    "couple": "Racel and Sol",
-    "venue": "Boomrock",
-    "year": "2020",
-    "photographer": "src/_data/photographers/tim-and-nadine.json",
-    "hero_image": "/v1646554525/weddings/Racel%20and%20Sol%20-%20Tim%20and%20Nadine/eu5hx4neo0y30bn4f0cs.jpg"
-  },
-  {
     "couple": "Maddie and Jason",
     "venue": "Poppies",
     "year": "2020",
@@ -89,13 +75,6 @@
     "year": "2021",
     "photographer": "src/_data/photographers/tim-and-nadine.json",
     "hero_image": "/v1646554035/weddings/Emma%20and%20Andy%20-%20Tim%20and%20Nadine/uolbvcrhyf7nzgt6b1w6.jpg"
-  },
-  {
-    "couple": "Kelly and Tony",
-    "venue": "Lacewood",
-    "year": "2019",
-    "photographer": "src/_data/photographers/sarah-mcevoy.json",
-    "hero_image": "/v1646636429/weddings/Kelly%20and%20Tony%20-%20Sarah%20McEvoy/qsxtyomalzvsocvdxtfo.jpg"
   },
   {
     "couple": "Anna and Craig",
@@ -140,27 +119,6 @@
     "hero_image": "/v1646639662/weddings/Bex%20and%20Cam%20-%20J.Photo%20and%20co/cuhjib3i8kh8ynz3vlbb.jpg"
   },
   {
-    "couple": "Gabi and Phil",
-    "venue": "The Canape Company",
-    "year": "2021",
-    "photographer": "src/_data/photographers/billie-brook.json",
-    "hero_image": "/v1646554016/weddings/Gabi%20and%20Phil%20-%20Billie%20Brook/iyx3pdvwsba5qac8b67i.jpg"
-  },
-  {
-    "couple": "Jess and Jono",
-    "venue": "Wellington Botanic Gardens",
-    "year": "2019",
-    "photographer": "src/_data/photographers/yvonne-liew.json",
-    "hero_image": "/v1646554106/weddings/Jess%20and%20Jono%20-%20Yvonne%20Liew/lo4au7299jbqbb7ngqsj.jpg"
-  },
-  {
-    "couple": "Summer and Josh",
-    "venue": "Otaki",
-    "year": "2019",
-    "photographer": "src/_data/photographers/yvonne-liew.json",
-    "hero_image": "/v1646634510/weddings/Summer%20and%20Josh%20-%20Yvonne%20Liew/cxy97cmk1yhm1jbubul3.jpg"
-  },
-  {
     "couple": "Hanna and AJ",
     "venue": "Orui Station",
     "year": "2022",
@@ -196,20 +154,6 @@
     "hero_image": "/v1646554519/weddings/Sarah%20and%20Scott%20-%20Nisha%20Ravji/axtmismbp1uxwvq76hht.jpg"
   },
   {
-    "couple": "Eileen and Liam",
-    "venue": "Tarureka",
-    "year": "2022",
-    "photographer": "src/_data/photographers/jinal-govind-photography.json",
-    "hero_image": "/v1650068622/weddings/Eileen%20and%20Liam%20-%20Jinal%20Govind%20Photography/daw5ra2of8clydmcsfuo.jpg"
-  },
-  {
-    "couple": "Delia and Tom",
-    "venue": "Paremata Boating Club",
-    "year": "2022",
-    "photographer": "src/_data/photographers/the-gribbons.json",
-    "hero_image": "/v1646553950/weddings/Delia%20and%20Tom%20-%20The%20Gribbons/m3xxdygv0m9t3blcrehj.jpg"
-  },
-  {
     "couple": "Cat and Paul",
     "venue": "Tarureka",
     "year": "2020",
@@ -229,19 +173,5 @@
     "year": "2020",
     "photographer": "src/_data/photographers/katie-kidman.json",
     "hero_image": "/v1646555157/weddings/Phoebe%20and%20Tom%20-%20Katie%20Kidman/mm4tjiuuniyaz1ax6mho.jpg"
-  },
-  {
-    "couple": "Marina and Andrew",
-    "venue": "Ohariu Farm",
-    "year": "2019",
-    "photographer": "src/_data/photographers/bradley-garner-creative.json",
-    "hero_image": "/v1646635878/weddings/Marina%20and%20Andrew%20-%20Bradley%20Garner%20Creative/exidmizjqfmaquibelsd.jpg"
-  },
-  {
-    "couple": "Charlotte and Szabi",
-    "venue": "Ohariu Farm",
-    "year": "2019",
-    "photographer": "src/_data/photographers/golden-light-nz.json",
-    "hero_image": "/v1646553960/weddings/Charlotte%20and%20Szabi%20-%20Golden%20Light%20NZ/aknfo0qiwekbsaui9urb.jpg"
   }
 ]
