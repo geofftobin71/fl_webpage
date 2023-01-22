@@ -3,9 +3,7 @@
     "couple": "Cat and Eliza",
     "venue": "Prefab",
     "year": "2023",
-    "photographer": [
-
-    ],
+    "photographer": "src/_data/photographers/arthur-hon.json",
     "hero_image": "/v1674359957/weddings/Cat%20and%20Eliza%20-%20Arthur%20Hon/nlp1la1z9mqzwdpnjeof.jpg"
   },
   {
