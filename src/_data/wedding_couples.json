@@ -3,10 +3,8 @@
     "couple": "Bella and Jam",
     "venue": "Boomrock",
     "year": "2023",
-    "photographer": [
-
-    ],
-    "hero_image": ""
+    "photographer": "src/_data/photographers/patina-photography.json",
+    "hero_image": "/v1678092783/weddings/Bella%20and%20Jam%20-%20Patina%20Photo/turt5zxgibtpjkerwasy.jpg"
   },
   {
     "couple": "Cat and Eliza",
