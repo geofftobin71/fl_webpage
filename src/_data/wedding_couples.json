@@ -1,5 +1,12 @@
 [
   {
+    "couple": "Sophia and Matthew",
+    "venue": "Sudbury",
+    "year": "2023",
+    "photographer": "src/_data/photographers/patina-photography.json",
+    "hero_image": "/v1680680782/weddings/Sophia%20and%20Matthew%20-%20Patina%20Photo/i8c0omfjwjmkxu8fh4pl.jpg"
+  },
+  {
     "couple": "Olivia and Lochlan",
     "venue": "Rose and Smith",
     "year": "2022",
