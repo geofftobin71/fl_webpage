@@ -1,5 +1,12 @@
 [
   {
+    "couple": "Sarah and Stephen",
+    "venue": "Boomrock",
+    "year": "2023",
+    "photographer": "src/_data/photographers/patina-photography.json",
+    "hero_image": "/v1710219300/weddings/Sarah%20and%20Stephen%20-%20Patina%20Photo/m4msvuyfjoe8miibhex5.jpg"
+  },
+  {
     "couple": "Theresa and Shavin",
     "venue": "Brackenridge",
     "year": "2023",
