@@ -98,13 +98,6 @@
     "hero_image": "/v1661370774/weddings/Canada%20and%20Jarrod%20-%20Emma%20Monaghan%20Photography/edf6ctp4izcgtvna62jm.jpg"
   },
   {
-    "couple": "Britt and Thomas",
-    "venue": "The Lodge - Pauatahanui Inlet",
-    "year": "2022",
-    "photographer": "src/_data/photographers/macona-images.json",
-    "hero_image": "/v1656877125/weddings/Brittany%20and%20Thomas%20-%20Macona%20Images/lmg0oluyyyavdhmgoapo.jpg"
-  },
-  {
     "couple": "Neelakshi and Akshay",
     "venue": "",
     "year": "2022",
@@ -175,13 +168,6 @@
     "hero_image": "/v1646636064/weddings/Ruby%20and%20Tegan%20-%20Ryan%20Domenico%20Photography/h7fg12qr4iotcsspblwx.jpg"
   },
   {
-    "couple": "Frances and Clarke",
-    "venue": "Sweet Georgia Cruising",
-    "year": "2020",
-    "photographer": "src/_data/photographers/david-james-photography.json",
-    "hero_image": "/v1646635573/weddings/Frances%20and%20Clarke%20-%20David%20James%20Photography/r12bnjoogu67fb8wryf4.jpg"
-  },
-  {
     "couple": "Bex and Cam",
     "venue": "Orau Beach House",
     "year": "2020",
@@ -210,25 +196,11 @@
     "hero_image": "/v1646554937/weddings/Jaymee%20and%20Karl%20-%20Yvonne%20Liew/ejw4m4rqtjamptkxyh6x.jpg"
   },
   {
-    "couple": "Sarah and Scott",
-    "venue": "Boomrock",
-    "year": "2018",
-    "photographer": "src/_data/photographers/nisha-ravji.json",
-    "hero_image": "/v1646554519/weddings/Sarah%20and%20Scott%20-%20Nisha%20Ravji/axtmismbp1uxwvq76hht.jpg"
-  },
-  {
     "couple": "Cat and Paul",
     "venue": "Tarureka",
     "year": "2020",
     "photographer": "src/_data/photographers/sb-photography.json",
     "hero_image": "/v1646636244/weddings/Cat%20and%20Paul%20-%20SB%20Photography/mlj39fewcgt2nidqxref.jpg"
-  },
-  {
-    "couple": "Beatrice and Brett",
-    "venue": "Staglands",
-    "year": "2021",
-    "photographer": "src/_data/photographers/jaymee-photography.json",
-    "hero_image": "/v1646553939/weddings/Beatrice%20and%20Brett%20-%20Jaymee%20Photography/f5z87ydadmdfafhg7p4m.jpg"
   },
   {
     "couple": "Phoebe and Tom",
